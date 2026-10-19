@@ -1,11 +1,11 @@
 {
- "jogo": 62,
- "jogo_arquivo": "jogo-62.kpk",
- "jogo_sha": "0575578e2faa5ded08c91e801baf1599015dff2bd762c3ce4fa32478b46d49f4",
- "jogo_assin": "wx0UiGRWt4QJK4uAjd89SIiPwdjkor1eqHoubZ7opudu/Wu62VeWv2y0Tw4k4CMHJ4UUk8a/pSLJK8y2/UTQDg==",
+ "jogo": 63,
+ "jogo_arquivo": "jogo-63.kpk",
+ "jogo_sha": "cb56092356041ab0140c1a00be0a358b34c977c48cd3b46a6b00fe0a06634c67",
+ "jogo_assin": "5IvuuqoruODb1XLrvZsUrYuVAZ6qcrK3dQ31le++4UA8UG/ohXJ9EP3MwdmLL7yWqexQKavGzgS1Byan5237Bg==",
  "launcher": 2,
  "launcher_arquivo": "KaimonGT-2.exe",
- "launcher_sha": "7b2218fcccc2849b72788d46b629a63ec21f73a35bfe6024744b3ef60f6fc7b6",
- "launcher_assin": "p0AjVJ0zxsmPzkx5yyNkiF56rksjxffwRquNWNT++ozxknCNWZHsHwG/eCIGqmetaLV1XoCSh6drCItI6mhhCQ==",
- "notas": "Kaimon GT v62: Passe Kaimon, Saciclone, addons, Cristal do Passe, Kaimondex com busca"
+ "launcher_sha": "f6f6c9c954724a6c4cfd93b07915ccf8475a49a706c01610134b3db40fa2e79d",
+ "launcher_assin": "yiVabc6kpg7UTaRy5nD92Uu5bVoNFowt9iB9h+OOJTGkZHtASr61uCXAuv4snHiJ6nX1iGsy3L4iwccdYf/kDg==",
+ "notas": "Kaimon GT v63: contas Google, save na nuvem, banco online, Loja Kaimon"
 }
