@@ -1,11 +1,11 @@
 {
- "jogo": 61,
- "jogo_arquivo": "jogo-61.kpk",
- "jogo_sha": "4a31551a38d2804eaea9ae6694147fc45d079ae3a4eab5cc4b46d83b41084abf",
- "jogo_assin": "qQZwvSXrJGbxBbswLK3fyOJOeImLJgIUTJPgj6RnYKnkvPzmrLtxeLj09KQoKtQ8nshQ7M+Iu2/rtaX73FJeAQ==",
+ "jogo": 62,
+ "jogo_arquivo": "jogo-62.kpk",
+ "jogo_sha": "0575578e2faa5ded08c91e801baf1599015dff2bd762c3ce4fa32478b46d49f4",
+ "jogo_assin": "wx0UiGRWt4QJK4uAjd89SIiPwdjkor1eqHoubZ7opudu/Wu62VeWv2y0Tw4k4CMHJ4UUk8a/pSLJK8y2/UTQDg==",
  "launcher": 2,
  "launcher_arquivo": "KaimonGT-2.exe",
- "launcher_sha": "7d9c4bbab6f6664d4b191ff55d9b30b3dd328dbcf9259b82b606924c4d3032ee",
- "launcher_assin": "H9eh3JD3tR9QygsGkkHlYyRKNywRnle1qHlOVTcsaDmAGhbTykRliHZnrp5V2MGnvHQMhELbvMnZlpSuA8VIAw==",
- "notas": "Kaimon GT v61: Banco Kaimon em toda cidade (depósito, saque, extrato e Pixa)"
+ "launcher_sha": "7b2218fcccc2849b72788d46b629a63ec21f73a35bfe6024744b3ef60f6fc7b6",
+ "launcher_assin": "p0AjVJ0zxsmPzkx5yyNkiF56rksjxffwRquNWNT++ozxknCNWZHsHwG/eCIGqmetaLV1XoCSh6drCItI6mhhCQ==",
+ "notas": "Kaimon GT v62: Passe Kaimon, Saciclone, addons, Cristal do Passe, Kaimondex com busca"
 }
