@@ -1,11 +1,11 @@
 {
  "jogo": 64,
  "jogo_arquivo": "jogo-64.kpk",
- "jogo_sha": "65e3f3593c1c9d2a4ee7c04fc18d6ef2637d15f442753021c90083dfe94142df",
- "jogo_assin": "UMogJipDSs7gjc4i4evRpaiXYid/t7a7K6rPR3zsiJOAL0NWWWONTJLZKbbOxh4nEjYqlZ9dQDFiQjitEMhQAA==",
+ "jogo_sha": "57b6e2d3b6ad2670c4f067478a5178226623748df5784f2111d4290257aa1248",
+ "jogo_assin": "3pH0Lo747Ka3GLB5lT1sBgclLSAbXBoXpZZasG4yV3BAPIoIQxA2pIB63wOj33prptA7DduG/FiwzaWkfHuvCg==",
  "launcher": 2,
  "launcher_arquivo": "KaimonGT-2.exe",
- "launcher_sha": "75f555fe6b5f1beeeeac848b7e20329c0bf14c182b5e861b3267b7a9242e9eba",
- "launcher_assin": "s+ufyJ8jTSRS+vuGLWv0irhl+5Yko98n+4+DdrLSf6/jLqH+WCAAWTMm6ujUHn+1330ARzFViCApiGsNhPgfAQ==",
- "notas": "Kaimon GT v64: Kaimon Coin, Loja em KMC, Addon Box, addons do treinador e de todos os monstros, Boost de EXP, montaria consertada"
+ "launcher_sha": "2a42ae415de27957f7bdcbe31ace6665c82eebc4334884607e7ae5da366e0190",
+ "launcher_assin": "nuhXA09hiZfdz9jnNii0be+5h8paq6rmK3nXjEAyq5HpY1iLpHuUSq3bUmTc92iwcVSWfisbzg7zW7uwAc0gAA==",
+ "notas": "Kaimon GT v64: Kaimon Coin, Loja em KMC, Addon Box, addons, Boost de EXP, montaria consertada, shiny que foge some"
 }
