@@ -1,11 +1,11 @@
 {
- "jogo": 60,
- "jogo_arquivo": "jogo-60.kpk",
- "jogo_sha": "bcb04ef4fb8079f368d16c8cb141b79d877b1104e3cb765a12b84b450620ed3e",
- "jogo_assin": "Pib4W4NQNE0F7nehvVCGcEmsCyzdibLYsIvI/a6UIn5nRXOTRJBpGGCtM1FrHYjwf6YMI/l/V06rzHUSTZoZCA==",
+ "jogo": 61,
+ "jogo_arquivo": "jogo-61.kpk",
+ "jogo_sha": "4a31551a38d2804eaea9ae6694147fc45d079ae3a4eab5cc4b46d83b41084abf",
+ "jogo_assin": "qQZwvSXrJGbxBbswLK3fyOJOeImLJgIUTJPgj6RnYKnkvPzmrLtxeLj09KQoKtQ8nshQ7M+Iu2/rtaX73FJeAQ==",
  "launcher": 2,
  "launcher_arquivo": "KaimonGT-2.exe",
- "launcher_sha": "350f5a0e018bd5bff61d096c3f7b8003dba15b0010a35b25c520fb0ee1290b4d",
- "launcher_assin": "bW5Tfd0qUJzawGl0dUtJV7nu52Ww/JMHTrBQHqQFFPxlUpjs37KYsB5QKzesuxwpyzQPhhzL20J5PDwMMDGOAg==",
- "notas": "Kaimon GT v60: Pergunta do Kaimon com Kaimon Points e launcher com atualização automática"
+ "launcher_sha": "7d9c4bbab6f6664d4b191ff55d9b30b3dd328dbcf9259b82b606924c4d3032ee",
+ "launcher_assin": "H9eh3JD3tR9QygsGkkHlYyRKNywRnle1qHlOVTcsaDmAGhbTykRliHZnrp5V2MGnvHQMhELbvMnZlpSuA8VIAw==",
+ "notas": "Kaimon GT v61: Banco Kaimon em toda cidade (depósito, saque, extrato e Pixa)"
 }
