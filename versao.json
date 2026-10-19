@@ -1,11 +1,11 @@
 {
  "jogo": 63,
  "jogo_arquivo": "jogo-63.kpk",
- "jogo_sha": "cb56092356041ab0140c1a00be0a358b34c977c48cd3b46a6b00fe0a06634c67",
- "jogo_assin": "5IvuuqoruODb1XLrvZsUrYuVAZ6qcrK3dQ31le++4UA8UG/ohXJ9EP3MwdmLL7yWqexQKavGzgS1Byan5237Bg==",
+ "jogo_sha": "02e92319b8a136b2329be47ca48747aeb4a82c3cf8d1d50e2c2ddc2bde1589ce",
+ "jogo_assin": "eu2gnFrb3jnyTW+XiW++/ODQu9SMbsLcpCBeVzxE0u8bwhQx7+srf3FKWrOJGKIOHyeeEqpCX3ugfh1b/bqCDQ==",
  "launcher": 2,
  "launcher_arquivo": "KaimonGT-2.exe",
- "launcher_sha": "f6f6c9c954724a6c4cfd93b07915ccf8475a49a706c01610134b3db40fa2e79d",
- "launcher_assin": "yiVabc6kpg7UTaRy5nD92Uu5bVoNFowt9iB9h+OOJTGkZHtASr61uCXAuv4snHiJ6nX1iGsy3L4iwccdYf/kDg==",
- "notas": "Kaimon GT v63: contas Google, save na nuvem, banco online, Loja Kaimon"
+ "launcher_sha": "a6049c84c37473b3126523614a05625ad413481dcf90b425e73ae499b5ea8f79",
+ "launcher_assin": "B7ZG905Kkz31gzxQwed3sJh2E0Btmx//l6c7cRRNIppWdEMcofrRVOa8M5gsBNNpv6REmEqtIjgmzDrWZkrTBw==",
+ "notas": "Kaimon GT v63: contas Google, save na nuvem, Loja Kaimon"
 }
