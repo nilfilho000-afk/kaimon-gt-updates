@@ -1,11 +1,11 @@
 {
- "jogo": 64,
- "jogo_arquivo": "jogo-64.kpk",
- "jogo_sha": "57b6e2d3b6ad2670c4f067478a5178226623748df5784f2111d4290257aa1248",
- "jogo_assin": "3pH0Lo747Ka3GLB5lT1sBgclLSAbXBoXpZZasG4yV3BAPIoIQxA2pIB63wOj33prptA7DduG/FiwzaWkfHuvCg==",
+ "jogo": 65,
+ "jogo_arquivo": "jogo-65.kpk",
+ "jogo_sha": "a1a8f34a1574ab05eec9b3c84a0ea65a6149cbf3f88120a2e881bc771d7e421f",
+ "jogo_assin": "pMzg8Itlgf1xAmrSdfO7T1OpTCbcs/j3+VTsVa9SM42ZUUOcYOuGj+mzEx7VWmpRanpaDbhItkGv1hdtci5EDw==",
  "launcher": 2,
  "launcher_arquivo": "KaimonGT-2.exe",
- "launcher_sha": "2a42ae415de27957f7bdcbe31ace6665c82eebc4334884607e7ae5da366e0190",
- "launcher_assin": "nuhXA09hiZfdz9jnNii0be+5h8paq6rmK3nXjEAyq5HpY1iLpHuUSq3bUmTc92iwcVSWfisbzg7zW7uwAc0gAA==",
- "notas": "Kaimon GT v64: Kaimon Coin, Loja em KMC, Addon Box, addons, Boost de EXP, montaria consertada, shiny que foge some"
+ "launcher_sha": "f46c53350f647980760e67a119c443345f264da187a1b7df51170224b8ad2437",
+ "launcher_assin": "Y5kBNfQuqEEVJEIOKqObqk/0Uhv00nukyBC0p7/5Zb5277qJ1i2mqgF4PT8npEYdACn8HzlaLCMMUYk9xdBMDw==",
+ "notas": "Kaimon GT v65: casa com móveis interativos, clique do mouse, montaria e Kaimondex, voo mais vivo, árvores novas"
 }
