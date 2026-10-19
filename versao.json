@@ -1,11 +1,11 @@
 {
- "jogo": 63,
- "jogo_arquivo": "jogo-63.kpk",
- "jogo_sha": "02e92319b8a136b2329be47ca48747aeb4a82c3cf8d1d50e2c2ddc2bde1589ce",
- "jogo_assin": "eu2gnFrb3jnyTW+XiW++/ODQu9SMbsLcpCBeVzxE0u8bwhQx7+srf3FKWrOJGKIOHyeeEqpCX3ugfh1b/bqCDQ==",
+ "jogo": 64,
+ "jogo_arquivo": "jogo-64.kpk",
+ "jogo_sha": "2e203d789ac25c191088c8efeac38cc9318cd036465eb74a98c637f83b6eb310",
+ "jogo_assin": "2gj9PKEQKUjns9KtUU+Lo6QFgoVhB/sk77qDiTdBpSQ37avlpYSlgQOxQ5zTYvir2ERwQ/ItnHigrsnuHpfsCA==",
  "launcher": 2,
  "launcher_arquivo": "KaimonGT-2.exe",
- "launcher_sha": "a6049c84c37473b3126523614a05625ad413481dcf90b425e73ae499b5ea8f79",
- "launcher_assin": "B7ZG905Kkz31gzxQwed3sJh2E0Btmx//l6c7cRRNIppWdEMcofrRVOa8M5gsBNNpv6REmEqtIjgmzDrWZkrTBw==",
- "notas": "Kaimon GT v63: contas Google, save na nuvem, Loja Kaimon"
+ "launcher_sha": "1343c1e260861c0adfb13a83bd5816f10623f33a428fc646bc414e7e516f4244",
+ "launcher_assin": "R9GtG9lBuqyC+gu4P/dlY1dB2WBaO57nKomrjtZ/konE3j5fxWxeKAvgHGbx9UGAI1JuZRz3fqUq+/SrOmYGCQ==",
+ "notas": "Kaimon GT v64: Kaimon Coin, Loja em KMC, Addon Box, addons do treinador e de todos os monstros, Boost de EXP, montaria consertada"
 }
