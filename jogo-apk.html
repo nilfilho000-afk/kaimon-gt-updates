@@ -2177,7 +2177,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
  const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
  TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
  el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v79 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v80 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
  if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
  const a=TTL.sel&&ACC.a[TTL.sel];
@@ -10305,7 +10305,7 @@ const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);t
  const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
  const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
 
-var KGT_VER=79;
+var KGT_VER=80;
 // ===== Kaimon GT v70: shiny repaginado =====
 // Todo shiny ganha uma paleta bem diferente da normal: a cor do corpo gira ~150-210° no círculo de cores (verde vira
 // rosa, vermelho vira azul-piscina...), as partes escuras ficam quase pretas e o detalhe (a) vira a cor oposta.
@@ -11882,6 +11882,66 @@ function tpDraw(X,Y,now,front){const cw=VW*16,ch=VH*16;if(X<-40||X>cw+40||Y<-70|
 try{const _tpIc=mzIcons;mzIcons=function(){const L=_tpIc.apply(this,arguments);try{const s=tpSpot();
   if(MZ.v===0){if(cur===TP.city&&s)L.push({k:'npc',x:s.npc[0]+.5,y:s.npc[1]+.5,e:'🌦️',t:'Dona Garoa: previsão do tempo',ax:s.npc[0],ay:s.npc[1]})}
   else{const g3=GW.find(q=>q[0]===TP.city),b=MZ.gb;if(g3&&b&&s)L.push({k:'npc',x:g3[1]-b[0]+s.npc[0],y:g3[2]-b[1]+s.npc[1],e:'🌦️',t:'Dona Garoa e a estação do tempo',mi:TP.city})}}catch(x){}return L}}catch(e){}
+
+// ===== Kaimon GT v80: vida nas árvores gigantes — folhas caindo e passarinhos =====
+// • Folhas: soltam de pontos da própria copa (com a cor dela: verde no jequitibá, amarelo no ipê-amarelo, roxo no ipê-roxo),
+//   caem balançando e girando, vão com o vento, pousam no chão e somem devagar. No outono caem muito mais (e amareladas);
+//   na chuva caem mais rápido; a araucária quase não solta.
+// • Passarinhos (bem-te-vi, sabiá, sanhaço, periquito): pousam no alto da copa, dão pulinhos, saem para dar voltas em
+//   volta da árvore batendo as asas e voltam. Se você chega perto, a revoada sai toda de uma vez. Cantam quando você
+//   está por perto. À noite dormem, e na chuva ficam escondidos na copa.
+var GV={m:-1,T:new Map(),lt:0,nc:0};
+var GVC=new Map();// por variante+estação: pontos da copa (folhas), poleiros no alto e cores
+function gvInfo(v,si){const k=v+'_'+si;let o=GVC.get(k);if(o)return o;const c=gtCanopy(v,si),w=c.width,h=c.height,d=c.getContext('2d').getImageData(0,0,w,h).data,ox=-c.ax/2,oy=-c.ay/2;
+ const pts=[],top=[];for(let n=0;n<900&&pts.length<160;n++){const px=(Math.random()*w)|0,py=(h*.55+Math.random()*h*.38)|0,i=(py*w+px)*4;if(d[i+3]>200){const r=d[i],g2=d[i+1],b=d[i+2];if(g2<40&&r<40)continue;pts.push([ox+px/2,oy+py/2,r,g2,b])}}
+ for(let px=Math.round(w*.18);px<w*.82;px+=6){for(let py=0;py<h*.6;py++){if(d[(py*w+px)*4+3]>200){top.push([ox+px/2,oy+py/2+1.5]);break}}}
+ o={pts,top};GVC.set(k,o);if(GVC.size>24)GVC.delete(GVC.keys().next().value);return o}
+const GVAVES=[{n:'bem-te-vi',b:'#6a4a2a',v:'#f2d23a',h:'#2a2a2a',k:'#ffffff'},{n:'sabiá',b:'#8a6a4a',v:'#d8823a',h:'#7a5a3a',k:'#e8c060'},{n:'sanhaço',b:'#7a96b4',v:'#a8bcd0',h:'#6a88a8',k:'#2a3448'},{n:'periquito',b:'#3aa84a',v:'#7ad06a',h:'#2a9a3a',k:'#e8d040'}];
+function gvVento(){try{return typeof tpVento==='function'?tpVento():.4}catch(e){return .4}}
+function gvTree(q,si){const key=q[0]+','+q[1];let s=GV.T.get(key);if(s)return s;const r=i=>hsh(q[0],q[1],1500+i),nb=q[2]===3?2:3+((r(0)*2)|0),B=[];
+ for(let i=0;i<nb;i++)B.push({sp:GVAVES[(r(i+1)*GVAVES.length)|0],st:'pouso',p:(r(i+5)*99)|0,t0:0,tn:performance.now()+1500+r(i+9)*9000,hop:0,f:r(i+3)>.5?1:-1,x:0,y:0,fl:0});
+ s={q,L:[],C:[],B,nl:0,scare:0};GV.T.set(key,s);return s}
+function gvSom(k,v){try{if(!AC||MT)return;if(k==='canto'){const f=2600+Math.random()*1400;tone(f,.07,'sine',.025*v,SF,0,f*1.35);tone(f*1.1,.06,'sine',.02*v,SF,.11,f*.9);if(Math.random()<.5)tone(f*1.2,.05,'sine',.018*v,SF,.2,f*1.5)}
+ else{noise(.12,2400,.05*v);noise(.09,1600,.04*v,undefined,0)}}catch(e){}}
+// ---------- simulação + folhas e pássaros no ar (por cima da copa) ----------
+RH2.push(function(cx,cy,t){try{const L=gtList();if(!L||(mode!=='walk'&&mode!=='ui'))return;if(GV.m!==cur){GV.m=cur;GV.T.clear()}
+ const now=performance.now(),dt=Math.min(.05,(now-(GV.lt||now))/1000);GV.lt=now;const cw=VW*16,ch=VH*16,si=GRS|0,k=WX.k,chuva=k==='rain'||k==='storm',noite=nightF()>.6,vt=gvVento(),leve=typeof CFG!=='undefined'&&CFG.leve;
+ for(const q of L){const ax=q[0]*16+8-cx,ay=q[1]*16+14-cy;if(ax<-140||ax>cw+140||ay<-40||ay>ch+190)continue;const s=gvTree(q,si),I=gvInfo(q[2],si),c=gtCanopy(q[2],si),bx=q[0]*16-cx,by=q[1]*16-cy;
+  // --- folhas soltando ---
+  const rate=(q[2]===3?.12:1)*(si===2?2.6:si===3?.45:1)*(chuva?1.4:1)*(1+vt*.6)*(leve?.5:1);
+  if(now>s.nl&&I.pts.length&&s.L.length<(leve?10:22)){const p=I.pts[(Math.random()*I.pts.length)|0];let r=p[2],g2=p[3],b=p[4];if(si===2&&q[2]===0){r=r*.5+200*.5;g2=g2*.6+130*.4;b=b*.6}
+   s.L.push({x:p[0],y:p[1],vy:10+Math.random()*7,ph:Math.random()*6.3,w:.6+Math.random()*.8,sz:1.3+Math.random()*.8,c:`rgb(${r|0},${g2|0},${b|0})`,gy:12+Math.random()*24,gx:(Math.random()-.5)*70});s.nl=now+(900+Math.random()*1600)/rate}
+  for(let i=s.L.length-1;i>=0;i--){const f=s.L[i];f.ph+=dt*(2.2+f.w);f.y+=dt*f.vy*(chuva?1.8:1);f.x+=dt*(Math.sin(f.ph)*9*f.w+vt*7);
+   if(f.y>=f.gy){s.C.push({x:f.x,y:f.gy,a:1,r:f.ph,c:f.c,sz:f.sz});s.L.splice(i,1);continue}
+   const X=bx+f.x,Y=by+f.y,fl=Math.cos(f.ph*1.3);g.save();g.translate(X,Y);g.rotate(Math.sin(f.ph)*.9);g.fillStyle=f.c;g.strokeStyle='rgba(20,30,20,.55)';g.lineWidth=.4;g.beginPath();g.ellipse(0,0,f.sz*1.3*Math.max(.25,Math.abs(fl)),f.sz*.75,0,0,6.3);g.fill();g.stroke();
+   if(fl>0){g.fillStyle='rgba(255,255,255,.25)';g.fillRect(-f.sz*.6*fl,-.3,f.sz*1.2*fl,.4)}g.restore()}
+  if(s.C.length>(leve?12:28))s.C.splice(0,s.C.length-(leve?12:28));
+  // --- passarinhos ---
+  const d=Math.hypot(P.px-q[0],P.py-q[1]+1);
+  if(d<3.2&&!noite&&now>s.scare){s.scare=now+9000;let n=0;for(const a of s.B)if(a.st==='pouso'){a.st='foge';a.t0=now;a.dur=7000+Math.random()*3000;a.f=Math.random()<.5?1:-1;a.ox=a.x;a.oy=a.y;n++}if(n)gvSom('asas',1)}
+  if(d<9&&!noite&&!chuva&&now>GV.nc&&s.B.some(a=>a.st!=='pouso'||I.top.length)){GV.nc=now+2500+Math.random()*5000;gvSom('canto',Math.max(.25,1-d/9))}
+  for(const a of s.B){const pp=I.top[a.p%Math.max(1,I.top.length)]||[0,-60],hx=pp[0],hy=pp[1];
+   if(a.st==='pouso'){a.x=hx;a.y=hy;if(now>a.tn&&!noite&&!chuva){a.st='voo';a.t0=now;a.dur=6000+Math.random()*8000;a.f=Math.random()<.5?1:-1;a.ox=hx;a.oy=hy;a.p=(Math.random()*999)|0}
+    if(Math.random()<dt*.6)a.hop=now;if(Math.random()<dt*.3)a.f=-a.f}
+   else{let u=(now-a.t0)/a.dur;const np=I.top[a.p%Math.max(1,I.top.length)]||[a.ox,a.oy];if(u>=1){a.st='pouso';a.tn=now+4000+Math.random()*10000;u=1}
+    const big=a.st==='foge'?2.2:1,R=(c.width/4)*.85*big,Hh=(28+20*big);const e=u*u*(3-2*u),bxp=a.ox+(np[0]-a.ox)*e,byp=a.oy+(np[1]-a.oy)*e;
+    const dx=Math.sin(u*Math.PI*2)*R*a.f+Math.sin(u*Math.PI*4)*R*.25,dy=-Math.sin(u*Math.PI)*Hh+Math.sin(u*Math.PI*2)*R*.25*a.f;const nx=bxp+dx,ny=byp+dy;a.fl=nx>a.x?1:-1;a.x=nx;a.y=ny}
+   if(noite||(chuva&&a.st==='pouso'))continue;
+   const X=bx+a.x,Y=by+a.y-(a.st==='pouso'&&now-a.hop<220?Math.sin((now-a.hop)/220*Math.PI)*2:0);if(X<-10||X>cw+10||Y<-10||Y>ch+10)continue;gvAve(X,Y,a,now)}}
+}catch(e){}});
+// folhas no chão (embaixo de todo mundo)
+RH0.push(function(cx,cy,t){try{if(!gtList())return;for(const s of GV.T.values()){const bx=s.q[0]*16-cx,by=s.q[1]*16-cy;for(let i=s.C.length-1;i>=0;i--){const f=s.C[i];f.a-=.0022;if(f.a<=0){s.C.splice(i,1);continue}
+  g.save();g.globalAlpha=Math.min(1,f.a*1.6);g.translate(bx+f.x,by+f.y);g.rotate(f.r);g.fillStyle=f.c;g.beginPath();g.ellipse(0,0,f.sz*1.3,f.sz*.7,0,0,6.3);g.fill();g.restore()}}}catch(e){}});
+// um passarinho (pousado: de lado; voando: asas batendo)
+function gvG(){return g}
+function gvAve(X,Y,a,now,C){const g=C||gvG(),S=a.sp,voa=a.st!=='pouso',dir=voa?a.fl:a.f;g.save();g.translate(Math.round(X*2)/2,Math.round(Y*2)/2);g.scale(dir*1.45,1.45);
+ if(voa){const w=Math.sin(now/55+a.p),up=w>0;g.fillStyle=S.b;g.beginPath();g.ellipse(0,0,2.4,1.2,0,0,6.3);g.fill();g.fillStyle=S.v;g.beginPath();g.ellipse(.2,.4,1.6,.7,0,0,6.3);g.fill();
+  g.fillStyle=S.h;g.beginPath();g.arc(2.1,-.4,1,0,6.3);g.fill();g.fillStyle=S.k;g.fillRect(3,-.5,1,.6);g.fillStyle=S.b;g.beginPath();g.moveTo(-2,0);g.lineTo(-4,-.8);g.lineTo(-4,.8);g.closePath();g.fill();
+  g.fillStyle=mvMix(S.b,'#000000',.15);g.beginPath();g.moveTo(-.8,-.4);g.quadraticCurveTo(-.2,up?-4.5:2.5,1.2,up?-3.2:3.4);g.lineTo(.8,-.3);g.closePath();g.fill()}
+ else{g.fillStyle='rgba(0,0,0,.18)';g.fillRect(-1.5,1.6,3.5,.6);g.fillStyle=S.b;g.beginPath();g.ellipse(0,0,1.9,1.5,-.2,0,6.3);g.fill();g.fillStyle=S.v;g.beginPath();g.ellipse(.5,.5,1.2,1,0,0,6.3);g.fill();
+  g.fillStyle=S.h;g.beginPath();g.arc(1.6,-1.2,1.05,0,6.3);g.fill();if(S.n==='bem-te-vi'){g.fillStyle='#ffffff';g.fillRect(.8,-1.6,1.6,.4)}g.fillStyle='#111';g.fillRect(1.9,-1.5,.5,.5);g.fillStyle=S.k;g.fillRect(2.6,-1.2,.9,.5);
+  g.fillStyle=mvMix(S.b,'#000000',.25);g.beginPath();g.moveTo(-1.4,-.2);g.lineTo(-3.4,.9);g.lineTo(-1,.9);g.closePath();g.fill();g.fillStyle='#3a2a1a';g.fillRect(-.2,1.3,.4,.6);g.fillRect(.6,1.3,.4,.6)}
+ g.restore()}
 
 // ===== Kaimon GT v70: botões de baixo recolhem; código GOD aceita 0/O e 1/I trocados =====
 // Botão ▾/▴ ao lado da espada: esconde (ou mostra) a fileira de botões. Fica guardado no aparelho.

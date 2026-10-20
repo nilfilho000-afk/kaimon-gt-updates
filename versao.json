@@ -1,11 +1,11 @@
 {
- "jogo": 79,
- "jogo_arquivo": "jogo-79.kpk",
- "jogo_sha": "474b6d2d4386d180a76f42602ac76366a8d27c705518fa3186e75a3379580faf",
- "jogo_assin": "jmMZihaUscvfryMORdnzPgilwMCpYWtZnbHDj4Nn0ybQbaRAosiX5xJDldApBBjP/x24GzUGeU0QPn6i98COAQ==",
+ "jogo": 80,
+ "jogo_arquivo": "jogo-80.kpk",
+ "jogo_sha": "5e4a6ab7165425138ef28e360ef8e94bf26060f5642d584e505da8db65d5f6b3",
+ "jogo_assin": "l/y19qCtZOXSpK5Nrukk3sz1ZsbvN0RPrMT1hA91M0LgUmtUggQNmJJEYjMPnjrKUfpLA1TM1qPlpV75hLW/BA==",
  "launcher": 3,
  "launcher_arquivo": "KaimonGT-3.exe",
- "launcher_sha": "819a7a65ef2c4fcb1117df0aa523b931ce95ee53f4ba4256902715d6af5a286a",
- "launcher_assin": "ceFpHIjJkxi2f2nLVp406jVR6ZcD5LJPfbQovjnVv3TZZ05QxlVtXaj6qXBqirpz8ut11C+8Dxbh6l6zilDvDA==",
- "notas": "Nova NPC: Dona Garoa, a Meteorologista, com estação do tempo em Vila Alvorada e previsão para todas as cidades."
+ "launcher_sha": "c4b7f26bc81d31093a03ecb5c9d06b32a7b148809a459bed4235b0bf0cdb2f98",
+ "launcher_assin": "NhAZHU8Dyz3BFSY9+SM72GebLbRcjwqrJ3P4QvS5iPejVJ/wN7e5MjbD6nU00XnAdUucG2DU14pkpjl3UdrcDg==",
+ "notas": "Árvores gigantes com folhas caindo e passarinhos que pousam, voam em volta e fogem quando você chega perto."
 }
