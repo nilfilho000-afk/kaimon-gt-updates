@@ -10369,53 +10369,114 @@ const _arvTree=hdTree;hdTree=function(X,Y,dk){if(arvPine(X,Y,dk))return _arvTree
 // os tiles pintados depois (à direita) cobririam as raízes: repinta só o pedaço da raiz que cai em cima deles
 const _arvTile=tile;tile=function(id,X,Y){const r=_arvTile.apply(this,arguments);try{for(let k=1;k<=3;k++){const v=(T[Y]||[])[X-k];if((v===7||v===58)&&!arvPine(X-k,Y,v===58))arvBottom(mg,X-k,Y,v===58,[X*16,Y*16,16,16])}}catch(e){}return r};
 
-// ===== Kaimon GT v70: Centro de Cura novo (telhado de barro, enxaimel, pedra, lampião) =====
-// Só o prédio do Centro de Cura (o da porta 13) muda: telhas de barro uma a uma (4 tons, brilho em cima, sombra
-// embaixo, musgo e manchas), cumeeira, chaminé de pedra; paredes de reboco gasto com tijolo aparecendo, vigas de
-// madeira (enxaimel), base de pedra com mato, janelas de madeira com vidro e floreira, porta dupla com vidro,
-// placa da cruz e lampião aceso. As outras casas continuam como eram.
-var PCB=new WeakMap();
-function pcCells(){let s=PCB.get(T);if(s)return s;s=new Set();try{const H2=T.length,W2=T[0].length,B=new Set([4,5,10,6,11,13,8]);
- for(let y=0;y<H2;y++)for(let x=0;x<W2;x++){if(T[y][x]!==13)continue;const st=[[x,y]];const seen=new Set();
-  while(st.length){const[a,b]=st.pop(),k=a+','+b;if(seen.has(k))continue;seen.add(k);const v=(T[b]||[])[a];if(!B.has(v)||Math.abs(a-x)>8||b<y-6||b>y)continue;if(v===8&&!(a===x&&b===y))continue;s.add(k);st.push([a+1,b],[a-1,b],[a,b-1],[a,b+1])}}}catch(e){}PCB.set(T,s);return s}
-function inPC(X,Y){return pcCells().has(X+','+Y)}
-const PCR=['#b8442e','#c8553a','#a83a28','#cf6140','#b04a30'];
-function pcRoof(X,Y){const ox=X*16,oy=Y*16,P=hdP(ox,oy),n=(dx,dy)=>inPC(X+dx,Y+dy)&&[4,5,10].includes((T[Y+dy]||[])[X+dx]),h=i=>hsh(X,Y,i);
- const tp=!n(0,-1),bt=!n(0,1),lf=!n(-1,0),rt=!n(1,0);
- P('#6e2418',0,0,32,32);
- // fileiras de telhas (6 de altura), deslocadas meio passo a cada fileira, com cor própria
- for(let r=0;r<6;r++){const y=r*6-2,off=((Y*6+r)&1)?4:0;for(let x=-off;x<32;x+=8){const hh=hsh(X*4+((x+8)>>3),Y*6+r,700),col=PCR[(hh*PCR.length)|0];
-   P(col,x,y,8,6);P(mvMix(col,'#ffd0a0',.35),x+1,y,6,1);P(mvMix(col,'#000000',.35),x,y+5,8,1);P(mvMix(col,'#000000',.22),x+7,y,1,5);
-   if(hh>.86)P(mvMix(col,'#000000',.18),x+2,y+2,3,2);if(hh<.06)P('#5e7a34',x+1,y+4,3,1);if(hh>.5&&hh<.53)P('#7a8a3a',x+5,y+1,2,2)}}
- if(tp){P('#5a1c12',0,0,32,4);P('#8a3a26',0,0,32,1);for(let x=2;x<32;x+=6)P('#9a4a30',x,1,3,2)}
- if(bt){P('#3a2414',0,26,32,3);P('#6a4428',0,25,32,1);P('#00000050',0,29,32,3)}
- if(lf){P('#4a1810',0,0,2,30);P('#d87a50',2,0,1,28)}if(rt){P('#4a1810',30,0,2,30);P('#00000030',27,0,3,28)}
- // chaminé de pedra no canto de cima à direita
- if(tp&&rt){const ch=ctx=>{const p2=hdP(ox,oy,ctx);p2('#5a5a62',16,-12,10,16);for(let j=0;j<4;j++)for(let i=0;i<2;i++){const c=['#8a8a92','#9a9aa2','#7a7a84'][(i+j+X)%3];p2(c,17+i*5-(j%2)*2,-11+j*4,4,3)}p2('#3a3a42',15,-14,12,3);p2('#6a6a72',15,-14,12,1);p2('#2a2a30',18,-13,6,1)};ch(mg);const f=fgCtx();f.save();f.beginPath();f.rect(ox,oy-8,16,8);f.clip();ch(f);f.restore()}}
-function pcWall(id,X,Y){const ox=X*16,oy=Y*16,P=hdP(ox,oy),h=i=>hsh(X,Y,i),wl=inPC(X-1,Y),wr=inPC(X+1,Y);
- // reboco gasto
- P('#e9e1d1',0,0,32,32);for(let i=0;i<9;i++){const x=h(i+20)*28|0,y=4+(h(i+40)*18|0),w=2+(h(i+60)*5|0);P(i%3?'#ddd3c0':'#f3ede2',x,y,w,1+(i&1))}
- // tijolo aparecendo onde o reboco caiu
- if(h(80)<.6&&id!==13){const bx=2+(h(81)*16|0),by=6+(h(82)*8|0);P('#cdbfa8',bx-1,by-1,12,8);for(let j=0;j<3;j++)for(let i=0;i<2;i++)P(['#b0704e','#a2603e','#bd7a58'][(i+j)%3],bx+i*5+(j%2?2:0),by+j*2,4,1.6)}
- // vigas (enxaimel): em cima, nas pontas do prédio e entre as janelas
- P('#4e3018',0,0,32,3);P('#7a5230',0,0,32,1);if(!wl){P('#5a3820',0,0,4,26);P('#8a5a36',0,0,1,26)}if(!wr){P('#5a3820',28,0,4,26);P('#3a2412',31,0,1,26)}if(id===6&&wl&&wr){P('#5a3820',14,0,4,26);P('#8a5a36',14,0,1,26);P('#5a3820',4,12,24,2)}
- // base de pedra com mato
- for(let i=0;i<5;i++){const c=['#9a948c','#8a847c','#aaa49c','#7e786f'][(i+X)%4];P(c,i*7-(Y&1)*2,25,6,4);P('#c4beb4',i*7-(Y&1)*2,25,6,1)}P('#5e5850',0,29,32,1);P('#00000040',0,30,32,2);
- for(let i=0;i<3;i++){const x=h(90+i)*28|0;P('#4a8a3a',x,27,1,3);P('#5aa04a',x+1,26,1,4);P('#3a7a2e',x+2,28,1,2)}
- if(id===11){// janela de madeira com vidro, reflexo e floreira
-  P('#3a2412',5,4,22,17);P('#6a4428',6,5,20,15);P('#7fb8d8',8,7,16,11);P('#5a94b8',8,13,16,5);P('#cfeaf6',9,8,3,1);P('#cfeaf6',9,9,1,3);P('#e8f6fc',18,8,4,1);P('#6a4428',15,7,2,11);P('#6a4428',8,12,16,1);
-  P('#5a3820',4,20,24,3);P('#7a5230',4,20,24,1);for(let i=0;i<5;i++){P('#3f8a3a',6+i*4,18,3,2);P(['#e83a4a','#ffd34d','#ff7ab0'][i%3],7+i*4,17,2,2)}}
- if(id===13){// porta dupla de madeira com vidro, placa da cruz e lampião
-  P('#3a2412',6,2,20,25);P('#7a4a2a',8,4,16,23);P('#8a5a34',8,4,16,1);P('#5a3418',15,4,2,23);for(let y=6;y<27;y+=4){P('#6a3e22',9,y,6,1);P('#6a3e22',17,y,6,1)}
-  P('#9ad0ec',10,6,4,6);P('#9ad0ec',18,6,4,6);P('#e8f6fc',10,6,1,3);P('#e8f6fc',18,6,1,3);P('#ffd34d',13,16,2,2);P('#ffd34d',17,16,2,2);
-  P('#ffffff',12,-1,8,4);P('#e8405a',15,-1,2,4);P('#e8405a',13,0,6,2);
-  // lampião aceso
-  P('#2a2a30',27,6,1,4);P('#2a2a30',25,9,5,1);P('#3a3a42',25,10,5,6);P('#ffd36a',26,11,3,4);P('#fff2c0',27,12,1,2);P('#2a2a30',25,16,5,1)}}
-const _pcRoof=hdRoof;hdRoof=function(id,X,Y){if(id===4&&inPC(X,Y))return pcRoof(X,Y);return _pcRoof.apply(this,arguments)};
-const _pcWall=hdWall;hdWall=function(id,X,Y){if((id===6||id===11||id===13)&&inPC(X,Y))return pcWall(id,X,Y);return _pcWall.apply(this,arguments)};
-// brilho do lampião à noite
-RH2.push(function(cx,cy,t){try{const nf=typeof nightF==='function'?nightF():0;if(nf<.2||M[cur].in)return;const cw=VW*16,ch=VH*16,x0=Math.max(0,cx>>4),y0=Math.max(0,cy>>4),x1=Math.min(W-1,(cx+cw)>>4),y1=Math.min(H-1,(cy+ch)>>4);
- for(let y=y0;y<=y1;y++)for(let x=x0;x<=x1;x++){if(T[y][x]!==13||!inPC(x,y))continue;const X=x*16-cx+13.5,Y=y*16-cy+6.5,r=10+Math.sin(t/300)*.8,gr=g.createRadialGradient(X,Y,0,X,Y,r);gr.addColorStop(0,'rgba(255,210,110,'+(.45*nf)+')');gr.addColorStop(1,'rgba(255,210,110,0)');g.fillStyle=gr;g.fillRect(X-r,Y-r,r*2,r*2)}}catch(e){}});
+// ===== Kaimon GT v71: casas de vila com telhado de verdade (cumeeira, oitão de enxaimel, água-furtada, chaminé) =====
+// Toda casa de cidade de 2 fileiras de telhado + 1 de parede (5 a 10 de largura) é desenhada inteira num quadro só e
+// depois fatiada nos tiles. Vista de frente (como o resto do jogo), no estilo das referências: oitão triangular na frente
+// com vigas e janelinha, o resto do telhado com cumeeira, água-furtada e chaminé de pedra. Três telhados: telha de barro,
+// ardósia azulada e palha. Paredes de tijolinho claro com vigas, base de pedra, mato, floreiras, barris, lampião.
+// Centro de Cura, Loja, Colecionador e Banco usam o mesmo desenho com a identidade de cada um.
+const CS71={
+ telha:{t:['#e07a3a','#d86c32','#ea8a48','#c9602c','#f09456'],mort:'#6e3018',hi:'#ffc89a',dk:'#5a2410'},
+ cura:{t:['#c8463a','#b83a2e','#d4553f','#a83226','#d8644a'],mort:'#5a1c14',hi:'#ffb09a',dk:'#4a1810'},
+ ardosia:{t:['#4a6070','#566e80','#3e5262','#60788a','#4e6676'],mort:'#1e2830',hi:'#a8c0d0',dk:'#18222a'},
+ palha:{t:['#e2b04a','#d4a03a','#ecc060','#c8922e','#f0cc70'],mort:'#8a5a1e',hi:'#fff0b0',dk:'#7a4a14'}};
+var CB71=new WeakMap();
+// ---------- acha os prédios do mapa que está sendo pintado ----------
+function cb71Map(){let r=CB71.get(T);if(r)return r;r={cell:new Map(),list:[]};CB71.set(T,r);try{
+ const m=M.find(q=>q&&q.T===T);if(!m||m.in)return r;const c=(typeof CSC!=='undefined'?CSC:[]).find(q=>M[q.i]===m),RF=new Set([4,5,10,89,90,91,92]),WL=new Set([6,11,8,13,27,29]);
+ const embs=(m.embs||[]).map(a=>[Math.round(a[0]),Math.round(a[1]),a[2]]),H2=T.length,W2=T[0].length,seen=new Set();
+ for(let y=0;y<H2;y++)for(let x=0;x<W2;x++){if(!RF.has(T[y][x])||seen.has(x+','+y))continue;const st=[[x,y]],cells=[];
+  while(st.length){const[a,b]=st.pop(),k=a+','+b;if(seen.has(k))continue;const t=(T[b]||[])[a];if(!RF.has(t)&&!WL.has(t))continue;seen.add(k);cells.push([a,b]);st.push([a+1,b],[a-1,b],[a,b-1],[a,b+1])}
+  const xs=cells.map(q=>q[0]),ys=cells.map(q=>q[1]),x0=Math.min(...xs),x1=Math.max(...xs),y0=Math.min(...ys),y1=Math.max(...ys),w=x1-x0+1,h=y1-y0+1;
+  if(h!==3||w<5||w>10||cells.length!==w*h)continue;let ok=true;for(let i=x0;i<=x1;i++){if(!RF.has(T[y0][i])||!RF.has(T[y0+1][i])||!WL.has(T[y1][i]))ok=false}if(!ok)continue;
+  const em=embs.find(e=>e[0]>=x0&&e[0]<=x1&&e[1]>=y0-1&&e[1]<=y1);if(em&&em[2]!=='pc'&&em[2]!=='mart')continue;
+  let kind='casa';const doors=[];for(let i=x0;i<=x1;i++){const v=T[y1][i];if(v===13)kind='cura';if(v===8||v===29||v===27||v===13)doors.push(i);
+   const p=m.p&&m.p[i+','+y1];if(c&&p&&Array.isArray(p)){if(p[0]===c.shop)kind='loja';else if(p[0]===c.col)kind='col';else if(p[0]===c.bank)kind='banco'}}
+  const hh=hsh(x0,y0,7100),mat=kind==='cura'?'cura':kind==='banco'?'ardosia':kind==='loja'||kind==='col'?'telha':hh<.5?'telha':hh<.75?'ardosia':'palha';
+  const B={x0,y0,x1,y1,w,kind,mat,doors,flip:hsh(x0,y0,7101)<.5,seed:(x0*73+y0*151)|0};r.list.push(B);for(const[a,b]of cells)r.cell.set(a+','+b,B)}}catch(e){}return r}
+function cb71At(X,Y){return cb71Map().cell.get(X+','+Y)||null}
+// ---------- o desenho do prédio inteiro ----------
+const CB71TOP=30;var CB71C=new Map();
+function cb71Canvas(B){const si=GRS|0,key=B.x0+','+B.y0+'|'+B.w+B.kind+B.mat+(B.flip?1:0)+'|'+si+'|'+B.doors.join('.')+'|'+(typeof cur!=='undefined'?cur:0);let cv=CB71C.get(key);if(cv)return cv;
+ const W=B.w*32,Hr=64,H=CB71TOP+Hr+32;cv=document.createElement('canvas');cv.width=W;cv.height=H;const x=cv.getContext('2d');
+ const rf=document.createElement('canvas');rf.width=W;rf.height=CB71TOP+Hr+6;const r=rf.getContext('2d');cb71Roof(r,B,W,si);
+ if(B.flip){x.save();x.translate(W,0);x.scale(-1,1);x.drawImage(rf,0,0);x.restore()}else x.drawImage(rf,0,0);
+ cb71Wall(x,B,W,CB71TOP+Hr);
+ // sombra do beiral na parede
+ x.fillStyle='rgba(0,0,0,.28)';x.fillRect(0,CB71TOP+Hr+4,W,3);
+ CB71C.set(key,cv);if(CB71C.size>60){CB71C.delete(CB71C.keys().next().value)}return cv}
+function cb71P(x){return(c,a,b,w,h)=>{x.fillStyle=c;x.fillRect(Math.round(a),Math.round(b),Math.round(w),Math.round(h))}}
+function cb71Tiles(x,M0,poly,y0,y1,x0,x1,seed){// fileiras de telhas recortadas no polígono
+ x.save();x.beginPath();poly.forEach((q,i)=>i?x.lineTo(q[0],q[1]):x.moveTo(q[0],q[1]));x.closePath();x.clip();const P=cb71P(x);
+ if(M0===CS71.palha){P(M0.t[1],x0,y0,x1-x0,y1-y0);for(let y=y0;y<y1;y+=11){for(let i=x0;i<x1;i+=2){const t=hsh(i,y+seed,7200),c=M0.t[(t*M0.t.length)|0],len=8+(t*5|0);P(c,i,y,2,len);if(t>.8)P(M0.hi,i,y,1,len-3);if(t<.15)P(M0.dk,i,y+len-2,2,2)}P(M0.mort,x0,y+10,x1-x0,1)}}
+ else{P(M0.mort,x0,y0,x1-x0,y1-y0);let row=0;for(let y=y0;y<y1;y+=7,row++){const off=row&1?5:0;for(let i=x0-off;i<x1;i+=10){const t=hsh(i+seed,row,7201),c=M0.t[(t*M0.t.length)|0];P(c,i,y,9,6);P(mvMix(c,M0.hi,.45),i+1,y,7,1);P(mvMix(c,'#000000',.32),i,y+5,9,1);if(t>.93)P(mvMix(c,'#000000',.15),i+2,y+2,4,2);if(t<.04&&M0!==CS71.ardosia)P('#6a8a3a',i+1,y+4,3,1)}}}
+ x.restore()}
+function cb71Roof(x,B,W,si){const M0=CS71[B.mat],P=cb71P(x),T0=CB71TOP,ye=T0+64,yr=T0-6,gw=Math.min(B.w>=6?3:2,B.w-2)*32,ax=gw/2,ay=4;
+ // telhado principal (atrás do oitão): da cumeeira até o beiral
+ cb71Tiles(x,M0,[[ax,yr],[W,yr],[W,ye+4],[ax,ye+4]],yr,ye+4,ax,W,B.seed);
+ P(M0.dk,ax,yr-3,W-ax,4);P(mvMix(M0.t[0],M0.hi,.5),ax,yr-3,W-ax,1);if(B.kind==='banco')P('#c8a03a',ax,yr+1,W-ax,1);
+ P(M0.dk,W-3,yr,3,ye-yr+4);// beirada da direita
+ P('rgba(0,0,0,.35)',ax,ye+2,W-ax,3);
+ // água-furtada no meio do telhado principal
+ const mw=W-gw;if(mw>=64){const dx=gw+Math.round(mw*.5)-14,dy=yr+10;P(M0.dk,dx-2,dy+6,32,30);P('#e8d8c6',dx,dy+10,28,24);P('#5a3820',dx+4,dy+14,20,18);P('#2e4a68',dx+6,dy+16,16,14);P('#8ab4d4',dx+7,dy+17,4,3);P('#5a3820',dx+13,dy+16,2,14);P('#5a3820',dx+6,dy+22,16,1);
+  x.fillStyle=M0.t[2];x.beginPath();x.moveTo(dx-5,dy+12);x.lineTo(dx+14,dy-2);x.lineTo(dx+33,dy+12);x.lineTo(dx+33,dy+16);x.lineTo(dx+14,dy+3);x.lineTo(dx-5,dy+16);x.closePath();x.fill();
+  x.fillStyle=M0.dk;x.beginPath();x.moveTo(dx-5,dy+16);x.lineTo(dx+14,dy+3);x.lineTo(dx+33,dy+16);x.lineTo(dx+33,dy+18);x.lineTo(dx+14,dy+5);x.lineTo(dx-5,dy+18);x.closePath();x.fill()}
+ // chaminé de pedra
+ {const cx=gw+18;P('#5a5a62',cx,2,14,yr-2+6);for(let j=0;j<5;j++)for(let i=0;i<2;i++){const c=['#a8a49c','#bcb8b0','#948f86'][(i+j+B.seed)&1?1:(i+j)%3];P(c,cx+1+i*6-(j%2)*2,3+j*5,6,4)}P('#3a3a42',cx-2,0,18,4);P('#d0ccc4',cx-2,0,18,1);P('#1e1e24',cx+3,1,8,2)}
+ // oitão (triângulo da frente): parede de tijolo com vigas e janelinha
+ x.save();x.beginPath();x.moveTo(0,ye+4);x.lineTo(ax,ay);x.lineTo(gw,ye+4);x.closePath();x.clip();
+ P('#e8d8c6',0,0,gw,ye+4);for(let r=0;r*4<ye;r++){const y=ay+r*4,o=(r&1)?5:0;P('#d2bca8',0,y+3,gw,1);for(let i=-o;i<gw;i+=10){const t=hsh(i+B.seed,r,7300);P(t<.25?'#f2e6d8':t<.5?'#e2ceb8':'#ecdccb',i+1,y,8,3)}}
+ const P2=P;P2('#5a3820',0,ye-14,gw,4);P2('#8a5a36',0,ye-14,gw,1);P2('#5a3820',ax-2,ay,4,ye-ay);
+ for(let k=0;k<14;k++){P2('#5a3820',ax-4-k*3,ye-16-k*2.2,3,2);P2('#5a3820',ax+2+k*3,ye-16-k*2.2,3,2)}
+ // janelinha do oitão (com floreira, ou sacada na ardósia)
+ const wy=ye-38,wx=ax-9;P2('#3a2412',wx-1,wy-1,20,18);P2('#6a4428',wx,wy,18,16);P2('#2e4a68',wx+2,wy+2,14,12);P2('#8ab4d4',wx+3,wy+3,3,2);P2('#6a4428',wx+8,wy+2,2,12);P2('#6a4428',wx+2,wy+7,14,1);
+ if(B.mat==='ardosia'){P2('#5a3820',wx-6,wy+15,30,3);for(let i=0;i<7;i++)P2('#6a4428',wx-5+i*4.5,wy+7,2,8);P2('#7a5230',wx-6,wy+6,30,2)}
+ else{P2('#5a3820',wx-2,wy+15,22,4);for(let i=0;i<5;i++){P2('#3f8a3a',wx-1+i*4.4,wy+12,4,3);P2(['#e83a4a','#3a7ad8','#ffd34d'][(i+B.seed)%3],wx+i*4.4,wy+11,2,2)}}
+ x.restore();
+ // bordas do oitão (as telhas que descem dos dois lados)
+ const edge=(sx,sy,ex,ey)=>{const n=Math.ceil(Math.hypot(ex-sx,ey-sy)/4);for(let i=0;i<=n;i++){const q=i/n,px=sx+(ex-sx)*q,py=sy+(ey-sy)*q,c=M0.t[i%M0.t.length];P(M0.dk,px-5,py-1,10,9);P(c,px-4,py-1,8,6);P(mvMix(c,M0.hi,.4),px-4,py-1,8,1)}};
+ edge(ax,ay-2,-4,ye+2);edge(ax,ay-2,gw+4,ye+2);P(M0.dk,ax-3,ay-5,6,5);
+ // neve no inverno
+ if(si===3){x.fillStyle='#f2f6fc';x.beginPath();x.moveTo(ax-4,ay-3);x.lineTo(ax+4,ay-3);x.lineTo(gw*.78,ye*.62);x.lineTo(gw*.7,ye*.62);x.closePath();x.fill();P('#f2f6fc',ax,yr-4,W-ax,4);for(let i=ax;i<W;i+=6)if(hsh(i,B.seed,7400)<.5)P('#ffffff',i,yr,4,2+(hsh(i,1,7401)*3|0))}}
+function cb71Wall(x,B,W,y0){const P=(c,a,b,w,h)=>{x.fillStyle=c;x.fillRect(Math.round(a),Math.round(y0+b),Math.round(w),Math.round(h))},banco=B.kind==='banco';
+ // tijolinho claro (pedra lavrada no banco)
+ if(!banco){P('#e8d8c6',0,0,W,32);for(let r=0;r<7;r++){const y=1+r*4,o=(r&1)?5:0;P('#d2bca8',0,y+3,W,1);for(let i=-o;i<W;i+=10){const t=hsh(i+B.seed,r,7500);P(t<.2?'#f2e6d8':t<.4?'#e2ceb8':t<.5?'#dcc0b0':'#ecdccb',i+1,y,8,3);P('#c8b09c',i,y,1,3)}}}
+ else{P('#b8b2a6',0,0,W,32);for(let r=0;r<5;r++){const y=1+r*6,o=(r&1)?6:0;P('#8a8478',0,y+5,W,1);for(let i=-o;i<W;i+=12){const t=hsh(i+B.seed,r,7501);P(t<.3?'#ccc6ba':t<.6?'#c2bcb0':'#d6d0c4',i+1,y,10,5);P('#e8e2d6',i+1,y,10,1)}}}
+ // vigas: em cima, nas pontas e entre as janelas
+ P('#4e3018',0,0,W,3);P('#7a5230',0,0,W,1);P('#5a3820',0,0,4,26);P('#8a5a36',0,0,1,26);P('#5a3820',W-4,0,4,26);P('#3a2412',W-1,0,1,26);
+ // base de pedra e mato
+ for(let i=0;i*7<W;i++){const c=['#9a948c','#8a847c','#aaa49c','#7e786f'][(i+B.seed)%4];P(c,i*7,25,6,4);P('#c4beb4',i*7,25,6,1)}P('#5e5850',0,29,W,1);P('rgba(0,0,0,.25)',0,30,W,2);
+ for(let i=0;i<B.w*2;i++){const gx=hsh(i,B.seed,7502)*(W-4)|0;P('#4a8a3a',gx,27,1,3);P('#5aa04a',gx+1,26,1,4);P('#3a7a2e',gx+2,28,1,2)}
+ const awn=B.kind==='loja'?['#c8463c','#efe2c4','#4a6aa8']:B.kind==='col'?['#3a8a4a','#efe2c4','#c8a03a']:null;
+ for(let i=B.x0;i<=B.x1;i++){const id=T[B.y1][i],ox=(i-B.x0)*32;const Q=(c,a,b,w,h)=>P(c,ox+a,b,w,h);
+  if(id===6&&i>B.x0&&i<B.x1){if(banco){Q('#c8a03a',2,3,28,1);Q('#e8c86a',8,8,16,12);Q('#b08a2a',9,9,14,10);Q('#e8c86a',12,11,8,6);Q('#fff0b0',13,12,2,2)}else{Q('#5a3820',14,0,4,26);Q('#8a5a36',14,0,1,26);for(let k=0;k<9;k++)Q('#5a3820',3+k*1.2,22-k*2.2,3,2)}}
+  if(id===11){Q('#3a2412',5,4,22,17);Q('#6a4428',6,5,20,15);Q('#2e4a68',8,7,16,11);Q('#22385a',8,13,16,5);Q('#8ab4d4',9,8,3,1);Q('#8ab4d4',9,9,1,3);Q('#6a4428',15,7,2,11);Q('#6a4428',8,12,16,1);
+   if(banco){for(let k=9;k<24;k+=3)Q('#2a2a30',k,7,1,11);Q('#2a2a30',8,9,16,1);Q('#2a2a30',8,15,16,1)}
+   else if(awn&&((i-B.x0)&1)){for(let k=0;k<8;k++){const c=awn[k%3];Q(c,2+k*3.5,0,4,7);Q(mvMix(c,'#000000',.25),2+k*3.5,6,4,1)}}
+   else{Q('#5a3820',4,20,24,3);Q('#7a5230',4,20,24,1);for(let k=0;k<5;k++){Q('#3f8a3a',6+k*4,18,3,2);Q(['#e83a4a','#ffd34d','#3a7ad8','#ff7ab0'][(k+i)%4],7+k*4,17,2,2)}}}
+  if(id===8||id===29||id===27||id===13){Q('#3a2412',7,2,18,25);Q('#7a4a2a',9,4,14,23);Q('#8a5a34',9,4,14,1);for(let y=8;y<27;y+=4)Q('#6a3e22',10,y,12,1);Q('#2e4a68',11,6,10,7);Q('#8ab4d4',11,6,3,2);Q('#5a3418',15,6,2,7);Q('#d8c070',20,16,2,3);Q('#9a948c',6,27,20,3);Q('#c4beb4',6,27,20,1);
+   if(B.kind==='cura'){Q('#ffffff',12,-2,8,5);Q('#e8405a',15,-2,2,5);Q('#e8405a',13,-1,6,2)}
+   if(banco){Q('#c8a03a',7,1,18,2);for(const[a,b]of[[11,15],[19,15],[11,22],[19,22]])Q('#2a2a30',a,b,2,2)}
+   const sign=B.kind==='loja'?'bolsa':B.kind==='col'?'pata':banco?'moeda':null;
+   if(sign){Q('#2a2a30',24,4,8,1);Q('#2a2a30',25,5,1,2);Q('#2a2a30',30,5,1,2);Q('#5a3820',23,7,10,9);Q('#8a5a36',24,8,8,7);
+    if(sign==='bolsa'){Q('#e8b040',26,10,5,4);Q('#c8902a',27,9,3,1)}else if(sign==='pata'){Q('#e8e0d0',26,11,4,3);for(const a of[25.5,27.5,29.5])Q('#e8e0d0',a,9,1.4,1.4)}else{Q('#e8c040',25,9,6,6);Q('#b08a2a',26,10,4,4);Q('#fff0b0',27,11,2,2)}}
+   else{// lampião
+    Q('#2a2a30',27,6,1,4);Q('#2a2a30',25,9,5,1);Q('#3a3a42',25,10,5,6);Q('#ffd36a',26,11,3,4);Q('#fff2c0',27,12,1,2);Q('#2a2a30',25,16,5,1)}}}
+ // barris e caixotes (loja/colecionador e algumas casas), lenha na casa de palha
+ const ends=[B.x0,B.x1].filter(i=>T[B.y1][i]===6||T[B.y1][i]===11);
+ for(const i of ends){const ox=(i-B.x0)*32+(i===B.x0?3:17),t=hsh(i,B.seed,7600);if(!(awn||t<.55))continue;
+  if(B.mat==='palha'){for(let k=0;k<3;k++)for(let j=0;j<3-k;j++){P('#8a5a2e',ox+j*4+k*2,24-k*3,4,3);P('#c8925a',ox+j*4+k*2+1,24-k*3+1,2,1)}}
+  else{P('#6a4428',ox,19,10,8);P('#8a5a36',ox,19,10,2);P('#4a2e18',ox,23,10,1);P('#3a8a3a',ox+1,17,8,2);P('#e83a3a',ox+2,16,2,2);P('#e8a030',ox+6,16,2,2);P('#6a4428',ox+11,21,7,7);P('#8a5a36',ox+12,21,5,7);P('#3a3a42',ox+11,23,7,1);P('#3a3a42',ox+11,26,7,1);P('#d8b060',ox+12,20,5,2)}}}
+// ---------- liga nos pintores de telhado e parede ----------
+function cb71Tile(X,Y){const B=cb71At(X,Y);if(!B)return false;const cv=cb71Canvas(B),sx=(X-B.x0)*32,sy=CB71TOP+(Y-B.y0)*32,ox=X*16,oy=Y*16;
+ mg.drawImage(cv,sx,sy,32,32,ox,oy,16,16);
+ if(Y===B.y0){const f=fgCtx();f.drawImage(cv,sx,0,32,CB71TOP,ox,oy-CB71TOP/2,16,CB71TOP/2)}
+ return true}
+const _cb71Roof=hdRoof;hdRoof=function(id,X,Y){if(cb71Tile(X,Y))return;return _cb71Roof.apply(this,arguments)};
+const _cb71Wall=hdWall;hdWall=function(id,X,Y){if(cb71Tile(X,Y))return;return _cb71Wall.apply(this,arguments)};
+// lampiões acesos à noite
+RH2.push(function(cx,cy,t){try{const nf=typeof nightF==='function'?nightF():0;if(nf<.2||M[cur].in)return;const L=cb71Map().list,cw=VW*16,ch=VH*16;
+ for(const B of L)for(const i of B.doors){if(['loja','col','banco'].includes(B.kind))continue;const X=i*16-cx+13.5,Y=B.y1*16-cy+6.5;if(X<-20||X>cw+20||Y<-20||Y>ch+20)continue;const r=10+Math.sin(t/300+i)*.8,gr=g.createRadialGradient(X,Y,0,X,Y,r);gr.addColorStop(0,'rgba(255,210,110,'+(.45*nf)+')');gr.addColorStop(1,'rgba(255,210,110,0)');g.fillStyle=gr;g.fillRect(X-r,Y-r,r*2,r*2)}}catch(e){}});
 
 // ===== Kaimon GT v70: Passe Kaimon mensal + 11 monstros exclusivos (lendas do Brasil) =====
 // A partir de 1/11/2026 a temporada do passe é o mês do calendário: começa no dia 1 e acaba no último dia.
