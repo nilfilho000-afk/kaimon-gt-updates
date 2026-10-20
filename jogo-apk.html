@@ -2177,7 +2177,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
  const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
  TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
  el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v82 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v83 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
  if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
  const a=TTL.sel&&ACC.a[TTL.sel];
@@ -10305,7 +10305,7 @@ const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);t
  const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
  const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
 
-var KGT_VER=82;
+var KGT_VER=83;
 // ===== Kaimon GT v70: shiny repaginado =====
 // Todo shiny ganha uma paleta bem diferente da normal: a cor do corpo gira ~150-210° no círculo de cores (verde vira
 // rosa, vermelho vira azul-piscina...), as partes escuras ficam quase pretas e o detalhe (a) vira a cor oposta.
@@ -12207,6 +12207,223 @@ RH2.push(function(cx,cy,t){try{const R=CH.gari;if(!R||cur!==R.m)return;const e=R
  g.save();g.translate(X+side*5,Y-9);g.rotate(side*(.5+sw));g.strokeStyle='#8a5a2a';g.lineWidth=1.2;g.beginPath();g.moveTo(0,-4);g.lineTo(0,9);g.stroke();g.fillStyle='#d8b050';g.fillRect(-2.6,8,5.2,3.6);g.fillStyle='#a87a30';for(let i=-2;i<3;i+=1.3)g.fillRect(i,11,.6,1.4);g.restore();
  if(R.st==='varre'&&R.puff){const u=((now-R.sw)%450)/450,px=R.puff[0]*16+8-cx,py=R.puff[1]*16+12-cy;g.fillStyle='rgba(210,200,180,'+(.6*(1-u))+')';for(let k=0;k<6;k++){const a=k*1.05+(now/300);g.beginPath();g.arc(px+Math.cos(a)*u*8,py+Math.sin(a)*u*3-u*5,1.2+u*1.6,0,6.3);g.fill()}}
  if(R.say&&typeof andBubble==='function')andBubble(X,Y-38,R.say.t)}catch(x){}});
+
+// ===== Kaimon GT v83: Ilha dos Encantados =====
+// Ilha enorme ao sul de Manguezal, cercada de mar: só se chega VOANDO (montaria de voo) e com o nível de treinador mínimo.
+// Sete regiões, uma por elemento, cada uma decorada no tema e com seus morros:
+//   Pico Gelado (gelo) · Campo da Tempestade (elétrico/voador) · Vulcão Adormecido (fogo) · Mata Ancestral (planta/inseto)
+//   Pedreira de Cristal (pedra/terra/psíquico/aço) · Brejo Sombrio (sombrio/fantasma/fada) · Lagoa Encantada (água/dragão)
+// Lá vivem só monstros de tier 1 e 2, todos "Encantados": muito mais fortes, dão bem mais EXP e têm um símbolo dourado (✦).
+var ILHA={key:'encantada',req:120,nm:'Ilha dos Encantados'};
+var ILREG=[
+ {k:'gelo',nm:'Pico Gelado',c:[20,16],sp:[['Lhamaneve',4],['Guanacristal',2],['Araucaneve',4]]},
+ {k:'tempestade',nm:'Campo da Tempestade',c:[45,13],sp:[['Choquemico',4],['Trovaleão',2],['Relampejo',4],['Bentempesta',4],['Queroguerra',4],['Faroluz',4],['Aramente',4],['Aravidente',2]]},
+ {k:'vulcao',nm:'Vulcão Adormecido',c:[70,17],sp:[['Magmatu',4],['Vulcatu',2],['Guarabrasa',4],['Guaraqueima',2]]},
+ {k:'mata',nm:'Mata Ancestral',c:[15,38],sp:[['Ramaguiça',4],['Mapinguaçu',2],['Folhudo',4],['Ninguempode',4],['Jabuteira',4],['Tanajura',4]]},
+ {k:'pedreira',nm:'Pedreira de Cristal',c:[45,31],sp:[['Drusita',4],['Ametitã',2],['Minhocuçu',4],['Cupinzeirão',4],['Bandeiraço',4],['Rodopião',4],['Furacião',2],['Ouriçaço',4]]},
+ {k:'brejo',nm:'Brejo Sombrio',c:[72,41],sp:[['Jaguasombra',4],['Jararrei',4],['Onçapinta',4],['Onçatroz',2],['Luarutau',4],['Rabiolume',4],['Papagaiassombro',2],['Capifada',4],['Capivalma',2],['Cutiaçu',4]]},
+ {k:'lagoa',nm:'Lagoa Encantada',c:[43,51],sp:[['Botorrente',4],['Botencanto',2],['Pirarucão',4],['Piracouraça',2],['Boiamar',4],['Sereboia',2],['Arraiaçu',4],['Carrancuda',4],['Carrancão',2],['Jacadraco',4],['Jacaraçu',2]]}];
+const ILSNOW=151;SOLID.delete(ILSNOW);OK.add(ILSNOW);if(typeof MCOL==='object')MCOL[ILSNOW]='#e6eef8';
+// ---------- o mapa (em unidades pequenas: o jogo dobra tudo depois) ----------
+kdef(ILHA.key,{nm:ILHA.nm,gn:'Ilha dos Encantados',gx:95,gy:156,W:90,H:64,base:2,bt:'forest',seed:8311,ilha:1,
+ z:{sp:[['Ramaguiça',1]],cap:28,b:[0,0,89,63],l:[85,95]},
+ N:[{n:'boat',x:47,y:5,d:2,nm:'Barqueiro da Ilha',fn:()=>ilBarco()},{n:'joy',x:42,y:22,d:2,nm:'Pajé Iracema',fn:()=>ilPaje()},{n:'hiker',x:49,y:23,d:2,nm:'Guardião da Ilha',fn:()=>ilGuarda()}],
+ sg:{'45,8':'Ilha dos Encantados — aqui vivem os monstros mais fortes de Pindorama.','44,22':'Acampamento: a Pajé Iracema cuida do seu time.'},
+ gen(m){
+  kr(0,0,89,63,2);
+  // corpo da ilha (vários lóbulos) e os bicos de terra
+  for(const[cx,cy,rx,ry]of[[45,33,38,25],[22,19,17,13],[68,19,18,13],[18,42,15,14],[71,45,16,12],[44,53,20,8],[45,8,8,5]])kblob(cx,cy,rx,ry,0,null,.55);
+  const land=v=>v!==2;
+  // regiões
+  kblob(20,16,14,10,1,land,.6);// gelo (vira neve depois)
+  kblob(45,13,11,7,1,land,.4);kscat(40,83,(v,x,y)=>v===1,[35,7,56,19]);
+  kblob(70,17,16,11,49,land,.5);kmtn(72,12,6,4);kblob(72,11,2.2,1.6,50);kpath([[72,13],[73,18],[71,22],[72,26]],50,1);kscat(30,83,(v)=>v===49,[56,6,86,28]);
+  kblob(15,39,12,13,0,land,.5);kscat(420,7,(v,x,y)=>v===0&&!knear(x,y,1,kPathy),[3,27,27,54]);kscat(90,1,(v,x,y)=>v===0,[3,27,27,54]);kscat(25,9,(v)=>v===0,[3,27,27,54]);
+  kblob(45,31,11,8,81,land,.5);kmtn(37,28,3,2.2);kmtn(54,34,2.6,2);kscat(26,84,(v)=>v===81,[33,23,57,40]);kscat(20,83,(v)=>v===81,[33,23,57,40]);
+  kblob(72,42,13,12,104,land,.55);kblob(76,44,4,3,2,v=>v===104);kblob(67,38,2.6,2,2,v=>v===104);kscat(70,58,(v)=>v===104,[58,30,86,56]);kscat(30,59,(v,x,y)=>v===2&&x>58&&y>30,[58,30,86,56]);
+  kblob(43,52,10,4.5,2,land,.4);kscat(12,102,(v,x,y)=>v===2&&x>33&&x<54&&y>46,[33,46,54,58]);
+  // areia em toda a costa, coqueiros
+  for(let y=1;y<63;y++)for(let x=1;x<89;x++){const v=kg(x,y);if((v===0||v===1||v===9||v===3)&&knear(x,y,1,u=>u===2))ks(x,y,53)}
+  kscat(70,99,(v,x,y)=>v===53&&knear(x,y,1,u=>u===0||u===1),[1,1,88,62]);
+  // trilhas: da praia norte ao acampamento e dele para cada região
+  kpath([[45,6],[45,22]],3,1);kpath([[45,22],[24,22],[24,30],[18,32]],3,1);kpath([[45,22],[64,22],[68,28],[70,34]],3,1);kpath([[45,24],[45,44]],3,1);kpath([[24,22],[20,14]],3,1);kpath([[45,14],[60,14],[64,16]],3,1);
+  // acampamento (praça) com placa e fogueira
+  kblob(45,22,5,3,53,null,.3);ks(43,21,60);
+  // píer na praia norte
+  kr(46,1,47,5,88);
+ },deco(){}});
+// ---------- depois de dobrar: neve, morros, regiões e onde nasce cada monstro ----------
+function ilReg(x,y){let b=0,bd=1e9;for(let i=0;i<ILREG.length;i++){const[c0,c1]=ILREG[i].c,d=(x/2-c0)**2+(y/2-c1)**2;if(d<bd){bd=d;b=i}}return b}
+var m_dbg=[];function ilHill(T2,W2,H2,I,cx,cy,rx,ry,lv,seed){const N=W2*H2,walk2=v=>!SOLID.has(v)||FXCARV.has(v);
+ const bad=c=>{const x=c%W2,y=c/W2|0;for(let dy=-2;dy<=4;dy++)for(let dx=-2;dx<=2;dx++){const v=(T2[y+dy]||[])[x+dx];if(v==null||v===2||v===59||v===3||v===101||v===60||v===88||v===50||v===13||v===87||v===246||v===247||I.k[(y+dy)*W2+x+dx])return true}return false};
+ const A=rfSmooth(rfBlob(cx,cy,rx,ry,seed,.25,W2,H2).filter(c=>!bad(c)),W2,H2,3);if(A.length<rx*ry*2){m_dbg.push(['A',cx,A.length]);return false}
+ const sv=T2.map(r=>r.slice()),svE=I.el.slice(),svK=I.k.slice(),undo=()=>{sv.forEach((r,k)=>{T2[k]=r});I.el.set(svE);I.k.set(svK)};
+ rfMesa(T2,W2,H2,I,A,1);let B=[];if(lv>=2){const inA=new Uint8Array(N);for(const c of A)inA[c]=1;const dA=rfDist(A,inA,W2,N),sA=rfSouth(inA,W2,H2);B=rfSmooth(A.filter(c=>dA[c]>=4&&sA[c]>=7),W2,H2,2);if(B.length>=30)rfMesa(T2,W2,H2,I,B,2);else B=[]}
+ const s1=rfStairs(T2,W2,H2,I,1,cx,walk2),s2=B.length?rfStairs(T2,W2,H2,I,2,cx+3,walk2):1;if(!s1||!s2){undo();m_dbg.push(['st',cx,!!s1,!!s2]);return false}
+ for(const s of[s1,s2])if(s&&s.length)for(let dy=-2;dy<=4;dy++)for(let dx=-1;dx<=2;dx++){const x=s[0]+dx,y=s[1]+dy,j=y*W2+x;if(T2[y]&&!I.k[j]&&SOLID.has(T2[y][x]))T2[y][x]=ILSNOW===T2[y][x]?ILSNOW:0}
+ try{rfFloorFix(T2,W2,H2,I,B.length?2:1,[s1,s2,null].filter(Boolean))}catch(e){}return true}
+BPOST.push(function ilPost(i,m,T2){try{if(m.key!==ILHA.key)return;const W2=m.W,H2=m.H,N=W2*H2;
+ // árvores gigantes: ipês e jequitibás na Mata, araucárias no Pico Gelado (as que o jogo pôs em outro lugar saem)
+ try{if(m.gtr)for(const q of m.gtr.slice()){for(let b=q[1]-1;b<=q[1];b++)for(let a=q[0]-1;a<=q[0]+1;a++)T2[b][a]=0;m.gtr.splice(m.gtr.indexOf(q),1)}
+  const clr=(x0,y0,x1,y1)=>{for(let y=y0;y<=y1;y++)for(let x=x0;x<=x1;x++){const v=(T2[y]||[])[x];if(v===7||v===58||v===1||v===20||v===83)T2[y][x]=0}};
+  [[20,66,0],[42,72,2],[24,94,1],[46,98,0],[22,44,3],[58,42,3]].forEach(([x,y,k],n)=>{clr(x-4,y-8,x+4,y+1);gtPlace(m,T2,i,[x-1,y-1,x+1,y+1],1,[k],30+n)})}catch(e){console.error(e)}
+ // neve no Pico Gelado (grama e capim viram neve; árvores viram pinheiros escuros)
+ for(let y=0;y<H2;y++)for(let x=0;x<W2;x++){if(ILREG[ilReg(x,y)].k!=='gelo')continue;const v=T2[y][x];if(v===0||v===1||v===9)T2[y][x]=ILSNOW;else if(v===7)T2[y][x]=58;else if(v===84)T2[y][x]=152}
+ // Brejo: capim vira chão escuro com capim alto em tufos
+ for(let y=0;y<H2;y++)for(let x=0;x<W2;x++){if(ILREG[ilReg(x,y)].k!=='brejo')continue;const v=T2[y][x];if(v===0||v===104||v===1)T2[y][x]=157}
+ // vulcão: chão de basalto da ilha
+ for(let y=0;y<H2;y++)for(let x=0;x<W2;x++)if(T2[y][x]===49)T2[y][x]=162;
+ // morros
+ const I={el:new Uint8Array(N),k:new Uint8Array(N),pal:RFPAL.g};
+ const H=[[34,26,10,7,1],[26,24,12,8,2],[60,32,7,5,1],[78,22,7,5,1],[106,20,7,5,1],[122,38,8,6,1],[160,40,7,6,1],[34,82,11,9,1],[78,62,8,6,1],[104,66,8,5,1],[150,86,9,6,1]];let n=0;
+ for(const[cx,cy,rx,ry,lv]of H)if(ilHill(T2,W2,H2,I,cx,cy,rx,ry,lv,8311+cx))n++;
+ for(let j=0;j<N;j++){if(!I.el[j]||I.k[j])continue;const x=j%W2,y=j/W2|0,v=T2[y][x];if((v===7||v===58||v===20)&&hsh(x,y,61)>.12){const r=ILREG[ilReg(x,y)].k;T2[y][x]=r==='gelo'?ILSNOW:r==='vulcao'?162:r==='brejo'?157:0}}
+ m.ilHills=n;if(n){RFEL.set(T2,I);if(!m.rfD){m.rfD=1;const d0=m.deco;m.deco=function(){if(d0)d0.call(this);rfDeco()}}}
+ // enfeites de cada região (longe de trilhas, escadas e paredões, sem fechar passagem)
+ const reg=(x,y)=>ILREG[ilReg(x,y)].k,free8=(x,y)=>{for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++){const v=(T2[y+dy]||[])[x+dx],j=(y+dy)*W2+x+dx;if(v==null||I.k[j]||v===3||v===101||v===108||v===88||v===60||v===13||(SOLID.has(v)&&!(dx===0&&dy===0)))return false}return true};
+ const put=(R0,n,id,ok,salt)=>{let c=0;for(let tr=0;tr<n*40&&c<n;tr++){const x=2+(hsh(tr,salt,991)*(W2-4)|0),y=2+(hsh(salt,tr,993)*(H2-4)|0);if(reg(x,y)!==R0)continue;const v=T2[y][x];if(!ok(v,x,y)||!free8(x,y))continue;T2[y][x]=id;c++}return c};
+ put('gelo',34,152,v=>v===ILSNOW,1);put('gelo',22,153,v=>v===ILSNOW,2);
+ put('tempestade',12,158,v=>v===0||v===1,3);put('tempestade',14,83,v=>v===0||v===1,4);
+ put('vulcao',14,154,v=>v===162,5);put('vulcao',22,155,v=>v===162,6);
+ put('brejo',22,156,v=>v===157||v===1,7);put('brejo',34,159,(v,x,y)=>(v===157||v===1)&&[[1,0],[-1,0],[0,1],[0,-1]].some(([a,b])=>(T2[y+b]||[])[x+a]===2),8);
+ put('lagoa',22,159,(v,x,y)=>(v===53||v===0)&&[[1,0],[-1,0],[0,1],[0,-1]].some(([a,b])=>(T2[y+b]||[])[x+a]===2),9);
+ put('pedreira',16,84,v=>v===81,10);
+ // acampamento: fogueira e barracas em volta
+ {const cx=90,cy=44;T2[cy][cx]=160;for(const[a,b]of[[-6,-3],[5,-3],[-7,2],[7,1]])if(T2[cy+b]&&T2[cy+b][cx+a]!=null&&!SOLID.has(T2[cy+b][cx+a]))T2[cy+b][cx+a]=161}
+ // spawns por região
+ m.tiers=ILREG.map((r,L)=>({sp:r.sp,l:[85,95],cap:4,L,cells:[],reg:r.k}));
+ for(let j=0;j<N;j++){const x=j%W2,y=j/W2|0,v=T2[y][x];if(I.k[j]||!OK.has(v))continue;m.tiers[ilReg(x,y)].cells.push(j)}
+ m.sp=m.sp||[90,14];
+}catch(e){console.error('ilha',e)}});
+// ---------- chão de neve ----------
+function ilSnow(X,Y){const ox=X*16,oy=Y*16,P=hdP(ox,oy),h=i=>hsh(X,Y,i),n=(dx,dy)=>(T[Y+dy]||[])[X+dx],sn=v=>v===ILSNOW||v===152||v===153||v===58||v===83||v==null;
+ try{grGround(X,Y)}catch(e){}
+ const e=[!sn(n(0,-1)),!sn(n(1,0)),!sn(n(0,1)),!sn(n(-1,0))];
+ for(let y=0;y<32;y++)for(let x=0;x<32;x+=2){const w=(a,b)=>hsh(X*32+a,Y*32+b,91)*4;if(e[0]&&y<w(x,0))continue;if(e[2]&&y>31-w(x,9))continue;if(e[3]&&x<w(0,y))continue;if(e[1]&&x>31-w(5,y))continue;
+  const t=hsh(X*32+x,Y*32+y,93);P(t<.12?'#d6e2f0':t<.22?'#f4f8fe':'#e8eff8',x,y,2,1)}
+ for(let i=0;i<3;i++){const px=h(940+i)*26+2,py=h(950+i)*24+3;P('#c8d6ea',px,py+2,6+h(960+i)*6,1);P('#ffffff',px+1,py,2,1)}
+ if(h(970)<.35){P('#ffffff',h(971)*28,h(972)*28,1,1)}}
+TWX[ILSNOW]=function(X,Y){ilSnow(X,Y)};
+{const _ilGb=gbase;gbase=function(X,Y){try{const n=(dx,dy)=>(T[Y+dy]||[])[X+dx];if([n(1,0),n(-1,0),n(0,1),n(0,-1)].filter(v=>v===ILSNOW).length>=2)return ILSNOW}catch(e){}return _ilGb.apply(this,arguments)};
+ const _ilHg=hdGround;hdGround=function(k,X,Y){if(k===ILSNOW)return ilSnow(X,Y);return _ilHg.apply(this,arguments)}}
+// ---------- só voando, e com o nível de treinador ----------
+function ilIdx(){return KI[ILHA.key]}
+function ilPode(){return(G.t.l|0)>=ILHA.req}
+{const _ilEdge=kedge;kedge=function(){const m=M[cur];try{if(m&&m.ed&&m.gx!=null&&cur!==ilIdx()){const bx=P.x==0?3:P.x==W-1?1:-1,by=P.y==0?0:P.y==H-1?2:-1;if(bx>=0||by>=0){const d=bx>=0&&by>=0?(P.d===bx||P.d===by?P.d:by):bx>=0?bx:by,gx=m.gx+P.x+DX[d],gy=m.gy+P.y+DY[d],q=M[ilIdx()];
+   if(q&&gx>=q.gx&&gx<q.gx+(q.Wg||q.W)&&gy>=q.gy&&gy<q.gy+(q.Hg||q.H)){let msg=null;if(!(G.mt&&G.mt.k==='fly'))msg='🌊 O mar até a <b>Ilha dos Encantados</b> é bravo demais. Só dá para chegar <b>voando</b>.';else if(!ilPode())msg=`✦ Uma força antiga barra o caminho. Só treinadores de <b>nível ${ILHA.req}</b> ou mais entram na Ilha dos Encantados. (você: nível ${G.t.l|0})`;
+    if(msg){P.x-=DX[d];P.y-=DY[d];P.px=P.fx=P.x;P.py=P.fy=P.y;ok(msg);return true}}}}}catch(e){}return _ilEdge.apply(this,arguments)}}
+// ---------- Encantados: mais fortes, símbolo dourado, mais EXP ----------
+const ILBOOST={hp:1.6,st:1.3,xp:2.5,tx:5},TRMAX=200;
+function ilEnc(w){if(!w||w.enc)return;w.enc=1;w.xpm=ILBOOST.xp;const f=ILBOOST.st;for(const k of['A','D','SA','SD','S'])if(typeof w[k]==='number')w[k]=Math.round(w[k]*f);w.max=Math.round(w.max*ILBOOST.hp);w.hp=w.max}
+{const _ilSp=spawn;spawn=function(){const n0=wild.length,r=_ilSp.apply(this,arguments);try{if(M[cur]&&M[cur].key===ILHA.key)for(let k=n0;k<wild.length;k++)ilEnc(wild[k])}catch(e){}return r}}
+{const _ilGain=gain;gain=async function(m,x){try{if(typeof B==='object'&&B&&!B.tr&&B.w&&B.w.xpm&&x>0)x=Math.round(x*B.w.xpm)}catch(e){}return _ilGain.call(this,m,x)}}
+{const _ilTg=tgain;tgain=function(n){try{if(typeof B==='object'&&B&&B.w&&B.w.enc&&n>0)n=Math.round(n*ILBOOST.tx);if((G.t.l|0)>=TRMAX)return''}catch(e){}const r=_ilTg.call(this,n);try{if(G.t.l>TRMAX){G.t.l=TRMAX;G.t.x=Math.min(G.t.x,40*TRMAX*TRMAX)}}catch(e){}return r}}
+// símbolo: runa dourada girando sobre a cabeça e um anel de luz no chão
+RH2.push(function(cx,cy,t){try{if(!M[cur]||M[cur].key!==ILHA.key)return;const now=performance.now();for(const w of wild){if(!w.enc)continue;const X=w.px*16+8-cx,Y=w.py*16+16-cy,b=Math.sin(now/300+w.x)*1.2;
+  g.save();g.globalAlpha=.55+.25*Math.sin(now/400+w.y);g.strokeStyle='#ffd34d';g.lineWidth=.8;g.beginPath();g.ellipse(X,Y-1,7,2.4,0,0,6.3);g.stroke();g.restore();
+  g.save();g.translate(X,Y-30+b);g.rotate(now/900);g.fillStyle='#ffd34d';g.strokeStyle='#5a3a08';g.lineWidth=.7;g.beginPath();for(let i=0;i<8;i++){const a=i*Math.PI/4,r=i%2?1.4:3.6;g.lineTo(Math.cos(a)*r,Math.sin(a)*r)}g.closePath();g.fill();g.stroke();g.fillStyle='#fff6c0';g.fillRect(-.6,-.6,1.2,1.2);g.restore()}}catch(e){}});
+// capturado: vira o monstro normal (atributos de sempre), só fica com o símbolo ✦
+{const _ilTp=toParty;toParty=function(c){try{if(c&&c.enc){const r=c.max?c.hp/c.max:1;delete c.xpm;stats(c);c.hp=Math.max(1,Math.round(c.max*r));c.enc=1}}catch(e){}return _ilTp.apply(this,arguments)}}
+function ilMark(sel,m){try{const el=document.querySelector(sel);if(el&&m&&m.enc&&!el.querySelector('.encs'))el.insertAdjacentHTML('afterbegin','<span class="encs" style="color:#ffd34d;text-shadow:0 0 4px #ffb000">✦ </span>')}catch(e){}}
+{const _ilBag=bag;bag=function(){const r=_ilBag.apply(this,arguments);try{const L=[...document.querySelectorAll('#ui .pk b')];G.party.forEach((p,k)=>{const el=L[k];if(el&&p.enc&&!el.querySelector('.encs'))el.insertAdjacentHTML('afterbegin','<span class="encs" style="color:#ffd34d">✦ </span>')})}catch(e){}return r}}
+// na batalha: ✦ antes do nome
+{const _ilRb=typeof rb==='function'?rb:null;if(_ilRb)rb=function(){const r=_ilRb.apply(this,arguments);try{if(B&&B.w)ilMark('.bcard.e b',B.w);if(B&&B.cur)ilMark('.bcard.m b',B.cur)}catch(e){}return r}}
+// ---------- NPCs da ilha ----------
+function ilBarco(){open(`<b>Barqueiro da Ilha</b><p>Daqui eu só levo de volta, viu? Pra vir pra cá, só voando mesmo.</p>`+btn('🚢 Voltar para o Porto de Bonança (💰300)',"ferryGo('vermilion',20,36)",G.money<300)+btn('Fechar','closeUI()'))}
+function ilPaje(){try{G.party.forEach(p=>{p.hp=p.max;if(p.mv)p.mv.forEach(v=>{if(v.pp!=null&&MV[v.n])v.pp=MV[v.n][4]||v.pp});p.st=null});G.t.hp=tmax();hud();play('heal')}catch(e){}ok('<b>Pajé Iracema:</b> Descansem perto do fogo. Os Encantados não perdoam quem chega cansado. ✦ <i>Seu time foi curado.</i>')}
+function ilGuarda(){ok('<b>Guardião da Ilha:</b> Cada canto da ilha guarda um elemento: o Pico Gelado, o Campo da Tempestade, o Vulcão, a Mata Ancestral, a Pedreira de Cristal, o Brejo Sombrio e a Lagoa Encantada. Os Encantados têm a marca dourada ✦: são bem mais fortes, mas ensinam muito mais: dão o triplo... não, o quíntuplo de experiência de treinador! Quem pega um Encantado leva o monstro normal, mas com a marca ✦ para sempre.')}
+
+// ===== Kaimon GT v83: cenário da Ilha dos Encantados (peças novas, desenhadas em código no estilo do mapa) =====
+// 152 cristal de gelo · 153 pedra nevada · 154 fumarola (solta fumaça) · 155 colunas de basalto · 156 cogumelos que brilham
+// 157 lama do brejo (chão) · 158 pedra-raio (solta faíscas) · 159 taboa (junco)
+var ILT={GEL:152,PNV:153,FUM:154,BAS:155,COG:156,LAMA:157,RAIO:158,TAB:159};
+[152,153,154,155,156,158,159].forEach(v=>SOLID.add(v));OK.add(157);
+Object.assign(MCOL,{152:'#9ad8f8',153:'#c8d0dc',154:'#4a3430',155:'#2a2628',156:'#5ae0c8',157:'#3e4630',158:'#7a8494',159:'#6a8a3a'});
+// desenha um objeto: a parte de baixo no chão e a de cima na camada da frente (quem passa atrás fica escondido)
+function ilObj(X,Y,fn,cut){const ox=X*16,oy=Y*16;const d=c=>{c.save();c.translate(ox,oy);c.scale(.5,.5);fn(c);c.restore()};d(mg);
+ const f=fgCtx();f.save();f.beginPath();f.rect(ox-16,oy-64,48,64+(cut==null?12:cut)/2);f.clip();d(f);f.restore()}
+function ilPoly(c,pts,fill,stroke,lw){c.beginPath();pts.forEach(([a,b],i)=>i?c.lineTo(a,b):c.moveTo(a,b));c.closePath();c.fillStyle=fill;c.fill();if(stroke){c.lineWidth=lw||1.4;c.strokeStyle=stroke;c.stroke()}}
+function ilSh(c,x,y,rx,ry){c.fillStyle='rgba(10,14,30,.28)';c.beginPath();c.ellipse(x,y,rx,ry,0,0,6.3);c.fill()}
+function ilGround(X,Y){const c={};for(const[a,b]of[[1,0],[-1,0],[0,1],[0,-1],[1,1],[-1,1],[1,-1],[-1,-1]]){const v=(T[Y+b]||[])[X+a];if([151,157,162,81,53,0,1,104,3].includes(v))c[v]=(c[v]||0)+1}let v=0,bn=-1;for(const k in c)if(c[k]>bn){bn=c[k];v=+k}
+ try{if(v===151)ilSnow(X,Y);else if(v===157)ilLama(X,Y);else if(v===162)ilVolc(X,Y);else if(v===0||v===1)grGround(X,Y);else hdGround(v,X,Y)}catch(e){}}
+// fogueira do acampamento (160) e barraca (161)
+[160,161].forEach(v=>SOLID.add(v));Object.assign(MCOL,{160:'#e07a2a',161:'#c8a060'});
+TWX[160]=function(X,Y){ilGround(X,Y);ilObj(X,Y,c=>{ilSh(c,16,27,12,3);for(let i=0;i<7;i++){const a=i/7*6.283;c.fillStyle=i%2?'#7a7a80':'#5a5a62';c.beginPath();c.ellipse(16+Math.cos(a)*9,25+Math.sin(a)*3.6,3,2.2,0,0,6.3);c.fill()}
+ c.strokeStyle='#5a3a1a';c.lineWidth=2.4;c.beginPath();c.moveTo(10,26);c.lineTo(22,21);c.moveTo(22,26);c.lineTo(10,21);c.stroke();c.fillStyle='#2a1a10';c.beginPath();c.ellipse(16,24,5,1.8,0,0,6.3);c.fill()},10)};
+TWX[161]=function(X,Y){ilGround(X,Y);const h=i=>hsh(X,Y,i),C=h(1)<.5?['#c86a3a','#a04a22','#e89a5a']:['#4a8a6a','#2e6a4e','#7ab894'];ilObj(X,Y,c=>{ilSh(c,16,29,15,3.4);
+ ilPoly(c,[[1,29],[16,0],[31,29]],C[0],'#2a1a10',1.4);ilPoly(c,[[16,0],[31,29],[20,29]],C[1]);ilPoly(c,[[11,29],[16,14],[21,29]],'#2a1a10');c.strokeStyle=C[2];c.lineWidth=1;c.beginPath();c.moveTo(16,2);c.lineTo(6,26);c.stroke();
+ c.strokeStyle='#6a4a2a';c.lineWidth=1.4;c.beginPath();c.moveTo(16,0);c.lineTo(14,-4);c.moveTo(16,0);c.lineTo(18,-4);c.stroke()},16)};
+// ---- cristal de gelo ----
+TWX[152]=function(X,Y){ilSnow(X,Y);const h=i=>hsh(X,Y,i),fl=h(1)<.5?1:-1;ilObj(X,Y,c=>{ilSh(c,16,29,13,3.4);
+ const shard=(bx,by,w,hh,lean,dk)=>{const tx=bx+lean;ilPoly(c,[[bx-w,by],[tx-w*.3,by-hh+5],[tx,by-hh],[tx+w*.35,by-hh+5],[bx+w,by]],dk?'#7ab6e6':'#a8dcfa','#2e5a86',1.2);
+  ilPoly(c,[[tx,by-hh],[tx+w*.35,by-hh+5],[bx+w,by],[bx+w*.15,by]],dk?'#5a92c8':'#7cc0ec');c.fillStyle='rgba(255,255,255,.85)';c.fillRect(tx-w*.35,by-hh+6,1.4,hh*.55)};
+ shard(16+fl*7,28,4,14+h(2)*5,fl*3,1);shard(16-fl*6,29,4.4,17+h(3)*6,-fl*2,1);shard(16,29,6,26+h(4)*10,fl*1.5,0);
+ c.fillStyle='#ffffff';c.fillRect(15,4-h(4)*10,2,2);c.fillStyle='rgba(240,248,255,.9)';c.beginPath();c.ellipse(16,29,12,2.4,0,0,6.3);c.fill()},16)};
+// ---- pedra nevada ----
+TWX[153]=function(X,Y){ilSnow(X,Y);const h=i=>hsh(X,Y,i);ilObj(X,Y,c=>{ilSh(c,16,28,13,3.2);c.fillStyle='#4a5260';c.beginPath();c.ellipse(16,21,13,9,0,0,6.3);c.fill();c.fillStyle='#6a7484';c.beginPath();c.ellipse(15,20,11,7.4,0,0,6.3);c.fill();
+ c.fillStyle='#8a94a4';c.beginPath();c.ellipse(13,18,6,3.6,-.3,0,6.3);c.fill();c.fillStyle='#f2f6fc';c.beginPath();c.ellipse(16,14.5,11,4.4,0,Math.PI,6.3);c.fill();c.fillRect(6,14,20,2);c.fillStyle='#ffffff';c.fillRect(10,11,6,1.4);
+ for(let i=0;i<3;i++){c.fillStyle='#f2f6fc';c.fillRect(7+i*7+h(i)*3,15,2,2+h(i+5)*3)}},10)};
+// ---- fumarola ----
+TWX[154]=function(X,Y){ilGround(X,Y);ilObj(X,Y,c=>{ilSh(c,16,28,14,3.4);ilPoly(c,[[2,28],[7,18],[12,14],[20,14],[25,18],[30,28]],'#3a2a26','#1a1210',1.4);ilPoly(c,[[8,20],[12,15],[20,15],[23,19],[16,21]],'#5a423a');
+ c.fillStyle='#1a1210';c.beginPath();c.ellipse(16,15.4,4.6,1.8,0,0,6.3);c.fill();c.fillStyle='#ff7a2a';c.beginPath();c.ellipse(16,15.6,3,1,0,0,6.3);c.fill();c.fillStyle='#ffd04a';c.fillRect(15,15,2,1);
+ c.strokeStyle='#ff6a1a';c.lineWidth=1;c.beginPath();c.moveTo(10,24);c.lineTo(13,21);c.lineTo(12,18);c.moveTo(22,25);c.lineTo(20,22);c.stroke()},14)};
+// ---- colunas de basalto ----
+TWX[155]=function(X,Y){ilGround(X,Y);const h=i=>hsh(X,Y,i);ilObj(X,Y,c=>{ilSh(c,16,29,14,3.4);
+ const col=(x,w,top,k)=>{c.fillStyle=k?'#2e2a2c':'#3a3436';c.fillRect(x,top,w,29-top);c.fillStyle='#1c1a1c';c.fillRect(x+w-2,top,2,29-top);c.fillStyle='#5a5254';ilPoly(c,[[x,top],[x+w/2,top-2.4],[x+w,top],[x+w/2,top+2.4]],'#5a5254','#1c1a1c',.8);
+  c.fillStyle='rgba(255,255,255,.12)';c.fillRect(x+1,top+3,1.2,29-top-4);for(let yy=top+6;yy<28;yy+=6+((x*3)%4)){c.fillStyle='#1c1a1c';c.fillRect(x,yy,w,.8)}};
+ col(3,8,10+h(1)*6,0);col(20,9,6+h(2)*8,1);col(10,10,-8+h(3)*8,0)},18)};
+// ---- cogumelos que brilham ----
+TWX[156]=function(X,Y){ilGround(X,Y);const h=i=>hsh(X,Y,i);ilObj(X,Y,c=>{ilSh(c,16,28,12,3);
+ const m=(x,y,r,col,hi)=>{c.fillStyle='#d8d0c0';c.fillRect(x-1.4,y,2.8,28-y);c.fillStyle='#a8a090';c.fillRect(x+.4,y,1,28-y);c.fillStyle=col;c.beginPath();c.ellipse(x,y,r,r*.62,0,Math.PI,6.3);c.fill();c.fillRect(x-r,y-.2,r*2,1.4);
+  c.fillStyle=hi;c.fillRect(x-r*.5,y-r*.4,2,1.4);c.fillRect(x+r*.2,y-r*.2,1.4,1.4)};
+ const A=h(5)<.5?['#4ae0c8','#c8fff4']:['#b06af0','#f0d8ff'];m(9,18,5,A[0],A[1]);m(22,14,7,A[0],A[1]);m(15,22,3.6,A[0],A[1])},12)};
+// ---- lama do brejo (chão) ----
+function ilLama(X,Y){const ox=X*16,oy=Y*16,P=hdP(ox,oy),h=i=>hsh(X,Y,i);P('#3e4630',0,0,32,32);
+ for(let i=0;i<14;i++){const t=h(i+20);P(t<.4?'#4a5438':t<.7?'#343c28':'#525c3e',h(i+40)*30,h(i+60)*30,2+h(i+80)*4,1+h(i+90)*2)}
+ if(h(7)<.55){const px=4+h(8)*14,py=6+h(9)*14,w=8+h(10)*8;P('#26302a',px,py,w,5);P('#2e3a34',px+1,py+1,w-2,3);P('rgba(150,200,190,.35)',px+2,py+1,3,1)}
+ if(h(11)<.3){P('#5a7a3a',h(12)*26,h(13)*26,1,3);P('#6a8a42',h(12)*26+2,h(13)*26+1,1,2)}}
+TWX[157]=function(X,Y){ilLama(X,Y)};
+{const _il2=hdGround;hdGround=function(k,X,Y){if(k===157)return ilLama(X,Y);return _il2.apply(this,arguments)};const _gb2=gbase;gbase=function(X,Y){try{const n=(dx,dy)=>(T[Y+dy]||[])[X+dx];if([n(1,0),n(-1,0),n(0,1),n(0,-1)].filter(v=>v===157).length>=2)return 157}catch(e){}return _gb2.apply(this,arguments)}}
+// ---- pedra-raio ----
+TWX[158]=function(X,Y){ilGround(X,Y);ilObj(X,Y,c=>{ilSh(c,16,29,11,3);ilPoly(c,[[8,29],[9,-4],[13,-12],[19,-12],[23,-4],[24,29]],'#6a7486','#2a3040',1.4);ilPoly(c,[[19,-12],[23,-4],[24,29],[19,29]],'#525a6a');
+ c.fillStyle='#8a94a6';c.fillRect(10,-2,2,28);c.strokeStyle='#ffd84a';c.lineWidth=2;c.beginPath();c.moveTo(17,-6);c.lineTo(13,4);c.lineTo(18,6);c.lineTo(14,17);c.stroke();c.strokeStyle='#fff6b0';c.lineWidth=.8;c.stroke();
+ c.fillStyle='#4a5466';c.fillRect(6,26,20,3)},18)};
+// ---- taboa ----
+TWX[159]=function(X,Y){ilGround(X,Y);const h=i=>hsh(X,Y,i);ilObj(X,Y,c=>{for(let i=0;i<7;i++){const x=5+i*3.4+h(i)*2,top=4+h(i+10)*10,lean=(h(i+20)-.5)*5;c.strokeStyle=i%2?'#4a7a2a':'#6a9a3a';c.lineWidth=1.4;c.beginPath();c.moveTo(x,29);c.quadraticCurveTo(x+lean*.3,top+10,x+lean,top);c.stroke();
+  if(i%2===0){c.fillStyle='#6a3e1e';c.fillRect(x+lean-1.4,top+2,2.8,7);c.fillStyle='#8a5a2e';c.fillRect(x+lean-1.4,top+2,1,7)}}},14)};
+// ---------- animações: fumaça, faíscas, brilho dos cogumelos ----------
+RH2.push(function(cx,cy,t){try{const m=M[cur];if(!m||m.key!=='encantada')return;const cw=VW*16,ch=VH*16,now=performance.now(),nt=typeof nightF==='function'?nightF():0;
+ for(let ty=(cy>>4)-1;ty<=((cy+ch)>>4)+1;ty++){const row=T[ty];if(!row)continue;for(let tx=(cx>>4)-1;tx<=((cx+cw)>>4)+1;tx++){const v=row[tx];const X=tx*16-cx,Y=ty*16-cy;
+  if(v===154){for(let k=0;k<4;k++){const u=((now/2600+k/4+hsh(tx,ty,5))%1),r=2+u*6;g.fillStyle='rgba(120,110,110,'+(.45*(1-u))+')';g.beginPath();g.arc(X+8+Math.sin(u*6+k)*3,Y+7-u*26,r,0,6.3);g.fill()}
+   if(((now/180+tx)|0)%9===0){g.fillStyle='#ffb43a';g.fillRect(X+7+Math.random()*3,Y+4-Math.random()*6,1,1)}}
+  else if(v===158){const p=((now/1700+hsh(tx,ty,6))%1);if(p<.12){g.strokeStyle='rgba(255,240,140,'+(1-p/.12)+')';g.lineWidth=.8;g.beginPath();let x=X+8,y=Y-10;g.moveTo(x,y);for(let k=0;k<4;k++){x+=(Math.random()-.5)*6;y-=3;g.lineTo(x,y)}g.stroke()}}
+  else if(v===156&&nt>.15){g.save();g.globalCompositeOperation='lighter';const r2=g.createRadialGradient(X+8,Y+9,1,X+8,Y+9,14);r2.addColorStop(0,'rgba(90,240,210,'+(.35*nt)+')');r2.addColorStop(1,'rgba(90,240,210,0)');g.fillStyle=r2;g.fillRect(X-8,Y-6,32,30);g.restore()}
+  else if(v===160){for(let k=0;k<6;k++){const u=((now/700+k/6)%1),x=X+8+Math.sin(now/120+k*2)*2*(1-u),y=Y+11-u*12;g.fillStyle=u<.4?'#fff2a0':u<.7?'#ffa030':'rgba(220,60,20,'+(1-u)+')';g.fillRect(x-1.2*(1-u),y,2.4*(1-u)+.6,2)}
+   if(nt>.1){g.save();g.globalCompositeOperation='lighter';const r3=g.createRadialGradient(X+8,Y+10,2,X+8,Y+10,40);r3.addColorStop(0,'rgba(255,170,80,'+(.45*nt)+')');r3.addColorStop(1,'rgba(255,140,60,0)');g.fillStyle=r3;g.fillRect(X-34,Y-30,84,80);g.restore()}}
+  else if(v===152&&((now/900+tx*7+ty)|0)%11===0){g.fillStyle='#ffffff';g.fillRect(X+7,Y-6,1,3);g.fillRect(X+6,Y-5,3,1)}}}}catch(e){}});
+// ---------- clima de cada região (só na tela, quando você está nela) ----------
+var ILFX={r:-1,a:0,fl:0,nf:0,pt:[]};
+RH2.push(function(cx,cy,t){try{const m=M[cur];if(!m||m.key!=='encantada')return;const cw=VW*16,ch=VH*16,now=performance.now(),k=ILREG[ilReg(P.x,P.y)].k;
+ if(ILFX.r!==k){ILFX.r=k;ILFX.a=0}ILFX.a=Math.min(1,ILFX.a+.02);const a=ILFX.a;g.save();
+ if(k==='gelo'){g.fillStyle='rgba(180,210,255,'+(.10*a)+')';g.fillRect(0,0,cw,ch);g.fillStyle='rgba(255,255,255,'+(.85*a)+')';for(let i=0;i<70;i++){const L=i%3,y=((i*97.3+now*[.012,.018,.026][L])%(ch+10))-5,x=(((i*53.7+Math.sin(now/900+i)*10+now*.004*(L+1))%(cw+20))+cw+20)%(cw+20)-10;g.fillRect(x,y,[.8,1.2,1.7][L],[.8,1.2,1.7][L])}}
+ else if(k==='tempestade'){g.fillStyle='rgba(30,30,60,'+(.18*a)+')';g.fillRect(0,0,cw,ch);if(now>ILFX.nf){ILFX.nf=now+4000+Math.random()*7000;ILFX.fl=now;try{if(AC&&!MT&&typeof thunder==='function')thunder(.3+Math.random())}catch(e){}}
+  const d=now-ILFX.fl;if(d<420){const f=d<90?1:d<160?.25:d<240?.8:1-(d-240)/180;g.fillStyle='rgba(235,240,255,'+(.4*f*a)+')';g.fillRect(0,0,cw,ch)}}
+ else if(k==='vulcao'){g.fillStyle='rgba(255,90,30,'+(.08*a)+')';g.fillRect(0,0,cw,ch);for(let i=0;i<26;i++){const u=((now/4200+i*.137)%1),x=((i*71.3)%cw)+Math.sin(now/700+i)*6,y=ch-u*(ch+20);g.fillStyle='rgba(255,'+(140+(i%3)*40)+',40,'+(a*(1-u)*.9)+')';g.fillRect(x,y,1.2,1.2)}}
+ else if(k==='brejo'){for(let i=0;i<4;i++){const y=ch*(.2+i*.22)+Math.sin(now/3000+i)*6,gr=g.createLinearGradient(0,y-18,0,y+18);gr.addColorStop(0,'rgba(120,90,160,0)');gr.addColorStop(.5,'rgba(120,90,160,'+(.14*a)+')');gr.addColorStop(1,'rgba(120,90,160,0)');g.fillStyle=gr;g.fillRect(0,y-18,cw,36)}
+  for(let i=0;i<14;i++){const x=(i*83.7+Math.sin(now/1300+i*2)*20)%cw,y=(i*47.1+Math.cos(now/1700+i)*14)%ch,on=.5+.5*Math.sin(now/300+i*1.7);g.fillStyle='rgba(170,255,140,'+(on*a*.9)+')';g.fillRect(x,y,1.2,1.2)}}
+ else if(k==='mata'){for(let i=0;i<5;i++){const x=cw*(.1+i*.22)+Math.sin(now/5000+i)*10,gr=g.createLinearGradient(x,0,x+40,ch);gr.addColorStop(0,'rgba(255,250,200,'+(.10*a)+')');gr.addColorStop(1,'rgba(255,250,200,0)');g.fillStyle=gr;g.beginPath();g.moveTo(x,0);g.lineTo(x+14,0);g.lineTo(x+60,ch);g.lineTo(x+36,ch);g.closePath();g.fill()}}
+ else if(k==='lagoa'){for(let i=0;i<18;i++){const x=(i*97.1)%cw,y=(i*61.7)%ch,on=Math.max(0,Math.sin(now/400+i*2.3));const tx=(cx+x)>>4,ty=(cy+y)>>4;if((T[ty]||[])[tx]!==2)continue;g.fillStyle='rgba(255,255,255,'+(on*a*.8)+')';g.fillRect(x,y,1.4,.6);g.fillRect(x+.4,y-.4,.6,1.4)}}
+ else if(k==='pedreira'){for(let i=0;i<10;i++){const x=(i*113.3)%cw,y=(i*71.9)%ch,on=Math.max(0,Math.sin(now/520+i*1.9));g.fillStyle='rgba(220,190,255,'+(on*a*.8)+')';g.fillRect(x,y,1,1)}}
+ g.restore()}catch(e){}});
+
+// chão vulcânico da ilha (162): basalto escuro, cinza e rachaduras que brilham
+OK.add(162);MCOL[162]='#3a2c2a';
+function ilVolc(X,Y){const ox=X*16,oy=Y*16,P=hdP(ox,oy),h=i=>hsh(X,Y,i);P('#3a2c2a',0,0,32,32);
+ for(let i=0;i<16;i++){const t=h(i+20);P(t<.35?'#44342f':t<.7?'#302422':'#4e3c36',h(i+40)*30,h(i+60)*30,2+h(i+80)*5,1+h(i+90)*2)}
+ for(let i=0;i<5;i++)P('#8a7a74',h(i+100)*31,h(i+110)*31,1,1);
+ if(h(7)<.3){let x=4+h(8)*20,y=4+h(9)*20;for(let k=0;k<7;k++){P('#1e1614',x,y,2,1);if(h(10)<.5)P('#ff6a1a',x,y,1,1);x+=h(k+11)<.5?1:-1;y+=1}}}
+TWX[162]=function(X,Y){ilVolc(X,Y)};
+{const _il3=hdGround;hdGround=function(k,X,Y){if(k===162)return ilVolc(X,Y);return _il3.apply(this,arguments)};const _gb3=gbase;gbase=function(X,Y){try{const n=(dx,dy)=>(T[Y+dy]||[])[X+dx];if([n(1,0),n(-1,0),n(0,1),n(0,-1)].filter(v=>v===162).length>=2)return 162}catch(e){}return _gb3.apply(this,arguments)}}
 
 // ===== Kaimon GT v70: botões de baixo recolhem; código GOD aceita 0/O e 1/I trocados =====
 // Botão ▾/▴ ao lado da espada: esconde (ou mostra) a fileira de botões. Fica guardado no aparelho.
