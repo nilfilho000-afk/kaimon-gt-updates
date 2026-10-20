@@ -2177,7 +2177,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
  const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
  TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
  el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v78 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v79 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
  if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
  const a=TTL.sel&&ACC.a[TTL.sel];
@@ -10305,7 +10305,7 @@ const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);t
  const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
  const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
 
-var KGT_VER=78;
+var KGT_VER=79;
 // ===== Kaimon GT v70: shiny repaginado =====
 // Todo shiny ganha uma paleta bem diferente da normal: a cor do corpo gira ~150-210° no círculo de cores (verde vira
 // rosa, vermelho vira azul-piscina...), as partes escuras ficam quase pretas e o detalhe (a) vira a cor oposta.
@@ -11763,6 +11763,125 @@ function gtShadowPath(g2,bx,by,s){const sx=s?s.sx:0,sy=s?s.sy:.5,st=Math.min(1.7
  const n=Math.hypot(cx2-bx,cy2-by)||1,ux=(cx2-bx)/n,uy=(cy2-by)/n,w=9;if(n>6){const Q=[[bx-uy*w,by+ux*w],[cx2-uy*w,cy2+ux*w],[cx2+uy*w,cy2-ux*w],[bx+uy*w,by-ux*w]];let A=0;for(let i=0;i<4;i++){const a=Q[i],b=Q[(i+1)%4];A+=a[0]*b[1]-b[0]*a[1]}if(A<0)Q.reverse();
   g2.moveTo(Q[0][0],Q[0][1]);for(let i=1;i<4;i++)g2.lineTo(Q[i][0],Q[i][1]);g2.closePath()}
  g2.moveTo(bx+21,by);g2.ellipse(bx,by,21,6,0,0,6.3)}
+
+// ===== Kaimon GT v78: Dona Garoa, a Meteorologista =====
+// Fica em Vila Alvorada, ao lado da estação meteorológica dela (abrigo branco, pluviômetro, mastro com anemômetro girando
+// conforme o vento e biruta apontando a direção). Ela lê o mesmo clima que o jogo usa, então a previsão é certeira:
+// • Agora: tempo, temperatura, frente fria/onda de calor e quais tipos ficam mais fortes.
+// • Próximas horas (de 2 em 2 horas do jogo, com "daqui a X min" no relógio de verdade) e chance de chuva.
+// • Amanhã: manhã, tarde e noite.  • Outras cidades.  • Como o clima funciona.
+// • "Me avisa": um aviso na tela quando o tempo muda onde você está.
+const TP={key:'tp_garoa',nm:'Dona Garoa, a Meteorologista',city:0,ST:150};
+HUM34[TP.key]=H36({key:TP.key,fem:1,sk:'#c99a6e',hr:'#c4c4cc',sh:'#3a78c4',s2:'#eaf2fa',pa:'#2e3a58',sw:'#3a2a1a',ac:'#f0c040',x:'glasses bun scarf old'});LBL[TP.key]=TP.nm;
+SOLID.add(TP.ST);if(typeof MCOL==='object')MCOL[TP.ST]='#e8eef6';
+const TPN={clear:['☀️','Sol'],night:['🌙','Céu limpo'],cloud:['⛅','Nublado'],rain:['🌧️','Chuva'],storm:['⛈️','Tempestade'],snow:['❄️','Neve'],fog:['🌫️','Neblina']};
+function tpNome(k,h){const q=k==='clear'&&(h<6||h>=19)?TPN.night:TPN[k]||TPN.clear;return q}
+// clima de um mapa num instante (mesma conta do jogo)
+function tpAt(i,t){const o=G.gt;try{G.gt=t;return wxCalc(i)}catch(e){return{k:'clear',T:21}}finally{G.gt=o}}
+function tpChuva(i,t){let n=0;for(let d=-40;d<=40;d+=10){const k=tpAt(i,t+d).k;if(k==='rain'||k==='storm'||k==='snow')n++}return Math.round(n/9*100)}
+function tpHora(t){const h=Math.floor((t%1440)/60),mi=Math.floor(t%60/15)*15;return String(h).padStart(2,'0')+'h'+(mi?String(mi).padStart(2,'0'):'')}
+function tpMin(t){const m=Math.round((t-G.gt)/(60*(typeof GTK!=='undefined'&&GTK?GTK:1)));return m<1?'agora':m<60?'daqui a ~'+m+' min':'daqui a ~'+(m/60).toFixed(1).replace('.0','')+' h'}
+function tpNomeMapa(i){if(i===TP.city)return'Vila Alvorada';return NM[i]||(M[i]&&M[i].nm)||'Pindorama'}
+function tpForte(k,T){const L=[];if(k==='rain'||k==='storm')L.push('💧 Água ×1,3');if(k==='storm')L.push('⚡ Elétrico ×1,3');if(k==='snow')L.push('🧊 Gelo mais forte');if(k==='fog')L.push('👻 Fantasma mais forte');
+ if(T>=26)L.push('🔥 Fogo mais forte (calor)');else if(T<=12)L.push('🧊 Gelo mais forte (frio)');if(k==='rain'||k==='storm')L.push('🔥 Fogo enfraquece');return L}
+function tpLinha(i,t,cur2){const w=cur2?wxNow():tpAt(i,t),h=(t%1440)/60,[e,n]=tpNome(w.k,h),ch=tpChuva(i,t);
+ return`<tr><td style="padding:3px 6px;white-space:nowrap"><b>${cur2?'Agora':tpHora(t)}</b><br><small style="opacity:.7">${cur2?'':tpMin(t)}</small></td><td style="font-size:20px;padding:3px 6px">${e}</td><td style="padding:3px 6px">${n}<br><small style="opacity:.75">💧 ${ch}%</small></td><td style="padding:3px 6px;text-align:right"><b>${Math.round(w.T)}°C</b></td></tr>`}
+function tpTab(rows){return`<table style="width:100%;border-collapse:collapse;margin:6px 0;font-size:13px">${rows}</table>`}
+function tpFace(){try{return npcFace(TP.key)}catch(e){return''}}
+function tpBox(tag,txt,btns){open(`<div class="npcd"><img src="${tpFace()}" alt=""><div><b>${TP.nm}</b> <small>${tag}</small>${txt}</div></div>`+btns)}
+var TPI=TP.city;
+const TPFALA={clear:['Céu de brigadeiro hoje! Bom pra treinar monstro de Fogo.','Nem uma nuvem... meu pluviômetro tá entediado.','Sol bonito! Mas olha o protetor, viu?'],
+ cloud:['Essas nuvens tão engordando... fica de olho.','Nublado, mas ainda sem chuva. Por enquanto!','Céu cinzento é bom pra caminhada.'],
+ rain:['Chuva! Os monstros de Água adoram.','Choveu, molhou! Meu pluviômetro tá feliz.','Leva guarda-chuva, criança!'],
+ storm:['Tempestade! Os Elétricos ficam terríveis com esses raios.','Ouviu esse trovão? Fica longe das árvores altas!','Que ventania! Meu anemômetro tá girando sem parar.'],
+ snow:['Neve! Raro por aqui... os de Gelo tão contentes.','Brrr! Agasalha o time, hein.'],
+ fog:['Neblina... dizem que os Fantasmas aparecem mais.','Não enxergo nem minha estação com essa cerração!']};
+function tpFalaAgora(){const k=wxNow().k,L=TPFALA[k]||TPFALA.clear;return L[Math.random()*L.length|0]}
+function tpTalk(){TPI=TP.city;const e=TP.e;if(e)e.d=(P.d+2)%4;const w=wxNow(),h=hrs(),[em,nm]=tpNome(w.k,h);
+ tpBox('estação de '+tpNomeMapa(TP.city),`<p>${tpFalaAgora()}</p><p>Agora: <b>${em} ${nm}, ${Math.round(w.T)}°C</b>.</p>`,
+  btn('🌤️ Tempo agora','tpAgora()')+btn('🕐 Próximas horas','tpHoras()')+btn('📅 Amanhã','tpAmanha()')+btn('🗺️ Outras cidades','tpCidades()')+btn('❓ Como funciona o clima','tpComo()')+
+  btn(G.tpAv?'🔕 Parar de me avisar':'🔔 Me avisa quando o tempo mudar','tpAvisa()')+btn('Tchau','closeUI()'))}
+function tpAgora(){const i=TPI,here=i===cur,w=here?wxNow():tpAt(i,G.gt),h=hrs(),[em,nm]=tpNome(w.k,h),A=typeof wxAnom==='function'?wxAnom(i):0,fr=A>3.5?'🔥 Onda de calor passando por aqui.':A<-3.5?'🥶 Frente fria chegando.':'Temperatura normal pra época.',L=tpForte(w.k,w.T);
+ let sea='';try{sea=` · ${SEAE[seaI()]} ${SEAN[seaI()]}`}catch(e){}
+ tpBox(tpNomeMapa(i),`<p style="font-size:15px">${em} <b>${nm}</b>, ${Math.round(w.T)}°C${sea}</p><p>${fr}</p><p>${L.length?'Nas batalhas: '+L.join(' · '):'Nenhum tipo leva vantagem do tempo agora.'}</p>`,btn('🕐 Próximas horas','tpHoras()')+btn('Voltar','tpTalk()'))}
+function tpHoras(){const i=TPI,t0=Math.floor(G.gt/120)*120;let r=tpLinha(i,G.gt,i===cur);for(let k=1;k<=6;k++)r+=tpLinha(i,t0+k*120,0);
+ const nx=tpProx(i);tpBox('próximas horas · '+tpNomeMapa(i),tpTab(r)+(nx?`<p>${nx}</p>`:''),btn('📅 Amanhã','tpAmanha()')+btn('Voltar','tpTalk()'))}
+// quando muda o tempo (próximas 12 h do jogo)
+function tpProx(i){const k0=(i===cur?wxNow():tpAt(i,G.gt)).k;for(let d=15;d<=720;d+=15){const t=G.gt+d,k=tpAt(i,t).k;if(k!==k0){const[e,n]=tpNome(k,(t%1440)/60);return`Próxima mudança: ${e} <b>${n}</b> às ${tpHora(t)} (${tpMin(t)}).`}}return'O tempo deve ficar assim pelas próximas 12 horas.'}
+function tpAmanha(){const i=TPI,d0=(Math.floor(G.gt/1440)+1)*1440;let r='';for(const[h,lb]of[[8,'Manhã'],[14,'Tarde'],[21,'Noite']]){const t=d0+h*60,w=tpAt(i,t),[e,n]=tpNome(w.k,h),ch=tpChuva(i,t);
+  r+=`<tr><td style="padding:3px 6px"><b>${lb}</b><br><small style="opacity:.7">${tpHora(t)}</small></td><td style="font-size:20px;padding:3px 6px">${e}</td><td style="padding:3px 6px">${n}<br><small style="opacity:.75">💧 ${ch}%</small></td><td style="padding:3px 6px;text-align:right"><b>${Math.round(w.T)}°C</b></td></tr>`}
+ tpBox('amanhã · '+tpNomeMapa(i),tpTab(r)+`<p><small>Um dia no jogo passa em 24 minutos de verdade.</small></p>`,btn('🕐 Próximas horas','tpHoras()')+btn('Voltar','tpTalk()'))}
+function tpCidList(){const L=[TP.city];try{for(const q of GW){const i=q[0],n=NM[i]||'';if(i!==TP.city&&!/^(Rota|Ciclovia)/.test(n)&&!L.includes(i))L.push(i)}}catch(e){}return L}
+function tpCidades(){const L=tpCidList();let r='';for(const i of L){const w=tpAt(i,G.gt),[e,n]=tpNome(w.k,hrs());r+=`<button class="b" style="display:flex;justify-content:space-between;align-items:center;width:100%;text-align:left" onclick="TPI=${i};tpHoras()"><span>${e} ${tpNomeMapa(i)}</span><span>${n} · ${Math.round(w.T)}°C</span></button>`}
+ tpBox('outras cidades',`<p>Recebo o boletim de todas as estações de Pindorama. Toque numa cidade pra ver as próximas horas:</p><div style="max-height:46vh;overflow:auto">${r}</div>`,btn('Voltar','tpTalk()'))}
+function tpComo(){tpBox('como funciona',`<p>O tempo em Pindorama muda de verdade e é igual pra todo mundo:</p><ul style="margin:4px 0 6px 16px;padding:0">
+<li>🌧️ <b>Chuva e tempestade</b>: golpes de Água ×1,3; na tempestade, Elétrico também ×1,3; o Fogo enfraquece.</li>
+<li>❄️ <b>Neve e frio</b>: golpes de Gelo ficam mais fortes.</li><li>☀️ <b>Calor</b>: golpes de Fogo ficam mais fortes.</li>
+<li>🌫️ <b>Neblina e noite</b>: os Fantasmas ficam mais fortes.</li>
+<li>🌸☀️🍂❄️ <b>Estações</b> mudam a temperatura; frentes frias e ondas de calor passam pelo mapa.</li>
+<li>⏱️ 1 hora do jogo = 1 minuto de verdade.</li></ul>`,btn('Voltar','tpTalk()'))}
+function tpAvisa(){G.tpAv=!G.tpAv;try{save()}catch(e){}toast(G.tpAv?'🔔 Dona Garoa vai te avisar quando o tempo mudar.':'🔕 Avisos do tempo desligados.');tpTalk()}
+// aviso quando o tempo muda onde o jogador está
+var TPAV={m:-1,k:''};
+setInterval(()=>{try{if(!G||!G.tpAv||!M[cur]||M[cur].in||mode==='bt')return;const k=wxNow().k;if(TPAV.m!==cur){TPAV.m=cur;TPAV.k=k;return}if(k===TPAV.k)return;TPAV.k=k;
+ const[e,n]=tpNome(k,hrs()),L=tpForte(k,wxNow().T);toast(`${e} <b>${n}</b> em ${tpNomeMapa(cur)}!${L.length?' '+L[0]:''}`)}catch(e){}},4000);
+// ---------- lugar dela: perto do coreto da praça de Vila Alvorada ----------
+BPOST.push(function tpBuild(i,m,T2){try{if(i!==TP.city||!m||m.in||!T2)return;const H2=T2.length,W2=T2[0].length,at=(x,y)=>(T2[y]||[])[x];
+ for(let y=0;y<H2;y++)for(let x=0;x<W2;x++)if(T2[y][x]===TP.ST)T2[y][x]=0;
+ const co=(m.c51||[]).find(o=>o.k==='balanco')||(m.c51||[]).find(o=>o.k==='coreto')||(m.c51||[])[0];const cx0=co?co.x+1:60,cy0=co?co.y+1:42;
+ const walk=(x,y)=>{const v=at(x,y);return v!=null&&OK.has(v)&&!SOLID.has(v)&&v!==2&&v!==59&&v!==137&&!(m.p&&m.p[x+','+y])};
+ let best=null,bs=-1e9;for(let y=Math.max(3,cy0-12);y<Math.min(H2-3,cy0+12);y++)for(let x=Math.max(3,cx0-14);x<Math.min(W2-4,cx0+14);x++){
+  if(!walk(x,y)||!walk(x+1,y)||!walk(x,y+1)||!walk(x+1,y+1)||!walk(x+2,y)||!walk(x-1,y))continue;if(!walk(x,y-1)&&!walk(x+1,y-1))continue;
+  let cov=0;for(let b=y+1;b<=y+4&&!cov;b++)for(let a=x-3;a<=x+4;a++){const v=at(a,b);if(v===7||v===58||v===99||v===TP.ST||(b<=y+3&&a>=x-1&&a<=x+2&&v!=null&&SOLID.has(v))){cov=1;break}}if(cov)continue;
+  const d=Math.hypot(x-cx0,y-cy0);if(d<3)continue;let sc=-Math.abs(d-5)*2+(at(x,y)===101?3:0)+(at(x+1,y)===101?2:0)+hsh(x,y,778)*2;
+  for(const[a,b]of[[x,y-1],[x+1,y-1],[x-1,y],[x+2,y]])if(!walk(a,b))sc-=1;if(sc>bs){bs=sc;best=[x,y]}}
+ if(!best){m.tp78=null;return}const[x,y]=best;T2[y][x]=TP.ST;m.tp78={st:[x,y],npc:[x+1,y]}}catch(e){}});
+function tpSpot(){const m=M[TP.city];return m&&m.tp78}
+TWX[TP.ST]=function(X,Y){try{hdGround(gbase(X,Y),X,Y)}catch(e){}};
+TWI[TP.ST]=function(){tpTalk();return true};
+// entra no mapa como NPC parado ao lado da estação
+function tpEnsure(){const s=tpSpot();if(cur!==TP.city||!s||M[cur].in||mode==='bt'){if(TP.e){for(const L of[NPC,M[TP.city]&&M[TP.city].N]){if(!L)continue;const k=L.indexOf(TP.e);if(k>=0)L.splice(k,1)}TP.e=null}return}
+ const[x,y]=s.npc;if(!TP.e||TP.e.x!==x||TP.e.y!==y){if(TP.e){const k=NPC.indexOf(TP.e);if(k>=0)NPC.splice(k,1)}TP.e={n:TP.key,nm:TP.nm,h:1,x,y,px:x,py:y,fx:x,fy:y,d:2,tp:1,fn:()=>tpTalk()};TP.nl=0;TP.say=null;TP.ns=performance.now()+3000}
+ if(!NPC.includes(TP.e))NPC.push(TP.e)}
+// vento local (gira o anemômetro e a biruta)
+function tpVento(){const m=M[cur];let z={ws:.35};try{z=wxZone(cur)}catch(e){}const k=WX.k;return(z.ws||.35)*(k==='storm'?3:k==='rain'?1.7:k==='cloud'?1.2:k==='snow'?1.3:1)}
+RH0.push(function(cx,cy,t){try{if(mode!=='walk'&&mode!=='ui')return;tpEnsure();const e=TP.e;if(!e)return;const now=performance.now();
+ // de vez em quando olha pro céu ou pra estação; volta a olhar pra frente
+ if(now>(TP.nl||0)&&mode==='walk'){const r=Math.random();e.d=r<.18?0:r<.36?3:2;TP.nl=now+3000+Math.random()*4000}
+ const dist=Math.abs(e.x-P.x)+Math.abs(e.y-P.y);if(dist<=7&&now>TP.ns&&!TP.say){TP.say={t:tpFalaAgora(),until:now+4800};TP.ns=now+18000+Math.random()*12000}
+ if(TP.say&&now>TP.say.until)TP.say=null;
+ const s=tpSpot();if(s)tpDraw(s.st[0]*16-cx,s.st[1]*16-cy,now,0)}catch(x){}});
+RH2.push(function(cx,cy,t){try{const s=tpSpot();if(!s||cur!==TP.city||M[cur].in)return;const now=performance.now(),X=s.st[0]*16-cx,Y=s.st[1]*16-cy;
+ g.save();g.beginPath();g.rect(X-20,Y-46,56,49);g.clip();tpDraw(X,Y,now,1);g.restore();
+ const e=TP.e;if(e&&TP.say&&typeof andBubble==='function')andBubble(e.px*16+8-cx+22,e.py*16+16-cy-30,TP.say.t)}catch(x){}});
+// a estação: abrigo branco de venezianas sobre pernas, pluviômetro, mastro com anemômetro de 3 conchas e biruta
+function tpDraw(X,Y,now,front){const cw=VW*16,ch=VH*16;if(X<-40||X>cw+40||Y<-70||Y>ch+20)return;const R=(c,x,y,w,h)=>{g.fillStyle=c;g.fillRect(X+x,Y+y,w,h)};
+ if(!front){g.fillStyle='rgba(0,0,0,.22)';g.beginPath();g.ellipse(X+8,Y+15,9,2.4,0,0,6.3);g.fill()}
+ // pernas do abrigo
+ R('#5a4632',1.5,6,1,9);R('#5a4632',8.5,6,1,9);R('#7a6248',1.5,6,.5,9);
+ // abrigo (caixa branca com venezianas e telhadinho)
+ R('#2e3440',0,-3.5,11,10.5);R('#f4f6f8',.5,-3,10,9.5);for(let i=0;i<4;i++){R('#c8d0da',1,-1.5+i*2.2,9,.7);R('#ffffff',1,-2.2+i*2.2,9,.5)}
+ R('#2e3440',-.5,-5.5,12,2);R('#e2e8ee',0,-5,11,1);R('#9aa4b0',5.2,-1,.6,6.5);
+ // pluviômetro (cilindro verde na frente)
+ R('#2e3440',11,9.5,4,6);R('#3aa05a',11.5,10,3,5);R('#6ad08a',11.5,10,1,5);R('#2e3440',10.5,9,5,1);R('#b8e0ff',11.5,11.5,3,.6);
+ // mastro
+ const mx=13.5;R('#3a4048',mx-.6,-34,1.6,49);R('#9aa4b0',mx-.6,-34,.5,49);R('#3a4048',mx-2,13,4.5,2);
+ // biruta (seta) apontando pra onde o vento vai
+ const v=tpVento(),ang=Math.sin(now/7000)*.5+(Math.sin(now/1300)*.12*v),dir=Math.cos(ang)>=0?1:-1,L=7;
+ g.save();g.translate(X+mx+.2,Y-27);g.strokeStyle='#2e3440';g.lineWidth=.9;g.beginPath();g.moveTo(-L*dir*Math.cos(ang)*.6,0);g.lineTo(L*dir*Math.cos(ang),0);g.stroke();
+ g.fillStyle='#e04a3a';g.beginPath();const tx=L*dir*Math.cos(ang);g.moveTo(tx+dir*2.2,0);g.lineTo(tx-dir*.6,-1.6);g.lineTo(tx-dir*.6,1.6);g.closePath();g.fill();
+ g.fillStyle='#f0c040';const bx=-L*dir*Math.cos(ang)*.6;g.fillRect(bx-dir*1.2-.8,-2.2,1.6,4.4);g.restore();
+ // anemômetro: 3 conchas girando no topo (em perspectiva)
+ const sp=(now/1000)*(2+v*9);g.save();g.translate(X+mx+.2,Y-35);g.fillStyle='#2e3440';g.fillRect(-1,-1,2,2.4);
+ for(let k=0;k<3;k++){const a=sp+k*2.094,cxx=Math.cos(a)*6,cyy=Math.sin(a)*2.2;g.strokeStyle='#2e3440';g.lineWidth=.6;g.beginPath();g.moveTo(0,0);g.lineTo(cxx,cyy);g.stroke();
+  const fr=Math.sin(a)>0;g.fillStyle=fr?'#f4f6f8':'#9aa4b0';g.beginPath();g.ellipse(cxx,cyy,1.7,1.4,0,0,6.3);g.fill();g.strokeStyle='#2e3440';g.lineWidth=.4;g.stroke()}
+ g.fillStyle='#e04a3a';g.beginPath();g.arc(0,-1.4,.9,0,6.3);g.fill();g.restore();
+ // luzinha piscando (painel solar/registro)
+ if(((now/900)|0)%2)R('#7af07a',8.6,-3.6,1,1)}
+// ícone no minimapa e no mapa de Pindorama
+try{const _tpIc=mzIcons;mzIcons=function(){const L=_tpIc.apply(this,arguments);try{const s=tpSpot();
+  if(MZ.v===0){if(cur===TP.city&&s)L.push({k:'npc',x:s.npc[0]+.5,y:s.npc[1]+.5,e:'🌦️',t:'Dona Garoa: previsão do tempo',ax:s.npc[0],ay:s.npc[1]})}
+  else{const g3=GW.find(q=>q[0]===TP.city),b=MZ.gb;if(g3&&b&&s)L.push({k:'npc',x:g3[1]-b[0]+s.npc[0],y:g3[2]-b[1]+s.npc[1],e:'🌦️',t:'Dona Garoa e a estação do tempo',mi:TP.city})}}catch(x){}return L}}catch(e){}
 
 // ===== Kaimon GT v70: botões de baixo recolhem; código GOD aceita 0/O e 1/I trocados =====
 // Botão ▾/▴ ao lado da espada: esconde (ou mostra) a fileira de botões. Fica guardado no aparelho.

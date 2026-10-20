@@ -1,11 +1,11 @@
 {
- "jogo": 78,
- "jogo_arquivo": "jogo-78.kpk",
- "jogo_sha": "30a976eb6440002c318d5dc434676cb7554318ec96288f1a6e0557b05126ef86",
- "jogo_assin": "KAnSv6k9jg5tE3OIK8x6Z+VgdQsATEOb6pBjQp4yw4f5R1sgWa/5Itc6Ctck4+JHNeafuRNwGa3yblGwjPp7BA==",
+ "jogo": 79,
+ "jogo_arquivo": "jogo-79.kpk",
+ "jogo_sha": "474b6d2d4386d180a76f42602ac76366a8d27c705518fa3186e75a3379580faf",
+ "jogo_assin": "jmMZihaUscvfryMORdnzPgilwMCpYWtZnbHDj4Nn0ybQbaRAosiX5xJDldApBBjP/x24GzUGeU0QPn6i98COAQ==",
  "launcher": 3,
  "launcher_arquivo": "KaimonGT-3.exe",
- "launcher_sha": "12db34718756e9b94738ecace231a36d871018439633334950c3c0f937a57c37",
- "launcher_assin": "s7nA9P27D9Y4m4y6RdGtaR9mpFAFtgRKm6mloHji0beClKSB/utFQ8WYmg70SbP52pUFdZCUewPyiyGcedcoAw==",
- "notas": "Sombras das árvores seguem o sol: redondas, do tamanho da copa, e a árvore gigante com sombra ligada ao tronco."
+ "launcher_sha": "819a7a65ef2c4fcb1117df0aa523b931ce95ee53f4ba4256902715d6af5a286a",
+ "launcher_assin": "ceFpHIjJkxi2f2nLVp406jVR6ZcD5LJPfbQovjnVv3TZZ05QxlVtXaj6qXBqirpz8ut11C+8Dxbh6l6zilDvDA==",
+ "notas": "Nova NPC: Dona Garoa, a Meteorologista, com estação do tempo em Vila Alvorada e previsão para todas as cidades."
 }
