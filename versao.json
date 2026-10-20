@@ -1,11 +1,11 @@
 {
- "jogo": 67,
- "jogo_arquivo": "jogo-67.kpk",
- "jogo_sha": "3e66503b9c2b24b1c55841b2470b2685f40c83a49b4701001114800215a72f76",
- "jogo_assin": "d8zn4Jkkk6+uhLl7oAtYYtWK4nQDXv7sZkoy+Uk5iZA2/znrMqFWtxElZ/Vvu6UP2zG07jeaajskiZzKWY6dCg==",
+ "jogo": 68,
+ "jogo_arquivo": "jogo-68.kpk",
+ "jogo_sha": "db7f2a40b7df7553fcdd17b2b666140aaf988f95d3fa5d0478fe63cdd8695a62",
+ "jogo_assin": "bqEwRrb1lwgP/kgixywsTwe7EHRe81+pMbVDMF3pkQBrX6e5CgF7Qbenc057llYS48t+fZ1oBC9iyc+gVNDaDg==",
  "launcher": 2,
  "launcher_arquivo": "KaimonGT-2.exe",
- "launcher_sha": "21cf27dba760181f03304cb6b855c4c61cd0c873336e09d92bb437dd21729766",
- "launcher_assin": "VD/AQ/L7lEQv5+CWhpOaG2Tx2QA3bwF4Lt4sTbWRpccTj4/cL5kltFm7mg5h3DU7HKS9ZKJfskZ42nyfkOcTDw==",
- "notas": "Kaimon GT v67: Natal e Ano Novo nas cidades, modo leve, ícone novo"
+ "launcher_sha": "c5f67a89dcc028424d9d6dc57637635f6095e9515bbe37ecb74e1ba9002788bd",
+ "launcher_assin": "ZbBkEkafHElKWnEPEwhKJbqgt0/x/pHIjierIi9wCruj1HNuoSVRRnNEreZ4AON1ksV0tsczkpNwgE1bw4kcDg==",
+ "notas": "Kaimon GT v68: Natal completo (música, Papai Noel, luzes), modo leve, ícone novo"
 }

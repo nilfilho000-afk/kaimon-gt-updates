@@ -2177,7 +2177,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
  const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
  TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
  el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v67 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v68 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
  if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
  const a=TTL.sel&&ACC.a[TTL.sel];
@@ -10218,7 +10218,7 @@ RH2.push(function(cx,cy,t,dt){const f=festa();if(!f)return;const m=M[cur];if(!ci
  // guirlandas nas portas (tile 13) e luzes na árvore
  const x0=Math.max(0,cx>>4),y0=Math.max(0,cy>>4),x1=Math.min(W-1,(cx+cw)>>4),y1=Math.min(H-1,(cy+ch)>>4);
  for(let y=y0;y<=y1;y++)for(let x=x0;x<=x1;x++){const v=T[y][x];
-  if(v===13){const X=x*16-cx+8,Y=y*16-cy+3;g.strokeStyle='#2f8a3e';g.lineWidth=2.2;g.beginPath();g.arc(X,Y,3.6,0,6.3);g.stroke();g.fillStyle='#e23a3a';g.fillRect(X-2.2,Y-5.2,4.4,1.6);g.fillRect(X-.7,Y-5.6,1.4,2.6);g.fillStyle='#ffd23a';g.fillRect(X+2.2,Y-1,1,1);g.fillRect(X-3,Y+1.5,1,1)}
+  if(v===29){const X=x*16-cx+8,Y=y*16-cy+3;g.strokeStyle='#2f8a3e';g.lineWidth=2.2;g.beginPath();g.arc(X,Y,3.6,0,6.3);g.stroke();g.fillStyle='#e23a3a';g.fillRect(X-2.2,Y-5.2,4.4,1.6);g.fillRect(X-.7,Y-5.6,1.4,2.6);g.fillStyle='#ffd23a';g.fillRect(X+2.2,Y-1,1,1);g.fillRect(X-3,Y+1.5,1,1)}
   else if(v===130){const X=x*16-cx,Y=y*16-cy;for(let k=0;k<12;k++){const px=X+[6,26,11,22,8,24,15,11,20,16,13,19][k]/2,py=Y+[16,14,5,2,-8,-10,-16,-24,-26,-34,10,-2][k]/2,on=((t/360+k)|0)%4!==0;g.fillStyle=on?NTC[k%NTC.length]:'#444';g.beginPath();g.arc(px,py,on?1.2:.8,0,6.3);g.fill()}}}
  // flocos de neve leves (sem exagero)
  if(f==='natal'&&!CFG.leve){g.fillStyle='rgba(255,255,255,.85)';for(let k=0;k<18;k++){const sp=.6+(k%3)*.3,x=((k*173+t*.012*sp*7)%(cw+20))-10,y=((k*97+t*.02*sp*7)%(ch+20))-10;g.beginPath();g.arc(x+Math.sin(t/900+k)*3,y,1.1,0,6.3);g.fill()}}
@@ -10235,6 +10235,39 @@ if(CFG.leve==null)CFG.leve=0;
  RH0.unshift(function(){if(CFG.leve&&PT&&PT.length>60)PT.splice(0,PT.length-60)})})();
 const _v7Cfg=cfgR;cfgR=function(){const r=_v7Cfg.apply(this,arguments);try{const rows=[...document.querySelectorAll('#ui .cfr')],c=rows.find(e=>{const s=e.querySelector('span');return s&&/Chuva|Nomes|Joystick/i.test(s.textContent)});
  if(c&&!document.querySelector('#ui .cfr.leverow'))c.insertAdjacentHTML('afterend',`<div class="cfr leverow"><span>Modo leve</span>${btn(CFG.leve?'✔ Ligado':'Desligado','CFG.leve=CFG.leve?0:1;applyCfg();cfgR()')}<small style="color:#9fb0cc">menos efeitos: para celular fraco</small></div>`)}catch(e){}return r};
+
+// ---------- 5) música de Natal (Jingle Bells, 1857, domínio público) nas cidades ----------
+if(typeof TRK==='object'){TRK.natal={bpm:126,ch:['C','C','C','C','F','C','G','G','C','C','C','C','F','C','G','C'],echo:.14,
+ lead:{w:50,v:.3,vib:1,env:'leg',p:'e5 - e5 - e5 - - -|e5 - e5 - e5 - - -|e5 - g5 - c5 - d5 -|e5 - - - - - . .|f5 - f5 - f5 - f5 -|f5 - e5 - e5 - e5 e5|e5 - d5 - d5 - e5 -|d5 - - - g5 - - -|e5 - e5 - e5 - - -|e5 - e5 - e5 - - -|e5 - g5 - c5 - d5 -|e5 - - - - - . .|f5 - f5 - f5 - f5 -|f5 - e5 - e5 - e5 e5|g5 - g5 - f5 - d5 -|c5 - - - - - . .'},
+ arp:{w:12,v:.09,o:5,sh:[0,2,1,2]},bass:{v:.4,st:'bnc'},drm:{v:.3,p:'k . h . s . h h k . h . s . h .'}};
+ const _v7Area=muArea;muArea=function(){try{if(festa()==='natal'&&cidadeMap(M[cur])&&!(B))return'natal'}catch(e){}return _v7Area.apply(this,arguments)}}
+
+// ---------- 6) mais decoração: árvores coloridas, laços nos postes, presentes na praça e Papai Noel nas casas ----------
+var NOELC=null;
+function noelSprite(){if(NOELC)return NOELC;try{const D={sk:'#f2c9a0',hr:'#f4f4f4',sh:'#d62828',s2:'#f8f8f8',pa:'#b81c1c',sw:'#2a2020',cap:'#d62828',bd:'#ffffff',ac:'#d62828',bc:'#8a5a2a',x:'coat beard',key:'noel'};
+ const im=hrHD(D,0,8,2),c=document.createElement('canvas');c.width=im.width;c.height=im.height;const x=c.getContext('2d');x.drawImage(im,0,0);
+ // pompom branco no gorro e a barra do casaco
+ const Q=im.width/32;x.fillStyle='#ffffff';x.beginPath();x.arc(c.width*.5+3.2*Q,2.2*Q,1.6*Q,0,6.3);x.fill();
+ NOELC=c}catch(e){NOELC=null}return NOELC}
+function noelSpots(){const m=M[cur];if(!m||!cidadeMap(m))return[];if(m._noel&&m._noelK===cur)return m._noel;const S=[];
+ for(const k in(m.p||{})){const[x,y]=k.split(',').map(Number);if(!T[y]||T[y][x]!==29)continue;if(hsh(x,y,777)>.55)continue;
+  for(const dx of[-1,1,-2,2]){const v=T[y+1]&&T[y+1][x+dx];if(v!=null&&!SOLID.has(v)&&!(m.p||{})[(x+dx)+','+(y+1)]){S.push([x+dx,y+1,dx]);break}}}
+ m._noel=S;m._noelK=cur;return S}
+// chão: presentes na praça e Papai Noel (atrás das pessoas e das copas)
+RH0.push(function(cx,cy,t){if(festa()!=='natal')return;const m=M[cur];if(!cidadeMap(m))return;const cw=VW*16,ch=VH*16;
+ const sp=noelSprite();for(const[x,y]of noelSpots()){const X=x*16-cx,Y=y*16-cy;if(X<-24||X>cw+24||Y<-40||Y>ch+24)continue;
+  const bob=Math.sin(t/600+x)*.6;g.fillStyle='rgba(0,0,0,.25)';g.beginPath();g.ellipse(X+8,Y+15,6,2,0,0,6.3);g.fill();
+  if(sp)g.drawImage(sp,X-2,Y-14+bob,20,30);
+  // saco de presentes ao lado
+  g.fillStyle='#7a4a1a';g.beginPath();g.ellipse(X+19,Y+12,3.6,3.2,0,0,6.3);g.fill();g.fillStyle='#9a6a2a';g.fillRect(X+17.5,Y+7.5,3,2.5);g.fillStyle='#d62828';g.fillRect(X+17,Y+9,4,1)}
+ for(const[x,y,mp]of NATAL.trees){if(mp!==cur)continue;const X=x*16-cx,Y=y*16-cy;if(X<-24||X>cw+24||Y<-24||Y>ch+24)continue;
+  for(const[a,b,c1,c2]of[[-3,12,'#d62828','#ffd34d'],[17,13,'#2f7ad8','#ffffff'],[7,15,'#3aa84a','#ff7ad9']]){g.fillStyle=c1;g.fillRect(X+a,Y+b,7,5);g.fillStyle=c2;g.fillRect(X+a+3,Y+b,1.2,5);g.fillRect(X+a,Y+b+2,7,1.2)}}});
+// frente: luzes nas árvores comuns e laços nos postes
+RH2.push(function(cx,cy,t){if(festa()!=='natal')return;const m=M[cur];if(!cidadeMap(m))return;const cw=VW*16,ch=VH*16;
+ const x0=Math.max(0,(cx>>4)-1),y0=Math.max(0,(cy>>4)-1),x1=Math.min(W-1,((cx+cw)>>4)+1),y1=Math.min(H-1,((cy+ch)>>4)+3);
+ for(let y=y0;y<=y1;y++)for(let x=x0;x<=x1;x++){const v=T[y][x];
+  if(XRAYT.has(v)){if(hsh(x,y,790)>.6)continue;const X=x*16-cx+8,Y=y*16-cy-10;for(let k=0;k<6;k++){const a=hsh(x,y,800+k)*6.283,r=5+hsh(x,y,820+k)*10,on=((t/380+k+x)|0)%3!==0;g.fillStyle=on?NTC[(k+x)%NTC.length]:'#3a3a3a';g.beginPath();g.arc(X+Math.cos(a)*r,Y+Math.sin(a)*r*.8,on?1.3:.9,0,6.3);g.fill()}}
+  else if(v===22){const X=x*16-cx+8,Y=y*16-cy-14;g.fillStyle='#d62828';g.beginPath();g.ellipse(X-2.4,Y,2.2,1.4,-.5,0,6.3);g.fill();g.beginPath();g.ellipse(X+2.4,Y,2.2,1.4,.5,0,6.3);g.fill();g.fillStyle='#ffd34d';g.fillRect(X-.9,Y-.9,1.8,1.8);g.fillStyle='#d62828';g.fillRect(X-1.6,Y+1,1.2,3);g.fillRect(X+.5,Y+1,1.2,3)}}});
 
 // ===== Pindorama: ligações finais =====
 if(KI.gym8!=null){M[1].p['19,5']=['gym8',9,14]}
