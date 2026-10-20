@@ -1,11 +1,11 @@
 {
- "jogo": 74,
- "jogo_arquivo": "jogo-74.kpk",
- "jogo_sha": "d9d245d9707684421c08911261a6b53dec25daa4cc74ef23c352172be13c6c67",
- "jogo_assin": "BGPzZWqykDWc00GT5vGt/XAsrbYK446TukvPS4HRjjLTCXir7iUlHKUMoyA/beVppmBsTCkViQn+Kg7uATNLCA==",
+ "jogo": 75,
+ "jogo_arquivo": "jogo-75.kpk",
+ "jogo_sha": "6e6bdcbaa366c833e5eb1fbbbf9d2bc3e4fc2c799f1a9ba5185ddcc282b6e96c",
+ "jogo_assin": "dalponlMr+ZdYUMGRf9108glUVtHGppONiSxHCyBuWD1CnH62hBXJYigHDFUhP/D5nvKFcYdMK5ntIHxjJaLAg==",
  "launcher": 3,
  "launcher_arquivo": "KaimonGT-3.exe",
- "launcher_sha": "835a497c8e3add2ce909aadd819fe4bee237698ff5667cf85e58ac29e4dd26dd",
- "launcher_assin": "vqcaEwhvc/MWxNsKJ1J/u+mJ+2WHItxYWOOtYT1pEvksFOue/HaJyKZz9Y8yCSILxSj9VdF34jMbBVRcutQtAg==",
- "notas": "Casas em 3/4 com a parede do lado, fogo da Mula sempre animado, montar/surfar/voar só nos monstros que fazem sentido"
+ "launcher_sha": "2495c828e5384a51446663d89aba770936f2c64d572ad37cb519fa04aa82dabc",
+ "launcher_assin": "gmCet3xrYnQq/8eRzSIQ3rHt+YAErRq8o1oUcnJwGkJhtQj5o9KLosJI+KwqXrCqdVdo1hk5+AHk+LWpR4zWAw==",
+ "notas": "Natal: árvores não somem mais embaixo da neve; lateral das casas arrumada; tronco das árvores fica atrás das casas"
 }
