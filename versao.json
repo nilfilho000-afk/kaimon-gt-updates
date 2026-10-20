@@ -1,11 +1,11 @@
 {
- "jogo": 69,
- "jogo_arquivo": "jogo-69.kpk",
- "jogo_sha": "ac91c7f289b361b84ee44cb30c3d51310df53cb0523b84832a3b1b28016a848a",
- "jogo_assin": "NQX/UiUuFWZhOZIMFhkYxutKDCdeDuzIlWJ6BnT+v81L1bjcel+tauhNdMlHEF3Wc8TfxLEcMor/YXKpdspwAg==",
- "launcher": 2,
- "launcher_arquivo": "KaimonGT-2.exe",
- "launcher_sha": "ea30d3db662aa6feb3ba4df7236fc6c0761da715e336f6da872e64b1ee9bc765",
- "launcher_assin": "2XI3iz8sCIkyPUYlt9k1ymIO3U4a3hlqnPIGecpyOAM9YBRCHwno08vj3aAAYyzTFXNSbgTIAL16ZXWpvamQCA==",
- "notas": "v69: Natal com neve, bonecos de neve, cristais de gelo, enfeites e GOD controla a festa"
+ "jogo": 70,
+ "jogo_arquivo": "jogo-70.kpk",
+ "jogo_sha": "daaf991a580fbaeb84a28f02b5880609e2872da0b79f9bcf624844abfc612f85",
+ "jogo_assin": "jJKTpj7rrUJ2ZS83SEB5RLPJNDiXmifuXCWm9v0cR98+rkaN+171QtibjXLwA0pfTR57NT2gzc7sruNuB/miAw==",
+ "launcher": 3,
+ "launcher_arquivo": "KaimonGT-3.exe",
+ "launcher_sha": "73388d16ce32de289b332f801c72d8fb716ae6e6881c471c0ceeedd7bd998c07",
+ "launcher_assin": "eCOIMMR2zB9hCCTbiodESFLgIbPgZhvKMCp5VBZwaaGRUAHJyq8E0QNunxJtGtfJbpBgeoABmrIsd28EH40lBg==",
+ "notas": "v70: Passe Kaimon mensal (1 monstro novo por mês a partir de 1/11), Praça de Natal, árvores e Centro de Cura novos, shinies novos; o jogo agora se atualiza na hora"
 }
