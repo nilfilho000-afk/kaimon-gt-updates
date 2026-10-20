@@ -1,11 +1,11 @@
 {
- "jogo": 65,
- "jogo_arquivo": "jogo-65.kpk",
- "jogo_sha": "a1a8f34a1574ab05eec9b3c84a0ea65a6149cbf3f88120a2e881bc771d7e421f",
- "jogo_assin": "pMzg8Itlgf1xAmrSdfO7T1OpTCbcs/j3+VTsVa9SM42ZUUOcYOuGj+mzEx7VWmpRanpaDbhItkGv1hdtci5EDw==",
+ "jogo": 66,
+ "jogo_arquivo": "jogo-66.kpk",
+ "jogo_sha": "df51d88cbf55ce8570c1dcad4366fc38acab1055889af16cde55a4cd5d0b3a6d",
+ "jogo_assin": "xpQUWWhzt12tKsOUeV0cPnvZ8ogKP/+iakRtoZ7Wk78uwRpvR/qfKupBdcpAEwKc2928cZydWLpKiR7zcjhZDQ==",
  "launcher": 2,
  "launcher_arquivo": "KaimonGT-2.exe",
- "launcher_sha": "f46c53350f647980760e67a119c443345f264da187a1b7df51170224b8ad2437",
- "launcher_assin": "Y5kBNfQuqEEVJEIOKqObqk/0Uhv00nukyBC0p7/5Zb5277qJ1i2mqgF4PT8npEYdACn8HzlaLCMMUYk9xdBMDw==",
- "notas": "Kaimon GT v65: casa com móveis interativos, clique do mouse, montaria e Kaimondex, voo mais vivo, árvores novas"
+ "launcher_sha": "5a2eede49ef5bb8f12cf3a945b8d8e1de3687855c7a965646675646f0bca56c3",
+ "launcher_assin": "sub7GQCzcnLDvLIlszxAjih3ySSBkDUcPUd0hyYG3kSjGr7FOXgjMqxXTyBH1JHH+TzExcgAqOt144l/vFjTBA==",
+ "notas": "Kaimon GT v66: chat, +20% EXP até o 40, shiny na Kaimondex"
 }
