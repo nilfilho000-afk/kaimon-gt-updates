@@ -2177,7 +2177,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
  const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
  TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
  el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v70 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v71 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
  if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
  const a=TTL.sel&&ACC.a[TTL.sel];
@@ -10303,9 +10303,9 @@ RH0.push(function(cx,cy,t){if(festa()!=='natal')return;const m=M[cur];if(!cidade
 function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==='auto'?'Festa pela data. Reiniciando...':'Festa ligada: '+v+'. Reiniciando...');setTimeout(()=>{try{save()}catch(e){}location.reload()},900)}
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
  const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
- if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
+ const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
 
-var KGT_VER=70;
+var KGT_VER=71;
 // ===== Kaimon GT v70: shiny repaginado =====
 // Todo shiny ganha uma paleta bem diferente da normal: a cor do corpo gira ~150-210° no círculo de cores (verde vira
 // rosa, vermelho vira azul-piscina...), as partes escuras ficam quase pretas e o detalhe (a) vira a cor oposta.
@@ -11088,7 +11088,7 @@ TWI[131]=function(x,y){G.nq=G.nq||{};const nq=G.nq,have=invCount(NQ.PRES),sp=noe
 body.hudmin #hudtg{right:calc(env(safe-area-inset-right,0px) + 88px)}`;document.head.appendChild(st)}catch(e){}})();
 function hudMinSet(on,save){document.body.classList.toggle('hudmin',!!on);const b=document.getElementById('hudtg');if(b){b.textContent=on?'▴':'▾';b.title=on?'Mostrar botões':'Esconder botões'}if(save)try{localStorage.setItem('kgt_hudmin',on?'1':'0')}catch(e){}}
 function hudMinTog(){hudMinSet(!document.body.classList.contains('hudmin'),1)}
-function hudMinMark(){try{document.querySelectorAll('.ab').forEach(e=>{const a=(e.getAttribute('onpointerdown')||'')+(e.getAttribute('onclick')||'');if(a.trim()==='act()'||e.id==='mnb')e.classList.add('hkeep')})}catch(e){}}
+function hudMinMark(){try{document.querySelectorAll('.ab').forEach(e=>{const a=(e.getAttribute('onpointerdown')||'')+(e.getAttribute('onclick')||'');if(a.trim()==='act()'||e.id==='mnb'||e.id==='gdb')e.classList.add('hkeep')})}catch(e){}}
 (function(){try{if(!document.getElementById('hudtg')){document.body.insertAdjacentHTML('beforeend',`<button id="hudtg" class="hkeep" onpointerdown="event.preventDefault();event.stopPropagation();hudMinTog()" aria-label="Esconder ou mostrar os botões">▾</button>`)}
  let v=null;try{v=localStorage.getItem('kgt_hudmin')}catch(e){}hudMinMark();hudMinSet(v==null?innerHeight<480:v==='1',0)}catch(e){}})();
 const _h70Hud=hud;hud=function(){const r=_h70Hud.apply(this,arguments);try{hudMinMark();const b=document.getElementById('hudtg');if(b)b.style.display=(mode==='bt'||mode==='title')?'none':''}catch(e){}return r};
@@ -11264,7 +11264,7 @@ function bSync(){if(!BIG.S.has(cur))return;const m=bEnsure(cur);T=m.T;W=m.W;H=m.
  if(T[P.y]==null||T[P.y][P.x]==null||SOLID.has(T[P.y][P.x])){let bd=null;for(let r=1;r<8&&!bd;r++)for(let dy=-r;dy<=r&&!bd;dy++)for(let dx=-r;dx<=r&&!bd;dx++){const v=(T[P.y+dy]||[])[P.x+dx];if(v!=null&&!SOLID.has(v))bd=[P.x+dx,P.y+dy]}if(bd){P.x=P.px=P.fx=bd[0];P.y=P.py=P.fy=bd[1]}}
  if(typeof FWo!='undefined'){FWo.x=FWo.px=FWo.fx=P.x;FWo.y=FWo.py=FWo.fy=P.y}}
 // ===== pintura em blocos (chunks): mapas grandes não ocupam um canvas gigante =====
-const KCS=12,KCM=1,KCB=3,KCMAX=34,KCQ=[];
+const KCS=12,KCM=3,KCB=4,KCMAX=34,KCQ=[];
 function KCh(m){this.m=m;this.width=m.W*32;this.height=m.H*32;this.ch={};this.dead=0}
 KCh.prototype.get=function(i,j,mk){const k=i+','+j;let c=this.ch[k];if(c){c.t=performance.now();return c}if(!mk)return null;c=this.ch[k]=kchPaint(this.m,i,j);c.t=performance.now();KCQ.push([this,k]);kchTrim();return c};
 KCh.prototype.inval=function(x,y){for(const k of Object.keys(this.ch)){const[i,j]=k.split(',').map(Number),x0=i*KCS-KCM,y0=j*KCS-KCM,x1=(i+1)*KCS+KCM,y1=(j+1)*KCS+KCB;if(x>=x0&&x<x1&&y+1>=y0&&y<y1)delete this.ch[k]}};

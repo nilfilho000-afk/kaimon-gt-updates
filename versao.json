@@ -1,11 +1,11 @@
 {
- "jogo": 70,
- "jogo_arquivo": "jogo-70.kpk",
- "jogo_sha": "daaf991a580fbaeb84a28f02b5880609e2872da0b79f9bcf624844abfc612f85",
- "jogo_assin": "jJKTpj7rrUJ2ZS83SEB5RLPJNDiXmifuXCWm9v0cR98+rkaN+171QtibjXLwA0pfTR57NT2gzc7sruNuB/miAw==",
+ "jogo": 71,
+ "jogo_arquivo": "jogo-71.kpk",
+ "jogo_sha": "d5e427e49fed0bae85aa54f049f399c5f58797ef8b3338f606015e158919ac09",
+ "jogo_assin": "4uIQuq/pxK5ML54VZa9P3gNozE4XkODT96Cg8tAv3l7iW2K7BfG+vbgPFclSivbQZhvjQFYxBcKKosFgbjF/Dg==",
  "launcher": 3,
  "launcher_arquivo": "KaimonGT-3.exe",
- "launcher_sha": "73388d16ce32de289b332f801c72d8fb716ae6e6881c471c0ceeedd7bd998c07",
- "launcher_assin": "eCOIMMR2zB9hCCTbiodESFLgIbPgZhvKMCp5VBZwaaGRUAHJyq8E0QNunxJtGtfJbpBgeoABmrIsd28EH40lBg==",
- "notas": "v70: Passe Kaimon mensal (1 monstro novo por mês a partir de 1/11), Praça de Natal, árvores e Centro de Cura novos, shinies novos; o jogo agora se atualiza na hora"
+ "launcher_sha": "fdbf21b610277af93e8d1067d93a187979599fa6e6fe6824c3017771e8128b9c",
+ "launcher_assin": "6FK4aMLCWLUurz2h0hUUZ+H7Sd2OG9rrG/VuxR1RhVWyCjVxczoV3CHO23z6pk6afr4iioJaBH35c1Jzz9gYCQ==",
+ "notas": "v71: botão GOD sempre à mão, Natal no topo do painel GOD, árvores sem corte"
 }
