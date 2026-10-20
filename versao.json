@@ -1,11 +1,11 @@
 {
- "jogo": 83,
- "jogo_arquivo": "jogo-83.kpk",
- "jogo_sha": "c75360e718229018f7cd17d151b09c4a34acbb539dbbbc0954840ec246676c92",
- "jogo_assin": "45PogxTchsSEM88oX1pN0TZq2FmWSeDR1CRdS4zM4sR9P2huLIoIZM8b7GD4v+79nnLK1bKTrtHHsuaGhvivDg==",
+ "jogo": 84,
+ "jogo_arquivo": "jogo-84.kpk",
+ "jogo_sha": "a0fcfaa7cb25b95bf64033b64c95dc09f6eebb00e3ddc19c1cae8566889b6ba8",
+ "jogo_assin": "MJz4KEHNeHreC5TyK3ESueAxiWgVaqB1WmgaUdogr+q60ooWpPfArLVz20ydNow1BH24P4HMGgqu8DuarhHQBw==",
  "launcher": 3,
  "launcher_arquivo": "KaimonGT-3.exe",
- "launcher_sha": "af1f45c41be5df0aba88b4aa9c3b2d6d0c9f2ce3284f6aec21ef26636819bf63",
- "launcher_assin": "EgdZfjTuNK6ejbUoVYGyVBbxwK9BFXatwB4NfcSk55U6XhAqoyteG1CRe5dW4DN9jwUwsCRF1D4Sck7erZ9FAg==",
- "notas": "Ilha dos Encantados: ilha enorme ao sul de Manguezal, só voando e a partir do nível 120, com monstros tier 1 e 2 Encantados (✦) que dão 5× EXP de treinador. Nível de treinador vai até 200."
+ "launcher_sha": "22541b44dd9602cc384f28b1c66cb1df8ded3d223342423cfec2590b04cf9e4b",
+ "launcher_assin": "TIybGcoGngymmvIlDcbPeEcLs9rtO5Ski65rYJxSqG09mvWJBgK3KqCoB/XVdjvfl9mdZcTTkwIBRbURCIkGAQ==",
+ "notas": "Mais morros na Ilha dos Encantados e proteção: login criptografado no aparelho, Passe/VIP assinados, atualização do APK com assinatura."
 }

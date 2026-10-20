@@ -1,5 +1,7 @@
 {
- "v": 83,
+ "v": 84,
  "url": "https://raw.githubusercontent.com/nilfilho000-afk/kaimon-gt-updates/main/jogo-apk.html",
- "notas": "Kaimon GT v83"
+ "notas": "Novo app: atualizações do jogo agora são conferidas por assinatura digital.",
+ "sha": "8ca2b1c8544d05a2cb14711284aeab31f2b5d736165fec78845e405c6812ae4b",
+ "sig": "mvliA2Nv/JyH4Jn/e9Jiv+cJUsxBqRzllOIh2VXVf5ofUuocNPU0pGxSOcbfcRNro58DpoRN6GHONHFCFS0wug=="
 }
