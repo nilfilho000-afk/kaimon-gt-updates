@@ -1,11 +1,11 @@
 {
- "jogo": 66,
- "jogo_arquivo": "jogo-66.kpk",
- "jogo_sha": "df51d88cbf55ce8570c1dcad4366fc38acab1055889af16cde55a4cd5d0b3a6d",
- "jogo_assin": "xpQUWWhzt12tKsOUeV0cPnvZ8ogKP/+iakRtoZ7Wk78uwRpvR/qfKupBdcpAEwKc2928cZydWLpKiR7zcjhZDQ==",
+ "jogo": 67,
+ "jogo_arquivo": "jogo-67.kpk",
+ "jogo_sha": "3e66503b9c2b24b1c55841b2470b2685f40c83a49b4701001114800215a72f76",
+ "jogo_assin": "d8zn4Jkkk6+uhLl7oAtYYtWK4nQDXv7sZkoy+Uk5iZA2/znrMqFWtxElZ/Vvu6UP2zG07jeaajskiZzKWY6dCg==",
  "launcher": 2,
  "launcher_arquivo": "KaimonGT-2.exe",
- "launcher_sha": "5a2eede49ef5bb8f12cf3a945b8d8e1de3687855c7a965646675646f0bca56c3",
- "launcher_assin": "sub7GQCzcnLDvLIlszxAjih3ySSBkDUcPUd0hyYG3kSjGr7FOXgjMqxXTyBH1JHH+TzExcgAqOt144l/vFjTBA==",
- "notas": "Kaimon GT v66: chat, +20% EXP até o 40, shiny na Kaimondex"
+ "launcher_sha": "21cf27dba760181f03304cb6b855c4c61cd0c873336e09d92bb437dd21729766",
+ "launcher_assin": "VD/AQ/L7lEQv5+CWhpOaG2Tx2QA3bwF4Lt4sTbWRpccTj4/cL5kltFm7mg5h3DU7HKS9ZKJfskZ42nyfkOcTDw==",
+ "notas": "Kaimon GT v67: Natal e Ano Novo nas cidades, modo leve, ícone novo"
 }
