@@ -457,7 +457,7 @@ const c9=()=>!!B&&[B.w,B.cur].some(m=>m&&abOf(m)=='cloud9');
 function sunny(){if(M[cur].in||c9())return false;const h=hrs();return WX.w=='clear'&&h>=6&&h<18.5}
 function raining(){return !M[cur].in&&!c9()&&WX.w=='rain'}
 const spd=m=>m.S*(abOf(m)=='chloro'&&sunny()?2:1)*(abOf(m)=='swift'&&raining()?2:1);
-const SHC=.04;
+const SHC=.025;
 // ===== batalha animada em canvas =====
 const now=()=>performance.now(),BIMG={};function bimg(n){if(!BIMG[n]){const i=new Image();i.src=ico(n);BIMG[n]=i}return BIMG[n]}
 function banim(id,k,d){if(B)B.an[id]={k,t0:now(),d};return wait(d)}
@@ -2177,7 +2177,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
  const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
  TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
  el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v71 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v72 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
  if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
  const a=TTL.sel&&ACC.a[TTL.sel];
@@ -10305,7 +10305,7 @@ const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);t
  const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
  const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
 
-var KGT_VER=71;
+var KGT_VER=72;
 // ===== Kaimon GT v70: shiny repaginado =====
 // Todo shiny ganha uma paleta bem diferente da normal: a cor do corpo gira ~150-210° no círculo de cores (verde vira
 // rosa, vermelho vira azul-piscina...), as partes escuras ficam quase pretas e o detalhe (a) vira a cor oposta.
@@ -10368,6 +10368,79 @@ const _arvTree=hdTree;hdTree=function(X,Y,dk){if(arvPine(X,Y,dk))return _arvTree
  fgCtx().drawImage(c,0,0,a.o.w,a.sp,a.dx,a.dy,a.Wg,a.sp/2)};
 // os tiles pintados depois (à direita) cobririam as raízes: repinta só o pedaço da raiz que cai em cima deles
 const _arvTile=tile;tile=function(id,X,Y){const r=_arvTile.apply(this,arguments);try{for(let k=1;k<=3;k++){const v=(T[Y]||[])[X-k];if((v===7||v===58)&&!arvPine(X-k,Y,v===58))arvBottom(mg,X-k,Y,v===58,[X*16,Y*16,16,16])}}catch(e){}return r};
+
+// ===== Kaimon GT v72: árvores gigantes no mesmo estilo das árvores novas =====
+// Jequitibá, ipê-amarelo e ipê-roxo: a copa é montada com vários "cachos" do carvalho em pixel art
+// (mesma paleta e textura), os de trás mais escuros, cada um espelhado de um jeito. Os ipês trocam a cor
+// das folhas por flores (amarelo ou rosa-arroxeado) com pontinhos claros. A araucária usa cachos achatados
+// em andares. No inverno os cachos pegam neve por cima. O tronco usa a cor da casca do carvalho.
+var GTQ=new Map();
+function gtLeafCol(v,si,c){let[H,S,L]=arvHSL(c);
+ if(v===1){H=46+(L-.25)*20;S=Math.max(.78,S);L=Math.min(.82,L*1.35+.06)}
+ else if(v===2){H=312+(L-.25)*30;S=Math.max(.5,S*.9);L=Math.min(.8,L*1.25+.05)}
+ else if(v===3){H=140;S=S*.85;L=L*.82}
+ else return null;return arvHex(H,S,L)}
+// um cacho: o carvalho grande inteiro, mas da altura do tronco para baixo só ficam as folhas (sem tronco nem raiz)
+function gtClump(v,si,flip,dark){const key=v+'|'+si+'|'+flip+'|'+dark;let c=GTQ.get(key);if(c)return c;
+ const o=ARV.g,ix=arvIdx('g'),w=o.w,sp=Math.round(o.h*ARVSPLIT),P0=v===0?arvPal(si,0,0):arvPal(si===3?3:1,0,0),P=P0.map((col,i)=>{if(!ARV.leaf[i]||v===0)return col;const r=gtLeafCol(v,si,arvRGB(ARV.pal[i]));return r||col});
+ const h=o.h;c=document.createElement('canvas');c.width=w;c.height=h;const x=c.getContext('2d'),im=x.createImageData(w,h),d=im.data;
+ if(!ARV.lit)ARV.lit=ARV.pal.map((h,i)=>!!(ARV.leaf[i]&&arvHSL(arvRGB(h))[2]>.38));
+ const ipe=v===1||v===2,fl=v===1?['#fff4b8','#ffffff']:['#ffd2ee','#ffffff'];
+ for(let j=0;j<h;j++)for(let i=0;i<w;i++){const q=ix[j*w+i];if(!q)continue;const leaf=ARV.leaf[q-1];if(j>=sp&&!leaf)continue;const si2=flip?w-1-i:i,p=(j*w+si2)*4;let col=P[q-1];
+  const r=hsh(i,j,7300+v*31+(flip?3:0)+dark*7);
+  if(leaf){if(si===3){const ab=j>0?ix[(j-1)*w+i]:0;if((!ab||!ARV.leaf[ab-1])&&r<.85)col=arvRGB(r<.4?'#ffffff':'#e4ecf6')}
+   else if(ipe&&ARV.lit[q-1]&&r<.09)col=arvRGB(r<.035?fl[1]:fl[0]);
+   else if(v===0&&si===0&&ARV.lit[q-1]&&r<.04)col=arvRGB(r<.02?'#ffffff':'#f2c6da')}
+  const k=dark?(leaf?.78:.7):1;d[p]=col[0]*k;d[p+1]=col[1]*k;d[p+2]=col[2]*k;d[p+3]=255}
+ x.putImageData(im,0,0);GTQ.set(key,c);if(GTQ.size>64){const f=GTQ.keys().next().value;GTQ.delete(f)}return c}
+gtCanopy=function(v,si){const key=v+'_'+si;if(GTCS!==si){GTC=new Map();GTCS=si}let c=GTC.get(key);if(c)return c;
+ const W=352,H=400,ax=160,ay=320,DY=v===3?20:62;c=document.createElement('canvas');c.width=W;c.height=H;const x=c.getContext('2d');x.imageSmoothingEnabled=false;
+ const cw=ARV.g.w,chh=ARV.g.h,R=k=>hsh(v,k,8800)-.5;
+ // cachos: [centro x, centro y, escala x, escala y, escuro] em px do canvas (o tronco sai em x=176)
+ let L;if(v===3)L=[[176,40,.62,.42,1],[120,78,.7,.42,1],[232,78,.7,.42,1],[176,70,.66,.42,0],[86,118,.74,.44,1],[266,118,.74,.44,1],[150,112,.72,.44,0],[204,112,.72,.44,0],[176,30,.5,.4,0]];
+ else L=[[176,62,1,1,1],[100,96,1,1,1],[252,96,1,1,1],[66,144,1,1,1],[286,144,1,1,1],[176,130,1,1,0],[120,182,1,1,0],[232,182,1,1,0],[176,200,.9,.9,0],[176,52,.9,.9,0]];
+ if(v===3){// galhos da araucária saindo do tronco até cada andar
+  x.strokeStyle='#3c312a';x.lineWidth=4;for(const[cx2,cy2]of L){if(cx2===176)continue;x.beginPath();x.moveTo(176,cy2+40);x.quadraticCurveTo((176+cx2)/2,cy2+30,cx2,cy2+8);x.stroke()}
+  x.fillStyle='#3c312a';x.fillRect(172,40,8,150)}
+ L.forEach(([cx2,cy2,sx,sy,dk],i)=>{const q=gtClump(v,si,(i+(R(i)>0?1:0))&1,dk),w2=Math.round(cw*sx),h2=Math.round(chh*sy);x.drawImage(q,Math.round(cx2-w2/2+R(i+10)*10),Math.round(cy2+DY-h2/2+R(i+20)*8),w2,h2)});
+ c.ax=ax;c.ay=ay;GTC.set(key,c);return c};
+// tronco com a casca do carvalho
+const _gtTrunk0=gtTrunk;gtTrunk=function(v){const k='n'+v;let c=GTT.get(k);if(c)return c;const b=_gtTrunk0(v);c=document.createElement('canvas');c.width=b.width;c.height=b.height;const x=c.getContext('2d');x.drawImage(b,0,0);
+ const im=x.getImageData(0,0,c.width,c.height),d=im.data,bark=['#221b1a','#342925','#423c34','#54493d','#6f614f','#7d725d'].map(arvRGB);
+ for(let p=0;p<d.length;p+=4){if(!d[p+3])continue;const l=(d[p]*.3+d[p+1]*.59+d[p+2]*.11)/255,i=Math.max(0,Math.min(5,Math.round(l*9-0.5)));const C=bark[i];d[p]=C[0];d[p+1]=C[1];d[p+2]=C[2]}
+ x.putImageData(im,0,0);c.ax=b.ax;c.ay=b.ay;GTT.set(k,c);return c};
+
+// ===== Kaimon GT v72: pinheiro novo (pixel art de referência) =====
+// O pinheiro da floresta vem de uma pixel art de verdade (62 x 89 px, no mesmo tamanho de pixel das outras árvores).
+// Ele fica verde o ano todo; no inverno a neve pousa em cima de cada camada de galhos. Na floresta sai um pouco mais
+// escuro, pode sair espelhado e muda um tiquinho de tom de um pé para outro. Tronco no chão, copa na camada da frente.
+const PIN={"pal":["#74a456","#6b9c53","#598a4b","#447342","#427041","#406d40","#3f6d40","#3c683f","#355e3c","#244b37","#224735","#224535","#214534","#214333","#204434","#204233","#1d3d32","#152b2d","#13232a","#132229","#122128","#0b171c","#041417","#031417","#031113","#030e11","#583d36","#4b322e","#382626","#291b1d","#281a1c","#251a1c"],"leaf":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0],"w":62,"h":89,"d":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGRoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgCAxcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFwEDGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABoCAQYZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGgIBBxEZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABcCAQMFEBcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFwIDAwcNDRoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABoCAgcCBwUOEBcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGgIFAwIHBhARGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABcCAggCAgUHBwYMGQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaAgICCAIHBgYHDBAQGQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABoGAQUCAggBBgYHBxAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAXBQEGBgICCAEGBwcRDwwXAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGgUBBgcIAgIHAQYHBwcHEBEaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABcEAQcFDAMDBwYHBwgBBQcIBw8XAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAXBAEHEQ8MAgMGBwEHBwUBCBEGBQ8aAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGgEBBQ8QGgICAgcHAQEHCAgBDxIQEREXAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABcDCBEQEBkYAQIJCBEGAQgaEQQCGRkXGRcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABcXGRcXGgEBCQkXFwgBBxkQDwIaFxkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAXGRkXAQcIGRMZDgEBBxcZCQMZGQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGhUVFRkBFxkZFRMXCAEHFxUXGRcXFwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaFQwTFxkYFBUQFRQZGAcZFBQUExcZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFwwQEBATFBUTDBAOFRQXGRcQFRMVDhAZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABoQCwEQFRALEBAPBRAPFBQXDhAMExAODBAZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGggBBQwQEAMEEAcFBQ4QEBAQBBAQFQgFEBcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABcEAQEGBAwGAw8MBgYFBxEFEAwHBw4MEBAMDBkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAXBAEBBgcQDAMDEQUFBhAQDAUFEA8FDhAQBAwQEBcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGgQBAQQFFREDAgUGBgUFEAwEBQUMDAYGEA8EBRAODBcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABcDAQEFBQsXBwEGBQUFBgUFEAcBCAQQEAkDDA8HAwcMEBoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaAwEBBwcMFxcBBgcQBAEGAQUZEAEEBQYQAgIXEA8EAgMRDxcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGAMDBAQQERkXAQEFGREBAQQBBxcNBAEGBQ8PAgkZDAwQAwMDEBoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZGhcZFxcZGRkCChgXAwEJBAEYFxcRBwEBDBARAgsXFxcZFxcaFwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAXFxcZFwcZFxcDAwkFCxcXGRkOBAEEGRAMBBcZGRcYGgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABcVFBcZGRcVGQMDCQcZFxUVFxcOBAQZFwwMGRkVFwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaFRQVFRUUFRUXGAMJGRkVFBUVFRcaBBcTFxcZFRUUGQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABoVEAwQFRUQFRcXAxcXFRUVDRUUFRUXFxQVFRcVFBUXAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYDxAHBQsPEBAVDxkXGRUTFQ0QDRUVFRQUFRUVExQUFRQZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGRAMBQcHDQsGEQYQDRkVEA0NDg0PEA0VFBEQFRMVFBAPFBUYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZCQQBBRAQBAQQBgUPDhANDQ4NBQcNDQ8QFQ8LCxMVEA0QFRgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFwQFAQUFBgcFCwUGBgYNCxAHDgwGBQQQBxATDQQRFRUUDQcLDhkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABoGBQEEBwUFBgcFBQUGBhAFBgUFEAUFBgcHBQUQBQYQCxQPBQYOCxgAAAAAAAAAAAAAAAAAAAAAAAAAAAAXBAcBBQUHBwQBBgcFBQEGBwYFBQcGDQYGBwUFBgYQAQULCw4OBgUNEBoAAAAAAAAAAAAAAAAAAAAAAAAAGgEBAQcGBQUBAwEFEAcDAQYQBgEHBQcMBgYFBRAHBwcBAQUODgwLCwYOCxcAAAAAAAAAAAAAAAAAAAAAABgBAQcFBRIKAQIDBQYNBwEFBw4FAQUHAQcOBQUGAg4FBQUBAwcSCwsODgQEDhoAAAAAAAAAAAAAAAAAAAAaAgUFBxMSCgEBBRAMEgsBBwULCwYFBwwBBwsMBwcHCwsFBQcBBQUTCxISCwwOCxgAAAAAAAAAAAAAAAAAFxgaGhgYDQIBAQYLEBkXAQEGBxgQBQcBCwIFGQ4OBwUBBxMOBgUBBRISCwsZGhkYGRoAAAAAAAAAAAAAAAAAAAAAGgICCBAQDhcZGRoBAQURGgsGBQELAQgZFw4MBQYBBxoMBQYCCBILDg4ZAAAAAAAAAAAAAAAAAAAAAAAAABcaGhcYGRoZFxcXEQEFCxcZGQUCAQsGEBkZFwsOBwIGBhgSDgcFChkZFxcXAAAAAAAAAAAAAAAAAAAAAAAAAAAZGhQTFRkZGRMZAwwXFxkaBgEJDhAXGRQXGQ4QBwEFFxkZEgoKGRcXAAAAAAAAAAAAAAAAAAAAAAAAAAAAABkVFRMTFBQVFBgRGhMUExoOAQkaDhkTExUVGRcFBQUaFRMYGRkXExkAAAAAAAAAAAAAAAAAAAAAAAAAAAAXExMODhQTExMVFRcUFBQUExcCGRcZFRUUFBMTExgaBxkTFBQTExMTExoAAAAAAAAAAAAAAAAAAAAAAAAAGhULCwsOFBQUEwsLExMUExMTGQwZFBMUFRQNExMTFBUZFwsUFRQTEw0VFRgAAAAAAAAAAAAAAAAAAAAAABkQBwYLBAsVFQ8NCxMTExMVDxMTGRMUFBMPFQsLFBUUExMLDg4OExMUDg4TGAAAAAAAAAAAAAAAAAAAAAAZEAUFBgYFEwsNDQwLCxMTEwsMFRUTExQTFAsTEw8NDRMTFA0OBgsLFRQVCwsTGgAAAAAAAAAAAAAAAAAAGAoFBwELDA4LBAQFCwwMFRMLCgsOFRMTFBQLCwsVFQ8LCg4VFQ8LBA0OFRMLCwwLGQAAAAAAAAAAAAAAABoGBAQBDgsLFQcGAQQLCwsPDQsLCg4NExQODQsTDQ4VCwsGDgwNCwsFBg4NCxMLCw0OGgAAAAAAAAAAAAAXBQMBAQoMDhcEBgICBgsLBAsNDA0MBQsOEwsFEBULDAsTCw4HDgsLDA4GBQsKEw8PDAsKFwAAAAAAAAAAGAQCAw4NCxMZGgUBAg4ODQMIBAsMDQsEBQ0LCwYFEw0NCwsOCwkFCwsGDgsEBAsNFRULCwoKGgAAAAAAABoFBAULDhAZFxcCAgIKCg0PAwkECwsNDQUEBRAHBQQFFQsLDAsGBQQMDgYHCwoFBxAOExMTCw8QGQAAAAAAFxoYGBkaGRkZAQEODgsTCwIDAwwLEwoFBAULBwUECwYTEw8HCwEEBQYVCQEEEw4OBwsLFxcXGhcYAAAAAAAAAAAAAAAaGQgCCgsVGRcKAQMODhMTBQQBBg4FAQUOBQQTDg0FAQUFBhUNCgEHFQ0KCAsKFxoAAAAAAAAAAAAAAAAAFxcXAxAMFxkZGQEBCwoVFRkGAgIFCwYCBgsEBRkTCgYCAgYFChgLDgYGFxcXFxkaAAAAAAAAAAAAAAAAABoXExQXGRoUExUaAgsNEhcZGgUCBgQXDgcCGBkGFxcSDgoCBwUEFxoOCwUFFxMVFRkXAAAAAAAAAAAAAAAaFRQTExQUFBUTFwMOCxcZFxMZEQIFGBcaBQQYGgsXGRkSCwgCBAUZGRcaDgUGGhUTExMXAAAAAAAAAAAAGBEJFQsTFBUTFRoHCBoaGRQUExcYAhAZGRkYCBkTFxQVExkWEAQFBhcZFBQYGBkXFAwTFRAaAAAAAAAAABoJCQkJFRMTDhUOFxcXExUVExQUExkIGRQVFRkZFxMUFRMUFBkXGRAFBhkUExMVExMVDQsODgsXAAAAAAAYCQkJCRAQEAsLFQ4OFRMTFBQUEw8VFRgTFBQUFRcXExUTExQUExUZFxcHGRMUFRQVDg0LFAgIBxEaAAAAGQkJCRISDgYGDQsLDA4UExMTCRUKEA4TExMUExQTDRUUFBMMEBQTFBMTGhkXCw4OFBQTBQ0QExEICBIXABkSEhIREhIEBQYODQsLCw0VEwkJCRIICxMUFBMUDAsMDhMTFAkQCxMTExUUEwwLDg4LCwsSBRASERISERIaABcaGhcSBwYEEhISCAcLDhAMCQkJEQgIExQTFBAQCQgQDhUTCQkRCwsVFRMTCw4OFQsLCwsODhIXEhISGhkAAAAAGgUEBhIREAgIAgIJFQkJCQkSCQgIFRAOEAkICAkRCRUJCREODgwMExMFDg4TEwsLDg4FDRIZGRcAAAAAABcHBgUSEREHBwIDCAkJCQMJEAkICAkIEQgIAwkJCBEJCQkJCRUODgwLBQYHDAsLEw4ODgsEEBoAAAAAAAAaBgUSEhIYBQICCAkJEQgCAwkSCAgIAggRCAMDCQkCEQkJCQQJEw4LCwsCAgYGDAsMFQ4LCw0GCxkAAAAAFw0QCxISGhIDAggIEhISAgIJCRIICQMIEQgIAgMJCQIREQkJAgkJGQsMDg4CAwILGA4OEhINDAsEBRkAAAAZGBgaGRcYAwMSEhISGgkCCQkSEggCCAkRCAICGgkJCQMRCQkCCQkXEg4ODhICAgkaDgsLGRoODRAOBxgAAAAAAAAAABcDEhISGBgYBAQJEhkZAgIIEhIYAgMZGQkJAxEYCQkCBBcZExALCxIDCRkXCg0OGRcZGhgYGgAAAAAAAAAaBhISGhkaABgECQkXGhoCCAgRGRIDERcXCQkDERoSCQQEFxkaFwsMDgMDFwAZGg4YAAAAAAAAAAAAAAAAABgaGRcAAAAAGQQaGhcAFwkJEhEXEhIZHh4ZCQkRGRcJBAQaAAAXFxoOCwMXAAAAGRcAAAAAAAAAAAAAAAAAAAAAAAAAABkKFxkAAAAXCBISGhcXGSAfHx8aChkWFxgRBBgAAAAAGhcXCRcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGhcAAAAAAAAYGBoAABceICAgICAXHhYAABoXAAAAAAAAAAAZGgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgAAAAAGR4cICAcHh4fFgAAABgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAVIBwcIBweHCAWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABUbGxwcHhwVHBYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHh0bHhweHCAcFgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJAAAfHBscHBwcHxwWDAAJAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMBB4dGxwcHB8fFQQgEQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAeBR8cHAUcHx4FBSAODAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQCyAODh4EBBweHwQfDAsQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAODgsMDhAMHiAHBAsQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="};
+var PINC=new Map();
+function pinIdx(){if(PIN.ix)return PIN.ix;const b=atob(PIN.d),a=new Uint8Array(b.length);for(let i=0;i<b.length;i++)a[i]=b.charCodeAt(i);return PIN.ix=a}
+function pinCanvas(si,dk,flip,tn){const key=si+'|'+(dk?1:0)+(flip?1:0)+'|'+tn;let c=PINC.get(key);if(c)return c;const ix=pinIdx(),w=PIN.w,h=PIN.h;
+ const P=PIN.pal.map((hx,i)=>{let col=arvRGB(hx);if(PIN.leaf[i]){let[H,S,L]=arvHSL(col);H+=tn*6;if(si===3){S*=.6;H+=8}if(dk)L*=.88;col=arvHex(H,S,L)}else if(dk)col=col.map(v=>v*.9|0);return col});
+ if(!PIN.lit)PIN.lit=PIN.pal.map((hx,i)=>!!(PIN.leaf[i]&&arvHSL(arvRGB(hx))[2]>.3));
+ c=document.createElement('canvas');c.width=w;c.height=h;const x=c.getContext('2d'),im=x.createImageData(w,h),d=im.data;
+ for(let j=0;j<h;j++)for(let i=0;i<w;i++){const q=ix[j*w+i];if(!q)continue;const p=(j*w+(flip?w-1-i:i))*4;let col=P[q-1];
+  if(si===3&&PIN.leaf[q-1]){const r=hsh(i,j,4300),ab=j>0?ix[(j-1)*w+i]:0,ab2=j>1?ix[(j-2)*w+i]:0;
+   // neve: em cima de cada camada (onde o pixel de cima é a sombra escura da camada de cima ou o vazio)
+   const dark=a=>a&&PIN.leaf[a-1]&&!PIN.lit[a-1];if((!ab||dark(ab))&&PIN.lit[q-1]&&r<.9)col=arvRGB(r<.45?'#ffffff':'#e2eaf4');else if((!ab2||dark(ab2))&&PIN.lit[q-1]&&r<.4)col=arvRGB('#d6e0ec')}
+  d[p]=col[0];d[p+1]=col[1];d[p+2]=col[2];d[p+3]=255}
+ x.putImageData(im,0,0);PINC.set(key,c);if(PINC.size>40){PINC.delete(PINC.keys().next().value)}return c}
+const PINSPLIT=76;// da linha do tronco para baixo vai no chão
+const _pinTree=hdTree;hdTree=function(X,Y,dk){if(!(typeof arvPine==='function'&&arvPine(X,Y,dk)))return _pinTree.apply(this,arguments);
+ const si=GRS|0,vr=hsh(X,Y,601)*8|0,tn=((hsh(X,Y,612)*3)|0)-1,c=pinCanvas(si,dk,vr&1,tn),ox=X*16,oy=Y*16,w=PIN.w,h=PIN.h,dx=ox+8-w/4+((vr>>1)-1.5)*.5,dy=oy+16-h/2+1;
+ {const C=hdC(mg,ox,oy);C('#0000003a',16,29.6,12,3.6)}
+ mg.drawImage(c,0,PINSPLIT,w,h-PINSPLIT,dx,dy+PINSPLIT/2,w/2,(h-PINSPLIT)/2);
+ fgCtx().drawImage(c,0,0,w,PINSPLIT,dx,dy,w/2,PINSPLIT/2)};
+
+// ===== Kaimon GT v72: captura mais difícil e shiny um pouco mais comum nos tiers altos =====
+// Monstro normal: a força de captura de cada tier caiu uns 25% (T1 .30→.22, T2 .60→.45, T3 1→.75, T4 1.2→.9, T5 1.5→1.1).
+// Shiny: a sorte de captura direta caiu (SHC 4%→2,5% por cristal, na build) e a garantia por cristais quebrados ficou 50% maior.
+// Shiny nascendo: T1, T2 e T3 ficaram ~25% mais comuns (1 em 320→256 e 160→128); T4 e T5 continuam iguais.
+Object.assign(CT,{1:.22,2:.45,3:.75,4:.9,5:1.1});
+Object.assign(PTY,{1:384,2:384,3:192,4:96,5:48});
+SR[1]=256;SR[2]=256;SR[3]=128;
 
 // ===== Kaimon GT v71: casas de vila com telhado de verdade (cumeeira, oitão de enxaimel, água-furtada, chaminé) =====
 // Toda casa de cidade de 2 fileiras de telhado + 1 de parede (5 a 10 de largura) é desenhada inteira num quadro só e
@@ -11139,6 +11212,92 @@ TWI[131]=function(x,y){G.nq=G.nq||{};const nq=G.nq,have=invCount(NQ.PRES),sp=noe
  ok(`<div class="abx">${im}<div><b>🎅 Ho ho ho!</b><br><small>Você tem <b>${have}/${NQ.META}</b> Presentes de Natal. Procure os monstros de <b>gorro vermelho</b> na mata: cada um que você vence pode soltar um presente (e, bem de vez em quando, uma <b>Addon Box Natalina</b>).</small></div></div>`);return true};
 // a árvore grande: o presente do dia continua nela
 // Configurações / dex: o monstro natalino aparece com o gorro nas capturas; o gorro vira addon permanente dele
+
+// ===== Kaimon GT v72: neve de Natal mais bonita, chão coberto de neve e pés afundando =====
+// No Natal o chão de fora fica branco (a neve acumulada não depende do frio da simulação).
+// Quem anda na neve afunda os pés: um montinho de neve cobre a sola, e cada passo levanta neve fofa.
+// Os flocos agora caem em 4 profundidades: pó de neve lá no fundo, flocos macios, cristais de pixel
+// que piscam perto da tela e alguns flocos grandes e desfocados bem na frente.
+function nvNatal(){try{return festa()==='natal'&&M[cur]&&!M[cur].in}catch(e){return false}}
+const _nvUpd=clUpd;clUpd=function(){const r=_nvUpd.apply(this,arguments);try{if(nvNatal()){const s=.94;if(CLD.S<s){CLD.S=s;CLW.S=Math.max(CLW.S||0,s)}CLD.fr=1}}catch(e){}return r};
+// ---------- pés afundando ----------
+function nvDeep(e){try{if(CLD.S<.25||!M[cur]||M[cur].in)return 0;const tx=Math.round(e.px),ty=Math.round(e.py);if(!CLSG.has((T[ty]||[])[tx]))return 0;
+ const c=clCovAt(e.px*16+8,e.py*16+12);return c<.45?0:Math.min(1,(c-.45)/.4)*Math.min(1,CLD.S*1.15)}catch(x){return 0}}
+const _nvGo=grassOver;grassOver=function(e,q,t){const r=_nvGo.apply(this,arguments);try{const d=nvDeep(e);if(d<.05)return r;
+ const big=q.im&&q.im.pxm,X=q.X,Y=q.Y+(big?.2:.6),w=big?6:4.4,h=1+d*1.1,mv=q.mv?1:0,ph=(q.sp||0)*Math.PI*2,k=(e.px*7+e.py*13)|0;
+ g.save();g.globalAlpha=Math.min(1,.6+d*.4);
+ // neve em volta dos pés: dois montinhos (um por pé) e a borda azulada da cova
+ g.fillStyle='rgba(120,148,196,.45)';g.fillRect(Math.round((X-w)*2)/2,Math.round((Y+.2)*2)/2,w*2,.5);
+ g.fillStyle='#e9f0fa';for(const s2 of[-1,1]){const fx=X+s2*w*.45,bh=h*(1+(mv?Math.abs(Math.sin(ph+(s2>0?1.6:0)))*.5:0));g.beginPath();g.ellipse(fx,Y,w*.62,bh,0,Math.PI,0);g.fill()}
+ g.fillRect(X-w,Y-.5,w*2,.8);
+ g.fillStyle='#ffffff';for(const s2 of[-1,1]){const fx=X+s2*w*.45;g.fillRect(Math.round((fx-1.2)*2)/2,Math.round((Y-h*.9)*2)/2,1.5,.5)}
+ if((k&3)===0){g.fillStyle='#d4e2f4';g.fillRect(Math.round((X-w-.5)*2)/2,Math.round((Y-.5)*2)/2,1,.5)}
+ g.restore()}catch(x){}return r};
+// ---------- cada passo levanta neve ----------
+const _nvStep=clStepFx;clStepFx=function(t){const r=_nvStep.apply(this,arguments);try{const m=G.mt;if(m&&(m.k==='fly'||m.k==='surf'))return r;const d=nvDeep(P);if(d<.1)return r;
+ const dx=P.d===1?-1:P.d===3?1:0,dy=P.d===0?1:P.d===2?-1:0,x=P.x*16+8,y=P.y*16+14,n=4+Math.round(d*5);
+ for(let i=0;i<n;i++){const s=.25+Math.random()*.45;PT.push({x:x+(Math.random()-.5)*7,y:y-Math.random()*1.5,vx:dx*s+(Math.random()-.5)*.5,vy:-.35-Math.random()*.55+dy*s*.4,l:.55+Math.random()*.4,c:i%3?'#f4f8ff':'#cfdcf0'})}}catch(e){}return r};
+// ---------- flocos ----------
+var NVSP=null;
+function nvSprites(){if(NVSP)return NVSP;
+ const mk=(rows)=>{const h=rows.length,w=rows[0].length,c=document.createElement('canvas');c.width=w;c.height=h;const x=c.getContext('2d'),im=x.createImageData(w,h),d=im.data;
+  for(let j=0;j<h;j++)for(let i=0;i<w;i++){const ch=rows[j][i];if(ch==='.')continue;const C=ch==='#'?[255,255,255,255]:ch==='o'?[214,230,255,235]:[176,204,246,170],o=(j*w+i)*4;d[o]=C[0];d[o+1]=C[1];d[o+2]=C[2];d[o+3]=C[3]}
+  x.putImageData(im,0,0);return c};
+ const cr=[mk(['...o...','.o.#.o.','..o#o..','o##o##o','..o#o..','.o.#.o.','...o...']),
+           mk(['o.....o','.#.o.#.','..###..','.o#o#o.','..###..','.#.o.#.','o.....o']),
+           mk(['..o.o..','.o.#.o.','o.###.o','.##o##.','o.###.o','.o.#.o.','..o.o..']),
+           mk(['.o.','o#o','.o.'])];
+ const bk=[2.6,4.2].map(r=>{const s=Math.ceil(r*8),c=document.createElement('canvas');c.width=c.height=s;const x=c.getContext('2d'),gr=x.createRadialGradient(s/2,s/2,0,s/2,s/2,s/2);
+  gr.addColorStop(0,'rgba(255,255,255,.95)');gr.addColorStop(.55,'rgba(245,250,255,.55)');gr.addColorStop(1,'rgba(235,244,255,0)');x.fillStyle=gr;x.fillRect(0,0,s,s);return{c,r}});
+ return NVSP={cr,bk}}
+wxSnow=function(x,t,cw,ch,n,sc){const F=clFlakes(),S=nvSprites(),gust=Math.max(0,Math.sin(t/9100)-.55)*2.2,wnd=Math.sin(t/5200)*.55+Math.sin(t/1900+1.3)*.25+gust,W2=cw+30,H2=ch+30,
+ px=(i,sp,yy,sw,L)=>((((i*53.77+t*wnd*.012*(L+1)+sw+yy*wnd*.22)%W2)+W2)%W2)-15;
+ // 0: pó de neve bem no fundo (1 pixel da tela)
+ const n0=Math.round(n*1.1);x.fillStyle='#eef4ff';
+ for(let i=0;i<n0;i++){const yy=((i*71.13+t*.006*sc)%H2)-15,sw=Math.sin(t/1400+i*2.3)*1.5*sc,xx=px(i+500,0,yy,sw,0);x.globalAlpha=.32+((i*7)%5)*.07;x.fillRect(Math.round(xx*2)/2,Math.round(yy*2)/2,.5,.5)}
+ // 1: flocos macios (os de antes, mais variados)
+ const n1=Math.round(n*.85);
+ for(let i=0;i<n1;i++){const L=i%2,sp=[.012,.019][L]*sc,fl=F[L],yy=((i*97.31+t*sp)%H2)-15,sw=Math.sin(t/(900+L*400+(i%7)*90)+i*1.7)*(2.5+L*2.5)*sc,xx=px(i,sp,yy,sw,L+1),sz=fl.r*sc*(.7+((i*13)%9)/16);
+  x.globalAlpha=[.55,.78][L];x.drawImage(fl.c,xx-sz,yy-sz,sz*2,sz*2)}
+ // 2: cristais de pixel perto da tela, girando entre 3 formas e piscando
+ const n2=Math.max(6,Math.round(n*.22));
+ for(let i=0;i<n2;i++){const sp=.028*sc*(.85+(i%4)*.08),yy=((i*131.7+t*sp)%H2)-15,sw=Math.sin(t/(1300+(i%5)*170)+i)*6*sc,xx=px(i+900,sp,yy,sw,3),fr=((t/520+i*1.37)|0)%3,
+   tw=.75+.25*Math.sin(t/260+i*2.1),c=(i%5===0)?S.cr[3]:S.cr[fr],s=(c===S.cr[3]?1.5:3.5)*sc*((i%3)?1:1.25);
+  x.globalAlpha=tw;x.drawImage(c,Math.round((xx-s/2)*2)/2,Math.round((yy-s/2)*2)/2,s,s)}
+ // 3: poucos flocos grandes e desfocados passando bem na frente
+ const n3=Math.max(2,Math.round(n*.05));
+ for(let i=0;i<n3;i++){const b=S.bk[i&1],sp=.05*sc,yy=((i*211.9+t*sp)%(H2+40))-35,sw=Math.sin(t/2100+i*3.1)*10*sc,xx=px(i+1300,sp,yy,sw,5),sz=b.r*sc*(1+(i%3)*.25);
+  x.globalAlpha=.22+(i%3)*.06;x.drawImage(b.c,xx-sz,yy-sz,sz*2,sz*2)}
+ x.globalAlpha=1};
+
+// ---------- telhados inclinados com neve de verdade ----------
+function nvSnowy(){try{return(GRS|0)===3||(CLD.S>.35&&M[cur]&&!M[cur].in)}catch(e){return false}}
+if(typeof cb71Canvas==='function'){
+ const _nvCbc=cb71Canvas;cb71Canvas=function(B){if(nvSnowy()&&(GRS|0)!==3){const g0=GRS;GRS=3;try{return _nvCbc.apply(this,arguments)}finally{GRS=g0}}return _nvCbc.apply(this,arguments)};
+ var NVR=0;
+ const _nvTl=cb71Tiles;cb71Tiles=function(x,M0,poly,y0,y1,x0,x1,seed){const r=_nvTl.apply(this,arguments);if(!NVR)return r;
+  x.save();x.beginPath();poly.forEach((q,i)=>i?x.lineTo(q[0],q[1]):x.moveTo(q[0],q[1]));x.closePath();x.clip();
+  x.fillStyle='#eef3fa';x.fillRect(x0,y0,x1-x0,y1-y0);
+  for(let y=y0+6,row=0;y<y1;y+=7,row++){x.fillStyle='rgba(150,172,210,.35)';x.fillRect(x0,y,x1-x0,1);x.fillStyle='#ffffff';x.fillRect(x0,y-1,x1-x0,1);
+   for(let i=x0+(row&1?5:0);i<x1;i+=10){const t=hsh(i+seed,row,7601);if(t<.22){x.fillStyle=M0.t[1];x.fillRect(i+1,y-4,3+(t*20|0)%4,2)}else if(t>.85){x.fillStyle='#d8e4f4';x.fillRect(i,y-3,6,1)}}}
+  x.restore();return r};
+ const _nvRoof=cb71Roof;cb71Roof=function(x,B,W,si){NVR=si===3?1:0;let r;try{r=_nvRoof.apply(this,arguments)}finally{NVR=0}if(si!==3)return r;
+  const T0=CB71TOP,ye=T0+64,yr=T0-6,gw=Math.min(B.w>=6?3:2,B.w-2)*32,ax=gw/2,mw=W-gw,P=cb71P(x);
+  // beiral grosso de neve com pingentes de gelo
+  x.fillStyle='#f4f8fd';x.beginPath();x.moveTo(ax,ye-1);for(let i=ax;i<=W;i+=6){x.quadraticCurveTo(i+3,ye+5+hsh(i,B.seed,7610)*2,i+6,ye+1)}x.lineTo(W,ye-2);x.closePath();x.fill();
+  P('rgba(110,138,186,.35)',ax,ye+4,W-ax,1);
+  for(let i=ax+3;i<W-2;i+=5){const t=hsh(i,B.seed,7611);if(t>.55)continue;const L=3+t*12|0;P('#d6ebf8',i,ye+3,2,L);P('#ffffff',i,ye+3,1,L-2)}
+  // tampinhas de neve na água-furtada e na chaminé
+  if(mw>=64){const dx=gw+Math.round(mw*.5)-14,dy=yr+10;x.fillStyle='#f6f9fd';x.beginPath();x.moveTo(dx-6,dy+13);x.lineTo(dx+14,dy-4);x.lineTo(dx+34,dy+13);x.lineTo(dx+34,dy+10);x.lineTo(dx+14,dy-7);x.lineTo(dx-6,dy+10);x.closePath();x.fill()}
+  {const cx=gw+18;P('#f6f9fd',cx-3,-2,20,4);P('#ffffff',cx-1,-3,14,1)}
+  // os cantos ao lado do oitão (onde aparecia o chão) também ficam brancos
+  x.save();x.globalCompositeOperation='destination-over';x.fillStyle='#e8eef8';x.fillRect(0,T0,W,ye+4-T0);x.restore();
+  return r}}
+// a neve antiga dos telhados era feita para telhado reto: nas casas novas ela não é desenhada
+try{clRoofs=eval('('+clRoofs.toString().replace('if(!CLROOF.has(row[x]))continue;','if(!CLROOF.has(row[x])||(typeof cb71At==="function"&&cb71At(x,y)))continue;')+')')}catch(e){}
+// quando a neve chega ou derrete (ou o Natal liga), repinta os telhados do mapa atual
+var NVSW={i:-1,v:null};
+RH0.push(function(){try{const v=nvSnowy();if(NVSW.i===cur&&NVSW.v===v)return;const first=NVSW.i!==cur;NVSW.i=cur;NVSW.v=v;if(first&&!v)return;const m=M[cur];if(!m||!m.MC||m.in)return;if(typeof KCh!=='undefined'&&m.MC instanceof KCh)m.MC.ch={};else{if(typeof FGM!=='undefined'&&FGM)FGM.delete(m.MC);m.MC=null}}catch(e){}});
 
 // ===== Kaimon GT v70: botões de baixo recolhem; código GOD aceita 0/O e 1/I trocados =====
 // Botão ▾/▴ ao lado da espada: esconde (ou mostra) a fileira de botões. Fica guardado no aparelho.
