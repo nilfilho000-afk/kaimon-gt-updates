@@ -2177,7 +2177,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
  const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
  TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
  el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v80 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v81 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
  if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
  const a=TTL.sel&&ACC.a[TTL.sel];
@@ -10305,7 +10305,7 @@ const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);t
  const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
  const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
 
-var KGT_VER=80;
+var KGT_VER=81;
 // ===== Kaimon GT v70: shiny repaginado =====
 // Todo shiny ganha uma paleta bem diferente da normal: a cor do corpo gira ~150-210° no círculo de cores (verde vira
 // rosa, vermelho vira azul-piscina...), as partes escuras ficam quase pretas e o detalhe (a) vira a cor oposta.
@@ -11908,14 +11908,14 @@ RH2.push(function(cx,cy,t){try{const L=gtList();if(!L||(mode!=='walk'&&mode!=='u
  const now=performance.now(),dt=Math.min(.05,(now-(GV.lt||now))/1000);GV.lt=now;const cw=VW*16,ch=VH*16,si=GRS|0,k=WX.k,chuva=k==='rain'||k==='storm',noite=nightF()>.6,vt=gvVento(),leve=typeof CFG!=='undefined'&&CFG.leve;
  for(const q of L){const ax=q[0]*16+8-cx,ay=q[1]*16+14-cy;if(ax<-140||ax>cw+140||ay<-40||ay>ch+190)continue;const s=gvTree(q,si),I=gvInfo(q[2],si),c=gtCanopy(q[2],si),bx=q[0]*16-cx,by=q[1]*16-cy;
   // --- folhas soltando ---
-  const rate=(q[2]===3?.12:1)*(si===2?2.6:si===3?.45:1)*(chuva?1.4:1)*(1+vt*.6)*(leve?.5:1);
+  const rate=(q[2]===3?.12:1)*(si===2?2.6:si===3?.45:1)*(chuva?1.4:1)*(1+vt*.6)*(leve?.5:1)*(window.GVX||1);
   if(now>s.nl&&I.pts.length&&s.L.length<(leve?10:22)){const p=I.pts[(Math.random()*I.pts.length)|0];let r=p[2],g2=p[3],b=p[4];if(si===2&&q[2]===0){r=r*.5+200*.5;g2=g2*.6+130*.4;b=b*.6}
    s.L.push({x:p[0],y:p[1],vy:10+Math.random()*7,ph:Math.random()*6.3,w:.6+Math.random()*.8,sz:1.3+Math.random()*.8,c:`rgb(${r|0},${g2|0},${b|0})`,gy:12+Math.random()*24,gx:(Math.random()-.5)*70});s.nl=now+(900+Math.random()*1600)/rate}
   for(let i=s.L.length-1;i>=0;i--){const f=s.L[i];f.ph+=dt*(2.2+f.w);f.y+=dt*f.vy*(chuva?1.8:1);f.x+=dt*(Math.sin(f.ph)*9*f.w+vt*7);
-   if(f.y>=f.gy){s.C.push({x:f.x,y:f.gy,a:1,r:f.ph,c:f.c,sz:f.sz});s.L.splice(i,1);continue}
+   if(f.y>=f.gy){s.C.push({x:f.x,y:f.gy,t0:now,life:gvVida(),r:f.ph,c:f.c,sz:f.sz});s.L.splice(i,1);continue}
    const X=bx+f.x,Y=by+f.y,fl=Math.cos(f.ph*1.3);g.save();g.translate(X,Y);g.rotate(Math.sin(f.ph)*.9);g.fillStyle=f.c;g.strokeStyle='rgba(20,30,20,.55)';g.lineWidth=.4;g.beginPath();g.ellipse(0,0,f.sz*1.3*Math.max(.25,Math.abs(fl)),f.sz*.75,0,0,6.3);g.fill();g.stroke();
    if(fl>0){g.fillStyle='rgba(255,255,255,.25)';g.fillRect(-f.sz*.6*fl,-.3,f.sz*1.2*fl,.4)}g.restore()}
-  if(s.C.length>(leve?12:28))s.C.splice(0,s.C.length-(leve?12:28));
+  {const mx=leve?30:90;let n=0;for(const f of s.C)if(!f.out)n++;if(n>mx){for(const f of s.C)if(!f.out){f.out=now;break}}}
   // --- passarinhos ---
   const d=Math.hypot(P.px-q[0],P.py-q[1]+1);
   if(d<3.2&&!noite&&now>s.scare){s.scare=now+9000;let n=0;for(const a of s.B)if(a.st==='pouso'){a.st='foge';a.t0=now;a.dur=7000+Math.random()*3000;a.f=Math.random()<.5?1:-1;a.ox=a.x;a.oy=a.y;n++}if(n)gvSom('asas',1)}
@@ -11929,9 +11929,29 @@ RH2.push(function(cx,cy,t){try{const L=gtList();if(!L||(mode!=='walk'&&mode!=='u
    if(noite||(chuva&&a.st==='pouso'))continue;
    const X=bx+a.x,Y=by+a.y-(a.st==='pouso'&&now-a.hop<220?Math.sin((now-a.hop)/220*Math.PI)*2:0);if(X<-10||X>cw+10||Y<-10||Y>ch+10)continue;gvAve(X,Y,a,now)}}
 }catch(e){}});
-// folhas no chão (embaixo de todo mundo)
-RH0.push(function(cx,cy,t){try{if(!gtList())return;for(const s of GV.T.values()){const bx=s.q[0]*16-cx,by=s.q[1]*16-cy;for(let i=s.C.length-1;i>=0;i--){const f=s.C[i];f.a-=.0022;if(f.a<=0){s.C.splice(i,1);continue}
-  g.save();g.globalAlpha=Math.min(1,f.a*1.6);g.translate(bx+f.x,by+f.y);g.rotate(f.r);g.fillStyle=f.c;g.beginPath();g.ellipse(0,0,f.sz*1.3,f.sz*.7,0,0,6.3);g.fill();g.restore()}}}catch(e){}});
+// folhas no chão: vão se acumulando e somem bem devagar (cada uma dura ~1 a 2 minutos)
+function gvVida(){return 60000+Math.random()*60000}
+function gvAlpha(f,now){const left=f.t0+f.life-now;let a=Math.min(1,left/12000);if(f.out)a=Math.min(a,1-(now-f.out)/1500);return a}
+var GVP={x:0,y:0,v:0,lt:0},GVK=[];// folhas chutadas no ar: {s,x,y,z,vx,vy,vz,r,vr,c,sz,t0,life}
+RH0.push(function(cx,cy,t){try{if(!gtList())return;const now=performance.now(),dt=Math.min(.05,(now-(GVP.lt||now))/1000);GVP.lt=now;
+ // quanto o jogador (ou a montaria) andou neste quadro
+ const px=P.px*16+8,py=P.py*16+14,mvx=px-GVP.x,mvy=py-GVP.y,sp=Math.hypot(mvx,mvy);GVP.x=px;GVP.y=py;GVP.v=sp>12?0:sp;
+ const voo=G.mt&&G.mt.k==='fly',R=G.mt&&G.mt.k==='ride'?13:9;let kicked=0;
+ for(const s of GV.T.values()){const ox=s.q[0]*16,oy=s.q[1]*16,bx=ox-cx,by=oy-cy;
+  for(let i=s.C.length-1;i>=0;i--){const f=s.C[i],a=gvAlpha(f,now);if(a<=0){s.C.splice(i,1);continue}
+   // pisou em cima: a folha sai voando para longe dos pés
+   if(!voo&&GVP.v>.15){const dx=ox+f.x-px,dy=oy+f.y-py,d=Math.hypot(dx,dy);if(d<R){const k=1-d/R,ux=d>.01?dx/d:(Math.random()-.5),uy=d>.01?dy/d:(Math.random()-.5);
+     GVK.push({s,x:f.x,y:f.y,z:0,vx:ux*(18+30*k)+mvx*10*Math.random()+(Math.random()-.5)*14,vy:uy*(10+18*k)+mvy*10*Math.random(),vz:14+Math.random()*22*(.5+k),r:f.r,vr:(Math.random()-.5)*16,c:f.c,sz:f.sz,t0:f.t0,life:f.life,ph:Math.random()*6.3});s.C.splice(i,1);kicked++;continue}}
+   const sx=bx+f.x,sy=by+f.y;if(sx<-8||sy<-8||sx>VW*16+8||sy>VH*16+8)continue;
+   g.save();g.globalAlpha=a;g.translate(sx,sy);g.rotate(f.r);g.fillStyle=f.c;g.beginPath();g.ellipse(0,0,f.sz*1.3,f.sz*.7,0,0,6.3);g.fill();g.fillStyle='rgba(0,0,0,.18)';g.fillRect(-f.sz*1.1,.1,f.sz*2.2,.35);g.restore()}}
+ if(kicked&&now>(GVP.ns||0)){GVP.ns=now+180;try{if(AC&&!MT){noise(.09,3200+Math.random()*1500,.018*Math.min(3,kicked));noise(.06,5200,.01*Math.min(3,kicked))}}catch(e){}}
+ // as que estão no ar: sobem, giram, planam balançando e caem de novo onde der
+ for(let i=GVK.length-1;i>=0;i--){const k=GVK[i];if(!GV.T.has(k.s.q[0]+','+k.s.q[1])){GVK.splice(i,1);continue}k.x+=k.vx*dt;k.y+=k.vy*dt;k.z+=k.vz*dt;k.vz-=46*dt;if(k.vz<-9)k.vz=-9;k.vx*=1-1.6*dt;k.vy*=1-1.6*dt;k.r+=k.vr*dt;k.vr*=1-.8*dt;k.ph+=dt*5;k.x+=Math.sin(k.ph)*.25*(k.z>1?1:0);
+  if(k.z<=0&&k.vz<0){k.s.C.push({x:k.x,y:k.y,t0:k.t0,life:k.life,r:k.r,c:k.c,sz:k.sz});GVK.splice(i,1)}}}catch(e){}});
+// folhas no ar por cima dos pés do jogador
+RH2.push(function(cx,cy,t){try{if(!GVK.length)return;const now=performance.now();for(const k of GVK){const X=k.s.q[0]*16-cx+k.x,Y=k.s.q[1]*16-cy+k.y,a=Math.max(0,Math.min(1,(k.t0+k.life-now)/12000)),fl=Math.cos(k.ph*1.4);
+  g.save();g.globalAlpha=a*.25;g.fillStyle='#000';g.beginPath();g.ellipse(X,Y,k.sz*1.1,k.sz*.4,0,0,6.3);g.fill();g.globalAlpha=a;g.translate(X,Y-k.z);g.rotate(k.r);g.fillStyle=k.c;g.strokeStyle='rgba(20,30,20,.5)';g.lineWidth=.35;
+  g.beginPath();g.ellipse(0,0,k.sz*1.3*Math.max(.3,Math.abs(fl)),k.sz*.75,0,0,6.3);g.fill();g.stroke();g.restore()}}catch(e){}});
 // um passarinho (pousado: de lado; voando: asas batendo)
 function gvG(){return g}
 function gvAve(X,Y,a,now,C){const g=C||gvG(),S=a.sp,voa=a.st!=='pouso',dir=voa?a.fl:a.f;g.save();g.translate(Math.round(X*2)/2,Math.round(Y*2)/2);g.scale(dir*1.45,1.45);
