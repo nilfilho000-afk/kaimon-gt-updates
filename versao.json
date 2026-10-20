@@ -1,11 +1,11 @@
 {
- "jogo": 81,
- "jogo_arquivo": "jogo-81.kpk",
- "jogo_sha": "17f0ecf11b8498ff1560eabc8f6a6ae3a8f173c21f686dbc3d6b90b2ec3254ad",
- "jogo_assin": "Ujf7ca1AbyGzwVRann2wwo99bF6UYHFsbLNPfVsY5Wdd82o9JTT2Nv8v0PN2Ix84LsZIRupIJza9Ep6ZDEB6DA==",
+ "jogo": 82,
+ "jogo_arquivo": "jogo-82.kpk",
+ "jogo_sha": "24eca626ebf255c76d021f2b9fd3a7135b72bf5489ba5f0b02bc296a4a9807a1",
+ "jogo_assin": "CUP5hUl/OFwN5Hkn+aMPzf8tvrLvXdNqzymRmRM86tfiYe21FAF4dNlrZXM+wefy7WYSiZvqTbnAGxX13n7cCQ==",
  "launcher": 3,
  "launcher_arquivo": "KaimonGT-3.exe",
- "launcher_sha": "b25fcc78ae4155b4f381f4986ba465a0e887737b6225457ff550846e404822a8",
- "launcher_assin": "kMr7gNg2BFQD5t49KrsGXwcWBO8Ykwk7lPJxW6pJHmq6ct/F9q4XpHUBNusCLXcVy9Aet1sL8t+TiHD4DKBfDw==",
- "notas": "Folhas acumulam no chão e voam quando você passa por cima."
+ "launcher_sha": "518f701ac4fba7812eab751159f060ea6fc09c7301d32653f0adaa044fb74223",
+ "launcher_assin": "p1NGcaQ5lTCpCj46dXJWr78EOq8na+fsu70uVyhvC2Tqr2Li5bKzVwA0p7qUMy1V5bqcuvG/6lnVssyghE4IDw==",
+ "notas": "Ícones novos em pixel art para todos os drops, 66 drops novos das evoluções, jogar itens no chão e o Gari que varre a rua toda hora cheia."
 }

@@ -2177,7 +2177,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
  const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
  TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
  el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v81 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v82 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
  if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
  const a=TTL.sel&&ACC.a[TTL.sel];
@@ -10305,7 +10305,7 @@ const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);t
  const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
  const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
 
-var KGT_VER=81;
+var KGT_VER=82;
 // ===== Kaimon GT v70: shiny repaginado =====
 // Todo shiny ganha uma paleta bem diferente da normal: a cor do corpo gira ~150-210° no círculo de cores (verde vira
 // rosa, vermelho vira azul-piscina...), as partes escuras ficam quase pretas e o detalhe (a) vira a cor oposta.
@@ -11962,6 +11962,251 @@ function gvAve(X,Y,a,now,C){const g=C||gvG(),S=a.sp,voa=a.st!=='pouso',dir=voa?a
   g.fillStyle=S.h;g.beginPath();g.arc(1.6,-1.2,1.05,0,6.3);g.fill();if(S.n==='bem-te-vi'){g.fillStyle='#ffffff';g.fillRect(.8,-1.6,1.6,.4)}g.fillStyle='#111';g.fillRect(1.9,-1.5,.5,.5);g.fillStyle=S.k;g.fillRect(2.6,-1.2,.9,.5);
   g.fillStyle=mvMix(S.b,'#000000',.25);g.beginPath();g.moveTo(-1.4,-.2);g.lineTo(-3.4,.9);g.lineTo(-1,.9);g.closePath();g.fill();g.fillStyle='#3a2a1a';g.fillRect(-.2,1.3,.4,.6);g.fillRect(.6,1.3,.4,.6)}
  g.restore()}
+
+// ===== Kaimon GT v82: ícones dos drops em pixel art (16×16, mesmo estilo do mapa) =====
+// Cada item tem um modelo (pena, escama, garra, folha...) desenhado com formas simples numa grade de 16×16; o sombreamento
+// é feito pixel a pixel (luz de cima à esquerda, borda escura embaixo/à direita, brilho), contorno colorido e detalhes do
+// próprio item (faixas da pena, nervuras, pintas, faíscas). A mesma figura vale para o inventário, a loja e o chão.
+var PXI={};
+function pxMix(a,b,t){const p=s=>[1,3,5].map(i=>parseInt(s.slice(i,i+2),16)),A=p(a),B=p(b);return'#'+A.map((v,i)=>Math.round(v+(B[i]-v)*t).toString(16).padStart(2,'0')).join('')}
+function pxPal(b,a){a=a||b;return{o:pxMix(b,'#0c0814',.68),1:pxMix(b,'#0c0814',.32),2:b,3:pxMix(b,'#ffffff',.3),4:pxMix(b,'#ffffff',.66),
+ A:pxMix(a,'#0c0814',.62),a:pxMix(a,'#0c0814',.28),b:a,c:pxMix(a,'#ffffff',.38),d:pxMix(a,'#ffffff',.72),w:'#ffffff',k:'#1a1420',y:'#fff27a',Y:'#ffb43a'}}
+// ---- formas (coordenadas contínuas 0..16; o pixel x,y tem centro em x+.5,y+.5) ----
+const PXS82={
+ E:(cx,cy,rx,ry,r)=>(x,y)=>{const c=Math.cos(r||0),s=Math.sin(r||0),dx=x-cx,dy=y-cy,u=(dx*c+dy*s)/rx,v=(-dx*s+dy*c)/ry;return u*u+v*v<=1},
+ C:(cx,cy,r)=>(x,y)=>(x-cx)**2+(y-cy)**2<=r*r,
+ P:pts=>(x,y)=>{let ins=false;for(let i=0,j=pts.length-1;i<pts.length;j=i++){const[xi,yi]=pts[i],[xj,yj]=pts[j];if((yi>y)!==(yj>y)&&x<(xj-xi)*(y-yi)/(yj-yi)+xi)ins=!ins}return ins},
+ L:(x1,y1,x2,y2,w)=>(x,y)=>{const dx=x2-x1,dy=y2-y1,t=Math.max(0,Math.min(1,((x-x1)*dx+(y-y1)*dy)/(dx*dx+dy*dy||1))),px=x1+dx*t-x,py=y1+dy*t-y;return px*px+py*py<=w*w},
+ // curva quadrática com espessura variando de w0 a w1 (w pode ser função de t)
+ Q:(x1,y1,cx,cy,x2,y2,w0,w1)=>{const pts=[];for(let i=0;i<=40;i++){const t=i/40,a=(1-t)*(1-t),b=2*(1-t)*t,c=t*t,w=typeof w0==='function'?w0(t):w0+((w1==null?w0:w1)-w0)*t;pts.push([a*x1+b*cx+c*x2,a*y1+b*cy+c*y2,w])}
+  return(x,y)=>pts.some(([px,py,w])=>(px-x)**2+(py-y)**2<=w*w)}};
+function pxQpt(x1,y1,cx,cy,x2,y2,t){const a=(1-t)*(1-t),b=2*(1-t)*t,c=t*t;return[a*x1+b*cx+c*x2,a*y1+b*cy+c*y2]}
+// desenha um modelo numa grade 16×16 de papéis ('.', o, 1..4, A a b c d, w k y Y)
+function pxGrid(def){const G=[];for(let y=0;y<16;y++){G.push([]);for(let x=0;x<16;x++){const X=x+.5,Y=y+.5;let v=def.add.some(f=>f(X,Y));if(v&&def.sub&&def.sub.some(f=>f(X,Y)))v=false;G[y].push(v?'#':'.')}}
+ const inn=(x,y)=>x>=0&&y>=0&&x<16&&y<16&&G[y][x]!=='.';
+ // centro e luz
+ let sx=0,sy=0,n=0;for(let y=0;y<16;y++)for(let x=0;x<16;x++)if(inn(x,y)){sx+=x;sy+=y;n++}const cx=sx/(n||1),cy=sy/(n||1);let R=1;for(let y=0;y<16;y++)for(let x=0;x<16;x++)if(inn(x,y))R=Math.max(R,Math.hypot(x-cx,y-cy));
+ const lx=def.lx==null?-.7:def.lx,ly=def.ly==null?-.7:def.ly,O=[];
+ for(let y=0;y<16;y++){O.push([]);for(let x=0;x<16;x++){if(!inn(x,y)){O[y].push('.');continue}
+  const L=((x-cx)*lx+(y-cy)*ly)/R;let r=L>.32?'3':L<-.3?'1':'2';
+  const eR=!inn(x+1,y)||!inn(x,y+1),eL=!inn(x-1,y)||!inn(x,y-1);if(eR&&!eL)r='1';else if(eL&&!eR&&r!=='1')r='3';
+  if(def.flat)r=def.flat;O[y].push(r)}}
+ // brilho
+ if(!def.nohl){let best=null,bv=-9;for(let y=0;y<16;y++)for(let x=0;x<16;x++)if(O[y][x]==='3'&&inn(x+1,y)&&inn(x,y+1)&&inn(x-1,y)){const v=((x-cx)*lx+(y-cy)*ly)/R;if(v>bv){bv=v;best=[x,y]}}if(best)O[best[1]][best[0]]='4'}
+ const set=(x,y,r,any)=>{x=Math.round(x);y=Math.round(y);if(x<0||y<0||x>15||y>15)return;if(any||inn(x,y))O[y][x]=r};
+ const H={set,inn,cx,cy,O,
+  line:(x1,y1,x2,y2,r,any)=>{const n2=Math.max(Math.abs(x2-x1),Math.abs(y2-y1))*2+1;for(let i=0;i<=n2;i++){const t=i/n2;set(x1+(x2-x1)*t,y1+(y2-y1)*t,r,any)}},
+  q:(x1,y1,qx,qy,x2,y2,r,any)=>{for(let i=0;i<=30;i++){const[a,b]=pxQpt(x1,y1,qx,qy,x2,y2,i/30);set(a,b,r,any)}},
+  dots:(L,r,any)=>L.forEach(([a,b])=>set(a,b,r,any)),
+  each:fn=>{for(let y=0;y<16;y++)for(let x=0;x<16;x++)if(inn(x,y))fn(x,y,O[y][x])}};
+ if(def.ov)def.ov(H);
+ // contorno (4 vizinhos) por fora
+ const F=O.map(r=>r.slice());for(let y=0;y<16;y++)for(let x=0;x<16;x++){if(O[y][x]!=='.')continue;if([[1,0],[-1,0],[0,1],[0,-1]].some(([a,b])=>{const v=(O[y+b]||[])[x+a];return v&&v!=='.'&&v!=='y'&&v!=='g'}))F[y][x]='o'}
+ if(def.post)def.post(F);return F}
+// ---------- modelos ----------
+var PXT82=(()=>{const{E,C,P:PG,L:LN,Q}=PXS82;return{
+ pena:o=>{const x1=2.2,y1=14,cx=6,cy=5,x2=13.6,y2=2.2,hw=t=>Math.max(.35,Math.sin(Math.PI*Math.pow(t,.75))*(o.w||3.1))*(t<.12?.4:1);
+  return{add:[(x,y)=>{for(let i=8;i<=40;i++){const t=i/40,[a,b]=pxQpt(x1,y1,cx,cy,x2,y2,t),w=hw(t);if((a-x)**2+(b-y)**2<=w*w)return true}return false}],
+   sub:[C(9.6,8.6,1.1)],
+   ov:H=>{H.each((x,y,r)=>{let bt=-1,bd=99;for(let i=0;i<=40;i++){const t=i/40,[a,b]=pxQpt(x1,y1,cx,cy,x2,y2,t),d=(a-x-.5)**2+(b-y-.5)**2;if(d<bd){bd=d;bt=t}}
+     if(o.bands)for(const[t0,t1,rr]of o.bands)if(bt>=t0&&bt<t1)H.set(x,y,rr==='b'?(r==='1'?'a':r==='3'||r==='4'?'c':'b'):rr);
+     if(o.tip&&bt>.82)H.set(x,y,r==='1'?'a':'b')});
+    H.q(x1,y1,cx,cy,x2-1.4,y2+1.2,'4');H.q(.8,15.4,1.6,14.6,x1+.4,y1-.2,'3',1)}}},
+ escama:o=>({add:[PG([[8,1.4],[14.2,5],[13.4,10.6],[8,14.6],[2.6,10.6],[1.8,5]])],ov:H=>{H.q(3.4,7,8,4.4,12.6,7,'1');H.q(4.6,10.4,8,8,11.4,10.4,'1');H.q(4.4,6,8,3.2,11,5.2,'3');if(o.glow)H.dots([[8,6],[7,9],[9,11]],'d')}}),
+ placa:o=>({add:[E(8,9.4,7.2,5.2)],sub:[(x,y)=>y>12.6],ov:H=>{for(const yy of[6.6,9,11.2])H.q(1.6,yy+1.4,8,yy-1.2,14.4,yy+1.4,'1');H.dots([[4,8],[8,7],[12,8],[6,10],[10,10]],'3');if(o.spk)H.dots([[3,4],[7,3],[11,3],[13,5]],'2',1);H.line(1.4,12.4,14.6,12.4,'a',1)}}),
+ tufo:o=>({add:[E(8,11,5.6,3.6),...[[3.6,9.4,1.3,5.6,-.5],[6,7.4,1.4,6.8,-.2],[8.6,7,1.4,7,.12],[11,8,1.3,6,.45],[12.6,10.2,1.1,4,.8]].map(([a,b,rx,ry,r])=>E(a,b,rx,ry,r))],
+  ov:H=>{for(const[a,b,c,d]of[[4,12,2.6,5],[6.4,12,5.6,2.6],[9,12,9,2.4],[11.2,12,11.6,4]])H.line(a,b,c,d,'1');H.dots([[6,4],[9,4],[11,6]],'3');if(o.spots)H.dots([[5,9],[9,7],[11,10],[7,11]],'A');if(o.spark)0}}),
+ rabo:o=>({add:[Q(3,13.6,4,4,12.6,3.4,t=>.9+t*2.2)],ov:H=>{H.q(3,13.4,4.6,5.6,11.6,4,'3');for(let i=0;i<5;i++)H.dots([[5+i*1.6,8-i*.9]],'1');H.dots([[12,3],[13,4],[11,2]],'4')}}),
+ esporao:o=>({add:[PG([[11.6,1.2],[12.6,3],[9.8,13.2],[5.6,13.8],[5.8,12.2]])],ov:H=>{H.line(11.2,2.6,7.6,12.2,'3');H.line(5.2,12.6,10.8,12.6,'a',1);H.line(5.2,13.6,10.4,13.6,'A',1)}}),
+ espinho:o=>({add:[LN(2.6,13.4,13.4,2.6,1.15)],ov:H=>{H.each((x,y,r)=>{const t=(x-2.6+13.4-y)/21.6;if(t>.66)H.set(x,y,r==='1'?'A':'a');else if(t<.18)H.set(x,y,'3')});H.line(3,12.6,12.6,3,'3');H.dots([[13,3],[13,2]],'k')}}),
+ folha:o=>({add:[E(8.6,7.4,4.6,7,.72)],sub:o.cut?[C(13.2,10.6,2.6)]:[],ov:H=>{H.line(3,13.6,12.4,2.4,'1');H.line(2,14.6,3.2,13.4,'a',1);for(const[a,b,c,d]of[[6,10.4,4,8],[8,8,6,5.4],[10,5.6,8.6,3.4],[6.6,9.8,9.4,11],[8.6,7.4,11.4,8.4],[10.4,5.2,12.6,6]])H.line(a,b,c,d,'1');if(o.spots)H.dots([[5,6],[11,9],[7,12],[9,4]],'A');H.line(4,11,11,3.6,'3')}}),
+ lanterna:o=>({add:[C(8,9.4,4.6)],ov:H=>{H.each((x,y,r)=>H.set(x,y,r==='1'?'b':r==='2'?'c':r==='3'?'d':'w'));H.dots([[6,7],[7,6]],'w');H.line(5,4.4,11,4.4,'A',1);H.line(6,3.4,10,3.4,'a',1);H.line(6.4,2.4,9.6,2.4,'A',1)},
+  post:F=>{for(const[a,b]of[[2,9],[14,9],[8,15],[3,4],[13,4],[3,14],[13,14]])if(F[b]&&F[b][a]==='.')F[b][a]='y'}}),
+ bigode:o=>({add:[C(3.4,8,1.6),Q(3.6,7.4,9,3,14.4,3.6,.72),Q(3.8,8,9,7.2,14.8,8.2,.72),Q(3.6,8.6,9,12.4,14.2,12.8,.72)],nohl:1,ov:H=>{H.dots([[3,7],[3,8]],'3')}}),
+ muda:o=>({add:[Q(2,12.6,7,1,14,6,1.7),C(14,6,1.9)],ov:H=>{H.each((x,y,r)=>{if((x+y*2)%4===0)H.set(x,y,'A');else if((x*3+y)%5===0)H.set(x,y,'4')});H.dots([[14,5],[15,6]],'1')}}),
+ la:o=>({add:[C(5,9.6,3.4),C(9,7.6,3.8),C(11.6,10.6,3),C(7.6,11.6,3)],ov:H=>{H.dots([[4,8],[8,6],[11,9],[7,10],[9,5]],'4');H.dots([[6,11],[10,12],[12,11]],'1')}}),
+ rabiola:o=>({add:[Q(1.4,14,6,10,14.4,1.6,.45),...[[3.4,11.8],[6.2,9.4],[9.2,6.8],[12,4.2]].map(([a,b])=>PG([[a-1.8,b-1.6],[a+1.8,b+1.6],[a+1.8,b-1.6],[a-1.8,b+1.6]]))],nohl:1,
+  ov:H=>{const L=[[3.4,11.8,'b'],[6.2,9.4,'2'],[9.2,6.8,'b'],[12,4.2,'2']];for(const[a,b,r]of L)H.each((x,y,v)=>{if(Math.abs(x+.5-a)<2.2&&Math.abs(y+.5-b)<2.2)H.set(x,y,r==='b'?(v==='1'?'a':v==='3'?'c':'b'):v)})}}),
+ pinhao:o=>({add:[E(8,8.8,3.4,6,.42)],ov:H=>{H.each((x,y,r)=>{if(y<5&&x>8)H.set(x,y,r==='1'?'a':'b')});H.line(6,12,10,4,'1');H.dots([[6,6],[7,5]],'3')}}),
+ frutas:o=>({add:[C(5.4,10,3.4),C(10.6,10.4,3.4),C(8,5.8,3)],ov:H=>{H.dots([[4,8],[9,9],[7,4]],'4');H.dots([[4,9],[10,9],[7,5]],'3');H.line(8,2.6,9.6,1.2,'a',1)}}),
+ garra:o=>({add:[(x,y)=>C(6,10.6,8.2)(x,y)&&!C(3.2,13.4,8)(x,y)&&y<13.6&&x>1.4],ov:H=>{H.each((x,y,r)=>{if(y>10.4&&x<9)H.set(x,y,r==='1'?'A':'a')});H.dots([[13,4],[12,3]],'4')}}),
+ cristal:o=>({add:[PG([[8,1],[12.6,5],[11.6,13.8],[4.4,13.8],[3.4,5]])],ov:H=>{H.line(8,1.6,8,13.4,'4');H.each((x,y,r)=>{if(x>8)H.set(x,y,r==='3'?'2':r==='2'?'1':r)});H.line(4,5.4,12,5.4,'3');if(o.side)H.dots([[2,9],[2,10],[1,11],[3,11],[2,12]],'b',1)}}),
+ torrao:o=>({add:[PG([[2.4,10],[4,6.4],[7.6,5],[11.6,5.6],[14,8.6],[13.6,12.6],[9,14],[3.6,13.4]])],ov:H=>{H.dots([[5,9],[9,8],[11,11],[6,12],[12,8]],'1');H.dots([[4,8],[8,7],[10,6]],'3');if(o.bits)H.dots([[7,10],[10,10],[4,11]],'b');if(o.sprout){H.line(8,5,8,2,'a',1);H.dots([[7,2],[9,1],[6,1],[10,2]],'c',1)}}}),
+ fieira:o=>({add:[E(8,9.6,5.4,4.2),Q(13,9,15,4,11.6,1.6,.55)],ov:H=>{for(let i=0;i<4;i++)H.q(3,7+i*1.8,8,5+i*1.8,13,7+i*1.8,i%2?'1':'3');H.dots([[11,2]],'4',1)}}),
+ lasca:o=>({add:[PG([[2,9.6],[6.6,3],[14,4.6],[12.6,9.4],[5.4,13.6]])],ov:H=>{for(const d of[0,2,4])H.line(4+d,10-d*.2,12.6,5.4+d,'1');H.dots([[7,5],[9,5]],'3')}}),
+ ferrao:o=>({add:[LN(2.6,13.4,9,7,1.3),PG([[14.6,1.4],[7.4,5],[11,8.6]]),PG([[9.4,5.6],[5.4,6.2],[8.2,9.2]]),PG([[7.2,8],[3.6,8.6],[6.4,11.4]])],ov:H=>{H.line(13.4,2.6,3.4,12.6,'3');H.dots([[2,14],[3,14],[2,13]],'a',1)}}),
+ musgo:o=>({add:[E(8,10.6,6.4,3.8),C(5,8.6,2.4),C(9.4,7.6,2.8),C(12,9,2.2)],ov:H=>{H.each((x,y,r)=>{if(y>11)H.set(x,y,r==='3'?'2':'a')});H.dots([[5,6],[9,5],[12,7],[7,7]],'4');for(const[a,b]of[[4,5],[8,4],[11,5]]){H.set(a,b-1,'c',1);H.set(a,b-2,'c',1)}}}),
+ galho:o=>({add:[LN(2.4,13.6,12.6,3.4,1.2),LN(7.4,8.6,3.6,4,.9),LN(10.2,6,13.6,8.4,.85)],nohl:1,ov:H=>{H.line(2.4,13,12,3.4,'3');if(!o.seco)for(const[a,b]of[[3,3],[4,3],[13,9],[14,9],[13,8]])H.set(a,b,'b',1)}}),
+ brasa:o=>({add:[E(8,10.4,5.6,4)],ov:H=>{H.line(4,10,7,12,'Y');H.line(7,12,11,9,'Y');H.line(9,10,12,12,'Y');H.dots([[7,12],[11,9]],'y')},
+  post:F=>{for(const[a,b,r]of[[7,5,'Y'],[8,4,'Y'],[8,3,'y'],[9,5,'Y'],[6,6,'Y'],[10,6,'Y'],[8,5,'y'],[8,6,'y'],[7,6,'y'],[9,6,'y']])if(F[b][a]==='.'||F[b][a]==='o')F[b][a]=r}}),
+ gota:o=>({add:[(x,y)=>C(8,10,4.4)(x,y)||PG([[8,1.2],[11.8,8],[4.2,8]])(x,y)],ov:H=>{H.dots([[6,8],[6,9],[7,7]],'4');H.dots([[6,10]],'w');if(o.star)H.dots([[9,11],[10,10],[11,11],[10,12]],'c')}}),
+ perola:o=>({add:[C(8,8.6,5)],ov:H=>{H.dots([[6,6],[6,7],[7,6]],'w');H.dots([[10,11],[9,12]],'c')}}),
+ castanha:o=>({add:[PG([[8,2],[13.6,11],[12.4,13.8],[3.6,13.8],[2.4,11]])],ov:H=>{H.line(8,3,8,13,'1');H.line(5.6,7,4,13,'1');H.line(10.4,7,12,13,'1');H.dots([[7,5],[6,8]],'3')}}),
+ dente:o=>({add:[Q(6,2,4.2,9,7,14.4,2.1,1.4),Q(10.2,2,12,9,9.4,14.4,2.1,1.4)],ov:H=>{H.each((x,y,r)=>{if(y>10)H.set(x,y,r==='1'?'a':'b')})}}),
+ pinca:o=>({add:[Q(3.4,14,.6,6,6,3,1.7,.5),Q(12.6,14,15.4,6,10,3,1.7,.5),E(8,13.6,4.4,1.5)],ov:H=>{H.dots([[2,12],[13,12],[3,11],[12,11]],'1')}}),
+ asa:o=>({add:[E(8.4,7.6,3.4,7,-.62)],flat:'3',ov:H=>{H.line(3,13.6,13,2.4,'1');H.line(6,10.4,4,6,'2');H.line(8,7.6,7,3.6,'2');H.line(9,7,12,8.4,'2');H.line(7,9.6,10,11,'2');H.each((x,y,r)=>{if(r==='3'&&(x+y)%3===0)H.set(x,y,'4')})}}),
+ bolsinha:o=>({add:[E(8,10.4,5,4),PG([[5.6,7],[10.4,7],[11.4,4],[4.6,4]])],ov:H=>{H.line(5,6.4,11,6.4,'A');H.dots([[4,3],[12,3],[8,3]],'2',1)},
+  post:F=>{for(const[a,b]of[[2,2],[14,3],[13,1],[1,6],[15,8]])if(F[b][a]==='.')F[b][a]='y'}}),
+ orbe:o=>({add:[C(8,8.6,5.6)],ov:H=>{if(o.rim)H.each((x,y,r)=>{if(Math.hypot(x+.5-8,y+.5-8.6)>4.4)H.set(x,y,r==='1'?'A':r==='3'?'c':'a')});if(o.pupil){H.dots([[8,8],[8,9],[8,10],[7,9],[9,9]],'k')}else H.dots([[6,6],[6,7],[7,6]],'w');if(o.glow)H.dots([[9,10],[10,9],[8,11]],'d')}}),
+ flor:o=>({add:[...[0,1,2,3,4].map(i=>{const a=-Math.PI/2+i*1.2566;return C(8+Math.cos(a)*4,8.4+Math.sin(a)*4,2.9)})],ov:H=>{H.each((x,y,r)=>{const d=Math.hypot(x+.5-8,y+.5-8.4);if(d<2)H.set(x,y,d<1.2?'c':'b')})}}),
+ presa:o=>({add:[Q(4,2,13,4.6,9.6,14,2.6,.5)],ov:H=>{H.each((x,y,r)=>{if(y<4)H.set(x,y,r==='1'?'a':'b')})}}),
+ barbatana:o=>({add:[PG([[2,13.6],[6,2],[9,3.4],[14,13.6]])],ov:H=>{for(const a of[4.4,7,9.6,12])H.line(a-1.2,4+(a-4)*.2,a,13,'1');H.line(2,13,14,13,'A',1)}}),
+ floco:o=>({add:[0,1,2].map(i=>{const a=i*Math.PI/3;return LN(8-Math.cos(a)*6.6,8-Math.sin(a)*6.6,8+Math.cos(a)*6.6,8+Math.sin(a)*6.6,.8)}),nohl:1,flat:'3',ov:H=>{H.dots([[8,8]],'w');for(let i=0;i<6;i++){const a=i*Math.PI/3;H.set(8+Math.cos(a)*5,8+Math.sin(a)*5,'4')}}}),
+ papel:o=>({add:[PG([[8,1],[14,7],[8,13],[2,7]])],ov:H=>{H.line(8,1.6,8,12.4,'1');H.line(2.6,7,13.4,7,'1');H.each((x,y,r)=>{if((x<8)===(y<7))H.set(x,y,r==='1'?'a':r==='3'?'c':'b')})},
+  post:F=>{for(const[a,b]of[[8,14],[9,15],[7,15]])F[b][a]='o'}}),
+ bico:o=>({add:[PG([[2.4,4],[10,2.6],[14.4,6],[14,11.6],[11.4,9],[9,8.6],[2.4,9]])],ov:H=>{H.line(2.6,6.6,13,6.6,'A');H.each((x,y,r)=>{if(y>7)H.set(x,y,r==='3'?'2':r==='2'?'1':r)});H.dots([[4,4],[5,4]],'4')}}),
+ anel:o=>({add:[E(8,9,6.4,4.6)],sub:[E(8,8.4,3.2,1.8)],ov:H=>{for(let i=0;i<8;i++){const a=i/8*6.283;H.set(8+Math.cos(a)*5,9+Math.sin(a)*3.7,'1')}}}),
+ geodo:o=>({add:[E(8,9,6.6,5.6)],ov:H=>{H.each((x,y,r)=>{if(Math.hypot((x+.5-8)/4,(y+.5-8.6)/3)<1)H.set(x,y,((x+y)%2)?'b':'c')});H.dots([[7,8],[9,7]],'d')}}),
+ frasco:o=>({add:[C(8,10,4.8),PG([[6.4,6],[9.6,6],[9.6,2.4],[6.4,2.4]])],ov:H=>{H.each((x,y,r)=>{if(y>=8)H.set(x,y,r==='1'?'a':r==='3'?'c':r==='4'?'d':'b');else if(y>=3&&y<6)H.set(x,y,r==='1'?'2':'4')});H.line(6,2,10,2,'Y',1);H.line(6,1,10,1,'Y',1);H.dots([[6,9],[6,10]],'w');if(o.swirl)H.q(5,11,8,8,11,11,'d');if(o.sym)H.dots([[8,10],[8,11],[9,12],[7,12]],'w')}}),
+ amuleto:o=>({add:[C(8,9.4,5.4)],ov:H=>{H.each((x,y,r)=>{const d=Math.hypot(x+.5-8,y+.5-9.4);if(d<3)H.set(x,y,d<1.4?'d':r==='1'?'a':'b')});H.dots([[6,9],[7,8]],'c')},
+  post:F=>{for(const[a,b]of[[7,2],[8,2],[9,2],[6,3],[10,3]])F[b][a]='o';F[3][7]=F[3][9]='.';F[3][8]='.'}}),
+ concha:o=>({add:[(x,y)=>C(8,12,7.4)(x,y)&&y<12.6,PG([[6,12],[10,12],[9.4,14.6],[6.6,14.6]])],ov:H=>{for(let i=-3;i<=3;i++)H.line(8,12,8+i*2.2,5.6+Math.abs(i)*.9,'1');H.dots([[6,7],[5,8]],'4')}}),
+ pinha:o=>({add:[E(8,8.6,4.6,6.2)],ov:H=>{H.each((x,y,r)=>{if((x+y)%3===0)H.set(x,y,'1');else if((x-y+30)%3===0&&r!=='1')H.set(x,y,'3')});H.line(8,1,8,2.6,'a',1)}}),
+ alga:o=>({add:[Q(4,14.6,1,8,5,1.4,1.2,.6),Q(8,14.6,11,8,8,2,1.3,.6),Q(12,14.6,14.6,10,12.6,4.6,1.1,.5)],ov:H=>{H.q(4,14,1.6,8,5,2,'3');H.q(8,14,10.4,8,8,3,'3')}}),
+}})();
+// itens: [modelo, cor, cor de destaque, opções]
+var ITX={
+ 'Tufo de Musgo':['musgo','#5a9a42','#9ad86a'],'Placa de Tatu':['placa','#b0906c','#7a5a3a'],'Escama de Boto':['escama','#e0a8b4','#ffd6de'],
+ 'Pena de Bem-te-vi':['pena','#8a6238','#f2d23a',{bands:[[.45,.78,'b']],tip:1}],'Rabo de Cutia':['rabo','#b07a42'],'Esporão de Quero-quero':['esporao','#d8d0bc','#c83a2a'],
+ 'Folha de Saúva':['folha','#6aa040','#3a6a2a',{cut:1}],'Lanterninha':['lanterna','#f0e070','#e8c020'],'Tufo Elétrico':['tufo','#f0c040','#fff27a',{spark:1}],
+ 'Espinho de Ouriço':['espinho','#d8ccc0','#4a3a30'],'Folha Pintada':['folha','#4a8a52','#2a4a2a',{spots:1}],'Bigode de Jaguatirica':['bigode','#ece4d4'],
+ 'Muda de Jararaca':['muda','#c0a878','#6a5038'],'Escama de Pirarucu':['escama','#c0583a','#ffb08a'],'Lã Gelada':['la','#e8f2fa','#9ad0f0'],
+ 'Rabiola Perdida':['rabiola','#8a7aa8','#e04a6a'],'Pelo de Capivara':['tufo','#9a7050'],'Crina de Lobo-guará':['tufo','#d0782c','#2a1a10'],
+ 'Pinhão':['pinhao','#9a5a32','#d8b080'],'Jabuticaba':['frutas','#3a2440','#4a8a3a'],'Pena de Beija-flor':['pena','#2a9a7a','#6a4ad8',{bands:[[.55,1,'b']],w:2.6}],
+ 'Pena de Arara':['pena','#d83a2a','#2a6ad8',{bands:[[.62,.8,'#'],[.8,1,'b']]}],'Garra de Onça':['garra','#f0e0c0','#8a6a3a'],'Pena de Urutau':['pena','#8a7458','#4a3a2a',{bands:[[.3,.4,'b'],[.55,.65,'b'],[.8,.9,'b']]}],
+ 'Húmus':['torrao','#5a3a22','#8a6040',{sprout:1}],'Lasca de Ametista':['cristal','#9a6ad0'],'Barro de Cupim':['torrao','#c07a48','#e8b080',{bits:1}],
+ 'Fieira de Pião':['fieira','#d0b078'],'Escama de Jacaré':['placa','#5a805a','#2a4a2a',{spk:1}],'Lasca de Carranca':['lasca','#9a6a42'],
+ 'Bigode de Peixe-boi':['bigode','#a8b4c0'],'Ferrão de Arraia':['ferrao','#8a7a6a','#3a2a2a'],'Garra de Tamanduá':['garra','#6a5a4a','#2a201a'],
+ 'Escama de Boitatá':['escama','#ff9a3a','#fff0a0',{glow:1}],'Escama de Dracaimon':['escama','#4a6ae8','#bfe0ff',{glow:1}]};
+// drops novos: 2º e 3º estágio de cada família
+var DROPX={
+ 'Ramaguiça':['Galho Retorcido','galho','#7a5a3a','#5aa040',140],'Mapinguaçu':['Pelo de Mapinguari','tufo','#5a3a2a','#2a1a12',320],
+ 'Magmatu':['Brasa Viva','brasa','#4a2a24','#ff7a2a',150],'Vulcatu':['Lava Endurecida','cristal','#5a2a26','#ff5a2a',340,{side:1}],
+ 'Botorrente':['Gota Encantada','gota','#4aa8f0','#d8a8ff',150,{star:1}],'Botencanto':['Pérola do Boto','perola','#f4e8f0','#c8a0d8',360],
+ 'Bentevi':['Pena Amarela','pena','#f0c830','#7a5a2a',90,{bands:[[0,.25,'b']]}],'Bentempesta':['Pena de Tempestade','pena','#6a7a9a','#fff27a',260,{bands:[[.4,.5,'b'],[.7,.8,'b']]}],
+ 'Cutião':['Castanha Roída','castanha','#8a5a32','#c89060',100],'Cutiaçu':['Dente de Cutia','dente','#f4ead8','#e89a3a',240],
+ 'Queroquero':['Pena de Quero-quero','pena','#9aa0a8','#2a2a34',110,{bands:[[.66,1,'b']]}],'Queroguerra':['Esporão de Guerra','esporao','#e8d8c0','#d82a2a',260],
+ 'Cortaúva':['Mandíbula de Saúva','pinca','#7a3a24'],'Tanajura':['Asa de Tanajura','asa','#c8dce8'],
+ 'Vagalumi':['Pó de Vagalume','bolsinha','#8a6a3a','#fff27a',130],'Faroluz':['Lente de Farol','orbe','#fff2a0','#c8a030',300,{rim:1,glow:1}],
+ 'Choquemico':['Pelo Estático','tufo','#e8d050','#fff27a',140],'Trovaleão':['Juba Trovejante','tufo','#f0a020','#fff27a',320],
+ 'Espinhoso':['Espinho Duplo','espinho','#c8bca8','#3a2a24',110],'Ouriçaço':['Couraça de Ouriço','placa','#8a7a6a','#4a3a30',280,{spk:1}],
+ 'Folhudo':['Folha Larga','folha','#3a9a4a','#2a5a2a',100],'Ninguempode':['Flor de Comigo-ninguém-pode','flor','#3a8a3a','#f0f0e0',280],
+ 'Jaguatira':['Garra Pintada','garra','#e8c890','#3a2a1a',130],'Jaguasombra':['Presa Sombria','presa','#d8d0e0','#4a2a6a',300],
+ 'Jararosca':['Presa de Jararaca','presa','#f0ead8','#6a8a3a',120],'Jararrei':['Escama Real','escama','#8a9a3a','#f0d040',300,{glow:1}],
+ 'Pirarucão':['Barbatana de Pirarucu','barbatana','#b0583a','#ffb08a',130],'Piracouraça':['Couraça de Pirarucu','placa','#9a3a2a','#ffb08a',300],
+ 'Lhamaneve':['Floco Eterno','floco','#bfe4ff'],'Guanacristal':['Cristal de Gelo','cristal','#8ad0f0','#e8f8ff',300,{side:1}],
+ 'Rabiolume':['Linha Assombrada','fieira','#b0a8d0','#6a5a9a',130],'Papagaiassombro':['Papel de Pipa','papel','#7a6aa8','#e04a6a',290],
+ 'Capifada':['Flor do Brejo','flor','#d880c0','#ffe060',120],'Capivalma':['Pó de Fada','bolsinha','#c890e0','#fff6ff',300],
+ 'Guarabrasa':['Pelo Chamuscado','tufo','#a85a2a','#2a1a10',130],'Guaraqueima':['Cinza Quente','brasa','#3a3434','#ff6a2a',300],
+ 'Pinheirão':['Pinha','pinha','#8a5a32','#4a8a3a',120],'Araucaneve':['Resina de Araucária','gota','#e8a030','#fff0a0',300],
+ 'Jabucacho':['Casco Rachado','placa','#6a7a3a','#3a4a22',130],'Jabuteira':['Semente de Jabuticabeira','frutas','#5a3a4a','#4a8a3a',280],
+ 'Zumbeijo':['Néctar','gota','#f088b0','#fff0a0',120],'Relampejo':['Pena Faiscante','pena','#2ab0c0','#fff27a',300,{bands:[[.5,.7,'b']],w:2.6}],
+ 'Aramente':['Pena Azul de Arara','pena','#2a6ad8','#f0d040',140,{bands:[[.8,1,'b']]}],'Aravidente':['Bico de Arara','bico','#3a3438','#d8d0c8',320],
+ 'Onçapinta':['Pelo Pintado','tufo','#e0b050','#3a2a1a',140,{spots:1}],'Onçatroz':['Presa de Onça','presa','#f4ecd8','#c89040',340],
+ 'Urutau':['Galho Seco','galho','#8a7458','#8a7458',110,{seco:1}],'Luarutau':['Olho de Lua','orbe','#e8ecf8','#8ab0e8',300,{glow:1}],
+ 'Minhocão':['Terra Fértil','torrao','#4a3424','#6aa040',100,{sprout:1}],'Minhocuçu':['Anel de Minhocuçu','anel','#d0887a','#8a4a3a',260],
+ 'Drusita':['Geodo','geodo','#8a8478','#b07ae0',150],'Ametitã':['Cristal de Ametista','cristal','#b07ae0','#e8d0ff',340,{side:1}],
+ 'Cupimonte':['Torrão de Cupinzeiro','torrao','#b06a3a','#e8a060',110,{bits:1}],'Cupinzeirão':['Asa de Siriri','asa','#e8e0c8',250],
+ 'Rodopião':['Ponta de Pião','esporao','#a8b0b8','#6a4a2a',130],'Furacião':['Redemoinho Engarrafado','frasco','#c8e8f0','#8ad0f0',320,{swirl:1}],
+ 'Jacadraco':['Dente de Jacaré','presa','#f0ead0','#5a805a',150],'Jacaraçu':['Couro de Jacaraçu','placa','#3a6a4a','#1a3a22',360,{spk:1}],
+ 'Carrancuda':['Lasca de Cedro','lasca','#b07a48',120],'Carrancão':['Olho de Carranca','orbe','#f0e0c0','#a02a2a',300,{rim:1,pupil:1}],
+ 'Boiamar':['Alga Marinha','alga','#2a9a7a',120],'Sereboia':['Concha da Sereia','concha','#f0b8a8','#ffe8d8',320],
+ 'Arraiá':['Barbatana de Arraia','barbatana','#7a6a8a','#c8b8d8',130],'Arraiaçu':['Ferrão Real','ferrao','#c8a040','#5a3a1a',320],
+ 'Tamanduelo':['Pelo de Tamanduá','tufo','#6a5a48','#2a201a',130],'Bandeiraço':['Cauda de Bandeira','rabo','#4a3a30',300]};
+for(const k in DROPX){const d=DROPX[k],st=d.slice(3).filter(v=>typeof v==='string'),nu=d.slice(3).filter(v=>typeof v==='number'),op=d.slice(3).find(v=>v&&typeof v==='object');
+ DROPX[k]={n:d[0],t:d[1],c:d[2],a:st[0]||d[2],pr:nu[0]||120,o:op||{}};ITX[d[0]]=[d[1],d[2],st[0]||d[2],op||{}]}
+var PXC82={};
+function pxIcon(n,ns){const key=n+(ns?'|ns':'');if(PXC82[key])return PXC82[key];const it=ITX[n];if(!it)return null;const[t,b,a,o]=it,def=PXT82[t](o||{}),G=pxGrid(def),pal=pxPal(b,a),c=document.createElement('canvas');c.width=c.height=64;const x=c.getContext('2d');
+ if(!ns){x.fillStyle='rgba(10,8,20,.26)';x.beginPath();x.ellipse(32,60,20,3.6,0,0,6.3);x.fill()}
+ for(let y=0;y<16;y++)for(let X=0;X<16;X++){const r=G[y][X];if(r==='.'||r==='#')continue;let col=pal[r];if(!col&&r[0]==='#')col=r;if(!col)continue;if(r==='y'){x.fillStyle='rgba(255,242,122,.85)'}else x.fillStyle=col;x.fillRect(X*4,y*4-2,4,4)}
+ return PXC82[key]=c.toDataURL()}
+// essências e relíquias: frasco e amuleto em pixel art, com a cor do tipo da evolução
+function pxEvo(n){if(typeof EVI!=='object')return null;for(const k in EVI)if(EVI[k]===n){const t=(SP[k]&&SP[k].t)||['normal'],col=(typeof TYC18==='object'&&TYC18[t[t.length-1]])||'#a8a8b4';return/^Relíquia/.test(n)?['amuleto','#e8b830',col]:['frasco','#cfd8e8',col,{}]}return null}
+if(typeof ico==='function'){const _pxIco=ico;ico=function(n,ns){try{if(!ITX[n]){const e=pxEvo(n);if(e)ITX[n]=e}if(ITX[n]){const r=pxIcon(n,ns);if(r)return r}}catch(e){}return _pxIco.apply(this,arguments)}}
+// ---------- drops novos: cada evolução tem o seu (2º estágio 45%, 3º estágio 35%); evoluções às vezes soltam o item da família ----------
+(function(){if(typeof PR!=='object')return;for(const k in DROPX){const d=DROPX[k];PR[d.n]=d.pr;if(typeof ICN==='object')ICN[d.n]=[d.t,d.c]}})();
+function dropFam(n){try{const L=MLINE[n];return L?L.n:null}catch(e){return null}}
+if(typeof drops==='function'){const _pxDrops=drops;drops=function(w){const o=_pxDrops.apply(this,arguments);try{if(!w||w.boss)return o;const st=typeof MSTAGE==='object'?MSTAGE[w.n]:0,d=DROPX[w.n],add=n=>{const lo=invAdd(n,1);o.push(lo?n+' (inventário cheio!)':n)};
+ if(d&&Math.random()<(st===2?.35:.45))add(d.n);
+ const F=dropFam(w.n);if(F&&st>=1){if(Math.random()<.25&&DROP[F[0]])add(DROP[F[0]][0]);if(st===2&&Math.random()<.15&&DROPX[F[1]])add(DROPX[F[1]].n)}}catch(e){}return o}}
+
+// ===== Kaimon GT v82: itens no chão + Seu Bené, o Gari =====
+// • No inventário, além de Descartar, dá para "Jogar no chão" (1 ou tudo). O item fica no chão com a MESMA figura do ícone
+//   e qualquer um pode pegar de volta com o botão de ação (de pé em cima ou de frente para ele).
+// • Dentro das casas o que está no chão fica para sempre. Fora delas, toda hora cheia (pelo relógio de verdade) o Gari passa
+//   varrendo: se você estiver no mapa, ele aparece, anda até cada item, varre (poeirinha) e vai embora. Um minuto antes ele avisa.
+var CH={img:{},gari:null,av:-1};
+function cgKey(i){return String(i==null?cur:i)}
+function cgList(i,mk){G.chao=G.chao||{};const k=cgKey(i);if(!G.chao[k]&&mk)G.chao[k]=[];return G.chao[k]||null}
+function cgImg(n){let im=CH.img[n];if(!im){im=new Image();try{im.src=ico(n,true)}catch(e){}CH.img[n]=im}return im}
+function cgAt(x,y){const L=cgList();return L?L.filter(q=>q[0]===x&&q[1]===y):[]}
+function cgPut(x,y,n,c){const L=cgList(cur,1);let q=L.find(q=>q[0]===x&&q[1]===y&&q[2]===n);if(q)q[3]+=c;else{if(L.length>=120)L.shift();L.push([x,y,n,c,Date.now()])}try{save()}catch(e){}}
+function cgCasa(i){const m=M[i==null?cur:i];return!!(m&&m.in)}
+function cgProxHora(){const d=new Date(Math.ceil(Date.now()/3.6e6)*3.6e6);return String(d.getHours()).padStart(2,'0')+':00'}
+// jogar no chão a partir do inventário
+function cgJoga(q){const S=IS&&islot(IS.c,IS.b,IS.i);if(!S||S.t==='b')return;if(mode==='bt'||(mode!=='walk'&&!(typeof BGO!=='undefined'&&BGO)))return;
+ const n=S.n,k=Math.min(q,S.c);S.c-=k;if(S.c<=0)isset(IS.c,IS.b,IS.i,null);if(!islot(IS.c,IS.b,IS.i))IS=null;cgPut(P.x,P.y,n,k);play&&play('item');
+ toast(cgCasa()?`⬇️ ${k>1?k+'× ':''}${n} no chão. Dentro de casa ele fica aí até você pegar.`:`⬇️ ${k>1?k+'× ':''}${n} no chão. 🧹 O Gari varre a rua às ${cgProxHora()}.`);bag();hud()}
+const _chBag=bag;bag=function(){const r=_chBag.apply(this,arguments);try{const ui=$('ui'),S=IS&&islot(IS.c,IS.b,IS.i);if(ui&&S&&S.t!=='b'&&!ui.querySelector('.chj')){
+  const b=[...ui.querySelectorAll('button')].find(x=>/Descartar tudo/.test(x.textContent));if(b)b.insertAdjacentHTML('afterend',`<span class="chj">${btn('⬇️ Jogar 1 no chão','cgJoga(1)')}${S.c>1?btn('⬇️ Jogar tudo no chão','cgJoga(1e9)'):''}</span>`)}}catch(e){}return r};
+// pegar: de pé em cima ou de frente
+function cgPega(x,y){const L=cgList();if(!L)return false;const H=L.filter(q=>q[0]===x&&q[1]===y);if(!H.length)return false;const got=[];let full=0;
+ for(const q of H){const lo=invAdd(q[2],q[3]),k=q[3]-lo;if(k>0)got.push((k>1?k+'× ':'')+q[2]);if(lo){q[3]=lo;full=1}else L.splice(L.indexOf(q),1)}
+ try{play('item')}catch(e){}try{save()}catch(e){}hud();CH.puf.push({x,y,t:performance.now()});
+ if(got.length)toast('✋ Pegou '+got.join(', ')+(full?' · inventário cheio!':''));else toast('Inventário cheio!');return true}
+const _chAct=act;act=function(){try{if(mode==='walk'&&!P.sit){const fx=P.x+DX[P.d],fy=P.y+DY[P.d],e=ents().find(o=>o.x===fx&&o.y===fy);if(!e){if(cgAt(fx,fy).length)return cgPega(fx,fy);if(cgAt(P.x,P.y).length)return cgPega(P.x,P.y)}}}catch(x){}return _chAct.apply(this,arguments)};
+CH.puf=[];
+// desenho: no chão, com a mesma figura do ícone; uma setinha quando dá para pegar
+RH0.push(function(cx,cy,t){try{const L=cgList();if(!L||!L.length)return;const cw=VW*16,ch=VH*16,now=performance.now(),fx=P.x+DX[P.d],fy=P.y+DY[P.d],seen={};
+ for(const q of L){const X=q[0]*16-cx,Y=q[1]*16-cy;if(X<-16||Y<-16||X>cw||Y>ch)continue;const k=q[0]+','+q[1],i=seen[k]=(seen[k]||0)+1;if(i>3)continue;
+  const ox=[0,-3,3][i-1],oy=[0,-2,-1][i-1],im=cgImg(q[2]);g.fillStyle='rgba(0,0,0,.22)';g.beginPath();g.ellipse(X+8+ox,Y+14+oy,5,1.6,0,0,6.3);g.fill();
+  if(im.complete&&im.naturalWidth)g.drawImage(im,X+ox,Y-1+oy,16,16);
+  if(q[3]>1&&i===1){g.save();g.font='bold 5px sans-serif';g.textAlign='right';g.lineWidth=1.6;g.strokeStyle='#000';g.strokeText(q[3]>999?'999+':q[3],X+16,Y+15);g.fillStyle='#fff';g.fillText(q[3]>999?'999+':q[3],X+16,Y+15);g.restore()}
+  // brilhinho de vez em quando
+  if(((now/700+q[0]*3+q[1]*7)|0)%6===0){g.fillStyle='rgba(255,255,255,.85)';g.fillRect(X+11+ox,Y+3+oy,1,3);g.fillRect(X+10+ox,Y+4+oy,3,1)}}
+ const tgt=cgAt(fx,fy).length&&!ents().some(o=>o.x===fx&&o.y===fy)?[fx,fy]:cgAt(P.x,P.y).length?[P.x,P.y]:null;
+ if(tgt&&mode==='walk'){const X=tgt[0]*16+8-cx,Y=tgt[1]*16-cy-4+Math.sin(now/180)*1.2;g.fillStyle='#fff';g.strokeStyle='#1a1420';g.lineWidth=.8;g.beginPath();g.moveTo(X-2.6,Y-3);g.lineTo(X+2.6,Y-3);g.lineTo(X,Y);g.closePath();g.fill();g.stroke()}
+ for(let i=CH.puf.length-1;i>=0;i--){const p=CH.puf[i],u=(now-p.t)/450;if(u>1){CH.puf.splice(i,1);continue}const X=p.x*16+8-cx,Y=p.y*16+8-cy;g.fillStyle='rgba(255,255,255,'+(.7*(1-u))+')';for(let k=0;k<5;k++){const a=k*1.256;g.fillRect(X+Math.cos(a)*u*9,Y+Math.sin(a)*u*6-u*4,1.4,1.4)}}}catch(e){}});
+// ---------- o Gari ----------
+HUM34.gari82=H36({key:'gari82',sk:'#8a5a3a',hr:'#2a1a12',sh:'#f07a1a',s2:'#f6e04a',pa:'#e86a14',sw:'#2a2a2a',cap:'#f07a1a',bc:'#f6e04a',x:'cap'});LBL.gari82='Seu Bené, o Gari';
+const GARIFALA=['Rua limpa é rua feliz!','Item no chão eu recolho, viu? Toda hora cheia!','Opa, licença, tô varrendo!','Dentro de casa eu não mexo, pode ficar tranquilo.','Achou bagunça? Me chama que eu varro!'];
+function cgPath(sx,sy,tx,ty){const key=(x,y)=>y*W+x,prev=new Map([[key(sx,sy),-1]]),q=[[sx,sy]],pm=M[cur].p||{};let n=0,h=0;
+ while(h<q.length&&n<8000){const[x,y]=q[h++];n++;if(x===tx&&y===ty){const out=[];let k=key(x,y);while(k!==key(sx,sy)){out.unshift([k%W,(k/W)|0]);k=prev.get(k)}return out}
+  for(const[dx,dy]of[[1,0],[-1,0],[0,1],[0,-1]]){const nx=x+dx,ny=y+dy,k=key(nx,ny);if(prev.has(k))continue;if(nx<1||ny<1||nx>=W-1||ny>=H-1)continue;const v=T[ny][nx];if(v==null||SOLID.has(v)||v===2||v===59||pm[nx+','+ny])continue;prev.set(k,key(x,y));q.push([nx,ny])}}
+ return null}
+function cgHora(){return Math.floor(Date.now()/3.6e6)}
+function cgVarre(){// limpa todos os mapas de fora; no mapa atual o Gari aparece e varre andando
+ G.chao=G.chao||{};let n=0,here=null;for(const k of Object.keys(G.chao)){const i=+k;if(cgCasa(i))continue;const L=G.chao[k];if(!L||!L.length){delete G.chao[k];continue}
+  if(i===cur&&mode!=='bt'&&!M[cur].in){here=L;continue}n+=L.length;delete G.chao[k]}
+ if(here&&here.length)gariVem();else if(n)toast('🧹 O Gari passou e varreu os itens deixados na rua.');try{save()}catch(e){}}
+function gariVem(){if(CH.gari)return;const L=cgList();if(!L||!L.length)return;let st=null;
+ for(let r=7;r<14&&!st;r++)for(let k=0;k<24&&!st;k++){const a=k/24*6.283,x=Math.round(P.x+Math.cos(a)*r),y=Math.round(P.y+Math.sin(a)*r*.6);if(x>1&&y>1&&x<W-1&&y<H-1&&free(x,y)&&cgPath(x,y,P.x,P.y))st=[x,y]}
+ if(!st){delete G.chao[cgKey()];toast('🧹 O Gari varreu os itens do chão.');return}
+ const e={n:'gari82',nm:'Seu Bené, o Gari',h:1,x:st[0],y:st[1],px:st[0],py:st[1],fx:st[0],fy:st[1],d:2,fn:()=>{e.d=(P.d+2)%4;ok('<b>Seu Bené, o Gari:</b> '+GARIFALA[Math.random()*GARIFALA.length|0])}};
+ CH.gari={e,m:cur,path:null,alvo:null,st:'anda',t0:performance.now(),say:{t:'🧹 Hora da varrição!',until:performance.now()+3500},sw:0};NPC.push(e);toast('🧹 Seu Bené, o Gari, chegou para varrer os itens do chão!')}
+function gariFim(){const G2=CH.gari;if(!G2)return;for(const L of[NPC,M[G2.m]&&M[G2.m].N]){if(!L)continue;const i=L.indexOf(G2.e);if(i>=0)L.splice(i,1)}CH.gari=null}
+RH0.push(function(cx,cy,t){try{const now=performance.now(),h=cgHora();
+ if(CH.av<0)CH.av=h;// não varre na primeira hora em que o jogo abre
+ if(h>(G.chaoH||0)&&h>CH.av){G.chaoH=h;cgVarre()}else if(!G.chaoH)G.chaoH=h;
+ // aviso 1 minuto antes
+ const left=3.6e6-Date.now()%3.6e6;if(left<60000&&CH.aw!==h){CH.aw=h;let tem=0;for(const k in(G.chao||{}))if(!cgCasa(+k)&&G.chao[k].length)tem=1;if(tem)toast('🧹 Daqui a 1 minuto o Gari passa varrendo os itens deixados na rua.')}
+ const R=CH.gari;if(!R)return;const e=R.e;if(cur!==R.m||mode==='bt'){delete(G.chao||{})[cgKey(R.m)];gariFim();return}
+ if(now-R.t0>90000){delete G.chao[cgKey()];gariFim();return}
+ if(R.say&&now>R.say.until)R.say=null;
+ if(e.mt!=null&&now-e.mt<(e.mdur||330))return;
+ const L=cgList()||[];
+ if(R.st==='varre'){if(now-R.sw<900)return;const k=L.findIndex(q=>q[0]===R.alvo[0]&&q[1]===R.alvo[1]);if(k>=0){L.splice(k,1);while(true){const j=L.findIndex(q=>q[0]===R.alvo[0]&&q[1]===R.alvo[1]);if(j<0)break;L.splice(j,1)}}try{save()}catch(x){}R.st='anda';R.alvo=null;R.path=null}
+ if(R.st==='anda'){if(!R.alvo){if(!L.length){R.st='sai';R.path=null}else{let b=null,bd=1e9;for(const q of L){const d=Math.abs(q[0]-e.x)+Math.abs(q[1]-e.y);if(d<bd){bd=d;b=q}}R.alvo=[b[0],b[1]];R.path=null}}
+  if(R.alvo){const ax=R.alvo[0],ay=R.alvo[1];if(Math.abs(ax-e.x)+Math.abs(ay-e.y)<=1){e.d=ax>e.x?1:ax<e.x?3:ay>e.y?2:0;R.st='varre';R.sw=now;R.puff=[ax,ay];if(Math.random()<.5)R.say={t:GARIFALA[Math.random()*GARIFALA.length|0],until:now+3200};return}
+   if(!R.path||!R.path.length){let best=null;for(const[dx,dy]of[[0,1],[1,0],[-1,0],[0,-1],[0,0]]){const p=cgPath(e.x,e.y,ax+dx,ay+dy);if(p&&(!best||p.length<best.length))best=p}R.path=best;if(!best){delete G.chao[cgKey()];R.st='sai'}}}}
+ if(R.st==='sai'&&!R.path){let tx=e.x,ty=e.y;for(let r=10;r>=4;r--){const x=Math.round(e.x+(e.x-P.x>=0?r:-r)),y=e.y;if(x>1&&x<W-1&&free(x,y)){tx=x;ty=y;break}}R.path=cgPath(e.x,e.y,tx,ty)||[];R.fim=now+9000}
+ if(R.st==='sai'&&(!R.path.length||now>R.fim)){gariFim();return}
+ if(R.path&&R.path.length){const[nx,ny]=R.path[0];if((nx===P.x&&ny===P.y)||ents().some(o=>o!==e&&o.x===nx&&o.y===ny))return;R.path.shift();e.d=nx>e.x?1:nx<e.x?3:ny>e.y?2:0;e.fx=e.x;e.fy=e.y;e.x=nx;e.y=ny;e.mt=now;e.mdur=330}}catch(x){}});
+// vassoura, poeira e balão
+RH2.push(function(cx,cy,t){try{const R=CH.gari;if(!R||cur!==R.m)return;const e=R.e,now=performance.now(),X=e.px*16+8-cx,Y=e.py*16+16-cy,sw=R.st==='varre'?Math.sin((now-R.sw)/90)*.5:Math.sin(now/260)*.12,side=e.d===3?-1:1;
+ g.save();g.translate(X+side*5,Y-9);g.rotate(side*(.5+sw));g.strokeStyle='#8a5a2a';g.lineWidth=1.2;g.beginPath();g.moveTo(0,-4);g.lineTo(0,9);g.stroke();g.fillStyle='#d8b050';g.fillRect(-2.6,8,5.2,3.6);g.fillStyle='#a87a30';for(let i=-2;i<3;i+=1.3)g.fillRect(i,11,.6,1.4);g.restore();
+ if(R.st==='varre'&&R.puff){const u=((now-R.sw)%450)/450,px=R.puff[0]*16+8-cx,py=R.puff[1]*16+12-cy;g.fillStyle='rgba(210,200,180,'+(.6*(1-u))+')';for(let k=0;k<6;k++){const a=k*1.05+(now/300);g.beginPath();g.arc(px+Math.cos(a)*u*8,py+Math.sin(a)*u*3-u*5,1.2+u*1.6,0,6.3);g.fill()}}
+ if(R.say&&typeof andBubble==='function')andBubble(X,Y-38,R.say.t)}catch(x){}});
 
 // ===== Kaimon GT v70: botões de baixo recolhem; código GOD aceita 0/O e 1/I trocados =====
 // Botão ▾/▴ ao lado da espada: esconde (ou mostra) a fileira de botões. Fica guardado no aparelho.
