@@ -1,11 +1,11 @@
 {
- "jogo": 73,
- "jogo_arquivo": "jogo-73.kpk",
- "jogo_sha": "2d2f17a21a44bbd041cd89b14983cfc6d0601bc825188839a3f844e921acc208",
- "jogo_assin": "6CSsK59QkMnFePUg4/CYQs+FIZdLLYvfh9knvwfkl3PZENsT2xi1EjwLcyFMMibNbjK31cP7etGfBVipJXzjCQ==",
+ "jogo": 74,
+ "jogo_arquivo": "jogo-74.kpk",
+ "jogo_sha": "d9d245d9707684421c08911261a6b53dec25daa4cc74ef23c352172be13c6c67",
+ "jogo_assin": "BGPzZWqykDWc00GT5vGt/XAsrbYK446TukvPS4HRjjLTCXir7iUlHKUMoyA/beVppmBsTCkViQn+Kg7uATNLCA==",
  "launcher": 3,
  "launcher_arquivo": "KaimonGT-3.exe",
- "launcher_sha": "3df8b796bb393063f12e606a7660d1f7c73cdc5d3cb7993f5334d65bd64147ed",
- "launcher_assin": "eR3MXkbsQ9pILXS0o207wWXoplYr7ib0QunblpJtrilQKUQNQ0hgvJe3zqKEA3GnXKJEW5BgsedUBxEvULjyAw==",
- "notas": "Mula-sem-cabeça redesenhada: corpo de mula de verdade, pernas longas com ferraduras, fogo saindo do pescoço, crina e rabo de fogo, cabresto com corrente"
+ "launcher_sha": "835a497c8e3add2ce909aadd819fe4bee237698ff5667cf85e58ac29e4dd26dd",
+ "launcher_assin": "vqcaEwhvc/MWxNsKJ1J/u+mJ+2WHItxYWOOtYT1pEvksFOue/HaJyKZz9Y8yCSILxSj9VdF34jMbBVRcutQtAg==",
+ "notas": "Casas em 3/4 com a parede do lado, fogo da Mula sempre animado, montar/surfar/voar só nos monstros que fazem sentido"
 }
