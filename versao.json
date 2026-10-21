@@ -1,11 +1,11 @@
 {
- "jogo": 100,
- "jogo_arquivo": "jogo-100.kpk",
- "jogo_sha": "bf9d5b01872aa438d6ec9edf2bedc9768d3da1a75a64c2e49c2660ef114c22c4",
- "jogo_assin": "DLtvPYGbXQKgblc6AtkqoQG+eUQ+Vs0cRSSH7IRloZlKGo12hvqkSospwAur3QEBhDWZIq5opmMqroiV7QB7Bw==",
+ "jogo": 101,
+ "jogo_arquivo": "jogo-101.kpk",
+ "jogo_sha": "1e1b674b9009a0164c31a29df2d3005d297c0f06f8dd1892f43873d95479f2c6",
+ "jogo_assin": "F/KnBkDiHyFtfxzBP6RWbajXyqgYr8WzfiHpYsNEXmyvhCtOWqntmiXBJt6DEzERTNxdoSu6cwchGKkQGXAmAg==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "166d3f80dbc4af1653bd6f70dce2f202cb0c3e9fad2583cc165203d3cc1603cc",
- "launcher_assin": "cySklcz1ST/U/69r9nUrMqF1VchvYZKROcK6i1OrjaQQt7J1AQLAsZhVd8vZNDNTXx6RzZz+pn+6hmrczUIAAQ==",
- "notas": "Tudo da v95 a v99 + cofre do depósito novo (só o dono abre, nada some) e chat que zera ao sair da conta"
+ "launcher_sha": "7bc55aa6f65a4a3a4ce7ab4d826bdafaa7d2d33e08c376a5536079bfa3300f00",
+ "launcher_assin": "fKwYzCTSAhJnoMEn0zGgp1yUUzVs3mdJo/QYeKNsZdHjiqKCjBmNImEYPyHRDnIt4C9XQFd4U56PqvXckluuDg==",
+ "notas": "Atualização obrigatória, chat ao vivo para todos os jogadores com balão em cima do treinador"
 }

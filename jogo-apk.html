@@ -2058,7 +2058,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v100 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v101 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -9083,7 +9083,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=100;
+var KGT_VER=101;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -11837,6 +11837,61 @@ if(typeof chOpen==='function'){const _co=chOpen;chOpen=function(){chSesConfere()
 function chSesSair(){chSesLimpa();try{CHAT.msgs=[];CHAT.last=0;CHAT.unread=0;CHAT.uid=undefined}catch(e){}}
 if(typeof accLogout==='function'){const _al=accLogout;accLogout=function(){chSesSair();return _al.apply(this,arguments)}}
 if(typeof fbLogout==='function'){const _fl=fbLogout;fbLogout=function(){chSesSair();return _fl.apply(this,arguments)}}
+var CHF=new Map(); 
+function chChave(m){return(m.u||'')+':'+(m.t|0)}
+function chJunta(m){const k=chChave(m);if(CHAT.msgs.some(o=>chChave(o)===k))return false;CHAT.msgs.push(m);if(CHAT.msgs.length>300)CHAT.msgs.splice(0,CHAT.msgs.length-300);return true}
+function chAoVivo(){try{return MP&&MP.ws&&MP.ws.readyState===1&&MP.st===2}catch(e){return false}}
+{const _cs3=chSend;chSend=async function(){chSesConfere();
+if(!chAoVivo())return _cs3.apply(this,arguments);
+const el=$('chtx');if(!el)return;const x=el.value.trim().slice(0,140);if(!x)return;const now=Date.now();if(now-CHAT.sent<3000)return toast('Calma! Espere 3 segundos entre mensagens.');
+const me=webAcc();if(!me)return toast('Entre com uma conta com e-mail ou Google para conversar.');CHAT.sent=now;el.value='';
+const c=CHAT.tab==='p'?'p':'a',uid=me.fb.uid;
+mpManda({t:'c',x,c,ts:now});
+chJunta({id:'w'+now,u:uid,n:G.nick,t:now,x,c,m:cur,px:P.x,py:P.y});CHF.set('eu',{x,ate:performance.now()+6000});chSesGuarda();chRender();
+try{const doc={fields:{u:{stringValue:uid},n:{stringValue:String(G.nick||'Treinador').slice(0,16)},t:{integerValue:String(now)},x:{stringValue:x},c:{stringValue:c},m:{integerValue:String(cur)},px:{integerValue:String(P.x)},py:{integerValue:String(P.y)}}};
+const tok=await webTok();fetch(chFs('/chat'),{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+tok},body:JSON.stringify(doc)}).catch(()=>{})}catch(e){}}}
+{const _mpRc=mpRecebe;mpRecebe=function(q){
+if(q&&q.t==='c'){try{chSesConfere();const m={id:'w'+q.ts+q.id,u:q.id,n:String(q.n||'Treinador').slice(0,16),t:q.ts|0,x:String(q.x||'').slice(0,140),c:q.c==='p'?'p':'a',m:q.m,px:q.px,py:q.py};
+const me=webAcc(),uid=me&&me.fb.uid;if(m.u===uid)return;
+if(chJunta(m)){CHF.set(m.u,{x:m.x,ate:performance.now()+6000});if(m.c==='a'||chNear(m)){if(!CHAT.open){CHAT.unread++;toast('💬 <b>'+chEsc(m.n)+'</b>: '+chEsc(m.x).slice(0,80))}}chBadge();if(CHAT.open)chRender();chSesGuarda()}}catch(e){}return}
+if(q&&q.t==='cerr'){try{toast(String(q.e||'Mensagem não enviada.'))}catch(e){}return}
+if(q&&q.t==='cok')return;
+return _mpRc.apply(this,arguments)}}
+{const _cs4=chPoll;chPoll=async function(){const n0=CHAT.msgs.length;const r=await _cs4.apply(this,arguments);try{const vis=new Set(),L=[];for(const m of CHAT.msgs){const k=chChave(m);if(vis.has(k))continue;vis.add(k);L.push(m)}if(L.length!==CHAT.msgs.length){CHAT.msgs=L;if(CHAT.open)chRender()}
+for(let i=n0;i<CHAT.msgs.length;i++){const m=CHAT.msgs[i];if(m&&m.u&&Date.now()-(m.t|0)<15000)CHF.set(m.u,{x:m.x,ate:performance.now()+6000})}chSesGuarda()}catch(e){}return r}}
+function chBaloes(cx,cy){if(!CHF.size)return;const agora=performance.now();try{const me=webAcc(),uid=me&&me.fb.uid;
+for(const[id,b]of CHF){if(agora>b.ate){CHF.delete(id);continue}let X,Y;
+if(id==='eu'||id===uid){X=P.px!=null?P.px:P.x;Y=P.py!=null?P.py:P.y}else{const o=MP.ps.get(id);if(!o)continue;X=o.px;Y=o.py}
+const sx=X*16-cx+8,sy=Y*16-cy-23;if(sx<-60||sy<-40||sx>VW*16+60||sy>VH*16+40)continue;
+g.save();g.globalAlpha=Math.min(1,(b.ate-agora)/600);try{andBubble(sx,sy,b.x.length>60?b.x.slice(0,58)+'…':b.x)}catch(e){}g.restore()}}catch(e){}}
+{const _chPl=plate;plate=function(e,cx,cy){const r=_chPl.apply(this,arguments);if(e===P)chBaloes(cx,cy);return r}}
+var UPD={raw:'https://raw.githubusercontent.com/nilfilho000-afk/kaimon-gt-updates/main/',novo:0,on:0,tent:0,el:null};
+function updOnde(){try{if(window.KAPK)return'apk';const h=location.hostname;if(h==='127.0.0.1'||h==='localhost')return'pc';if(/(^|\.)(kaimon-gt\.web\.app|kaimon-gt\.firebaseapp\.com|kaimongt\.com\.br|kaimongt-site\.web\.app)$/.test(h))return'web'}catch(e){}return''}
+async function updRemota(){const o=updOnde(),t='?t='+Date.now();try{
+if(o==='apk'){const j=await(await fetch(UPD.raw+'jogo-apk.json'+t,{cache:'no-store'})).json();return j.v|0}
+if(o==='pc'){const j=await(await fetch(UPD.raw+'versao.json'+t,{cache:'no-store'})).json();return j.jogo|0}
+if(o==='web'){const s=await(await fetch('/sw.js'+t,{cache:'no-store'})).text();const m=/Kaimon GT v(\d+)/.exec(s);return m?+m[1]:0}}catch(e){}return 0}
+function updTela(){if(UPD.el)return UPD.el;const d=document.createElement('div');d.id='updTela';
+d.style.cssText='position:fixed;inset:0;z-index:2147483645;background:radial-gradient(ellipse at center,#1b2a44 0%,#070a14 75%);color:#e8eef8;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;font-family:system-ui,Roboto,sans-serif;text-align:center;padding:24px;touch-action:none';
+d.innerHTML='<div style="font-size:44px">⬇️</div><div style="font-size:24px;font-weight:900;color:#ffe27a">Atualização obrigatória</div><div id="updTx" style="font-size:15px;color:#b8c6e0;max-width:430px;line-height:1.45"></div>'+
+'<button id="updBt" style="margin-top:6px;font:800 16px system-ui;padding:12px 22px;border-radius:12px;border:0;background:#ffd34d;color:#1a1400;cursor:pointer">Atualizar agora</button><div id="updSm" style="font-size:12px;color:#7f93b8"></div>';
+const bl=e=>{if(e.target&&e.target.id==='updBt')return;e.stopPropagation();e.preventDefault()};['pointerdown','touchstart','mousedown','click','wheel'].forEach(k=>d.addEventListener(k,bl,{passive:false}));
+document.body.appendChild(d);d.querySelector('#updBt').onclick=()=>updVai();UPD.el=d;return d}
+['keydown','keyup'].forEach(k=>window.addEventListener(k,e=>{if(UPD.on){e.stopImmediatePropagation();e.preventDefault()}},true));
+function updTexto(){const o=updOnde(),a=(typeof KGT_VER!=='undefined'?KGT_VER:0);const tx=document.getElementById('updTx'),sm=document.getElementById('updSm');
+if(tx)tx.innerHTML='Saiu a <b style="color:#fff">v'+UPD.novo+'</b> do Kaimon GT (você está na v'+a+'). Para continuar jogando, atualize.'+(o==='pc'?'<br>O launcher já está baixando: a janela recarrega sozinha.':'');
+if(sm)sm.textContent=UPD.tent?'Tentativa '+UPD.tent+' — se não atualizar, feche e abra o jogo de novo.':'Seu progresso é salvo antes.'}
+async function updVai(){try{save()}catch(e){}try{if(typeof CLOUD!=='undefined'&&typeof cloudPush==='function'){CLOUD.dirty=1;await Promise.race([cloudPush(1),new Promise(r=>setTimeout(r,4000))])}}catch(e){}
+try{sessionStorage.setItem('kgt_updtent',String((UPD.tent|0)+1))}catch(e){}
+try{if(updOnde()==='web'&&navigator.serviceWorker){const rs=await navigator.serviceWorker.getRegistrations();for(const r of rs)try{await r.update()}catch(e){}}}catch(e){}
+location.reload()}
+async function updConfere(){try{if(UPD.on===2)return;const o=updOnde();if(!o)return;const v=await updRemota(),a=(typeof KGT_VER!=='undefined'?KGT_VER:0);
+if(!v||!a||v<=a){try{sessionStorage.removeItem('kgt_updtent')}catch(e){}if(UPD.on){UPD.on=0;if(UPD.el){UPD.el.remove();UPD.el=null}}return}
+UPD.novo=v;try{UPD.tent=+sessionStorage.getItem('kgt_updtent')||0}catch(e){}
+if(!UPD.on){UPD.on=1;updTela()}updTexto();
+const espera=UPD.tent?60000:(o==='pc'?60000:4000);clearTimeout(UPD.tm);UPD.tm=setTimeout(()=>{if(UPD.on)updVai()},espera)}catch(e){}}
+setTimeout(updConfere,3000);setInterval(updConfere,5*60000);
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')updConfere()});
 (function(){try{const st=document.createElement('style');st.textContent=`body.hudmin .ab:not(.hkeep){display:none!important}
 #hudtg{position:fixed;right:calc(env(safe-area-inset-right,0px) + 88px);bottom:calc(env(safe-area-inset-bottom,0px) + 6px);width:40px;height:40px;border-radius:50%;padding:0;margin:0;z-index:6;
  background:radial-gradient(circle at 35% 30%,#fff3c0,#e8c050 60%,#a8801c);border:2px solid #fff;color:#3a2a00;font:900 18px sans-serif;box-shadow:0 2px 6px #0008;display:flex;align-items:center;justify-content:center}

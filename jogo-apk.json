@@ -1,7 +1,7 @@
 {
- "v": 100,
+ "v": 101,
  "url": "https://raw.githubusercontent.com/nilfilho000-afk/kaimon-gt-updates/main/jogo-apk.html",
- "notas": "Tudo da v95 a v99 + cofre do depósito novo (só o dono abre, nada some) e chat que zera ao sair da conta",
- "sha": "a26a795d760ad5ba3b294c221bcc2a64c7e7b0e90209a4e0d5d5f9ff0b3d0768",
- "sig": "tqdUHq7o6lz4NHUwmT0p5vCoHG1E+1ipP3jJ52jmFjVilJyfHNkr8w+VR0SuG4cAtIBkiapIaldA0GwsULxnLw=="
+ "notas": "Atualização obrigatória, chat ao vivo para todos os jogadores com balão em cima do treinador",
+ "sha": "4756ba5e49976b2bcaf491b5d80bcb91908143521ed5f3eee3f1dfea70f2509f",
+ "sig": "POiAqYc0g1AlfSZSDyfu5UqDRk+AikYFDz5b3/OHpZo+wXiqrw4+2I4t1pJWtsGN/9aHDU8Awi2Zd5kRMYucRA=="
 }
