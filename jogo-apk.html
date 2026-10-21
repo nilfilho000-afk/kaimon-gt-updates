@@ -13023,6 +13023,78 @@ function luaGaroa(){const t0=G.gt,p=luaP(),[e,n]=luaNome(p);let rows='';
 for(let d=1;d<=8;d++){const t=(Math.floor(t0/1440)+d)*1440+22*60,q=luaP(t),[e2,n2]=luaNome(q);rows+=`<tr><td style="padding:3px 6px">${d===1?'Amanhã':'Daqui a '+d+' dias'}</td><td><img src="${luaUrl(q,7)}" alt="" style="width:30px;height:30px;image-rendering:pixelated;vertical-align:middle"></td><td>${e2} ${n2}</td><td style="text-align:right">${Math.round(luaLuz(q)*100)}% iluminada</td></tr>`}
 tpBox('fases da lua',`<div style="display:flex;gap:12px;align-items:center"><img src="${luaUrl(p,12)}" alt="" style="width:96px;height:96px;image-rendering:pixelated;background:#0b1430;border-radius:12px;padding:6px"><div><p style="font-size:15px">Hoje: <b>${e} ${n}</b> · ${Math.round(luaLuz(p)*100)}% iluminada</p><p><small>Um ciclo da lua dura ${LUA.ciclo} dias aqui em Pindorama. Ela nasce no fim da tarde a leste e some de manhã a oeste. Com lua cheia a noite fica mais clara; com lua nova, bem escura.</small></p></div></div>`+tpTab(rows),btn('Voltar','tpTalk()'))}
 {const _ltt=tpTalk;tpTalk=function(){_ltt.apply(this,arguments);try{const u=document.getElementById('ui');if(u&&!document.getElementById('luabtn')){const b=[...u.querySelectorAll('button')].find(x=>/Como funciona o clima/.test(x.textContent));const nb=document.createElement('span');nb.id='luabtn';nb.innerHTML=btn(LUAF[luaI(luaP())][0]+' Fases da lua','luaGaroa()');if(b)b.after(nb);else u.appendChild(nb)}}catch(e){}}}
+Object.assign(ZRO,{
+zro_dra:{n:'Domador de Dracaimon',d:'Jaqueta de escamas carmim, ombreiras de dragão e capa com o emblema do Dracaimon.',r:'lançamento',o:'#8a1824',c2:'#f0c040',sl:'longa',lo:'top',pat:'escamas',col:'mandarim',pa:'#1e1a26',lanc:'dra'},
+zro_boi:{n:'Cavaleiro do Boitatá',d:'Sobretudo azul-noite com chamas azuis, peitoral de prata e cachecol de fogo.',r:'lançamento',o:'#16224a',c2:'#6ad8ff',sl:'longa',lo:'joelho',pat:'chamas',col:'mandarim',pa:'#121828',lanc:'boi'},
+zro_iar:{n:'Princesa da Iara',d:'Vestido de escamas do rio, véu de pérolas e tiara de concha.',r:'lançamento',o:'#1f8aa8',c2:'#c8f4ff',sl:'nenhuma',lo:'longo',pat:'escamas',col:'alca',skin:1,bab:1,lanc:'iar'},
+zro_ipe:{n:'Rainha do Ipê',d:'Vestido de ipê-amarelo, capa de pétalas e coroa de flores douradas.',r:'lançamento',o:'#f2bf2a',c2:'#ff8fc0',sl:'bufante',lo:'longo',pat:'ipe',col:'redonda',skin:1,lanc:'ipe'}});
+for(const k of['zro_dra','zro_boi','zro_iar','zro_ipe']){const o=ZRO[k],c={sh:o.sl==='nenhuma'?undefined:o.o};if(o.pa)c.pa=o.pa;if(!c.sh)delete c.sh;TAD[k]={slot:'roupa',n:o.n,d:o.d,r:o.r,x:k+(o.sl==='longa'||o.sl==='larga'?' long-sleeve':''),c,skin:o.skin,lanc:1}}
+ZRAR['lançamento']='#ff6ad0';
+{const _zp=zPat;zPat=function(x,o,X0,Y0,X1,Y1,v){const p=o.pat;
+if(p==='escamas'){const lc=hrK(o.o,1.45),dc=hrK(o.o,.62);let n=0;for(let y=Y0;y<Y1+2;y+=1.5){for(let xx=X0+((n%2)?.95:0);xx<X1+1;xx+=1.9){x.strokeStyle=dc;x.lineWidth=.22;x.beginPath();x.arc(xx,y,.95,0,Math.PI);x.stroke();x.fillStyle=lc;x.fillRect(xx-.35,y+.15,.3,.25)}n++}
+if(o.lanc==='iar'){const gr=x.createLinearGradient(0,Y0,0,Y1);gr.addColorStop(0,'rgba(200,250,255,.32)');gr.addColorStop(1,'rgba(10,40,90,.3)');x.fillStyle=gr;x.fillRect(X0,Y0,X1-X0,Y1-Y0)}return}
+if(p==='chamas'){for(let xx=X0;xx<X1;xx+=1.7){const hsh2=Math.abs(Math.sin(xx*12.9898)*43758.5)%1,h=3+hsh2*5;
+x.fillStyle='rgba(60,170,255,.75)';x.beginPath();x.moveTo(xx-1,Y1);x.quadraticCurveTo(xx-.6,Y1-h*.6,xx+.2,Y1-h);x.quadraticCurveTo(xx+.4,Y1-h*.5,xx+1,Y1);x.fill();
+x.fillStyle='rgba(200,245,255,.85)';x.beginPath();x.moveTo(xx-.4,Y1);x.quadraticCurveTo(xx-.2,Y1-h*.35,xx+.15,Y1-h*.55);x.quadraticCurveTo(xx+.25,Y1-h*.3,xx+.45,Y1);x.fill()}return}
+if(p==='ipe'){let n=0;for(let y=Y0+1.5;y<Y1;y+=3.4)for(let xx=X0+((n++)%2?1.8:0);xx<X1;xx+=3.6){for(const[a,b]of[[0,0],[1,.6],[-.8,.8]])zFlor(x,xx+a,y+b,.85,(n+Math.round(xx))%3?'#ff9ccc':'#fff2a0','#8a3a10');hrE(x,xx+1.3,y-.6,.5,.25,'#4a9a3a',{lt:0,sd:0,rot:.5})}return}
+return _zp.apply(this,arguments)}}
+function lcOmbro(x,g,c,trim){const{v,SY}=g;const P=v==1?[16.6]:[16-(g.SWd-.7),16+(g.SWd-.7)];for(const px of P){hrE(x,px,SY+.6,2.5,1.75,c,{dk:.65,lk:1.45});for(let k=-1;k<=1;k++)hrL(x,hrK(c,.6),.22,[[px+k*1.1-.5,SY-.3],[px+k*1.1+.3,SY+1.9]]);hrL(x,trim,.32,[[px-2.4,SY+1.1],[px+2.4,SY+1.1]])}}
+function lcEmblema(x,cx,cy,r){hrE(x,cx,cy,r,r,'#f0c040',{dk:.6,lk:1.5});hrE(x,cx,cy,r*.7,r*.7,'#b0182a',{lt:0,sd:.3});x.fillStyle='#ffd8a0';for(let i=0;i<6;i++){const a=i*Math.PI/3;x.fillRect(cx+Math.cos(a)*r*.38-.15,cy+Math.sin(a)*r*.38-.15,.3,.3)}hrE(x,cx,cy,r*.22,r*.22,'#3ac0ff',{lt:0,sd:0})}
+function lcBrilho(x,g,cor,n,seed){const t=(g.f||0);x.fillStyle=cor;for(let i=0;i<n;i++){const a=Math.abs(Math.sin((i+1)*seed*7.13))%1,b=Math.abs(Math.sin((i+1)*seed*3.71))%1;if(((i+t)%4)===0)continue;const px=8+a*16,py=g.SY-2+b*(g.AY-g.SY);x.fillRect(px,py,.35,.35)}}
+function lcTronco(x,S,g,o){const{v,SY,CY,WY,HY}=g,back=v==2;
+if(o.lanc==='dra'){lcOmbro(x,g,'#b02030','#f0c040');if(!back){if(v==0){lcEmblema(x,16,CY+.6,1.5);x.fillStyle='#f0c040';x.fillRect(16-g.WHW-.2,WY+1.4,g.WHW*2+.4,.8);hrE(x,16,WY+1.8,.8,.7,'#f0c040',{lk:1.6})}else lcEmblema(x,13.6,CY+.6,1.1)}}
+if(o.lanc==='boi'){if(v==0){hrPart(x,q=>hrPoly(q,[[16-3.2,SY+.2],[16+3.2,SY+.2],[16+2.8,CY+2.8],[16,WY+.6],[16-2.8,CY+2.8]],1),'#c8d0e0',{dk:.62,lk:1.5});hrE(x,16,CY+.8,.75,.95,'#3ac8ff',{lk:1.8});hrL(x,'#6ad8ff',.25,[[16-2.8,SY+.6],[16,WY]]);hrL(x,'#6ad8ff',.25,[[16+2.8,SY+.6],[16,WY]])}
+else if(v==1)hrPart(x,q=>hrPoly(q,[[12.8,SY+.6],[15.6,SY+.2],[15.2,WY],[12.6,CY+2]],1),'#c8d0e0',{dk:.62,lk:1.5});
+lcOmbro(x,g,'#aab4c8','#6ad8ff');
+const fl=(g.walk?Math.sin(g.ph)*.5:0);if(v!=2){hrPart(x,q=>q.ellipse(v==1?15:16,SY-.3,v==1?2.4:3.5,1.2,0,0,6.2832),'#3aa8ff',{dk:.6,lk:1.6});
+hrPart(x,q=>hrPoly(q,v==1?[[17,SY-.6],[19.5+fl,SY-1.8],[22+fl,SY-2.6],[20.4+fl,SY-.6],[17.6,SY+.8]]:[[16+2,SY-.2],[16+4.6,SY-1.4+fl],[16+7,SY-2.6+fl],[16+5.6,SY-.4+fl],[16+3,SY+1.2]],1),'#6ad8ff',{dk:.55,lk:1.8})}
+else hrPart(x,q=>hrPoly(q,[[16-1,SY-.4],[16+1,SY-.4],[16+1.6+fl,SY+4],[16+.2+fl,SY+5.4],[16-.8,SY+3]],1),'#6ad8ff',{dk:.55,lk:1.8});
+lcBrilho(x,g,'#bff2ff',10,1.7)}
+if(o.lanc==='iar'){if(v!=2){for(let i=0;i<=9;i++){const t=i/9;hrE(x,16-2.6+5.2*t,SY-.5+1.8*Math.sin(Math.PI*t),.38,.38,'#fbf8f0',{dk:.72,lk:1.6,sd:.3,lt:.25})}hrE(x,16,SY+1.9,.7,.85,'#ffd0e8',{lk:1.6})}
+x.fillStyle='#e8fbff';x.fillRect(v==1?13.1:16-g.WHW,WY-.5,v==1?6.6:g.WHW*2,.5);lcBrilho(x,g,'#e8fbff',12,2.3)}
+if(o.lanc==='ipe'){if(v!=2){hrL(x,'#4a9a3a',.7,[[16-g.SWd+1,SY+.4],[16+g.WHW,WY+1.2]]);for(let i=0;i<5;i++){const t=i/4;zFlor(x,16-g.SWd+1+(g.WHW+g.SWd-1)*t,SY+.4+(WY+.8-SY)*t,.9,i%2?'#ff9ccc':'#fff2a0','#8a3a10')}}
+lcBrilho(x,g,'#fff6c0',8,3.1)}}
+{const _zt=zRoTronco;zRoTronco=function(x,S,g,o){_zt.apply(this,arguments);try{if(o&&o.lanc)lcTronco(x,S,g,o)}catch(e){}}}
+function lcCapa(x,S,g,o){if(o.lanc!=='dra'&&o.lanc!=='ipe')return;const{v,SY,AY}=g,sx=g.walk?Math.sin(g.ph)*.6:0,c=o.lanc==='dra'?'#7a1220':'#ffd040',tr=o.lanc==='dra'?'#f0c040':'#ff8fc0',fim=AY-(o.lanc==='dra'?1.2:.4);
+const P=v==1?[[17.4,SY-.4],[20.4,SY+1.6],[23.8+sx,fim],[18.4+sx,fim+.8],[16.6,SY+2]]:[[16-g.SWd+.4,SY-.2],[16+g.SWd-.4,SY-.2],[16+g.SWd+2.6+sx,fim],[16+sx,fim+1],[16-g.SWd-2.6+sx,fim]];
+hrPart(x,q=>hrPoly(q,P,1),c,{dk:.66,lk:1.25});x.save();x.beginPath();hrPoly(x,P,1);x.clip();
+if(o.lanc==='ipe'){let n=0;for(let y=SY+2;y<fim;y+=2.6)for(let xx=6+((n++)%2?1.3:0);xx<26;xx+=2.6)hrE(x,xx+sx*(y-SY)/(fim-SY),y,1,.6,(n+Math.round(xx))%2?'#ffe070':'#ffb0d0',{lt:0,sd:.3,rot:.6})}
+else{x.strokeStyle=hrK(c,.6);x.lineWidth=.25;for(let i=-3;i<=3;i++){x.beginPath();x.moveTo(16+i*1.4,SY);x.lineTo(16+i*2.2+sx,fim+1);x.stroke()}}
+x.restore();hrL(x,tr,.45,v==1?[[23.8+sx,fim],[18.4+sx,fim+.8]]:[[16+g.SWd+2.6+sx,fim],[16+sx,fim+1],[16-g.SWd-2.6+sx,fim]]);
+if(v==2&&o.lanc==='dra')lcEmblema(x,16+sx*.5,(SY+fim)/2,2.6)}
+{const _zpre=zPre;zPre=function(x,S,v,f){_zpre.apply(this,arguments);try{const rk=zRoK(S);if(!rk||!ZRO[rk].lanc||v==2)return;const g=zG(S,v,f);zUp(x,g,()=>lcCapa(x,S,g,Object.assign({k:rk},ZRO[rk])))}catch(e){}}}
+{const _zr=zRoRabo;zRoRabo=function(x,S,g,o){_zr.apply(this,arguments);try{if(o&&o.lanc&&g.v==2)lcCapa(x,S,g,o)}catch(e){}}}
+{const _zac=zAcCabeca;zAcCabeca=function(x,S,g,cx,cy,back){_zac.apply(this,arguments);try{const rk=zRoK(S);if(!rk)return;const o=ZRO[rk],v=g.v;
+if(o.lanc==='iar'){
+for(const sg of(v==1?[1]:[-1,1])){const x0=v==1?cx+2.6:cx+sg*3.9;for(let i=0;i<7;i++)hrE(x,x0+sg*(v==1?.3:.25)*i,cy-2.8+i*1.15,.32,.32,'#fbf8f0',{dk:.75,lk:1.6,sd:.3,lt:.2})}
+const tx=v==1?cx+.2:cx,ty=cy-5.1;hrPart(x,q=>{q.moveTo(tx-2.4,ty+1.2);q.quadraticCurveTo(tx,ty-2.6,tx+2.4,ty+1.2);q.closePath()},'#ffd8e8',{dk:.7,lk:1.4});for(let k=-2;k<=2;k++)hrL(x,'#e8a0c0',.2,[[tx,ty+1],[tx+k*1,ty-1.2+Math.abs(k)*.5]]);hrE(x,tx,ty+.9,.55,.55,'#ffffff',{lk:1.6,lt:0});
+for(const sg of[-1,1])hrE(x,tx+sg*2.9,ty+1.4,.45,.45,'#bff4ff',{lt:0,sd:0})}
+if(o.lanc==='ipe'){const P=[];if(v==1)for(let i=0;i<5;i++){const t=i/4;P.push([cx-3.2+6.6*t,cy-3.4-2.2*Math.sin(Math.PI*t)])}else for(let i=0;i<7;i++){const a=Math.PI*(1.1+i*.8/6);P.push([cx+4.4*Math.cos(a),cy-2.6+3.4*Math.sin(a)])}
+hrL(x,'#c89a20',.55,P);P.forEach((p,i)=>{hrPart(x,q=>hrPoly(q,[[p[0]-.8,p[1]+.2],[p[0],p[1]-1.6],[p[0]+.8,p[1]+.2]],0),'#ffd040',{dk:.6,lk:1.5});zFlor(x,p[0],p[1]+.1,1.05,i%2?'#ffe060':'#ff9ccc','#8a3a10')})}
+}catch(e){}}}
+try{LKH={};TRI={};hrReset();lkApply(G.look)}catch(e){}
+const LCK=['zro_dra','zro_boi','zro_iar','zro_ipe'];
+function lcSemLanc(fn){return function(){const hid={};for(const k of LCK)if(TAD[k]&&!tadHas(k)){hid[k]=TAD[k];delete TAD[k]}try{return fn.apply(this,arguments)}finally{Object.assign(TAD,hid)}}}
+aboxPool=lcSemLanc(aboxPool);lojaAddons=lcSemLanc(lojaAddons);
+{const _la=lojaAddon;lojaAddon=function(t,k){if(t==='t'&&TAD[k]&&TAD[k].lanc)return toast('Roupa exclusiva do lançamento: não está à venda.');return _la.apply(this,arguments)}}
+{const _zs=zSlotItens;zSlotItens=function(s){return _zs(s).filter(k=>!(TAD[k]&&TAD[k].lanc)||tadHas(k))}}
+var LCS={st:null,mostrou:0,t:0};
+function lcFem(){try{const L=G.look||{};if(L.fm!=null)return!!L.fm;return!!hrSpec(lkD(L)).fem}catch(e){return false}}
+async function lcSync(forca){try{if(typeof webAcc!=='function'||!webAcc())return;if(!forca&&Date.now()-LCS.t<20*60000)return;LCS.t=Date.now();
+const j=await soCall('/lanc',{op:'status'});LCS.st=j;
+if(j.escolhido&&!tadHas(j.escolhido)){tadUnlock(j.escolhido);save();toast(`✨ Sua roupa de lançamento <b>${esc(TAD[j.escolhido].n)}</b> está no Visual do treinador.`)}
+if(!j.escolhido&&j.janela&&j.elegivel&&!LCS.mostrou&&mode==='walk'&&!document.querySelector('#ui.on,#ui[style*="block"]')){LCS.mostrou=1;setTimeout(()=>lcEscolha(false),1500)}}catch(e){}}
+function lcEscolha(teste){const fem=lcFem(),ops=fem?['zro_iar','zro_ipe']:['zro_dra','zro_boi'],fim=new Date(Date.UTC(2026,10,30,15)).toLocaleDateString('pt-BR');
+const card=k=>{const a=TAD[k],L=tadLook(G.look,{roupa:k});return`<div style="flex:1;min-width:150px;background:#0f1626;border:1px solid #ff6ad0;border-radius:12px;padding:8px;text-align:center"><div style="display:flex;justify-content:center;gap:2px"><img src="${tadImg(L,0)}" alt="" style="height:150px;image-rendering:pixelated"><img src="${tadImg(L,2)}" alt="" style="height:150px;image-rendering:pixelated"></div><b>${esc(a.n)}</b><br><small>${esc(a.d)}</small><br>${btn('Escolher esta',`lcPegar('${k}',${teste?'true':'false'})`)}</div>`};
+open(`<div class="psh"><span style="font-size:30px">🎁</span><div><b>Presente de lançamento</b><small>Obrigado por estar no lançamento do Kaimon GT! Escolha <b>uma</b> roupa exclusiva para o seu treinador. Ela nunca vai estar à venda e só pode ser escolhida até <b>${fim}</b>.${teste?' <b style="color:#ffb84a">(teste do GOD)</b>':''}</small></div></div><div style="display:flex;gap:10px;flex-wrap:wrap;margin:8px 0">${ops.map(card).join('')}</div>`+btn('Escolher depois','closeUI()'));try{$('ui').classList.add('wide')}catch(e){}}
+async function lcPegar(k,teste){const a=TAD[k];if(!a)return;if(!confirm(`Escolher "${a.n}"? Só dá para escolher uma vez.`))return;
+try{const j=await soCall('/lanc',{op:'pegar',k,teste:!!teste});if(j.erro)throw new Error(j.erro);const got=j.escolhido||k;tadUnlock(got);save();try{tadUse('roupa',got)}catch(e){}try{play('lvl')}catch(e){}
+open(`<div class="abx"><img src="${tadImg(tadLook(G.look,{roupa:got}),0)}" alt="" style="height:140px;image-rendering:pixelated;border-radius:12px;background:#0f1626"><div><b>✨ ${esc(TAD[got].n)}</b> é sua!<br><small>Já está vestida. Troque quando quiser em Configurações → Visual.</small></div></div>`+btn('Fechar','closeUI()'))}
+catch(e){toast(esc(e.message||'Não deu para escolher agora.'))}}
+setTimeout(()=>lcSync(true),12000);setInterval(()=>lcSync(false),5*60000);
+{const _lmp=modPanel;modPanel=function(){const r=_lmp.apply(this,arguments);try{if(MOD.r==='god'){const u=document.getElementById('ui');if(u&&!document.getElementById('lcbtn'))u.insertAdjacentHTML('beforeend','<div id="lcbtn">'+btn('🎁 Testar presente de lançamento','lcEscolha(true)')+'</div>')}}catch(e){}return r}}
+{const _llk=lkD;lkD=function(L){const D=_llk.apply(this,arguments);try{const r=((L&&L.ad)||{}).roupa;if(r==='zro_iar'||r==='zro_ipe'){D.cap=undefined;D.x=String(D.x||'').split(/\s+/).filter(k=>k&&k!=='goggles').join(' ')}}catch(e){}return D}}
+try{LKH={};TRI={};hrReset();lkApply(G.look)}catch(e){}
 (function(){try{const st=document.createElement('style');st.textContent=`body.hudmin .ab:not(.hkeep){display:none!important}
 #hudtg{position:fixed;right:calc(env(safe-area-inset-right,0px) + 88px);bottom:calc(env(safe-area-inset-bottom,0px) + 6px);width:40px;height:40px;border-radius:50%;padding:0;margin:0;z-index:6;
  background:radial-gradient(circle at 35% 30%,#fff3c0,#e8c050 60%,#a8801c);border:2px solid #fff;color:#3a2a00;font:900 18px sans-serif;box-shadow:0 2px 6px #0008;display:flex;align-items:center;justify-content:center}
