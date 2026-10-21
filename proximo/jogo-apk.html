@@ -12851,6 +12851,38 @@ function chrAd(slot,k){const L=CHR.L,ad=Object.assign({},L.ad||{});if(k)ad[slot]
 const rows=CHX.map(([s,lab])=>{const ks=ZFREE.filter(k=>TAD[k]&&TAD[k].slot===s);return`<div class="ch-o"><span>${lab}</span><div class="ch-sw ch-tx"><button class="${ad[s]?'':'on'}" onclick="chrAd('${s}','')">Nenhum</button>${ks.map(k=>`<button class="${ad[s]===k?'on':''}" onclick="chrAd('${s}','${k}')">${TAD[k].n}</button>`).join('')}</div></div>`}).join('');
 const box=document.createElement('div');box.innerHTML=`<div class="ch-sec">Extras grátis</div>`+rows;const pago=el.querySelector('.ch-pago');el.insertBefore(box,pago||null);
 if(pago)pago.innerHTML='✦ Roupas temáticas (kimono, terno, vestido de gala…) e os addons raros ficam no <b>Visual do treinador</b> (Loja Kaimon e Addon Box), depois de criar a conta.'}catch(e){}}}
+var ZPX={on:1,k:2};
+function zLum(r,g,b){return r*.3+g*.59+b*.11}
+function zPelePal(S){const out=[];for(const k of[1,.83,.78,.72,.88,1.08,.97])out.push(hrRGB(hrK(S.sk,k)));return out}
+function zEhPele(P,r,g,b){for(const c of P)if(Math.abs(c[0]-r)+Math.abs(c[1]-g)+Math.abs(c[2]-b)<34)return true;return false}
+function zHash(i,j){let h=(i*374761393+j*668265263)|0;h=(h^(h>>>13))*1274126177|0;return((h^(h>>>16))>>>0)/4294967296}
+function zTextura(d,W,H,S,forte){const P=zPelePal(S),hr=hrRGB(S.hr),a=forte?1:.6;
+for(let j=0;j<H;j++)for(let i=0;i<W;i++){const o=(j*W+i)*4;if(d[o+3]<200)continue;const r=d[o],g=d[o+1],b=d[o+2],L=zLum(r,g,b);
+if(L<52||L>246||zEhPele(P,r,g,b))continue;
+const cab=Math.abs(r-hr[0])+Math.abs(g-hr[1])+Math.abs(b-hr[2])<60;let f=0;
+if(cab){f=(i%3===0)?-.1:((i+j*2)%5===0?.07:0)}
+else{if(((i+j)&3)===0)f=-.08;else if(((i-j)&3)===2)f=.05;const n=zHash(i,j);if(n<.06)f-=.08;else if(n>.96)f+=.07}
+f*=a;if(!f)continue;const m=v=>Math.max(0,Math.min(255,Math.round(f<0?v*(1+f):v+(255-v)*f)));d[o]=m(r);d[o+1]=m(g);d[o+2]=m(b)}}
+function zPixeliza(hi,W,H,G){const sd=hi.getContext('2d').getImageData(0,0,hi.width,hi.height).data,SW=hi.width,kx=hi.width/W,ky=hi.height/H,o=new Uint8ClampedArray(W*H*4);
+for(let j=0;j<H;j++)for(let i=0;i<W;i++){let n=0,best=null,bw=0;const cnt=new Map(),x0=Math.floor(i*kx),x1=Math.floor((i+1)*kx),y0=Math.floor(j*ky),y1=Math.floor((j+1)*ky),tot=(x1-x0)*(y1-y0);
+for(let y=y0;y<y1;y++)for(let x=x0;x<x1;x++){const p=(y*SW+x)*4;if(sd[p+3]<128)continue;n++;const key=(sd[p]>>3)<<10|(sd[p+1]>>3)<<5|(sd[p+2]>>3);let e=cnt.get(key);
+if(!e){const L=zLum(sd[p],sd[p+1],sd[p+2]);e=[0,sd[p],sd[p+1],sd[p+2],L<70?1.6:1];cnt.set(key,e)}e[0]+=e[4];if(e[0]>bw){bw=e[0];best=e}}
+if(n*2<tot-1||!best)continue;const q=(j*W+i)*4;o[q]=best[1];o[q+1]=best[2];o[q+2]=best[3];o[q+3]=255}
+return o}
+function zContorno(d,W,H){const A=(i,j)=>i>=0&&j>=0&&i<W&&j<H&&d[(j*W+i)*4+3]>0,src=new Uint8ClampedArray(d);
+for(let j=0;j<H;j++)for(let i=0;i<W;i++){if(A(i,j))continue;let r=0,g=0,b=0,k=0;for(const[a,b2]of[[1,0],[-1,0],[0,1],[0,-1]]){const ii=i+a,jj=j+b2;if(ii<0||jj<0||ii>=W||jj>=H)continue;const q=(jj*W+ii)*4;if(src[q+3]>0){r+=src[q];g+=src[q+1];b+=src[q+2];k++}}
+if(k){const q=(j*W+i)*4;d[q]=r/k*.3+8;d[q+1]=g/k*.28+6;d[q+2]=b/k*.32+12;d[q+3]=255}}}
+{const _zHD=hrHD;hrHD=function(D,v,f,Z){if(!ZPX.on)return _zHD.apply(this,arguments);try{const S=hrSpec(D),Q=Math.max(4,Math.round(2*Z)),hi=hrHi(S,v,f,Q),W=32*ZPX.k,H=48*ZPX.k;
+const d=zPixeliza(hi,W,H);zTextura(d,W,H,S,1);zContorno(d,W,H);
+const sm=document.createElement('canvas');sm.width=W;sm.height=H;const sx=sm.getContext('2d'),im=sx.createImageData(W,H);im.data.set(d);sx.putImageData(im,0,0);
+const o=document.createElement('canvas');o.width=hi.width;o.height=hi.height;const x=o.getContext('2d');x.imageSmoothingEnabled=false;x.drawImage(sm,0,0,o.width,o.height);o.__px=sm;return o}catch(e){console.error(e);return _zHD.apply(this,arguments)}}}
+{const _zPut=hrPut;hrPut=function(x,im,cx,fy,h,flip){if(!(im&&im.__px))return _zPut.apply(this,arguments);const w=h*im.width/im.height;x.save();if(flip){x.translate(cx,0);x.scale(-1,1);x.translate(-cx,0)}x.imageSmoothingEnabled=false;x.drawImage(im.__px,cx-w/2,fy-h*(47.4/48),w,h);x.restore()}}
+{const _zMap=hrMap;hrMap=function(D,v,f){const o=_zMap.apply(this,arguments);try{const x=o.getContext('2d'),im=x.getImageData(0,0,o.width,o.height);zTextura(im.data,o.width,o.height,hrSpec(D),0);x.putImageData(im,0,0)}catch(e){}return o}}
+(function(){const st=document.createElement('style');st.textContent='.tadv img,.zai img,.abx img,.psc img,#chpv{image-rendering:pixelated;image-rendering:crisp-edges}';document.head.appendChild(st)})();
+try{for(const k of Object.keys(SV))if(HUM34[k.replace(/\d_\d+s?$/,'')])delete SV[k];hrReset();lkApply(G.look)}catch(e){}
+{const _zFace=hrFace;hrFace=function(D){if(!ZPX.on)return _zFace.apply(this,arguments);const k='px'+JSON.stringify(D);if(HRC[k])return HRC[k];try{const im=hrHD(D,0,8,4),p=im.__px;if(!p)return _zFace.apply(this,arguments);const c=document.createElement('canvas');c.width=c.height=64;const x=c.getContext('2d'),q=ZPX.k;x.imageSmoothingEnabled=false;
+x.drawImage(p,Math.round(7*q),Math.round(-.6*q),18*q,18*q,0,0,64,64);return HRC[k]=c.toDataURL()}catch(e){return _zFace.apply(this,arguments)}}}
+try{TRI={};NPCF={};}catch(e){}
 (function(){try{const st=document.createElement('style');st.textContent=`body.hudmin .ab:not(.hkeep){display:none!important}
 #hudtg{position:fixed;right:calc(env(safe-area-inset-right,0px) + 88px);bottom:calc(env(safe-area-inset-bottom,0px) + 6px);width:40px;height:40px;border-radius:50%;padding:0;margin:0;z-index:6;
  background:radial-gradient(circle at 35% 30%,#fff3c0,#e8c050 60%,#a8801c);border:2px solid #fff;color:#3a2a00;font:900 18px sans-serif;box-shadow:0 2px 6px #0008;display:flex;align-items:center;justify-content:center}
