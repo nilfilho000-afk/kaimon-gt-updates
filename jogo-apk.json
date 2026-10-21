@@ -1,7 +1,7 @@
 {
- "v": 104,
+ "v": 105,
  "url": "https://raw.githubusercontent.com/nilfilho000-afk/kaimon-gt-updates/main/jogo-apk.html",
- "notas": "Tutorial Primeiros passos, lista de amigos com online, organizar ícones, redes sociais e a Feira nova",
- "sha": "fb464bf07b5ae9b72f15f711d468e040d53a5a88446cc5bb953f36c71b257cbd",
- "sig": "mHkK8OJYb7sLEGNdrVAfmCIiPahM5EuDBB+qW/ONHE6VLou+Y99ROYpHikXb7w4PNh9EdxPcLXXM0eru8wQC+Q=="
+ "notas": "Kaimon GT 1.0: ícones arrastáveis, reportar bug (Ctrl+R), trocar o monstro pelo ícone, menu Usar, Passe e Addon Box do Passe na Loja, Anil com cais na frente das portas",
+ "sha": "80708689d106379853cc4124abd5fded2a35e3b13f98652cd0aeb484afdc10d8",
+ "sig": "HgW5FcqIiKBJJM4NcxepXzqZnKbeNUS59h21Zpqj4sREdp9L/fZMLMDusR4y7Niyw1nNmE17lMGhLwiNJTjBnQ=="
 }
