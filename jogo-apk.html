@@ -12982,6 +12982,47 @@ st.textContent=`.ab,#hudtg,#lojatop{background:url(${PXB.frame}) center/100% 100
 pxbTodos();
 new MutationObserver(ms=>{for(const m of ms){const t=m.target&&m.target.nodeType===1?m.target:(m.target&&m.target.parentElement);if(!t)continue;const b=t.closest&&t.closest('.ab,#hudtg,#lojatop');if(b){if(m.type==='attributes'&&t.tagName==='IMG'&&t.dataset.pxo!==t.getAttribute('src')){t.classList.remove('pxi')}pxbAplica(b)}m.addedNodes&&m.addedNodes.forEach(n=>{if(n.nodeType===1){if(n.matches&&n.matches('.ab,#hudtg,#lojatop'))pxbAplica(n);n.querySelectorAll&&n.querySelectorAll('.ab,#hudtg,#lojatop').forEach(pxbAplica)}})}}).observe(document.body,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:['src']});
 setInterval(pxbTodos,4000)}catch(e){console.error(e)}})();
+var LUA={ciclo:8,off:2.3,cache:{},av:-1};
+const LUAF=[['🌑','Lua nova'],['🌒','Lua crescente'],['🌓','Quarto crescente'],['🌔','Crescente gibosa'],['🌕','Lua cheia'],['🌖','Minguante gibosa'],['🌗','Quarto minguante'],['🌘','Lua minguante']];
+function luaP(gt){const d=((gt==null?G.gt:gt)||0)/1440+LUA.off;return((d/LUA.ciclo)%1+1)%1}
+function luaI(p){return Math.round(p*8)%8}
+function luaLuz(p){return(1-Math.cos(2*Math.PI*p))/2}
+function luaNome(p){return LUAF[luaI(p)]}
+const LUACR=[[-.35,-.3,.22],[.25,-.42,.14],[.38,.18,.2],[-.15,.32,.16],[-.48,.15,.1],[.05,-.05,.12],[.12,.52,.09],[-.05,-.6,.08]];
+function luaSprite(p,R){const k=Math.round(p*64)%64+'_'+R;if(LUA.cache[k])return LUA.cache[k];const N=R*2+2,c=document.createElement('canvas');c.width=c.height=N;const x=c.getContext('2d'),im=x.createImageData(N,N),d=im.data;
+const cs=Math.cos(2*Math.PI*p),cresc=p<=.5,put=(i,j,r,g,b,a)=>{const o=(j*N+i)*4;d[o]=r;d[o+1]=g;d[o+2]=b;d[o+3]=a};
+for(let j=0;j<N;j++)for(let i=0;i<N;i++){const X=(i+.5-N/2)/R,Y=(j+.5-N/2)/R,r=Math.hypot(X,Y);if(r>1)continue;
+if(r>.9){put(i,j,58,60,82,255);continue} 
+const s=Math.sqrt(Math.max(0,1-Y*Y)),lit=cresc?X>=cs*s:X<=-cs*s;
+let cr=0;for(const[a,b,rr]of LUACR){const q=Math.hypot(X-a,Y-b);if(q<rr)cr=Math.max(cr,q<rr*.6?2:1)}
+const limb=1-.28*Math.pow(r,3);
+if(lit){let R0=244,G0=238,B0=214;if(cr===2){R0=206;G0=198;B0=170}else if(cr===1){R0=226;G0=219;B0=192}put(i,j,R0*limb|0,G0*limb|0,B0*limb|0,255)}
+else{let R0=44,G0=52,B0=82;if(cr)R0-=6,G0-=6,B0-=8;put(i,j,R0,G0,B0,215)}} 
+x.putImageData(im,0,0);return LUA.cache[k]=c}
+function luaUrl(p,R){try{return luaSprite(p,R).toDataURL()}catch(e){return''}}
+function luaDraw(cw,ch){try{if(!M[cur]||M[cur].in)return;const nt=nightF();if(nt<=.05)return;const k=(WX&&WX.k)||'clear';if(k!=='clear'&&k!=='cloud')return;
+const h=hrs(),tt=((h-17.5+24)%24)/13;if(tt<0||tt>1)return;const p=luaP(),luz=luaLuz(p);const gx=(typeof g!=='undefined')?g:null;if(!gx)return;
+const al=nt*(k==='cloud'?.45:1);
+if(luz>.03){gx.save();gx.globalCompositeOperation='screen';gx.fillStyle=`rgba(120,140,210,${al*.1*luz})`;gx.fillRect(0,0,cw,ch);gx.restore()}
+if(luz<.03||typeof mnWater!=='function'||typeof rcCam!=='function')return;
+const[cx,cy]=rcCam(),T0=16,x0=Math.floor(cx/T0),y0=Math.floor(cy/T0),x1=Math.ceil((cx+cw)/T0),y1=Math.ceil((cy+ch)/T0),mx=cw*(.88-.76*tt);
+let best=null,bd=1e9;for(let ty=y0;ty<=y1;ty++)for(let tx=x0;tx<=x1;tx++){if(!mnWater(tx,ty))continue;
+let n=0;for(let a=-1;a<=1;a++)for(let b=-1;b<=1;b++)if(mnWater(tx+a,ty+b))n++;if(n<7)continue;
+const sx=tx*T0+8-cx,sy=ty*T0+8-cy,d=Math.abs(sx-mx)+.35*Math.abs(sy-ch*.45);if(d<bd){bd=d;best=[tx,ty,sx,sy]}}
+if(!best)return;const[btx,bty,sx,sy]=best,R=8,S=1.6,D=(R*2+2)*S,spr=luaSprite(p,R),now=performance.now();
+gx.save();gx.beginPath();for(let ty=bty-4;ty<=bty+4;ty++)for(let tx=btx-4;tx<=btx+4;tx++)if(mnWater(tx,ty))gx.rect(tx*T0-cx,ty*T0-cy,T0,T0);gx.clip();
+const gr=gx.createRadialGradient(sx,sy,2,sx,sy,D*1.3);gr.addColorStop(0,`rgba(220,230,255,${.22*luz*al})`);gr.addColorStop(1,'rgba(220,230,255,0)');gx.fillStyle=gr;gx.fillRect(sx-D*1.5,sy-D*1.5,D*3,D*3);
+gx.imageSmoothingEnabled=false;gx.globalAlpha=.62*al;const N=R*2+2,hh=D*.82/N;
+for(let r=0;r<N;r++){const off=Math.round(Math.sin(now/420+r*.9)*1.2*S);gx.drawImage(spr,0,r,N,1,Math.round(sx-D/2+off),Math.round(sy-D*.41+r*hh),D,Math.ceil(hh))}
+gx.globalAlpha=al*luz*.7;gx.fillStyle='#e8eeff';for(let i=0;i<7;i++){const yy=sy+D*.5+i*3.2,w=(D*.7)*(1-i/9)*(.6+.4*Math.abs(Math.sin(now/300+i*1.7)));gx.fillRect(Math.round(sx-w/2+Math.sin(now/500+i)*2),Math.round(yy),Math.round(w),1)}
+gx.restore()}catch(e){}}
+{const _lwx=wxDraw;wxDraw=function(t,cw,ch){_lwx.apply(this,arguments);luaDraw(cw,ch)}}
+setInterval(()=>{try{if(mode!=='walk'||!M[cur])return;const n=Math.floor(((G.gt||0)+360)/1440);if(LUA.av===n||nightF()<.5)return;LUA.av=n;const p=luaP(),i=luaI(p),[e,nm]=LUAF[i],dica=i===4?' A noite fica mais clara.':i===0?' Noite bem escura.':' Olhe o reflexo dela na água.';
+toast(`<span style="display:inline-flex;align-items:center;gap:8px"><img src="${luaUrl(p,8)}" alt="" style="width:36px;height:36px;image-rendering:pixelated"><span><b>${nm}</b> hoje à noite · ${Math.round(luaLuz(p)*100)}% iluminada.${dica}</span></span>`)}catch(e){}},5000);
+function luaGaroa(){const t0=G.gt,p=luaP(),[e,n]=luaNome(p);let rows='';
+for(let d=1;d<=8;d++){const t=(Math.floor(t0/1440)+d)*1440+22*60,q=luaP(t),[e2,n2]=luaNome(q);rows+=`<tr><td style="padding:3px 6px">${d===1?'Amanhã':'Daqui a '+d+' dias'}</td><td><img src="${luaUrl(q,7)}" alt="" style="width:30px;height:30px;image-rendering:pixelated;vertical-align:middle"></td><td>${e2} ${n2}</td><td style="text-align:right">${Math.round(luaLuz(q)*100)}% iluminada</td></tr>`}
+tpBox('fases da lua',`<div style="display:flex;gap:12px;align-items:center"><img src="${luaUrl(p,12)}" alt="" style="width:96px;height:96px;image-rendering:pixelated;background:#0b1430;border-radius:12px;padding:6px"><div><p style="font-size:15px">Hoje: <b>${e} ${n}</b> · ${Math.round(luaLuz(p)*100)}% iluminada</p><p><small>Um ciclo da lua dura ${LUA.ciclo} dias aqui em Pindorama. Ela nasce no fim da tarde a leste e some de manhã a oeste. Com lua cheia a noite fica mais clara; com lua nova, bem escura.</small></p></div></div>`+tpTab(rows),btn('Voltar','tpTalk()'))}
+{const _ltt=tpTalk;tpTalk=function(){_ltt.apply(this,arguments);try{const u=document.getElementById('ui');if(u&&!document.getElementById('luabtn')){const b=[...u.querySelectorAll('button')].find(x=>/Como funciona o clima/.test(x.textContent));const nb=document.createElement('span');nb.id='luabtn';nb.innerHTML=btn(LUAF[luaI(luaP())][0]+' Fases da lua','luaGaroa()');if(b)b.after(nb);else u.appendChild(nb)}}catch(e){}}}
 (function(){try{const st=document.createElement('style');st.textContent=`body.hudmin .ab:not(.hkeep){display:none!important}
 #hudtg{position:fixed;right:calc(env(safe-area-inset-right,0px) + 88px);bottom:calc(env(safe-area-inset-bottom,0px) + 6px);width:40px;height:40px;border-radius:50%;padding:0;margin:0;z-index:6;
  background:radial-gradient(circle at 35% 30%,#fff3c0,#e8c050 60%,#a8801c);border:2px solid #fff;color:#3a2a00;font:900 18px sans-serif;box-shadow:0 2px 6px #0008;display:flex;align-items:center;justify-content:center}
