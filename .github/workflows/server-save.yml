@@ -1,0 +1,39 @@
+# Server save diário do Kaimon GT: as atualizações novas ficam guardadas em proximo/
+# e só entram no jogo às 05:00 (horário de Brasília). O jogo fica em manutenção até 05:10 e volta já atualizado.
+name: Server save (05:00)
+on:
+  schedule:
+    - cron: '35 7 * * *'   # 04:35 BRT: o GitHub às vezes atrasa o agendamento; o job espera até 05:00 em ponto
+  workflow_dispatch:
+    inputs:
+      agora:
+        description: 'Liberar agora, sem esperar as 05:00?'
+        type: boolean
+        default: false
+permissions:
+  contents: write
+concurrency: { group: server-save, cancel-in-progress: false }
+jobs:
+  liberar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - name: Tem atualização esperando?
+        id: tem
+        run: if [ -f proximo/versao.json ] || [ -f proximo/jogo-apk.json ]; then echo "sim=1" >> "$GITHUB_OUTPUT"; else echo "Nada em proximo/ — nada a liberar."; fi
+      - name: Esperar dar 05:00 (Brasília)
+        if: steps.tem.outputs.sim == '1' && !(github.event_name == 'workflow_dispatch' && inputs.agora)
+        run: |
+          alvo=$(date -u -d "today 08:00" +%s); agora=$(date -u +%s)
+          if [ "$agora" -gt $((alvo + 600)) ]; then echo "::warning::Passou da janela 05:00–05:10; libera amanhã."; exit 1; fi
+          if [ "$agora" -lt "$alvo" ]; then echo "Esperando $((alvo-agora)) s"; sleep $((alvo-agora)); fi
+      - name: Liberar
+        if: steps.tem.outputs.sim == '1'
+        run: |
+          git config user.name "Kaimon GT server save"; git config user.email "actions@users.noreply.github.com"
+          for f in proximo/*; do [ "$(basename "$f")" = "LEIA-ME.md" ] && continue; git mv -f "$f" .; done
+          # apaga pacotes antigos do jogo que o versao.json não usa mais
+          usado=$(python3 -c "import json;print(json.load(open('versao.json'))['jogo_arquivo'])")
+          for k in jogo-*.kpk; do [ "$k" != "$usado" ] && git rm -q "$k" || true; done
+          git commit -m "Server save: libera v$(python3 -c "import json;print(json.load(open('versao.json'))['jogo'])")" && git push
