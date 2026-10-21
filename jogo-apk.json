@@ -1,7 +1,7 @@
 {
- "v": 93,
+ "v": 100,
  "url": "https://raw.githubusercontent.com/nilfilho000-afk/kaimon-gt-updates/main/jogo-apk.html",
- "notas": "Kaimon GT v93",
- "sha": "7e17b5815bc2adfc85190d0165ebe7d78864f20970a5114df5cd9e0b11031da0",
- "sig": "jRVKeKYRineSXKzm6pmymkwj73xrG6qMka5FASwyIv9L9iqwShPEbRSWX0nesPvcPyZOEd0k4Mza2vpSSNxsiA=="
+ "notas": "Tudo da v95 a v99 + cofre do depósito novo (só o dono abre, nada some) e chat que zera ao sair da conta",
+ "sha": "a26a795d760ad5ba3b294c221bcc2a64c7e7b0e90209a4e0d5d5f9ff0b3d0768",
+ "sig": "tqdUHq7o6lz4NHUwmT0p5vCoHG1E+1ipP3jJ52jmFjVilJyfHNkr8w+VR0SuG4cAtIBkiapIaldA0GwsULxnLw=="
 }
