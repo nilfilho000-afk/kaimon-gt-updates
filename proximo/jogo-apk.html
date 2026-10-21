@@ -2058,7 +2058,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v94 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v100 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -8128,7 +8128,7 @@ const kl=['A','B','C','D'];
 box.innerHTML=`<div class="qzh">❓ Pergunta do Kaimon <span class="qzcat">${q.cat}</span></div>
   <div class="qzq">${q.q}</div>
   <div class="qzop">${q.op.map((o,i)=>`<button class="qzo" data-i="${i}" onclick="qzAnswer(${i})"><span class="qzk">${kl[i]}</span><span>${o}</span></button>`).join('')}</div>
-  <div class="qzft">Acerte e ganhe <b>1 Kaimon Coin</b> (◈ KMC, a moeda da Loja Kaimon). Você tem <b>◈ ${kpGet()} KMC</b>.</div>`;
+  <div class="qzft">Responda para continuar jogando. Acertou, ganha <b>+2 pontos</b> no Passe Kaimon.</div>`;
 qzEl().classList.add('on')}catch(e){QZ.on=0}}
 function qzAnswer(i){if(!QZ.on||QZ.sel>=0)return;const q=QZ.q;QZ.sel=i;
 const box=qzEl().querySelector('#qzbox'),btns=box.querySelectorAll('.qzo');
@@ -8136,14 +8136,14 @@ let ans=q.ans;if(ans<0&&q._fx)ans=q.op.indexOf(q._fx);
 const acertou=i===ans;
 btns.forEach((b,bi)=>{b.disabled=true;if(bi===ans)b.classList.add('ok');else if(bi===i)b.classList.add('no')});
 QZ.done=(QZ.done|0)+1;
-if(acertou){kpAdd(1);try{G.qzok=(G.qzok|0)+1}catch(e){}}else{try{G.qzno=(G.qzno|0)+1}catch(e){}}
+if(acertou){try{if(typeof psAdd==='function')psAdd(2,'pergunta')}catch(e){}try{G.qzok=(G.qzok|0)+1}catch(e){}}else{try{G.qzno=(G.qzno|0)+1}catch(e){}}
 const ft=box.querySelector('.qzft');
 if(ft)ft.innerHTML=acertou
-?`✅ <b>Acertou!</b> +1 Kaimon Coin. Agora você tem <b>◈ ${kpGet()} KMC</b>.`
-:`❌ <b>Quase!</b> A resposta certa está em verde. Você continua com <b>◈ ${kpGet()} KMC</b>.`;
+?`✅ <b>Acertou!</b> +2 pontos no Passe Kaimon.`
+:`❌ <b>Quase!</b> A resposta certa está em verde.`;
 box.insertAdjacentHTML('beforeend','<button class="qzcont" onclick="qzClose()">Continuar jogando</button>');
 try{if(typeof hud==='function')hud()}catch(e){}
-try{if(typeof toast==='function')toast(acertou?'✅ +1 Kaimon Coin (◈ '+kpGet()+' KMC)':'❌ Resposta certa marcada em verde')}catch(e){}}
+try{if(typeof toast==='function')toast(acertou?'✅ Acertou! +2 pontos no Passe':'❌ Resposta certa marcada em verde')}catch(e){}}
 function qzClose(){QZ.on=0;QZ.sel=-1;QZ.q=null;QZ.acc=0;QZ.next=(28+Math.random()*4)*60;try{hd=-1}catch(e){}
 const e=document.getElementById('qzap');if(e)e.classList.remove('on')}
 addEventListener('keydown',function(e){if(!QZ.on)return;e.stopImmediatePropagation();
@@ -8607,7 +8607,7 @@ const pix=PSLOJA?'':LOJA.filter(it=>!it.saci||temSaci).filter(it=>!(it.k.startsW
 const kp=LOJAKP.filter(it=>!adHas(PS.MON,it.k)).map(it=>`<div class="psc p"><img src="${pbi(PS.MON,{sh:0,ad:it.k})}" alt=""><span><b>${it.n}</b><br><small>Addon do Saciclone</small></span>${btn('◈ '+it.kp,`lojaKp('${it.k}')`,!temSaci||kpGet()<it.kp)}</div>`).join('');
 open(`<div class="psh"><span style="font-size:30px">🛍️</span><div><b>Loja Kaimon</b><small>${PSLOJA?'Compras pela versão web ou PC; tudo fica na sua conta.':'Pagamento por PIX, cai na hora na sua conta.'} Você tem <b style="color:#ffe27a">◈ ${kpGet()}</b> Kaimon Points.</small></div></div>`+
 (pix?`<p style="margin:6px 0 2px"><b>💸 Por PIX</b></p><div style="display:grid;gap:4px">${pix}</div>`:'')+
-`<p style="margin:8px 0 2px"><b>◈ Por Kaimon Points</b> <small>(ganhe acertando a Pergunta do Kaimon)</small></p><div style="display:grid;gap:4px">${kp||'<small>Você já tem todos os addons.</small>'}</div>${temSaci?'':'<p><small>Os addons são para o Saciclone, que vem no nível 19 do Passe Kaimon.</small></p>'}`+
+`<p style="margin:8px 0 2px"><b>◈ Por Kaimon Points</b> </p><div style="display:grid;gap:4px">${kp||'<small>Você já tem todos os addons.</small>'}</div>${temSaci?'':'<p><small>Os addons são para o Saciclone, que vem no nível 19 do Passe Kaimon.</small></p>'}`+
 btn('🎫 Passe Kaimon','psOpen()')+btn('Fechar','closeUI()'));$('ui').classList.add('wide')}
 function lojaKp(k){const it=LOJAKP.find(x=>x.k===k);if(!it||adHas(PS.MON,k))return;if(kpGet()<it.kp)return toast('Faltam '+(it.kp-kpGet())+' Kaimon Points.');kpAdd(-it.kp);adUnlock(PS.MON,k);save();hud();toast('✦ '+it.n+' desbloqueado! Mochila → time → ✦ Addons.');lojaOpen()}
 function lojaBuy(k){const it=LOJA.find(x=>x.k===k);if(!it||PSLOJA)return;if(k==='passe')return psBuy();const a=accCur();
@@ -8805,7 +8805,7 @@ else bt=btn(kmc(it.p),`lojaItem('${it.k}')`,kp<it.p);
 return`<div class="psc"><img src="${it.ic()}" alt=""><span><b>${it.n}</b><br><small>${it.d}</small></span>${bt}</div>`}).join('');
 let packs='';if(PSLOJA)packs=`<p class="lojah">💸 Comprar Kaimon Coin <small>· na versão web (kaimon-gt.web.app) ou no PC; os KMC ficam na sua conta e aparecem aqui.</small></p>`;
 else packs=`<p class="lojah">💸 Comprar Kaimon Coin <small>· 1 KMC = R$ 1 · PIX, cai na hora na sua conta</small></p><div class="lojag">${LOJAKMC.map(it=>`<div class="psc p"><img src="${kmIcon('coin')}" alt=""><span><b>${it.n}</b><br><small>${it.b||'sem bônus'}</small></span>${btn('R$ '+it.p,`lojaBuy('${it.k}')`)}</div>`).join('')}</div>`;
-open(`<div class="psh"><span style="font-size:30px">🛍️</span><div><b>Loja Kaimon</b><small>Tudo aqui se compra com <b>Kaimon Coin</b>. Você tem <b style="color:#ffe27a">${kmc(kp)}</b>. Ganhe KMC acertando a Pergunta do Kaimon${PSLOJA?'':' ou compre pacotes abaixo'}.</small></div><div style="flex:none">${btn('Fechar','closeUI()')}</div></div>`+
+open(`<div class="psh"><span style="font-size:30px">🛍️</span><div><b>Loja Kaimon</b><small>Tudo aqui se compra com <b>Kaimon Coin</b>. Você tem <b style="color:#ffe27a">${kmc(kp)}</b>. ${PSLOJA?'O que você já tem fica na sua conta.':'Compre pacotes abaixo.'}</small></div><div style="flex:none">${btn('Fechar','closeUI()')}</div></div>`+
 `<p class="lojah">◈ Itens <small>· em Kaimon Coin</small></p><div class="lojag">${itens}</div>`+
 (()=>{const ad=lojaAddons();return`<p class="lojah">✦ Addons <small>· do treinador e dos monstros do seu time e depósitos · a Addon Box (◈ 5) sorteia um deles</small></p>`+(ad?`<div class="lojag">${ad}</div>`:'<small>Você já tem todos os addons dos seus monstros. Capture outros para liberar mais!</small>')})()+packs+
 `<p style="margin:8px 0 2px"><small>🎫 O <b>Passe Kaimon</b> (${PS.PRECO} / 30 dias) é vendido à parte e já vem com 1 Kaimon Addon Box no nível 20.</small></p>`+
@@ -8899,7 +8899,7 @@ setTimeout(()=>{try{G.party.forEach(m=>{stats(m);m.hp=m.max;(m.mv||[]).forEach(v
 ov.style.opacity=0;setTimeout(()=>ov.remove(),750);toast('🌅 Você dormiu até de manhã. Você e todo o time estão com as forças de volta!')},1100)}
 function hSit(x,y){if(P.sit||mode!=='walk'&&mode!=='ui')return;closeUI();const t=performance.now();P.sit={x:P.x,y:P.y,bx:x,by:y,m:cur,t0:t,nx:t+900,rel:0,ch:1};P.fx=P.x;P.fy=P.y;P.x=x;P.y=y;P.d=2;P.end=t+tdur();toast('🪑 Você sentou na cadeira. (ande ou aperte ação para levantar)')}
 function hWater(k){const o=G.own[HK()];if(!o)return;const n=o.d[k];if(n!=='planta'&&n!=='vaso')return;if(hplantSt(o,k)===2)return toast('Essa planta já morreu... Remova e compre outra.');o.pw=o.pw||{};o.pw[k]=Date.now();save();toast('💧 Planta regada! Ela fica viçosa por uma semana.');hre(k)}
-function hRead(){const dicas=['Monstros de Água surfam, Voadores voam e os de terra levam você nas costas (com o Passe Kaimon).','Golpes como Absorver curam quem ataca.','Cristal do Passe captura ×4 e dá 16% de chance de shiny.','Dinheiro no Banco Kaimon não se perde ao desmaiar.','Uma planta sem água por uma semana murcha; com dez dias, morre.','A Pergunta do Kaimon dá 1 Kaimon Coin por acerto.'];ok('📚 <b>Um livro da estante:</b> '+dicas[Math.random()*dicas.length|0])}
+function hRead(){const dicas=['Monstros de Água surfam, Voadores voam e os de terra levam você nas costas (com o Passe Kaimon).','Golpes como Absorver curam quem ataca.','Cristal do Passe captura ×4 e dá 16% de chance de shiny.','Dinheiro no Banco Kaimon não se perde ao desmaiar.','Uma planta sem água por uma semana murcha; com dez dias, morre.','A Pergunta do Kaimon certa dá 2 pontos no Passe Kaimon.'];ok('📚 <b>Um livro da estante:</b> '+dicas[Math.random()*dicas.length|0])}
 function hFeed(){ok('🐟 Você deu comida para os peixinhos. Eles nadam felizes!')}
 const _v5Hmenu=hmenu;hmenu=function(x,y){const r=_v5Hmenu.apply(this,arguments);try{const o=G.own[HK()],k=x+','+y,n=o&&o.d[k];if(!n)return r;const ui=$('ui'),p=ui.querySelector('p');
 let extra='';if(n==='cama')extra=btn('😴 Dormir','hSleep()');else if(n==='cadeira')extra=btn('🪑 Sentar',`hSit(${x},${y})`);else if(n==='planta'||n==='vaso'){const st=hplantSt(o,k);extra=`<small style="color:${st===0?'#9df0b4':st===1?'#ffd34d':'#ffb4b4'}">${st===0?'🌿 viçosa':st===1?'🥀 murcha, precisa de água!':'💀 morta'}</small> `+btn('💧 Regar',`hWater('${k}')`,st===2)}
@@ -9083,7 +9083,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=94;
+var KGT_VER=100;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -10097,7 +10097,7 @@ const TADICA=['No Centro de Cura seus monstros voltam a 100%. Fale com a enferme
 'Toda estação o mundo muda: no inverno neva, no outono as folhas ficam douradas e alguns monstros aparecem mais.','De noite aparecem monstros diferentes. Tente explorar com a lanterna dos postes acesa!',
 'Montaria é VIP: toque no botão da asa para montar, surfar ou voar. Segure o botão para escolher.','A cada mês um monstro lendário novo chega no Passe. O nível 19 da trilha premium dá o monstro.',
 'Vida baixa aumenta a chance de captura. E Cristal Super e Ultra pegam mais fácil que o Normal.','Monstros evoluem com nível. Alguns só evoluem quando o treinador também tem nível alto.',
-'Kaimon Points você ganha respondendo a Pergunta do Kaimon que aparece de vez em quando.','Os ginásios ficam mais difíceis a cada insígnia. Monte um time com tipos variados!',
+'A Pergunta do Kaimon aparece de vez em quando; acertar dá pontos no Passe Kaimon.','Os ginásios ficam mais difíceis a cada insígnia. Monte um time com tipos variados!',
 'Nos morros das rotas, cada andar acima tem monstros de evolução mais alta.','Andar no mato alto é onde os selvagens aparecem. Na estrada de terra você passa tranquilo.',
 'Itens de cura comprados na Loja salvam vidas no meio da rota.','Sentar num banco recupera um pouquinho da sua vida.'];
 const TAFALA=['Opa! Tô mapeando todos os monstros dessa região.','Acabei de ver um rastro fresco ali no mato...','Quer uma dica? É só falar comigo!','Já são muitos monstros no meu caderno hoje!',
@@ -11048,7 +11048,7 @@ try{PS.PRECO='◈ '+PSKMC+' KMC'}catch(e){}
 function psKmcOk(t){try{play('catch')}catch(e){}hud();try{psBadge()}catch(e){}
 open(`<div class="psh"><span style="font-size:30px">🎉</span><div><b>Passe Kaimon ativado!</b><small>${t||''}30 dias de VIP (montar, surfar, voar) e a trilha premium liberada. Você ainda tem ${kmc(kpGet())}.</small></div></div>`+btn('Ver o passe','psOpen()')+btn('Fechar','closeUI()'))}
 psBuy=function(){if(PSLOJA)return;const kp=kpGet();
-if(kp<PSKMC)return open(`<b>🎫 Passe Kaimon · ◈ ${PSKMC} KMC</b><p>Você tem <b style="color:#ffe27a">${kmc(kp)}</b>. Faltam <b>${kmc(PSKMC-kp)}</b>.</p><p><small>Compre Kaimon Coins na <b>Loja</b> (PIX, cai na hora) ou ganhe acertando a Pergunta do Kaimon.</small></p>`+btn('🛍️ Comprar KMC','closeUI();lojaOpen()')+btn('Voltar','psOpen()'));
+if(kp<PSKMC)return open(`<b>🎫 Passe Kaimon · ◈ ${PSKMC} KMC</b><p>Você tem <b style="color:#ffe27a">${kmc(kp)}</b>. Faltam <b>${kmc(PSKMC-kp)}</b>.</p><p><small>Compre Kaimon Coins na <b>Loja</b> (PIX, cai na hora).</small></p>`+btn('🛍️ Comprar KMC','closeUI();lojaOpen()')+btn('Voltar','psOpen()'));
 open(`<b>🎫 Passe Kaimon · ◈ ${PSKMC} KMC</b><p>30 dias de VIP (montar, surfar, voar) + a trilha premium com o ${PS.MON}.${psOn()?' <b>Os 30 dias somam com o que você já tem.</b>':''}</p><p><small>Você tem ${kmc(kp)} · depois da compra: ${kmc(kp-PSKMC)}.</small></p>`+btn('Ativar por ◈ '+PSKMC+' KMC','psKmc()')+btn('Voltar','psOpen()'))};
 var PSK=0;
 async function psKmc(){if(PSK)return;const a=accCur();if(!a)return;if(kpGet()<PSKMC)return psBuy();PSK=1;
@@ -11402,6 +11402,441 @@ for(const[a,txt]of[[290,'⏰ Server save às 05:00: o jogo salva e fecha por 10 
 if(m===a&&!SS.av[a]){SS.av[a]=1;try{toast(txt)}catch(e){}}
 if(m>SS.fim)SS.av={}}catch(e){}}
 setTimeout(ssHora,4000);setInterval(ssHora,30*60000);setInterval(ssTick,1000);ssTick();
+var KB={img:{},ready:null,fe:-1};
+const KBF=[
+[['Musguiça','Ramaguiça','Mapinguaçu'],'grass','Garra de Preguiça','Seiva Ancestral','Musgo Dourado'],
+[['Brasatu','Magmatu','Vulcatu'],'fire','Carapaça Incandescente','Núcleo de Magma','Brasa Eterna'],
+[['Botinho','Botorrente','Botencanto'],'water','Nadadeira Rosada','Coração do Rio','Lágrima do Encante'],
+[['Tevizinho','Bentevi','Bentempesta'],'normal','Penacho de Bem-te-vi','Canto Engarrafado','Pena do Sol'],
+[['Cutiqui','Cutião','Cutiaçu'],'normal','Semente Enterrada','Raiz do Castanheiro','Castanha Dourada'],
+[['Querinho','Queroquero','Queroguerra'],'normal','Esporão Afiado','Ovo de Quero-quero','Esporão de Prata'],
+[['Saúvinha','Cortaúva','Tanajura'],'bug','Folha da Rainha','Coroa de Tanajura','Asa de Cristal'],
+[['Lumilarva','Vagalumi','Faroluz'],'bug','Luz Engarrafada','Lanterna Viva','Farol Estelar'],
+[['Faiscamico','Choquemico','Trovaleão'],'electric','Rabo Faiscante','Raio Preso','Coroa de Relâmpago'],
+[['Ouricinho','Espinhoso','Ouriçaço'],'poison','Ponta Venenosa','Couraça de Aço','Espinho de Prata'],
+[['Vasinho','Folhudo','Ninguempode'],'grass','Seiva Tóxica','Raiz Proibida','Flor de Prata'],
+[['Tirica','Jaguatira','Jaguasombra'],'normal','Bigode Afiado','Olho Noturno','Pelagem Lunar'],
+[['Jarinha','Jararosca','Jararrei'],'poison','Veneno Concentrado','Coroa da Serpente','Escama de Prata'],
+[['Pirarinho','Pirarucão','Piracouraça'],'water','Língua de Pirarucu','Escama Gigante','Escama de Ouro do Rio'],
+[['Alpagelo','Lhamaneve','Guanacristal'],'ice','Lã de Neve','Coração de Gelo','Floco Prismático'],
+[['Pipassombra','Rabiolume','Papagaiassombro'],'ghost','Carretel Fantasma','Vento Assombrado','Pipa Estrelada'],
+[['Capivinha','Capifada','Capivalma'],'fairy','Flor de Aguapé','Orvalho Encantado','Pó de Estrela'],
+[['Guarito','Guarabrasa','Guaraqueima'],'fire','Crina em Brasa','Fogo do Cerrado','Crina Dourada'],
+[['Pinhito','Pinheirão','Araucaneve'],'grass','Pinhão de Neve','Resina Ancestral','Pinha de Cristal'],
+[['Jabuzinho','Jabucacho','Jabuteira'],'grass','Casco Florido','Seiva de Jabuticabeira','Jabuticaba Dourada'],
+[['Beijinho','Zumbeijo','Relampejo'],'electric','Pena Elétrica','Néctar Puro','Pena Arco-íris'],
+[['Ararinha','Aramente','Aravidente'],'psychic','Pena Vermelha','Pena da Mente','Pena Celestial'],
+[['Oncinha','Onçapinta','Onçatroz'],'dark','Pelo Negro','Presa Ancestral','Pintas de Ouro'],
+[['Galhinho','Urutau','Luarutau'],'dark','Pena da Noite','Lamento Engarrafado','Pena Lunar'],
+[['Minhoquinha','Minhocão','Minhocuçu'],'ground','Terra Preta','Pedra do Fundo','Anel Dourado'],
+[['Geodinho','Drusita','Ametitã'],'rock','Drusa','Coração de Ametista','Ametista Estelar'],
+[['Cupinzinho','Cupimonte','Cupinzeirão'],'bug','Barro Endurecido','Torrão Real','Asa de Âmbar'],
+[['Piãozinho','Rodopião','Furacião'],'steel','Ponta de Aço','Eixo do Furacão','Pião de Prata'],
+[['Jacarinho','Jacadraco','Jacaraçu'],'dragon','Escama de Dragão','Dente Ancestral','Escama Esmeralda'],
+[['Carranquinha','Carrancuda','Carrancão'],'ghost','Madeira de Proa','Proa Encantada','Carranca Dourada'],
+[['Boimarinho','Boiamar','Sereboia'],'water','Bigode Macio','Pérola do Mar','Concha Arco-íris'],
+[['Arraiinha','Arraiá','Arraiaçu'],'water','Ferrão Afiado','Veneno do Mangue','Ferrão de Prata'],
+[['Tamandim','Tamanduelo','Bandeiraço'],'fighting','Língua de Tamanduá','Garra Ancestral','Cauda Dourada']];
+const KBT={normal:'Normal',fire:'Fogo',water:'Água',grass:'Planta',electric:'Elétrico',ice:'Gelo',fighting:'Lutador',poison:'Veneno',ground:'Terra',flying:'Voador',psychic:'Psíquico',bug:'Inseto',rock:'Pedra',ghost:'Fantasma',dragon:'Dragão',dark:'Sombrio',steel:'Aço',fairy:'Fada'};
+const KBS={};
+KBF.forEach((f,i)=>f[0].forEach((n,s)=>{KBS[n]={f:i,s:s+1}}));
+const KBSEL='Selo de Proteção';
+const kbPB=t=>'Pedra Boost ('+(KBT[t]||t)+')';
+const kbStone=t=>(STONE[t]||STONE.normal)[0];
+function kbCommons(f){const F=KBF[f],a=DROP[F[0][0]],b=DROPX[F[0][1]],c=DROPX[F[0][2]];return[a?a[0]:null,b?(b.n||b[0]):null,c?(c.n||c[0]):null]}
+const KBR=[null,
+[10,0,0,0,0,0,1,0,2000,100],[15,0,0,0,0,0,1,0,3000,95],[20,0,0,0,0,0,1,0,4000,90],[25,0,0,0,0,0,2,0,5000,85],[30,0,0,0,0,0,2,0,6000,80],
+[20,10,0,0,0,0,2,0,8000,75],[25,12,0,0,0,0,2,0,10000,70],[30,15,0,0,0,0,3,0,12000,65],[35,18,0,0,0,0,3,0,14000,60],[40,20,0,0,0,0,3,0,16000,55],
+[0,15,10,2,0,0,0,1,20000,50],[0,18,12,3,0,0,0,1,25000,45],[0,20,14,3,0,0,0,1,30000,40],[0,22,16,4,0,0,0,1,35000,35],[0,25,18,5,0,0,0,1,40000,30],
+[0,0,20,6,1,0,0,1,50000,25],[0,0,22,7,1,0,0,1,60000,22],[0,0,24,8,1,0,0,2,70000,20],[0,0,26,9,2,0,0,2,80000,18],[0,0,30,10,2,0,0,2,100000,15],
+[0,0,0,12,2,1,0,2,150000,12],[0,0,0,14,2,1,0,2,175000,10],[0,0,0,16,3,1,0,3,200000,8],[0,0,0,18,3,1,0,3,250000,6],[0,0,0,20,4,2,0,3,300000,5]];
+const KBMAX=25,KBFRAG=3,KBFRAGMAX=30,KBPBC=[3,10000],KBSELC=[5,1,50000];
+function kbPct(L){let s=0;for(let l=1;l<=L;l++)s+=l<=10?1:l<=20?1.5:3;return s}
+function kbBand(L){return L>=21?4:L>=16?3:L>=11?2:L>=6?1:L>=1?0:-1}
+const KBCOL=[['#b87333','#f0b080'],['#9aa4b4','#f0f4fa'],['#d8a020','#fff27a'],['#3ab0e8','#d8f6ff'],['#c040c0','#ffb0f0']];
+(function(){
+const mixc=(a,b,t)=>{const p=s=>[1,3,5].map(i=>parseInt(s.slice(i,i+2),16)),A=p(a),B=p(b);return'#'+A.map((v,i)=>Math.round(v+(B[i]-v)*t).toString(16).padStart(2,'0')).join('')};
+const HAND={'Nadadeira Rosada':['barbatana','#e48aa6','#ffd0dc'],'Coração do Rio':['orbe','#3a8ad8','#ff9ac0',{rim:1,glow:1}],'Lágrima do Encante':['gota','#c890f0','#ffb0e0',{star:1}],
+'Carapaça Incandescente':['placa','#c06030','#ffb040',{spk:1}],'Núcleo de Magma':['orbe','#7a2018','#ff7a2a',{rim:1,glow:1}],'Brasa Eterna':['brasa','#f0c040','#ffffff'],
+'Garra de Preguiça':['garra','#d8c8a0','#5a4a32'],'Seiva Ancestral':['frasco','#cfe8c8','#6ad050',{}],'Musgo Dourado':['musgo','#d8a830','#fff27a']};
+const spec=n=>{const s=ITX[n];if(s)return s.slice();for(const k in DROPX){const d=DROPX[k];if(d&&(d.n||d[0])===n)return[d.t,d.c,d.a,Object.assign({},d.o||{})]}return null};
+KBF.forEach((F,i)=>{const[c1,c2,c3]=kbCommons(i),s1=spec(c1)||['escama','#a0a0b0','#e0e0f0'],s2=spec(c2)||s1,s3=spec(c3)||s2,[raro,lend,mit]=F.slice(2);
+if(!ITX[raro])ITX[raro]=HAND[raro]||[s2[0],mixc(s2[1]||'#a0a0b0','#ffffff',.18),s2[2]||s2[1],Object.assign({},s2[3]||{})];
+if(!ITX[lend])ITX[lend]=HAND[lend]||['orbe',mixc(s1[1]||'#808080','#0c0814',.25),s3[2]||s3[1]||'#ffffff',{rim:1,glow:1}];
+if(!ITX[mit]){const gold=/Dourad|Ouro/.test(mit),prata=/Prata/.test(mit);ITX[mit]=HAND[mit]||[s1[0],gold?'#e8b830':prata?'#c8d0dc':'#c890f0',gold?'#fff27a':prata?'#ffffff':'#8ae8ff',Object.assign({},s1[3]||{},{glow:1})]}
+PR[raro]=1500;PR[lend]=12000;PR[mit]=40000});
+for(const t in KBT){const n=kbPB(t),c=(typeof TYC18==='object'&&TYC18[t])||'#8a9ab0';ITX[n]=['cristal',c,mixc(c,'#ffffff',.6),{side:1,glow:1}];PR[n]=9000}
+ITX[KBSEL]=['amuleto','#e8b830','#4a8ae8'];PR[KBSEL]=25000;
+})();
+const KBITEM=new Set([KBSEL]);KBF.forEach(F=>F.slice(2).forEach(n=>KBITEM.add(n)));for(const t in KBT)KBITEM.add(kbPB(t));
+{const _kbLoot=isLootN;isLootN=function(n){if(KBITEM.has(n))return false;return _kbLoot.apply(this,arguments)}}
+{const _kbDrops=drops;drops=function(w){const o=_kbDrops.apply(this,arguments);try{if(!w||w.boss||w.tr)return o;const k=KBS[w.n];if(!k)return o;const F=KBF[k.f];
+const add=n=>{const lo=invAdd(n,1);o.push(lo?n+' (inventário cheio!)':'✨ '+n)};
+let rr=k.s===2?.03:k.s===3?.06:0,ll=k.s===3&&(w.lvl|0)>=60?.01:0;if(w.enc){rr=.15;ll=k.s>=2?.04:0}
+if(rr&&Math.random()<rr)add(F[2]);if(ll&&Math.random()<ll)add(F[3]);if(w.sh&&Math.random()<.35)add(F[4])}catch(e){}return o}}
+{const _kbCap=capXP;capXP=async function(w){const r=await _kbCap.apply(this,arguments);try{const k=w&&w.sh&&KBS[w.n];if(k&&Math.random()<.5){const n=KBF[k.f][4];if(!invAdd(n,1))toast('✨ Você ganhou <b>'+n+'</b> (Mítico)!');else toast('Inventário cheio: o '+n+' não coube.')}}catch(e){}return r}}
+{const _kbEvo=evoShiny;evoShiny=function(i){try{const p=G.party[i],r=p&&p.sh&&evReq(p),k=p&&KBS[p.n];
+if(r&&k&&invCount(r.item)<1&&invCount(r.stone)>=1&&invCount(KBF[k.f][4])>=1){invRemove(KBF[k.f][4],1);invAdd(r.item,1);toast('Usando o '+KBF[k.f][4]+' no lugar de '+r.item+'.')}}catch(e){}return _kbEvo.apply(this,arguments)}}
+{const _kbSt=stats;stats=function(m){_kbSt.apply(this,arguments);try{const L=Math.max(0,Math.min(KBMAX,m&&m.bo|0));if(L){const f=1+kbPct(L)/100;m.max=Math.floor(m.max*f);m.A=Math.floor(m.A*f);m.SA=Math.floor(m.SA*f)}}catch(e){}}}
+const KBSPR={portal:'data:image/png;base64,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',comp:'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAcCAYAAAB75n/uAAABuUlEQVR42tVWXShDYRh+zs6cnfxsptUmmoRQs7ZbTbuZoihSlFzIzwVXU1xxZ7mS5EqRW7mglguKlFqSjaV2QUNrbghta6nZzvG5wDQd6+y0ZXtvvq/3/Xqe3uf96QMK3ajfjsD9E2GK5JLARofHsLe/nYIpiGQbmc0YfGdlTtAvSBC8OIJveREAYLBPi6QQJpDlugZ/ij0YrM8Kwf9lsMToPgtesBk0mXoKuAYe1xEekvf0AJEBW24zUG0dwqnjxe+izo4+kimJmfbByxsAIP0uci6MEKVWLyGPFrR/3UK35+TUH6D+rMGd+wAA4HozQa+vFgW/trqO+V5dZm3qPvPAfebJ3RxMtcnxHI1BU8YKxlNjujycZAAo1dSgtKpWOPZ1OlY2Ye+qlUYw6XDAYm6Fy3sCi7kV1kYtjq8f4fKeJN/0T4xiY2Y8TyUyNtsAFMPYbIOSBXYvo1Cy3/4fkyzRkLVSZBeJ+LYooKozN6hvsiHLqT9UAURCSYJihaY729pzhPjj8ZcrSiDGAiXlDMOqaUJUhLwzAC0nIEU0LWN4judAURwFWQLgOZ4ir3SChGOgQkA4/BvsAzTVgGFDxfceAAAAAElFTkSuQmCC',maq:'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAgCAYAAAAIXrg4AAACz0lEQVR42tVWXUhTYRh+zjbnXJola9l0acSKpnWxCxFiF0kXlTRSpD+6SCQoBJUgbwTXD+VASkYiQjkshCCGF0rbNJnGSck0oYuZuqwtbWgprYuW6bavi4OnjjvObZ4ueuHA+73fy/O85/3jA/53odYaKmsbSbZKmRBYS9M9zHjfcjAlfI79L99g1rfAnl2OXOQd86wL7J97j3xdIe+dKFpELkcu0rLV0FdJsUObh8aOh8jM10GuVEIsk8X0V1EJdGf9rJ5/UIsTe1KwpLgQV9pEsTqWnTmFgXlG36uvFp4gFCZ/cj5tF57grskMAJAnA4u+KeEJAoEAvswvIDDV8m9qAADN5lYA4bgI2DmoM7WTXcoMvJuYBADU1NbGBWTtsDBBWLpIU8NtTLuHqYhBGxodB/3sCQDg1siLhKZ5aHQcUSdZX3wOXU9bEwI3nL68for+FvluVUyA+s4i0KVOzN8E0i76+Iv8yFROui1GYm8zRgXSdxZF2OlSJwBgZz3XXl+hhU6TQ3SaHCICAGND+4ZR0qVOXhI+Mbc5uW065vZSxytu8DqvRrlWjybfkRm9BkcLDfFXuHCDOdisVA8/ZvXzSFt/kvusFqgVSezXZ2UGKBz4ytpeD9gifONaFfZeGle0+2Hvpbn1SC0GnVoc4VuSUYFLSfvQeugISmZ/Jb6LEhHeGsx9GEdB1VWOzWnrBmzdvL6GOwXM4UBW5KtCp8khY24vVWdqJx8/zW0q2uSfM+ixOZCyVYF0MFiSMbeXEiodPTYHq6/isinyzXigUWduikBTcw0A8KD5Pn8Nnve/wqCVWXSHy5jlNWhVcfRY7yJeduWV18mk2yNIqjyuEfg+uygOgSorjwjZnhwCebLipND9HyTEvby8OMHXQTJgyzapVLZdTEg6IWEpIJYQkCSxWCQNBUNBUFSQgmgFCAVDFPkhXiH+JVDfAL9/Ldhvl139hjfHQGEAAAAASUVORK5CYII='};
+KB.ready=Promise.all(Object.keys(KBSPR).map(k=>new Promise(res=>{const im=new Image();im.onload=()=>{KB.img[k]=im;res()};im.onerror=()=>res();im.src=KBSPR[k]})));
+{const _kbTile=tile;tile=function(id,X,Y){if(id===180)return _kbTile(15,X,Y);if(id===181)return _kbTile(101,X,Y);if(id===182)return _kbTile(0,X,Y);return _kbTile.apply(this,arguments)}}
+[180,181,182].forEach(v=>SOLID.add(v));
+const KBLOTS=[[5,10],[8,10],[11,10],[14,10],[31,10],[34,10],[37,10],[40,10],[8,16],[11,16],[14,16],[31,16],[34,16],[37,16],[8,26],[11,26],[14,26],[17,26],[27,26],[30,26],[33,26],[36,26]];
+const KBOBJ={comp:[[17,9],[19,9]],maq:[[28,9],[30,9]],dep:[[33,21],[34,21]],pastel:[[11,21],[12,21]],portal:[[23,28],[24,28]],arena:[[23,6],[24,6]]};
+(function(){let gx=0;for(const q of GW){const m=M[q[0]];gx=Math.max(gx,q[1]+((m&&m.W)||40))}gx+=40;
+const i=kdef('feira94',{nm:'Feira de Pindorama',gn:'Feira de Pindorama',gx,gy:0,ed:0,W:48,H:39,seed:9494,
+gen(m){kframe(3,7,.6);
+kpath([[23,7],[23,33]],101,2);kblob(24,31.5,4,2,101,null,.2);kpath([[6,13],[41,13]],101,2);kpath([[6,24],[41,24]],101,2);kpath([[6,13],[6,25]],101,2);kpath([[40,13],[40,25]],101,2);
+kblob(24,15.5,6.5,4.5,101,null,.15);kpond(24,15.5,1.7,1.1);
+kr(16,3,31,6,182);for(const k of['comp','maq','dep','pastel','portal'])for(const[x,y]of KBOBJ[k])ks(x,y,181);
+for(const[x,y]of KBOBJ.maq)ks(x,y-1,182);for(const[x,y]of KBOBJ.comp)ks(x,y-1,182);
+for(const[x,y]of[[21,8],[26,8],[21,22],[26,22],[9,23],[38,23],[9,15],[38,15]])ks(x,y,22);
+ks(26,29,60);
+kscat(40,9,(v,x,y)=>v===0&&!KBLOTS.some(([a,b])=>x>=a&&x<a+3&&y>=b&&y<b+2),[4,4,43,33]);
+kscat(14,20,(v,x,y)=>v===0&&(x<5||x>42||y<5||y>32),[3,3,44,35])},
+deco(){kbDeco()}});
+KB.fe=i;SIGN[i+',26,29']='Feira de Pindorama — computadores, Máquina Kaimonboost, depósito e a Kaimon Arena. O portal leva de volta ao Centro de Cura.';
+const ia=M[i].ia={};
+for(const[x,y]of KBOBJ.portal)ia[x+','+y]=()=>kbPortalFeira();
+for(const[x,y]of KBOBJ.comp)ia[x+','+y]=()=>kbComputador();
+for(const[x,y]of KBOBJ.maq)ia[x+','+y]=()=>kbMaquina();
+for(const[x,y]of KBOBJ.dep)ia[x+','+y]=()=>kbDeposito();
+for(const[x,y]of KBOBJ.pastel)ia[x+','+y]=()=>kbPastel();
+for(const[x,y]of KBOBJ.arena)ia[x+','+y]=()=>kbArena();
+for(const[a,b]of KBLOTS)for(let dx=0;dx<3;dx++)for(let dy=0;dy<2;dy++)ia[(a+dx)+','+(b+dy)]=()=>kbLote();
+})();
+function kbDeco(){const x=mg,T2=16,R=(c,a,b,w,h)=>{x.fillStyle=c;x.fillRect(a,b,w,h)},I=KB.img;
+x.save();x.imageSmoothingEnabled=false;
+{const X=16*T2,Y=3*T2,w=16*T2,h=4*T2-2;R('#6a6258',X,Y+6,w,h-6);let s=7;const rnd=()=>{s=(s*16807)%2147483647;return s/2147483647};
+for(let j=0;j<5;j++)for(let i2=0;i2<16;i2++){const c=Math.round(150-30*rnd());R('rgb('+c+','+(c-8)+','+(c-22)+')',X+i2*16+((j%2)*8)%16+1,Y+8+j*10,14,8)}
+R('#c9332a',X-4,Y,w+8,8);for(let i2=0;i2<w+8;i2+=12)R('#f0e6d0',X-4+i2,Y,6,8);
+R('#2a2020',24*T2-16,Y+22,32,h-22);x.fillStyle='#2a2020';x.beginPath();x.arc(24*T2,Y+22,16,Math.PI,0);x.fill();
+R('#f0c030',24*T2-34,Y+10,68,10);x.fillStyle='#3a2410';x.font='bold 8px sans-serif';x.textAlign='center';x.fillText('KAIMON ARENA',24*T2,Y+18);
+for(const fx of[X+10,X+w-12]){R('#3a2a1a',fx,Y-14,2,16);x.fillStyle=fx<24*T2?'#3a8ae8':'#e84a3a';x.beginPath();x.moveTo(fx+2,Y-14);x.lineTo(fx+14,Y-10);x.lineTo(fx+2,Y-6);x.fill()}}
+for(const[X0,c]of[[16*T2+8,'#3a6ad8'],[27*T2+8,'#3a6ad8']]){R('#2a4a8a',X0,7*T2+4,4*T2,3);for(let i2=0;i2<4*T2;i2+=8){R(c,X0+i2,7*T2+7,4,6);R('#f4f0e0',X0+i2+4,7*T2+7,4,6)}}
+for(const[a,b]of KBOBJ.comp)if(I.comp)x.drawImage(I.comp,a*T2-4,b*T2-12);
+for(const[a,b]of KBOBJ.maq)if(I.maq)x.drawImage(I.maq,a*T2-4,b*T2-16);
+{const cx=24*T2,cy=28*T2+12;x.fillStyle='#8a8478';x.beginPath();x.ellipse(cx,cy,30,10,0,0,7);x.fill();x.fillStyle='#a8a294';x.beginPath();x.ellipse(cx,cy-1,27,8,0,0,7);x.fill();if(I.portal)x.drawImage(I.portal,cx-20,cy-38)}
+{const cx=24*T2+8,cy=15.5*T2+8;R('#9a9284',cx-3,cy-18,6,14);R('#bfe8ff',cx-1,cy-28,2,10);for(const[a,b]of[[-6,-24],[4,-24],[-8,-20],[6,-20]])R('#bfe8ff',cx+a,cy+b,2,2)}
+{const X=33*T2,Y=21*T2-6;R('#7a4b27',X,Y,32,22);R('#9d683b',X+2,Y+2,28,18);for(let i2=0;i2<3;i2++){R('#c08a52',X+3+i2*9,Y+9,8,9);R('#7a4b27',X+3+i2*9,Y+12,8,1)}R('#3a8a5a',X-2,Y-6,36,7);x.fillStyle='#fff';x.font='bold 6px sans-serif';x.textAlign='center';x.fillText('DEPÓSITO',X+16,Y-1)}
+{const X=11*T2,Y=21*T2-6;for(let i2=0;i2<32;i2+=6){R('#f0c030',X+i2,Y-6,3,8);R('#e84a3a',X+i2+3,Y-6,3,8)}R('#9d683b',X,Y+6,32,14);R('#f4e0b0',X+4,Y+2,7,5);R('#f4e0b0',X+13,Y+2,7,5);R('#7ad05a',X+24,Y-2,3,9);x.fillStyle='#3a2410';x.font='bold 6px sans-serif';x.textAlign='center';x.fillText('PASTEL',X+16,Y+16)}
+x.setLineDash([3,2]);x.strokeStyle='rgba(244,240,224,.9)';x.lineWidth=1;x.fillStyle='rgba(244,240,224,.9)';x.font='bold 7px sans-serif';x.textAlign='center';
+for(const[a,b]of KBLOTS){x.strokeRect(a*T2+2.5,b*T2+2.5,3*T2-5,2*T2-5);x.fillText('LIVRE',a*T2+24,b*T2+19)}x.setLineDash([]);
+const bun=(x1,y1,x2,y2)=>{const n=Math.max(4,Math.hypot(x2-x1,y2-y1)/7|0),C=['#e84a3a','#f0c030','#3a8ae8','#3ab05a','#e870c0','#ff8a2a'];x.strokeStyle='#3a2a1a';x.beginPath();
+for(let i2=0;i2<=n;i2++){const t=i2/n,X=x1+(x2-x1)*t,Y=y1+(y2-y1)*t+Math.sin(t*Math.PI)*8;i2?x.lineTo(X,Y):x.moveTo(X,Y)}x.stroke();
+for(let i2=1;i2<n;i2++){const t=i2/n,X=x1+(x2-x1)*t,Y=y1+(y2-y1)*t+Math.sin(t*Math.PI)*8;x.fillStyle=C[i2%C.length];x.beginPath();x.moveTo(X-3,Y);x.lineTo(X+3,Y);x.lineTo(X,Y+6);x.closePath();x.fill()}};
+bun(21*T2+8,8*T2-14,26*T2+8,8*T2-14);bun(21*T2+8,22*T2-14,26*T2+8,22*T2-14);bun(9*T2+8,23*T2-14,21*T2+8,22*T2-14);bun(26*T2+8,22*T2-14,38*T2+8,23*T2-14);
+x.restore()}
+RH0.push(function(cx,cy,t){try{if(mode!=='walk'&&mode!=='ui')return;const p=G.party&&G.party.find(q=>G.fol&&q.id==G.fol&&q.hp>0);if(!p||!(p.bo>0)||!FWo||FWo.n!==p.n)return;
+const b=kbBand(p.bo),[c1,c2]=KBCOL[b],X=FWo.px*16+8-cx,Y=FWo.py*16+14-cy,a=.35+.15*Math.sin(t/300);
+g.save();g.globalAlpha=a;g.fillStyle=c1;g.beginPath();g.ellipse(X,Y,11,4,0,0,7);g.fill();g.globalAlpha=Math.min(1,a+.4);g.fillStyle=c2;
+for(let i=0;i<6;i++){const an=t/700+i*1.047,r=10;g.fillRect(Math.round(X+Math.cos(an)*r),Math.round(Y+Math.sin(an)*3.5-((t/90+i*5)%12)),1,1)}g.restore()}catch(e){}});
+const KBCP=[[14,19],[15,19]];
+function kbCPPortal(){try{if(cur!==2||M[2].kbP)return;for(const[x,y]of KBCP){if(T[y]&&T[y][x]!==15)return}for(const[x,y]of KBCP){T[y][x]=180;kretile(x,y)}
+const ia=M[2].ia=M[2].ia||{};for(const[x,y]of KBCP)ia[x+','+y]=()=>kbPortalCP();M[2].kbP=1}catch(e){console.error(e)}}
+RH0.push(function(cx,cy,t){try{if(cur!==2||!M[2].kbP||!KB.img.portal)return;const X=15*16-cx,Y=19*16+16-cy;
+g.save();g.imageSmoothingEnabled=false;g.fillStyle='rgba(10,8,20,.3)';g.beginPath();g.ellipse(X,Y-2,18,4,0,0,7);g.fill();g.drawImage(KB.img.portal,X-16,Y-33,32,32);
+g.globalAlpha=.22+.12*Math.sin(t/240);g.fillStyle='#9ae8ff';g.beginPath();g.ellipse(X,Y-17,9,10,0,0,7);g.fill();g.restore()}catch(e){}});
+{const _kbSet=setMap;setMap=function(i,x,y){const r=_kbSet.apply(this,arguments);try{if(cur===2)kbCPPortal()}catch(e){}return r}}
+setTimeout(()=>{try{kbCPPortal()}catch(e){}},500);
+async function kbPortalCP(){open('<div class="psh"><span style="font-size:30px">🌀</span><div><b>Portal da Feira</b><small>Leva para a Feira de Pindorama: Máquina Kaimonboost, depósito, Kaimon Arena e, em breve, o computador de venda e leilão e as barracas dos jogadores.</small></div></div>'+btn('Entrar no portal','kbIrFeira()')+btn('Agora não','closeUI()'))}
+async function kbIrFeira(){try{await KB.ready}catch(e){}G.kbRT=Object.assign({},RT);closeUI();play('item');setMap(KB.fe,24,29);P.d=2;try{save()}catch(e){}}
+function kbPortalFeira(){open('<div class="psh"><span style="font-size:30px">🌀</span><div><b>Portal</b><small>Volta para o Centro de Cura de onde você veio.</small></div></div>'+btn('Voltar ao Centro de Cura','kbVoltar()')+btn('Ficar na Feira','closeUI()'))}
+function kbVoltar(){closeUI();try{if(G.kbRT&&G.kbRT.m!=null)RT=Object.assign({},G.kbRT)}catch(e){}play('item');setMap(2,14,18);P.d=0;try{save()}catch(e){}}
+function kbDeposito(){try{dep(DP[0][0],DP[0][1])}catch(e){ok('O depósito está fechado agora.')}}
+function kbPastel(){const c=300;open('<b>🥟 Barraca do Pastel</b><p>Pastel quentinho e caldo de cana! Cura você e todo o time.</p>'+btn('Comer (💰'+c+')','kbPastel2()',G.money<c)+btn('Agora não','closeUI()'))}
+function kbPastel2(){const c=300;if(G.money<c)return;G.money-=c;try{G.t.hp=tmax();G.party.forEach(m=>{m.hp=m.max;(m.mv||[]).forEach(v=>{if(MV[v.n])v.pp=MV[v.n][4]})})}catch(e){}play('lvl');hud();ok('Que delícia! 🥟 Você e o time estão 100%.')}
+function kbArena(){const a=typeof KI==='object'&&KI.arenav;open('<b>⚔️ Kaimon Arena</b><p>Os duelos entre jogadores acontecem na Vila da Arena, ao sul da Rota 13. Quer ir para lá agora?</p>'+(a!=null?btn('Ir para a Vila da Arena','kbArena2()'):'')+btn('Agora não','closeUI()'))}
+function kbArena2(){const a=KI.arenav;if(a==null)return closeUI();closeUI();play('item');setMap(a,15,9);P.d=2}
+function kbComputador(){ok('<b>🖥️ Computador da Feira</b><br>A venda direta e o leilão entre jogadores ligam na próxima atualização. Os anúncios precisam ficar guardados no servidor, para ninguém duplicar item nem ouro.')}
+function kbLote(){ok('<b>⛺ Lote de barraca</b><br>Aqui os jogadores vão montar a barraca, anunciar o que vendem e ficar vendendo mesmo deslogados. Chega na próxima atualização, junto com o Computador da Feira.')}
+var KBM={i:-1,selo:0,msg:''};
+function kbIc(n){try{return`<img src="${ico(n)}" alt="" style="width:26px;height:26px;image-rendering:pixelated;vertical-align:middle">`}catch(e){return''}}
+function kbNeed(m){const L=(m.bo|0)+1;if(L>KBMAX)return null;const k=KBS[m.n];if(!k)return null;const F=KBF[k.f],r=KBR[L],cm=kbCommons(k.f),L2=[];
+[[cm[0],r[0]],[cm[1],r[1]],[cm[2],r[2]],[F[2],r[3]],[F[3],r[4]],[F[4],r[5]],[kbStone(F[1]),r[6]],[kbPB(F[1]),r[7]]].forEach(([n,q],j)=>{if(n&&q)L2.push({n,q,fam:j<5,mit:j===5,raro:j===3,lend:j===4,st:j>=6})});
+return{L,F,k,r,list:L2,gold:r[8],chance:Math.min(100,r[9]+Math.min(KBFRAGMAX,(m.bf|0)*KBFRAG))}}
+function kbMaquina(i){if(i!=null)KBM.i=i;const P2=G.party||[];if(KBM.i>=P2.length)KBM.i=-1;
+let h='<div class="psh"><span style="font-size:30px">⚗️</span><div><b>Máquina Kaimonboost</b><small>Escolha um monstro do time. Cada nível de boost dá mais HP, Ataque e Ataque Especial. Pode falhar: o ouro e as pedras se vão e metade dos itens da família volta. Ninguém perde nível de boost.</small></div></div>';
+h+='<div class="lojag">'+P2.map((m,j)=>{const b=m.bo|0,bd=kbBand(b),k=KBS[m.n];return`<div class="psc${j===KBM.i?' p':''}"><span><b>${esc(m.n)}${m.sh?' ✨':''}</b> <small>Nv ${m.lvl}</small><br><small>${k?('Boost <b style="color:'+(bd>=0?KBCOL[bd][1]:'#c8d2ee')+'">+'+b+'</b> · +'+String(kbPct(b)).replace('.',',')+'%'):'Sem boost (lenda)'}</small></span>${k?btn(j===KBM.i?'Escolhido':'Escolher','kbMaquina('+j+')',j===KBM.i):''}</div>`}).join('')+'</div>';
+const m=P2[KBM.i];
+if(m){const nd=kbNeed(m);if(!nd)h+=(m.bo|0)>=KBMAX?'<p><b>✨ Boost máximo (+25)!</b></p>':'<p>Este monstro não usa o Kaimon Boost.</p>';
+else{const F=nd.F,selOk=nd.L>=16&&invCount(KBSEL)>0;if(!selOk)KBM.selo=0;
+h+=`<p style="margin:8px 0 4px"><b>${esc(m.n)}: +${nd.L-1} → +${nd.L}</b> · chance <b>${nd.chance}%</b>${m.bf?` <small>(${m.bf} fragmento${m.bf>1?'s':''}: +${Math.min(KBFRAGMAX,m.bf*KBFRAG)})</small>`:''} · bônus total vira <b>+${String(kbPct(nd.L)).replace('.',',')}%</b></p>`;
+h+='<div style="display:flex;flex-wrap:wrap;gap:6px">'+nd.list.map(x2=>{const have=invCount(x2.n),okk=have>=x2.q;return`<span style="display:inline-flex;align-items:center;gap:3px;padding:2px 8px 2px 2px;border-radius:999px;background:#0006;border:1px solid ${x2.mit?'#e080e8':x2.lend?'#f5b040':x2.raro?'#6aaeff':x2.st?'#8a9ab0':'#a3adbd'};color:${okk?'#e8ecf7':'#ff9a8a'}">${kbIc(x2.n)}<small>${esc(x2.n)} <b>${Math.min(have,99999)}/${x2.q}</b></small></span>`}).join('')+`<span style="display:inline-flex;align-items:center;padding:2px 8px;border-radius:999px;background:#0006;color:${G.money>=nd.gold?'#e8ecf7':'#ff9a8a'}">💰 ${nd.gold.toLocaleString('pt-BR')}</span></div>`;
+if(nd.L>=16)h+=`<p style="margin:6px 0"><label><input type="checkbox" ${KBM.selo?'checked':''} ${selOk?'':'disabled'} onchange="KBM.selo=this.checked?1:0"> Usar ${kbIc(KBSEL)} Selo de Proteção (${invCount(KBSEL)}): se falhar, nenhum item da família se perde</label></p>`;
+const pode=kbPode(m,nd);h+=btn('⚗️ Tentar o boost',`kbTentar()`,!!pode)+(pode?`<small style="color:#ffb0a0;display:block;margin:2px 0 6px">${pode}</small>`:'');
+h+=`<p style="margin:10px 0 2px"><small><b>Fabricar</b> (sem chance de falhar)</small></p>`+btn(`${kbIc(kbPB(F[1]))} Pedra Boost: ${KBPBC[0]} ${esc(kbStone(F[1]))} + 💰${KBPBC[1].toLocaleString('pt-BR')}`,`kbFabPB('${F[1]}')`,invCount(kbStone(F[1]))<KBPBC[0]||G.money<KBPBC[1])+
+btn(`${kbIc(KBSEL)} Selo: ${KBSELC[0]} ${esc(F[2])} + ${KBSELC[1]} ${esc(F[3])} + 💰${KBSELC[2].toLocaleString('pt-BR')}`,`kbFabSelo(${nd.k.f})`,invCount(F[2])<KBSELC[0]||invCount(F[3])<KBSELC[1]||G.money<KBSELC[2])}}
+if(KBM.msg)h+=`<p style="margin:8px 0">${KBM.msg}</p>`;KBM.msg='';
+open(h+btn('Fechar','closeUI()'));$('ui').classList.add('wide')}
+function kbPode(m,nd){if(!m.max)return'';if(G.money<nd.gold)return'Falta ouro.';for(const x of nd.list)if(invCount(x.n)<x.q)return'Faltam itens: '+x.n+'.';return''}
+function kbTentar(){const m=G.party[KBM.i];if(!m)return;const nd=kbNeed(m);if(!nd||kbPode(m,nd))return kbMaquina();
+const selo=KBM.selo&&nd.L>=16&&invCount(KBSEL)>0;G.money-=nd.gold;if(selo)invRemove(KBSEL,1);
+const okk=Math.random()*100<nd.chance;
+for(const x of nd.list){if(x.st){invRemove(x.n,x.q);continue}if(okk){invRemove(x.n,x.q);continue}if(x.mit)continue;if(selo)continue;invRemove(x.n,Math.ceil(x.q/2))}
+if(okk){const r0=m.max?m.hp/m.max:1;m.bo=nd.L;m.bf=0;stats(m);m.hp=Math.max(1,Math.round(m.max*r0));play('lvl');
+KBM.msg=`<b style="color:#7bf08a">✨ Deu certo! ${esc(m.n)} agora é +${m.bo}.</b> Bônus total: +${String(kbPct(m.bo)).replace('.',',')}% de HP, Ataque e Ataque Especial.`;G.kbOk=(G.kbOk|0)+1}
+else{m.bf=(m.bf|0)+1;try{play('cburst')}catch(e){}KBM.msg=`<b style="color:#ff9a8a">A máquina falhou.</b> ${selo?'O Selo protegeu os itens da família.':'Metade dos itens da família voltou.'} Você ganhou 1 Fragmento: a próxima tentativa tem +${Math.min(KBFRAGMAX,m.bf*KBFRAG)} de chance.`}
+hud();try{save()}catch(e){}kbMaquina()}
+function kbFabPB(t){const s=kbStone(t);if(invCount(s)<KBPBC[0]||G.money<KBPBC[1])return;invRemove(s,KBPBC[0]);G.money-=KBPBC[1];const lo=invAdd(kbPB(t),1);play('item');KBM.msg=lo?'Inventário cheio!':'Você fabricou 1 '+kbPB(t)+'.';hud();try{save()}catch(e){}kbMaquina()}
+function kbFabSelo(f){const F=KBF[f];if(!F||invCount(F[2])<KBSELC[0]||invCount(F[3])<KBSELC[1]||G.money<KBSELC[2])return;invRemove(F[2],KBSELC[0]);invRemove(F[3],KBSELC[1]);G.money-=KBSELC[2];const lo=invAdd(KBSEL,1);play('item');KBM.msg=lo?'Inventário cheio!':'Você fabricou 1 Selo de Proteção.';hud();try{save()}catch(e){}kbMaquina()}
+function kbFix(){try{const L=[...(G.party||[])];try{for(const b of(G.dep||[]))for(const c of(b||[]))if(c&&c.t==='p'&&c.m)L.push(c.m)}catch(e){}
+for(const m of L)if(m&&m.bo>0&&SP[m.n]){const r=m.max?Math.max(0,Math.min(1,(+m.hp||0)/m.max)):1;stats(m);m.hp=Math.round(m.max*r);if(r>0&&m.hp<1)m.hp=1}}catch(e){}}
+kbFix();
+var TERMOS_V='2026-10-21';
+const TERMOS_HTML="<p class=\"tm-v\">Versão de 21 de outubro de 2026</p>\n<p>Bem-vindo ao <b>Kaimon GT</b>! Estes Termos explicam as regras para jogar, comprar e conviver no jogo. Leia com atenção: ao tocar em <b>\"Aceito\"</b> ou ao criar uma conta, você concorda com eles e com a <a href=\"https://kaimongt.com.br/privacidade\" target=\"_blank\" rel=\"noopener\">Política de Privacidade</a>. Se não concordar, não use o jogo.</p>\n\n\n<div class=\"tm-beta\"><h3>⚠️ Beta teste até 31 de outubro de 2026</h3>\n<ul>\n<li>O Kaimon GT está em <b>beta teste até 31/10/2026</b>. Nesse período podem aparecer bugs, mudanças de equilíbrio e quedas do servidor.</li>\n<li>No dia <b>1º de novembro de 2026</b> o jogo <b>reinicia do zero para todo mundo</b>: personagens, níveis, monstros, itens, ouro, banco, casas, boosts e ranking são apagados.</li>\n<li>Sua conta (e-mail e senha) continua valendo: é só entrar e criar o personagem de novo.</li>\n<li>As KMC compradas com dinheiro durante o beta <b>não se perdem</b>: depois do reinício, todas elas voltam inteiras para o saldo da conta, mesmo as que já foram gastas. As KMC ganhas jogando no beta são apagadas com o resto. O Passe e o VIP comprados no beta continuam valendo até a data final mostrada na compra.</li>\n</ul></div>\n\n<h3>1. Quem somos</h3>\n<p>O Kaimon GT é um jogo independente, gratuito para jogar, mantido pela equipe Kaimon GT (\"nós\"). Contato: <b>kaimongt3@gmail.com</b> · site: <b>kaimongt.com.br</b>.</p>\n\n<h3>2. Idade</h3>\n<p>Para criar uma conta é preciso ter <b>13 anos ou mais</b>. Quem tem menos de 18 anos só pode jogar e fazer compras com a autorização dos pais ou responsáveis, que respondem pelas compras feitas na conta.</p>\n\n<h3>3. Sua conta</h3>\n<ul>\n<li>A conta é pessoal e ligada a um e-mail. Guarde sua senha e não a compartilhe.</li>\n<li>É proibido vender, comprar, emprestar ou trocar contas.</li>\n<li>Você é responsável pelo que acontece na sua conta. Se perceber um acesso estranho, troque a senha e fale com a gente.</li>\n<li>Progresso salvo só no aparelho, sem conta, pode se perder se o aparelho for limpo ou trocado. Com conta de e-mail ou Google, ele fica salvo na nuvem.</li>\n</ul>\n\n<h3>4. O jogo é nosso; você recebe uma licença para jogar</h3>\n<p>O jogo, os nomes, os monstros, a arte, as músicas e o código pertencem ao Kaimon GT. Você recebe uma licença pessoal, gratuita, não exclusiva e que pode ser cancelada, só para jogar. Não é permitido copiar, modificar, descompilar, revender o jogo nem criar servidores paralelos.</p>\n\n<h3>5. Itens e moedas virtuais</h3>\n<p>Ouro, itens, monstros, Kaimon Coins (KMC), Passe Kaimon, VIP, addons e qualquer outro conteúdo do jogo são uma <b>licença de uso dentro do jogo</b>. Eles não são seus como um bem fora do jogo, <b>não têm valor em dinheiro</b>, não podem ser trocados por dinheiro real fora do jogo e não voltam a ser reais. Podemos ajustar drops, preços em ouro e o equilíbrio do jogo quando for preciso.</p>\n\n<h3>6. Recargas e compras (KMC, Passe Kaimon e VIP)</h3>\n<ul>\n<li><b>Preços:</b> sempre aparecem em reais antes de você pagar. Hoje, 1 KMC custa R$ 1,00 e o Passe Kaimon custa R$ 40,00 pela temporada (o mês do calendário). Preços podem mudar, mas a mudança não vale para o que você já pagou.</li>\n<li><b>Pagamento:</b> por PIX, pelo Mercado Pago. Nós não recebemos nem guardamos dados do seu banco ou cartão.</li>\n<li><b>Entrega:</b> as KMC e o Passe entram na conta que estava conectada na hora da compra, normalmente em poucos minutos depois da confirmação do PIX. Na compra com envio de comprovante, a entrega pode levar até 2 dias úteis. Confira o e-mail da conta antes de pagar: KMC não passam de uma conta para outra.</li>\n<li><b>Direito de arrependimento:</b> em até <b>7 dias</b> depois da compra você pode desistir e receber o valor de volta, como garante o Código de Defesa do Consumidor. Peça pelo e-mail com o comprovante. Para isso, as KMC compradas precisam estar no saldo e o Passe não pode ter tido recompensa premium resgatada, porque o conteúdo digital já usado não pode ser devolvido.</li>\n<li><b>Problemas:</b> pagou e não recebeu, ou foi cobrado errado? Mande o comprovante para kaimongt3@gmail.com. Nós entregamos o que faltou ou devolvemos o valor.</li>\n<li><b>Estorno indevido:</b> se um pagamento for contestado ou estornado depois de o conteúdo ter sido entregue, a conta pode ser suspensa até o caso ser resolvido.</li>\n<li><b>Passe e VIP:</b> valem até a data mostrada no jogo. Recompensas do Passe que não forem pegas até o fim da temporada somem. O VIP acaba sozinho na data final.</li>\n<li><b>KMC:</b> não vencem enquanto a conta existir.</li>\n<li><b>Se o jogo acabar:</b> avisaremos com pelo menos 60 dias de antecedência e a loja deixa de vender no dia do aviso. O que foi comprado e não usado será tratado como manda a lei.</li>\n</ul>\n\n<h3>7. Regras de conduta</h3>\n<p>No Kaimon GT não é permitido:</p>\n<ul>\n<li>usar robôs, macros, programas que jogam sozinhos, trapaças ou hacks;</li>\n<li>alterar arquivos, o save ou a comunicação do jogo, ou explorar bugs (achou um? avise a gente);</li>\n<li>vender ou comprar itens, ouro, monstros ou contas por dinheiro real fora do jogo;</li>\n<li>aplicar golpes no Pixa, na Feira, em trocas ou em leilões;</li>\n<li>ofender, ameaçar, assediar, praticar preconceito ou incentivar qualquer tipo de violência;</li>\n<li>usar nicks ofensivos ou se passar pela equipe do jogo;</li>\n<li>divulgar dados pessoais seus ou de outras pessoas, ou fazer spam e propaganda;</li>\n<li>usar várias contas para driblar limites, punições ou eventos.</li>\n</ul>\n\n<h3>8. Chat</h3>\n<p>O que você escreve no chat pode ser visto por outros jogadores. Não compartilhe senha, telefone, endereço ou outros dados pessoais. Podemos guardar mensagens por um tempo e moderar o chat para manter o jogo seguro. Você é responsável pelo que escreve.</p>\n\n<h3>9. Punições</h3>\n<p>Quem descumprir estes Termos pode receber, conforme a gravidade: aviso, chat silenciado, remoção de itens ou ouro obtidos de forma irregular, suspensão temporária ou banimento da conta. Em casos graves a punição pode ser imediata. Compras de contas banidas por quebra das regras não são reembolsadas. Você pode contestar uma punição por e-mail em até 30 dias.</p>\n\n<h3>10. Disponibilidade, manutenção e mudanças no jogo</h3>\n<ul>\n<li>Todo dia, das <b>05:00 às 05:10</b> (horário de Brasília), acontece o \"server save\", quando as atualizações entram no ar. O jogo pode ficar instável nesse horário.</li>\n<li>Podemos adicionar, mudar ou retirar conteúdos, eventos e sistemas para melhorar o jogo.</li>\n<li>Fazemos o possível para o jogo funcionar sempre, mas ele pode ficar fora do ar por manutenção, falhas técnicas ou de serviços de terceiros, como internet, Google e Mercado Pago.</li>\n</ul>\n\n<h3>11. Responsabilidade</h3>\n<p>O jogo é oferecido do jeito que está. Não respondemos por perdas causadas por mau uso da conta, por falhas no seu aparelho ou na sua internet, ou por pessoas com quem você combinou trocas fora do jogo. Nada nestes Termos tira os direitos que o Código de Defesa do Consumidor garante a você.</p>\n\n<h3>12. Privacidade</h3>\n<p>Guardamos o mínimo necessário para o jogo funcionar: e-mail, nick, progresso, mensagens do chat e registro das compras. Não vendemos seus dados e não há anúncios. Os detalhes, e como pedir uma cópia ou a exclusão dos seus dados (LGPD), estão na <a href=\"https://kaimongt.com.br/privacidade\" target=\"_blank\" rel=\"noopener\">Política de Privacidade</a>.</p>\n\n<h3>13. Apagar a conta</h3>\n<p>Você pode apagar o personagem no site (Minha conta) ou pedir a exclusão da conta e dos dados pelo e-mail. O que for apagado não volta, inclusive itens, KMC e Passe.</p>\n\n<h3>14. Mudanças nestes Termos</h3>\n<p>Quando os Termos mudarem, avisaremos no jogo. Se a mudança for importante, o jogo vai pedir que você aceite de novo antes de continuar.</p>\n\n<h3>15. Lei e foro</h3>\n<p>Estes Termos seguem as leis do Brasil. Qualquer discussão pode ser levada ao foro da cidade onde você mora.</p>\n\n<h3>16. Fale com a gente</h3>\n<p>E-mail: <b>kaimongt3@gmail.com</b> · site: <b>kaimongt.com.br</b></p>\n";
+function termosCss(){if(document.getElementById('termoscss'))return;const st=document.createElement('style');st.id='termoscss';st.textContent=`
+#termos{position:fixed;inset:0;z-index:100000;background:rgba(6,9,18,.86);display:flex;align-items:center;justify-content:center;padding:max(10px,env(safe-area-inset-top)) max(10px,env(safe-area-inset-right)) max(10px,env(safe-area-inset-bottom)) max(10px,env(safe-area-inset-left));font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+#termos .tm-box{width:min(760px,100%);max-height:100%;display:flex;flex-direction:column;background:#141c30;color:#e8ecf7;border:3px solid #3b2410;box-shadow:0 0 0 2px #9d683b inset,0 20px 40px rgba(0,0,0,.6);border-radius:14px;overflow:hidden}
+#termos .tm-h{display:flex;align-items:center;gap:10px;padding:10px 14px;background:linear-gradient(#9d683b,#7a4b27);color:#fff3d6;font-weight:900;font-size:17px;text-shadow:0 2px 0 #0006}
+#termos .tm-s{overflow:auto;padding:4px 16px 10px;font-size:14px;line-height:1.5;-webkit-overflow-scrolling:touch}
+#termos .tm-s h3{font-size:15px;margin:14px 0 4px;color:#ffe27a}#termos .tm-s ul{margin:4px 0;padding-left:20px}#termos .tm-s li{margin:3px 0}#termos .tm-s p{margin:6px 0}#termos a{color:#9fd0ff}
+#termos .tm-v{color:#a0abc8;font-size:12px}
+#termos .tm-beta{background:#3a2a08;border:2px solid #f0b030;border-radius:10px;padding:2px 12px 6px;margin:8px 0}
+#termos .tm-beta h3{color:#ffd25a}
+#termos .tm-f{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;justify-content:space-between;padding:10px 14px;border-top:1px solid #2b3656;background:#10172a}
+#termos label{display:flex;gap:8px;align-items:center;font-size:14px;font-weight:700;cursor:pointer}
+#termos input{width:20px;height:20px}
+#termos button{font:inherit;font-weight:900;font-size:15px;border-radius:10px;padding:9px 16px;cursor:pointer;border:2px solid #4a2a00;background:linear-gradient(#ffd768,#f0a21a);color:#2a1600}
+#termos button:disabled{opacity:.45;cursor:not-allowed}#termos button.tm-no{background:#2b3656;color:#e8ecf7;border-color:#3b4a70}
+#termos .tm-msg{font-size:13px;color:#ffb0a0;flex-basis:100%}`;document.head.appendChild(st)}
+function termosAceito(){try{if(localStorage.getItem('kgtTermos')===TERMOS_V)return true}catch(e){}try{return G&&G.termos===TERMOS_V}catch(e){return false}}
+function termosAbrir(soLer){termosCss();let el=document.getElementById('termos');if(el)el.remove();el=document.createElement('div');el.id='termos';el.setAttribute('role','dialog');el.setAttribute('aria-modal','true');el.setAttribute('aria-label','Termos de Uso do Kaimon GT');
+el.innerHTML=`<div class="tm-box"><div class="tm-h">📜 Termos de Uso do Kaimon GT</div><div class="tm-s" id="tmscroll">${TERMOS_HTML}</div>
+ <div class="tm-f">${soLer?'<span></span><button type="button" onclick="termosFechar()">Fechar</button>':`<label><input type="checkbox" id="tmok" onchange="document.getElementById('tmgo').disabled=!this.checked"> Li e aceito os Termos de Uso e a Política de Privacidade</label>
+ <span style="display:flex;gap:8px"><button type="button" class="tm-no" onclick="termosRecusar()">Não aceito</button><button type="button" id="tmgo" disabled onclick="termosAceitar()">Aceitar e jogar</button></span><div class="tm-msg" id="tmmsg"></div>`}</div></div>`;
+document.body.appendChild(el);el.addEventListener('keydown',e=>e.stopPropagation(),true)}
+function termosFechar(){const el=document.getElementById('termos');if(el)el.remove()}
+function termosAceitar(){try{localStorage.setItem('kgtTermos',TERMOS_V)}catch(e){}try{G.termos=TERMOS_V;save()}catch(e){}termosFechar();try{play('item')}catch(e){}}
+function termosRecusar(){const m=document.getElementById('tmmsg');if(m)m.textContent='Para jogar o Kaimon GT é preciso aceitar os Termos. Se mudar de ideia, marque a caixa e toque em "Aceitar e jogar".'}
+if(!termosAceito())setTimeout(()=>{try{if(!termosAceito())termosAbrir(false)}catch(e){console.error(e)}},300);
+if(typeof cfgR==='function'){const _tmCfg=cfgR;cfgR=function(){const r=_tmCfg.apply(this,arguments);try{const ui=document.getElementById('ui'),rows=ui?[...ui.querySelectorAll('.cfr')]:[];const last=rows[rows.length-1];
+if(last&&!ui.querySelector('.cfr.tmrow'))last.insertAdjacentHTML('afterend',`<div class="cfr tmrow"><span>Termos</span>${btn('📜 Termos de Uso','termosAbrir(true)')}<small style="color:#b8c4e4">beta até 31/10 · reinício em 1/11</small></div>`)}catch(e){}return r}}
+var KPLAY=(function(){try{const q=new URLSearchParams(location.search);if(q.get('play')==='1')sessionStorage.setItem('kplay','1');
+return sessionStorage.getItem('kplay')==='1'||/^android-app:\/\/br\.com\.kaimongt\.app/.test(document.referrer||'')}catch(e){return false}})();
+if(KPLAY){try{PSLOJA=true}catch(e){}
+const LIMPA=[[/Compras pela versão web ou PC; tudo fica na sua conta\.?/g,'Tudo o que você tem fica na sua conta.'],
+[/Compre Kaimon Coins na <b>Loja<\/b> \(PIX, cai na hora\)\./g,'Os Kaimon Coins que você já tem ficam na sua conta.'],
+[/A compra automática por PIX dentro do jogo chega em breve\./g,'']];
+const limpa=root=>{try{if(!root)return;root.querySelectorAll('p.lojah').forEach(p=>{if(/Comprar Kaimon Coin/.test(p.textContent)){let n=p.nextElementSibling;p.remove();if(n&&n.classList.contains('lojag')&&!n.querySelector('[onclick*="lojaItem"],[onclick*="lojaAddon"]'))n.remove()}});
+let h=root.innerHTML,h2=h;for(const[a,b]of LIMPA)h2=h2.replace(a,b);if(h2!==h)root.innerHTML=h2}catch(e){}};
+const go=()=>{const ui=document.getElementById('ui');if(!ui)return setTimeout(go,500);limpa(ui);new MutationObserver(()=>{if(!ui._kpl){ui._kpl=1;limpa(ui);setTimeout(()=>{ui._kpl=0},0)}}).observe(ui,{childList:true,subtree:true})};go();
+try{document.documentElement.classList.add('kplay')}catch(e){}}
+var KT={held:[]};
+const KTDIR={KeyW:0,ArrowUp:0,KeyD:1,ArrowRight:1,KeyS:2,ArrowDown:2,KeyA:3,ArrowLeft:3};
+function ktCampo(e){const t=e.target&&e.target.tagName;return t==='INPUT'||t==='TEXTAREA'||t==='SELECT'||(e.target&&e.target.isContentEditable)}
+function ktDir(e){if(e.code&&e.code in KTDIR)return KTDIR[e.code];const k=e.key||'',l=k.length===1?k.toLowerCase():k;return typeof KM==='object'&&l in KM?KM[l]:undefined}
+function ktLimpa(){if(KT.held.length){KT.held=[];try{if(typeof hd!=='undefined'&&mode==='walk')hd=-1}catch(e){}}}
+addEventListener('keydown',e=>{try{if(ktCampo(e)||e.ctrlKey||e.metaKey||e.altKey)return;const d=ktDir(e);
+if(d===undefined){
+if(!e.repeat&&mode==='walk'){if(e.key==='E')act();else if(e.key==='B')bag()}return}
+const c=e.code||e.key;KT.held=KT.held.filter(x=>x!==c);KT.held.push(c);hd=d;
+if(c.startsWith('Arrow'))e.preventDefault()}catch(x){}});
+addEventListener('keyup',e=>{try{const c=e.code||e.key;if(!(c in KTDIR)&&ktDir(e)===undefined)return;KT.held=KT.held.filter(x=>x!==c);
+if(KT.held.length&&!ktCampo(e)){const u=KT.held[KT.held.length-1];hd=u in KTDIR?KTDIR[u]:-1}else hd=-1}catch(x){}});
+addEventListener('blur',ktLimpa);
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')ktLimpa()});
+var MP={ws:null,st:0,ps:new Map(),last:null,bo:3000,next:0,off:0,lastSend:0,hb:0,m:-1,url:'wss://kaimon-gt-api.nilfilho000.workers.dev/mp'};
+function mpUrl(){return(window.KMP_URL||MP.url)}
+function mpQuer(){try{return!MP.off&&typeof webAcc==='function'&&webAcc()&&webOn()&&webOnline()&&document.visibilityState!=='hidden'&&typeof mode!=='undefined'&&mode!=='title'&&G&&G.nick&&!document.getElementById('ttl')}catch(e){return false}}
+function mpLook(){try{return JSON.stringify(G.look||{}).slice(0,600)}catch(e){return'{}'}}
+function mpEu(){return{m:cur|0,x:P.x|0,y:P.y|0,d:P.d|0,n:String(G.nick||'').slice(0,16),l:(G.t&&G.t.l)|0||1,k:mpLook()}}
+function mpManda(o){const w=MP.ws;if(w&&w.readyState===1){try{w.send(JSON.stringify(o));MP.lastSend=Date.now();return 1}catch(e){}}return 0}
+async function mpLiga(){if(MP.st)return;MP.st=1;let tok='';try{tok=await webTok(webAcc())}catch(e){MP.st=0;MP.next=Date.now()+MP.bo;MP.bo=Math.min(60000,MP.bo*2);return}
+if(!mpQuer()){MP.st=0;return}
+let w;try{w=new WebSocket(mpUrl()+'?t='+encodeURIComponent(tok))}catch(e){MP.st=0;MP.next=Date.now()+MP.bo;MP.bo=Math.min(60000,MP.bo*2);return}
+MP.ws=w;w.onopen=()=>{MP.st=2;MP.bo=3000;MP.last=null;MP.ps.clear();mpTick()};
+w.onmessage=ev=>{try{mpRecebe(JSON.parse(ev.data))}catch(e){}};
+w.onclose=ev=>{if(MP.ws===w){MP.ws=null;MP.st=0;MP.ps.clear();MP.last=null}
+if(ev&&ev.code===4000){MP.off=1;try{toast('Sua conta foi aberta em outro lugar. Os outros jogadores somem desta tela.')}catch(e){}return}
+MP.next=Date.now()+MP.bo;MP.bo=Math.min(60000,MP.bo*2)};
+w.onerror=()=>{try{w.close()}catch(e){}}}
+function mpDesliga(){const w=MP.ws;MP.ws=null;MP.st=0;MP.ps.clear();MP.last=null;if(w){try{w.close(1000)}catch(e){}}}
+function mpLimpaLook(s){let o={};try{o=JSON.parse(s||'{}')}catch(e){}const r={};if(o&&typeof o==='object')for(const k in o){if(!/^[a-z0-9_]{1,12}$/i.test(k))continue;const v=o[k];
+if(typeof v==='number'&&Number.isFinite(v)&&Math.abs(v)<1000)r[k]=v;else if(typeof v==='boolean')r[k]=v;else if(typeof v==='string'&&/^[#\w-]{0,24}$/.test(v))r[k]=v}return r}
+function mpChave(k){let h=0;for(let i=0;i<k.length;i++)h=(h*31+k.charCodeAt(i))|0;return'op'+(h>>>0).toString(36)}
+function mpVisual(o,k){if(o.k===k&&o.key)return;o.k=k;const L=mpLimpaLook(k),key=mpChave(JSON.stringify(L));o.key=key;
+if(!HUM34[key]){try{HUM34[key]=H35(lkD(L))}catch(e){HUM34[key]=HUM34.me}}}
+function mpRecebe(q){const agora=performance.now();
+if(q.t==='all'){MP.ps.clear();for(const p of q.ps||[])mpPoe(p,agora,1);return}
+if(q.t==='p'){mpPoe(q,agora,!MP.ps.has(q.id));return}
+if(q.t==='m'){const o=MP.ps.get(q.id);if(!o)return;mpAnda(o,q.x,q.y,q.d,agora);return}
+if(q.t==='x'){MP.ps.delete(q.id)}}
+function mpPoe(p,agora,novo){if(!p||!p.id)return;let o=MP.ps.get(p.id);if(!o||novo){o={id:p.id,x:p.x,y:p.y,px:p.x,py:p.y,fx:p.x,fy:p.y,t0:agora,dur:1,lt:agora,d:p.d|0};MP.ps.set(p.id,o)}
+else mpAnda(o,p.x,p.y,p.d,agora);o.n=String(p.n||'Treinador').slice(0,16);o.l=p.l|0||1;mpVisual(o,p.k||'{}')}
+function mpAnda(o,x,y,d,agora){if(d!=null)o.d=d|0;if(x===o.x&&y===o.y)return;const longe=Math.abs(x-o.x)+Math.abs(y-o.y)>2;
+o.fx=longe?x:o.px;o.fy=longe?y:o.py;o.x=x;o.y=y;o.dur=Math.max(150,Math.min(450,agora-o.lt));o.lt=agora;o.t0=agora}
+function mpTick(){try{const quer=mpQuer();
+if(!quer){if(MP.ws||MP.st)mpDesliga();return}
+if(!MP.ws&&!MP.st&&Date.now()>=MP.next){mpLiga();return}
+if(MP.st!==2)return;
+const e=mpEu(),L=MP.last;
+if(L&&L.m!==e.m)MP.ps.clear();
+if(!L||L.m!==e.m||L.n!==e.n||L.l!==e.l||L.k!==e.k){if(mpManda(Object.assign({t:'s'},e)))MP.last=e}
+else if(L.x!==e.x||L.y!==e.y||L.d!==e.d){if(mpManda({t:'m',x:e.x,y:e.y,d:e.d}))MP.last=e}
+else if(Date.now()-MP.lastSend>25000)mpManda({t:'h'})}catch(x){}}
+setInterval(mpTick,100);
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')mpDesliga();else{MP.next=0;setTimeout(mpTick,300)}});
+addEventListener('pagehide',mpDesliga);
+addEventListener('online',()=>{MP.next=0});
+function mpPos(o,agora){const sp=Math.max(0,Math.min(1,(agora-o.t0)/o.dur));o.px=o.fx+(o.x-o.fx)*sp;o.py=o.fy+(o.y-o.fy)*sp;return sp}
+RH0.push(function(cx,cy){if(!MP.ps.size)return;try{const agora=performance.now(),cw=VW*16,ch=VH*16,L=[];
+for(const o of MP.ps.values()){const sp=mpPos(o,agora);if(o.px*16<cx-48||o.px*16>cx+cw+32||o.py*16<cy-32||o.py*16>cy+ch+48)continue;L.push([o,sp])}
+L.sort((a,b)=>a[0].py-b[0].py);
+for(const[o,sp]of L){const mv=sp<1,dd=o.d,v=dd==0?2:dd==2?0:1,fr=mv?((((o.x+o.y)&1)*4+Math.min(3,Math.floor(sp*4)))%8):8;
+let im;try{im=getV(o.key||'me',v,fr,0)}catch(e){try{im=getV('me',v,fr,0)}catch(e2){continue}}
+const X=Math.round((o.px*16-cx)*2)/2+8,Y=Math.round((o.py*16-cy)*2)/2+16;
+g.save();g.globalAlpha=.28;g.fillStyle='#0a0a14';g.beginPath();g.ellipse(X,Y-1,5,2,0,0,7);g.fill();g.restore();
+g.save();g.translate(X,Y+(mv?-Math.abs(Math.sin(sp*Math.PI*2))*.55:0));if(dd==1)g.scale(-1,1);
+if(im.pxm)g.drawImage(im,-16,-31,32,32);else if(im.height>40)g.drawImage(im,-8,-24,16,24);else blit(im,-8,-16,0);g.restore()}}catch(e){}});
+function mpPlacas(cx,cy){if(!MP.ps.size)return;try{const cw=VW*16,ch=VH*16;g.save();g.globalAlpha=1;g.textAlign='center';g.textBaseline='middle';
+for(const o of MP.ps.values()){if(o.px*16<cx-48||o.px*16>cx+cw+32||o.py*16<cy-32||o.py*16>cy+ch+48)continue;
+const X=Math.round((o.px*16-cx+8)*2)/2,ty=Math.round((o.py*16-cy)*2)/2-13;
+g.font='bold 5px sans-serif';const w=g.measureText(o.n).width+5;g.fillStyle='rgba(20,40,90,.8)';rr(X-w/2,ty-3.3,w,6.6,2);g.fill();g.fillStyle='#bfe0ff';g.fillText(o.n,X,ty+.3);
+const lv='Nv '+o.l;g.font='bold 4px sans-serif';const lw=g.measureText(lv).width+4;g.fillStyle='rgba(12,16,28,.66)';rr(X-lw/2,ty-9,lw,4.8,1.6);g.fill();g.fillStyle='#ffd34d';g.fillText(lv,X,ty-6.5)}
+g.restore()}catch(e){}}
+{const _mpPl=plate;plate=function(e,cx,cy){if(e===P)mpPlacas(cx,cy);return _mpPl.apply(this,arguments)}}
+var DEPX={q:'',f:0,qt:''};
+const DEPMAX=1000;
+function depLootSet(){if(DEPX.ls)return DEPX.ls;const s=new Set();try{for(const k in DROP){const d=DROP[k];if(d)s.add(d[0])}}catch(e){}
+try{for(const k in DROPX){const d=DROPX[k];if(d)s.add(d.n||d[0])}}catch(e){}try{for(const k in STONE)s.add(STONE[k][0])}catch(e){}
+try{if(typeof KBF!=='undefined')for(const F of KBF){s.add(F[2]);s.add(F[3]);s.add(F[4])}}catch(e){}
+try{if(typeof kbPB==='function'&&typeof KBT!=='undefined')for(const t in KBT)s.add(kbPB(t))}catch(e){}return DEPX.ls=s}
+const depNorm=s=>String(s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+function depNomeSl(s){return s?(s.t==='i'?s.n:s.m.n):''}
+function depBate(nome,tipo){if(DEPX.f===1&&tipo!=='i')return false;if(DEPX.f===2&&tipo!=='p')return false;const q=depNorm(DEPX.q).trim();return!q||depNorm(nome).includes(q)}
+const DEPTC={normal:'#9a9a78',fire:'#e8762c',water:'#4a86e8',grass:'#4caf3c',electric:'#e0b020',ice:'#5cc8d8',fighting:'#c03028',poison:'#a040a0',ground:'#c8a050',flying:'#8a8ae8',psychic:'#e8508a',bug:'#8aa020',rock:'#a89038',ghost:'#6a5898',dragon:'#6a40e8',dark:'#5a4838',steel:'#9a9ab8',fairy:'#e080b0'};
+function depTy(t){return(typeof TY18!=='undefined'&&TY18[t])||(typeof TY!=='undefined'&&TY[t])||t}
+function depMonInfo(m,onde){const sp=SP[m.n]||{},ts=(sp.t||[]).map(t=>`<em class="dty" style="--tc:${DEPTC[t]||'#556'}">${esc(depTy(t))}</em>`).join('');
+const hp=m.max?` · HP ${Math.max(0,m.hp|0)}/${m.max}`:'',bo=(m.bo|0)>0?` · <em class="dbo">boost +${m.bo|0}</em>`:'';
+return`<img src="${pbi(m.n,adS(m))}"><span><b>${m.sh?'✨ ':''}${esc(m.n)}</b><small>Nv ${m.lvl}${hp}${bo} · ${onde}</small><small class="dtys">${ts}</small></span>`}
+function depQtd(max,acao){return`<span class="dqt"><input id="depqt" type="number" min="1" max="${max}" inputmode="numeric" placeholder="qtd" value="${esc(DEPX.qt)}" oninput="DEPX.qt=this.value" onkeydown="if(event.key==='Enter')depQtdOk('${acao}',${max})">${btn('OK',`depQtdOk('${acao}',${max})`)}</span>`}
+function depQtdOk(acao,max){const v=Math.max(1,Math.min(max,parseInt(($('depqt')||{}).value,10)||0));if(!v)return;DEPX.qt='';dact(acao,v)}
+function depMoverBtns(){const o=[];for(let i=0;i<4;i++)if(i!==DS.d)o.push(`<button class="dmv" style="--c:${DCOL[i][0]}" onclick="depMover(${i})">→ ${i+1}</button>`);return`<span class="dmvs"><small>Mover para</small>${o.join('')}</span>`}
+drender=function(){if(DS.s&&DS.s.k=='bi'&&!bagCount(DS.s.n))DS.s=null;if(DS.s&&DS.s.k=='bp'&&!G.party[DS.s.i])DS.s=null;
+const S=DS.s,B0=DB(),b=B0[DS.d],c=DCOL[DS.d],q=n=>String(n).replace(/\\/g,'\\\\').replace(/'/g,"\\'"),used=bb=>bb.filter(Boolean).length,its=b.filter(s=>s&&s.t=='i').reduce((a,s)=>a+s.c,0),pk=b.filter(s=>s&&s.t=='p').length;
+const tabs=[0,1,2,3].map(i=>`<button class="dtab${i==DS.d?' on':''}" style="--c:${DCOL[i][0]}" onclick="dtab(${i})"><b>${i+1}</b><small>${used(B0[i])}/64</small><span class="dhit" data-d="${i}"></span></button>`).join('');
+const items=bagL().map(([n,k])=>`<div class="dit${S&&S.k=='bi'&&S.n==n?' on':''}" data-n="${esc(n)}" data-t="i" title="${esc(n)} (${k})" onclick="dsel('bi','${q(n)}')"><img src="${ico(n)}"><i>${k}</i><small>${esc(n)}</small></div>`).join('')||'<small class="dmt">Mochila vazia.</small>';
+const team=G.party.map((p,i)=>`<div class="dit${S&&S.k=='bp'&&S.i==i?' on':''}" data-n="${esc(p.n)}" data-t="p" title="${esc(p.n)} Nv ${p.lvl}" onclick="dsel('bp',${i})"><img src="${pbi(p.n,adS(p))}"><i>Nv${p.lvl}</i><small>${p.sh?'✨':''}${esc(p.n)}</small></div>`).join('');
+const grid=b.map((s,i)=>`<div class="sl${S&&S.k=='sl'&&S.i==i?' on':''}${s?' full':''}"${s?` data-n="${esc(depNomeSl(s))}" data-t="${s.t}" title="${esc(depNomeSl(s))}${s.t=='i'?' ×'+s.c:' Nv '+s.m.lvl}"`:''} onclick="dsel('sl',${i})">${s?(s.t=='i'?`<img src="${ico(s.n)}"><i>${s.c}</i>`:`<img src="${pbi(s.m.n,adS(s.m))}"><i>Nv${s.m.lvl}</i>${s.m.sh?'<u>✨</u>':''}${(s.m.bo|0)>0?`<u class="db">+${s.m.bo|0}</u>`:''}`):''}</div>`).join('');
+let sel='<small class="dmt">Toque num item ou monstro para guardar, ou num espaço do depósito para retirar. Toque duas vezes para guardar ou retirar tudo.</small>',act='';
+if(S&&S.k=='bi'){const t=bagCount(S.n);sel=`<img src="${ico(S.n)}"><span><b>${esc(S.n)}</b><small>na mochila: ${t}</small></span>`;act=[1,10,100].filter(v=>v<t).map(v=>btn('Guardar '+v,`dact('put',${v})`)).join('')+btn('Guardar tudo ('+t+')',`dact('put',${t})`)+(t>1?depQtd(t,'put'):'')}
+else if(S&&S.k=='bp'){const p=G.party[S.i];sel=depMonInfo(p,'no seu time');act=btn('Guardar monstro',"dact('pin')")}
+else if(S&&S.k=='sl'&&b[S.i]){const sl=b[S.i];
+if(sl.t=='i'){sel=`<img src="${ico(sl.n)}"><span><b>${esc(sl.n)}</b><small>no depósito: ${sl.c}</small></span>`;act=[1,10,100].filter(v=>v<sl.c).map(v=>btn('Retirar '+v,`dact('get',${v})`)).join('')+btn('Retirar tudo ('+sl.c+')',`dact('get',${sl.c})`)+(sl.c>1?depQtd(sl.c,'get'):'')+depMoverBtns()}
+else{sel=depMonInfo(sl.m,'guardado aqui');
+if(G.party.length>=6)act=`<span class="dtroca"><small>Time cheio. Trocar por:</small>${G.party.map((p,i)=>`<button class="dtp" onclick="depTroca(${i})" title="${esc(p.n)} Nv ${p.lvl}"><img src="${pbi(p.n,adS(p))}"><small>Nv${p.lvl}</small></button>`).join('')}</span>`+depMoverBtns();
+else act=btn('Retirar monstro',"dact('pout')")+depMoverBtns()}}
+const temDrop=bagL().some(([n])=>depLootSet().has(n));
+const fb=(i,t)=>`<button class="dfl${DEPX.f===i?' on':''}" onclick="DEPX.f=${i};drender()">${t}</button>`;
+open(`<div class="dep" style="--c:${c[0]};--d:${c[1]}"><div class="dph"><img src="${ico('Cristal Normal')}"><div class="dtt"><b>Depósito ${DS.d+1}</b><small>${used(b)}/64 espaços · ${its} itens · ${pk} monstros · o mesmo em todos os Centros de Cura</small></div><div class="dtb">${tabs}</div><button class="dx" onclick="closeUI()">✕</button></div>
+  <div class="dtool"><input id="depq" type="search" placeholder="🔎 Procurar item ou monstro" value="${esc(DEPX.q)}" autocomplete="off" oninput="DEPX.q=this.value;depFiltra()"><span class="dfls">${fb(0,'Tudo')}${fb(1,'Itens')}${fb(2,'Monstros')}</span>
+   <button class="dbt" onclick="depOrganiza()" title="Junta pilhas e ordena este depósito">↕ Organizar</button><button class="dbt" onclick="depGuardaDrops()" ${temDrop?'':'disabled'} title="Guarda todos os drops, itens de família e pedras da mochila">📥 Guardar drops</button></div>
+  <div class="dpf"><div class="dsel">${sel}</div><div class="dact">${act}</div>${DS.m?`<div class="dmsg">${DS.m}</div>`:''}</div><div class="dpn"><div class="dpl"><div class="dst">🎒 Mochila</div><div class="dig">${items}</div><div class="dst">⚪ Seu time</div><div class="dig">${team}</div></div><div class="dpr"><div class="dst">📦 Depósito ${DS.d+1} <small>· pilhas até ${DEPMAX}</small></div><div class="dg">${grid}</div></div></div></div>`);
+$('ui').classList.add('wide');depFiltra()};
+function depFiltra(){try{const ui=$('ui');if(!ui)return;ui.querySelectorAll('.dep [data-n]').forEach(el=>{el.classList.toggle('dim',!depBate(el.dataset.n,el.dataset.t))});
+const ativo=!!depNorm(DEPX.q).trim()||DEPX.f;const B0=DB();
+ui.querySelectorAll('.dhit').forEach(el=>{const d=+el.dataset.d;const n=ativo?B0[d].filter(s=>s&&depBate(depNomeSl(s),s.t)).length:0;el.textContent=n?String(n):'';el.style.display=n?'':'none'})}catch(e){}}
+{const _depSel=dsel;dsel=function(k,v){const S=DS.s,b=DB()[DS.d];
+if(S&&S.k===k&&(k==='bi'?S.n===v:S.i===v)){if(k==='bi'){const t=bagCount(v);if(t)return dact('put',t)}else if(k==='sl'&&b[v]){if(b[v].t==='i')return dact('get',b[v].c);if(G.party.length<6)return dact('pout')}else if(k==='bp')return dact('pin')}
+return _depSel.apply(this,arguments)}}
+function depTroca(pi){const b=DB()[DS.d],S=DS.s;if(!S||S.k!=='sl'||!b[S.i]||b[S.i].t!=='p'||!G.party[pi])return;
+const sai=G.party[pi],vem=b[S.i].m;G.party[pi]=vem;b[S.i]={t:'p',m:sai};DS.s=null;DS.m=`${vem.n} entrou no time e ${sai.n} foi para o depósito.`;
+try{if(G.fol===sai.id)G.fol=vem.id}catch(e){}try{play('item')}catch(e){}drender();hud();save()}
+function depMover(d){const B0=DB(),b=B0[DS.d],o=B0[d],S=DS.s;if(!S||S.k!=='sl'||!b[S.i]||d===DS.d)return;const s=b[S.i];
+if(s.t==='p'){const j=o.indexOf(null);if(j<0){DS.m=`Depósito ${d+1} cheio!`;return drender()}o[j]=s;b[S.i]=null}
+else{let left=s.c;for(const x of o)if(left&&x&&x.t==='i'&&x.n===s.n&&x.c<DEPMAX){const m=Math.min(left,DEPMAX-x.c);x.c+=m;left-=m}
+for(let i=0;i<64&&left;i++)if(!o[i]){const m=Math.min(left,DEPMAX);o[i]={t:'i',n:s.n,c:m};left-=m}
+if(left){s.c=left;DS.m=`Depósito ${d+1} cheio: ficaram ${left} aqui.`}else b[S.i]=null}
+if(!DS.m)DS.m=`${depNomeSl(s)} foi para o Depósito ${d+1}.`;DS.s=null;drender();save()}
+function depOrganiza(){const b=DB()[DS.d],it={},mons=[];for(const s of b){if(!s)continue;if(s.t==='i')it[s.n]=(it[s.n]||0)+s.c;else mons.push(s)}
+mons.sort((a,c)=>(c.m.sh?1:0)-(a.m.sh?1:0)||(c.m.lvl|0)-(a.m.lvl|0)||String(a.m.n).localeCompare(c.m.n,'pt'));
+const out=mons.slice();for(const n of Object.keys(it).sort((a,c)=>a.localeCompare(c,'pt'))){let c=it[n];while(c>0){const m=Math.min(c,DEPMAX);out.push({t:'i',n,c:m});c-=m}}
+for(let i=0;i<64;i++)b[i]=out[i]||null;DS.s=null;DS.m='Depósito organizado.';drender();save()}
+function depGuardaDrops(){const b=DB()[DS.d],L=depLootSet();let tot=0,tipos=0,cheio=0;
+for(const[n,k]of bagL()){if(!L.has(n)||!k)continue;let left=k;
+for(const s of b)if(left&&s&&s.t==='i'&&s.n===n&&s.c<DEPMAX){const m=Math.min(left,DEPMAX-s.c);s.c+=m;left-=m}
+for(let i=0;i<64&&left;i++)if(!b[i]){const m=Math.min(left,DEPMAX);b[i]={t:'i',n,c:m};left-=m}
+const g2=k-left;if(g2>0){addI(n,-g2);tot+=g2;tipos++}if(left)cheio=1}
+DS.s=null;DS.m=tot?`📥 Guardou ${tot} ${tot===1?'item':'itens'} (${tipos} ${tipos===1?'tipo':'tipos'}).${cheio?' O depósito encheu; o resto ficou na mochila.':''}`:(cheio?'Depósito cheio!':'Nenhum drop na mochila.');
+try{if(tot)play('item')}catch(e){}drender();hud();save()}
+(function(){const s=document.createElement('style');s.textContent=`
+.dep .dtool{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:0 0 6px}
+.dep .dtool input{flex:1 1 170px;min-width:140px;background:#0f1626;border:1px solid #3a4e7c;border-radius:8px;color:#fff;padding:6px 9px;font:13px system-ui,sans-serif}
+.dep .dtool input:focus{outline:none;border-color:var(--c);box-shadow:0 0 0 2px color-mix(in srgb,var(--c) 40%,transparent)}
+.dep .dfls{display:flex;background:#0f1626;border:1px solid #2c3a5c;border-radius:8px;overflow:hidden}
+.dep .dfl{margin:0;border:0;border-radius:0;background:transparent;color:#c8d2ee;padding:5px 10px;font-size:12px;box-shadow:none}
+.dep .dfl.on{background:var(--c);color:#fff;font-weight:bold}
+.dep .dbt{margin:0;padding:5px 10px;font-size:12px;border-radius:8px;background:#24335a;border:1px solid #3a4e7c;color:#fff;box-shadow:none}
+.dep .dbt:disabled{opacity:.45}
+.dep .dim{opacity:.18;filter:grayscale(1)}
+.dep .dtab{position:relative}
+.dep .dhit{position:absolute;top:-7px;right:-7px;min-width:16px;height:16px;border-radius:8px;background:#ffd34d;color:#1a1030;font:bold 10px/16px sans-serif;padding:0 4px;box-shadow:0 1px 3px #0008}
+.dep .dsel span small{display:block}
+.dep .dtys{margin-top:2px}
+.dep .dbo{font-style:normal;font-weight:bold;color:#ffd34d;display:inline}
+.dep .dty{display:inline-block;font-style:normal;font-size:9px;font-weight:bold;padding:1px 6px;border-radius:9px;margin-right:3px;background:var(--tc,#556);color:#fff;text-shadow:0 1px 1px #0008}
+.dep .dqt{display:inline-flex;gap:4px;align-items:center}
+.dep .dqt input{width:64px;background:#0f1626;border:1px solid #3a4e7c;border-radius:7px;color:#fff;padding:5px 6px;font:13px system-ui,sans-serif}
+.dep .dmvs,.dep .dtroca{display:inline-flex;flex-wrap:wrap;gap:4px;align-items:center;margin-left:4px}
+.dep .dmvs small,.dep .dtroca small{font-size:11px;color:#c8d2ee;margin-right:2px}
+.dep .dmv{margin:0;padding:4px 8px;font-size:12px;border-radius:7px;background:#0f1626;border:2px solid var(--c);color:#fff;box-shadow:none}
+.dep .dtp{margin:0;padding:2px 4px;border-radius:7px;background:#1a2440;border:1px solid #3a4e7c;display:flex;flex-direction:column;align-items:center;box-shadow:none}
+.dep .dtp img{width:26px;height:26px}.dep .dtp small{font-size:9px;color:#fff}
+.dep .dtp:hover{border-color:var(--c)}
+.dep .sl u{position:absolute;left:1px;top:-1px;font-size:8px;text-decoration:none}
+.dep .sl u.db{left:auto;right:1px;top:0;font:bold 8px sans-serif;color:#ffd34d;text-shadow:0 0 2px #000}
+`;document.head.appendChild(s)})();
+var DEPSPR=new Image();DEPSPR.src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAoCAYAAACfKfiZAAADQUlEQVR4nM1XX0hTURz+Fj4IBjIiJiaMntzwJbFRkdBsBEFETdhDZDJIJBCFfBBG1IuBYNDAYfTgYEjRg7Ap4ZNMJ1hKakpUm2Da8E8bEsOYNCiwh+s5u+fs3nPv1jX74HL+3N8933d+v3N+51zgiGECAEt17f5RkKe3V0xlpJGa71Q13FiKGE7uaN8EAFABQf9jw0nEqARwEAJACkN7TxDv599i59tXw+l+ZLYBAD+zKeT2Mkhvr5gAmQd4JBNRQwWYLXbFflUBAFDmPm0I+e/IujqH6MPsh01atw+10nq8bVgXsX2oFfG2YZQLbIQC+IH4tlyUHBsDk0wpgi4BhJSHXk8YIoAQyoXwovgZy0NYkoDyL78AAOtNQamtUlf9XpOeywM67A2DYh4giUgNC1PiGZ9tuqtJ/PFdGLm9DG0rhkApE5LE5PH6AACBjiw6B4/T9yOhPixMBWG1uRSJSSbkobkIeeLXI88PStbO4/VhbTWBxRnp4CJCtDLqMS0BQP6kJORKIO+UTtUTJ0/RpygByUQUHq8PnYPHFcnlsQSAT0sxXLu/iYZGNzPzl69eMKUuAfIBlMidE7NIbSXgnJgtEMGPcftWC1PqEgBIcVWbecgKeJP5Ni+iodFN2yV5QAuEXA9K9oAexCJvNG1EHhBuw0BHFoGOFizvNtO+mzeaVe1Hx8K0fqYyjCqHVBd5QCiArP6u7mqmv7zCDECavdN9EbFnUntyeo7aPJjKH0SOsWjeU0/YbKnrNBx42l/QF7tyAbm9DCXn7erqnXlbIlQhXMI1MBLqw3XPPT0aGdTVO2lGlItQgqoHrDYXkoko1lYTqKt3MvubgISCJ+fHqAg9on05zl7oAavNhcWZCMb9NczABKNjYXR19zDk4/4aLM5EmEPp+84WfXjo2oZVjgAlUAN5R2zlk7DaXDBb7DBb7AVe01yEZCYkpiTDjftrsLybJ+dPQb3QfSck8SREVQ4gNQ9c7Q0wNsWiqEspT3DuzueSSOX4v+6ESpeJw/w1LxDw737RK2mtqBD0POzD5UvnhTaT03Po7/VpSiAhOPI1YJJ3Wqpr9+X/8Zl0nBqWCq0xC7ZhJh3/Gz5FHMaYhuEPQY5mv22JyAAAAAAASUVORK5CYII=';
+const DEPLUZ=['#ff6a5a','#5a9cff','#ffd34a','#c08aff'];
+{const _dpTile=tile;tile=function(id,X,Y){if(id===17&&DEPSPR.complete&&DEPSPR.naturalWidth)return _dpTile.call(this,15,X,Y);return _dpTile.apply(this,arguments)}}
+{const _dpTerm=termArt;termArt=function(x0,y0,n){if(DEPSPR.complete&&DEPSPR.naturalWidth){for(let j=0;j<2;j++)for(let i=0;i<2;i++)try{tile(15,x0+i,y0+j)}catch(e){}return}return _dpTerm.apply(this,arguments)}}
+function depCofres(){const m=M[cur];if(!m||!T)return[];if(m._dpT===T)return m._dpL;const L=[];
+for(let y=0;y<H-1;y++)for(let x=0;x<W-1;x++)if(T[y][x]===17&&T[y][x+1]===17&&T[y+1][x]===17&&T[y+1][x+1]===17&&!L.some(q=>Math.abs(q[0]-x)<2&&Math.abs(q[1]-y)<2))L.push([x,y]);
+L.sort((a,b)=>a[1]-b[1]||a[0]-b[0]);m._dpT=T;m._dpL=L;return L}
+RH0.push(function(cx,cy){try{if(!DEPSPR.complete||!DEPSPR.naturalWidth)return;const L=depCofres();if(!L.length)return;const t=performance.now();g.save();g.imageSmoothingEnabled=false;
+L.forEach(([x,y],k)=>{const X=x*16-cx,Y=y*16-cy;if(X<-40||Y<-50||X>VW*16+40||Y>VH*16+50)return;
+g.fillStyle='rgba(0,0,0,.25)';g.beginPath();g.ellipse(X+16,Y+30,15,3,0,0,6.3);g.fill();
+g.drawImage(DEPSPR,X,Y-6,32,40);
+const pis=.55+.45*Math.sin(t/380+k*1.3);g.globalAlpha=pis;g.fillStyle=DEPLUZ[k%4];g.fillRect(X+23,Y-6+7,1,1);g.globalAlpha=1;
+g.fillStyle=DEPLUZ[k%4];g.fillRect(X+6,Y-6+36,3,1);g.font='bold 5px sans-serif';g.textAlign='center';g.fillStyle='#fff';g.fillText(String(k+1),X+16,Y-6+36.5)});
+g.restore()}catch(e){}});
+DEPSPR.onload=()=>{try{for(const m of M)if(m&&m.MC)m.MC=null}catch(e){}};
+function depConta(){const it={};let mon=0;const ids=new Set();
+try{for(const[n,k]of bagL())it[n]=(it[n]||0)+(k|0)}catch(e){}
+const pm=m=>{if(!m)return;mon++;if(m.id!=null)ids.add(String(m.id))};
+try{for(const p of G.party||[])pm(p)}catch(e){}
+try{for(const b of(G.dep||[]))for(const s of(b||[])){if(!s)continue;if(s.t==='i')it[s.n]=(it[s.n]||0)+(s.c|0);else if(s.t==='p')pm(s.m)}}catch(e){}
+return{it,mon,ids}}
+function depSumiu(a,b){for(const n in a.it)if((b.it[n]||0)<a.it[n])return n;if(b.mon<a.mon)return'monstro';for(const i of a.ids)if(!b.ids.has(i))return'monstro';return null}
+function depProtege(f){if(typeof f!=='function'||f._dpP)return f;const w=function(){let antes=null,cp=null;try{antes=depConta();cp=JSON.stringify(G)}catch(e){}
+const r=f.apply(this,arguments);
+try{if(antes&&cp){const sumiu=depSumiu(antes,depConta());if(sumiu){const v=JSON.parse(cp);for(const k of Object.keys(G))delete G[k];Object.assign(G,v);try{save()}catch(e){}
+try{DS.s=null;DS.m='Operação desfeita: nada pode sumir do depósito.'}catch(e){}try{drender()}catch(e){}try{hud()}catch(e){}try{console.warn('depósito: desfeito ('+sumiu+')')}catch(e){}}}}catch(e){}
+return r};w._dpP=1;return w}
+dact=depProtege(dact);
+if(typeof depTroca==='function')depTroca=depProtege(depTroca);
+if(typeof depMover==='function')depMover=depProtege(depMover);
+if(typeof depOrganiza==='function')depOrganiza=depProtege(depOrganiza);
+if(typeof depGuardaDrops==='function')depGuardaDrops=depProtege(depGuardaDrops);
+{const _dpRen=drender;drender=function(){const r=_dpRen.apply(this,arguments);try{const s=document.querySelector('.dep .dtt small');if(s&&!s.dataset.dono){s.dataset.dono=1;s.insertAdjacentHTML('beforeend',' · 🔒 só '+(G.nick?esc(String(G.nick)):'você')+' abre')}}catch(e){}return r}}
+function chSesKey(u){return'kgt_chs:'+u}
+function chSesLimpa(){try{for(let i=sessionStorage.length-1;i>=0;i--){const k=sessionStorage.key(i);if(k&&k.indexOf('kgt_chs:')===0)sessionStorage.removeItem(k)}}catch(e){}}
+function chSesUid(){try{const a=webAcc();return a&&a.fb&&a.fb.uid||null}catch(e){return null}}
+function chSesConfere(){const u=chSesUid();if(u===CHAT.uid)return;CHAT.uid=u;CHAT.msgs=[];CHAT.unread=0;CHAT.err='';
+if(!u){CHAT.last=0;return}
+let s=null;try{s=JSON.parse(sessionStorage.getItem(chSesKey(u))||'null')}catch(e){}
+if(s&&Array.isArray(s.msgs)){CHAT.msgs=s.msgs;CHAT.last=s.last|0||Date.now()}
+else{CHAT.last=(typeof ssAgora==='function'?ssAgora():Date.now());try{sessionStorage.setItem(chSesKey(u),JSON.stringify({last:CHAT.last,msgs:[]}))}catch(e){}}}
+function chSesGuarda(){try{if(CHAT.uid)sessionStorage.setItem(chSesKey(CHAT.uid),JSON.stringify({last:CHAT.last,msgs:CHAT.msgs.slice(-150)}))}catch(e){}}
+CHAT.uid=undefined;
+{const _cs=chPoll;chPoll=async function(){chSesConfere();const r=await _cs.apply(this,arguments);chSesGuarda();return r}}
+{const _cs2=chSend;chSend=async function(){chSesConfere();const r=await _cs2.apply(this,arguments);chSesGuarda();return r}}
+if(typeof chOpen==='function'){const _co=chOpen;chOpen=function(){chSesConfere();return _co.apply(this,arguments)}}
+function chSesSair(){chSesLimpa();try{CHAT.msgs=[];CHAT.last=0;CHAT.unread=0;CHAT.uid=undefined}catch(e){}}
+if(typeof accLogout==='function'){const _al=accLogout;accLogout=function(){chSesSair();return _al.apply(this,arguments)}}
+if(typeof fbLogout==='function'){const _fl=fbLogout;fbLogout=function(){chSesSair();return _fl.apply(this,arguments)}}
 (function(){try{const st=document.createElement('style');st.textContent=`body.hudmin .ab:not(.hkeep){display:none!important}
 #hudtg{position:fixed;right:calc(env(safe-area-inset-right,0px) + 88px);bottom:calc(env(safe-area-inset-bottom,0px) + 6px);width:40px;height:40px;border-radius:50%;padding:0;margin:0;z-index:6;
  background:radial-gradient(circle at 35% 30%,#fff3c0,#e8c050 60%,#a8801c);border:2px solid #fff;color:#3a2a00;font:900 18px sans-serif;box-shadow:0 2px 6px #0008;display:flex;align-items:center;justify-content:center}

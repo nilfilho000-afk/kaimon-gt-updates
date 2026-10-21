@@ -1,11 +1,11 @@
 {
- "jogo": 94,
- "jogo_arquivo": "jogo-94.kpk",
- "jogo_sha": "a864b751869a8f713e5de0fe5bcb79b5d4f263355a8b745fddf8dc750235e3d3",
- "jogo_assin": "nnGqKJV70+UK2uR7J10qAaPDe6nmLr8hU3zKKxEVfgfJG1dmqaabKAtccI0TOkqhCv7V+9cetoDHRMlA3r6ZCA==",
+ "jogo": 100,
+ "jogo_arquivo": "jogo-100.kpk",
+ "jogo_sha": "bf9d5b01872aa438d6ec9edf2bedc9768d3da1a75a64c2e49c2660ef114c22c4",
+ "jogo_assin": "DLtvPYGbXQKgblc6AtkqoQG+eUQ+Vs0cRSSH7IRloZlKGo12hvqkSospwAur3QEBhDWZIq5opmMqroiV7QB7Bw==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "538fde7816825cf8090605943329a8f76f4b65a055cbbc2c14fb8b67bb9e503d",
- "launcher_assin": "QaOjWjd4V6cZ+W26WUIPf8mRxPERaBP91kl9cCKGgxj0wZWalOPyGr2CAX5IDNRzvkpC/VAqEydNg/hdCcc1Dw==",
- "notas": "Server save diário 05:00–05:10; árvores secas e pedras de lava nas áreas de fogo"
+ "launcher_sha": "166d3f80dbc4af1653bd6f70dce2f202cb0c3e9fad2583cc165203d3cc1603cc",
+ "launcher_assin": "cySklcz1ST/U/69r9nUrMqF1VchvYZKROcK6i1OrjaQQt7J1AQLAsZhVd8vZNDNTXx6RzZz+pn+6hmrczUIAAQ==",
+ "notas": "Tudo da v95 a v99 + cofre do depósito novo (só o dono abre, nada some) e chat que zera ao sair da conta"
 }

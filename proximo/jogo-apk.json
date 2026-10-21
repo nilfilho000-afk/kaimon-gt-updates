@@ -1,7 +1,7 @@
 {
- "v": 94,
+ "v": 100,
  "url": "https://raw.githubusercontent.com/nilfilho000-afk/kaimon-gt-updates/main/jogo-apk.html",
- "notas": "Server save diário 05:00–05:10; árvores secas e pedras de lava nas áreas de fogo",
- "sha": "e8f6e85255c794829d375fc861f0e621ddc255480c056f815db15203affe42c9",
- "sig": "/8+r3Qz340ZGkqwEk3FAV5DqcihzoaQL783HG8HYrOpH+G1l1Z4Snb9NS1lT9PUSzMrPx/g4UiFbOXWYXwViow=="
+ "notas": "Tudo da v95 a v99 + cofre do depósito novo (só o dono abre, nada some) e chat que zera ao sair da conta",
+ "sha": "a26a795d760ad5ba3b294c221bcc2a64c7e7b0e90209a4e0d5d5f9ff0b3d0768",
+ "sig": "tqdUHq7o6lz4NHUwmT0p5vCoHG1E+1ipP3jJ52jmFjVilJyfHNkr8w+VR0SuG4cAtIBkiapIaldA0GwsULxnLw=="
 }
