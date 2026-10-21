@@ -12883,6 +12883,34 @@ try{for(const k of Object.keys(SV))if(HUM34[k.replace(/\d_\d+s?$/,'')])delete SV
 {const _zFace=hrFace;hrFace=function(D){if(!ZPX.on)return _zFace.apply(this,arguments);const k='px'+JSON.stringify(D);if(HRC[k])return HRC[k];try{const im=hrHD(D,0,8,4),p=im.__px;if(!p)return _zFace.apply(this,arguments);const c=document.createElement('canvas');c.width=c.height=64;const x=c.getContext('2d'),q=ZPX.k;x.imageSmoothingEnabled=false;
 x.drawImage(p,Math.round(7*q),Math.round(-.6*q),18*q,18*q,0,0,64,64);return HRC[k]=c.toDataURL()}catch(e){return _zFace.apply(this,arguments)}}}
 try{TRI={};NPCF={};}catch(e){}
+const CHAP={key:'chapada',nm:'Chapada dos Ventos',from:-1,old:[],pal:'w',g0:0,fr:7,bt:'water',A:[[32,22,22,12.5]],B:[31,16,10,5.5],s1:30,s2:38,
+t:[{sp:[['Ramaguiça',4],['Magmatu',4],['Botorrente',4],['Pinheirão',3],['Lhamaneve',3],['Vagalumi',3],['Cortaúva',2]],l:[55,59],cap:8},
+{sp:[['Pirarucão',4],['Guarabrasa',4],['Folhudo',3],['Cupimonte',3],['Arraiá',3],['Boiamar',3],['Jabucacho',2],['Relampejo',2]],l:[58,62],cap:7},
+{sp:[['Jaguasombra',4],['Faroluz',4],['Luarutau',3],['Trovaleão',2],['Onçatroz',2],['Papagaiassombro',2],['Capivalma',1],['Furacião',1]],l:[61,65],cap:6}]};
+(function(){const S=CHAP,sp=[],lv={};S.t.forEach(t=>t.sp.forEach(([n,w])=>{if(SP[n]){sp.push([n,w]);lv[n]=t.l}}));S.t.forEach(t=>t.sp=t.sp.filter(([n])=>SP[n]));
+const iv=KI.vitoria,ip=KI.plato,p={};for(let x=30;x<=33;x++){p[x+',55']=[iv,66,8];p[x+',0']=[ip,38,66]}
+const N=[{n:'hiker',x:34,y:46,d:2,nm:'Guia da Chapada',say:['Bem-vindo à Chapada dos Ventos! A Liga fica lá no alto, depois do topo.','Cada andar da chapada tem monstros mais fortes: 55 embaixo, 65 lá em cima.','Treine aqui antes de encarar os Mestres!']},
+{n:'joy',x:29,y:46,d:2,nm:'Curandeira Jacira',fn:()=>heal('<b>Jacira:</b> Pronto! Seu time está curado. Que os ventos te levem longe.')},
+ktr('ace',0,0,2,'Ás Bruno',[['Ramaguiça',56],['Magmatu',57],['Botorrente',57]],3800,'Pouca gente passa da Chapada. Vamos ver você!','Tá pronto pro próximo andar.',{zL:0}),
+ktr('hiker',0,0,2,'Montanhista Seu Lito',[['Cupimonte',57],['Pinheirão',58],['Lhamaneve',58]],3900,'Subo essa chapada desde menino!','Ô, rapaz... bateu forte.',{zL:0}),
+ktr('acef',0,0,2,'Ás Jade',[['Pirarucão',59],['Guarabrasa',60],['Folhudo',60]],4600,'O vento aqui em cima não perdoa!','Você voa alto mesmo.',{zL:1}),
+ktr('fisher',0,0,2,'Pescadora Iara',[['Arraiá',59],['Boiamar',60],['Pirarucão',61]],4700,'Minhas cachoeiras, minhas regras!','A correnteza é sua hoje.',{zL:1}),
+ktr('champ',0,0,2,'Mestra dos Ventos Dandara',[['Trovaleão',62],['Capivalma',63],['Onçatroz',63],['Papagaiassombro',64]],8000,'Quem chega ao topo da chapada fala comigo. Mostre que merece a Liga!','Os ventos estão do seu lado. A Liga te espera.',{zL:2})];
+const i=kdef(S.key,{nm:S.nm,gn:S.nm,W:64,H:56,base:S.g0,bt:S.bt,serra:1,chap:1,z:{sp,cap:S.t.reduce((a,t)=>a+t.cap,0),b:[0,0,63,55],l:lv},p,N,
+lbls:[['↑ Platô da Glória',32,2.6]],
+gen(m){rfSerraGen(m,S);chapPos(m)},deco(){rfDeco()}});S.i=i;
+try{M[iv].p['66,7']=[i,31,53];M[ip].p['38,65']=[i,31,2]}catch(e){console.error(e)}})();
+function chapPos(m){const W2=m.W,H2=m.H,el=m.el,T2=T;
+for(let y=0;y<=6;y++)for(let x=30;x<=33;x++){T2[y][x]=3;if(el)el[y*W2+x]=0}
+for(let y=1;y<=8;y++)for(let x=29;x<=34;x++)if(SOLID.has(T2[y][x]))T2[y][x]=0;
+const ok=(x,y,L)=>x>3&&y>3&&x<W2-4&&y<H2-4&&!SOLID.has(T2[y][x])&&T2[y][x]!==2&&(!el||el[y*W2+x]===L)&&!(RFEL.get(T2)||{k:[]}).k[y*W2+x];
+const want=[[22,40],[42,42],[20,24],[44,26],[31,14]],used=[];let k=0;
+for(const e of m.N){if(!e.tr||e.zL==null)continue;const[tx,ty]=want[k++]||[32,30];let best=null,bd=1e9;
+for(let y=4;y<H2-4;y++)for(let x=4;x<W2-4;x++){if(!ok(x,y,e.zL)||!ok(x,y+1,e.zL))continue;if(used.some(([a,b])=>Math.abs(a-x)+Math.abs(b-y)<6))continue;const d=Math.abs(x-tx)+Math.abs(y-ty);if(d<bd){bd=d;best=[x,y]}}
+if(best){e.x=best[0];e.y=best[1];used.push(best)}}}
+const XPCURVA=[2,4,5,5.5,6,6.5];
+function xpDiv(l){return l<40?1:XPCURVA[Math.min(XPCURVA.length-1,Math.floor((l-40)/10))]}
+{const _cg=gain;gain=async function(m,x){try{if(m&&x>0){if(m.lvl<40)x=x*1.6/1.2;else x=x/xpDiv(m.lvl);x=Math.max(1,Math.round(x))}}catch(e){}return _cg.call(this,m,x)}}
 (function(){try{const st=document.createElement('style');st.textContent=`body.hudmin .ab:not(.hkeep){display:none!important}
 #hudtg{position:fixed;right:calc(env(safe-area-inset-right,0px) + 88px);bottom:calc(env(safe-area-inset-bottom,0px) + 6px);width:40px;height:40px;border-radius:50%;padding:0;margin:0;z-index:6;
  background:radial-gradient(circle at 35% 30%,#fff3c0,#e8c050 60%,#a8801c);border:2px solid #fff;color:#3a2a00;font:900 18px sans-serif;box-shadow:0 2px 6px #0008;display:flex;align-items:center;justify-content:center}
