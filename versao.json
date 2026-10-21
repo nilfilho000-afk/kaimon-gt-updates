@@ -1,11 +1,11 @@
 {
- "jogo": 87,
- "jogo_arquivo": "jogo-87.kpk",
- "jogo_sha": "e43b7ea6e32452035df9292568a02b1ed9606500c414667ef1dfc51b9dc30de7",
- "jogo_assin": "0HvjrKg+Gn0BBiLcCjw0TWfblvgkIBWeWaeHvRadiXolsJincl3ca3kqI+t9bsg8rV66KyGrCyMcoh3FIsq+DQ==",
+ "jogo": 88,
+ "jogo_arquivo": "jogo-88.kpk",
+ "jogo_sha": "98607f7205a599d7bd2007b24e3f044683fff240b4888c608d3d71d6be1f045c",
+ "jogo_assin": "fOp4kx5pRAVjJbjx/Lmmb4vGY1JgbCnVK8pDKjxDPgz60qVrkkL7+1Qkvghj/yTkGwtdI0UjGzX7MQoaY17/AQ==",
  "launcher": 3,
  "launcher_arquivo": "KaimonGT-3.exe",
- "launcher_sha": "63632ea54e788f930eeb321f92a4798585f32377e9d3e5414ceac823246ac14a",
- "launcher_assin": "rHDYEF9Pl56Z0qzFAdIXovmsVTwuepvfdDKQ8NhlcUZJ+Va693U3fD/HeJxdultNaPyDaBgq2i8U/pPNNwD7Bg==",
- "notas": "Progresso protegido (save com lacre e conferido no servidor), menos consultas ao servidor, correções"
+ "launcher_sha": "2bcc5493c89e3f934a3cee21bbb3acb79a9dbd4d02e6cb8c761a2a20526d426b",
+ "launcher_assin": "GUzSNmmwSgu7IqQJLRhdeRBU/2h8VO/Nfce0JK4D+vQTITjwPywLGr4sjdgHE48w3n9690WpteyUwryjLipdCg==",
+ "notas": "Anil com canais e gôndolas; Candeia assombrada com a Visagem"
 }
