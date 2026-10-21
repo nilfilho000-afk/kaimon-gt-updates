@@ -1,11 +1,11 @@
 {
- "jogo": 86,
- "jogo_arquivo": "jogo-86.kpk",
- "jogo_sha": "416fb8ee57a56f27fef11808e9b24b2c1c968de8875612fe41ab2d5758a74b44",
- "jogo_assin": "KQgnaqiD8hAJzFAOY5A5l0djVaqjcXUPx7BM/cWjskibhQsqjAV3abCsxpsTahpqcSXmy3HAeuO3CwCCwZ90CA==",
+ "jogo": 87,
+ "jogo_arquivo": "jogo-87.kpk",
+ "jogo_sha": "e43b7ea6e32452035df9292568a02b1ed9606500c414667ef1dfc51b9dc30de7",
+ "jogo_assin": "0HvjrKg+Gn0BBiLcCjw0TWfblvgkIBWeWaeHvRadiXolsJincl3ca3kqI+t9bsg8rV66KyGrCyMcoh3FIsq+DQ==",
  "launcher": 3,
  "launcher_arquivo": "KaimonGT-3.exe",
- "launcher_sha": "0f2cd377894b9396ab486ff74bb60e65d3888317ca66cd9620c638f313b97d4c",
- "launcher_assin": "1sg/TIwPclqEnOVKc/o8QNUV779gn7DDhRplYspBTr/Xc22ySTYrh0ITfojyuT5YGRxk9Q0rKPj86Pcssm7dAg==",
- "notas": "Montar com AÇÃO no seu monstro, voo com 2 andares, voo de frente desenhado, ícones em pixel art, chuva mais baixa, Loja separada do Passe."
+ "launcher_sha": "63632ea54e788f930eeb321f92a4798585f32377e9d3e5414ceac823246ac14a",
+ "launcher_assin": "rHDYEF9Pl56Z0qzFAdIXovmsVTwuepvfdDKQ8NhlcUZJ+Va693U3fD/HeJxdultNaPyDaBgq2i8U/pPNNwD7Bg==",
+ "notas": "Progresso protegido (save com lacre e conferido no servidor), menos consultas ao servidor, correções"
 }

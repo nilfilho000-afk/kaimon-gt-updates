@@ -734,7 +734,7 @@ const DPX=new Proxy({},{get:(o,k)=>typeof k=='string'&&DK[k]?(invCount(DK[k][0])
 for(const k in LEG)Object.defineProperty(G,k,{get:()=>invCount(LEG[k]),set:v=>{if(!INVR)return void PEND.push([k,v]);setCount(LEG[k],v)},enumerable:false,configurable:true});
 Object.defineProperty(G,'loot',{get:()=>LPX,set:v=>{if(v===LPX)return;if(!INVR)return void PEND.push(['loot',v]);for(const n of invNames().filter(isLootN))invRemove(n,invCount(n));for(const k in v||{})setCount(k,invCount(k)+(v[k]|0))},enumerable:false,configurable:true});
 Object.defineProperty(G,'dinv',{get:()=>DPX,set:v=>{if(v===DPX)return;if(!INVR)return void PEND.push(['dinv',v]);for(const k in DK)invRemove(DK[k][0],invCount(DK[k][0]));for(const k in v||{})if(DK[k])setCount(DK[k][0],invCount(DK[k][0])+(v[k]|0))},enumerable:false,configurable:true});
-let LM=0;try{const d=JSON.parse(localStorage.getItem('pq2'));if(d){Object.assign(G,d.G);P.x=d.P.x;P.y=d.P.y;LM=d.P.m|0}}catch(e){}
+let LM=0;try{const d=JSON.parse(window.PQ0=localStorage.getItem('pq2'));if(d){Object.assign(G,d.G);P.x=d.P.x;P.y=d.P.y;LM=d.P.m|0}}catch(e){}
 P.px=P.fx=P.x;P.py=P.fy=P.y;P.end=0;P.h=1;
 const save=()=>{try{localStorage.setItem('pq2',JSON.stringify({G,P:{x:P.x,y:P.y,m:cur}}))}catch(e){}try{accTouch()}catch(e){}};
 const mkN=a=>a.map(e=>({...e,px:e.x,py:e.y,h:1}));let NPC=mkN([{n:'sam',x:13,y:20},{n:'mom',x:6,y:20},{n:'girl',x:15,y:22,wd:1,say:['Que dia lindo em Alvorada!','Dizem que na Floresta Verde, a oeste, só vivem Musguiça.','Já viu um monstro brilhante? Dizem que são raríssimos!']},{n:'old',x:12,y:29,wd:1,say:['Na minha época a gente ia a pé até Jatobá!','Descanse nos bancos se estiver cansado, jovem.','Cuidado com os monstros evoluídos nas torres. Eles atacam!']},{n:'kid',x:12,y:34,wd:1,say:['Eu vou ser o maior treinador do mundo!','A fonte do parque deixa a gente novinho em folha!','Vasculha as lixeiras... às vezes tem cristal lá!']},{n:'fisher',x:27,y:35,d:1,say:['Estou esperando a vara de pescar chegar na loja...','No sul tem uma lagoa cheia de Botinho.']}]);const N2=mkN([{n:'joy',x:19,y:12},{n:'chansey',x:21,y:12}]),N1=mkN([{n:'girl',x:14,y:15,wd:1,say:['Bem-vinda a Jatobá!','O Ginásio está fechado faz tempo...','Você pode alugar uma casa aqui no sul da cidade.']},{n:'old',x:30,y:28,wd:1,say:['Jatobá é tranquila, mas o Ginásio esconde segredos.','Os depósitos do Centro de Cura guardam até 1000 itens por espaço!']},{n:'kid',x:8,y:36,wd:1,say:['Pega-pega com monstros é o melhor!','Minha mãe disse que eu ainda não posso ter monstros...']},{n:'clerk',x:27,y:15},{n:'guard',x:20,y:6},{n:'vil',x:20,y:20}]);
@@ -2058,7 +2058,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v86 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v87 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -8557,7 +8557,7 @@ if(r.ok){CLOUD.dirty=0;CLOUD.lastPushT=lt||Date.now();CLOUD.lastT=Date.now();CLO
 async function cloudUse(){const a=webAcc();if(!a)return toast('Entre com uma conta com e-mail.');try{closeUI();toast('Buscando na nuvem...');const tok=await webTok(a);const j=await fsGet('saves',a.fb.uid,tok);if(!j||!j.fields)return toast('Não há progresso na nuvem para esta conta.');
 const s=await bkDecode(fsV(j.fields,'d')),o=JSON.parse(s);if(!o||!o.G)throw 0;localStorage.setItem('pq2',s);localStorage.setItem('pq2t',String(fsV(j.fields,'t')||Date.now()));CLOUD.dirty=0;try{sessionStorage.setItem('pqIn',ACC.act)}catch(e){}location.reload()}catch(e){toast('Não consegui ler o progresso da nuvem.')}}
 async function cloudSend(){closeUI();CLOUD.dirty=1;CLOUD.warn=0;await cloudPush(1);toast(CLOUD.dirty?'Não deu para enviar agora.':'☁️ Progresso enviado para a nuvem.')}
-setInterval(()=>{cloudPush()},15000);
+setInterval(()=>{cloudPush()},180000);
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')cloudPush()});
 const _wbAfter=afterLogin;afterLogin=function(){const r=_wbAfter.apply(this,arguments);setTimeout(()=>{try{bkSync(1)}catch(e){}},2500);return r};
 const _wbCfg=cfgR;cfgR=function(){const r=_wbCfg.apply(this,arguments);try{const rows=[...document.querySelectorAll('#ui .cfr')],c=rows.find(e=>{const s=e.querySelector('span');return s&&s.textContent.trim()==='Backup do progresso'});
@@ -8593,7 +8593,7 @@ BKP={nome,v,uid:L[0].uid,nick:L[0].nick,cod:L[0].codigo};open(`<b>💸 Confirmar
 .catch(e2=>{bkFala(e2.message,1);bkPixa(nome,v)})};
 bkPixaOk=function(){if(!bkOnline())return _bkPixaOk.apply(this,arguments);const p=BKP;BKP=null;if(!p||!p.uid)return bkOpen();open(`<b>💸 Pixa</b><p>Enviando...</p>`);
 bkCall({op:'pixa',para:p.uid,valor:p.v}).then(()=>{bkLog('pixout',p.v,p.nick);save();hud();bkFala('✅ Pixa de '+bkFmt(p.v)+' enviado para <b>'+bkEsc(p.nick)+'</b>.');bkOpen()}).catch(e=>{bkFala(e.message,1);bkOpen()})};
-setInterval(()=>{try{if(typeof mode!=='undefined'&&mode==='walk'&&bkOnline()&&Date.now()-BKO.t>120000)bkSync(1)}catch(e){}},30000);
+setInterval(()=>{try{if(typeof mode!=='undefined'&&mode==='walk'&&bkOnline()&&Date.now()-BKO.t>300000&&!document.hidden&&!savParado())bkSync(1)}catch(e){}},30000);
 var LOJA=[{k:'passe',n:'Passe Kaimon',p:40,d:'30 dias de VIP (montar, surfar, voar) + a trilha premium com o monstro exclusivo do mês.',ic:()=>pbi(PS.MON,0)},
 {k:'passe10',n:'10 Cristais do Passe',p:10,d:'Captura ×4 e 16% em shiny.',ic:()=>ico('Cristal do Passe')},
 {k:'supremo',n:'Cristal Supremo',p:15,d:'Captura garantida, até em shiny.',ic:()=>ico('Cristal Supremo')},
@@ -8959,7 +8959,7 @@ $('ui').classList.add('wide');chRender();if(on&&CHAT.tab!=='loot')chPoll(1)}
 function chClose(){CHAT.open=0;closeUI()}
 function chBadge(){const b=$('chbtn');if(!b)return;b.classList.toggle('dot',CHAT.unread>0);b.setAttribute('data-n',String(Math.min(99,CHAT.unread)))}
 function chFs(path){return'https://firestore.googleapis.com/v1/projects/'+encodeURIComponent(FBC.projectId)+'/databases/(default)/documents'+path}
-async function chPoll(force){if(!chOn())return;const now=Date.now();if(!force&&now-CHAT.poll<(CHAT.open?4000:30000))return;CHAT.poll=now;
+async function chPoll(force){if(!chOn())return;const now=Date.now();if(!force&&(now-CHAT.poll<(CHAT.open?(savParado(120000)?15000:4000):90000)||document.hidden||(!CHAT.open&&savParado())))return;CHAT.poll=now;
 try{const tok=await webTok(),q=CHAT.last?{structuredQuery:{from:[{collectionId:'chat'}],where:{fieldFilter:{field:{fieldPath:'t'},op:'GREATER_THAN',value:{integerValue:String(CHAT.last)}}},orderBy:[{field:{fieldPath:'t'},direction:'ASCENDING'}],limit:80}}
 :{structuredQuery:{from:[{collectionId:'chat'}],orderBy:[{field:{fieldPath:'t'},direction:'DESCENDING'}],limit:40}};
 const r=await fetch(chFs(':runQuery'),{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+tok},body:JSON.stringify(q)});
@@ -9083,7 +9083,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=86;
+var KGT_VER=87;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -10899,96 +10899,60 @@ const ttl=document.getElementById('ttl');b.style.display=(typeof mode!=='undefin
 setInterval(()=>{try{lojaTop()}catch(e){}},400);
 {const _p87=psOpen;psOpen=function(){const r=_p87.apply(this,arguments);try{document.querySelectorAll('#ui .lojabtn').forEach(e=>e.remove())}catch(e){}return r}}
 {const _l87=lojaOpen;lojaOpen=function(){const r=_l87.apply(this,arguments);try{[...document.querySelectorAll('#ui button')].filter(b=>/Passe Kaimon/.test(b.textContent)).forEach(b=>b.remove())}catch(e){}return r}}
-var VOO85={on:0};
-{const _v85=mnPaint;mnPaint=function(){VOO85.on=1;try{return _v85.apply(this,arguments)}finally{VOO85.on=0}}}
-{const _v85F=mnWingsFront;mnWingsFront=function(){if(VOO85.on&&G.mt&&G.mt.k==='fly')return;return _v85F.apply(this,arguments)}}
-{const _v85S=mnWingSide;mnWingSide=function(){if(VOO85.on&&G.mt&&G.mt.k==='fly'&&!(typeof vooBodyLine==='function'&&vooBodyLine(G.mt.n)))return;return _v85S.apply(this,arguments)}}
-function pxify(src,grid){const S=src.width,G=grid||32,k=S/G,sx=src.getContext('2d').getImageData(0,0,S,S).data,o=document.createElement('canvas');o.width=o.height=S;const x=o.getContext('2d'),im=x.createImageData(S,S),d=im.data;
-for(let gy=0;gy<G;gy++)for(let gx=0;gx<G;gx++){let r=0,g=0,b=0,a=0,n=0;for(let yy=0;yy<k;yy++)for(let xx=0;xx<k;xx++){const p=((gy*k+yy)*S+gx*k+xx)*4,al=sx[p+3];r+=sx[p]*al;g+=sx[p+1]*al;b+=sx[p+2]*al;a+=al;n++}
-if(a/n<100)continue;const q=v=>Math.min(255,Math.round(v/a/8)*8),R=q(r),Gg=q(g),B=q(b);
-for(let yy=0;yy<k;yy++)for(let xx=0;xx<k;xx++){const p=((gy*k+yy)*S+gx*k+xx)*4;d[p]=R;d[p+1]=Gg;d[p+2]=B;d[p+3]=255}}
-x.putImageData(im,0,0);return o}
-var PBC={};
-function pbiCrop(n,s){const k=n+(s?'s':''),im=getVH(n,0,0,s,2);if(PBC[k])return Object.assign({},PBC[k],{im});const W=im.width,H=im.height,d=im.getContext('2d').getImageData(0,0,W,H).data;
-let x0=W,y0=H,x1=0,y1=0;for(let y=0;y<H;y++)for(let x=0;x<W;x++)if(d[(y*W+x)*4+3]>40){if(x<x0)x0=x;if(x>x1)x1=x;if(y<y0)y0=y;if(y>y1)y1=y}
-if(x1<x0)return PBC[k]={im,sx:0,sy:0,sw:W,sh:H};const bw=x1-x0+1,bh=y1-y0+1;let sz=Math.max(bw,Math.min(bh,bw*1.15))*1.04;sz=Math.min(sz,Math.max(bw,bh)*1.04);
-const cx=(x0+x1)/2,sx=cx-sz/2,sy=y0-sz*.03;return PBC[k]={im,sx,sy,sw:sz,sh:sz}}
-function pbiDraw(x,n,s){const c=pbiCrop(n,s);x.imageSmoothingEnabled=false;x.drawImage(c.im,c.sx,c.sy,c.sw,c.sh,8,8,80,80)}
-var VFC=new Map();
-function vfPal(line,n,sh){const P0=MPAL[n]||{},Q=sh&&P0.s?Object.assign({},P0,Object.fromEntries(Object.entries(P0.s).filter(([k,v])=>v))):P0;
-const H=x=>vooHex(x||'#888888'),C=H(Q.c),Dk=H(Q.d),Lt=H(Q.l),Ac=H(Q.a),Ex=Q.e?H(Q.e):Lt,blackHead=line==='btv'||line==='quero';
-const head=blackHead?Ac:C,belly=line==='arara'?C:Lt,wing=line==='arara'?Ac:C;
-return{o:[28,22,34],B:C,b:vooMix(C,Dk,.6),L:vooMix(C,[255,255,255],.28),W:wing,Wd:vooMix(wing,Dk,.55),Wl:vooMix(wing,[255,255,255],.3),v:belly,V:vooMix(belly,Dk,.45),h:head,H:vooMix(head,[0,0,0],.35),
-w:[244,240,232],e:[26,20,24],y:line==='btv'?[60,50,40]:line==='arara'?[236,226,210]:line==='urutau'?Ac:[50,44,40],Y:line==='urutau'?Ac:[30,26,24],t:Dk,T:vooMix(Dk,[0,0,0],.35),p:[70,60,56]}}
-function vfCanvas(line,n,sh,v,f){const key=line+'|'+n+'|'+(sh?1:0)+'|'+v+'|'+f;let c=VFC.get(key);if(c)return c;const M=vfPal(line,n,sh),Wd=72,Hh=48,G=[];for(let i=0;i<Wd*Hh;i++)G.push(null);
-const set=(x,y,r)=>{x=Math.round(x);y=Math.round(y);if(x>=0&&y>=0&&x<Wd&&y<Hh)G[y*Wd+x]=r},get=(x,y)=>(x>=0&&y>=0&&x<Wd&&y<Hh)?G[y*Wd+x]:null;
-const inPoly=(px,py,pts)=>{let ins=false;for(let i=0,j=pts.length-1;i<pts.length;j=i++){const[xi,yi]=pts[i],[xj,yj]=pts[j];if((yi>py)!==(yj>py)&&px<(xj-xi)*(py-yi)/(yj-yi)+xi)ins=!ins}return ins};
-const hum=line==='beija',span=hum?27:33,tipY=[3,13,25,13][f],cx=36,front=v===0;
-for(const sd of[-1,1]){const rx=cx+sd*8,tx=cx+sd*span,pts=[[rx,16],[cx+sd*span*.55,tipY+(16-tipY)*.35-2],[tx,tipY]];const nF=6;
-for(let i=1;i<=nF;i++){const q=i/nF,bx=tx+(rx-tx)*q,by=tipY+(26-tipY)*q+(f===2?-2:3),dx=sd*-1.2;pts.push([bx+dx,by+2.2]);pts.push([bx+sd*-2.2,by-.2])}pts.push([rx,26]);
-for(let y=0;y<Hh;y++)for(let x=0;x<Wd;x++){if(!inPoly(x+.5,y+.5,pts))continue;const u=Math.abs(x+.5-rx)/Math.abs(tx-rx),lead=(()=>{const ax=rx,ay=16,bx=tx,by=tipY,L=Math.hypot(bx-ax,by-ay);return Math.abs((by-ay)*(x+.5)-(bx-ax)*(y+.5)+bx*ay-by*ax)/L})();
-set(x,y,u>.72?(lead<1.6?'b':'t'):lead<1.6?'Wl':lead<3.4&&u<.6?'W':((x+y)%5===0&&u>.3?'Wd':'W'))}
-for(let i=1;i<5;i++){const q=i/5,ax=rx+(tx-rx)*q*.95,ay=16+(tipY-16)*q*.95;for(let k=0;k<4;k++){const yy=ay+2+k,xx=ax-sd*k*.6;if(get(Math.round(xx),Math.round(yy)))set(xx,yy,'Wd')}}}
-if(!front){const tp=hum?[[33,33],[39,33],[41,45],[36,42],[31,45]]:[[31,33],[41,33],[45,46],[36,43],[27,46]];for(let y=0;y<Hh;y++)for(let x=0;x<Wd;x++)if(inPoly(x+.5,y+.5,tp))set(x,y,y>41?'T':(x+y)%3===0?'b':'B')}
-const ell=(ex,ey,rx,ry,fn)=>{for(let y=Math.floor(ey-ry);y<=ey+ry;y++)for(let x=Math.floor(ex-rx);x<=ex+rx;x++){const q=((x+.5-ex)/rx)**2+((y+.5-ey)/ry)**2;if(q<=1)fn(x,y,q,x+.5-ex,y+.5-ey)}};
-ell(cx,27,hum?7:10,hum?10:12,(x,y,q,dx,dy)=>set(x,y,dx>5.5&&q>.55?'b':dx<-5&&dy<0&&q>.6?'L':'B'));
-if(front)ell(cx,30,hum?4.5:6.5,hum?7:8,(x,y,q,dx)=>set(x,y,dx>3.5&&q>.6?'V':'v'));
-else{for(let y=19;y<37;y++){set(cx,y,'b');if(y%3===0){set(cx-2,y,'b');set(cx+2,y,'b')}}}
-if(front){set(cx-3,39,'p');set(cx-3,40,'p');set(cx+3,39,'p');set(cx+3,40,'p')}
-const hr=hum?6:7.5,hy=front?15:13;ell(cx,hy,hr,hr*.95,(x,y,q,dx,dy)=>set(x,y,dx>hr*.55&&q>.5?'H':'h'));
-if(front){const blackHead=line==='btv'||line==='quero';
-if(line==='btv')for(let x=cx-6;x<=cx+6;x++){set(x,hy-3,'w')}
-if(line==='quero'){for(let x=cx-5;x<=cx+5;x++)set(x,hy+3,'w')}
-if(line==='arara'){ell(cx-3.4,hy-.5,2.4,2.4,(x,y)=>set(x,y,'w'));ell(cx+3.4,hy-.5,2.4,2.4,(x,y)=>set(x,y,'w'))}
-if(line==='urutau'){ell(cx-3.4,hy-1,2.6,2.6,(x,y)=>set(x,y,'y'));ell(cx+3.4,hy-1,2.6,2.6,(x,y)=>set(x,y,'y'))}
-for(const ex of[cx-3,cx+3]){set(ex,hy-1,'e');set(ex,hy,'e');if(!blackHead||line==='btv'){set(ex+(ex<cx?-1:0),hy-2,'w')}}
-if(line==='arara'){for(let i=0;i<5;i++)for(let j=-2+Math.floor(i/2);j<=2-Math.floor(i/2);j++)set(cx+j,hy+2+i,i>2?'Y':'y')}
-else if(hum){for(let i=0;i<7;i++)set(cx,hy+3+i,'Y')}
-else{set(cx,hy+3,'y');set(cx-1,hy+3,'y');set(cx,hy+4,'y');set(cx+1,hy+3,'y')}}
-else{for(let y=Math.round(hy-hr);y<hy+hr;y++){if(get(cx,y)==='h'&&y<hy)set(cx,y,'H')}}
-const out=G.slice();for(let y=0;y<Hh;y++)for(let x=0;x<Wd;x++){if(G[y*Wd+x])continue;if(get(x+1,y)||get(x-1,y)||get(x,y+1)||get(x,y-1))out[y*Wd+x]='o'}
-c=document.createElement('canvas');c.width=Wd;c.height=Hh;const x=c.getContext('2d'),im=x.createImageData(Wd,Hh),d=im.data;
-for(let i=0;i<Wd*Hh;i++){const r=out[i];if(!r)continue;const p=M[r];if(!p)continue;d[i*4]=p[0];d[i*4+1]=p[1];d[i*4+2]=p[2];d[i*4+3]=255}
-x.putImageData(im,0,0);VFC.set(key,c);if(VFC.size>64)VFC.delete(VFC.keys().next().value);return c}
-function vooFrontDraw(x,n,sh,seatX,seatY,Z,v,t,mv){if(typeof vooBodyLine!=='function')return false;const line=vooBodyLine(n);if(!line)return false;
-const m=G.mt,up=m&&m.st==='up',hum=line==='beija',per=hum?45:up?85:mv?105:200,f=Math.floor(t/per)%4,c=vfCanvas(line,n,sh,v,f),s=Z*.5;
-const bob=f===2?.6:f===0?-.6:0;x.imageSmoothingEnabled=false;
-if(v===0)x.drawImage(c,seatX-36*s,seatY+5.5-15*s+bob,c.width*s,c.height*s);else x.drawImage(c,seatX-36*s,seatY+4-24*s+bob,c.width*s,c.height*s);return true}
-var MN87={};
-function mnFolMon(){try{return G.party.find(p=>p&&G.fol&&p.id==G.fol&&p.hp>0)||active()}catch(e){return null}}
-function mnWaterDir(){for(const d of[P.d,0,1,2,3]){const nx=P.x+DX[d],ny=P.y+DY[d];if(mnWater(nx,ny)&&!ents().some(e=>e.x===nx&&e.y===ny))return d}return-1}
-function mnOpts(mo){const L=[];if(!mo)return L;if(mnCan('surf',mo.n)&&mnWaterDir()>=0)L.push('surf');if(mnCan('ride',mo.n))L.push('ride');if(mnCan('fly',mo.n))L.push('fly');return L}
-function mnUse(k,mo){if(mode==='ui')closeUI();if(mode!=='walk')return;if(!vipOn())return vipPanel();const why=mnWhy(k);if(why)return toast(why);if(!mo||mo.hp<=0)return toast('Seu monstro está sem energia.');
-if(k==='surf'){const d=mnWaterDir();if(d<0)return toast('Fique do lado da água para surfar.');P.d=d;mnOn('surf',mo);mnStep(P.x+DX[d],P.y+DY[d]);return}
-mnOn(k,mo);if(k==='fly'&&G.mt)G.mt.lv=1}
-function mnUseFol(){const mo=mnFolMon();if(!mo)return;const L=mnOpts(mo),nm={surf:'🌊 Surfar',ride:'🐾 Montar',fly:'🪽 Voar'};
-if(!L.length)return ok(`<b>${mo.n}</b> não serve de montaria.<br><small>Monstros de correr, nadar ou voar (como Onçapinta, Botencanto ou Aramente) podem ser montados.</small>`);
-if(L.length===1)return mnUse(L[0],mo);
-MN87.mo=mo;open(`<b>${mo.n}</b><p>O que você quer fazer?</p>`+L.map(k=>btn(nm[k],`mnUse('${k}',MN87.mo)`)).join('')+btn('Fechar','closeUI()'))}
-function mnFront(){const x=P.x+DX[P.d],y=P.y+DY[P.d];let busy=ents().some(e=>e.x===x&&e.y===y)||!!SIGN[cur+','+x+','+y];try{const v=T[y]&&T[y][x];if(TWI&&TWI[v])busy=true;if((M[cur].p||{})[x+','+y])busy=true;if(typeof cgAt==='function'&&(cgAt(x,y).length||cgAt(P.x,P.y).length))busy=true}catch(e){}return{x,y,busy}}
-{const _mnAct=act;act=function(){try{if(mode==='walk'&&!P.sit){const f=mnFront();
-if(!G.mt&&FWo&&FWo.x===f.x&&FWo.y===f.y&&!ents().some(e=>e.x===f.x&&e.y===f.y)&&mnFolMon())return mnUseFol();
-if(G.mt&&!f.busy){const m=G.mt;if(m.k==='ride')return mnOff(0);if(m.k==='fly'){m.lv=1;return mnLand()}if(m.k==='surf')return toast('🌊 Saia da água para descer.')}}}catch(e){}return _mnAct.apply(this,arguments)}}
-function mnUp(){const m=G.mt;if(!m||m.k!=='fly'||m.st==='down')return;if((m.lv|0)>=2)return toast('Você já está no ponto mais alto.');m.lv=2;try{play('mnUp')}catch(e){}toast('⬆ 2º andar do céu')}
-function mnDown(){const m=G.mt;if(!m||m.k!=='fly')return;if((m.lv|0)===2){m.lv=1;return toast('⬇ 1º andar do céu')}m.lv=1;mnLand()}
-function mn87Btns(){try{const b=$('mnb');const fly=G.mt&&G.mt.k==='fly'&&mode==='walk';
-if(b){b.style.display=G.mt?'':'none'}
-for(const[id,lbl,fn,dy]of[['mnup','⬆','mnUp()',-1],['mndn','⬇','mnDown()',0]]){let e=$(id);
-if(!e){document.body.insertAdjacentHTML('beforeend',`<button class="ab" id="${id}" style="position:fixed;width:46px;height:46px;font-size:22px;display:none" onpointerdown="event.preventDefault();${fn}">${lbl}</button>`);e=$(id)}
-if(!fly||!b){e.style.display='none';continue}const r=b.getBoundingClientRect();e.style.display='';e.style.left=(r.left-56)+'px';e.style.top=(r.top+(dy?-52:4))+'px';e.style.right='auto';e.style.bottom='auto';
-e.style.opacity=(id==='mnup'&&(G.mt.lv|0)>=2)?'.45':'1'}}catch(e){}}
-setInterval(mn87Btns,250);
-addEventListener('keydown',e=>{try{if(e.target&&(e.target.tagName==='INPUT'||e.target.tagName==='SELECT'||e.target.tagName==='TEXTAREA'))return;if(mode!=='walk')return;const k=(e.key||'').toLowerCase();
-if(k==='q'&&mnFly()){e.preventDefault();return mnUp()}if(k==='z'&&mnFly()){e.preventDefault();return mnDown()}
-if((k==='r'||k==='f'||k==='v')&&!G.mt){e.stopImmediatePropagation();toast('Para montar: fique de frente para o seu monstro (fora da ball) e aperte AÇÃO.')}}catch(x){}},true);
-if(typeof mnBtnSmart==='function'){const _b87=mnBtnSmart;mnBtnSmart=function(){if(!G.mt)return toast('Para montar: fique de frente para o seu monstro e aperte AÇÃO.');if(G.mt.k==='fly'){G.mt.lv=1;return mnLand()}return _b87.apply(this,arguments)};mnBtn=mnBtnSmart}
-(function(){const st=document.createElement('style');st.textContent='#lojatop{position:fixed;top:calc(env(safe-area-inset-top,0px) + 8px);right:calc(env(safe-area-inset-right,0px) + 8px);z-index:30;width:46px;height:46px;border-radius:12px;border:2px solid #e8c050;background:linear-gradient(#2a3460,#141a30);font-size:24px;line-height:1;cursor:pointer;box-shadow:0 2px 6px #0008}#lojatop:active{transform:scale(.94)}';document.head.appendChild(st)})();
-function lojaTop(){let b=$('lojatop');if(!b){document.body.insertAdjacentHTML('beforeend','<button id="lojatop" title="Loja Kaimon" onpointerdown="event.preventDefault();if(mode===\'walk\'||mode===\'ui\'){closeUI();lojaOpen()}">🛍️</button>');b=$('lojatop')}
-try{const mm=$('mm'),r=mm?mm.getBoundingClientRect():null;if(r&&r.width>10){b.style.top=(r.bottom+8)+'px';b.style.right=(innerWidth-r.right)+'px'}else{b.style.top='';b.style.right=''}}catch(e){}
-const ttl=document.getElementById('ttl');b.style.display=(typeof mode!=='undefined'&&(mode==='walk'||mode==='ui')&&!ttl)?'':'none'}
-setInterval(()=>{try{lojaTop()}catch(e){}},400);
-{const _p87=psOpen;psOpen=function(){const r=_p87.apply(this,arguments);try{document.querySelectorAll('#ui .lojabtn').forEach(e=>e.remove())}catch(e){}return r}}
-{const _l87=lojaOpen;lojaOpen=function(){const r=_l87.apply(this,arguments);try{[...document.querySelectorAll('#ui button')].filter(b=>/Passe Kaimon/.test(b.textContent)).forEach(b=>b.remove())}catch(e){}return r}}
+var SAV={K:null,mx:0,fila:[],lastIn:Date.now(),rec:0,recT:0};
+['keydown','pointerdown','touchstart'].forEach(ev=>addEventListener(ev,()=>{SAV.lastIn=Date.now()},{passive:true,capture:true}));
+function savParado(ms){return Date.now()-SAV.lastIn>(ms||180000)}
+function savHash(s,K){let a=K[0]^0x9e3779b9,b=K[1]^0x85ebca6b,c=K[2]^0xc2b2ae35,d=K[3]^0x27d4eb2f;const n=s.length;
+for(let i=0;i<n;i++){const x=s.charCodeAt(i);a=Math.imul(a^x,0x01000193);b=Math.imul(b^(x+i),0x5bd1e995);c=Math.imul(c+x,0xcc9e2d51)^(c>>>15);d=Math.imul(d^(x<<7),0x1b873593)+a}
+const f=h=>{h^=h>>>16;h=Math.imul(h,0x85ebca6b);h^=h>>>13;h=Math.imul(h,0xc2b2ae35);return(h^(h>>>16))>>>0};
+return[f(a^K[4]^n),f(b^K[5]),f(c^K[6]^d),f(d^K[7]^a)].map(v=>v.toString(16).padStart(8,'0')).join('')}
+function savLista(){try{return JSON.parse(localStorage.getItem('pqHs')||'null')}catch(e){return null}}
+const _savSI=Storage.prototype.setItem;
+function savMarca(v){if(!SAV.K)return SAV.fila.push(v);const h=savHash(String(v),SAV.K);let L=savLista()||[];if(L[0]===h)return;L=[h].concat(L.filter(x=>x!==h)).slice(0,24);try{_savSI.call(localStorage,'pqHs',JSON.stringify(L))}catch(e){}}
+(function(){try{const sI=Storage.prototype.setItem;Storage.prototype.setItem=function(k,v){const r=sI.apply(this,arguments);try{if(this===localStorage&&typeof k==='string'&&(k==='pq2'||k.startsWith('pq2:')))savMarca(v)}catch(e){}return r}}catch(e){}})();
+(async()=>{try{if(typeof segKeys!=='function')return;const k=await segKeys();if(!k||!k.mac)return;
+const raw=new Uint8Array(await crypto.subtle.sign('HMAC',k.mac,new TextEncoder().encode('kgt-save-lacre-1'))),K=[];for(let i=0;i<8;i++)K.push((raw[i*4]|raw[i*4+1]<<8|raw[i*4+2]<<16|raw[i*4+3]<<24)>>>0);
+SAV.K=K;let L=savLista();const s0=typeof window.PQ0==='string'?window.PQ0:null;let ja=0;
+try{const db=await segIdb();ja=await segGet(db,'sav');if(!ja)await segPut(db,'sav',1)}catch(e){}
+if(!L&&ja&&s0)L=[];
+if(L&&s0&&!L.includes(savHash(s0,K)))savAlterado();
+else if(!L){try{for(let i=0;i<localStorage.length;i++){const kk=localStorage.key(i);if(kk==='pq2'||kk.startsWith('pq2:'))savMarca(localStorage.getItem(kk))}}catch(e){}}
+if(s0&&!L)savMarca(s0);
+const f=SAV.fila;SAV.fila=[];f.forEach(savMarca)}catch(e){}})();
+function savAlterado(){SAV.mx=1;try{G.mx=1}catch(e){}console.warn('Kaimon GT: save alterado fora do jogo.');
+setTimeout(async()=>{try{const a=typeof webAcc==='function'&&webAcc();if(a&&webOn()&&webOnline()){const tok=await webTok(a),j=await fsGet('saves',a.fb.uid,tok,['t']);
+if(j&&j.fields){toast('⚠️ O save deste aparelho foi alterado fora do jogo. Voltando para o seu progresso da nuvem...');setTimeout(()=>cloudUse(),1800);return}}
+toast('⚠️ O save deste aparelho foi alterado fora do jogo. Ele não vai para a nuvem nem para o banco online.')}catch(e){}},2500)}
+function savConfere(){let n=0;const mons=[];try{
+const pega=m=>{if(m&&typeof m==='object'&&typeof m.n==='string'&&typeof m.lvl==='number')mons.push(m)};
+(G.party||[]).forEach(pega);try{for(const b of(G.dep||[]))for(const c of(b||[]))if(c&&c.t==='p')pega(c.m)}catch(e){}
+for(const m of mons){if(!SP[m.n])continue;const lv=Math.max(1,Math.min(100,Math.floor(m.lvl)||1));if(lv!==m.lvl){m.lvl=lv;n++}
+const ant=[m.max,m.A,m.D,m.SA,m.SD,m.S].join(),r=m.max>0?Math.max(0,Math.min(1,(+m.hp||0)/m.max)):1;stats(m);
+if(ant!==[m.max,m.A,m.D,m.SA,m.SD,m.S].join()){m.hp=Math.round(m.max*r);if(r>0&&m.hp<1)m.hp=1;n++}else if(m.hp>m.max){m.hp=m.max;n++}}
+if(G.t){const l=Math.max(1,Math.min(typeof TRMAX==='number'?TRMAX:200,Math.floor(G.t.l)||1));if(l!==G.t.l){G.t.l=l;n++}if(!(G.t.x>=0)){G.t.x=0;n++}}
+if(!(G.money>=0)||G.money>1e10){G.money=Math.max(0,Math.min(1e10,+G.money||0));n++}
+const pil=s=>{if(s&&s.t==='i'){const c=Math.max(0,Math.min(typeof STK==='number'?STK:1000,Math.floor(s.c)||0));if(c!==s.c){s.c=c;n++}}};
+for(const s of G.inv||[]){if(!s)continue;pil(s);if(s.t==='b'&&Array.isArray(s.s))s.s.forEach(pil)}
+try{for(const b of(G.dep||[]))for(const c of(b||[]))pil(c)}catch(e){}
+}catch(e){}if(n){console.warn('Kaimon GT: '+n+' valores do save corrigidos.');try{save()}catch(e){}}return n}
+try{savConfere()}catch(e){}
+try{if(G.mx)SAV.mx=1}catch(e){}
+if(typeof cloudPush==='function'){const _savPush=cloudPush;cloudPush=async function(force){
+if(SAV.mx)return;
+if(!(FBC&&FBC.fn))return _savPush.apply(this,arguments);
+const a=webAcc();if(!a||!webOn()||CLOUD.busy||!webOnline())return;if(!CLOUD.dirty&&!force)return;if(typeof mode!=='undefined'&&mode==='title')return;
+if(SAV.rec&&!force&&Date.now()-SAV.recT<5*60000)return;
+CLOUD.busy=1;try{const tok=await webTok(a),lt=localT(),code=await bkCode();if(code.length>900000){if(!CLOUD.big){CLOUD.big=1;toast('Save grande demais para a nuvem.')}return}
+const r=await fetch(FBC.fn.replace(/\/$/,'')+'/salvar',{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+tok},body:JSON.stringify({d:code,t:lt||Date.now(),nick:G.nick||'',base:CLOUD.lastPushT||0})});
+let j={};try{j=await r.json()}catch(e){}
+if(r.ok){CLOUD.dirty=0;CLOUD.lastPushT=lt||Date.now();CLOUD.lastT=Date.now();CLOUD.warn=0;SAV.rec=0;return}
+if(r.status===409&&j.conflito){if(!CLOUD.warn){CLOUD.warn=1;toast('☁️ Tem um progresso mais novo na nuvem (de outro aparelho). Configurações → Nuvem → Usar o da nuvem.')}return}
+if(r.status===409&&j.recusado){SAV.recT=Date.now();if(!SAV.rec){SAV.rec=1;toast('☁️ '+(j.erro||'A nuvem não aceitou este progresso.')+' Ele continua só neste aparelho.')}return}
+}catch(e){}finally{CLOUD.busy=0}}}
+addEventListener('pagehide',()=>{try{cloudPush()}catch(e){}});
+if(typeof bkDep==='function'){const _savDep=bkDep;bkDep=function(){const ar=arguments,me=this;if(!(typeof bkOnline==='function'&&bkOnline()&&FBC.fn))return _savDep.apply(me,ar);
+if(SAV.mx)return bkFala('Este save foi alterado fora do jogo: o banco online não aceita depósitos dele.',1),bkOpen();
+CLOUD.dirty=1;Promise.resolve(cloudPush(1)).catch(()=>{}).then(()=>_savDep.apply(me,ar))}}
 (function(){try{const st=document.createElement('style');st.textContent=`body.hudmin .ab:not(.hkeep){display:none!important}
 #hudtg{position:fixed;right:calc(env(safe-area-inset-right,0px) + 88px);bottom:calc(env(safe-area-inset-bottom,0px) + 6px);width:40px;height:40px;border-radius:50%;padding:0;margin:0;z-index:6;
  background:radial-gradient(circle at 35% 30%,#fff3c0,#e8c050 60%,#a8801c);border:2px solid #fff;color:#3a2a00;font:900 18px sans-serif;box-shadow:0 2px 6px #0008;display:flex;align-items:center;justify-content:center}
