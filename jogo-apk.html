@@ -13095,6 +13095,25 @@ setTimeout(()=>lcSync(true),12000);setInterval(()=>lcSync(false),5*60000);
 {const _lmp=modPanel;modPanel=function(){const r=_lmp.apply(this,arguments);try{if(MOD.r==='god'){const u=document.getElementById('ui');if(u&&!document.getElementById('lcbtn'))u.insertAdjacentHTML('beforeend','<div id="lcbtn">'+btn('🎁 Testar presente de lançamento','lcEscolha(true)')+'</div>')}}catch(e){}return r}}
 {const _llk=lkD;lkD=function(L){const D=_llk.apply(this,arguments);try{const r=((L&&L.ad)||{}).roupa;if(r==='zro_iar'||r==='zro_ipe'){D.cap=undefined;D.x=String(D.x||'').split(/\s+/).filter(k=>k&&k!=='goggles').join(' ')}}catch(e){}return D}}
 try{LKH={};TRI={};hrReset();lkApply(G.look)}catch(e){}
+const GARI_BRONCA='Ei, não jogue lixo aqui... tsc...';
+var LX={t:null};
+function lxChamaGari(){clearTimeout(LX.t);const m0=cur;LX.t=setTimeout(()=>{try{if(cur!==m0||cgCasa()||mode==='bt')return;const L=cgList();if(!L||!L.length)return;
+if(!CH.gari){gariVem();}if(CH.gari){CH.gari.lixo=1;CH.gari.disse=0;CH.gari.t0=performance.now();CH.gari.say={t:'👀 Hmm...',until:performance.now()+2500}}}catch(e){}},2600+Math.random()*1500)}
+{const _lj=cgJoga;cgJoga=function(q){const fora=!cgCasa();const r=_lj.apply(this,arguments);try{if(fora){toast('⬇️ Item no chão... 🧹 o Seu Bené, o Gari, já viu!');lxChamaGari()}}catch(e){}return r}}
+RH0.push(function(){try{const R=CH.gari;if(!R||!R.lixo)return;const now=performance.now();
+if(R.st==='varre'&&!R.disse){R.disse=1;R.say={t:GARI_BRONCA,until:now+4200};toast('🧹 <b>Seu Bené, o Gari:</b> '+GARI_BRONCA)}
+if(R.st==='anda'&&R.disse&&!(cgList()||[]).length){R.st='sai';R.path=null;R.say={t:'Tsc... cada uma.',until:now+2500}}}catch(e){}});
+{const _gv=gariVem;gariVem=function(){_gv.apply(this,arguments);try{const R=CH.gari;if(R&&R.e)R.e.fn=()=>{R.e.d=(P.d+2)%4;ok('<b>Seu Bené, o Gari:</b> '+(R.lixo?GARI_BRONCA+' Usa a lixeira, criança! Tem uma em toda praça.':GARIFALA[Math.random()*GARIFALA.length|0]))}}catch(e){}}}
+function lxItens(){const T0={};for(const[a,i]of invAll(false)){const s=a[i];if(s&&s.t==='i'&&s.c>0)T0[s.n]=(T0[s.n]||0)+s.c}return Object.entries(T0).sort((a,b)=>a[0].localeCompare(b[0]))}
+function lxMenu(x,y){LX.pos=[x,y];open(`<div class="psh"><span style="font-size:30px">🗑️</span><div><b>Lixeira</b><small>Vasculhe para achar alguma coisa (1 vez por dia) ou jogue fora o que não quer mais.</small></div></div>`+btn('🔍 Vasculhar','lxVasc()')+btn('🗑️ Jogar lixo fora','lxJogar()')+btn('Fechar','closeUI()'))}
+function lxVasc(){closeUI();const[x,y]=LX.pos||[0,0];try{LX.orig(x,y)}catch(e){}}
+function lxJogar(){const L=lxItens();if(!L.length)return open('<p>Sua mochila está vazia.</p>'+btn('Voltar','lxMenu(LX.pos[0],LX.pos[1])'));
+open(`<div class="psh"><span style="font-size:30px">🗑️</span><div><b>Jogar lixo fora</b><small>O que for para a lixeira some de vez.</small></div></div><div style="max-height:52vh;overflow:auto">`+
+L.map(([n,c])=>{let im='';try{im=ico(n,true)}catch(e){}const id=encodeURIComponent(n).replace(/'/g,'%27');return`<div class="cfr" style="gap:8px">${im?`<img src="${im}" alt="" style="width:26px;height:26px;image-rendering:pixelated">`:''}<span style="flex:1">${esc(n)} <small>×${c}</small></span>${btn('1',`lxFora('${id}',1)`)}${c>1?btn('Tudo',`lxFora('${id}',${c})`):''}</div>`}).join('')+
+`</div>`+btn('Voltar','lxMenu(LX.pos[0],LX.pos[1])'))}
+function lxFora(id,c){const n=decodeURIComponent(id);if(c>1&&!confirm(`Jogar fora ${c}× ${n}?`))return;const r=invRemove(n,c);if(!r)return toast('Não achei esse item.');try{save()}catch(e){}try{hud()}catch(e){}try{play('item')}catch(e){}
+toast(`🗑️ ${r>1?r+'× ':''}${esc(n)} na lixeira. Pindorama agradece! 🌿`);lxJogar()}
+{const _i0=inter0;LX.orig=_i0;inter0=function(x,y){try{if(T[y]&&T[y][x]===23)return lxMenu(x,y)}catch(e){}return _i0.apply(this,arguments)}}
 (function(){try{const st=document.createElement('style');st.textContent=`body.hudmin .ab:not(.hkeep){display:none!important}
 #hudtg{position:fixed;right:calc(env(safe-area-inset-right,0px) + 88px);bottom:calc(env(safe-area-inset-bottom,0px) + 6px);width:40px;height:40px;border-radius:50%;padding:0;margin:0;z-index:6;
  background:radial-gradient(circle at 35% 30%,#fff3c0,#e8c050 60%,#a8801c);border:2px solid #fff;color:#3a2a00;font:900 18px sans-serif;box-shadow:0 2px 6px #0008;display:flex;align-items:center;justify-content:center}
