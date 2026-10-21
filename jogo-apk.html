@@ -2058,7 +2058,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v92 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v93 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -9083,7 +9083,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=92;
+var KGT_VER=93;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -10953,50 +10953,6 @@ addEventListener('pagehide',()=>{try{cloudPush()}catch(e){}});
 if(typeof bkDep==='function'){const _savDep=bkDep;bkDep=function(){const ar=arguments,me=this;if(!(typeof bkOnline==='function'&&bkOnline()&&FBC.fn))return _savDep.apply(me,ar);
 if(SAV.mx)return bkFala('Este save foi alterado fora do jogo: o banco online não aceita depósitos dele.',1),bkOpen();
 CLOUD.dirty=1;Promise.resolve(cloudPush(1)).catch(()=>{}).then(()=>_savDep.apply(me,ar))}}
-var VEN={key:'cerulean',can:[],gon:[],pal:[]};
-BPOST.push(function venPost(i,m,T2){try{if(m.key!==VEN.key)return;const W2=m.W,H2=m.H,at=(x,y)=>(T2[y]||[])[x];
-const PATH=3,AGUA=2,PONTE=88;
-const cols=[],rows=[];for(let x=0;x<W2;x++){let n=0;for(let y=0;y<H2;y++)if(at(x,y)===PATH)n++;if(n>H2*.7)cols.push(x)}
-for(let y=0;y<H2;y++){let n=0;for(let x=0;x<W2;x++)if(at(x,y)===PATH)n++;if(n>W2*.6)rows.push(y)}
-const grupos=L=>{const G=[];for(const v of L){const g=G[G.length-1];if(g&&v===g[1]+1)g[1]=v;else G.push([v,v])}return G.filter(g=>g[1]-g[0]>=2)};
-const RV=grupos(cols),RH=grupos(rows);if(!RV.length||!RH.length)return;
-const agua=new Set(),key=(x,y)=>x+','+y,dentro=(x,y)=>x>=0&&y>=0&&x<W2&&y<H2;
-const v=RV[0],vc=[v[0]+1,v[1]-1];let y0=0;while(y0<H2&&at(vc[0],y0)!==PONTE)y0++;while(y0<H2&&at(vc[0],y0)===PONTE)y0++;if(y0>=H2)y0=8;
-const y1=H2-7;for(let y=y0;y<=y1;y++)for(const x of vc)agua.add(key(x,y));VEN.can.push({k:'v',x0:vc[0],x1:vc[1],y0,y1});
-for(const h of RH){const hc=[h[0]+1,h[1]-1];const xa=7,xb=W2-8;
-for(let x=xa;x<=xb;x++)for(const y of hc)if(at(x,y)===PATH)agua.add(key(x,y));VEN.can.push({k:'h',y0:hc[0],y1:hc[1],x0:xa,x1:xb})}
-for(const s of agua){const[x,y]=s.split(',').map(Number);T2[y][x]=AGUA}
-const ponte=(x,y)=>{if(dentro(x,y)&&T2[y][x]===AGUA)T2[y][x]=PONTE};
-for(const C of VEN.can){if(C.k==='h'){let ult=-99;for(let x=C.x0;x<=C.x1;x++){const lig=at(x,C.y0-2)===PATH&&at(x,C.y0-3)===PATH||at(x,C.y1+2)===PATH&&at(x,C.y1+3)===PATH;
-if((lig&&x-ult>3)||x-ult>=12){for(let y=C.y0;y<=C.y1;y++){ponte(x,y);ponte(x+1,y)}ult=x+1}}}
-else{let ult=-99;for(let y=C.y0;y<=C.y1;y++){const lig=at(C.x0-2,y)===PATH&&at(C.x0-3,y)===PATH||at(C.x1+2,y)===PATH&&at(C.x1+3,y)===PATH;
-if((lig&&y-ult>3)||y-ult>=12){for(let x=C.x0;x<=C.x1;x++){ponte(x,y);ponte(x,y+1)}ult=y+1}}}}
-for(const h of RH){const hc=[h[0]+1,h[1]-1];for(const y of hc){ponte(v[0],y);ponte(v[1],y)}for(const x of vc){ponte(x,h[0]);ponte(x,h[1]);T2[hc[0]][x]=AGUA;T2[hc[1]][x]=AGUA}}
-const calc=new Set();for(const C of VEN.can){if(C.k==='h'){for(let x=C.x0;x<=C.x1;x++){calc.add(key(x,C.y0-1));calc.add(key(x,C.y1+1))}}else for(let y=C.y0;y<=C.y1;y++){calc.add(key(C.x0-1,y));calc.add(key(C.x1+1,y))}}
-for(const s of calc){const[x,y]=s.split(',').map(Number);const t=at(x,y);if(t!=null&&t!==AGUA&&t!==PONTE&&SOLID.has(t))T2[y][x]=PATH}
-VEN.pal=[];VEN.gon=[];let n=0;for(const C of VEN.can){if(C.k==='h'){for(let x=C.x0+3;x<C.x1-2;x+=7){if(at(x,C.y0)===AGUA)VEN.pal.push([x,C.y0,0,n++]);if(at(x+3,C.y1)===AGUA)VEN.pal.push([x+3,C.y1,1,n++])}}
-else for(let y=C.y0+4;y<C.y1-2;y+=8){if(at(C.x0,y)===AGUA)VEN.pal.push([C.x0,y,2,n++])}}
-VEN.can.forEach((C,k)=>{const L=C.k==='h'?C.x1-C.x0:C.y1-C.y0;for(let j=0;j<(L>40?2:1);j++)VEN.gon.push({c:k,u:(j*.5+hsh(k,j,881))%1,sp:.012+hsh(k,j,882)*.01,dir:hsh(k,j,883)<.5?1:-1,cor:j%2})});
-for(const e of m.N||[]){if(T2[e.y]&&(T2[e.y][e.x]===AGUA)){let bd=null;for(let r=1;r<6&&!bd;r++)for(let dy=-r;dy<=r&&!bd;dy++)for(let dx=-r;dx<=r&&!bd;dx++){const t=at(e.x+dx,e.y+dy);if(t!=null&&!SOLID.has(t)&&t!==AGUA)bd=[e.x+dx,e.y+dy]}if(bd){e.x=e.px=e.fx=bd[0];e.y=e.py=e.fy=bd[1];if(e.hx!=null){e.hx=e.x;e.hy=e.y}}}}
-m.ven88=1}catch(e){console.error(e)}});
-function venGon(X,Y,hor,dir,t,cor){g.save();g.translate(X,Y);if(!hor)g.rotate(Math.PI/2);if(dir<0)g.scale(-1,1);const bob=Math.sin(t/520)*.6;g.translate(0,bob);
-g.fillStyle='rgba(20,40,70,.25)';g.beginPath();g.ellipse(0,4,17,3,0,0,6.3);g.fill();
-g.fillStyle='#16161c';g.beginPath();g.moveTo(-16,-2);g.quadraticCurveTo(-18,-7,-15,-9);g.lineTo(-14,-8);g.quadraticCurveTo(-15,-4,-12,0);g.lineTo(12,0);g.quadraticCurveTo(15,-3,15,-6);g.lineTo(16,-6);g.quadraticCurveTo(17,-1,13,2);g.lineTo(-13,2);g.closePath();g.fill();
-g.fillStyle='#3a3a46';g.fillRect(-12,-1,24,1);g.fillStyle='#c8a040';g.fillRect(14,-8,2,2);
-g.fillStyle=cor?'#8a2a2a':'#2a4a8a';g.fillRect(-4,-3,7,2);
-const sw=Math.sin(t/700)*2.2;g.strokeStyle='#6a4a2a';g.lineWidth=1;g.beginPath();g.moveTo(-9,-12);g.lineTo(-13+sw,3);g.stroke();
-g.fillStyle='#2a2a34';g.fillRect(-10,-6,3,5);
-for(let i=0;i<4;i++){g.fillStyle=i%2?'#f4f4f4':'#1a1a2a';g.fillRect(-10.5,-11+i*1.3,4,1.3)}
-g.fillStyle='#e8b890';g.fillRect(-9.5,-14,2.5,3);g.fillStyle='#e8d070';g.fillRect(-11,-15,5.5,1.2);g.fillRect(-10,-16.5,3.5,1.6);g.fillStyle='#b02020';g.fillRect(-10,-15.3,3.5,.6);
-g.restore()}
-RH0.push(function(cx,cy,t){try{const m=M[cur];if(!m||m.key!==VEN.key||!m.ven88||m.in)return;const cw=VW*16,ch=VH*16,now=performance.now();
-for(const p of VEN.pal){const X=p[0]*16+(p[2]===2?3:8)-cx,Y=p[1]*16+(p[2]===1?13:p[2]===0?3:8)-cy;if(X<-10||X>cw+10||Y<-30||Y>ch+10)continue;
-g.fillStyle='rgba(10,30,60,.3)';g.fillRect(X-1,Y+1,4,2);for(let k=0;k<5;k++){g.fillStyle=k%2?'#f2f2f2':(p[3]%2?'#c03030':'#2a5ab0');g.fillRect(X,Y-12+k*2.4,2.2,2.4)}g.fillStyle='#e8c050';g.fillRect(X-.4,Y-13.4,3,1.6)}
-for(const q of VEN.gon){const C=VEN.can[q.c];if(!C)continue;q.u+=q.sp*q.dir*.016;if(q.u>1){q.u=1;q.dir=-1}if(q.u<0){q.u=0;q.dir=1}
-const hor=C.k==='h',L=hor?C.x1-C.x0:C.y1-C.y0,s=(hor?C.x0:C.y0)+1.5+q.u*(L-3);
-let tx=hor?s:(C.x0+C.x1)/2+.5,ty=hor?(C.y0+C.y1)/2+.5:s;
-const tile=(T[Math.floor(ty)]||[])[Math.floor(tx)];if(tile===88)continue;
-const X=tx*16-cx,Y=ty*16-cy;if(X<-30||X>cw+30||Y<-30||Y>ch+30)continue;venGon(X,Y,hor,q.dir,now+q.c*900,q.cor)}}catch(e){}});
 var ASS={key:'lavender',alm:[],vis:null,fat:[],mur:['...mmmmh...','hhhuuu...','...a vela... a vela...','sss... ah... ah...','...frio... tão frio...','...onde... ficou...','mnnnh... hm...','...uuuuu...','...não... não era...','...shhh...','...três badaladas...','hmmm... mmm...']};
 function assPode(x,y){const v=(T[y]||[])[x];return v!=null&&!SOLID.has(v)&&v!==2&&v!==59}
 function assSorteia(){for(let i=0;i<60;i++){const x=2+Math.floor(Math.random()*(W-4)),y=2+Math.floor(Math.random()*(H-4));if(assPode(x,y)&&Math.abs(x-P.x)+Math.abs(y-P.y)>5)return[x,y]}return null}
@@ -11250,6 +11206,141 @@ const txt=(v===me?`🏆 Você venceu o duelo contra ${DUEL.op}!${sp?'':' +25 pon
 if(d.motivo==='desistiu')await say(v===me?`${DUEL.op} desistiu!`:'Você desistiu.');if(d.motivo==='tempo')await say(v===me?`${DUEL.op} sumiu: vitória por tempo.`:'Você demorou demais.');
 await say(txt);if(v===me)try{play('lvl')}catch(e){}B.won=v===me;B.end=1;B.busy=0;rb()}
 {const _dEnd=endB;endB=function(){if(B&&B.duel){DUEL.on=0;if(DUEL.real){G.party=DUEL.real;DUEL.real=null}B.black=0;B.tr=null;B.w={n:'',onEnd:null};const r=_dEnd.apply(this,arguments);try{save();hud()}catch(e){}return r}return _dEnd.apply(this,arguments)}}
+var ANIL={DY:20,key:'cerulean',can:[],gon:[],pal:[],brg:[],bi:null};
+(function(){try{const i=KI[ANIL.key],m=M[i];if(!m||m.big||m.anil93)return;const DY=ANIL.DY;m.anil93=1;
+m.H+=DY;m.gy-=DY;for(const q of GW){if(q[0]===i)q[2]-=DY}
+const r24=M[KI.r24];if(r24){r24.gy-=DY;for(const q of GW)if(q[0]===KI.r24)q[2]-=DY}
+const sh=o=>{if(!o)return o;const n={};for(const k in o){const[x,y]=k.split(',').map(Number);n[x+','+(y+DY)]=o[k]}return n};
+m.p=sh(m.p);m.ia=sh(m.ia);m.sg=sh(m.sg);(m.embs||[]).forEach(a=>a[1]+=DY);(m.lbls||[]).forEach(a=>a[2]+=DY);
+(m.N||[]).forEach(e=>{e.y+=DY;if(e.py!=null)e.py+=DY;if(e.fy!=null)e.fy+=DY;if(e.home)e.home[1]+=DY;if(e.alt)e.alt[1]+=DY;if(e.hy!=null)e.hy+=DY});
+M.forEach(q=>{if(!q)return;if(q.par&&q.par[0]===ANIL.key)q.par[2]+=DY;if(q.p)for(const k in q.p){const v=q.p[k];if(Array.isArray(v)&&v[0]===ANIL.key)v[2]+=DY}});
+m.sg['18,7']='Grande Canal de Anil — passeie de gôndola!';m.sg['21,2']='↑ Rota 24 — Ponte Dourada';
+const g0=m.gen;m.gen=function(mm){const svT=T,svH=H;H=svH-DY;T=Array.from({length:H},()=>Array(W).fill(mm.base||0));try{g0(mm)}finally{const old=T;T=svT;H=svH;for(let y=0;y<old.length;y++)T[y+DY]=old[y].slice()}
+anilNorte()}}catch(e){console.error(e)}})();
+function anilNorte(){const DY=ANIL.DY;
+kr(0,0,W-1,DY+1,0);
+for(let y=0;y<=DY+1;y++)for(let x=0;x<W;x++){const d=Math.min(x,W-1-x);if(d<2||(d<4&&hsh(x,y,KSD+9)<.45))T[y][x]=7}
+for(let x=0;x<W;x++){T[0][x]=7;if(hsh(x,1,KSD+3)<.6)T[1][x]=7}
+kpath([[19,0],[19,DY+4]]);
+kr(2,9,37,11,2);kr(2,8,37,8,101);kr(2,12,37,12,101);
+for(const x of[9,19,29])kr(x,9,x+1,11,88);
+const roofs=[89,90,92,91,90,89];[[3,5,6],[11,5,6],[23,5,6],[31,5,5]].forEach(([x,y,w],k)=>kb(x,y,w,roofs[k],Math.floor(w/2)));
+[[3,14,6],[11,14,6],[23,14,6],[31,14,5]].forEach(([x,y,w],k)=>{kb(x,y,w,roofs[k+2],Math.floor(w/2));kr(x+Math.floor(w/2),y+3,x+Math.floor(w/2),y+4,3)});
+kpath([[2,18],[37,18]]);
+kr(3,2,36,3,101);for(const x of[6,14,26,34])ks(x,3,21);for(const x of[10,22,30])ks(x,2,22);
+for(const x of[4,14,24,34])ks(x,12,22);for(const x of[4,17,22,36])ks(x,8,21);ks(18,7,60);ks(21,2,60);
+kscat(10,9,(v)=>v===0,[2,13,37,19]);kscat(6,20,(v,x,y)=>v===0&&y!==18,[2,13,37,19])}
+BPOST.push(function anilPost(i,m,T2){try{if(m.key!==ANIL.key)return;const W2=m.W,H2=m.H,at=(x,y)=>(T2[y]||[])[x],dentro=(x,y)=>x>=0&&y>=0&&x<W2&&y<H2;
+const PATH=3,AGUA=2,PONTE=88,PEDRA=101,DYB=ANIL.DY*2;
+for(let y=0;y<H2;y++)for(let x=0;x<W2;x++)if(T2[y][x]===119)T2[y][x]=21;
+const cols=[],rows=[];for(let x=0;x<W2;x++){let n=0;for(let y=DYB;y<H2;y++)if(at(x,y)===PATH)n++;if(n>(H2-DYB)*.62)cols.push(x)}
+for(let y=DYB+8;y<H2;y++){let n=0;for(let x=0;x<W2;x++)if(at(x,y)===PATH||at(x,y)===22||at(x,y)===21)n++;if(n>W2*.55)rows.push(y)}
+const grupos=L=>{const G=[];for(const v of L){const g=G[G.length-1];if(g&&v===g[1]+1)g[1]=v;else G.push([v,v])}return G.filter(g=>g[1]-g[0]>=1)};
+const RV=grupos(cols),RH=grupos(rows);ANIL.can=[];
+const solido=v=>v!=null&&SOLID.has(v)&&v!==7&&v!==20&&v!==21&&v!==22&&v!==23;
+const LIVRE=new Set([0,1,9,10,20,7,58,121,125]),calcada=(x,y)=>{if(!dentro(x,y))return;const v=T2[y][x];if(LIVRE.has(v))T2[y][x]=PATH};
+const V=RV[0];if(V){let y0=DYB;while(y0<H2&&at(V[0],y0)!==PONTE)y0++;while(y0<H2&&at(V[0],y0)===PONTE)y0++;if(y0>=H2)y0=DYB+16;const y1=H2-7;
+for(let x=V[0]-1;x<=V[1]+1;x++)if(dentro(x,y0))T2[y0][x]=PATH;y0++;
+for(let y=y0;y<=y1;y++){for(let x=V[0];x<=V[1];x++)T2[y][x]=AGUA;calcada(V[0]-1,y);calcada(V[1]+1,y)}ANIL.can.push({k:'v',x0:V[0],x1:V[1],y0,y1})}
+for(const h of RH){const xa=7,xb=W2-8;for(let x=xa;x<=xb;x++){for(let y=h[0];y<=h[1];y++)if(at(x,y)!==AGUA)T2[y][x]=AGUA;calcada(x,h[0]-1);calcada(x,h[1]+1)}ANIL.can.push({k:'h',y0:h[0],y1:h[1],x0:xa,x1:xb})}
+const ponte=(x,y)=>{if(dentro(x,y)&&T2[y][x]===AGUA)T2[y][x]=PONTE};
+for(const C of ANIL.can){if(C.k==='h'){let ult=-99;for(let x=C.x0+1;x<C.x1;x++){if(V&&x>=V[0]-1&&x<=V[1])continue;const lig=at(x,C.y0-2)===PATH&&at(x,C.y0-3)===PATH||at(x,C.y1+2)===PATH&&at(x,C.y1+3)===PATH;const cruz=V&&(x===V[0]-2||x===V[1]+1);
+if(cruz||(lig&&x-ult>3)||x-ult>=13){for(let y=C.y0;y<=C.y1;y++){ponte(x,y);ponte(x+1,y)}ult=x+1}}}
+else{let ult=C.y0+2;for(let y=C.y0+1;y<C.y1;y++){if(RH.some(h=>y>=h[0]-1&&y<=h[1]))continue;const lig=at(C.x0-2,y)===PATH&&at(C.x0-3,y)===PATH||at(C.x1+2,y)===PATH&&at(C.x1+3,y)===PATH;const cruz=RH.some(h=>y===h[0]-2||y===h[1]+1);
+if(cruz||(lig&&y-ult>3)||y-ult>=13){for(let x=C.x0;x<=C.x1;x++){ponte(x,y);ponte(x,y+1)}ult=y+1}}}}
+for(const[y0,y1]of[[18,23],[DYB+12,DYB+17]])for(let y=y0;y<=y1;y++)for(let x=4;x<W2-4;x++){const v=at(x,y);if(v!==PONTE&&v!==AGUA&&!(x<6&&v===7)&&!(x>W2-7&&v===7))T2[y][x]=AGUA}
+for(const[y0,y1]of[[18,23],[DYB+12,DYB+17]]){let a=y0,b=y1;while(a<b&&at(10,a)!==AGUA)a++;while(b>a&&at(10,b)!==AGUA)b--;if(b-a>=2)ANIL.can.push({k:'h',y0:a,y1:b,x0:4,x1:W2-5,largo:1})}
+ANIL.brg=[];const vis=new Uint8Array(W2*H2);
+for(let y=0;y<H2;y++)for(let x=0;x<W2;x++){if(T2[y][x]!==PONTE||vis[y*W2+x])continue;let x0=x,y0=y,x1=x,y1=y;const st=[[x,y]];vis[y*W2+x]=1;
+while(st.length){const[a,b]=st.pop();x0=Math.min(x0,a);x1=Math.max(x1,a);y0=Math.min(y0,b);y1=Math.max(y1,b);for(let d=0;d<4;d++){const u=a+DX[d],w=b+DY[d];if(dentro(u,w)&&!vis[w*W2+u]&&T2[w][u]===PONTE){vis[w*W2+u]=1;st.push([u,w])}}}
+const agN=at(Math.floor((x0+x1)/2),y0-1)===AGUA,agS=at(Math.floor((x0+x1)/2),y1+1)===AGUA,ns=!(agN||agS);
+ANIL.brg.push({x0,y0,x1,y1,ns})}
+ANIL.gon=[];ANIL.pal=[];let n=0;
+ANIL.can.forEach((C,k)=>{const L=C.k==='h'?C.x1-C.x0:C.y1-C.y0;const q=C.largo?3:L>40?2:1;for(let j=0;j<q;j++)ANIL.gon.push({c:k,u:(j/q+hsh(k,j,881))%1,sp:.010+hsh(k,j,882)*.008,dir:hsh(k,j,883)<.5?1:-1,cor:(j+k)%3,lado:(j%2)});
+if(C.k==='h')for(let x=C.x0+4;x<C.x1-2;x+=9){if(at(x,C.y0)===AGUA)ANIL.pal.push([x,C.y0,0,n++]);if(at(x+4,C.y1)===AGUA)ANIL.pal.push([x+4,C.y1,1,n++])}
+else for(let y=C.y0+5;y<C.y1-2;y+=9){if(at(C.x0,y)===AGUA)ANIL.pal.push([C.x0,y,2,n++])}});
+for(const e of m.N||[]){const v=at(e.x,e.y);if(v===AGUA||v===PONTE){let bd=null;for(let r=1;r<7&&!bd;r++)for(let dy=-r;dy<=r&&!bd;dy++)for(let dx=-r;dx<=r&&!bd;dx++){const t=at(e.x+dx,e.y+dy);if(t!=null&&!SOLID.has(t)&&t!==AGUA&&t!==PONTE)bd=[e.x+dx,e.y+dy]}if(bd){e.x=e.px=e.fx=bd[0];e.y=e.py=e.fy=bd[1];if(e.hx!=null){e.hx=e.x;e.hy=e.y}}}}
+m.anil=1}catch(e){console.error(e)}});
+{const _anW=mnWater;mnWater=function(x,y){if(M[cur]&&M[cur].key===ANIL.key&&mnT(x,y)===88)return true;return _anW.apply(this,arguments)}}
+function anilOn(){const m=M[cur];return m&&m.key===ANIL.key&&m.anil&&!m.in}
+function anilAgua(x,y){const v=(T[y]||[])[x];return v===2||v===59}
+function anilAguaFx(cx,cy,now){const x0=Math.max(0,Math.floor(cx/16)),y0=Math.max(0,Math.floor(cy/16)),x1=Math.min(W-1,x0+VW+1),y1=Math.min(H-1,y0+VH+1);
+for(let y=y0;y<=y1;y++)for(let x=x0;x<=x1;x++){if(!anilAgua(x,y))continue;const X=x*16-cx,Y=y*16-cy,cN=!anilAgua(x,y-1)&&T[y-1]&&T[y-1][x]!==88,cW=!anilAgua(x-1,y)&&(T[y]||[])[x-1]!==88,cE=!anilAgua(x+1,y)&&(T[y]||[])[x+1]!==88,cS=!anilAgua(x,y+1)&&T[y+1]&&T[y+1][x]!==88;
+if(cN){const g2=g.createLinearGradient(0,Y,0,Y+9);g2.addColorStop(0,'rgba(8,24,52,.55)');g2.addColorStop(1,'rgba(8,24,52,0)');g.fillStyle=g2;g.fillRect(X,Y,16,9);g.fillStyle='rgba(180,220,255,.18)';g.fillRect(X,Y+9,16,1)}
+if(cW){g.fillStyle='rgba(8,24,52,.28)';g.fillRect(X,Y,3,16)}if(cE){g.fillStyle='rgba(8,24,52,.18)';g.fillRect(X+13,Y,3,16)}
+if(cS){g.fillStyle='rgba(255,255,255,.10)';g.fillRect(X,Y+14,16,2)}
+const ph=(now/1300+hsh(x,y,77)*6)%6;if(ph<1){const a=Math.sin(ph*Math.PI)*.35,lx=X+2+hsh(x,y,78)*10,ly=Y+3+hsh(x,y,79)*10;g.fillStyle=`rgba(230,245,255,${a})`;g.fillRect(lx,ly,4,1);g.fillRect(lx+1,ly+1,2,1)}}}
+function anilGonH(X,Y,dir,t,cor){g.save();g.translate(X,Y);if(dir<0)g.scale(-1,1);const bob=Math.sin(t/520)*.6;g.translate(0,bob);
+g.fillStyle='rgba(10,30,60,.28)';g.beginPath();g.ellipse(0,4,18,3.2,0,0,6.3);g.fill();
+g.fillStyle='#141418';g.beginPath();g.moveTo(-17,-1);g.quadraticCurveTo(-19,-7,-15.5,-9.5);g.lineTo(-14.6,-8.4);g.quadraticCurveTo(-15.4,-4,-12.5,0);g.lineTo(12,0);g.quadraticCurveTo(15,-3,15.2,-6.5);g.lineTo(16.4,-6.6);g.quadraticCurveTo(17.4,-1,13.4,2.2);g.lineTo(-13.5,2.2);g.closePath();g.fill();
+g.fillStyle='#34343e';g.fillRect(-12,-1,24,1);g.fillStyle='#d8b048';g.fillRect(14.4,-8.6,2,2.2);g.fillRect(15.6,-7,1,1);
+g.fillStyle=['#8a2a2a','#2a4a8a','#2a6a3a'][cor%3];g.fillRect(-3,-3,8,2.2);g.fillStyle='rgba(255,255,255,.25)';g.fillRect(-3,-3,8,.6);
+const sw=Math.sin(t/700)*2.4;g.strokeStyle='#6a4a2a';g.lineWidth=1.1;g.beginPath();g.moveTo(-9,-13);g.lineTo(-13.5+sw,3);g.stroke();
+g.fillStyle='#22222c';g.fillRect(-10.2,-6.2,1.5,5);g.fillRect(-8.2,-6.2,1.5,5);
+for(let i=0;i<4;i++){g.fillStyle=i%2?'#f4f4f4':'#1a1a2a';g.fillRect(-10.6,-11.4+i*1.3,4.2,1.3)}
+g.fillStyle='#e8b890';g.fillRect(-9.8,-14.6,2.8,3.2);g.fillStyle='#e8d070';g.fillRect(-11.4,-15.4,6,1.2);g.fillRect(-10.4,-17,3.8,1.7);g.fillStyle='#b02020';g.fillRect(-10.4,-15.8,3.8,.6);
+g.restore()}
+function anilGonV(X,Y,dir,t,cor){g.save();g.translate(X,Y);const bob=Math.sin(t/520)*.5;g.translate(0,bob);if(dir<0)g.scale(1,-1);
+g.fillStyle='rgba(10,30,60,.28)';g.beginPath();g.ellipse(1.5,1,6,18,0,0,6.3);g.fill();
+g.fillStyle='#141418';g.beginPath();g.moveTo(0,-19);g.quadraticCurveTo(5.6,-12,5.2,0);g.quadraticCurveTo(5,12,0,16);g.quadraticCurveTo(-5,12,-5.2,0);g.quadraticCurveTo(-5.6,-12,0,-19);g.closePath();g.fill();
+g.fillStyle='#2c2c36';g.beginPath();g.ellipse(0,-1,3.3,12,0,0,6.3);g.fill();g.fillStyle='#d8b048';g.fillRect(-1,-20,2,3);
+g.fillStyle=['#8a2a2a','#2a4a8a','#2a6a3a'][cor%3];g.fillRect(-2.6,-7,5.2,4);
+g.restore();
+const py=Y+bob+(dir<0?-9:9);const sw=Math.sin(t/700)*2;g.strokeStyle='#6a4a2a';g.lineWidth=1.1;g.beginPath();g.moveTo(X+3,py-12);g.lineTo(X+5+sw,py+5);g.stroke();
+g.fillStyle='#22222c';g.fillRect(X-1.6,py-4,1.4,4.4);g.fillRect(X+.4,py-4,1.4,4.4);
+for(let i=0;i<4;i++){g.fillStyle=i%2?'#f4f4f4':'#1a1a2a';g.fillRect(X-2.2,py-9.6+i*1.3,4.6,1.3)}
+g.fillStyle='#e8b890';g.fillRect(X-1.3,py-12.8,2.8,3.2);g.fillStyle='#e8d070';g.fillRect(X-3,py-13.6,6.2,1.2);g.fillRect(X-1.9,py-15.2,3.8,1.7);g.fillStyle='#b02020';g.fillRect(X-1.9,py-14,3.8,.6)}
+const ANPAL={st:'#9a968c',st2:'#83807a',dk:'#5c5a56',lt:'#bcb8ae',mu:'#5f8a3a',mu2:'#4a7030',ln:'#3a3836'};
+function anilPonte(b,cx,cy,parte){const X0=b.x0*16-cx,Y0=b.y0*16-cy,w=(b.x1-b.x0+1)*16,h=(b.y1-b.y0+1)*16;if(X0>VW*16+40||Y0>VH*16+60||X0+w<-40||Y0+h<-60)return;
+g.save();const P=ANPAL,topo=parte==='topo';
+const pedras=(x,y,ww,hh,alt)=>{g.fillStyle=P.st2;g.fillRect(x,y,ww,hh);for(let r=0;r<hh/5;r++)for(let c=0;c<ww/6+1;c++){const xx=x+c*6-(r%2?3:0),yy=y+r*5;g.fillStyle=((r*3+c+alt)%4)?P.st:P.lt;g.fillRect(Math.max(x,xx)+.5,yy+.5,Math.max(0,Math.min(5,x+ww-Math.max(x,xx)-.5)),Math.min(4,y+hh-yy-.5))}};
+const corcova=(x,y,ww,hh,vert)=>{const gr=vert?g.createLinearGradient(0,y,0,y+hh):g.createLinearGradient(x,0,x+ww,0);gr.addColorStop(0,'rgba(0,0,0,.18)');gr.addColorStop(.5,'rgba(255,255,255,.16)');gr.addColorStop(1,'rgba(0,0,0,.18)');g.fillStyle=gr;g.fillRect(x,y,ww,hh)};
+const degraus=(x,y,ww,hh,dir)=>{
+const n=4;g.fillStyle=P.ln;g.fillRect(x-1,y-1,ww+2,hh+2);
+for(let k=0;k<n;k++){const f=k/n,c=['#d6d2c8','#c4c0b6','#b2aea4','#a09c92'][k];
+if(dir==='n'||dir==='s'){const sh=hh/n,yy=dir==='s'?y+k*sh:y+hh-(k+1)*sh;g.fillStyle=c;g.fillRect(x,yy,ww,sh);g.fillStyle=P.dk;g.fillRect(x,dir==='s'?yy+sh-1.4:yy,ww,1.4);g.fillStyle='rgba(255,255,255,.25)';g.fillRect(x,dir==='s'?yy:yy+sh-.8,ww,.8)}
+else{const sw=ww/n,xx=dir==='l'?x+k*sw:x+ww-(k+1)*sw;g.fillStyle=c;g.fillRect(xx,y,sw,hh);g.fillStyle=P.dk;g.fillRect(dir==='l'?xx+sw-1.4:xx,y,1.4,hh)}}
+if(dir==='n'||dir==='s'){for(const sx of[x-3,x+ww-1]){g.fillStyle=P.ln;g.fillRect(sx,y,4,hh);g.fillStyle=P.st;g.fillRect(sx+.5,y,3,hh-1);g.fillStyle=P.lt;g.fillRect(sx+.5,y,3,1)}}
+else{for(const sy of[y-3,y+hh-1]){g.fillStyle=P.ln;g.fillRect(x,sy,ww,4);g.fillStyle=P.st;g.fillRect(x,sy+.5,ww-1,3);g.fillStyle=P.lt;g.fillRect(x,sy+.5,ww-1,1)}}};
+if(!topo){if(b.ns){degraus(X0,Y0-22,w,14,'n');degraus(X0,Y0+h+8,w,14,'s')}else{degraus(X0-22,Y0,14,h,'o');degraus(X0+w+8,Y0,14,h,'l')}}
+if(b.ns){
+if(!topo){
+for(const sd of[-1,1]){const ex=sd<0?X0:X0+w;const gr=g.createLinearGradient(ex,0,ex+sd*14,0);gr.addColorStop(0,'rgba(6,14,28,.75)');gr.addColorStop(1,'rgba(6,14,28,0)');g.fillStyle=gr;g.fillRect(Math.min(ex,ex+sd*14),Y0+4,14,h-8);
+g.fillStyle='rgba(6,14,28,.55)';g.beginPath();g.ellipse(ex,Y0+h/2,5,h/2-5,0,0,6.3);g.fill()}}
+for(const sx of[X0-5,X0+w-1]){g.fillStyle=P.dk;g.fillRect(sx,Y0-6,6,h+12);g.fillStyle=P.st2;for(let yy=Y0-4;yy<Y0+h+5;yy+=5)g.fillRect(sx+.5,yy,5,4);g.fillStyle=P.mu;g.fillRect(sx+1,Y0+h*.35,2,4);g.fillRect(sx+3,Y0+h*.72,2,3)}
+pedras(X0,Y0-6,w,h+12,0);corcova(X0,Y0-6,w,h+12,1);
+for(const sx of[X0-3,X0+w-3]){g.fillStyle=P.ln;g.fillRect(sx,Y0-9,6,h+18);g.fillStyle=P.st;g.fillRect(sx+.5,Y0-9,5,h+14);g.fillStyle=P.lt;g.fillRect(sx+.5,Y0-9,5,2);g.fillStyle=P.dk;g.fillRect(sx+.5,Y0+h+5,5,3);for(let yy=Y0-4;yy<Y0+h+4;yy+=6){g.fillStyle=P.ln;g.fillRect(sx+.5,yy,5,.7)}}
+for(const[sx,sy]of[[X0-5,Y0-13],[X0+w-5,Y0-13],[X0-5,Y0+h+2],[X0+w-5,Y0+h+2]]){g.fillStyle=P.ln;g.fillRect(sx,sy,10,10);g.fillStyle=P.st;g.fillRect(sx+.5,sy+.5,9,6);g.fillStyle=P.lt;g.fillRect(sx+.5,sy+.5,9,2);g.fillStyle=P.dk;g.fillRect(sx+.5,sy+6.5,9,3)}
+}else{
+const FH=24,ah=19;
+if(!topo){g.fillStyle='rgba(6,14,28,.35)';g.fillRect(X0-4,Y0+h+FH-2,w+8,6)}
+g.save();g.beginPath();g.rect(X0-4,Y0+h-2,w+8,FH);g.ellipse(X0+w/2,Y0+h+FH,w*.36,ah,0,0,Math.PI*2,true);g.clip('evenodd');pedras(X0-4,Y0+h-2,w+8,FH,1);
+g.fillStyle='rgba(0,0,0,.18)';g.fillRect(X0-4,Y0+h-2,w+8,FH);g.restore();
+g.fillStyle='rgba(6,14,28,.55)';g.beginPath();g.ellipse(X0+w/2,Y0+h+FH,w*.36,ah,0,Math.PI,0);g.fill();
+for(let k=0;k<=8;k++){const a=Math.PI+k*Math.PI/8,x=X0+w/2+Math.cos(a)*(w*.36+2.5),y=Y0+h+FH+Math.sin(a)*(ah+2.5);g.fillStyle=k===4?P.lt:P.st;g.fillRect(x-2,y-2,4,4);g.fillStyle=P.ln;g.fillRect(x-2,y+1.6,4,.6)}
+g.fillStyle=P.mu2;g.fillRect(X0+2,Y0+h+FH-8,2,6);g.fillRect(X0+w-5,Y0+h+FH-10,2,8);g.fillStyle=P.mu;g.fillRect(X0+w*.3,Y0+h+2,3,2);
+pedras(X0-4,Y0-4,w+8,h+2,0);corcova(X0-4,Y0-4,w+8,h+2,0);
+for(const sy of[Y0-8,Y0+h-5]){g.fillStyle=P.ln;g.fillRect(X0-5,sy,w+10,7);g.fillStyle=P.st;g.fillRect(X0-4.5,sy+.5,w+9,3.5);g.fillStyle=P.lt;g.fillRect(X0-4.5,sy+.5,w+9,1.2);g.fillStyle=P.dk;g.fillRect(X0-4.5,sy+4,w+9,2.5);for(let xx=X0+2;xx<X0+w;xx+=7){g.fillStyle=P.ln;g.fillRect(xx,sy+.5,.7,3.5)}}
+for(const sx of[X0-8,X0+w-1]){g.fillStyle=P.ln;g.fillRect(sx,Y0-12,9,h+8);g.fillStyle=P.st;g.fillRect(sx+.5,Y0-11.5,8,h+5);g.fillStyle=P.lt;g.fillRect(sx+.5,Y0-11.5,8,2);g.fillStyle=P.dk;g.fillRect(sx+.5,Y0+h-8,8,3)}}
+g.restore()}
+function anilTopo(cx,cy){
+if(!(G.mt&&G.mt.k==='surf'))return;for(const b of ANIL.brg){if(P.x>=b.x0-1&&P.x<=b.x1+1&&P.y>=b.y0-1&&P.y<=b.y1+1)anilPonte(b,cx,cy,'topo')}}
+RH0.push(function(cx,cy,t){try{if(!anilOn())return;const now=performance.now(),cw=VW*16,ch=VH*16;
+anilAguaFx(cx,cy,now);
+for(const q of ANIL.gon){const C=ANIL.can[q.c];if(!C)continue;q.u+=q.sp*q.dir*.016;if(q.u>1){q.u=1;q.dir=-1}if(q.u<0){q.u=0;q.dir=1}
+const hor=C.k==='h',L=hor?C.x1-C.x0:C.y1-C.y0,s=(hor?C.x0:C.y0)+2+q.u*(L-4),meio=hor?(C.y0+C.y1+1)/2+(C.largo?(q.lado?.9:-.9):0):(C.x0+C.x1+1)/2;
+const X=(hor?s:meio)*16-cx,Y=(hor?meio:s)*16-cy;if(X<-40||X>cw+40||Y<-40||Y>ch+40)continue;
+if(hor)anilGonH(X,Y+3,q.dir,now+q.c*900,q.cor);else anilGonV(X,Y,q.dir,now+q.c*900,q.cor);
+const tx=Math.floor((X+cx)/16),ty=Math.floor((Y+cy)/16);if((T[ty]||[])[tx]===88){g.fillStyle='rgba(6,14,28,.45)';g.fillRect(X-20,Y-22,40,40)}}
+for(const b of ANIL.brg)anilPonte(b,cx,cy);
+for(const p of ANIL.pal){const X=p[0]*16+(p[2]===2?3:8)-cx,Y=p[1]*16+(p[2]===1?13:p[2]===0?4:8)-cy;if(X<-10||X>cw+10||Y<-30||Y>ch+10)continue;
+g.fillStyle='rgba(10,30,60,.3)';g.fillRect(X-1,Y+1,4,2);for(let k=0;k<5;k++){g.fillStyle=k%2?'#f2f2f2':(p[3]%2?'#c03030':'#2a5ab0');g.fillRect(X,Y-12+k*2.4,2.2,2.4)}g.fillStyle='#e8c050';g.fillRect(X-.4,Y-13.4,3,1.6)}}catch(e){}});
+RH2.push(function(cx,cy,t){try{if(anilOn())anilTopo(cx,cy)}catch(e){}});
+var BANCO93=new Image();BANCO93.src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAATCAYAAACQjC21AAADKklEQVR42q2US28bZRSGn28uHo/HdnxL4lxIHBy5kDQhUkGQqjtQVYFACLGAJf8VhFjQRUhoaG5N4jh2ajse2/F4ZjxzWFQClRaVRpzluTw6r3TeA7eIrdq78sO3j+R1NfU2oEf317n//qKE4zFPr3z2Dltq9+TkpR7jTZC1tWm++vADio4htqlx1uzx5KwNepJ8MQMv8/4d+P3De9xbnZM4CtCV0Gi7NNpDHDvBRmWa/fMefhDJP1W+Ivm7Lz9muzonmoQMByPO2wP6XsR8IUXWNrlsD+l7Af0bn9PuhGIhi5VMqJ3DC+r1+t/Azz9a47PtO5K2oN11OWr0mERQmc2QtHQOzrtIDCnLpNcfc9B0sbM5Ti6eq8r8tMyWcmSmHKW+efhAFqZMFvMmnhdw1HSxTJ3VhRxKCSeNHpNIyKcsmtdD+jcT3MlEzTiWjALB9QFdV82rriwvzirjtN4iqUpcXbVJ2Sarc1NEIpy1XKIoJudYNDtDng18AqWru6vTEsexIMI4iBiNQ1puIMOUhW0nUGvVJZbLJamVDNwbn1gEJ5kgaep0BmManRuVLzmsv1MQJYJlGihgHEwA8PwJlqnT7o04Heio6sICi3NFseIR5XwKEcEPY45afbWxUmK+lBZD10hZJrqmoTRFGEYA5NJJhl7Az3sNdk46pDMOhq8Ubn+IYydxA52L7kBtLufki0pJAHRNI2EaaJqGZep4fshsIc113+Px0yZ75211euXhWLps1JZRIsInm2syDn2WCg56wqZSzpI2AmzLBBSmrhFGEUvlHNf9Eb8dP2fnmat+2Tv469w2aiuyslB+cTZb71VlJpehYIPEEy5cYX0xTTGbQFOKYs4hCiP2zzvsn7rqx98PXzHC3VqNtJN4seHmnarcjDxmink0EQrZJJVSgnLeYegFNDtDDuoD9dOTozf63ahWqySJCcJY1Tt9sklDNMNgoud5/Mclh82B2jmu/+cHYoTjIbqRIJdxxDB0oomoy1ZXvCDk19199bavTdMihTcO1O7hsaq3rxUqlmzaZq6Y53+L7a11+frTB3KbWe11yW7XZez7t1rmTyoqdEpFKv53AAAAAElFTkSuQmCC';
+TWX[21]=function(X,Y){try{hdGround(gbase(X,Y),X,Y)}catch(e){}if(!BANCO93.complete||!BANCO93.naturalWidth){try{twBench(X,Y)}catch(e){}}};
+RH0.push(function(cx,cy){try{if(!BANCO93.complete||!BANCO93.naturalWidth||!T)return;const x0=Math.max(0,Math.floor(cx/16)-1),y0=Math.max(0,Math.floor(cy/16)-1),x1=Math.min(W-1,x0+VW+3),y1=Math.min(H-1,y0+VH+3);g.save();g.imageSmoothingEnabled=false;
+for(let y=y0;y<=y1;y++){const r=T[y];if(!r)continue;for(let x=x0;x<=x1;x++){if(r[x]!==21)continue;const X=x*16-cx,Y=y*16-cy;g.fillStyle='rgba(0,0,0,.2)';g.beginPath();g.ellipse(X+8,Y+14.4,8.5,2.3,0,0,6.3);g.fill();g.drawImage(BANCO93,X-2,Y-3,20,19)}}g.restore()}catch(e){}});
+BANCO93.onload=()=>{try{for(const m of M)if(m&&m.MC)m.MC=null;if(typeof kpaint==='function'&&M[cur]&&M[cur].mk){}}catch(e){}};
 (function(){try{const st=document.createElement('style');st.textContent=`body.hudmin .ab:not(.hkeep){display:none!important}
 #hudtg{position:fixed;right:calc(env(safe-area-inset-right,0px) + 88px);bottom:calc(env(safe-area-inset-bottom,0px) + 6px);width:40px;height:40px;border-radius:50%;padding:0;margin:0;z-index:6;
  background:radial-gradient(circle at 35% 30%,#fff3c0,#e8c050 60%,#a8801c);border:2px solid #fff;color:#3a2a00;font:900 18px sans-serif;box-shadow:0 2px 6px #0008;display:flex;align-items:center;justify-content:center}
