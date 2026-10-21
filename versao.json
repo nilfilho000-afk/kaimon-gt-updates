@@ -1,11 +1,11 @@
 {
  "jogo": 106,
  "jogo_arquivo": "jogo-106.kpk",
- "jogo_sha": "0302f9179054af339773712001426276499cc0a78e954ef53322181b803472f3",
- "jogo_assin": "W/G3GuvCE91eLyn4UtZCKfRCrSTYdkQ62B36dHL5fbPB6jpTDxL4uv/WMBxXIqIR9sar4yb/4PDKI30cwSH4BA==",
+ "jogo_sha": "838ebefac5fa34d60e1b1006d284afe5afc5355f622a8d19fbeec382cc7a14ea",
+ "jogo_assin": "efTiLEa1gv+0o4B/C8hjZvBFg9cXWkffU/2pd0rvkbweoqz2+EQros5NcgWTP4edHVIPlMJcT/F3vgqlE4zrBA==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "ea9e9b6e88ea3a5237ceb392c718321b49b29385cd640bd4f5e932f5038dfa5a",
- "launcher_assin": "2aPcTpsuC8/BfX7QyZ635pPIx0dDVvwljTjtNU4JLyeNqH8LA3M6y8v10gn8NLm6G20iACGNjeOoW8RKYDKiCg==",
- "notas": "Gari cata o lixo jogado na rua na hora; lixeira para jogar lixo fora"
+ "launcher_sha": "e106c132cadbf437b6f2d1fb9b877a11679b939296f5cda7deb3fea52d5c0096",
+ "launcher_assin": "xT+QBzJn/IyVrUeKgZZXR/UdAguyeVtb9OfvXuis3bnb4Yj6SFfWosVUP21J8HaJUAeemfH8xrrIeR54IVk8Bw==",
+ "notas": "Gari: o item fica 30 s no chão, ele avisa e só depois leva; lixeira para jogar lixo fora"
 }

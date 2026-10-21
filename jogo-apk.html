@@ -13095,15 +13095,24 @@ setTimeout(()=>lcSync(true),12000);setInterval(()=>lcSync(false),5*60000);
 {const _lmp=modPanel;modPanel=function(){const r=_lmp.apply(this,arguments);try{if(MOD.r==='god'){const u=document.getElementById('ui');if(u&&!document.getElementById('lcbtn'))u.insertAdjacentHTML('beforeend','<div id="lcbtn">'+btn('🎁 Testar presente de lançamento','lcEscolha(true)')+'</div>')}}catch(e){}return r}}
 {const _llk=lkD;lkD=function(L){const D=_llk.apply(this,arguments);try{const r=((L&&L.ad)||{}).roupa;if(r==='zro_iar'||r==='zro_ipe'){D.cap=undefined;D.x=String(D.x||'').split(/\s+/).filter(k=>k&&k!=='goggles').join(' ')}}catch(e){}return D}}
 try{LKH={};TRI={};hrReset();lkApply(G.look)}catch(e){}
-const GARI_BRONCA='Ei, não jogue lixo aqui... tsc...';
+const GARI_BRONCA='Ei, não jogue lixo aqui... tsc...',GARI_AVISO='Opa! Isso aí é seu? Se não catar de volta, eu vou jogar fora, hein!';
+const LX_MIN=30000; 
 var LX={t:null};
+function lxDrop0(){const L=cgList()||[];return L.length?Math.min(...L.map(q=>q[4]||Date.now())):Date.now()}
 function lxChamaGari(){clearTimeout(LX.t);const m0=cur;LX.t=setTimeout(()=>{try{if(cur!==m0||cgCasa()||mode==='bt')return;const L=cgList();if(!L||!L.length)return;
-if(!CH.gari){gariVem();}if(CH.gari){CH.gari.lixo=1;CH.gari.disse=0;CH.gari.t0=performance.now();CH.gari.say={t:'👀 Hmm...',until:performance.now()+2500}}}catch(e){}},2600+Math.random()*1500)}
-{const _lj=cgJoga;cgJoga=function(q){const fora=!cgCasa();const r=_lj.apply(this,arguments);try{if(fora){toast('⬇️ Item no chão... 🧹 o Seu Bené, o Gari, já viu!');lxChamaGari()}}catch(e){}return r}}
-RH0.push(function(){try{const R=CH.gari;if(!R||!R.lixo)return;const now=performance.now();
-if(R.st==='varre'&&!R.disse){R.disse=1;R.say={t:GARI_BRONCA,until:now+4200};toast('🧹 <b>Seu Bené, o Gari:</b> '+GARI_BRONCA)}
-if(R.st==='anda'&&R.disse&&!(cgList()||[]).length){R.st='sai';R.path=null;R.say={t:'Tsc... cada uma.',until:now+2500}}}catch(e){}});
-{const _gv=gariVem;gariVem=function(){_gv.apply(this,arguments);try{const R=CH.gari;if(R&&R.e)R.e.fn=()=>{R.e.d=(P.d+2)%4;ok('<b>Seu Bené, o Gari:</b> '+(R.lixo?GARI_BRONCA+' Usa a lixeira, criança! Tem uma em toda praça.':GARIFALA[Math.random()*GARIFALA.length|0]))}}catch(e){}}}
+if(!CH.gari)gariVem();const R=CH.gari;if(R&&!R.lixo){R.lixo=1;R.avisou=0;R.t0=performance.now();R.prazo=Math.max(performance.now()+12000,(LX.drop||performance.now())+LX_MIN)}}catch(e){}},8000+Math.random()*3000)}
+{const _lj=cgJoga;cgJoga=function(q){const fora=!cgCasa();const r=_lj.apply(this,arguments);try{if(fora){if(!CH.gari||!CH.gari.lixo)LX.drop=performance.now();toast('⬇️ Item no chão. Se ficar aí, o Seu Bené, o Gari, vem recolher.');lxChamaGari()}}catch(e){}return r}}
+RH0.push(function(){try{const R=CH.gari;if(!R||!R.lixo)return;const now=performance.now(),L=cgList()||[];
+if(R.st==='varre'&&now<R.prazo){R.st='espera';R.path=null}
+if(!R.avisou&&R.e&&(R.st==='espera'||Math.abs(R.e.x-P.x)+Math.abs(R.e.y-P.y)<=4)){R.avisou=1;R.say={t:GARI_AVISO,until:now+5000};toast(`🧹 <b>Seu Bené, o Gari:</b> ${GARI_AVISO} <small>(${Math.max(1,Math.ceil((R.prazo-now)/1000))} s)</small>`)}
+if(R.st==='anda'&&R.avisou&&!R.bronca&&!L.length){R.st='sai';R.path=null;R.lixo=0;R.say={t:'Isso! Lugar de lixo é na lixeira.',until:now+3000};toast('🧹 <b>Seu Bené:</b> Isso! Lugar de lixo é na lixeira.');return}
+if(R.st==='espera'){
+if(!R.avisou){R.avisou=1;R.say={t:GARI_AVISO,until:now+5000};toast(`🧹 <b>Seu Bené, o Gari:</b> ${GARI_AVISO} <small>(${Math.ceil((R.prazo-now)/1000)} s)</small>`)}
+if(!L.length){R.st='sai';R.path=null;R.lixo=0;R.say={t:'Isso! Lugar de lixo é na lixeira.',until:now+3000};toast('🧹 <b>Seu Bené:</b> Isso! Lugar de lixo é na lixeira.');return}
+if(now>=R.prazo){R.st='varre';R.sw=now;R.say={t:GARI_BRONCA,until:now+4200};toast('🧹 <b>Seu Bené, o Gari:</b> '+GARI_BRONCA);R.bronca=1}
+else R.t0=now}
+if(R.st==='anda'&&R.bronca&&!L.length){R.st='sai';R.path=null}}catch(e){}});
+{const _gv=gariVem;gariVem=function(){_gv.apply(this,arguments);try{const R=CH.gari;if(R&&R.e)R.e.fn=()=>{R.e.d=(P.d+2)%4;ok('<b>Seu Bené, o Gari:</b> '+(R.lixo?GARI_AVISO+' Usa a lixeira, criança! Tem uma em toda praça.':GARIFALA[Math.random()*GARIFALA.length|0]))}}catch(e){}}}
 function lxItens(){const T0={};for(const[a,i]of invAll(false)){const s=a[i];if(s&&s.t==='i'&&s.c>0)T0[s.n]=(T0[s.n]||0)+s.c}return Object.entries(T0).sort((a,b)=>a[0].localeCompare(b[0]))}
 function lxMenu(x,y){LX.pos=[x,y];open(`<div class="psh"><span style="font-size:30px">🗑️</span><div><b>Lixeira</b><small>Vasculhe para achar alguma coisa (1 vez por dia) ou jogue fora o que não quer mais.</small></div></div>`+btn('🔍 Vasculhar','lxVasc()')+btn('🗑️ Jogar lixo fora','lxJogar()')+btn('Fechar','closeUI()'))}
 function lxVasc(){closeUI();const[x,y]=LX.pos||[0,0];try{LX.orig(x,y)}catch(e){}}
