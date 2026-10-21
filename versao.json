@@ -1,11 +1,11 @@
 {
- "jogo": 89,
- "jogo_arquivo": "jogo-89.kpk",
- "jogo_sha": "b7e36c1f80113ff0f486a1b8656c7fe80f62b76de1c47de573759e778bc29a69",
- "jogo_assin": "A5ALyUjO0uaqGbvjyWIcdOIsTWhJKDoSNf0cM5UQpdQiEInKELyJK5VVEeHZZTKSk/+EvC7mIrgI+H/MuRuhBg==",
+ "jogo": 90,
+ "jogo_arquivo": "jogo-90.kpk",
+ "jogo_sha": "b6ef3b2e39eb48870d182d172ac995b6868a189d0f4ced9ee0fa474715cf991a",
+ "jogo_assin": "jru0n52PB8NBEFobwpUKYGv7dVOguC0NVRZHb0r/fOsIPMifgbDuFLGnQpRcDrIjUG6bUj05WpsC5frvUv+cBQ==",
  "launcher": 3,
  "launcher_arquivo": "KaimonGT-3.exe",
- "launcher_sha": "81c65e8765c34de45d4c7254f313e78902179fdf702a320787a82b62ae0e1faf",
- "launcher_assin": "snHYpriqMnwJGYzfpCiop7A0VD7T8Ou/smWHcqB603S7lS39JSH6YwMN3FgeWM5m2J88r1GOl06gBrDRnBdnBA==",
- "notas": "Jogo ligado ao servidor: save conferido, banco online, ranking do portal"
+ "launcher_sha": "7ad1bc15abab72a3d68542c8430f441a13446ff17ada72f16dfb2f2f112621ac",
+ "launcher_assin": "BTwsINCjL1HYNSa4/jT3EsruIu8fNlISd2iYrLSxzkAXH37zXhgdeOI5Vngm6NM0RiOGIPCEvh/hTAw5D/kNCg==",
+ "notas": "Passe com Kaimon Coin, botões transparentes, loja no canto esquerdo, visual novo do treinador"
 }

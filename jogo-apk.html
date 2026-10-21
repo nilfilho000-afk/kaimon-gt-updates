@@ -2058,7 +2058,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v89 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v90 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -9083,7 +9083,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=89;
+var KGT_VER=90;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -11067,6 +11067,56 @@ setInterval(ptlPulso,60000);
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')ptlSai();else setTimeout(ptlPulso,1500)});
 addEventListener('pagehide',ptlSai);
 if(typeof afterLogin==='function'){const _ptlAfter=afterLogin;afterLogin=function(){const r=_ptlAfter.apply(this,arguments);setTimeout(()=>{ptlConfere().then(()=>ptlPulso())},4000);return r}}
+var HEROI={lenco:'#1f8a52',cinto:'#3a2618',fivela:'#e8c050'};
+{const _hlkD=lkD;lkD=function(L){const D=_hlkD.apply(this,arguments);try{D.me=1;if(D.cap&&!/goggles/.test(D.x||''))D.x=(D.x||'')+' goggles';D.gg=D.gg||'#8ad8f8';D.ac=(L&&L.lc)||HEROI.lenco}catch(e){}return D}}
+{const _hrDraw=hrDraw;hrDraw=function(x,S,v,f,hd){_hrDraw.apply(this,arguments);try{if(S&&S.D&&S.D.me&&f!==9)heroiExtra(x,S,v,f)}catch(e){}}}
+function heroiExtra(x,S,v,f){const walk=f>=0&&f<=7,s=walk?Math.sin(f*Math.PI/4):0,bob=walk?Math.abs(s)*.7:0,T=HRST[HRS]||HRST[1],dy=bob+(S.old?.8:0),
+SY=T.SY+dy,WY=T.WY+dy,HY=T.HY+dy,kh=T.kh,HCX=v==1?15+(kh-1)*.5:16,sw=hrSway(v,f),fem=S.fem,HHW=(fem?5.7:5.25)*T.sw,bp=S.has('bp');
+x.save();if(sw.sx||sw.rot){x.translate(16+sw.sx,HY);x.rotate(sw.rot);x.translate(-16,-HY)}
+const L=S.ac,Ld=hrK(L,.68);
+if(v==0){
+if(bp){const sc=hrK(S.bc,.72);for(const sg of[-1,1]){hrL(x,sc,1.05,[[16+sg*3.3,SY+.2],[16+sg*2.9,WY+1.6]]);x.fillStyle=hrK(S.bc,1.15);x.fillRect(16+sg*2.9-.55,WY+.4,1.1,.8)}}
+const by=HY-1.25;x.fillStyle=HEROI.cinto;x.fillRect(16-HHW*.92,by,HHW*1.84,1.15);x.fillStyle=HEROI.fivela;x.fillRect(16-.85,by-.15,1.7,1.45);x.fillStyle=hrK(HEROI.fivela,.6);x.fillRect(16-.35,by+.3,.7,.55);
+hrPart(x,q=>q.rect(16+HHW*.55,by+.6,2.1,2.2),'#7a4a2a',{dk:.7,lt:.4});x.fillStyle='#4ad8c8';x.fillRect(16+HHW*.55+.7,by+1.2,.7,.7);
+hrPart(x,q=>hrPoly(q,[[16-2.6,SY-.5],[16+2.6,SY-.5],[16+.3,SY+2.8]],1),L,{dk:.72,lk:1.25});hrE(x,16+1.6,SY-.2,.75,.6,Ld,{lt:0})}
+else if(v==2){
+if(!bp){const by=HY-1.25;x.fillStyle=HEROI.cinto;x.fillRect(16-HHW*.92,by,HHW*1.84,1.15)}
+hrE(x,16,SY-.5,1.5,.8,L,{dk:.7});hrPart(x,q=>hrPoly(q,[[16-.3,SY],[16-1.3,SY+2.2],[16+.2,SY+1.6]],0),Ld,{lt:0});hrPart(x,q=>hrPoly(q,[[16+.3,SY],[16+1.4,SY+2],[16+.1,SY+1.5]],0),Ld,{lt:0})}
+else{
+hrPart(x,q=>hrPoly(q,[[HCX-2,SY-.4],[HCX+1.2,SY-.4],[HCX-1.4,SY+2.3]],1),L,{dk:.72});
+if(bp)hrL(x,hrK(S.bc,.72),1,[[HCX+1.2,SY+.1],[HCX-.6,WY+1.4]])}
+x.restore()}
+try{hrReset();lkApply(G.look)}catch(e){}
+var PSKMC=40;
+try{PS.PRECO='◈ '+PSKMC+' KMC'}catch(e){}
+function psKmcOk(t){try{play('catch')}catch(e){}hud();try{psBadge()}catch(e){}
+open(`<div class="psh"><span style="font-size:30px">🎉</span><div><b>Passe Kaimon ativado!</b><small>${t||''}30 dias de VIP (montar, surfar, voar) e a trilha premium liberada. Você ainda tem ${kmc(kpGet())}.</small></div></div>`+btn('Ver o passe','psOpen()')+btn('Fechar','closeUI()'))}
+psBuy=function(){if(PSLOJA)return;const kp=kpGet();
+if(kp<PSKMC)return open(`<b>🎫 Passe Kaimon · ◈ ${PSKMC} KMC</b><p>Você tem <b style="color:#ffe27a">${kmc(kp)}</b>. Faltam <b>${kmc(PSKMC-kp)}</b>.</p><p><small>Compre Kaimon Coins na <b>Loja</b> (PIX, cai na hora) ou ganhe acertando a Pergunta do Kaimon.</small></p>`+btn('🛍️ Comprar KMC','closeUI();lojaOpen()')+btn('Voltar','psOpen()'));
+open(`<b>🎫 Passe Kaimon · ◈ ${PSKMC} KMC</b><p>30 dias de VIP (montar, surfar, voar) + a trilha premium com o ${PS.MON}.${psOn()?' <b>Os 30 dias somam com o que você já tem.</b>':''}</p><p><small>Você tem ${kmc(kp)} · depois da compra: ${kmc(kp-PSKMC)}.</small></p>`+btn('Ativar por ◈ '+PSKMC+' KMC','psKmc()')+btn('Voltar','psOpen()'))};
+var PSK=0;
+async function psKmc(){if(PSK)return;const a=accCur();if(!a)return;if(kpGet()<PSKMC)return psBuy();PSK=1;
+try{if(a.fb&&a.fb.uid){
+if(!(typeof bkOnline==='function'&&bkOnline()))return open('<b>🎫 Passe Kaimon</b><p>Sua conta é online: conecte-se à internet para ativar o passe (ele fica guardado na conta e vale no celular e no PC).</p>'+btn('Voltar','psOpen()'));
+if(typeof SAV!=='undefined'&&SAV.mx)return open('<b>🎫 Passe Kaimon</b><p>Este save foi alterado fora do jogo, então a nuvem não aceita compras com ele.</p>'+btn('Voltar','psOpen()'));
+open('<b>🎫 Passe Kaimon</b><p>Conferindo seus Kaimon Coins na nuvem...</p>');
+try{CLOUD.dirty=1;await cloudPush(1)}catch(e){}
+const r=await bkCall({op:'passe'});kpAdd(-PSKMC);if(r&&r.passeAte){a.passeAte=+r.passeAte;accSave()}save();try{CLOUD.dirty=1;setTimeout(()=>cloudPush(1),21000)}catch(e){}
+try{await vipSync()}catch(e){}return psKmcOk()}
+kpAdd(-PSKMC);a.passeAte=Math.max(Date.now(),+a.passeAte||0)+30*864e5;accSave();save();return psKmcOk()}
+catch(e){open(`<b>🎫 Passe Kaimon</b><p>Não deu para ativar agora.</p><p><small>${esc(e.message||String(e))}</small></p>`+btn('Tentar de novo','psKmc()')+btn('Voltar','psOpen()'))}
+finally{PSK=0}}
+var BTNOP=1;try{const v=parseFloat(localStorage.getItem('kgt_btnop'));if(v>=.2&&v<=1)BTNOP=v}catch(e){}
+function btnOpCss(){let st=document.getElementById('btnopcss');if(!st){st=document.createElement('style');st.id='btnopcss';document.head.appendChild(st)}
+st.textContent=BTNOP>=.999?'':`.ab,#lojatop,#joy,#hudtg{opacity:${BTNOP}!important;transition:opacity .15s}.ab:active,#lojatop:active{opacity:1!important}`}
+function btnOpSet(v){BTNOP=Math.max(.2,Math.min(1,v));try{localStorage.setItem('kgt_btnop',String(BTNOP))}catch(e){}btnOpCss();const b=document.getElementById('cl_btnop');if(b)b.textContent=Math.round(BTNOP*100)+'%'}
+btnOpCss();
+{const _cfgOp=cfgR;cfgR=function(){const r=_cfgOp.apply(this,arguments);try{if(!document.getElementById('cfr_btnop')){const rows=[...document.querySelectorAll('#ui .cfr')],j=rows.find(e=>/joystick/i.test((e.querySelector('span')||{}).textContent||''))||rows[rows.length-1];
+const h=`<div class="cfr" id="cfr_btnop"><span>Botões e joystick (visíveis)</span><input type="range" min="20" max="100" value="${Math.round(BTNOP*100)}" oninput="btnOpSet(this.value/100)"><b style="width:40px;text-align:right" id="cl_btnop">${Math.round(BTNOP*100)}%</b></div>`;
+if(j)j.insertAdjacentHTML('afterend',h)}}catch(e){}return r}}
+lojaTop=function(){let b=$('lojatop');if(!b){document.body.insertAdjacentHTML('beforeend','<button id="lojatop" title="Loja Kaimon" onpointerdown="event.preventDefault();if(mode===\'walk\'||mode===\'ui\'){closeUI();lojaOpen()}">🛍️</button>');b=$('lojatop')}
+try{const hd=$('hud'),r=hd?hd.getBoundingClientRect():null;b.style.right='auto';b.style.left='calc(env(safe-area-inset-left,0px) + 8px)';b.style.top=((r&&r.height>4?r.bottom:44)+8)+'px'}catch(e){}
+const ttl=document.getElementById('ttl');b.style.display=(typeof mode!=='undefined'&&(mode==='walk'||mode==='ui')&&!ttl)?'':'none'};
 (function(){try{const st=document.createElement('style');st.textContent=`body.hudmin .ab:not(.hkeep){display:none!important}
 #hudtg{position:fixed;right:calc(env(safe-area-inset-right,0px) + 88px);bottom:calc(env(safe-area-inset-bottom,0px) + 6px);width:40px;height:40px;border-radius:50%;padding:0;margin:0;z-index:6;
  background:radial-gradient(circle at 35% 30%,#fff3c0,#e8c050 60%,#a8801c);border:2px solid #fff;color:#3a2a00;font:900 18px sans-serif;box-shadow:0 2px 6px #0008;display:flex;align-items:center;justify-content:center}
