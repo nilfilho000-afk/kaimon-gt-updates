@@ -2058,7 +2058,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v91 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v92 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -9083,7 +9083,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=91;
+var KGT_VER=92;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -11122,8 +11122,8 @@ async function modCall(body){const a=webAcc();if(!a||!(FBC&&FBC.fn))throw new Er
 const r=await fetch(FBC.fn.replace(/\/$/,'')+'/mod',{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+tok},body:JSON.stringify(body)});
 const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.erro||('Servidor respondeu '+r.status));return j}
 async function modSync(){try{if(!webAcc()||!(FBC&&FBC.fn)||!webOnline())return;const j=await modCall({op:'papel',nick:G.nick||''});MOD.r=j.r||'';MOD.mudo=+j.mudo||0;MOD.t=Date.now();
-if(j.banido){const b=j.banido;ok(`<b>⛔ Conta banida</b><p>${b.ate?'Até '+new Date(b.ate).toLocaleDateString('pt-BR')+'.':'Para sempre.'}${b.motivo?'<br><small>Motivo: '+esc(b.motivo)+'</small>':''}</p><p><small>Sem acesso ao chat, banco, Pixa e nuvem.</small></p>`)}
-if(j.pioneiro&&j.pioneiro.n){try{await vipSync()}catch(e){}hud();try{play('lvl')}catch(e){}ok(`<div class="psh"><span style="font-size:30px">🏅</span><div><b>Você é o pioneiro nº ${j.pioneiro.n}!</b><small>Os 10 primeiros jogadores do Kaimon GT ganham <b>30 dias de VIP</b> (montar, surfar, voar e a trilha premium do passe). Obrigado por chegar cedo!</small></div></div>`)}
+if(j.banido){const b=j.banido;modAviso(`<b>⛔ Conta banida</b><p>${b.ate?'Até '+new Date(b.ate).toLocaleDateString('pt-BR')+'.':'Para sempre.'}${b.motivo?'<br><small>Motivo: '+esc(b.motivo)+'</small>':''}</p><p><small>Sem acesso ao chat, banco, Pixa e nuvem.</small></p>`)}
+if(j.pioneiro&&j.pioneiro.n){try{await vipSync()}catch(e){}hud();modAviso(`<div class="psh"><span style="font-size:30px">🏅</span><div><b>Você é o pioneiro nº ${j.pioneiro.n}!</b><small>Os 10 primeiros jogadores do Kaimon GT ganham <b>30 dias de VIP</b> (montar, surfar, voar e a trilha premium do passe). Obrigado por chegar cedo!</small></div></div>`)}
 modBtn()}catch(e){}}
 setInterval(()=>{if(Date.now()-MOD.t>10*60000&&!document.hidden)modSync()},60000);
 if(typeof afterLogin==='function'){const _modAfter=afterLogin;afterLogin=function(){const r=_modAfter.apply(this,arguments);setTimeout(modSync,5000);return r}}
@@ -11153,6 +11153,103 @@ ok(`<b>📋 Moderação</b><p><b>Staff:</b><br>${li(j.staff,x=>`• ${esc(x.nick
 function modBtn(){try{const h=$('chlog');if(h&&MOD.r&&!document.getElementById('modchb')){h.insertAdjacentHTML('beforebegin',`<button id="modchb" class="b" style="margin:2px 0" onclick="modPanel()">🛡️ Moderação</button>`)}}catch(e){}}
 {const _modOpen=chOpen;chOpen=function(){const r=_modOpen.apply(this,arguments);modBtn();return r}}
 {const _cfgMod=cfgR;cfgR=function(){const r=_cfgMod.apply(this,arguments);try{if(MOD.r&&!document.getElementById('cfr_mod')){const rows=[...document.querySelectorAll('#ui .cfr')],l=rows[rows.length-1];if(l)l.insertAdjacentHTML('afterend',`<div class="cfr" id="cfr_mod"><span>Moderação (${MOD.r==='god'?'GOD':'staff'})</span>${btn('🛡️ Abrir','modPanel()')}</div>`)}}catch(e){}return r}}
+var MODAV=[];function modAviso(h){MODAV.push(h)}
+setInterval(()=>{try{if(MODAV.length&&typeof mode!=='undefined'&&mode==='walk'&&!document.getElementById('ttl')){const h=MODAV.shift();try{play('lvl')}catch(e){}ok(h)}}catch(e){}},1500);
+HUM34.juiz91=H36({key:'juiz91',sk:'#c8946a',hr:'#1a1a1a',sh:'#f4f4f4',s2:'#1a1a1a',pa:'#1a1a1a',sw:'#1a1a1a',cap:'#1a1a1a',bc:'#c8a040',x:'cap'});LBL.juiz91='Juiz da Arena';
+kdef('arenav',{nm:'Vila da Arena',gn:'Vila da Arena',city:'Vila da Arena',gx:256,gy:150,W:30,H:24,cityr:0,
+p:{'15,7':['arena',9,14]},embs:[[15,4,'gym'],[25,6,'pc']],lbls:[['Arena Kaimon',15.5,2.6],['Centro de Cura',26,5.6]],
+sg:{'3,9':'Vila da Arena — aqui os treinadores batalham uns contra os outros!','16,9':'Arena Kaimon: duelos ao vivo entre jogadores.'},
+N:[{n:'kid',x:9,y:13,wd:1,say:['Um dia eu vou ganhar de todo mundo na Arena!','Dizem que o Juiz nunca perdeu um duelo... mas ele também nunca lutou.']},
+{n:'old',x:21,y:15,wd:1,say:['Na Arena o time entra de vida cheia, e ninguém usa item. É só estratégia!','Se o adversário sumir, espere um pouco e peça a vitória ao Juiz.']}],
+gen(m){kframe(2);kpath([[4,0],[4,10]]);kpath([[4,10],[26,10]]);kpath([[15,8],[15,10]]);kpath([[25,9],[25,10]]);
+kbt(9,3,13,2,3,90,6,29);kb(23,6,6,4,2,13);
+kb(7,15,5,89,2);kb(17,15,5,91,2);kpath([[9,18],[9,19],[19,19],[19,18]]);kpath([[14,10],[14,19]]);
+for(const x of[7,11,19,23])ks(x,11,21);ks(3,9,60);ks(16,9,60);
+kscat(14,9,(v,x,y)=>v===0,[2,12,27,21]);kdecor(6,14,4,[2,11,27,21])}});
+kgym('arena',{nm:'Arena Kaimon',ret:['arenav',15,8],gth:{a:'#f4c8a0',b:'#eebc90',l:'#c8784a',h:'#fce4cc'},
+N:[{n:'juiz91',x:9,y:5,d:2,nm:'Juiz da Arena',fn:()=>arOpen()},{n:'juiz91',x:10,y:5,d:2,nm:'Juiz da Arena',fn:()=>arOpen()}],
+});
+BPOST.push(function arTrilha(i,m,T2){try{if(m.key!=='r13')return;const ga=GW.find(q=>q[0]===KI.arenav),gr=GW.find(q=>q[0]===i);if(!ga||!gr)return;const x0=Math.max(1,Math.min(m.W-3,ga[1]-gr[1]+8));
+let y=m.H-1;const ok=v=>v===3||v===101;for(;y>0;y--){if(ok(T2[y][x0])||ok(T2[y][x0+1]))break}
+for(let yy=Math.max(1,y);yy<m.H;yy++)for(const xx of[x0,x0+1]){T2[yy][xx]=3;for(const s of[-1,2]){const v=(T2[yy]||[])[xx+s];if(v===7||v===58||v===20)T2[yy][xx+s]=0}}}catch(e){console.error(e)}});
+var DUEL={on:0,id:'',eu:'',op:'',n:1,wait:0,poll:0,fila:0,doc:null,real:null,opT:[],res:0,lastT:0,inv:null};
+(function(){try{const sI=Storage.prototype.setItem;Storage.prototype.setItem=function(k,v){if(DUEL.on&&this===localStorage&&k==='pq2')return;return sI.apply(this,arguments)}}catch(e){}})();
+async function arCall(body){const a=webAcc();if(!a||!(FBC&&FBC.fn))throw new Error('Entre com uma conta com e-mail ou Google para usar a Arena.');const tok=await webTok(a);
+const r=await fetch(FBC.fn.replace(/\/$/,'')+'/duelo',{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+tok},body:JSON.stringify(Object.assign({nick:G.nick||''},body))});
+const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.erro||('Servidor respondeu '+r.status));return j}
+function arPode(){if(!webAcc())return'Para duelar, entre com uma conta com e-mail ou Google (Configurações → Conta).';if(!(FBC&&FBC.fn)||!webOnline())return'A Arena precisa de internet.';if(!G.party.some(p=>p.hp>0))return'Seu time precisa de pelo menos um monstro de pé.';return''}
+function arOpen(){const e=arPode();if(e)return ok('<b>⚔️ Arena Kaimon</b><p>'+e+'</p>');
+open(`<div class="psh"><span style="font-size:30px">⚔️</span><div><b>Arena Kaimon</b><small>Duelo ao vivo contra outro jogador. Seu time entra de vida cheia, sem itens. Vitória +25 pontos, derrota −15. Ranking mensal (a partir de 1/11): o 1º lugar ganha 30 dias de VIP e o nome no site.</small></div></div>`+
+btn('🔎 Procurar adversário','arFila()')+btn('🎯 Desafiar jogador','arDesafiar()')+btn('🏆 Placar','arPlacar()')+btn('Fechar','closeUI()'))}
+async function arPrep(){try{CLOUD.dirty=1;await cloudPush(1)}catch(e){}}
+async function arFila(){DUEL.fila=1;open('<b>🔎 Procurando adversário...</b><p>Fique nesta tela. Quando outro jogador procurar também, o duelo começa.</p><p><small>Seu time é o que está salvo na nuvem (o jogo salva agora).</small></p>'+btn('Cancelar','arFilaSair()'));
+await arPrep();const t0=Date.now();while(DUEL.fila&&!DUEL.on&&Date.now()-t0<180000){try{const j=await arCall({op:'fila'});if(j.id&&j.st==='jogo'){DUEL.fila=0;return duelStart(j)}}catch(e){DUEL.fila=0;return ok('<b>⚔️ Arena</b><p>'+esc(e.message)+'</p>')}await wait(3000)}
+if(DUEL.fila){DUEL.fila=0;arCall({op:'sairFila'}).catch(()=>{});ok('<b>⚔️ Arena</b><p>Ninguém apareceu agora. Tente de novo daqui a pouco!</p>')}}
+function arFilaSair(){DUEL.fila=0;arCall({op:'sairFila'}).catch(()=>{});closeUI()}
+function arDesafiar(){open('<b>🎯 Desafiar jogador</b><p><small>Nome exato do jogador ou o código Pixa dele (aparece no banco).</small></p><input class="tin" id="ardes" maxlength="24" placeholder="Nome ou código" autocomplete="off">'+btn('Desafiar',"arDesafiar2()")+btn('Voltar','arOpen()'))}
+async function arDesafiar2(){const v=(($('ardes')||{}).value||'').trim();if(!v)return;open('<b>🎯 Desafio</b><p>Enviando...</p>');await arPrep();
+try{const j=await arCall({op:'desafiar',alvo:v});DUEL.wait=j.id;open(`<b>🎯 Desafio enviado para ${esc(j.nB||v)}</b><p>Esperando ele aceitar (até 2 minutos). Ele precisa estar com o jogo aberto.</p>`+btn('Cancelar',"DUEL.wait='';closeUI()"));
+const t0=Date.now();while(DUEL.wait===j.id&&Date.now()-t0<125000){await wait(3000);try{const d=await arCall({op:'estado',id:j.id});if(d.st==='jogo'){DUEL.wait='';return duelStart(d)}if(d.st==='recusado'||d.st==='expirado'){DUEL.wait='';return ok('<b>🎯 Desafio</b><p>'+esc(j.nB||v)+' recusou o desafio.</p>')}}catch(e){}}
+if(DUEL.wait===j.id){DUEL.wait='';ok('<b>🎯 Desafio</b><p>Ninguém respondeu.</p>')}}catch(e){ok('<b>🎯 Desafio</b><p>'+esc(e.message)+'</p>')}}
+async function arPlacar(){open('<b>🏆 Placar da Arena</b><p>Carregando...</p>');try{const j=await arCall({op:'placar'});const c=j.campeao,mn=m=>{const[y,mo]=String(m||'').split('-');return['','janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'][+mo]+' de '+y};
+ok(`<b>🏆 Arena · ${j.comecou?'temporada de '+mn(j.mes):'começa em 1º de novembro'}</b>${c?`<p>👑 Campeão de ${mn(c.mes)}: <b>${esc(c.nick)}</b> (${c.titulos} título${c.titulos>1?'s':''})</p>`:''}<p>Você: <b>${j.eu.pts}</b> pontos · ${j.eu.v} vitória(s) · ${j.eu.d} derrota(s)${j.eu.titulos?` · 👑 ${j.eu.titulos} título(s)`:''}</p><p><b>Top 10 do mês</b><br>${(j.top||[]).map((x,i)=>`${i+1}. ${esc(x.nick||'?')} — ${x.pts} pts (${x.v}V/${x.d}D)`).join('<br>')||'<small>ninguém ainda</small>'}</p><p><small>Todo mês o ranking zera. O 1º lugar ganha 30 dias de VIP e o nome no site. Ganhar duas vezes seguidas do mesmo jogador não vale ponto.</small></p>`)}catch(e){ok('<b>🏆 Placar</b><p>'+esc(e.message)+'</p>')}}
+setInterval(async()=>{try{if(DUEL.on||DUEL.wait||document.hidden||!webAcc()||!(FBC&&FBC.fn)||mode!=='walk')return;if(Date.now()-DUEL.lastT<6000)return;DUEL.lastT=Date.now();
+if(M[cur]&&!/^(arena|arenav)$/.test(M[cur].key||'')&&Math.random()<.7)return;
+const j=await arCall({op:'convite'});if(j.convite&&j.convite.id!==DUEL.inv){DUEL.inv=j.convite.id;try{play('item')}catch(e){}
+open(`<b>⚔️ Desafio!</b><p><b>${esc(j.convite.de)}</b> quer duelar com você na Arena Kaimon.</p>`+btn('Aceitar',`arAceitar('${j.convite.id}')`)+btn('Recusar',`arRecusar('${j.convite.id}')`))}}catch(e){}},2000);
+async function arAceitar(id){open('<b>⚔️ Duelo</b><p>Entrando...</p>');await arPrep();try{const d=await arCall({op:'aceitar',id});duelStart(d)}catch(e){ok('<b>⚔️ Duelo</b><p>'+esc(e.message)+'</p>')}}
+function arRecusar(id){arCall({op:'recusar',id}).catch(()=>{});closeUI()}
+function duelMon(s){const m=mon0(SP[s.n]?s.n:'Cutiqui',s.lvl|0||5);if(s.sh)m.sh=1;m.abi=s.abi;const mv=(s.mv||[]).filter(n=>MV[n]);if(mv.length)m.mv=mv.map(n=>({n,pp:MV[n][4]}));stats(m);m.hp=m.max;m.id=(Math.random()*1e9|0)+1;return m}
+function duelRng(seed){let a=seed>>>0;return()=>{a=(a+0x6D2B79F5)>>>0;let t=a;t=Math.imul(t^(t>>>15),t|1);t^=t+Math.imul(t^(t>>>7),t|61);return((t^(t>>>14))>>>0)/4294967296}}
+function duelHash(s){let h=2166136261;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}return h>>>0}
+function duelStart(d){if(DUEL.on)return;closeUI();if(mode!=='walk'&&mode!=='ui')return;const eu=d.eu,meuT=eu==='a'?d.tA:d.tB,opT=eu==='a'?d.tB:d.tA;
+DUEL.on=1;DUEL.id=d.id;DUEL.eu=eu;DUEL.op=eu==='a'?d.nB:d.nA;DUEL.n=d.turno||1;DUEL.seed=d.seed>>>0;DUEL.res=0;DUEL.doc=d;DUEL.done={};
+DUEL.real=G.party;G.party=meuT.map(duelMon);DUEL.opT=opT.map(duelMon);
+const tl=G.t.l;G.t.l=Math.max(40,tl);try{startB(DUEL.opT[0],{nm:DUEL.op,team:DUEL.opT,duel:1})}finally{G.t.l=tl}B.duel=1;B.cur=G.party[0];B.log=[`⚔️ Duelo na Arena contra ${DUEL.op}!`,`${DUEL.op} enviou ${DUEL.opT[0].n}!`];rb();duelLoop()}
+async function duelLoop(){while(DUEL.on){try{const d=await arCall({op:'estado',id:DUEL.id});DUEL.doc=d;
+for(const h of d.hist||[]){if(h.n===DUEL.n&&!DUEL.res){DUEL.res=1;try{await duelResolve(h)}finally{DUEL.res=0}DUEL.n++}}
+if(d.st==='fim'&&DUEL.on&&!B.end)await duelFim(d);
+if(B&&B.duel&&B.wait)rb()}catch(e){}await wait(B&&B.wait?1800:2500)}}
+{const _dTurn=turn;turn=async function(a){if(!(B&&B.duel))return _dTurn.apply(this,arguments);if(B.busy||B.wait||B.end)return;
+if(a.k!=='mv'&&a.k!=='sw'){B.log.push(a.k==='run'?'No duelo não dá para fugir (use Desistir).':'No duelo não vale usar itens!');return rb()}
+if(a.k==='sw'&&(G.party[a.i]===B.cur||!(G.party[a.i]&&G.party[a.i].hp>0)))return;
+B.menu=0;B.wait=Date.now();B.log.push(`Esperando ${DUEL.op} escolher...`);rb();
+try{await arCall({op:'jogada',id:DUEL.id,n:DUEL.n,act:a})}catch(e){B.wait=0;B.log.push('Falhou: '+e.message);rb()}}}
+{const _dRb=rb;rb=function(){_dRb.apply(this,arguments);try{if(!(B&&B.duel)||B.end)return;const bm=$('bm');if(!bm)return;
+if(B.wait){const s=Math.floor((Date.now()-B.wait)/1000),esp=DUEL.doc&&DUEL.doc.espera>90000;bm.innerHTML=`<div id="lg">${B.log.slice(-3).join('<br>')}</div><div class="g"><small style="color:#ffe27a">⏳ Esperando ${esc(DUEL.op)}... ${s}s</small>${esp?btn('Pedir vitória (sumiu)','duelTempo()'):''}${btn('Desistir','duelDesistir()')}</div>`}
+else if(!B.busy&&!B.menu){const g=bm.querySelector('.g');if(g)g.insertAdjacentHTML('beforeend',btn('🏳️ Desistir','duelDesistir()'))}}catch(e){}}}
+function duelDesistir(){if(!DUEL.on)return;B.wait=0;arCall({op:'desistir',id:DUEL.id}).then(d=>duelFim(d)).catch(()=>{})}
+function duelTempo(){arCall({op:'fim',id:DUEL.id,motivo:'tempo'}).then(d=>duelFim(d)).catch(e=>{B.log.push(e.message);rb()})}
+async function duelAtk(a,d,mv,R){const m=MV[mv]||MV['Desespero'],sa=abOf(a),sd=abOf(d),side=a===B.w?'e':'m',tgt=d===B.w?'e':'m';if(mv!='Desespero'){const q=a.mv.find(v=>v.n==mv);if(q&&q.pp>0)q.pp--}
+await say(`${nm(a)} usou ${mv}!`);await banim(side,'lunge',300);const acc0=m[3]*(sa=='compound'?1.3:1)*(sa=='hustle'&&m[1]=='p'?.8:1);const r1=R(),r2=R(),r3=R();
+if(r1*100>=acc0){bmiss(tgt);return say('Errou!')}bfx((m&&m[0])||'normal',side,tgt);await wait(380);
+if(sd=='rod'&&m[0]=='electric')return say(`${nm(d)} absorveu o golpe com Aterramento!`);if(eff(m[0],SP[d.n].t)===0)return say(`Não afeta ${nm(d)}...`);
+const A=m[1]=='p'?a.A:a.SA,D=m[1]=='p'?d.D:d.SD,e=eff(m[0],SP[d.n].t),cr=r2<1/16,st=SP[a.n].t.includes(m[0])?1.5:1;
+let pw=m[2],mul=1;if(sa=='tech'&&pw<=60)pw*=1.5;const pin={overgrow:'grass',blaze:'fire',torrent:'water',pin_ice:'ice',pin_ghost:'ghost'}[sa];if(pin==m[0]&&a.hp<=a.max/3)mul*=1.5;if(sa=='hustle'&&m[1]=='p')mul*=1.5;if(sa=='tinted'&&e<1)mul*=2;if(m[1]=='p'&&B.intim[side])mul*=2/3;
+let dm=Math.floor(Math.floor((2*a.lvl/5+2)*pw*A/D)/50)+2;dm=Math.max(1,Math.floor(dm*st*e*mul*(cr?(sa=='sniper'?2.25:1.5):1)*(.85+r3*.15)));
+d.hp=Math.max(0,d.hp-dm);play('hit');bhit(tgt,dm,e,cr);rb();await wait(560);
+if(typeof DRAIN!=='undefined'&&DRAIN[mv]&&a.hp>0&&a.hp<a.max){const hv=Math.max(1,Math.min(a.max-a.hp,Math.ceil(dm*DRAIN[mv])));a.hp+=hv;try{bpart(side,'heal')}catch(e2){}rb();await say(`${nm(a)} recuperou ${hv} de vida!`)}
+const x=(cr?'Golpe crítico! ':'')+(e>1?'É super efetivo!':e<1?'Não é muito efetivo...':'');if(x)await say(x)}
+async function duelResolve(h){if(!B||!B.duel)return;B.wait=0;B.busy=1;B.menu=0;const R=duelRng(DUEL.seed^duelHash(DUEL.id+':'+h.n));
+const me=DUEL.eu,ac={};ac[me]=h[me];ac[me==='a'?'b':'a']=h[me==='a'?'b':'a'];const mine=ac[me],his=ac[me==='a'?'b':'a'];
+const lado=r=>r===me?'m':'e',monDe=r=>r===me?B.cur:B.w;
+for(const r of['a','b']){const x=ac[r];if(!x||x.k!=='sw')continue;
+if(r===me){const nx=G.party[x.i];if(nx&&nx.hp>0&&nx!==B.cur){B.an.m={k:'in',t0:now(),d:320};await say(`Volte, ${B.cur.n}!`);B.cur=nx;B.intim.m=0;B.dx=null;B.an.m={k:'out',t0:now(),d:380};await say(`Vai, ${nx.n}!`);if(abOf(nx)=='intim'){B.intim.e=1;await say(`${nx.n} fez Cara Feia! O Ataque de ${nm(B.w)} caiu.`)}}}
+else{const nx=DUEL.opT[x.i];if(nx&&nx.hp>0&&nx!==B.w){B.an.e={k:'in',t0:now(),d:320};await say(`${DUEL.op} chamou ${B.w.n} de volta!`);B.w=nx;B.intim.e=0;B.an.e={k:'out',t0:now(),d:380};await say(`${DUEL.op} enviou ${nx.n}!`);if(abOf(nx)=='intim'){B.intim.m=1;await say(`${nm(nx)} fez Cara Feia! O Ataque de ${B.cur.n} caiu.`)}}}}
+const at=['a','b'].filter(r=>ac[r]&&ac[r].k==='mv').sort((x,y)=>{const sx=monDe(x).S,sy=monDe(y).S;return sy-sx||(x<y?-1:1)});
+for(const r of at){const atk=monDe(r),def=r===me?B.w:B.cur;if(atk.hp>0&&def.hp>0){let mv=ac[r].n;if(mv!=='Desespero'&&!atk.mv.some(v=>v.n===mv&&v.pp>0))mv='Desespero';await duelAtk(atk,def,mv,R)}}
+if(B.w.hp<=0){B.an.e={k:'faint',t0:now(),d:650};await say(`${B.w.n} de ${DUEL.op} desmaiou!`);const nx=DUEL.opT.find(m=>m.hp>0);if(nx){B.w=nx;B.intim.e=0;B.an.e={k:'out',t0:now(),d:380};await say(`${DUEL.op} enviou ${nx.n}!`);if(abOf(nx)=='intim'){B.intim.m=1;await say(`${nm(nx)} fez Cara Feia! O Ataque de ${B.cur.n} caiu.`)}}}
+if(B.cur.hp<=0){B.an.m={k:'faint',t0:now(),d:650};await say(`${B.cur.n} desmaiou!`);const nx=G.party.find(m=>m.hp>0);if(nx){B.cur=nx;B.intim.m=0;B.dx=null;B.an.m={k:'out',t0:now(),d:380};await say(`Vai, ${nx.n}!`);if(abOf(nx)=='intim'){B.intim.e=1;await say(`${nx.n} fez Cara Feia! O Ataque de ${nm(B.w)} caiu.`)}}}
+const euVivo=G.party.some(m=>m.hp>0),eleVivo=DUEL.opT.some(m=>m.hp>0);
+if(!euVivo||!eleVivo){const venc=!eleVivo&&euVivo?me:euVivo?'x':(me==='a'?'b':'a');try{const d=await arCall({op:'fim',id:DUEL.id,venc});if(d.st==='fim')return duelFim(d)}catch(e){}
+B.log.push('Conferindo o resultado com o servidor...');B.busy=1;rb();return}
+B.busy=0;rb()}
+async function duelFim(d){if(!B||!B.duel||B.end)return;const me=DUEL.eu,v=d.venc;B.wait=0;B.busy=1;
+const pl=d.placar||DUEL.pl||{};if(d.placar)DUEL.pl=d.placar;const sp=pl.treino?' (treino: a temporada da Arena começa em 1/11)':pl.repetido?' (sem pontos: vitória repetida contra o mesmo jogador)':'';
+const txt=(v===me?`🏆 Você venceu o duelo contra ${DUEL.op}!${sp?'':' +25 pontos de arena.'}`:v==='x'?'O duelo terminou empatado (sem pontos).':`${DUEL.op} venceu o duelo.${sp?'':' −15 pontos de arena.'}`)+sp;
+if(d.motivo==='desistiu')await say(v===me?`${DUEL.op} desistiu!`:'Você desistiu.');if(d.motivo==='tempo')await say(v===me?`${DUEL.op} sumiu: vitória por tempo.`:'Você demorou demais.');
+await say(txt);if(v===me)try{play('lvl')}catch(e){}B.won=v===me;B.end=1;B.busy=0;rb()}
+{const _dEnd=endB;endB=function(){if(B&&B.duel){DUEL.on=0;if(DUEL.real){G.party=DUEL.real;DUEL.real=null}B.black=0;B.tr=null;B.w={n:'',onEnd:null};const r=_dEnd.apply(this,arguments);try{save();hud()}catch(e){}return r}return _dEnd.apply(this,arguments)}}
 (function(){try{const st=document.createElement('style');st.textContent=`body.hudmin .ab:not(.hkeep){display:none!important}
 #hudtg{position:fixed;right:calc(env(safe-area-inset-right,0px) + 88px);bottom:calc(env(safe-area-inset-bottom,0px) + 6px);width:40px;height:40px;border-radius:50%;padding:0;margin:0;z-index:6;
  background:radial-gradient(circle at 35% 30%,#fff3c0,#e8c050 60%,#a8801c);border:2px solid #fff;color:#3a2a00;font:900 18px sans-serif;box-shadow:0 2px 6px #0008;display:flex;align-items:center;justify-content:center}
