@@ -1883,7 +1883,7 @@ bkCode().then(c=>{const t=$('bkt');if(t)t.value=c}).catch(()=>{const t=$('bkt');
 function bkCopy(){const t=$('bkt');if(!t)return;t.focus();t.select();const ok=()=>toast('Código copiado! ('+Math.round(t.value.length/1024)+' KB)');try{if(navigator.clipboard&&window.isSecureContext)return navigator.clipboard.writeText(t.value).then(ok,()=>{document.execCommand('copy');ok()})}catch(e){}try{document.execCommand('copy');ok()}catch(e){toast('Selecione o texto e copie manualmente.')}}
 function bkIn(){open('<b>Colar backup</b><p><small>Cole aqui o código do backup. <b>O progresso atual deste aparelho será substituído.</b></small></p><textarea id="bki" style="width:100%;height:84px;font-size:10px;border-radius:8px" placeholder="PQZ:..."></textarea><br>'+btn('Carregar progresso','bkLoad()')+btn('Voltar','cfgR()'))}
 async function bkLoad(){const t=$('bki');try{const s=await bkDecode(t&&t.value),d=JSON.parse(s);if(!d||!d.G||!d.P)throw 0;localStorage.setItem('pq2',s);toast('Progresso carregado!');setTimeout(()=>location.reload(),400)}catch(e){toast('Código inválido. Confira se copiou ele inteiro.')}}
-var FBC={apiKey:'AIzaSyAuhVs493S7VmQyuvn3v_cmHCrlwM3ovFA',projectId:'kaimon-gt',fn:'',contato:'',gcid:'964383539136-b4jkld9g7o6gk9rvmkriqn8oh6bpfcfc.apps.googleusercontent.com'}; 
+var FBC={apiKey:'AIzaSyAuhVs493S7VmQyuvn3v_cmHCrlwM3ovFA',projectId:'kaimon-gt',fn:'https://kaimon-gt-api.nilfilho000.workers.dev',contato:'',gcid:'964383539136-b4jkld9g7o6gk9rvmkriqn8oh6bpfcfc.apps.googleusercontent.com'}; 
 try{if(window.__FBC)Object.assign(FBC,window.__FBC)}catch(e){}
 function fbOn(){return !!FBC.apiKey}
 var FBERR={EMAIL_EXISTS:'Já existe uma conta com esse e-mail. Use a aba Entrar.',EMAIL_NOT_FOUND:'E-mail ou senha incorretos.',INVALID_PASSWORD:'E-mail ou senha incorretos.',INVALID_LOGIN_CREDENTIALS:'E-mail ou senha incorretos.',USER_DISABLED:'Esta conta foi desativada.',
@@ -2058,7 +2058,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v88 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v89 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -9083,7 +9083,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=88;
+var KGT_VER=89;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -11042,6 +11042,31 @@ function assSome(){const V=ASS.vis;if(!V||!V.vis||V.sumindo)return;V.sumindo=1;V
 {const _assAct=act;act=function(){try{const V=ASS.vis;if(mode==='walk'&&V&&V.vis&&!V.sumindo&&M[cur]&&M[cur].key===ASS.key){const fx=P.x+DX[P.d],fy=P.y+DY[P.d];if(V.x===fx&&V.y===fy){V.fala=ASS.mur[Math.floor(Math.random()*ASS.mur.length)];V.falaAte=performance.now()+2000;try{play('murm')}catch(e){}setTimeout(assSome,900);return}}}catch(e){}return _assAct.apply(this,arguments)}}
 Object.assign(sfx,{murm:()=>{for(let i=0;i<3;i++)tone(150+Math.random()*40,.5,'sine',.05,SF,i*.28,120+Math.random()*30);noise(1.1,380,.025,SF)},
 assSome:()=>{tone(620,.6,'sine',.05,SF,0,180);noise(.6,2400,.03,SF)}});
+var PTL={t:0,busy:0,last:'',probeT:0};
+function ptlOk(){try{return typeof webAcc==='function'&&webAcc()&&webOn()&&webOnline()&&typeof mode!=='undefined'&&mode!=='title'&&G&&G.nick}catch(e){return false}}
+function ptlDados(visto){let cap=0;try{for(const k in(G.dx||{}))if(G.dx[k]===2)cap++}catch(e){}
+const party=G.party||[],fol=party.find(p=>p&&G.fol!=null&&p.id==G.fol)||party[0];const nick=String(G.nick||'').slice(0,16);
+return{nick:{stringValue:nick},nickL:{stringValue:nick.toLowerCase()},nivel:{integerValue:String(Math.max(1,Math.min(200,(G.t&&G.t.l)|0||1)))},
+parceiro:{stringValue:String(fol&&fol.n||'').slice(0,24)},insignias:{integerValue:String(Math.min(8,Object.keys(G.bd||{}).length))},
+capturados:{integerValue:String(Math.min(5000,cap))},visto:{integerValue:String(visto)}}}
+async function ptlEnvia(visto,keep){const a=webAcc();if(!a||!a.fb||!a.fb.uid)return;
+const tok=keep?(typeof WEBTOK!=='undefined'&&WEBTOK.uid===a.fb.uid&&Date.now()-WEBTOK.t<45*60000?WEBTOK.tok:''):await webTok(a);if(!tok)return;
+await fetch(fsDoc('ranking',a.fb.uid),{method:'PATCH',keepalive:!!keep,headers:{Authorization:'Bearer '+tok,'Content-Type':'application/json'},body:JSON.stringify({fields:ptlDados(visto)})})}
+async function ptlPulso(){if(PTL.busy||document.visibilityState==='hidden'||!ptlOk())return;if(typeof SAV!=='undefined'&&SAV.mx)return;PTL.busy=1;
+try{await ptlEnvia(Date.now());PTL.t=Date.now()}catch(e){}finally{PTL.busy=0}
+if(Date.now()-PTL.probeT>5*60000)ptlConfere()}
+function ptlSai(){if(!PTL.t)return;PTL.t=0;try{ptlEnvia(0,1)}catch(e){}}
+async function ptlConfere(){PTL.probeT=Date.now();try{const a=webAcc();if(!a||!a.fb||!a.fb.uid||!webOn()||!webOnline())return;const k='pqNuv:'+a.fb.uid;
+const tok=await webTok(a),j=await fsGet('saves',a.fb.uid,tok,['t']);
+if(j&&j.fields){try{localStorage.setItem(k,'1')}catch(e){}return}
+let tinha=null;try{tinha=localStorage.getItem(k)}catch(e){}if(tinha!=='1')return;
+try{localStorage.removeItem(k);localStorage.removeItem('pq2');localStorage.removeItem('pq2t');sessionStorage.setItem('pqIn',ACC.act)}catch(e){}
+try{if(typeof CLOUD!=='undefined')CLOUD.dirty=0}catch(e){}
+toast('Este personagem foi apagado pelo site. Crie um novo para continuar.');setTimeout(()=>location.reload(),2200);await new Promise(()=>{})}catch(e){}}
+setInterval(ptlPulso,60000);
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')ptlSai();else setTimeout(ptlPulso,1500)});
+addEventListener('pagehide',ptlSai);
+if(typeof afterLogin==='function'){const _ptlAfter=afterLogin;afterLogin=function(){const r=_ptlAfter.apply(this,arguments);setTimeout(()=>{ptlConfere().then(()=>ptlPulso())},4000);return r}}
 (function(){try{const st=document.createElement('style');st.textContent=`body.hudmin .ab:not(.hkeep){display:none!important}
 #hudtg{position:fixed;right:calc(env(safe-area-inset-right,0px) + 88px);bottom:calc(env(safe-area-inset-bottom,0px) + 6px);width:40px;height:40px;border-radius:50%;padding:0;margin:0;z-index:6;
  background:radial-gradient(circle at 35% 30%,#fff3c0,#e8c050 60%,#a8801c);border:2px solid #fff;color:#3a2a00;font:900 18px sans-serif;box-shadow:0 2px 6px #0008;display:flex;align-items:center;justify-content:center}
