@@ -13123,6 +13123,27 @@ L.map(([n,c])=>{let im='';try{im=ico(n,true)}catch(e){}const id=encodeURICompone
 function lxFora(id,c){const n=decodeURIComponent(id);if(c>1&&!confirm(`Jogar fora ${c}× ${n}?`))return;const r=invRemove(n,c);if(!r)return toast('Não achei esse item.');try{save()}catch(e){}try{hud()}catch(e){}try{play('item')}catch(e){}
 toast(`🗑️ ${r>1?r+'× ':''}${esc(n)} na lixeira. Pindorama agradece! 🌿`);lxJogar()}
 {const _i0=inter0;LX.orig=_i0;inter0=function(x,y){try{if(T[y]&&T[y][x]===23)return lxMenu(x,y)}catch(e){}return _i0.apply(this,arguments)}}
+const GOD_DONO='nilfilho000@gmail.com';
+function contaDono(a){try{return!!(a&&a.fb&&a.fb.ver!==false&&String(a.email||a.login||'').toLowerCase()===GOD_DONO)}catch(e){return false}}
+{const _go=godOn;godOn=function(){return _go.apply(this,arguments)&&contaDono(accCur())}}
+{const _vc=vipCodeOk;vipCodeOk=function(){const a=accCur(),v=((($('vcod')||{}).value)||'').toUpperCase().replace(/[^A-Z0-9]/g,'');
+if(v.length>=8&&typeof sha256==='function'&&sha256(GODS+':'+v)===GODH&&!contaDono(a))return tmsg('O modo GOD é só da conta do dono do jogo.');return _vc.apply(this,arguments)}}
+var LGN={m:null};
+function lgnBox(on){return`<label style="display:flex;gap:8px;align-items:center;margin:8px 2px 4px;font-size:13px;color:#c8d2ee;cursor:pointer;user-select:none"><input type="checkbox" id="tman" ${on?'checked':''} style="width:18px;height:18px;accent-color:#ffd24a"> Manter conectado neste aparelho (não pedir a senha)</label>`}
+function lgnLe(){const e=$('tman');if(e)LGN.m=!!e.checked}
+{const _flv=fbLoginView;fbLoginView=function(ids){const a=TTL.sel&&ACC.a[TTL.sel];let rt=null,hid=false;
+if(a&&a.fb&&a.fb.rt&&!a.manter&&a.fb.ver!==false&&TTL.v!=='verify'&&TTL.v!=='other'){rt=a.fb.rt;a.fb.rt=null;hid=true}
+let h;try{h=_flv.apply(this,arguments)}finally{if(hid)a.fb.rt=rt}
+try{if(hid&&a.google){h=h.replace(/<label class="tfld">Senha<\/label>[\s\S]*?<button class="tgo" onclick="ttlEnter\(\)">Entrar ▶<\/button>/,`<div class="tnote" style="margin:8px 2px">Conta do Google: toque em <b>Fazer login com o Google</b> aqui em cima para entrar.</div>${lgnBox(false)}`)}
+else if(a&&a.fb&&a.fb.ver!==false)h=h.replace('<button class="tgo" onclick="ttlEnter()">',lgnBox(!!a.manter)+'<button class="tgo" onclick="ttlEnter()">')}catch(e){}
+return h}}
+{const _fov=fbOtherView;fbOtherView=function(){const h=_fov.apply(this,arguments);return h.replace('<button class="tgo" onclick="fbLoginOther()">',lgnBox(false)+'<button class="tgo" onclick="fbLoginOther()">')}}
+{const _te=ttlEnter;ttlEnter=function(){lgnLe();return _te.apply(this,arguments)}}
+{const _lo=fbLoginOther;fbLoginOther=function(){lgnLe();return _lo.apply(this,arguments)}}
+{const _id=fbIdp;fbIdp=function(){lgnLe();return _id.apply(this,arguments)}}
+{const _fg=fbGo;fbGo=function(id){try{const a=ACC.a[id];if(a&&LGN.m!=null){a.manter=LGN.m;accSave()}LGN.m=null}catch(e){}return _fg.apply(this,arguments)}}
+setTimeout(async()=>{try{let ch=0;for(const id of Object.keys(ACC.a||{})){const a=ACC.a[id];if(a&&a.god&&!contaDono(a)){a.god=false;a.gnv=false;a.ginv=false;try{if(typeof segSign==='function'){a.sg=await segSign(id,a);if(typeof segMsg==='function')a._sgv=segMsg(id,a)}}catch(e){}ch=1}}
+if(ch){accSave();try{if(document.getElementById('ttl'))ttlOpen()}catch(e){}try{hud()}catch(e){}}}catch(e){}},1500);
 (function(){try{const st=document.createElement('style');st.textContent=`body.hudmin .ab:not(.hkeep){display:none!important}
 #hudtg{position:fixed;right:calc(env(safe-area-inset-right,0px) + 88px);bottom:calc(env(safe-area-inset-bottom,0px) + 6px);width:40px;height:40px;border-radius:50%;padding:0;margin:0;z-index:6;
  background:radial-gradient(circle at 35% 30%,#fff3c0,#e8c050 60%,#a8801c);border:2px solid #fff;color:#3a2a00;font:900 18px sans-serif;box-shadow:0 2px 6px #0008;display:flex;align-items:center;justify-content:center}
