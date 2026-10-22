@@ -8254,7 +8254,7 @@ setInterval(()=>{try{if(typeof mode==='undefined'||mode!=='walk'||!G||!Array.isA
 const L=G.bkIn;G.bkIn=[];save();const tot=L.reduce((a,e)=>a+(e.v|0),0),de=[...new Set(L.map(e=>e.de))].slice(0,3).map(bkEsc).join(', ');
 toast(`💸 Você recebeu Pixa de <b>${de}</b>: ${bkFmt(tot)} no seu banco!`);const t=$('toast');if(t){clearTimeout(t._t);t._t=setTimeout(()=>t.style.opacity=0,6000)}}catch(e){}},2000);
 setInterval(()=>{try{if(G.bkHint||typeof mode==='undefined'||mode!=='walk'||document.getElementById('ttl')||!(G.party&&G.party.length)||(typeof QZ!=='undefined'&&QZ.on))return;G.bkHint=1;save();
-toast('🏦 <b>Novo:</b> Banco Kaimon em toda cidade! Dinheiro no banco não se perde ao desmaiar. Procure a placa “Banco”.');const t=$('toast');if(t){clearTimeout(t._t);t._t=setTimeout(()=>t.style.opacity=0,7000)}}catch(e){}},3000);
+toast('🏦 <b>Novo:</b> Banco Kaimon em toda cidade! Dinheiro no banco não se perde ao desmaiar. Procure o prédio com o ícone 🏦 no mapa.');const t=$('toast');if(t){clearTimeout(t._t);t._t=setTimeout(()=>t.style.opacity=0,7000)}}catch(e){}},3000);
 const _bkEndB=endB;endB=function(){const bl=B&&B.black,m0=G.money;const r=_bkEndB.apply(this,arguments);
 try{if(bl&&m0>G.money)setTimeout(()=>{toast('Você perdeu '+bkFmt(m0-G.money)+' da mão.'+((G.bank|0)>0?' Os '+bkFmt(G.bank)+' do banco estão seguros.':' Dica: guarde dinheiro no Banco Kaimon.'))},700)}catch(e){}return r};
 MZC.banco=['#1f9e6a','Bancos'];MZE.banco='🏦';
@@ -13144,6 +13144,17 @@ return h}}
 {const _fg=fbGo;fbGo=function(id){try{const a=ACC.a[id];if(a&&LGN.m!=null){a.manter=LGN.m;accSave()}LGN.m=null}catch(e){}return _fg.apply(this,arguments)}}
 setTimeout(async()=>{try{let ch=0;for(const id of Object.keys(ACC.a||{})){const a=ACC.a[id];if(a&&a.god&&!contaDono(a)){a.god=false;a.gnv=false;a.ginv=false;try{if(typeof segSign==='function'){a.sg=await segSign(id,a);if(typeof segMsg==='function')a._sgv=segMsg(id,a)}}catch(e){}ch=1}}
 if(ch){accSave();try{if(document.getElementById('ttl'))ttlOpen()}catch(e){}try{hud()}catch(e){}}}catch(e){}},1500);
+function semMailBox(){return`<div class="tnote" style="margin:6px 2px 10px;color:#ffd08a">As contas do Kaimon GT agora são sempre com e-mail (Gmail, Hotmail, Outlook ou outro). Não foi possível falar com o servidor de contas: confira a internet e tente de novo.</div><button class="tgo" onclick="location.reload()">Tentar de novo ▶</button>`}
+{const _tn=ttlNew;ttlNew=function(){if(!fbOn())return semMailBox();return _tn.apply(this,arguments)}}
+{const _tl=ttlLogin;ttlLogin=function(ids){if(!fbOn())return semMailBox();return _tl.apply(this,arguments)}}
+{const _flv2=fbLoginView;fbLoginView=function(ids){let h=_flv2.apply(this,arguments);try{const a=TTL.sel&&ACC.a[TTL.sel];if(a&&!a.fb&&TTL.v!=='other'&&TTL.v!=='verify'){
+h=h.replace('<button class="tgo" onclick="ttlEnter()">Entrar ▶</button>','<button class="tgo" onclick="ttlEnter()">Entrar e vincular e-mail ▶</button>')
+.replace('Conta antiga, sem e-mail. Depois de entrar, vincule um e-mail em Configurações → Conta.','Conta antiga, sem e-mail. Para continuar jogando, ela precisa de um e-mail (Gmail, Hotmail ou outro): ao entrar, você vincula e o progresso continua o mesmo.')}}catch(e){}return h}}
+function semMailConta(){try{const a=accCur();return!!(a&&!a.fb&&fbOn())}catch(e){return false}}
+{const _fl=fbLinkForm;fbLinkForm=function(){const r=_fl.apply(this,arguments);try{if(semMailConta()){const u=document.getElementById('ui');if(u){const b=[...u.querySelectorAll('button')].find(x=>/^Voltar$/.test(x.textContent.trim()));if(b){b.textContent='Sair da conta';b.setAttribute('onclick','accLogout()')}
+if(!u.querySelector('.smail'))u.insertAdjacentHTML('afterbegin','<div class="smail" style="background:#3a2a10;border:1px solid #ffd08a;border-radius:8px;padding:6px 8px;margin-bottom:6px;font-size:12px;color:#ffe6b0">📧 Para continuar jogando, vincule um e-mail a esta conta. Pode ser Gmail, Hotmail, Outlook ou qualquer outro.</div>')}}}catch(e){}return r}}
+setInterval(()=>{try{if(semMailConta()&&(mode==='walk'||mode==='ui'&&!document.getElementById('tem')))fbLinkForm()}catch(e){}},1500);
+{const _ms=modSync;modSync=async function(){const r=await _ms.apply(this,arguments);try{const id=ACC.act,a=accCur();if(a&&MOD.r==='god'&&contaDono(a)&&!a.god){a.god=true;a.gnv=false;try{if(typeof segSign==='function'){a.sg=await segSign(id,a);if(typeof segMsg==='function')a._sgv=segMsg(id,a)}}catch(e){}accSave();hud();toast('👑 Conta GOD reconhecida pelo servidor.')}}catch(e){}return r}}
 {const _lb=lbl;lbl=function(t){if(!/[↑↓←→⬆⬇⬅➡]/.test(String(t||'')))return;return _lb.apply(this,arguments)}}
 {const _ct=cb71Tile;cb71Tile=function(X,Y){try{const B=cb71At(X,Y);if(B&&Y<B.y1){let k=0;try{k=typeof gbase==='function'?gbase(X,Y):0}catch(e){}if(![0,1,3,18,53,88,97,101].includes(k))k=0;hdGround(k,X,Y)}}catch(e){}return _ct.apply(this,arguments)}}
 const HB106=['bag','mute','dex','cfgUI','togFol','psbtn','chbtn','amgbtn','usebtn'];
@@ -13160,6 +13171,68 @@ const rowH=sz+8;vis.forEach((e,i)=>{const r=i%per,row=Math.floor(i/per),rr=`calc
 if(e.style.right!==rr)e.style.right=rr;if(e.style.bottom!==bb)e.style.bottom=bb;const s=sz+'px';if(e.style.width!==s){e.style.width=s;e.style.height=s}})}catch(e){}};
 addEventListener('resize',()=>{try{horgAplica()}catch(e){}});
 setTimeout(()=>{try{horgAplica()}catch(e){}},500);
+var ARB106=new Map();
+function arbCanvas(X,Y){const si=GRS|0,v=(hsh(X,Y,5101)*4)|0,cls=(hsh(X,Y,5102)*4)|0,key=si+'|'+v+'|'+cls;let c=ARB106.get(key);if(c)return c;
+const S=32,ix=arvIdx('g'),o=ARV.g,P=arvPal(si,cls,0),NL=ARV.leaf.filter(Boolean).length;
+const rnd=i=>hsh(v*31+cls,si,5110+i);
+const CL=[];for(let i=0;i<40&&CL.length<13;i++){const a=rnd(100+i)*6.283,q=Math.sqrt(rnd(140+i)),cx=16+Math.cos(a)*q*8.5,cy=17+Math.sin(a)*q*6.5,r=3.8+rnd(180+i)*1.6;
+if(CL.some(c=>Math.hypot(c[0]-cx,c[1]-cy)<3.2))continue;CL.push([cx,cy,r])}
+CL.push([16,13,5],[11,18,4.6],[21,18,4.6],[16,21,4.8]);CL.sort((a,b)=>a[1]-b[1]);
+const ox0=30+((rnd(40)*40)|0),oy0=24+((rnd(41)*26)|0);
+const tex=(x,y)=>{for(let k=0;k<6;k++){const q=ix[(oy0+y)*o.w+ox0+x+k];if(q&&ARV.leaf[q-1])return q-1}return 12};
+const idx=new Int16Array(S*S).fill(-1);
+for(let i=0;i<CL.length;i++){const[cx,cy,r0]=CL[i];for(let y=Math.floor(cy-r0-2);y<=cy+r0+2;y++)for(let x=Math.floor(cx-r0-2);x<=cx+r0+2;x++){if(x<0||y<0||x>=S||y>=S)continue;
+const an=Math.atan2(y+.5-cy,x+.5-cx),r=r0*(1+.12*Math.sin(an*4+i*1.7)),dx=(x+.5-cx)/r,dy=(y+.5-cy)/r,d=dx*dx+dy*dy;if(d>1)continue;
+const nz=Math.sqrt(1-d),l=-dx*.5-dy*.8+nz*.45;
+let k=(1-l)*7+6+(y-6)/24*9+(x-6)/24*2.5; 
+if(d>.7&&dy>0)k+=3; 
+k+=(tex(x,y)-12)*.45;idx[y*S+x]=Math.max(0,Math.min(NL-1,Math.round(k)))}}
+const LF0=[["..hhh.",".hhmmd","hmmmd.",".ddd.."],[".hh..","hhmm.","hmmmd",".mmdd","..dd."],["..hh.",".hmmd","hmmd.","hmd..",".d..."],[".hhh..","hhmmm.","hmmmmd",".dddd."]];
+const LF=[];for(const L of LF0){LF.push(L);LF.push(L.map(r=>r.split('').reverse().join('')))}
+const lit=(x,y)=>{const dx=(x-16)/12,dy=(y-17)/10;return(dx*.5+dy*.8)*6};
+const stamp=(L,x0,y0)=>{const H=L.length,Wd=L[0].length;for(let j=0;j<H;j++)for(let i=0;i<Wd;i++){const ch=L[j][i];if(ch==='.')continue;const x=x0+i,y=y0+j;if(x<0||y<0||x>=S||y>=S)continue;
+const b=10+lit(x,y)+(tex(x,y)-12)*.2;idx[y*S+x]=Math.max(0,Math.min(NL-1,Math.round(b+(ch==='h'?-7:ch==='m'?0:7))))}};
+const inside=(x,y)=>x>=0&&y>=0&&x<S&&y<S&&idx[y*S+x]>=0;
+const pts=[];for(let i=0;i<220;i++){const x=(rnd(300+i)*30)|0,y=(rnd(600+i)*28)|0;if(inside(x+1,y+1))pts.push([x,y,i])}
+pts.sort((a,b)=>a[1]-b[1]);for(const[x,y,i]of pts.slice(0,34))stamp(LF[i%LF.length],x,y);
+for(let i=0;i<20;i++){const an=rnd(900+i)*6.283;let x=16,y=17;for(let r=0;r<16;r++){const nx=Math.round(16+Math.cos(an)*r),ny=Math.round(17+Math.sin(an)*r*.8);if(!inside(nx,ny))break;x=nx;y=ny}
+if(y>27)continue;const L=LF[(i*5)%LF.length];stamp(L,x-2+Math.round(Math.cos(an)),y-2+Math.round(Math.sin(an)))}
+const out=new Int16Array(idx);for(let y=0;y<S;y++)for(let x=0;x<S;x++){if(idx[y*S+x]>=0)continue;const nb=[[1,0],[-1,0],[0,1],[0,-1]].some(([a,b])=>{const xx=x+a,yy=y+b;return xx>=0&&yy>=0&&xx<S&&yy<S&&idx[yy*S+xx]>=0});if(nb)out[y*S+x]=NL-2}
+c=document.createElement('canvas');c.width=S;c.height=S;const x=c.getContext('2d'),im=x.createImageData(S,S),d=im.data;
+for(let i=0;i<S*S;i++){const k=out[i];if(k<0)continue;const col=P[k];d[i*4]=col[0];d[i*4+1]=col[1];d[i*4+2]=col[2];d[i*4+3]=255}
+x.putImageData(im,0,0);
+if(si!==3){const B=[[8,17],[14,21],[20,15],[24,21],[11,12],[18,25],[22,11],[16,16]];for(let i=0;i<B.length;i++){if(rnd(60+i)<.35)continue;const[bx,by]=B[i];if(out[by*S+bx]<0)continue;x.fillStyle='#7a1018';x.fillRect(bx,by,2,2);x.fillStyle='#d8303e';x.fillRect(bx,by,2,1);x.fillStyle='#ff9aa0';x.fillRect(bx,by,1,1)}}
+if(si===0){for(let i=0;i<5;i++){const bx=5+((rnd(80+i)*22)|0),by=7+((rnd(90+i)*14)|0);if(out[by*S+bx]<0||out[by*S+bx]>NL*.6)continue;x.fillStyle='#ffd8ec';x.fillRect(bx,by,1,1)}}
+if(si===3){for(let xx=0;xx<S;xx++){let top=-1;for(let yy=0;yy<S;yy++)if(out[yy*S+xx]>=0){top=yy;break}if(top<0||top>22)continue;x.fillStyle='#f2f6fc';x.fillRect(xx,top+1,1,2+(hsh(xx,v,5150)*2|0));x.fillStyle='#ffffff';x.fillRect(xx,top+1,1,1)}}
+ARB106.set(key,c);return c}
+function arbDraw(X,Y){try{hdGround(0,X,Y);const ox=X*16,oy=Y*16;mg.save();mg.fillStyle='rgba(0,0,0,.22)';mg.beginPath();mg.ellipse(ox+8,oy+14.2,7.4,1.8,0,0,6.3);mg.fill();mg.imageSmoothingEnabled=false;mg.drawImage(arbCanvas(X,Y),ox,oy-.5,16,16);mg.restore()}catch(e){}}
+if(typeof TWX!=='undefined')TWX[20]=arbDraw;
+var NK106={c:null,x:null,k:1,on:0};
+function nkCanvas(){let c=NK106.c;if(c&&c.isConnected)return c;c=document.createElement('canvas');c.id='nkov';
+c.style.cssText='position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);pointer-events:none';
+const cv0=document.getElementById('cv');if(cv0&&cv0.parentNode)cv0.parentNode.insertBefore(c,cv0.nextSibling);else document.body.appendChild(c);
+NK106.c=c;NK106.x=c.getContext('2d');return c}
+function nkFrame(){try{const cv0=document.getElementById('cv'),c=nkCanvas();if(!cv0)return;const r=cv0.getBoundingClientRect(),dpr=Math.min(3,window.devicePixelRatio||1);
+const W=Math.max(1,Math.round(r.width*dpr)),H=Math.max(1,Math.round(r.height*dpr));if(c.width!==W||c.height!==H){c.width=W;c.height=H}
+if(c.style.width!==cv0.style.width)c.style.width=cv0.style.width;if(c.style.height!==cv0.style.height)c.style.height=cv0.style.height;
+const z=getComputedStyle(cv0).zIndex;if(z&&z!=='auto'&&c.style.zIndex!==z)c.style.zIndex=z;
+c.style.visibility=getComputedStyle(cv0).visibility;
+NK106.k=W/cv0.width;const x=NK106.x;x.setTransform(1,0,0,1,0,0);x.clearRect(0,0,W,H)}catch(e){}}
+const NKF=['fillText','strokeText','fillRect','strokeRect','drawImage','beginPath','moveTo','lineTo','arcTo','arc','ellipse','rect','closePath','fill','stroke','quadraticCurveTo','bezierCurveTo'];
+const NKS=['fillStyle','strokeStyle','font','textAlign','textBaseline','globalAlpha','lineWidth','lineJoin','lineCap','globalCompositeOperation'];
+function nkOn(){const o=NK106.x,k=NK106.k;if(!o)return false;const sync=()=>{const t=g.getTransform();o.setTransform(t.a*k,t.b*k,t.c*k,t.d*k,t.e*k,t.f*k);for(const p of NKS)try{o[p]=g[p]}catch(e){}};
+for(const f of NKF)g[f]=function(...a){sync();if(f==='drawImage'&&a[0]&&a[0]._hr){const im=a[0];if(a.length===3)a=[im._hr,a[1],a[2],im.width,im.height];else if(a.length===5)a=[im._hr,a[1],a[2],a[3],a[4]];else if(a.length===9){const s=im._hr.width/im.width;a=[im._hr,a[1]*s,a[2]*s,a[3]*s,a[4]*s,a[5],a[6],a[7],a[8]]}}return o[f](...a)};
+return true}
+function nkOff(){for(const f of NKF)delete g[f]}
+{const _pc=plCache;plCache=function(nm,lv,shy){const c=_pc.apply(this,arguments);try{if(c&&!c._hr){const F=4,h=document.createElement('canvas');h.width=c.width*F;h.height=c.height*F;const x=h.getContext('2d'),L='Nv '+lv;
+x.font='bold 5px sans-serif';const w=x.measureText(nm).width+5;x.font='bold 4px sans-serif';const lw=x.measureText(L).width+4;
+const R=(a,b,ww,hh,r)=>{x.beginPath();x.moveTo(a+r,b);x.arcTo(a+ww,b,a+ww,b+hh,r);x.arcTo(a+ww,b+hh,a,b+hh,r);x.arcTo(a,b+hh,a,b,r);x.arcTo(a,b,a+ww,b,r);x.closePath()};
+x.scale(2*F,2*F);x.translate(c.width/4,c.oy/2);x.textAlign='center';x.textBaseline='middle';
+x.font='bold 5px sans-serif';x.fillStyle='rgba(12,16,28,.72)';R(-w/2,-3.3,w,6.6,2);x.fill();x.fillStyle=shy?'#ffe27a':'#fff';x.fillText(nm,0,.3);
+x.font='bold 4px sans-serif';x.fillStyle='rgba(12,16,28,.72)';R(-lw/2,-9,lw,4.8,1.6);x.fill();x.fillStyle='#ffd34d';x.fillText(L,0,-6.5);c._hr=h}}catch(e){}return c}}
+{const _pl=plate;plate=function(e,cx,cy){if(!e||e===P||e.h||!e.n||!NK106.x)return _pl.apply(this,arguments);let on=false;try{on=nkOn()}catch(x){}try{return _pl.apply(this,arguments)}finally{if(on)nkOff()}}}
+{const _lp=loop;loop=function(t){nkFrame();return _lp.apply(this,arguments)}}
+nkCanvas();
 (function(){try{const st=document.createElement('style');st.textContent=`body.hudmin .ab:not(.hkeep){display:none!important}
 #hudtg{position:fixed;right:calc(env(safe-area-inset-right,0px) + 88px);bottom:calc(env(safe-area-inset-bottom,0px) + 6px);width:40px;height:40px;border-radius:50%;padding:0;margin:0;z-index:6;
  background:radial-gradient(circle at 35% 30%,#fff3c0,#e8c050 60%,#a8801c);border:2px solid #fff;color:#3a2a00;font:900 18px sans-serif;box-shadow:0 2px 6px #0008;display:flex;align-items:center;justify-content:center}
