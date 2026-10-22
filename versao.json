@@ -1,11 +1,11 @@
 {
- "jogo": 113,
- "jogo_arquivo": "jogo-113.kpk",
- "jogo_sha": "4cc24c050708783121129cd73a67a3c3d9983d44defa1b2019a911909dfb1460",
- "jogo_assin": "Pkp1BMWqNkQ8BA0T/Fl65/3nMIsb9TQOr6FqZhdpxrBy1XQ1xVFijSx9ojBZCzxqbEjIkj4Y4pPhxU+tXcioCw==",
+ "jogo": 114,
+ "jogo_arquivo": "jogo-114.kpk",
+ "jogo_sha": "1b8eb867c0fd792b24f84449eede145bc06b7dda938d51a8f5fe9a4a8fdcb604",
+ "jogo_assin": "uOX3GBPgLfdWaM+0LbGbRCyflwJvMAu1McEPg4iZ3d7XjXCDYAmtyC0Q2mkpmcOzstR3tik/xHj6VeWzY/ZsCQ==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "bcfd7f9ffe9607b67b545929a9c9055e2a0123604df1e641018191fd05f305c8",
- "launcher_assin": "gc1Fb0I5voH9P5JAS0eWR4dtogmUxoFZ6BAs6IbMEIljTLfF5IWcegbOZCcivblCQxgCr9gvPI50v6gQ6ZRqDA==",
- "notas": "O mesmo mundo para todos: hora real, clima, lua e estações iguais; monstros selvagens iguais (shiny inclusive); amigos no minimapa; Feira com vida; 💱 Trocas entre jogadores; todo monstro de Água surfa; GOD vê online e teleporta."
+ "launcher_sha": "8c7893548df0700845d5e5813734ded54123f975074fc3f9a256095dc6582392",
+ "launcher_assin": "2/QKH6RUs2NBpEDHKTVXjQcOlNJOv+WWWAphTuTfaRZNjnBdI7TG4NieoCwv02pLq7X1Eaovib48S+S1uW5RAA==",
+ "notas": "Sol de verdade girando no dia; travada ao entrar nos morros corrigida; monstros andando mais fluido; brilho e contraste em 100% por padrão."
 }
