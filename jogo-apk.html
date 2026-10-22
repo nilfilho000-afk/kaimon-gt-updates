@@ -2058,7 +2058,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v108 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v110 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -9083,7 +9083,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=108;
+var KGT_VER=110;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -12911,6 +12911,8 @@ if(best){e.x=best[0];e.y=best[1];used.push(best)}}}
 const XPCURVA=[2,4,5,5.5,6,6.5];
 function xpDiv(l){return l<40?1:XPCURVA[Math.min(XPCURVA.length-1,Math.floor((l-40)/10))]}
 {const _cg=gain;gain=async function(m,x){try{if(m&&x>0){if(m.lvl<40)x=x*1.6/1.2;else x=x/xpDiv(m.lvl);x=Math.max(1,Math.round(x))}}catch(e){}return _cg.call(this,m,x)}}
+const TRBOOST=3;
+{const _tg=tgain;tgain=function(n){try{const l=G.t.l|0;if(n>0&&l<40){const top=Math.max(0,...G.party.map(p=>p.lvl|0)),gap=top-l,cu=gap>0?Math.min(4,1+gap*.35):1;n=Math.round(n*TRBOOST*cu)}}catch(e){}return _tg.call(this,n)}}
 var VGI={nivel:'ok',ult:0,t:null};
 const VGNOM={online:'Jogadores online',reqMin:'Requisições por minuto',wsMin:'Mensagens ao vivo por minuto',erros5:'Erros em 5 min',errPct:'% de erros',lento:'Lento a partir de (ms)',diaReq:'Requisições no dia',diaFsR:'Leituras no Firestore no dia',diaFsW:'Gravações no Firestore no dia'};
 const VGCOR={ok:['#2fae6a','✅ Normal'],atencao:['#e0a020','⚠️ Atenção'],critico:['#e0405a','🚨 Sobrecarregado']};
@@ -13240,6 +13242,18 @@ x.font='bold 4px sans-serif';x.fillStyle='rgba(12,16,28,.72)';R(-lw/2,-9,lw,4.8,
 {const _pl=plate;plate=function(e,cx,cy){if(!e||e===P||e.h||!e.n||!NK106.x)return _pl.apply(this,arguments);let on=false;try{on=nkOn()}catch(x){}try{return _pl.apply(this,arguments)}finally{if(on)nkOff()}}}
 {const _lp=loop;loop=function(t){nkFrame();return _lp.apply(this,arguments)}}
 nkCanvas();
+const LJ106=["................","......hhhh......",".....h....h.....",".....h....h.....","..oooooooooooo..","..oPPPPPPPPPPo..","..oPpppppppppo..","..oPpppyyppppo..","..oPppyYYyppdo..","..oPpyYwYYypdo..","..oPppyYYyppdo..","..oPpppyyppddo..","..oPppppppdddo..","..opdddddddddo..","..oooooooooooo..","................"];
+const LJC={o:'#2a1430',h:'#c89030',P:'#ff9ac4',p:'#e0508a',d:'#a02a60',y:'#e0a020',Y:'#ffd34d',w:'#fffbe0'};
+function ljIcone(){if(LJ106.url)return LJ106.url;const c=document.createElement('canvas');c.width=c.height=16;const x=c.getContext('2d');
+LJ106.forEach((r,j)=>[...r].forEach((ch,i)=>{if(LJC[ch]){x.fillStyle=LJC[ch];x.fillRect(i,j,1,1)}}));return LJ106.url=c.toDataURL()}
+(function(){try{const st=document.createElement('style');st.textContent='#lojatop{z-index:12!important}#lojatop img.lj{width:62%;height:62%;image-rendering:pixelated;pointer-events:none;display:block;margin:auto}';document.head.appendChild(st)}catch(e){}})();
+{const _lt=lojaTop;lojaTop=function(){const r=_lt.apply(this,arguments);try{const b=document.getElementById('lojatop');if(b){
+if(!b.querySelector('img.lj')){b.innerHTML=`<img class="lj" alt="Loja" src="${ljIcone()}">`}
+if(typeof mode!=='undefined'&&mode!=='walk')b.style.display='none'}}catch(e){}return r}}
+setInterval(()=>{try{lojaTop()}catch(e){}},700);
+{const _gp=godPanel;godPanel=function(){const r=_gp.apply(this,arguments);try{if(!godOn())return r;const u=document.getElementById('ui');if(u&&!document.getElementById('godsrv')){
+const h=`<div id="godsrv" style="display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 8px">${btn('🚨 Saúde do servidor','vgAbrir()')}${btn('🛡️ Moderação','modPanel()')}</div>`;
+const hd=u.querySelector('.viph,.psh,b');if(hd&&hd.parentNode===u)hd.insertAdjacentHTML('afterend',h);else u.insertAdjacentHTML('afterbegin',h)}}catch(e){}return r}}
 (function(){try{const st=document.createElement('style');st.textContent=`body.hudmin .ab:not(.hkeep){display:none!important}
 #hudtg{position:fixed;right:calc(env(safe-area-inset-right,0px) + 88px);bottom:calc(env(safe-area-inset-bottom,0px) + 6px);width:40px;height:40px;border-radius:50%;padding:0;margin:0;z-index:6;
  background:radial-gradient(circle at 35% 30%,#fff3c0,#e8c050 60%,#a8801c);border:2px solid #fff;color:#3a2a00;font:900 18px sans-serif;box-shadow:0 2px 6px #0008;display:flex;align-items:center;justify-content:center}
