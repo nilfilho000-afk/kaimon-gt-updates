@@ -1,11 +1,11 @@
 {
- "jogo": 116,
- "jogo_arquivo": "jogo-116.kpk",
- "jogo_sha": "7a1989b19170963d3a26e66a667b3f57086942a4e06db44cd6aec94f70d92ff2",
- "jogo_assin": "YZCDf+fK8U/6yFblLQsvSFCtEXuVRppH76LDXjRRj0/iFKsnC+rFbt/jpFWYtLjW/7ye24VOwJQlIcysPmqRDA==",
+ "jogo": 117,
+ "jogo_arquivo": "jogo-117.kpk",
+ "jogo_sha": "4265f286daadece3050cdc2ddf0b4a67aa1dfbfea0317ba77fef920252605caa",
+ "jogo_assin": "+eb4/L44c2pCS5MAk92BgyI4/AuIU2+bGEbPE+3epjSiKbPTegyE5UTH2yKMadiS9ZH/1OiIY72qu+GH+F7ICw==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "50b651595fe76c73c3d7943af8d1e4ab63b213a2d27573560ba697ea7e0270c1",
- "launcher_assin": "ealxBsr2Cn1Fc46S2YcFBIa69kKk46IOPsTSKSwbKiYXPQylbepVWUIADZw1705h4tsB3K6YdV9SZfGraZpSBg==",
- "notas": "Toque no monstro (celular) entra na batalha; selvagens andam um pouco mais devagar e contínuos"
+ "launcher_sha": "5b265dd1c7c937c387525dc07a4a517832cc8ae035c89aedf21acb6239e8ef52",
+ "launcher_assin": "NozNnJzC4X9vZn7JuBPKz1hnh8YKow2FQn4P8VnVF1itGcauEolSMwGdHwQa+NA1/BQ4uCNm6bwFNElLTjcNBw==",
+ "notas": "Sem nível máximo: monstros e treinador sobem para sempre · KMC pela Google Play no app da Play Store"
 }
