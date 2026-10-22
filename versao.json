@@ -1,11 +1,11 @@
 {
- "jogo": 111,
- "jogo_arquivo": "jogo-111.kpk",
- "jogo_sha": "ac6dec2b11cdf13b8eb6519da55c697b47ceb11e39048867ae7d7a059ec79233",
- "jogo_assin": "SmjL4PtmjvQIUDdfW2BtQd3xzvAoSxL3+jtVp5/Sk78OcUGhnbaydsZh0KGzBKQ5fE4yaPxtBMsBF14Nr59MCQ==",
+ "jogo": 112,
+ "jogo_arquivo": "jogo-112.kpk",
+ "jogo_sha": "d3dcaf09bfe6466cc588b0a82af486a26653f55baf27d176fb63c005850e335f",
+ "jogo_assin": "X4Yna4PhR0xO4BqbttKyscMoBZ8th80eLXF500LQEN94y6P7U6IRGXbThSBonA48mrQ//5FZeOpTw2IwGeqQAg==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "756af35ef5a7e61d5e61b6f1cc912d6a8f2e2e9c4c0ffda447084a99fb4c52f3",
- "launcher_assin": "Haz2C2ooKTcipm2cHKt0znBR5QXq+o2vdWR/4UPd9OZGHa51hAEB8myLm+pm5m6cjV3Oqt60Rk9rpYThEg/KCg==",
- "notas": "Laboratório do Prof. Arandu corrigido (não fica mais branco ao voltar)."
+ "launcher_sha": "34d352065f10b37bfed91b017f42a387968355b8f4ca63a4b75cd88e16914b3e",
+ "launcher_assin": "cVx2+QFlqtmFo/th4tgzm6d6Ms+v9svTWWh9TmlTNJ0cqrcC44e0Q0Xwa6BhUa30guBGXPQvvIl1hOuhc50CDA==",
+ "notas": "Mundo igual para todos: mesma hora e clima, mesmos monstros selvagens (shiny inclusive), amigos no minimapa, chat sem sumir."
 }
