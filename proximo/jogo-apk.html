@@ -8254,7 +8254,7 @@ setInterval(()=>{try{if(typeof mode==='undefined'||mode!=='walk'||!G||!Array.isA
 const L=G.bkIn;G.bkIn=[];save();const tot=L.reduce((a,e)=>a+(e.v|0),0),de=[...new Set(L.map(e=>e.de))].slice(0,3).map(bkEsc).join(', ');
 toast(`💸 Você recebeu Pixa de <b>${de}</b>: ${bkFmt(tot)} no seu banco!`);const t=$('toast');if(t){clearTimeout(t._t);t._t=setTimeout(()=>t.style.opacity=0,6000)}}catch(e){}},2000);
 setInterval(()=>{try{if(G.bkHint||typeof mode==='undefined'||mode!=='walk'||document.getElementById('ttl')||!(G.party&&G.party.length)||(typeof QZ!=='undefined'&&QZ.on))return;G.bkHint=1;save();
-toast('🏦 <b>Novo:</b> Banco Kaimon em toda cidade! Dinheiro no banco não se perde ao desmaiar. Procure a placa “Banco”.');const t=$('toast');if(t){clearTimeout(t._t);t._t=setTimeout(()=>t.style.opacity=0,7000)}}catch(e){}},3000);
+toast('🏦 <b>Novo:</b> Banco Kaimon em toda cidade! Dinheiro no banco não se perde ao desmaiar. Procure o prédio com o ícone 🏦 no mapa.');const t=$('toast');if(t){clearTimeout(t._t);t._t=setTimeout(()=>t.style.opacity=0,7000)}}catch(e){}},3000);
 const _bkEndB=endB;endB=function(){const bl=B&&B.black,m0=G.money;const r=_bkEndB.apply(this,arguments);
 try{if(bl&&m0>G.money)setTimeout(()=>{toast('Você perdeu '+bkFmt(m0-G.money)+' da mão.'+((G.bank|0)>0?' Os '+bkFmt(G.bank)+' do banco estão seguros.':' Dica: guarde dinheiro no Banco Kaimon.'))},700)}catch(e){}return r};
 MZC.banco=['#1f9e6a','Bancos'];MZE.banco='🏦';
