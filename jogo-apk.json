@@ -1,7 +1,7 @@
 {
- "v": 110,
+ "v": 111,
  "url": "https://raw.githubusercontent.com/nilfilho000-afk/kaimon-gt-updates/main/jogo-apk.html",
- "notas": "Treinador sobe mais rápido até o 40; botão da loja novo; Saúde do servidor no Painel GOD.",
- "sha": "39cbd3709e6dd8616b5e84ab428bc4c67e7799344d37fa5b81fbc8f20bb60731",
- "sig": "UB9xWOclB8oVew8pCRx91zEI4ka89ex7v7pBUma+7g2+6pXcJAnLQEqOPyBnEuBmIdC0y/nClW+JYocElZuJWQ=="
+ "notas": "Laboratório do Prof. Arandu corrigido (não fica mais branco ao voltar).",
+ "sha": "3585c62d066045bbee258e4bfbf4dd659148c595d3651536d77df996d94d4c15",
+ "sig": "Jdwh7vg7Jui7pNs/R/4WktPCEEY2VFnHIml00aM+CVEwGft+zxxXfOKAwUTzQy4wu2rX9Hn3yIoRUFwO1VoLPA=="
 }

@@ -1,11 +1,11 @@
 {
- "jogo": 110,
- "jogo_arquivo": "jogo-110.kpk",
- "jogo_sha": "c68377591f0f551c5454da0a500be85eda3fc5c9a1d16e48610f00156a656956",
- "jogo_assin": "udbVRPwLlRIxkv/ddQeg1QVJGcvhd/yWV/1uDZiZ1qq2s7+9eGKyqNkryrf5tPNq7Mr+I0GSXtiuKPRg5P4dCw==",
+ "jogo": 111,
+ "jogo_arquivo": "jogo-111.kpk",
+ "jogo_sha": "ac6dec2b11cdf13b8eb6519da55c697b47ceb11e39048867ae7d7a059ec79233",
+ "jogo_assin": "SmjL4PtmjvQIUDdfW2BtQd3xzvAoSxL3+jtVp5/Sk78OcUGhnbaydsZh0KGzBKQ5fE4yaPxtBMsBF14Nr59MCQ==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "aae20dfdccbabfd3905490dad5ca6aa0933cf49396c96a347901b8fa50fe50d9",
- "launcher_assin": "Qctyy6+fCTkSbqeAnaa1QDCQwiU92RYJfdR4YyrWcvyRAi0nXhGOExQAfZVf8kX2jdG028lsKX+cR89kdfL+Bg==",
- "notas": "Treinador sobe mais rápido até o 40; botão da loja novo; Saúde do servidor no Painel GOD."
+ "launcher_sha": "756af35ef5a7e61d5e61b6f1cc912d6a8f2e2e9c4c0ffda447084a99fb4c52f3",
+ "launcher_assin": "Haz2C2ooKTcipm2cHKt0znBR5QXq+o2vdWR/4UPd9OZGHa51hAEB8myLm+pm5m6cjV3Oqt60Rk9rpYThEg/KCg==",
+ "notas": "Laboratório do Prof. Arandu corrigido (não fica mais branco ao voltar)."
 }
