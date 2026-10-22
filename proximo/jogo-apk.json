@@ -1,7 +1,7 @@
 {
  "v": 115,
  "url": "https://raw.githubusercontent.com/nilfilho000-afk/kaimon-gt-updates/main/jogo-apk.html",
- "notas": "Monstros selvagens andam lisos de novo (sem voltar um quadrado e andar outra vez)",
- "sha": "a7b5865466f0b8b119b8a77dbef55e0b261d2100d308bd2deb1e9d2ec7a963ad",
- "sig": "SOCL+yhQxBTmM6/4yxMHk8CaJHsKx//8eYlxlhTZPKN62JaNSxqGVOMCEQnowrKYUpvnQUBX7qMjkkt0U/YM1g=="
+ "notas": "Monstros selvagens andam lisos: trechos contínuos, sem repuxo e sem teleporte na troca",
+ "sha": "9f1021a3e19dc84aa07b5a2f287247e3828dd06d166067dac3f9b2e7f67b7743",
+ "sig": "4zyFXdGyciGYacZ6ctQQyHmGKd8kgvBBwOlL2MaiBFFLFsAvrleuO/SE7gBmf5Mg+Y+mBDv8E7hPCOI2At/ifA=="
 }

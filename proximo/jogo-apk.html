@@ -13329,7 +13329,7 @@ sunP=function(){const m=M[cur];if(!m||m.in||m.dg)return null;const h=hrs(),S=sun
 if(h>S.rise&&h<S.set){const p=solPos(h),elg=Math.max(1.5,p.el*180/Math.PI),ct=1/Math.tan(elg*Math.PI/180),L=Math.max(.35,Math.min(2.4,ct*.9));
 const dx=-Math.sin(p.az),dy=Math.cos(p.az);return{sx:dx*1.15,sy:dy*.74,a:.27*Math.min(1,elg/9),L,el:elg,az:p.az*180/Math.PI}}
 return{sx:.3,sy:.5,L:.7,a:.07}};
-var SLV={E:240000,STEP:1000,tk:new Set(),fail:new Set(),seen:new Map()};
+var SLV={E:240000,STEP:480,FD:700,tk:new Set(),fail:new Set(),seen:new Map()};
 function svNow(){return Date.now()+((typeof GCL!=='undefined'&&GCL.skew)||0)}
 function svHash(s){let h=2166136261>>>0;s=String(s);for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)>>>0}return h>>>0}
 function svRng(a){return function(){a=(a+0x6D2B79F5)>>>0;let t=a;t=Math.imul(t^(t>>>15),t|1);t^=t+Math.imul(t^(t>>>7),t|61);return((t^(t>>>14))>>>0)/4294967296}}
@@ -13340,31 +13340,43 @@ function svWin(s){return Math.floor((svNow()+svFase(s))/SLV.E)}
 function svW0(s,cap,w){return w*SLV.E-svFase(s)}
 function svVale(k){const p=k.split(':');return p.length===3&&+p[0]===cur&&svWin(+p[1])===+p[2]}
 {const _sp=spawn;spawn=function(){if(!svOn())return _sp.apply(this,arguments);
-const cap=svCap(),occ=new Set(wild.filter(e=>e.sid).map(e=>e.sl));
+const cap=svCap(),occ=new Set(wild.filter(e=>e.sid).map(e=>e.sl));let nf=0;
 for(let s=0;s<cap;s++){if(occ.has(s))continue;const w=svWin(s,cap),key=cur+':'+s+':'+w;if(SLV.tk.has(key)||SLV.fail.has(key))continue;
 const real=wild,z=M[cur].z,must=z.must,mr=Math.random,oc=occAt,px=P.x,py=P.y;let e=null;
 wild=[];if(must)z.must=0;Math.random=svRng(svHash(key));occAt=()=>false;P.x=P.y=-9999;
 try{_sp.apply(this,arguments);e=wild[wild.length-1]||null}catch(x){}finally{wild=real;if(must)z.must=must;Math.random=mr;occAt=oc;P.x=px;P.y=py}
-if(e){real.push(e);Object.assign(e,{sid:key,sl:s,_w0:svW0(s,cap,w),_k:0,t:1e15,hx:e.x,hy:e.y});if(!(e.r>0))e.r=3;svAnda(e,svNow(),1);return}
+if(e){real.push(e);Object.assign(e,{sid:key,sl:s,_w0:svW0(s,cap,w),_k:0,t:1e15,hx:e.x,hy:e.y,_fi:performance.now()});if(!(e.r>0))e.r=3;svAnda(e,svNow(),1);if(++nf>=4)return;continue}
 SLV.fail.add(key)}}}
 function svCaca(e,now){try{if(typeof mnSafe==='function'&&mnSafe())return false;if(!(e.lvl>=40)||typeof AGR==='undefined')return false;const d=Math.abs(e.x-P.x)+Math.abs(e.y-P.y);if(d>(AGR[e.n]?11:7)||d<=1)return false;
 if(e._ct&&now<e._ct)return true;e._ct=now+(AGR[e.n]?300:450);const dd=Math.abs(P.x-e.x)>Math.abs(P.y-e.y)?(P.x>e.x?1:3):(P.y>e.y?2:0),nx=e.x+DX[dd],ny=e.y+DY[dd];
 if(nx<0||ny<0||nx>=W||ny>=H||!T[ny]||!OK.has(T[ny][nx])||!free(nx,ny))return true;e.d=dd;e.fx=e.x;e.fy=e.y;e.x=nx;e.y=ny;e.mt=performance.now();e.mdur=AGR[e.n]?280:380;return true}catch(x){return false}}
+function svTick(e){const R=svRng(svHash(e.sid+'#'+e._k));if(e._ps>0){e._ps--;return 0}
+if(!(e._rn>0)){e._dir=R()*4|0;e._rn=2+(R()*4|0)}else{R();R()}
+const d=e._dir,nx=e.x+DX[d],ny=e.y+DY[d];
+if(nx<0||ny<0||nx>=W||ny>=H||!T[ny]||!OK.has(T[ny][nx])||Math.abs(nx-e.hx)>e.r||Math.abs(ny-e.hy)>e.r){e._rn=0;e._ps=1+(R()*3|0);return 0}
+e.d=d;e.x=nx;e.y=ny;if(--e._rn<=0)e._ps=2+(R()*6|0);return 1}
 function svAnda(e,now,pula){if(!pula&&svCaca(e,now)){e._k=Math.floor((now-e._w0)/SLV.STEP);return}const k=Math.floor((now-e._w0)/SLV.STEP);if(!(k>e._k))return;let n=0,mv=0;const ox=e.x,oy=e.y;
-while(e._k<k&&n<500){e._k++;n++;const R=svRng(svHash(e.sid+'#'+e._k)),d=R()*5|0;if(d===4)continue;const nx=e.x+DX[d],ny=e.y+DY[d];
-if(nx<0||ny<0||nx>=W||ny>=H||!T[ny]||!OK.has(T[ny][nx])||Math.abs(nx-e.hx)>e.r||Math.abs(ny-e.hy)>e.r)continue;e.d=d;e.x=nx;e.y=ny;mv++}
+while(e._k<k&&n<800){e._k++;n++;mv+=svTick(e)}
 if(!mv&&!pula)return;const dist=Math.abs(e.x-ox)+Math.abs(e.y-oy);
 if(pula||dist>2||e.px==null){e.px=e.fx=e.x;e.py=e.fy=e.y;e.mt=null;return}
-e.fx=e.px;e.fy=e.py;e.mt=performance.now();e.mdur=dist>1?760:620}
+e.fx=e.px;e.fy=e.py;e.mt=performance.now();e.mdur=SLV.STEP-2}
 RH0.push(function(){try{if(!svOn())return;const cap=svCap(),now=svNow(),emB=typeof B!=='undefined'&&B?B.w:null,chk=now-(SLV.chk||0)>500;if(chk)SLV.chk=now;
 for(let i=wild.length-1;i>=0;i--){const e=wild[i];if(!e||!e.sid)continue;
-if(chk&&(SLV.tk.has(e.sid)||!svVale(e.sid))&&e!==emB){wild.splice(i,1);SLV.seen.delete(e.sid);continue}
+if(e._fo){if(e!==emB&&performance.now()-e._fo>SLV.FD){wild.splice(i,1);SLV.seen.delete(e.sid)}continue}
+if(chk&&(SLV.tk.has(e.sid)||!svVale(e.sid))&&e!==emB){e._fo=performance.now();continue}
 if(e!==emB)svAnda(e,now)}
 if(!chk)return;const vivos=new Set();for(const e of wild)if(e&&e.sid)vivos.add(e.sid);
 for(const[k,c]of SLV.seen){if(c!==cur||vivos.has(k))continue;SLV.seen.delete(k);if(!SLV.tk.has(k)&&svVale(k)){SLV.tk.add(k);try{mpManda({t:'w',k})}catch(x){}}}
 for(const k of vivos)SLV.seen.set(k,cur);
 if(SLV.tk.size>3000)SLV.tk.clear();if(SLV.fail.size>3000)SLV.fail.clear()}catch(e){}});
 {const _mr=mpRecebe;mpRecebe=function(q){try{if(q&&q.t==='w'&&q.k){SLV.tk.add(String(q.k));return}if(q&&q.t==='wl'&&Array.isArray(q.ks)){for(const k of q.ks)SLV.tk.add(String(k));return}}catch(e){}return _mr.apply(this,arguments)}}
+function svAlfa(e){if(!e||!e.sid)return 1;const t=performance.now();if(e._fo)return Math.max(0,1-(t-e._fo)/SLV.FD);if(e._fi){const a=(t-e._fi)/SLV.FD;if(a>=1){e._fi=0;return 1}return Math.max(0,a)}return 1}
+{const _ei=entImg;entImg=function(e){const q=_ei.apply(this,arguments);try{const a=svAlfa(e);if(a<1){SLV._ga=g.globalAlpha;g.globalAlpha=SLV._ga*a}}catch(x){}return q}}
+{const _go=grassOver;grassOver=function(){try{return _go.apply(this,arguments)}finally{if(SLV._ga!=null){g.globalAlpha=SLV._ga;SLV._ga=null}}}}
+{const _pl=plate;plate=function(e){const a=svAlfa(e);if(a>=1)return _pl.apply(this,arguments);if(a<=.02)return;const o=g.globalAlpha;g.globalAlpha=o*a;try{return _pl.apply(this,arguments)}finally{g.globalAlpha=o}}}
+{const _ac=gtAcerta;gtAcerta=async function(){const antes=GCL.skew,ok0=GCL.ok;await _ac.apply(this,arguments);try{if(!ok0)return;const d=GCL.skew-antes;
+if(Math.abs(d)<1500){GCL.skew=antes;SLV.slew=d}}catch(e){}}}
+setInterval(()=>{try{const d=SLV.slew||0;if(!d)return;const p=Math.sign(d)*Math.min(Math.abs(d),40);GCL.skew+=p;SLV.slew=d-p}catch(e){}},1000);
 function chVista(m){try{if(m&&!m.vis&&(m.c==='a'||chNear(m)))m.vis=1}catch(e){}return m}
 {const _cl=chList;chList=function(){try{for(const m of CHAT.msgs)chVista(m)}catch(e){}return _cl.apply(this,arguments)}}
 {const _cn=chNear;chNear=function(m){return!!(m&&m.vis)||_cn.apply(this,arguments)}}
