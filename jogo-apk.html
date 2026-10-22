@@ -2058,7 +2058,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v112 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v113 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -9083,7 +9083,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=112;
+var KGT_VER=113;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -13181,6 +13181,10 @@ if(e.style.right!==rr)e.style.right=rr;if(e.style.bottom!==bb)e.style.bottom=bb;
 addEventListener('resize',()=>{try{horgAplica()}catch(e){}});
 setTimeout(()=>{try{horgAplica()}catch(e){}},500);
 {const _sm0=setMap0;setMap0=function(i){try{const m=M[i];if(m){if(m.mk&&!m._mk)m._mk=m.mk;if(!m.mk&&!m.MC&&m._mk)m.mk=m._mk}}catch(e){}return _sm0.apply(this,arguments)}}
+try{for(const m of M)if(m&&m.mk&&!m._mk)m._mk=m.mk}catch(e){}
+{const _kp=kpaint;kpaint=function(m){try{if(m&&m._mk&&!m.big){const o=m._mk();if(o&&o.MC){Object.assign(m,o);delete m.mk;return o.MC}}}catch(e){}return _kp.apply(this,arguments)}}
+(function(){let ate=0;document.addEventListener('pointerdown',e=>{try{if(e.target&&e.target.closest&&e.target.closest('.ab,#hudtg,#lojatop,#mnup,#mndn'))ate=Date.now()+500}catch(x){}},true);
+document.addEventListener('click',e=>{try{if(Date.now()<ate&&!(e.target.closest&&e.target.closest('.ab,#hudtg,#lojatop,#mnup,#mndn'))){e.stopPropagation();e.preventDefault()}}catch(x){}},true)})();
 var ARB106=new Map();
 function arbCanvas(X,Y){const si=GRS|0,v=(hsh(X,Y,5101)*4)|0,cls=(hsh(X,Y,5102)*4)|0,key=si+'|'+v+'|'+cls;let c=ARB106.get(key);if(c)return c;
 const S=32,ix=arvIdx('g'),o=ARV.g,P=arvPal(si,cls,0),NL=ARV.leaf.filter(Boolean).length;
@@ -13228,12 +13232,16 @@ if(c.style.width!==cv0.style.width)c.style.width=cv0.style.width;if(c.style.heig
 const z=getComputedStyle(cv0).zIndex;if(z&&z!=='auto'&&c.style.zIndex!==z)c.style.zIndex=z;
 c.style.visibility=getComputedStyle(cv0).visibility;
 NK106.k=W/cv0.width;const x=NK106.x;x.setTransform(1,0,0,1,0,0);x.clearRect(0,0,W,H)}catch(e){}}
+const NKTR=['save','restore','translate','scale','rotate','transform','setTransform','clip'];
 const NKF=['fillText','strokeText','fillRect','strokeRect','drawImage','beginPath','moveTo','lineTo','arcTo','arc','ellipse','rect','closePath','fill','stroke','quadraticCurveTo','bezierCurveTo'];
 const NKS=['fillStyle','strokeStyle','font','textAlign','textBaseline','globalAlpha','lineWidth','lineJoin','lineCap','globalCompositeOperation'];
-function nkOn(){const o=NK106.x,k=NK106.k;if(!o)return false;const sync=()=>{const t=g.getTransform();o.setTransform(t.a*k,t.b*k,t.c*k,t.d*k,t.e*k,t.f*k);for(const p of NKS)try{o[p]=g[p]}catch(e){}};
-for(const f of NKF)g[f]=function(...a){sync();if(f==='drawImage'&&a[0]&&a[0]._hr){const im=a[0];if(a.length===3)a=[im._hr,a[1],a[2],im.width,im.height];else if(a.length===5)a=[im._hr,a[1],a[2],a[3],a[4]];else if(a.length===9){const s=im._hr.width/im.width;a=[im._hr,a[1]*s,a[2]*s,a[3]*s,a[4]*s,a[5],a[6],a[7],a[8]]}}return o[f](...a)};
-return true}
-function nkOff(){for(const f of NKF)delete g[f]}
+function nkSync(){const o=NK106.x;for(const p of NKS){const v=g[p];if(o[p]!==v)o[p]=v}}
+function nkTrans(){const o=NK106.x,k=NK106.k,t=g.getTransform();o.setTransform(t.a*k,t.b*k,t.c*k,t.d*k,t.e*k,t.f*k)}
+function nkInstala(){if(NK106.inst)return;NK106.inst=1;for(const f of NKTR){const orig=g[f];g[f]=function(...a){const r=orig.apply(g,a);if(NK106.on){try{nkTrans()}catch(e){}}return r}}for(const f of NKF){const orig=g[f];g[f]=function(...a){if(!NK106.on)return orig.apply(g,a);const o=NK106.x;nkSync();
+if(f==='drawImage'&&a[0]&&a[0]._hr){const im=a[0];if(a.length===3)a=[im._hr,a[1],a[2],im.width,im.height];else if(a.length===5)a=[im._hr,a[1],a[2],a[3],a[4]];else if(a.length===9){const sc=im._hr.width/im.width;a=[im._hr,a[1]*sc,a[2]*sc,a[3]*sc,a[4]*sc,a[5],a[6],a[7],a[8]]}}
+return o[f](...a)}}}
+function nkOn(){if(!NK106.x)return false;nkInstala();NK106.on=1;nkTrans();return true}
+function nkOff(){NK106.on=0}
 {const _pc=plCache;plCache=function(nm,lv,shy){const c=_pc.apply(this,arguments);try{if(c&&!c._hr){const F=4,h=document.createElement('canvas');h.width=c.width*F;h.height=c.height*F;const x=h.getContext('2d'),L='Nv '+lv;
 x.font='bold 5px sans-serif';const w=x.measureText(nm).width+5;x.font='bold 4px sans-serif';const lw=x.measureText(L).width+4;
 const R=(a,b,ww,hh,r)=>{x.beginPath();x.moveTo(a+r,b);x.arcTo(a+ww,b,a+ww,b+hh,r);x.arcTo(a+ww,b+hh,a,b+hh,r);x.arcTo(a,b+hh,a,b,r);x.arcTo(a,b,a+ww,b,r);x.closePath()};
@@ -13255,6 +13263,14 @@ setInterval(()=>{try{lojaTop()}catch(e){}},700);
 {const _gp=godPanel;godPanel=function(){const r=_gp.apply(this,arguments);try{if(!godOn())return r;const u=document.getElementById('ui');if(u&&!document.getElementById('godsrv')){
 const h=`<div id="godsrv" style="display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 8px">${btn('🚨 Saúde do servidor','vgAbrir()')}${btn('🛡️ Moderação','modPanel()')}</div>`;
 const hd=u.querySelector('.viph,.psh,b');if(hd&&hd.parentNode===u)hd.insertAdjacentHTML('afterend',h);else u.insertAdjacentHTML('afterbegin',h)}}catch(e){}return r}}
+async function godOnline(){if(!godOn())return;open('<b>🌐 Jogadores online</b><p>Carregando…</p>');let j;try{j=await modCall({op:'onlineLista'})}catch(e){return open('<p>'+esc(e.message)+'</p>'+btn('Voltar','godPanel()'))}
+const me=webAcc(),uid=me&&me.fb.uid,L=(j.lista||[]).filter(p=>p.u!==uid).sort((a,b)=>(a.m-b.m)||a.n.localeCompare(b.n));
+const lin=L.map(p=>`<div class="cfr"><span><b>${esc(p.n||'Treinador')}</b> <small>Nv ${p.l|0} · ${p.m>=0&&NM[p.m]?esc(NM[p.m]):'mapa '+p.m} (${p.x},${p.y})</small></span>${p.m>=0&&M[p.m]?btn('🚀 Ir até',`godIrAte(${p.m},${p.x|0},${p.y|0},'${esc(p.n||'').replace(/'/g,'')}')`):''}</div>`).join('')||'<p style="color:#8fa0c4">Ninguém mais online agora.</p>';
+open(`<div class="psh"><span style="font-size:30px">🌐</span><div><b>Jogadores online</b><small>${L.length} jogador${L.length===1?'':'es'} além de você · ao vivo pelo servidor Mundo</small></div></div><div style="max-height:52vh;overflow:auto">${lin}</div>`+btn('🔄 Atualizar','godOnline()')+btn('Voltar','godPanel()'))}
+function godIrAte(m,x,y,nick){if(!godOn()||!M[m])return;closeUI();try{if(G.mt)mnOff(1)}catch(e){}
+let tx=x,ty=y;try{setMap(m,x,y);const ok2=(a,b)=>T[b]&&T[b][a]!=null&&!SOLID.has(T[b][a])&&T[b][a]!==2;if(!ok2(x,y)){out:for(let r=1;r<6;r++)for(let dy=-r;dy<=r;dy++)for(let dx=-r;dx<=r;dx++){if(ok2(x+dx,y+dy)){tx=x+dx;ty=y+dy;break out}}P.x=P.px=P.fx=tx;P.y=P.py=P.fy=ty}}catch(e){}
+mode='walk';try{save()}catch(e){}toast('🚀 Teleportado até <b>'+esc(nick)+'</b> em '+esc(NM[m]||'')+'.')}
+{const _gp2=godPanel;godPanel=function(){const r=_gp2.apply(this,arguments);try{if(!godOn())return r;const d=document.getElementById('godsrv');if(d&&!d.querySelector('.godon'))d.insertAdjacentHTML('beforeend','<span class="godon">'+btn('🌐 Online / teleportar','godOnline()')+'</span>')}catch(e){}return r}}
 function amgMM(cv,sc,big){try{if(!cv||typeof MP==='undefined'||!MP.ps||!MP.ps.size||!AMG||!AMG.L||!AMG.L.length)return 0;
 const ids=new Set(AMG.L.map(a=>a.uid)),g2=cv.getContext('2d'),[ox,oy]=bMM(cv,sc);let n=0;
 for(const o of MP.ps.values()){if(!ids.has(o.id))continue;const x=Math.round(ox+(o.x+.5)*sc),y=Math.round(oy+(o.y+.5)*sc);if(x<-4||y<-4||x>cv.width+4||y>cv.height+4)continue;n++;
@@ -13274,17 +13290,32 @@ g2.restore()}catch(e){}}
 {const _mzd=mzDraw;mzDraw=function(t){const r=_mzd.apply(this,arguments);amgMZ(t);return r}}
 setInterval(()=>{try{const c=document.getElementById('mzc');if(c&&c.offsetParent!==null&&MP.ps.size&&AMG.L&&AMG.L.length)mzReq()}catch(e){}},500);
 var GCL={skew:0,god:0,ok:0};
-function gtGlobal(){return(Date.now()+GCL.skew)/1000*(typeof GTK==='number'&&GTK>0?GTK:1)+GCL.god}
+const GT_FUSO=-3*60; 
+function gtGlobal(){return(Date.now()+GCL.skew)/60000+GT_FUSO+GCL.god}
 function gtMove(nv){try{const d=nv-(G.gt||0);if(Math.abs(d)>30){for(const h in(G.own||{})){const o=G.own[h];if(o&&typeof o.due==='number')o.due+=d}
 if(typeof G.dkd==='number'&&G.dkd)G.dkd+=d;if(G.cl){if(typeof G.cl.t0==='number')G.cl.t0+=d;if(typeof G.cl.until==='number')G.cl.until+=d}
 try{if(typeof WXF!=='undefined'&&WXF&&typeof WXF.until==='number')WXF.until+=d}catch(e){}try{if(typeof WXC!=='undefined')WXC.k=''}catch(e){}}
 G.gt=nv}catch(e){}}
 function gtLocal(){return!!window.KGT_RELOGIO_LOCAL}
-{const _lp=loop;loop=function(t){try{if(!gtLocal()&&typeof G!=='undefined'&&G)gtMove(gtGlobal())}catch(e){}return _lp.apply(this,arguments)}}
+{const _lp=loop;loop=function(t){try{if(!gtLocal()&&typeof G!=='undefined'&&G){gtMove(gtGlobal());if(!GCL.sea){GCL.sea=1;const s=seaI();if(s!==GRS){GRS=s;SEAL=s;try{seaFlush()}catch(e){}}else SEAL=s}}}catch(e){}return _lp.apply(this,arguments)}}
 async function gtAcerta(){try{const u=(typeof FBC!=='undefined'&&FBC.fn)?FBC.fn.replace(/\/$/,''):'';if(!u)return;const t0=Date.now(),r=await fetch(u+'/hora',{cache:'no-store'}),j=await r.json(),t1=Date.now();
 if(j&&j.hora){GCL.skew=Math.round(j.hora-(t0+t1)/2);GCL.ok=1}}catch(e){}}
 setTimeout(gtAcerta,1500);setInterval(gtAcerta,15*60000);
 {const _gtm=typeof godTime==='function'?godTime:null;if(_gtm)godTime=function(h){const cur=gtGlobal()-GCL.god,base=Math.floor(cur/1440)*1440+h*60;GCL.god=base-cur;try{gtMove(gtGlobal())}catch(e){}try{hudTick()}catch(e){}toast('🕒 '+String(h).padStart(2,'0')+':00 (só neste aparelho)')}}
+RH0.unshift(function(cx,cy){try{if(typeof MP==='undefined'||!MP.ps||!MP.ps.size)return;const s=sunP();if(!s||s.a<.01)return;
+const agora=performance.now(),cw=VW*16,ch=VH*16,kx=s.sx*.5*s.L,ky=s.sy*.42*s.L;g.save();g.globalAlpha=Math.min(.55,s.a*1.7);
+for(const o of MP.ps.values()){if(o.px==null||o.px*16<cx-48||o.px*16>cx+cw+32||o.py*16<cy-32||o.py*16>cy+ch+48)continue;
+let sp=1;try{sp=mpPos(o,agora)}catch(e){}const mv=sp<1,dd=o.d,v=dd==0?2:dd==2?0:1,fr=mv?((((o.x+o.y)&1)*4+Math.min(3,Math.floor(sp*4)))%8):8;
+let im;try{im=getV(o.key||'me',v,fr,0)}catch(e){continue}if(!im)continue;
+const X=Math.round((o.px*16-cx)*2)/2+8,Y=Math.round((o.py*16-cy)*2)/2+16;
+g.save();g.translate(X,Y-1);g.transform(1,0,-kx,-ky,0,0);g.scale(dd==1?-1:1,1);
+if(im.pxm)g.drawImage(silc(im),-16,-31,32,32);else if(im.height>40)g.drawImage(silc(im),-8,-24,16,24);else g.drawImage(silc(im),-8,-16,16,16);g.restore()}
+g.restore()}catch(e){}});
+const SEA_INI=[0,355,720,1085],SEA_IDX=[1,2,3,0]; 
+function seaMin(){return(((G.gt||0)%1440)+1440)%1440}
+seaI=function(){const m=seaMin();let k=0;for(let i=0;i<4;i++)if(m>=SEA_INI[i])k=i;return SEA_IDX[k]};
+yearF=function(){return seaMin()/1440};
+try{GRS=seaI();SEAL=GRS}catch(e){}
 var SLV={E:240000,STEP:1500,tk:new Set(),fail:new Set(),seen:new Map()};
 function svNow(){return Date.now()+((typeof GCL!=='undefined'&&GCL.skew)||0)}
 function svHash(s){let h=2166136261>>>0;s=String(s);for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)>>>0}return h>>>0}
@@ -13307,11 +13338,11 @@ function svAnda(e,now,pula){const k=Math.floor((now-e._w0)/SLV.STEP);if(!(k>e._k
 while(e._k<k&&n<500){e._k++;n++;const R=svRng(svHash(e.sid+'#'+e._k)),d=R()*5|0;if(d===4)continue;const nx=e.x+DX[d],ny=e.y+DY[d];
 if(nx<0||ny<0||nx>=W||ny>=H||!T[ny]||!OK.has(T[ny][nx])||Math.abs(nx-e.hx)>e.r||Math.abs(ny-e.hy)>e.r)continue;e.d=d;e.fx=e.x;e.fy=e.y;e.x=nx;e.y=ny}
 if(pula||n>1){e.px=e.fx=e.x;e.py=e.fy=e.y;e.mt=null}else{e.mt=performance.now();e.mdur=560}}
-RH0.push(function(){try{if(!svOn())return;const cap=svCap(),now=svNow(),emB=typeof B!=='undefined'&&B?B.w:null;
+RH0.push(function(){try{if(!svOn())return;const cap=svCap(),now=svNow(),emB=typeof B!=='undefined'&&B?B.w:null,chk=now-(SLV.chk||0)>500;if(chk)SLV.chk=now;
 for(let i=wild.length-1;i>=0;i--){const e=wild[i];if(!e||!e.sid)continue;
-if((SLV.tk.has(e.sid)||!svVale(e.sid))&&e!==emB){wild.splice(i,1);SLV.seen.delete(e.sid);continue}
+if(chk&&(SLV.tk.has(e.sid)||!svVale(e.sid))&&e!==emB){wild.splice(i,1);SLV.seen.delete(e.sid);continue}
 if(e!==emB)svAnda(e,now)}
-const vivos=new Set();for(const e of wild)if(e&&e.sid)vivos.add(e.sid);
+if(!chk)return;const vivos=new Set();for(const e of wild)if(e&&e.sid)vivos.add(e.sid);
 for(const[k,c]of SLV.seen){if(c!==cur||vivos.has(k))continue;SLV.seen.delete(k);if(!SLV.tk.has(k)&&svVale(k)){SLV.tk.add(k);try{mpManda({t:'w',k})}catch(x){}}}
 for(const k of vivos)SLV.seen.set(k,cur);
 if(SLV.tk.size>3000)SLV.tk.clear();if(SLV.fail.size>3000)SLV.fail.clear()}catch(e){}});
@@ -13321,6 +13352,123 @@ function chVista(m){try{if(m&&!m.vis&&(m.c==='a'||chNear(m)))m.vis=1}catch(e){}r
 {const _cn=chNear;chNear=function(m){return!!(m&&m.vis)||_cn.apply(this,arguments)}}
 {const _cj=chJunta;chJunta=function(m){chVista(m);return _cj.apply(this,arguments)}}
 {const _cp=chPoll;chPoll=async function(){const r=await _cp.apply(this,arguments);try{for(const m of CHAT.msgs)chVista(m)}catch(e){}return r}}
+chSesGuarda=function(){};chSesLimpa();
+chSesConfere=function(){const u=chSesUid();if(u===CHAT.uid)return;CHAT.uid=u;CHAT.msgs=[];CHAT.unread=0;CHAT.err='';CHAT.last=u?(typeof ssAgora==='function'?ssAgora():Date.now()):0};
+{const _cj2=chJunta;chJunta=function(m){const r=_cj2.apply(this,arguments);try{if(r&&m&&(m.t|0)>CHAT.last)CHAT.last=m.t|0}catch(e){}return r}}
+HUM34.garcom106=H36({key:'garcom106',sk:'#c8946a',hr:'#1a1410',sh:'#ffffff',s2:'#e8e8f0',pa:'#2a2a34',sw:'#1a1a1a',cap:'#ffffff',bc:'#d23a2e',x:'apron'});LBL.garcom106='Juninho, o garçom';
+var F6={ped:null,mesas:new Set(),cm:null};
+setInterval(()=>{try{if(typeof KB!=='undefined'&&cur===KB.fe)f6Liga()}catch(e){}},1000);
+function f6Mapa(){return typeof KB!=='undefined'&&cur===KB.fe&&M[cur]&&M[cur].feObj}
+function f6Mesas(){const m=M[KB.fe];return m&&m.feObj?m.feObj.filter(o=>o.k==='mesa'):[]}
+function f6Assento(o){for(const[x,y]of[[o.x,o.y+1],[o.x+1,o.y+1],[o.x,o.y-1],[o.x+1,o.y-1]]){const v=(T[y]||[])[x];if((v===173||v===175)&&!(P.x===x&&P.y===y&&!P.sit))return[x,y]}return null}
+function f6Liga(){try{const m=M[KB.fe];if(!m||!m.ia||m._f6)return;m._f6=1;
+for(const o of m.feObj||[]){if(o.k==='banco')m.ia[o.x+','+o.y]=()=>{if(P.sit)return;hSit(o.x,o.y);P.d=2};
+if(o.k==='mesa'){const f=()=>f6Mesa(o);for(let x=o.x;x<o.x+o.w;x++)m.ia[x+','+o.y]=f}}}catch(e){}}
+{const _sm=setMap;setMap=function(i){const pv=cur,r=_sm.apply(this,arguments);try{if(typeof KB!=='undefined'&&i===KB.fe)setTimeout(f6Liga,50);if(typeof KB!=='undefined'&&pv===KB.fe&&i!==KB.fe){f6Cancela();vdLiberaSeVazia()}}catch(e){}return r}}
+function f6Mesa(o){const k=f6Mesas().indexOf(o);if(F6.ped&&F6.ped.mesa===k)return toast('🍽️ Seu pedido está nessa mesa.');if(F6.mesas.has(k))return toast('🪑 Mesa ocupada. Espere liberar.');
+const s=f6Assento(o);if(!s)return toast('🪑 Sem cadeira livre nessa mesa.');hSit(s[0],s[1]);P.d=0;toast('🪑 Sentou. Para comer, peça um pastel ou caldo no Seu Kenji.')}
+const _f6Pastel2=fePastel2;
+fePastel2=function(k){const q=FEPAST[k];if(!q||G.money<q.c)return;if(F6.ped)return toast('🍽️ Você já tem um pedido saindo.');
+const L=f6Mesas();let k2=-1,seat=null;for(let i=0;i<L.length;i++){if(F6.mesas.has(i))continue;const s=f6Assento(L[i]);if(s){k2=i;seat=s;break}}
+if(k2<0)return ok('🍽️ <b>Seu Kenji:</b> "Ih, todas as mesas estão ocupadas! Espera um pouquinho que já vaga."');
+G.money-=q.c;hud();try{save()}catch(e){}closeUI();
+if(P.sit)try{P.sit=null}catch(e){}hSit(seat[0],seat[1]);P.d=0;F6.mesas.add(k2);
+const o=L[k2],now=performance.now(),de=[27,26],ate=[seat[0]+(seat[0]===o.x?-1:1),seat[1]];
+F6.ped={k,mesa:k2,o,seat,fase:'indo',t0:now,de,ate,dur:2600};toast('🥟 <b>Seu Kenji:</b> "Senta aí que o Juninho já leva!"')};
+function f6Efeito(k){const q=FEPAST[k];G.money+=q.c;const mo=G.money,wasUI=mode==='ui';try{_f6Pastel2(k)}catch(e){}if(G.money!==mo-q.c)G.money=mo-q.c;hud();
+try{const u=document.getElementById('ui'),t=u&&u.querySelector('p')?u.querySelector('p').innerHTML:(u?u.innerText:'');if(!wasUI)closeUI();if(t)toast(t)}catch(e){}}
+function f6Levanta(st){const c=[[st[0],st[1]+1],[st[0]-1,st[1]],[st[0]+1,st[1]],[st[0],st[1]-1],[st[0]-1,st[1]+1],[st[0]+1,st[1]+1]].find(([a,b])=>{try{return free(a,b)}catch(e){return false}});
+if(c&&P.sit){P.sit.x=c[0];P.sit.y=c[1]}try{sitUp(performance.now(),2)}catch(e){}if(P.sit&&c){P.sit=null;P.fx=P.x;P.fy=P.y;P.x=c[0];P.y=c[1];P.d=2;P.end=performance.now()+tdur()}}
+function f6Cancela(){if(!F6.ped)return;F6.mesas.delete(F6.ped.mesa);F6.ped=null}
+function f6Fim(comeu){const p=F6.ped;if(!p)return;F6.mesas.delete(p.mesa);F6.ped=null;
+if(comeu){const q=FEPAST[p.k];G.money+=q.c;const mo=G.money;try{_f6Pastel2(p.k)}catch(e){}if(G.money!==mo-q.c)G.money=mo-q.c;hud()}
+try{if(P.sit)sitUp(performance.now(),-1)}catch(e){}}
+RH0.push(function(cx,cy,t){try{const p=F6.ped;if(!p)return;if(!f6Mapa()){f6Cancela();return}const now=performance.now(),u=Math.min(1,(now-p.t0)/p.dur);
+const sentado=P.sit&&P.x===p.seat[0]&&P.y===p.seat[1];
+if(p.fase!=='indo'&&p.fase!=='volta'&&!sentado){toast('🍽️ Você levantou e deixou o pedido na mesa.');f6Cancela();return}
+if(p.fase==='indo'&&u>=1){p.fase='serve';p.t0=now;p.dur=900;toast('🧑‍🍳 <b>Juninho:</b> "Aqui está! Bom apetite!"')}
+else if(p.fase==='serve'&&u>=1){p.fase='come';p.t0=now;p.dur=4200}
+else if(p.fase==='come'&&u>=1){p.fase='volta';p.t0=now;p.dur=2600;p.comeu=1;f6Efeito(p.k);
+p.lev=now+800}
+if(p.lev&&now>=p.lev){p.lev=0;try{if(P.sit&&P.x===p.seat[0]&&P.y===p.seat[1])f6Levanta(p.seat)}catch(e){}F6.mesas.delete(p.mesa);toast('🪑 Mesa livre para o próximo!')}
+else if(p.fase==='volta'&&!p.lev&&(now-p.t0)/p.dur>=1){F6.mesas.delete(p.mesa);F6.ped=null;return}
+let gx,gy,mv=0;const L=(a,b,s)=>[a[0]+(b[0]-a[0])*s,a[1]+(b[1]-a[1])*s];
+if(p.fase==='indo'){const s=u;const mid=[p.ate[0],p.de[1]];[gx,gy]=s<.5?L(p.de,mid,s*2):L(mid,p.ate,(s-.5)*2);mv=1}
+else if(p.fase==='volta'){const s=u;const mid=[p.ate[0],p.de[1]];[gx,gy]=s<.5?L(p.ate,mid,s*2):L(mid,p.de,(s-.5)*2);mv=1}
+else[gx,gy]=p.ate;
+const d=p.fase==='indo'?(Math.abs(p.ate[0]-gx)>.05?(p.ate[0]>gx?1:3):2):p.fase==='volta'?(Math.abs(p.de[1]-gy)>.05?0:(p.de[0]>gx?1:3)):(p.ate[0]<p.seat[0]?1:3);
+const v=d==0?2:d==2?0:1,fr=mv?((Math.floor(now/140))%8):8;let im=null;try{im=getV('garcom106',v,fr,0)}catch(e){}
+const X=Math.round((gx*16-cx)*2)/2+8,Y=Math.round((gy*16-cy)*2)/2+16;
+g.save();g.globalAlpha=.28;g.fillStyle='#0a0a14';g.beginPath();g.ellipse(X,Y-1,5,2,0,0,7);g.fill();g.restore();
+if(im){g.save();g.translate(X,Y);g.scale(d==1?-1:1,1);if(im.pxm)g.drawImage(im,-16,-31,32,32);else if(im.height>40)g.drawImage(im,-8,-24,16,24);else g.drawImage(im,-8,-16,16,16);g.restore()}
+const tx=p.fase==='indo'?X:(p.o.x+1)*16-cx,ty=p.fase==='indo'?Y-15:p.o.y*16-cy+4;
+F6.cm=(p.fase!=='volta'||!p.comeu)?[tx,ty,p.k,p.fase==='come'?1-u:1]:null;
+if(p.fase==='come'&&Math.floor(now/400)%2){g.save();g.font='bold 6px sans-serif';g.textAlign='center';g.fillStyle='#fff';g.strokeStyle='#000';g.lineWidth=1.5;const sx=p.seat[0]*16-cx+8,sy=p.seat[1]*16-cy-22;g.strokeText('nhac!',sx,sy);g.fillText('nhac!',sx,sy);g.restore()}
+}catch(e){}});
+RH2.push(function(){try{if(F6.ped&&F6.cm&&f6Mapa())f6Comida(...F6.cm)}catch(e){}});
+function f6Comida(X,Y,k,fr){g.save();X=Math.round(X);Y=Math.round(Y);
+if(k==='p'||k==='k'){g.fillStyle='#f4f4f0';g.fillRect(X-5,Y+2,10,2);if(fr>0){const w=Math.max(1,Math.round(8*fr));g.fillStyle='#8a5a1a';g.fillRect(X-4,Y-1,w,3);g.fillStyle='#e8b04a';g.fillRect(X-4,Y-1,w,2);g.fillStyle='#ffd88a';g.fillRect(X-3,Y-1,Math.max(1,w-2),1)}}
+if(k==='c'||k==='k'){const cx=k==='k'?X+5:X;g.fillStyle='#d8e8f0';g.fillRect(cx-2,Y-4,4,6);const h=Math.round(5*fr);if(h>0){g.fillStyle='#b8c84a';g.fillRect(cx-1,Y+1-h,2,h)}g.fillStyle='#ffffff';g.fillRect(cx-2,Y-4,1,6)}
+g.restore()}
+async function vdLiberaSeVazia(){try{if(typeof VD==='undefined'||VD.eu==null||!webAcc())return;const n=VD.eu;const j=await vdCall({op:'minhas'});
+const tem=(j.anuncios||[]).some(a=>!a.para&&a.b===n&&(a.st==='ativo'||a.st==='pend'));if(tem){toast('⛺ Sua vendinha continua aberta: ela tem itens à venda.');return}
+await vdCall({op:'fechar',n});VD.eu=null;try{await vdAtualiza(1)}catch(e){}toast('⛺ Você saiu da vendinha: ela ficou livre de novo.')}catch(e){}}
+{const _su=sitUp;sitUp=function(t,hd){const s=P.sit;const r=_su.apply(this,arguments);try{if(s&&typeof VD!=='undefined'&&VD.eu!=null&&f6Mapa()){const b=FEBANCAS[VD.eu];if(b&&s.bx===b.x+1&&s.by===b.y+1)vdLiberaSeVazia()}}catch(e){}return r}}
+function f6Grade(sel,onSel){const its=bagL().filter(([nm])=>invCount(nm)>0&&nm!=='kmc');
+return`<div id="f6gr" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(64px,1fr));gap:6px;max-height:34vh;overflow:auto;margin:6px 0">${its.map(([nm,c])=>{let im='';try{im=ico(nm,true)}catch(e){}const id=encodeURIComponent(nm).replace(/'/g,'%27');
+return`<button class="f6it${nm===sel?' on':''}" data-n="${esc(nm)}" onclick="${onSel}(decodeURIComponent('${id}'))" style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px;border-radius:8px;border:2px solid ${nm===sel?'#ffd34d':'#2a3550'};background:${nm===sel?'#3a3216':'#0f1626'};color:#dfe6f5;font-size:10px;line-height:1.1;min-height:64px">${im?`<img src="${im}" alt="" style="width:32px;height:32px;image-rendering:pixelated">`:'📦'}<span style="max-width:60px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(nm)}</span><small style="color:#ffd34d">×${c}</small></button>`}).join('')}</div>`}
+function f6Marca(n){document.querySelectorAll('#f6gr .f6it').forEach(b=>{const on=b.dataset.n===n;b.classList.toggle('on',on);b.style.borderColor=on?'#ffd34d':'#2a3550';b.style.background=on?'#3a3216':'#0f1626'});const h=document.getElementById('vdit');if(h)h.value=n;const q=document.getElementById('vdq');if(q){q.max=invCount(n)}
+const nm=document.getElementById('f6nm');if(nm){let im='';try{im=ico(n,true)}catch(e){}nm.innerHTML=`${im?`<img src="${im}" style="width:24px;height:24px;image-rendering:pixelated;vertical-align:middle">`:''} <b>${esc(n)}</b> <small>(você tem ${invCount(n)})</small>`}}
+vdNovo=function(n){const its=bagL().filter(([nm])=>invCount(nm)>0&&nm!=='kmc');if(!its.length)return ok('🎒 Nada na mochila para vender. (Cristais, Tônicos e outros itens do cinto não vão para a Feira.)');
+const s0=its[0][0];VD.nv={n,it:s0,tipo:'fixo'};
+open(`<div class="psh"><span style="font-size:30px">➕</span><div><b>Anunciar na vendinha ${n+1}</b><small>Toque no item. Ele sai da mochila enquanto estiver à venda.</small></div></div>${f6Grade(s0,'f6Marca')}
+ <input type="hidden" id="vdit" value="${esc(s0)}"><div id="f6nm" style="margin:2px 0 6px"></div>
+ <div class="cfr"><span>Quantidade</span><input id="vdq" type="number" min="1" value="1" style="flex:1"></div>
+ <div class="cfr"><span>Tipo</span><select id="vdtp" style="flex:1" onchange="document.getElementById('vdh').style.display=this.value==='leilao'?'flex':'none';document.getElementById('vdpl').textContent=this.value==='leilao'?'Lance inicial':'Preço (total)'"><option value="fixo">Preço fixo</option><option value="leilao">Leilão</option></select></div>
+ <div class="cfr"><span id="vdpl">Preço (total)</span><input id="vdp" type="number" min="1" value="100" style="flex:1"></div>
+ <div class="cfr" id="vdh" style="display:none"><span>Duração</span><select id="vdhs" style="flex:1"><option value="1">1 hora</option><option value="6">6 horas</option><option value="12" selected>12 horas</option><option value="24">24 horas</option><option value="48">48 horas</option></select></div>`+
+btn('Anunciar',`vdAnunciar(${n})`)+btn('Voltar',`vdBanca(${n})`));f6Marca(s0)};
+var TD={t:0,vistos:new Set(),para:null};
+async function tdAbrir(){if(!webAcc())return ok('💱 <b>Trocas</b><br>Entre com uma conta com e-mail ou Google para trocar com outros jogadores.');
+open('<b>💱 Trocas</b><p>Carregando…</p>');let j,saldo;try{[j,saldo]=await Promise.all([vdCall({op:'ofertas'}),vdSaldo()]);await vdRetira(true)}catch(e){return ok('💱 '+esc(e.message))}
+const ag=j.agora||Date.now(),ic=n=>{let im='';try{im=ico(n,true)}catch(e){}return im?`<img src="${im}" style="width:32px;height:32px;image-rendering:pixelated">`:'📦'};
+const pm=(j.paraMim||[]).map(a=>`<div class="sr">${ic(a.n)}<span><b>${a.q>1?a.q+'× ':''}${esc(a.n)}</b><br><small>${vdM(a.preco)} · de ${esc(a.nick)}</small></span>${btn('Comprar',`tdComprar('${a.id}','${esc(a.n).replace(/'/g,'')}',${a.preco})`,saldo!=null&&saldo<a.preco)}${btn('Recusar',`tdRecusar('${a.id}')`)}</div>`).join('')||'<p style="color:#8fa0c4">Nenhuma oferta para você agora.</p>';
+const mi=(j.minhas||[]).map(a=>`<div class="sr">${ic(a.n)}<span><b>${a.q>1?a.q+'× ':''}${esc(a.n)}</b><br><small>${a.st==='pend'?'⏳ enviando…':'esperando'} · para ${esc(a.pnick||'?')} · ${vdM(a.preco)}</small></span>${a.st==='ativo'?btn('Cancelar',`tdCancelar('${a.id}')`):''}</div>`).join('')||'<p style="color:#8fa0c4">Você não tem ofertas enviadas.</p>';
+const am=(typeof AMG!=='undefined'&&AMG.L?AMG.L:[]).map(a=>btn('💱 '+esc(a.nick),`tdNova('${a.uid}','${esc(a.nick).replace(/'/g,'')}')`)).join('');
+open(`<div class="psh"><span style="font-size:30px">💱</span><div><b>Trocas entre jogadores</b><small>Venda direto para outro jogador, sem ir à Feira. Ele paga com o saldo do banco · seu saldo: ${saldo==null?'—':vdM(saldo)} · taxa de 5%</small></div></div>
+ <p style="margin:6px 0 2px"><b>Ofertas para você</b></p>${pm}<p style="margin:8px 0 2px"><b>Suas ofertas</b></p>${mi}
+ <p style="margin:8px 0 2px"><b>Vender para…</b></p>${am||'<small style="color:#8fa0c4">Adicione amigos em 👥 ou digite o nick/código:</small>'}
+ <div class="cfr"><input id="tdq" placeholder="nick exato ou código do jogador" style="flex:1" onkeydown="if(event.key==='Enter')tdBusca()">${btn('Buscar','tdBusca()')}</div>`+
+btn('📦 Pegar minha caixa de entrega','vdRetira().then(n=>{if(!n.length)toast(\'📦 Caixa vazia.\')})')+btn('Fechar','closeUI()'))}
+async function tdBusca(){const v=((document.getElementById('tdq')||{}).value||'').trim();if(!v)return;try{const r=await bkCall({op:'quem',para:v});const L=r.lista||[];if(!L.length)return toast('Ninguém com esse nick ou código.');tdNova(L[0].uid,L[0].nick)}catch(e){toast(esc(e.message))}}
+function tdNova(uid,nick){const its=bagL().filter(([nm])=>invCount(nm)>0&&nm!=='kmc');if(!its.length)return ok('🎒 Nada na mochila para vender.'+btn('Voltar','tdAbrir()'));TD.para={uid,nick};const s0=its[0][0];
+open(`<div class="psh"><span style="font-size:30px">💱</span><div><b>Vender para ${esc(nick)}</b><small>Toque no item. Ele sai da mochila; se ${esc(nick)} recusar ou você cancelar, ele volta pela caixa de entrega.</small></div></div>${f6Grade(s0,'f6Marca')}
+ <input type="hidden" id="vdit" value="${esc(s0)}"><div id="f6nm" style="margin:2px 0 6px"></div>
+ <div class="cfr"><span>Quantidade</span><input id="vdq" type="number" min="1" value="1" style="flex:1"></div>
+ <div class="cfr"><span>Preço (total)</span><input id="vdp" type="number" min="1" value="100" style="flex:1"></div>`+btn('Enviar oferta','tdEnviar()')+btn('Voltar','tdAbrir()'));f6Marca(s0)}
+async function tdEnviar(){if(VD.busy||!TD.para)return;const g2=id=>document.getElementById(id),item=g2('vdit').value,q=Math.floor(+g2('vdq').value||0),preco=Math.floor(+g2('vdp').value||0),para=TD.para.uid,nick=TD.para.nick;
+if(q<1||invCount(item)<q)return toast('Você não tem tudo isso na mochila.');if(preco<1)return toast('Coloque um preço.');
+VD.busy=1;open('<b>💱 Enviando…</b><p>Salvando o seu progresso na nuvem para o servidor conferir o item.</p>');
+try{if(Date.now()-(CLOUD.lastT||0)>4*60000)await vdSobeSave();let r;const body={op:'anunciar',para,item,q,preco,tipo:'fixo'};try{r=await vdCall(body)}catch(e){if(e.j&&e.j.salvar){await vdSobeSave();r=await vdCall(body)}else throw e}
+invRemove(item,q);G.feLoc=G.feLoc||{};G.feLoc[r.id]=[item,q];save();hud();
+open('<b>💱 Quase lá…</b><p>O item saiu da mochila. A oferta chega para '+esc(nick)+' assim que a nuvem receber (uns segundos).</p>');
+await vdSobeSave();let st='pend';for(let i=0;i<4&&st==='pend';i++){try{st=(await vdCall({op:'confirmar',id:r.id})).st}catch(e){}if(st==='pend'){await new Promise(x=>setTimeout(x,8000));await vdSobeSave()}}
+if(st==='ativo'){delete G.feLoc[r.id];save()}VD.busy=0;toast(st==='ativo'?'💱 Oferta enviada para '+esc(nick)+'!':'⏳ A oferta chega quando a nuvem salvar.');tdAbrir()}
+catch(e){VD.busy=0;ok('💱 '+esc(e.message)+btn('Voltar','tdAbrir()'))}}
+async function tdComprar(id,n,p){if(VD.busy)return;VD.busy=1;try{await vdCall({op:'comprar',id});play&&play('item');await vdRetira();toast('💱 Comprou '+n+' por '+vdM(p)+'!')}catch(e){toast('💱 '+esc(e.message))}VD.busy=0;tdAbrir()}
+async function tdRecusar(id){try{await vdCall({op:'recusar',id});toast('💱 Oferta recusada.')}catch(e){toast(esc(e.message))}tdAbrir()}
+async function tdCancelar(id){try{const r=await vdCall({op:'cancelar',id});G.feLoc=G.feLoc||{};if(r.volta){delete G.feLoc[id];await vdRetira()}else if(G.feLoc[id]){const[n,q]=G.feLoc[id];invAdd(n,q);delete G.feLoc[id];save();hud()}toast('💱 Oferta cancelada: o item voltou.')}catch(e){toast(esc(e.message))}tdAbrir()}
+setInterval(async()=>{try{if(!webAcc()||document.hidden||typeof mode==='undefined'||mode==='title')return;const j=await vdCall({op:'ofertas'});
+for(const a of j.paraMim||[]){if(TD.vistos.has(a.id))continue;TD.vistos.add(a.id);toast(`💱 <b>${esc(a.nick)}</b> quer te vender ${a.q>1?a.q+'× ':''}${esc(a.n)} por ${vdM(a.preco)}. Veja em 👥 → 💱 Trocas.`)}}catch(e){}},60000);
+{const _ad=amgDes;amgDes=function(){const r=_ad.apply(this,arguments);try{const u=document.getElementById('ui');if(u&&!document.getElementById('tdbtn')){const h=document.createElement('div');h.id='tdbtn';h.innerHTML=btn('💱 Trocas (vender para jogador)','tdAbrir()');const ps=u.querySelector('.psh');if(ps)ps.after(h);else u.prepend(h)}}catch(e){}return r}}
+{const _can=mnCan;mnCan=function(k,n){if(k==='surf'){try{if(mnTy(n).includes('water'))return true}catch(e){}}return _can.apply(this,arguments)}}
+try{MNNEED.surf='um monstro do tipo Água (os pequenos vão mais devagar)'}catch(e){}
+function sfPeq(){try{const m=G.mt;return!!(m&&m.k==='surf'&&(typeof mnStage==='function'?mnStage(m.n):1)===0&&!(typeof MNSURF_X!=='undefined'&&MNSURF_X.has(m.n)))}catch(e){return false}}
+{const _spd=mnSpd;mnSpd=function(){const r=_spd.apply(this,arguments);try{const m=G.mt;if(m&&m.k==='surf'){const st=typeof mnStage==='function'?mnStage(m.n):1;if(st===0&&sfPeq())return .95;if(st>=2)return .64}}catch(e){}return r}}
+{const _seat=mnSeat;mnSeat=function(o,v){const s=_seat.apply(this,arguments);try{if(sfPeq()&&s)s.y+=Math.max(3,Math.round((o.b-o.t)*.12))}catch(e){}return s}}
+{const _st=mnStart;mnStart=function(k){const r=_st.apply(this,arguments);try{if(k==='surf'&&G.mt&&sfPeq())setTimeout(()=>toast(`🌊 ${esc(G.mt.n)} é pequeno: ele se esforça e vai devagar. Com uma evolução fica bem mais rápido!`),400)}catch(e){}return r}}
+RH2.push(function(cx,cy,t){try{if(!sfPeq()||t>=P.end+100&&!(t<P.end))return;const X=P.px*16+8-cx,Y=P.py*16+15-cy;g.save();g.globalAlpha=.55;g.fillStyle='#e8f6ff';
+for(let i=0;i<4;i++){const u=((t/260+i/4)%1),a=i*1.57+t/300;g.fillRect(Math.round(X+Math.cos(a)*(5+u*7)),Math.round(Y-1-u*5+Math.abs(Math.sin(a))*2),1.5,1.5)}g.restore()}catch(e){}});
 (function(){try{const st=document.createElement('style');st.textContent=`body.hudmin .ab:not(.hkeep){display:none!important}
 #hudtg{position:fixed;right:calc(env(safe-area-inset-right,0px) + 88px);bottom:calc(env(safe-area-inset-bottom,0px) + 6px);width:40px;height:40px;border-radius:50%;padding:0;margin:0;z-index:6;
  background:radial-gradient(circle at 35% 30%,#fff3c0,#e8c050 60%,#a8801c);border:2px solid #fff;color:#3a2a00;font:900 18px sans-serif;box-shadow:0 2px 6px #0008;display:flex;align-items:center;justify-content:center}
