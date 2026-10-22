@@ -1,11 +1,11 @@
 {
- "jogo": 117,
- "jogo_arquivo": "jogo-117.kpk",
- "jogo_sha": "4265f286daadece3050cdc2ddf0b4a67aa1dfbfea0317ba77fef920252605caa",
- "jogo_assin": "+eb4/L44c2pCS5MAk92BgyI4/AuIU2+bGEbPE+3epjSiKbPTegyE5UTH2yKMadiS9ZH/1OiIY72qu+GH+F7ICw==",
+ "jogo": 118,
+ "jogo_arquivo": "jogo-118.kpk",
+ "jogo_sha": "d3c6a4e7f09992ee9bca7fdad44c53fa9ad56666f4d16ec89c8cb0b3dd4b51c1",
+ "jogo_assin": "0Kzq8hHjuzVLRWS60XZu0Km3Fgz0aq+4u0skpyfVevZnFw9OSwTtsD4Ti7J8rudrvmo37Of2r3KEc0lOpXSzBw==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "5b265dd1c7c937c387525dc07a4a517832cc8ae035c89aedf21acb6239e8ef52",
- "launcher_assin": "NozNnJzC4X9vZn7JuBPKz1hnh8YKow2FQn4P8VnVF1itGcauEolSMwGdHwQa+NA1/BQ4uCNm6bwFNElLTjcNBw==",
- "notas": "Sem nível máximo: monstros e treinador sobem para sempre · KMC pela Google Play no app da Play Store"
+ "launcher_sha": "0773425167cc84887219f3c19b87c41b474576ebfa94ec08398429837a38b000",
+ "launcher_assin": "MfiE8cH1pMypTzztBx3MjaU3v7XGj3z8qVfks8i4mWBPpKL74nCzVT/NUPhJ41pkVUw6caA6A8clYFNhrRcmDQ==",
+ "notas": "Monstros voltam a ter limite no nível 100; o treinador continua sem nível máximo"
 }

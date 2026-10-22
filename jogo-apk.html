@@ -2058,7 +2058,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v117 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v118 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -6646,7 +6646,7 @@ function godItems(k){if(k===1){G.ball=(G.ball|0)+10;G.premier=(G.premier|0)+10;G
 else if(k===2){G.heal=(G.heal|0)+10;G.rev=(G.rev|0)+10}
 else{let n=0;for(const s of Object.values(STONE)){if(addI(s[0],1))n++}toast('🪨 +'+n+' pedras');hud();return}
 hud();toast(k===1?'💎 +10 cristais de cada':'🧪 +10 tônicos e reanimadores')}
-function godMon(){const n=($('gmn')||{}).value,l=Math.max(1,Math.min(100000,parseInt(($('gml')||{}).value,10)||45)),sh=!!($('gms')||{}).checked;if(!SP[n])return;
+function godMon(){const n=($('gmn')||{}).value,l=Math.max(1,Math.min(100,parseInt(($('gml')||{}).value,10)||45)),sh=!!($('gms')||{}).checked;if(!SP[n])return;
 const m=mon(n,l);if(sh){m.sh=true;stats(m);m.hp=m.max}G.dx=G.dx||{};G.dx[n]=2;const r=toParty(m);hud();toast(r?r:'✨ '+n+' Nv '+l+' entrou no time!')}
 function godTime(h){G.gt=Math.floor(G.gt/1440)*1440+h*60;try{hudTick()}catch(e){}toast('🕒 '+String(h).padStart(2,'0')+':00')}
 function godLeave(){const a=accCur();if(!a)return;a.god=false;a.gnv=false;a.ginv=false;accSave();if(G.mt&&!vipOn())mnOff(1);hud();closeUI();toast('Modo GOD desligado nesta conta.')}
@@ -8735,7 +8735,7 @@ loop=function(t){const now=performance.now(),dt=Math.min(.2,(now-_xbT)/1000);_xb
 try{if(G&&G.xpb>0&&!(typeof QZ!=='undefined'&&QZ.on)&&!document.getElementById('ttl')&&!document.getElementById('chr')){G.xpb-=dt;_xbS+=dt;const e=document.querySelector('#hud .xpbhud');if(e)e.textContent='⚡'+xpbFmt(G.xpb);
 if(G.xpb<=0){G.xpb=0;_xbS=0;save();hud();toast('⚡ O Boost de EXP acabou.')}else if(_xbS>=60){_xbS=0;save()}}}catch(e){}
 return _xbLoop.apply(this,arguments)};
-const _xbGain=gain;gain=async function(m,x){if(xpbOn()&&x>0)x=Math.round(x*XPB.MULT);const r=await _xbGain.call(this,m,x);try{}catch(e){}return r};
+const _xbGain=gain;gain=async function(m,x){if(xpbOn()&&x>0)x=Math.round(x*XPB.MULT);const r=await _xbGain.call(this,m,x);try{if(m&&m.lvl>=100){m.lvl=100;m.xp=Math.min(m.xp,100**3)}}catch(e){}return r};
 const TAD={
 poncho:{slot:'roupa',n:'Poncho de Pindorama',d:'Poncho de lã com listras douradas.',r:'comum',x:'poncho',c:{ac:'#c8582a',ac2:'#f0d040'}},
 oculos:{slot:'oculos',n:'Óculos Redondos',d:'Armação escura, estilo professor.',r:'comum',x:'glasses',c:{gl:'#1a1a24'}},
@@ -9083,7 +9083,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=117;
+var KGT_VER=118;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -10926,7 +10926,7 @@ toast('⚠️ O save deste aparelho foi alterado fora do jogo. Ele não vai para
 function savConfere(){let n=0;const mons=[];try{
 const pega=m=>{if(m&&typeof m==='object'&&typeof m.n==='string'&&typeof m.lvl==='number')mons.push(m)};
 (G.party||[]).forEach(pega);try{for(const b of(G.dep||[]))for(const c of(b||[]))if(c&&c.t==='p')pega(c.m)}catch(e){}
-for(const m of mons){if(!SP[m.n])continue;const lv=Math.max(1,Math.floor(m.lvl)||1);if(lv!==m.lvl){m.lvl=lv;n++}
+for(const m of mons){if(!SP[m.n])continue;const lv=Math.max(1,Math.min(100,Math.floor(m.lvl)||1));if(lv!==m.lvl){m.lvl=lv;n++}
 const ant=[m.max,m.A,m.D,m.SA,m.SD,m.S].join(),r=m.max>0?Math.max(0,Math.min(1,(+m.hp||0)/m.max)):1;stats(m);
 if(ant!==[m.max,m.A,m.D,m.SA,m.SD,m.S].join()){m.hp=Math.round(m.max*r);if(r>0&&m.hp<1)m.hp=1;n++}else if(m.hp>m.max){m.hp=m.max;n++}}
 if(G.t){const l=Math.max(1,Math.min(typeof TRMAX==='number'?TRMAX:200,Math.floor(G.t.l)||1));if(l!==G.t.l){G.t.l=l;n++}if(!(G.t.x>=0)){G.t.x=0;n++}}
@@ -13772,7 +13772,7 @@ let dm=Math.floor(Math.floor((2*a.lvl/5+2)*pw*A/D)/50)+2;dm=Math.max(1,Math.floo
 d.hp=Math.max(0,d.hp-dm);play('hit');bhit(tgt,dm,e,cr);rb();await wait(560);
 if(typeof DRAIN!=='undefined'&&DRAIN[mv]&&a.hp>0&&a.hp<a.max){const hv=Math.max(1,Math.min(a.max-a.hp,Math.ceil(dm*DRAIN[mv])));a.hp+=hv;try{bpart(side,'heal')}catch(e2){}rb();await say(`${nm(a)} recuperou ${hv} de vida!`)}
 const x=(cr?'Golpe crítico! ':'')+(e>1?'É super efetivo!':e<1?'Não é muito efetivo...':'');if(x)await say(x)}
-async function gain(m,x){await say(`${m.n} ganhou ${x} EXP!`);m.xp+=x;while(m.xp>=(m.lvl+1)**3){m.lvl++;let o=m.max;stats(m);m.hp+=m.max-o;const k=m.mv.length;learn(m);play('lvl');await say(`${m.n} subiu para o Nv${m.lvl}!`);
+async function gain(m,x){await say(`${m.n} ganhou ${x} EXP!`);m.xp+=x;while(m.lvl<100&&m.xp>=(m.lvl+1)**3){m.lvl++;let o=m.max;stats(m);m.hp+=m.max-o;const k=m.mv.length;learn(m);play('lvl');await say(`${m.n} subiu para o Nv${m.lvl}!`);
 const ev=SP[m.n].ev;if(ev&&!m.sh&&m.lvl>=ev[1]&&G.t.l>=40){await say(`${m.n} está evoluindo!`);await evoAnim(m,ev[0]);m.n=ev[0];if(B)B.evo=null;dxm(m.n,2);o=m.max;stats(m);m.hp+=m.max-o;learn(m);await say(`Evoluiu para ${m.n}!`)}}}
 async function turn(a){if(B.busy)return;B.busy=1;B.menu=0;const w=B.w;let me=B.cur;
 const wm=()=>{const v=w.mv.filter(v=>v.pp>0);return v.length?v[Math.random()*v.length|0].n:'Desespero'};
