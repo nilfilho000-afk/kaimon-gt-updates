@@ -1,11 +1,11 @@
 {
- "jogo": 114,
- "jogo_arquivo": "jogo-114.kpk",
- "jogo_sha": "1b8eb867c0fd792b24f84449eede145bc06b7dda938d51a8f5fe9a4a8fdcb604",
- "jogo_assin": "uOX3GBPgLfdWaM+0LbGbRCyflwJvMAu1McEPg4iZ3d7XjXCDYAmtyC0Q2mkpmcOzstR3tik/xHj6VeWzY/ZsCQ==",
+ "jogo": 115,
+ "jogo_arquivo": "jogo-115.kpk",
+ "jogo_sha": "2b716cc25cedeac686921b40321774fcc4eedf753b0ca3f4c2800bb849abd1d3",
+ "jogo_assin": "BTnfJvNlNWQoaYlaAPY95RsiLi/bt2rtW6ekaW1zyUOrqOKVsPKiVYcgAv1w/EVtsRdTr9zxg+G7Cl7UX3tjAQ==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "8c7893548df0700845d5e5813734ded54123f975074fc3f9a256095dc6582392",
- "launcher_assin": "2/QKH6RUs2NBpEDHKTVXjQcOlNJOv+WWWAphTuTfaRZNjnBdI7TG4NieoCwv02pLq7X1Eaovib48S+S1uW5RAA==",
- "notas": "Sol de verdade girando no dia; travada ao entrar nos morros corrigida; monstros andando mais fluido; brilho e contraste em 100% por padrão."
+ "launcher_sha": "8351fe681cd2d329d55745d41b4dd2f2b300e156d11c77b5220578a1ad67b10c",
+ "launcher_assin": "85TRf69/yg3tCoi7OFp0xieq9veXVgh0qDYpvy2jNgW31aS8/rnp8/4JhW+SolIo5486qRj31Ou0+TTJplENAw==",
+ "notas": "Monstros selvagens andam lisos: trechos contínuos, sem repuxo e sem teleporte na troca"
 }
