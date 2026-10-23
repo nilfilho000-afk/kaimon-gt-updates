@@ -1,7 +1,0 @@
-{
- "v": 122,
- "url": "https://raw.githubusercontent.com/nilfilho000-afk/kaimon-gt-updates/main/jogo-apk.html",
- "notas": "Versão 1.4: quando o celular apaga as imagens do jogo da memória (depois de ficar em segundo plano), o jogo percebe e recarrega sozinho no mesmo lugar, em vez de ficar com o mapa sumido.",
- "sha": "f6009185697ea945f4e4f22160c63d213f17430aeca2b0813eb5d7244dd55d74",
- "sig": "hs7+6vpEBnSiQSRDHVHCywxrhGDU5waTtbRj3OHNU9XeLqvhYCPOaQmDSZfIN2/acXlU68O64GMX4Hlox7xBMQ=="
-}

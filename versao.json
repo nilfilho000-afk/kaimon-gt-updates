@@ -1,11 +1,11 @@
 {
- "jogo": 121,
- "jogo_arquivo": "jogo-121.kpk",
- "jogo_sha": "97a1e395b663b1fa66cabe3d3f9b2b39e44af03c7b257e96ab9de13e79a21041",
- "jogo_assin": "b4rjWwxoiatbTwQS4sAovxjZHsCplWDqr9bbCxO3HX2uywMtbtCq46fkmMPNmlfCg0or0Y6wVDipotwjfr8vCw==",
+ "jogo": 122,
+ "jogo_arquivo": "jogo-122.kpk",
+ "jogo_sha": "511bd0a763fd7a7bdbe425f75af0c62dc9e506f23fb4f1b4b82dc9dd260369a2",
+ "jogo_assin": "HM4cBvNyFLRAKRPfS5JptuK/kkiCnvL3QRmp2ZoDwbI1wGUfNNmRmMQcOVzK74L15QnRurGF2BdevXHx2pDWAw==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "634272b0c1279e06e80b7701b8b257ea5409e430c47919603734967b0b263c04",
- "launcher_assin": "yc4GvyZFrXMmaFvJSI94FzYxTMmPT3trpjQThUnfF5w3kzbKQvc79L40NEUfz/xILl+J81AOx+Qloh7Lo0fVDA==",
- "notas": "Versão 1.3: nick único, árvores fora das rochas no Campo Vulcânico, login com Google só onde o Google permite e jogadores voltam a aparecer no mapa ao voltar para o jogo."
+ "launcher_sha": "c590b99316b510460778bcdc53264caa20271508fd3217b8af136118a6711137",
+ "launcher_assin": "o/wrcVeP2ifT27VeLG3AXJau4wkYF+KsidJcOulXOLlSUC9cVlUaFp9or0E4KAwkwjk8RAEIwdjI9zUWKuc1Bg==",
+ "notas": "Versão 1.4: quando o celular apaga as imagens do jogo da memória (depois de ficar em segundo plano), o jogo percebe e recarrega sozinho no mesmo lugar, em vez de ficar com o mapa sumido."
 }
