@@ -1,7 +1,7 @@
 {
- "v": 131,
+ "v": 132,
  "url": "https://raw.githubusercontent.com/nilfilho000-afk/kaimon-gt-updates/main/jogo-apk.html",
- "notas": "O online já conecta enquanto o jogo carrega: ao entrar no mapa você aparece para os outros na hora.",
- "sha": "443df17d9180ecce12ee6b9717267d24a2a98bd96bc7fccb71dbe632fa4e556c",
- "sig": "NUCOed39RbKt0bgqXsoPKpHIo4NWjCjwUkPqi25oIeZLVsCXGkdcUzL8VE4JJ7NiEj1g3yT2sjUUFKBOEH+ZeA=="
+ "notas": "Árvores, monstros e objetos não somem nem ficam transparentes do nada enquanto você anda.",
+ "sha": "64115ea075590322b0873e9e6c6e6e3800c9c2a4dd8773896540ee20cc69cc9f",
+ "sig": "jq+jX422W1zh+CHrjlPpknpv5Os8NgKRx4/2QBcyzijX65gdmwPkecBv9nld0BgessAUGkchTVaY1TXrgHuzfA=="
 }

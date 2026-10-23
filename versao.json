@@ -1,11 +1,11 @@
 {
- "jogo": 131,
- "jogo_arquivo": "jogo-131.kpk",
- "jogo_sha": "33c570445cee841677de01b7c7a8a7263b82f2afc951214d75b1f427172a8960",
- "jogo_assin": "F4uTffXCSj9q1R/WMLdHH3No1anDkGTUqioYSzjTKD6/jKND1BEnJrhNJl65IjBJHFqGvQZvazLP+w7wFxXJDg==",
+ "jogo": 132,
+ "jogo_arquivo": "jogo-132.kpk",
+ "jogo_sha": "7296974081cc08e4fbe11daa264e9cdb8a5b6cfc5a19dd9df42ed7802f77c196",
+ "jogo_assin": "mQbs1qwQ1pmD68/FRZtl+Q09w0wrQFEkXynJJ9bSTExUTVIkvMxQYU8PDJnS+9DNnUqYKNpOKfLvztSMRXvCCw==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "a1348e1ebf562e0ec95de967fd23c7f91010e3604678cd9146030a8ba6ad38e5",
- "launcher_assin": "lAIOoPQDj4qhbZU/pRdifSm5UwNF6T78LXDnWKehak0X/qqnby+oOF1gF2ODvk1MXSHb4QfcIf3uADePTXdgDg==",
- "notas": "O online já conecta enquanto o jogo carrega: ao entrar no mapa você aparece para os outros na hora."
+ "launcher_sha": "81dca5265177a05804ed00896083644c5891275172c710a287315ed1e5e00285",
+ "launcher_assin": "bb30H27dEIiZK0ezAvZjrUGu/GSkwLshFyQOf0lOn06OXInY0nCoiJiLNQqWkigFBJ7iuy6D3wSsES2a5i3uDw==",
+ "notas": "Árvores, monstros e objetos não somem nem ficam transparentes do nada enquanto você anda."
 }
