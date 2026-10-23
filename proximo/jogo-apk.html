@@ -2058,7 +2058,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v124 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v125 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -9084,7 +9084,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=124;
+var KGT_VER=125;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -11643,7 +11643,7 @@ addEventListener('keyup',e=>{try{const c=e.code||e.key;if(!(c in KTDIR)&&ktDir(e
 if(KT.held.length&&!ktCampo(e)){const u=KT.held[KT.held.length-1];hd=u in KTDIR?KTDIR[u]:-1}else hd=-1}catch(x){}});
 addEventListener('blur',ktLimpa);
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')ktLimpa()});
-var MP={ws:null,st:0,ps:new Map(),last:null,bo:3000,next:0,off:0,lastSend:0,hb:0,m:-1,url:'wss://kaimon-gt-api.nilfilho000.workers.dev/mp'};
+var MP={rx:0,ping:0,ws:null,st:0,ps:new Map(),last:null,bo:3000,next:0,off:0,lastSend:0,hb:0,m:-1,url:'wss://kaimon-gt-api.nilfilho000.workers.dev/mp'};
 function mpUrl(){return(window.KMP_URL||MP.url)}
 function mpQuer(){try{return!MP.off&&typeof webAcc==='function'&&webAcc()&&webOn()&&webOnline()&&document.visibilityState!=='hidden'&&typeof mode!=='undefined'&&mode!=='title'&&G&&G.nick&&!document.getElementById('ttl')}catch(e){return false}}
 function mpLook(){try{return JSON.stringify(G.look||{}).slice(0,600)}catch(e){return'{}'}}
@@ -11653,20 +11653,23 @@ function mpManda(o){const w=MP.ws;if(w&&w.readyState===1){try{w.send(JSON.string
 async function mpLiga(){if(MP.st)return;MP.st=1;let tok='';try{tok=await webTok(webAcc())}catch(e){MP.st=0;MP.next=Date.now()+MP.bo;MP.bo=Math.min(60000,MP.bo*2);return}
 if(!mpQuer()){MP.st=0;return}
 let w;try{w=new WebSocket(mpUrl()+'?t='+encodeURIComponent(tok))}catch(e){MP.st=0;MP.next=Date.now()+MP.bo;MP.bo=Math.min(60000,MP.bo*2);return}
-MP.ws=w;w.onopen=()=>{MP.st=2;MP.bo=3000;MP.last=null;MP.ps.clear();mpTick()};
-w.onmessage=ev=>{try{mpRecebe(JSON.parse(ev.data))}catch(e){}};
-w.onclose=ev=>{if(MP.ws===w){MP.ws=null;MP.st=0;MP.ps.clear();MP.last=null}
+MP.ws=w;w.onopen=()=>{if(MP.ws!==w)return;MP.st=2;MP.bo=3000;MP.last=null;MP.ps.clear();MP.rx=MP.ping=Date.now();mpTick()};
+w.onmessage=ev=>{if(MP.ws!==w)return;MP.rx=Date.now();if(ev.data==='pong')return;try{mpRecebe(JSON.parse(ev.data))}catch(e){}};
+w.onclose=ev=>{const atual=MP.ws===w;if(atual){MP.ws=null;MP.st=0;MP.ps.clear();MP.last=null}
+if(w._meu||(!atual&&MP.ws))return;
 if(ev&&ev.code===4000){MP.off=1;try{toast('Sua conta foi aberta em outro lugar. Os outros jogadores somem desta tela.')}catch(e){}return}
 MP.next=Date.now()+MP.bo;MP.bo=Math.min(60000,MP.bo*2)};
 w.onerror=()=>{try{w.close()}catch(e){}}}
-function mpDesliga(){const w=MP.ws;MP.ws=null;MP.st=0;MP.ps.clear();MP.last=null;if(w){try{w.close(1000)}catch(e){}}}
+function mpDesliga(){const w=MP.ws;MP.ws=null;MP.st=0;MP.ps.clear();MP.last=null;if(w){w._meu=1;try{w.close(1000)}catch(e){}}}
 function mpLimpaLook(s){let o={};try{o=JSON.parse(s||'{}')}catch(e){}const r={};if(o&&typeof o==='object')for(const k in o){if(!/^[a-z0-9_]{1,12}$/i.test(k))continue;const v=o[k];
 if(typeof v==='number'&&Number.isFinite(v)&&Math.abs(v)<1000)r[k]=v;else if(typeof v==='boolean')r[k]=v;else if(typeof v==='string'&&/^[#\w-]{0,24}$/.test(v))r[k]=v}return r}
 function mpChave(k){let h=0;for(let i=0;i<k.length;i++)h=(h*31+k.charCodeAt(i))|0;return'op'+(h>>>0).toString(36)}
 function mpVisual(o,k){if(o.k===k&&o.key)return;o.k=k;const L=mpLimpaLook(k),key=mpChave(JSON.stringify(L));o.key=key;
 if(!HUM34[key]){try{HUM34[key]=H35(lkD(L))}catch(e){HUM34[key]=HUM34.me}}}
 function mpRecebe(q){const agora=performance.now();
-if(q.t==='all'){MP.ps.clear();for(const p of q.ps||[])mpPoe(p,agora,1);return}
+if(q&&q.m!=null&&(q.t==='all'||q.t==='p'||q.t==='m'||q.t==='x')&&(!MP.last||q.m!==MP.last.m))return;
+if(q&&(q.t==='p'||q.t==='m')&&!(Number.isFinite(q.x)&&Number.isFinite(q.y)))return;
+if(q.t==='all'){MP.ps.clear();for(const p of q.ps||[])if(Number.isFinite(p.x)&&Number.isFinite(p.y))mpPoe(p,agora,1);return}
 if(q.t==='p'){mpPoe(q,agora,!MP.ps.has(q.id));return}
 if(q.t==='m'){const o=MP.ps.get(q.id);if(!o)return;mpAnda(o,q.x,q.y,q.d,agora);return}
 if(q.t==='x'){MP.ps.delete(q.id)}}
@@ -11678,6 +11681,8 @@ function mpTick(){try{const quer=mpQuer();
 if(!quer){if(MP.ws||MP.st)mpDesliga();return}
 if(!MP.ws&&!MP.st&&Date.now()>=MP.next){mpLiga();return}
 if(MP.st!==2)return;
+const ag=Date.now();if(ag-MP.rx>35000){mpDesliga();MP.next=0;return}
+if(ag-MP.ping>10000){MP.ping=ag;try{MP.ws.send('ping')}catch(x){}}
 const e=mpEu(),L=MP.last;
 if(L&&L.m!==e.m)MP.ps.clear();
 if(!L||L.m!==e.m||L.n!==e.n||L.l!==e.l||L.k!==e.k||L.f!==e.f){if(mpManda(Object.assign({t:'s'},e)))MP.last=e}
@@ -11686,7 +11691,7 @@ else if(Date.now()-MP.lastSend>25000)mpManda({t:'h'})}catch(x){}}
 setInterval(mpTick,100);
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')mpDesliga();else{MP.off=0;MP.next=0;setTimeout(mpTick,300)}}); 
 addEventListener('pagehide',mpDesliga);
-addEventListener('online',()=>{MP.next=0});
+addEventListener('online',()=>{MP.next=0;if(MP.ws)mpDesliga()}); 
 function mpPos(o,agora){const sp=Math.max(0,Math.min(1,(agora-o.t0)/o.dur));o.px=o.fx+(o.x-o.fx)*sp;o.py=o.fy+(o.y-o.fy)*sp;return sp}
 RH0.push(function(cx,cy){if(!MP.ps.size)return;try{const agora=performance.now(),cw=VW*16,ch=VH*16,L=[];
 for(const o of MP.ps.values()){const sp=mpPos(o,agora);if(o.px*16<cx-48||o.px*16>cx+cw+32||o.py*16<cy-32||o.py*16>cy+ch+48)continue;L.push([o,sp])}
@@ -13629,6 +13634,12 @@ r.innerHTML=`<div style="max-width:86vw">🔄<br>Gire o celular<br>para jogar de
 document.getElementById('rotbt').addEventListener('click',e=>{e.stopPropagation();rotDeita()})}catch(e){}}
 rotIni();if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',rotIni);addEventListener('load',rotIni);setTimeout(rotIni,1500);
 addEventListener('pointerdown',()=>{try{if(matchMedia('(orientation: portrait)').matches&&(navigator.maxTouchPoints||0)>0)rotDeita()}catch(e){}},true);
+var RTV=RT;
+try{if(cur===2&&G.rtc&&G.rtc.m!=null){RT=Object.assign({},G.rtc);RTV=RT}}catch(e){}
+{const _sm0=setMap0;setMap0=function(i){try{if(i===2){
+if(RT!==RTV&&RT&&RT.m!=null)G.rtc=Object.assign({},RT); 
+else if(G.rtc&&G.rtc.m!=null)RT=Object.assign({},G.rtc); 
+RTV=RT}}catch(e){}return _sm0.apply(this,arguments)}}
 (function(){try{const st=document.createElement('style');st.textContent=`body.hudmin .ab:not(.hkeep){display:none!important}
 #hudtg{position:fixed;right:calc(env(safe-area-inset-right,0px) + 88px);bottom:calc(env(safe-area-inset-bottom,0px) + 6px);width:40px;height:40px;border-radius:50%;padding:0;margin:0;z-index:6;
  background:radial-gradient(circle at 35% 30%,#fff3c0,#e8c050 60%,#a8801c);border:2px solid #fff;color:#3a2a00;font:900 18px sans-serif;box-shadow:0 2px 6px #0008;display:flex;align-items:center;justify-content:center}

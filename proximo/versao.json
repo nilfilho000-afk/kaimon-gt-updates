@@ -1,11 +1,11 @@
 {
- "jogo": 124,
- "jogo_arquivo": "jogo-124.kpk",
- "jogo_sha": "8f62712d50fccc16197192778efdb8397f4cba96635d4b27c1c6754b206c8d41",
- "jogo_assin": "uECnptqDLDPCgXlZQ5dr6GIXBG/jXUh1bd6l3scwgDQqqfsDo29fKiL545HkiPW5NF72Oc+kDXcaVzwLp+74Bw==",
+ "jogo": 125,
+ "jogo_arquivo": "jogo-125.kpk",
+ "jogo_sha": "1f4816a5c0202ac70f4a6dff1c7cdf907cb47203904a3580efb7f6bc40481603",
+ "jogo_assin": "fyjSNRVFlez6gsekoZAnh/NfsxkrketK5KgrAjMA+iQ8QWEz6Zn1QOSfsVMmEmILFMeyiYQkLLKe3iWh12KgDA==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "586255054d0955d223f1e48a7b9b8239090c919bafbf373a2e734ef49e25b4a4",
- "launcher_assin": "+krbX7bqFsP2W/zeJH9riUqufFJzf6Ltb+h7tBKFll0J6oi5bAk/N/BEiGbIikxajTsbDjdj9joAnG5pj6xjBQ==",
- "notas": "Celular com a rotação travada: agora tem o botão 'Toque aqui para jogar deitado', que vira o jogo mesmo com a rotação automática desligada."
+ "launcher_sha": "24be08e957ab749e49e27fe44715c8945909c10f1fece154e86e5acf1d366690",
+ "launcher_assin": "v5NCgsuRfYVZ8f3A1v5Z4QUJl1KmV2RFKARV5qQ+up4ihTlpViEs9yS7kcrwQ8yJ+y3OwbuIJLKQkeSdO9yeBw==",
+ "notas": "Online mais firme: jogadores no mesmo mapa não somem mais uns para os outros depois de minimizar o app, trocar de rede ou recarregar dentro do Centro de Cura. Celular com rotação travada ganhou o botão 'Toque aqui para jogar deitado'."
 }

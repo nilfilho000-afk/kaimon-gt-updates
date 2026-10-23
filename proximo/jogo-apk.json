@@ -1,7 +1,7 @@
 {
- "v": 124,
+ "v": 125,
  "url": "https://raw.githubusercontent.com/nilfilho000-afk/kaimon-gt-updates/main/jogo-apk.html",
- "notas": "Celular com a rotação travada: agora tem o botão 'Toque aqui para jogar deitado', que vira o jogo mesmo com a rotação automática desligada.",
- "sha": "673d90c36cf1e4eb464196af3d678d6b479adf26aea1744137958d7747509d22",
- "sig": "uw3tvQ9gJBGK8FPlhiXwGYwMJrnrpG0DFhFp/XT3h0ruTekLte+JKjHVgsmuuTpMDzjEfT+t/YwfpUVzDBOALA=="
+ "notas": "Online mais firme: jogadores no mesmo mapa não somem mais uns para os outros depois de minimizar o app, trocar de rede ou recarregar dentro do Centro de Cura. Celular com rotação travada ganhou o botão 'Toque aqui para jogar deitado'.",
+ "sha": "d366a0c236a14a8a08e1259b3e8d29f04592997a1d7d1d84a044a3169acca06c",
+ "sig": "oTSc2TvGPMHwHu5bwvwR42YT1eW5d98OTn/2VgEWej4hmHl34zy7JN+as4RUtN+93uuRr+MURxdYwch6JyXmKA=="
 }
