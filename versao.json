@@ -1,11 +1,11 @@
 {
- "jogo": 123,
- "jogo_arquivo": "jogo-123.kpk",
- "jogo_sha": "4c175c0097b8dd3cf68d2cdf7b849aafae8272ec2ae59af6cee0fd034bf09514",
- "jogo_assin": "MGJXP+HMl9c+8THCOnyUWit3C9PNAE2YnzESIRFfbEtL+J82UBuZng1zIT5kaNACfvR2IS0cyJgC6ImrVbC3CA==",
+ "jogo": 125,
+ "jogo_arquivo": "jogo-125.kpk",
+ "jogo_sha": "05f7214173cdaac6f0db1c70045b9c22a33b779a09b4398e95dae51db51a483c",
+ "jogo_assin": "iEP6rzd+R1KK6mww135h1KawGgvggggQCkAX6WZZC8/Y8Y0aA1ZWia8dwv7gyXp6ByUCVWr/TwvaOJXMsdu8Dg==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "d5226d1fbec3c1e91438bea2da1eb913ac44234732aa289f95c07c08eb1d2184",
- "launcher_assin": "UQ55rPzi73DPm1tQejEn4pckSkw4TMZRXKPCsG31rNG3RSne1ZIbMyHYv4GZ/HL/YWlRhGhhR3qBkAQRmj4kCA==",
- "notas": "Versão 1.5: escolha do mundo (Mundo Cristal), cada casa alugada tem um morador só por mundo, ninguém mais aparece dentro da sua casa e o Centro de Cura de cada cidade é separado."
+ "launcher_sha": "6ccba211feff3e8c36f966fa5c394cdf494eea9b96a16951a61b59ad1c8cea03",
+ "launcher_assin": "io081pvLfsNWWEDHSTfNz1ljXh4fow/C8FTcnp/y+S0zHSblSFh7Fh62dnG+ZVL93RpmfQhUJ7Ej3zV8ecZhCw==",
+ "notas": "Lojas e casas não aparecem mais como um borrão ao entrar. Atualização obrigatória: quando sai versão nova, o jogo salva, limpa o cache e atualiza sozinho. Casas: dá para visitar a casa de outro jogador (só olhar). Online mais firme. Celular com rotação travada ganhou o botão 'Toque aqui para jogar deitado'."
 }
