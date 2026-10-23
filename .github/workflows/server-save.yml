@@ -3,7 +3,11 @@
 name: Server save (05:00)
 on:
   schedule:
-    - cron: '35 7 * * *'   # 04:35 BRT: o GitHub às vezes atrasa o agendamento; o job espera até 05:00 em ponto
+    # três disparos (03:40, 04:10 e 04:35 BRT): o GitHub às vezes atrasa o agendamento em mais de 30 min (23/10 só
+    # rodou às 05:10 e perdeu o dia). Cada um espera até 05:00 em ponto; quem chega depois de liberado não faz nada.
+    - cron: '40 6 * * *'
+    - cron: '10 7 * * *'
+    - cron: '35 7 * * *'
   workflow_dispatch:
     inputs:
       agora:
@@ -26,7 +30,8 @@ jobs:
         if: steps.tem.outputs.sim == '1' && !(github.event_name == 'workflow_dispatch' && inputs.agora)
         run: |
           alvo=$(date -u -d "today 08:00" +%s); agora=$(date -u +%s)
-          if [ "$agora" -gt $((alvo + 600)) ]; then echo "::warning::Passou da janela 05:00–05:10; libera amanhã."; exit 1; fi
+          if [ "$agora" -gt $((alvo + 10800)) ]; then echo "::warning::Já passou das 08:00; fica para o próximo server save."; exit 1; fi
+          if [ "$agora" -gt $((alvo + 600)) ]; then echo "::warning::O GitHub atrasou o agendamento: liberando agora, atrasado."; fi
           if [ "$agora" -lt "$alvo" ]; then echo "Esperando $((alvo-agora)) s"; sleep $((alvo-agora)); fi
       - name: Liberar
         if: steps.tem.outputs.sim == '1'
