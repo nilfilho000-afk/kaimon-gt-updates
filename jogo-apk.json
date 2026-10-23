@@ -1,7 +1,7 @@
 {
- "v": 129,
+ "v": 130,
  "url": "https://raw.githubusercontent.com/nilfilho000-afk/kaimon-gt-updates/main/jogo-apk.html",
- "notas": "Outros jogadores andam liso, sem 'teleporte', mesmo com internet oscilando.",
- "sha": "2f1fc3605dbf24a4e0b877d45d6fc95892aa2fb41fab8634d944f0a1dcb8c455",
- "sig": "X+n70tcfZvSe3MCNTmnmeUV7MexxxnrzwFvqwtLCGYmcu7PKVtfs6E9BGsi1s0Dc1zER1XdN+oHt1eJ83GSKKQ=="
+ "notas": "Online mais rápido: entra em segundos ao abrir o jogo e some para os outros na hora em que você sai.",
+ "sha": "f451e6efefaeccd71f3fe04f6d4dc8bc6e585a24c3292da27cd96d3304bcb5a0",
+ "sig": "1eRZMhZ1VM0StOIiECHn58skHmqQzUwZ60g6+9HdHImleUw22XDgpjnHIOGalnPq8RK5C4n6lOWCnBq/be0i0A=="
 }
