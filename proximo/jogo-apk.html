@@ -13698,6 +13698,21 @@ try{const base=(window.KMP_URL||MP.url).replace(/^wss:/,'https:').replace(/\/mp.
 setTimeout(kgtConfere,4000);setInterval(kgtConfere,5*60000);
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')setTimeout(kgtConfere,800)});
 if(typeof mpRecebe==='function'){const _rc=mpRecebe;mpRecebe=function(q){if(q&&q.t==='upd'){kgtForca(q.v);return}return _rc.apply(this,arguments)}}
+{const _s=setMap0;setMap0=function(i){try{const m=M[i];if(m&&m.mk)m.mk0=m.mk}catch(e){}const r=_s.apply(this,arguments);try{telaConfere(i)}catch(e){}return r}}
+function telaSolta(c){try{if(!c||c.free||!c.width)return;for(const m of M)if(m&&m.MC===c)return;const f=FGM&&FGM.get(c);if(FGM)FGM.delete(c);if(f&&f.width)f.width=f.height=0;c.width=c.height=0}catch(e){}}
+kevict=function(pv,i){if(pv===i)return;let k=KLRU.indexOf(pv);if(k>=0)KLRU.splice(k,1);if(pv>2)KLRU.push(pv);k=KLRU.indexOf(i);if(k>=0)KLRU.splice(k,1);
+while(KLRU.length>2){const j=KLRU.shift(),m=M[j];if(j===cur||!m||!m.MC||!m.T||m.mk)continue;
+const c=m.MC;if(c.free)c.free();else if(FGM)FGM.delete(c);m.MC=null;
+if(m.mk0)m.mk=m.mk0; 
+telaSolta(c)}};
+if(typeof kBlit==='function'){const _kb=kBlit;kBlit=function(cx,cy,cw,ch,fg){if(!fg){try{g.fillStyle='#07090f';g.fillRect(0,0,cw,ch)}catch(e){}}return _kb.apply(this,arguments)}}
+function telaVazia(c){try{if(!c||c.free||typeof c.getContext!=='function'||!c.width)return false;const x=c.getContext('2d');
+for(const[a,b]of[[.5,.5],[.3,.5],[.7,.5],[.5,.35],[.5,.65]]){if(x.getImageData(Math.floor(c.width*a),Math.floor(c.height*b),1,1).data[3]>0)return false}return true}catch(e){return false}}
+var TELA={tent:{}};
+function telaConfere(i){if(i!==cur)return;const m=M[i];if(!m)return;
+if(!telaVazia(MC)){m._okVisto=1;TELA.tent[i]=0;return}
+if((TELA.tent[i]||0)>=1){if(m._okVisto&&typeof ctxRecupera==='function')ctxRecupera();return} 
+TELA.tent[i]=1;telaSolta(m.MC);m.MC=null;if(m.mk0)m.mk=m.mk0;setMap0(i,P.x,P.y)}
 (function(){try{const st=document.createElement('style');st.textContent=`body.hudmin .ab:not(.hkeep){display:none!important}
 #hudtg{position:fixed;right:calc(env(safe-area-inset-right,0px) + 88px);bottom:calc(env(safe-area-inset-bottom,0px) + 6px);width:40px;height:40px;border-radius:50%;padding:0;margin:0;z-index:6;
  background:radial-gradient(circle at 35% 30%,#fff3c0,#e8c050 60%,#a8801c);border:2px solid #fff;color:#3a2a00;font:900 18px sans-serif;box-shadow:0 2px 6px #0008;display:flex;align-items:center;justify-content:center}
