@@ -11354,7 +11354,7 @@ TWX[172]=TWX[171];
 {const _fgTile=tile;tile=function(id,X,Y){if(id===171||id===172)return _fgTile.call(this,fogoBase(X,Y),X,Y);return _fgTile.apply(this,arguments)}}
 BPOST.push(function fogoPost(i,m,T2){try{
 const ilha=typeof ILHA!=='undefined'&&m.key===ILHA.key;if(i!==4&&!ilha)return;
-const H2=T2.length,W2=T2[0].length,CH=ilha?new Set([162]):new Set([49,51,52]);m.fogoB=m.fogoB||{};
+const H2=T2.length,W2=T2[0].length,CH=ilha?new Set([162]):new Set([49]);m.fogoB=m.fogoB||{};
 const ok=(x,y)=>{if(x<4||y<4||x>W2-5||y>H2-5)return false;for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++)if(!CH.has((T2[y+dy]||[])[x+dx]))return false;
 for(let dy=-2;dy<=2;dy++)for(let dx=-2;dx<=2;dx++){const v=(T2[y+dy]||[])[x+dx];if(v===3||v===50||v===106||v===108||v===171)return false}return true};
 const put=(n,id,salt)=>{let c=0;for(let tr=0;tr<n*60&&c<n;tr++){const x=hsh(tr,salt,771)*W2|0,y=hsh(salt,tr,773)*H2|0;if(!ok(x,y))continue;m.fogoB[x+','+y]=T2[y][x];T2[y][x]=id;c++}return c};

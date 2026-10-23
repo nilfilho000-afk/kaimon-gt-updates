@@ -1,11 +1,11 @@
 {
  "jogo": 121,
  "jogo_arquivo": "jogo-121.kpk",
- "jogo_sha": "43ca55d247005e89d8bdc8ee355a1cdd44bd367acedbb88e827a977bcb334e34",
- "jogo_assin": "UFbKFCeJyEniHvgvavM2zuJJp/REw7379XhySSNSn/zCUGbHsiYGPttzZ6V0yPdZgPS+z2YTXYCleRl5PF7IBA==",
+ "jogo_sha": "8ef0b45ca690d6f931ba2c278a6c9ddfdf75b436e92e65313c2b978eb542a0da",
+ "jogo_assin": "MjkTAw5dJmc/ZR54ClFhHoCDvfpnAI7cJn+SC36Q2Oyhf4nfp/P1kLL4Ah78JcwmJDG7JazxIdO7REBg1C0pBg==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "215cc2ec5194e1a67cd10f1bfa814cfaeca40da8950dae2ac4bfe463859add1d",
- "launcher_assin": "ElKIvS2CgKpHA7SrnigNSR/vtzNzFS6q5QAq6QJ2ogm3boKlHANRSUqPlBMsl+EwgiKifPz0j6Qus5q8IzzsDA==",
- "notas": "Versão 1.3: o nick do personagem agora é único (não dá para criar um personagem com o nick de outro jogador)."
+ "launcher_sha": "4f88a8ae608c783e31100921b0c0639bc1374b5249395233db21876f371afbe7",
+ "launcher_assin": "Sr/QRW6N96HVgt6NBGCWjFNdz8OlL5Sk0/A4hEa0FDqwqrHhXMHadh+XyQ+p/upuTKdpjfdNrJXmR7iltvFlAw==",
+ "notas": "Versão 1.3: o nick do personagem agora é único e as árvores e pedras de magma do Campo Vulcânico não ficam mais em cima das rochas."
 }

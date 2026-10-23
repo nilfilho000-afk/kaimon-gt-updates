@@ -1,7 +1,7 @@
 {
  "v": 121,
  "url": "https://raw.githubusercontent.com/nilfilho000-afk/kaimon-gt-updates/main/jogo-apk.html",
- "notas": "Versão 1.3: o nick do personagem agora é único (não dá para criar um personagem com o nick de outro jogador).",
- "sha": "6b9f3ac337903a9cc45fdd6e73945aa8c86e725782972096a8bd86da35f34282",
- "sig": "DP/kRfAMBmYb+Rf/c/lZUKNbwKcyeOOGbPSFIHa170wBTGbCQdBp1Y5cXiMcRMLTjwZYzP3Hr7oqf9rzFe2RSQ=="
+ "notas": "Versão 1.3: o nick do personagem agora é único e as árvores e pedras de magma do Campo Vulcânico não ficam mais em cima das rochas.",
+ "sha": "a693cb76ce36cc215b1c5672f8343f6ada0bc8339984bb13d7099df270853f92",
+ "sig": "ZgRjbb4ZmnEz6tIkoTU8cAhb6PyDKCITNXr3em5Le0vrk/x6NkBZ2OqQlhseZ/F2szX5mw+5TEflkEjqElxbtQ=="
 }
