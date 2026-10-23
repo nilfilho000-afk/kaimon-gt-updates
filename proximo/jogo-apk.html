@@ -8515,7 +8515,8 @@ if(webIOS())return open('<b>📲 Instalar no iPhone</b><p>No Safari, toque em <b
 open('<b>📲 Instalar</b><p>No Chrome do Android: menu <b>⋮</b> → <b>Instalar app</b> (ou "Adicionar à tela inicial"). No computador, o ícone de instalar fica na barra de endereço.</p>'+btn('Fechar','closeUI()'))}
 function pwaBtnHtml(){if(WEB.pc||WEB.apk||webStandalone())return'';return`<button class="tlink" id="pwaBtn" style="display:${WEB.prompt||webIOS()?'':'none'};color:#9fd0ff" onclick="pwaInstall()">📲 Instalar o jogo neste aparelho</button>`}
 var GSI={load:0,init:0};
-function gsiOn(){return webOn()&&!!FBC.gcid&&!WEB.apk}
+const GSI_ORIG=['https://kaimon-gt.web.app','https://kaimon-gt.firebaseapp.com','https://kaimongt.com.br','https://www.kaimongt.com.br'];
+function gsiOn(){let wv=false;try{wv=/; wv\)/.test(navigator.userAgent)}catch(e){}return webOn()&&!!FBC.gcid&&!WEB.apk&&!WEB.pc&&!wv&&GSI_ORIG.includes(location.origin)}
 function gsiLoad(cb){if(!gsiOn())return;if(window.google&&google.accounts&&google.accounts.id)return cb&&cb();if(GSI.load){if(cb)GSI.cbs=(GSI.cbs||[]).concat([cb]);return}
 GSI.load=1;GSI.cbs=cb?[cb]:[];const s=document.createElement('script');s.src='https://accounts.google.com/gsi/client';s.async=true;s.defer=true;s.onload=()=>{(GSI.cbs||[]).forEach(f=>{try{f()}catch(e){}});GSI.cbs=[]};s.onerror=()=>{GSI.load=0};document.head.appendChild(s)}
 function gsiRender(){const el=$('gsiBtn');if(!el||!window.google||!google.accounts||!google.accounts.id)return;
