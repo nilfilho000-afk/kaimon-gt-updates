@@ -11652,11 +11652,12 @@ function mpEu(){return{m:cur|0,x:P.x|0,y:P.y|0,d:P.d|0,n:String(G.nick||'').slic
 function mpManda(o){const w=MP.ws;if(w&&w.readyState===1){try{w.send(JSON.stringify(o));MP.lastSend=Date.now();return 1}catch(e){}}return 0}
 async function mpLiga(){if(MP.st)return;MP.st=1;let tok='';try{tok=await webTok(webAcc())}catch(e){MP.st=0;MP.next=Date.now()+MP.bo;MP.bo=Math.min(60000,MP.bo*2);return}
 if(!mpQuer()){MP.st=0;return}
-let w;try{w=new WebSocket(mpUrl()+'?t='+encodeURIComponent(tok))}catch(e){MP.st=0;MP.next=Date.now()+MP.bo;MP.bo=Math.min(60000,MP.bo*2);return}
+let w;try{w=new WebSocket(mpUrl()+'?t='+encodeURIComponent(tok)+'&v='+(typeof KGT_VER==='number'?KGT_VER:0))}catch(e){MP.st=0;MP.next=Date.now()+MP.bo;MP.bo=Math.min(60000,MP.bo*2);return}
 MP.ws=w;w.onopen=()=>{if(MP.ws!==w)return;MP.st=2;MP.bo=3000;MP.last=null;MP.ps.clear();MP.rx=MP.ping=Date.now();mpTick()};
 w.onmessage=ev=>{if(MP.ws!==w)return;MP.rx=Date.now();if(ev.data==='pong')return;try{mpRecebe(JSON.parse(ev.data))}catch(e){}};
 w.onclose=ev=>{const atual=MP.ws===w;if(atual){MP.ws=null;MP.st=0;MP.ps.clear();MP.last=null}
 if(w._meu||(!atual&&MP.ws))return;
+if(ev&&ev.code===4002){MP.off=1;return} 
 if(ev&&ev.code===4000){MP.off=1;try{toast('Sua conta foi aberta em outro lugar. Os outros jogadores somem desta tela.')}catch(e){}return}
 MP.next=Date.now()+MP.bo;MP.bo=Math.min(60000,MP.bo*2)};
 w.onerror=()=>{try{w.close()}catch(e){}}}
@@ -13666,6 +13667,37 @@ return r}}
 CSO.tem=null;setInterval(()=>{try{if(!G||!G.own)return;const ag=new Set(Object.keys(G.own));
 if(CSO.tem&&webAcc()&&webOnline())for(const h of CSO.tem)if(!ag.has(h))csCall({op:'sair',k:csKey(isNaN(+h)?h:+h)}).catch(()=>{});
 CSO.tem=ag}catch(e){}},3000);
+var KUPF={v:0,cd:0,tm:null};
+function kgtWeb(){return!window.KAPK&&!window.KLAUNCHER}
+function kgtForca(v){v=v|0;if(!v||v<=KGT_VER)return;
+if(!kgtWeb()){try{if(window.KAPK&&typeof apkCheck==='function')apkCheck(true)}catch(e){}return} 
+KUPF.v=Math.max(KUPF.v,v);KUPD.v=Math.max(KUPD.v,v);KUPD.o='web';kgtUpdTry()}
+kgtUpdTry=function(){clearTimeout(KUPD.t);if(!KUPD.v||KUPD.v<=KGT_VER)return;
+if(mode==='title'||$('ttl'))return kgtUpdGo();
+if(mode!=='walk'){KUPD.t=setTimeout(kgtUpdTry,4000);return} 
+if(KUPD.shown===KUPD.v)return;KUPD.shown=KUPD.v;try{play('item')}catch(e){}
+const nome='1.'+(KUPD.v-118);KUPF.cd=15;
+open(`<div class="psh"><span style="font-size:30px">🆕</span><div><b>Atualização obrigatória: Kaimon GT ${nome}</b><small>${KUPD.o==='pc'?'O launcher já baixou a versão nova.':'A versão nova já está no servidor.'} O jogo salva, limpa o cache e recarrega. Você continua de onde parou.</small></div></div><p style="text-align:center;margin:6px 0">Atualizando em <b id="kupcd">15</b> s…</p>`+btn('🔄 Atualizar agora','kgtUpdGo()'));
+clearInterval(KUPF.tm);KUPF.tm=setInterval(()=>{KUPF.cd--;const e=$('kupcd');if(e)e.textContent=Math.max(0,KUPF.cd);if(KUPF.cd<=0){clearInterval(KUPF.tm);kgtUpdGo()}},1000)};
+{const _go=kgtUpdGo;kgtUpdGo=async function(){clearInterval(KUPF.tm);if(!kgtWeb())return _go.apply(this,arguments);
+try{save()}catch(e){}const v=KUPD.v||KUPF.v;
+try{if('serviceWorker'in navigator){for(const r of await navigator.serviceWorker.getRegistrations())await r.unregister()}}catch(e){}
+try{if(window.caches){for(const k of await caches.keys())await caches.delete(k)}}catch(e){}
+let t0=0;try{const o=JSON.parse(sessionStorage.getItem('kgtUpdTent')||'{}');if(o.v===v)t0=+o.t||0;sessionStorage.setItem('kgtUpdTent',JSON.stringify({v,t:Date.now()}))}catch(e){}
+if(t0&&Date.now()-t0<180000)return kgtBloqueio(v);
+try{sessionStorage.setItem('pqIn','1')}catch(e){}
+setTimeout(()=>{try{const u=new URL(location.href);u.searchParams.set('_kv',String(v));u.searchParams.set('_kt',String(Date.now()));location.replace(u.toString())}catch(e){location.reload()}},400)}}
+function kgtBloqueio(v){try{const d=document.createElement('div');d.id='kgtblq';d.style.cssText='position:fixed;inset:0;background:#111;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:999999;font-family:sans-serif;text-align:center;padding:20px';
+d.innerHTML=`<h2 style="color:#ffcc00;margin:0 0 10px">Atualização obrigatória!</h2><p style="margin:0 0 20px;color:#ccc">A versão ${'1.'+(v-118)} do Kaimon GT está chegando ao servidor.<br>Seu progresso está salvo. Toque abaixo em alguns instantes.</p><button style="padding:15px 30px;font-size:18px;font-weight:bold;background:#28a745;color:#fff;border:none;border-radius:8px">ATUALIZAR JOGO AGORA</button>`;
+d.querySelector('button').onclick=()=>{try{sessionStorage.removeItem('kgtUpdTent');const u=new URL(location.href);u.searchParams.set('_kv',String(v));u.searchParams.set('_kt',String(Date.now()));location.replace(u.toString())}catch(e){location.reload()}};
+if(!$('kgtblq'))document.body.appendChild(d)}catch(e){}}
+try{const u=new URL(location.href);if(u.searchParams.has('_kv')||u.searchParams.has('_kt')){const kv=+u.searchParams.get('_kv')||0;u.searchParams.delete('_kv');u.searchParams.delete('_kt');history.replaceState(null,'',u.pathname+(u.search||'')+u.hash);if(kv&&kv<=KGT_VER)try{sessionStorage.removeItem('kgtUpdTent')}catch(e){}}}catch(e){}
+var KUPC={t:0};
+async function kgtConfere(){if(navigator.onLine===false||Date.now()-KUPC.t<20000)return;KUPC.t=Date.now();
+try{const base=(window.KMP_URL||MP.url).replace(/^wss:/,'https:').replace(/\/mp.*$/,'');const r=await fetch(base+'/versao?t='+Date.now(),{cache:'no-store'});if(!r.ok)return;const j=await r.json();if((j.v|0)>KGT_VER)kgtForca(j.v)}catch(e){}}
+setTimeout(kgtConfere,4000);setInterval(kgtConfere,5*60000);
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')setTimeout(kgtConfere,800)});
+if(typeof mpRecebe==='function'){const _rc=mpRecebe;mpRecebe=function(q){if(q&&q.t==='upd'){kgtForca(q.v);return}return _rc.apply(this,arguments)}}
 (function(){try{const st=document.createElement('style');st.textContent=`body.hudmin .ab:not(.hkeep){display:none!important}
 #hudtg{position:fixed;right:calc(env(safe-area-inset-right,0px) + 88px);bottom:calc(env(safe-area-inset-bottom,0px) + 6px);width:40px;height:40px;border-radius:50%;padding:0;margin:0;z-index:6;
  background:radial-gradient(circle at 35% 30%,#fff3c0,#e8c050 60%,#a8801c);border:2px solid #fff;color:#3a2a00;font:900 18px sans-serif;box-shadow:0 2px 6px #0008;display:flex;align-items:center;justify-content:center}

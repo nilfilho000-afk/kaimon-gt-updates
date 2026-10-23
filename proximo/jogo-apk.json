@@ -1,7 +1,7 @@
 {
  "v": 125,
  "url": "https://raw.githubusercontent.com/nilfilho000-afk/kaimon-gt-updates/main/jogo-apk.html",
- "notas": "Casas: dá para visitar a casa de outro jogador (só olhar; só o morador mexe nas coisas), e a casa de quem para de pagar fica livre na hora. Online mais firme: jogadores no mesmo mapa não somem mais uns para os outros. Celular com rotação travada ganhou o botão 'Toque aqui para jogar deitado'.",
- "sha": "d41e4da76534762e9295809531fa2cac2953fd9ce1f3932412195cab8f65b664",
- "sig": "UFSCnsFExS49kK8+hLI7samKoe2s1vuKpEVfPoB+wszGAVdMkrG0tnwQXo3aJU+GjgCnZiAiF2p3Ahcd73nodQ=="
+ "notas": "Atualização obrigatória: quando sai versão nova, o jogo salva, limpa o cache e atualiza sozinho (navegador, app e PC). Casas: dá para visitar a casa de outro jogador (só olhar). Online mais firme: jogadores no mesmo mapa não somem mais uns para os outros. Celular com rotação travada ganhou o botão 'Toque aqui para jogar deitado'.",
+ "sha": "bc271fce1af9a859296f838aaad024087ff2311c95df79de36ffb3323cb19d03",
+ "sig": "1YcpZBK68ferQz8Dl5cr7rb3zqGejjZHGIcXUa7lgC9684bObiD1WsttdVrxmQ8e2vYMBv0gNQLUAdrFNWnKcg=="
 }
