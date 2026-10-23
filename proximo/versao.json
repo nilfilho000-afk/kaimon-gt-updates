@@ -1,0 +1,11 @@
+{
+ "jogo": 122,
+ "jogo_arquivo": "jogo-122.kpk",
+ "jogo_sha": "511bd0a763fd7a7bdbe425f75af0c62dc9e506f23fb4f1b4b82dc9dd260369a2",
+ "jogo_assin": "HM4cBvNyFLRAKRPfS5JptuK/kkiCnvL3QRmp2ZoDwbI1wGUfNNmRmMQcOVzK74L15QnRurGF2BdevXHx2pDWAw==",
+ "launcher": 4,
+ "launcher_arquivo": "KaimonGT-4.exe",
+ "launcher_sha": "c590b99316b510460778bcdc53264caa20271508fd3217b8af136118a6711137",
+ "launcher_assin": "o/wrcVeP2ifT27VeLG3AXJau4wkYF+KsidJcOulXOLlSUC9cVlUaFp9or0E4KAwkwjk8RAEIwdjI9zUWKuc1Bg==",
+ "notas": "Versão 1.4: quando o celular apaga as imagens do jogo da memória (depois de ficar em segundo plano), o jogo percebe e recarrega sozinho no mesmo lugar, em vez de ficar com o mapa sumido."
+}
