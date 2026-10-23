@@ -1,7 +1,7 @@
 {
- "v": 125,
+ "v": 126,
  "url": "https://raw.githubusercontent.com/nilfilho000-afk/kaimon-gt-updates/main/jogo-apk.html",
- "notas": "Lojas e casas não aparecem mais como um borrão ao entrar. Atualização obrigatória: quando sai versão nova, o jogo salva, limpa o cache e atualiza sozinho. Casas: dá para visitar a casa de outro jogador (só olhar). Online mais firme. Celular com rotação travada ganhou o botão 'Toque aqui para jogar deitado'.",
- "sha": "d51428650a4653d1d7ae1dcb9f0ba46fd77c2385c282117f6a46bfdd9140fb7e",
- "sig": "VDqNDIF1wM7fmEysNMG9cHsgBiEk3xkTjkkxhE3IUYCJuMjdXC4ESNlCpzZZbjvJykwkulABog1Wl+vJeqhx8Q=="
+ "notas": "Conta aberta em um aparelho só: ao entrar em outro, o anterior é desconectado e não salva por cima. Indicador do online em Configurações (mostra se está conectado e quantos jogadores há no mapa, ou por que não conectou).",
+ "sha": "8bc381594bf771387dcab836cdc78790375de0076b2363039f5d28cf697f8f1f",
+ "sig": "pb/whBYJtO6QoxnC0037cd49RwEMN/SfzncV4v+668xa7RYqgin0KLncS3CHj/bga3HXjpVpzfOamks7REFcWw=="
 }

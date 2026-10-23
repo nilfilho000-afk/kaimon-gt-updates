@@ -1,11 +1,11 @@
 {
- "jogo": 125,
- "jogo_arquivo": "jogo-125.kpk",
- "jogo_sha": "05f7214173cdaac6f0db1c70045b9c22a33b779a09b4398e95dae51db51a483c",
- "jogo_assin": "iEP6rzd+R1KK6mww135h1KawGgvggggQCkAX6WZZC8/Y8Y0aA1ZWia8dwv7gyXp6ByUCVWr/TwvaOJXMsdu8Dg==",
+ "jogo": 126,
+ "jogo_arquivo": "jogo-126.kpk",
+ "jogo_sha": "cbef0345774d26786c752cd2fc11a5dd900f863712c917b8460c2f3ca68e7deb",
+ "jogo_assin": "i+TdJH15mA+dieAHhafJgbGOcMwa826D+jyvzPgy7gLIdFjjJs9zgY/AQeLPkbxjreU33U7dl/XtieEPuBGGAw==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "6ccba211feff3e8c36f966fa5c394cdf494eea9b96a16951a61b59ad1c8cea03",
- "launcher_assin": "io081pvLfsNWWEDHSTfNz1ljXh4fow/C8FTcnp/y+S0zHSblSFh7Fh62dnG+ZVL93RpmfQhUJ7Ej3zV8ecZhCw==",
- "notas": "Lojas e casas não aparecem mais como um borrão ao entrar. Atualização obrigatória: quando sai versão nova, o jogo salva, limpa o cache e atualiza sozinho. Casas: dá para visitar a casa de outro jogador (só olhar). Online mais firme. Celular com rotação travada ganhou o botão 'Toque aqui para jogar deitado'."
+ "launcher_sha": "d96ff6b1476b7884a539c48ad968917ae9843ad1f1f559baed6ecc1047fb3ccd",
+ "launcher_assin": "+z1Mxi4+56r6D7zHE4lyaRHesSxKsy907Mo1wDXFeUYxw9pOx9E/QP5MdF6D55QY6SeD+0xnnttGVbFyNjy3Bg==",
+ "notas": "Conta aberta em um aparelho só: ao entrar em outro, o anterior é desconectado e não salva por cima. Indicador do online em Configurações (mostra se está conectado e quantos jogadores há no mapa, ou por que não conectou)."
 }

@@ -2058,7 +2058,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v125 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v126 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -9084,7 +9084,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=125;
+var KGT_VER=126;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -11650,14 +11650,15 @@ function mpLook(){try{return JSON.stringify(G.look||{}).slice(0,600)}catch(e){re
 function mpFol(){try{const p=(G.party||[]).find(q=>G.fol&&q.id==G.fol&&q.hp>0);return p?(String(p.n).slice(0,24)+'|'+(p.lvl|0)+'|'+(p.sh?1:0)):''}catch(e){return''}}
 function mpEu(){return{m:cur|0,x:P.x|0,y:P.y|0,d:P.d|0,n:String(G.nick||'').slice(0,16),l:(G.t&&G.t.l)|0||1,k:mpLook(),f:mpFol()}}
 function mpManda(o){const w=MP.ws;if(w&&w.readyState===1){try{w.send(JSON.stringify(o));MP.lastSend=Date.now();return 1}catch(e){}}return 0}
-async function mpLiga(){if(MP.st)return;MP.st=1;let tok='';try{tok=await webTok(webAcc())}catch(e){MP.st=0;MP.next=Date.now()+MP.bo;MP.bo=Math.min(60000,MP.bo*2);return}
+async function mpLiga(){if(MP.st)return;MP.st=1;let tok='';try{tok=await webTok(webAcc())}catch(e){MP.err='login da conta: '+String(e&&(e.code||e.message)||e).slice(0,60);MP.falhas=(MP.falhas||0)+1;MP.st=0;MP.next=Date.now()+MP.bo;MP.bo=Math.min(60000,MP.bo*2);return}
 if(!mpQuer()){MP.st=0;return}
-let w;try{w=new WebSocket(mpUrl()+'?t='+encodeURIComponent(tok)+'&v='+(typeof KGT_VER==='number'?KGT_VER:0))}catch(e){MP.st=0;MP.next=Date.now()+MP.bo;MP.bo=Math.min(60000,MP.bo*2);return}
-MP.ws=w;w.onopen=()=>{if(MP.ws!==w)return;MP.st=2;MP.bo=3000;MP.last=null;MP.ps.clear();MP.rx=MP.ping=Date.now();mpTick()};
+MP.err='conectando…';let w;try{w=new WebSocket(mpUrl()+'?t='+encodeURIComponent(tok)+'&v='+(typeof KGT_VER==='number'?KGT_VER:0)+(typeof KSES==='object'&&KSES.ok?'&s='+KSES.sid:''))}catch(e){MP.err='navegador recusou a conexão';MP.falhas=(MP.falhas||0)+1;MP.st=0;MP.next=Date.now()+MP.bo;MP.bo=Math.min(60000,MP.bo*2);return}
+MP.ws=w;w.onopen=()=>{if(MP.ws!==w)return;MP.err='';MP.falhas=0;MP.st=2;MP.bo=3000;MP.last=null;MP.ps.clear();MP.rx=MP.ping=Date.now();mpTick()};
 w.onmessage=ev=>{if(MP.ws!==w)return;MP.rx=Date.now();if(ev.data==='pong')return;try{mpRecebe(JSON.parse(ev.data))}catch(e){}};
-w.onclose=ev=>{const atual=MP.ws===w;if(atual){MP.ws=null;MP.st=0;MP.ps.clear();MP.last=null}
+w.onclose=ev=>{const atual=MP.ws===w;if(atual&&!w._meu){MP.err='o servidor fechou ('+(ev&&ev.code||'?')+')';MP.falhas=(MP.falhas||0)+1}if(atual){MP.ws=null;MP.st=0;MP.ps.clear();MP.last=null}
 if(w._meu||(!atual&&MP.ws))return;
 if(ev&&ev.code===4002){MP.off=1;return} 
+if(ev&&ev.code===4000&&typeof kgtFora==='function'){kgtFora();return}
 if(ev&&ev.code===4000){MP.off=1;try{toast('Sua conta foi aberta em outro lugar. Os outros jogadores somem desta tela.')}catch(e){}return}
 MP.next=Date.now()+MP.bo;MP.bo=Math.min(60000,MP.bo*2)};
 w.onerror=()=>{try{w.close()}catch(e){}}}
@@ -13713,6 +13714,47 @@ function telaConfere(i){if(i!==cur)return;const m=M[i];if(!m)return;
 if(!telaVazia(MC)){m._okVisto=1;TELA.tent[i]=0;return}
 if((TELA.tent[i]||0)>=1){if(m._okVisto&&typeof ctxRecupera==='function')ctxRecupera();return} 
 TELA.tent[i]=1;telaSolta(m.MC);m.MC=null;if(m.mk0)m.mk=m.mk0;setMap0(i,P.x,P.y)}
+var KSES={sid:'',ok:0,fora:0,pend:0,tf:0};
+(function(){try{const a=new Uint8Array(15);crypto.getRandomValues(a);KSES.sid=Array.from(a,b=>(b%36).toString(36)).join('')}catch(e){KSES.sid=(Math.random().toString(36).slice(2)+Date.now().toString(36)).slice(0,20)}})();
+function kSesBase(){try{return FBC&&FBC.fn?FBC.fn.replace(/\/$/,''):''}catch(e){return''}}
+async function kSesCall(op){const a=webAcc(),b=kSesBase();if(!a||!b)throw new Error('sem conta');const tok=await webTok(a);
+const r=await fetch(b+'/sessao',{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+tok},body:JSON.stringify({op,sid:KSES.sid,disp:window.KAPK?'celular':window.KLAUNCHER?'PC':(/Android|iPhone|iPad/i.test(navigator.userAgent)?'celular':'navegador')})});
+const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.erro||'erro');return j}
+function kSesPronto(){try{return!KSES.fora&&webAcc()&&webOn()&&webOnline()&&kSesBase()&&typeof mode!=='undefined'&&mode!=='title'&&!document.getElementById('ttl')}catch(e){return false}}
+async function kSesAbre(){if(KSES.ok||KSES.pend||!kSesPronto())return;KSES.pend=1;try{await kSesCall('abrir');KSES.ok=1}catch(e){}KSES.pend=0}
+async function kSesVer(){if(!KSES.ok||KSES.fora||!kSesPronto())return;try{const j=await kSesCall('ver');if(j&&j.atual===false)kgtFora(j.disp)}catch(e){}}
+setInterval(kSesAbre,1500);setInterval(kSesVer,120000);
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')setTimeout(kSesVer,1200)});
+{const _f=window.fetch;window.fetch=function(u,o){let url='';try{url=typeof u==='string'?u:(u&&u.url)||''}catch(e){}
+try{const b=kSesBase();if(b&&KSES.ok&&url.startsWith(b)&&!/\/sessao$/.test(url)){o=Object.assign({},o||{});const h=new Headers(o.headers||{});h.set('X-Sessao',KSES.sid);o.headers=h}}catch(e){}
+const p=_f.call(this,u,o);p.then(r=>{try{if(r&&r.status===409&&kSesBase()&&url.startsWith(kSesBase()))r.clone().json().then(j=>{if(j&&j.outraSessao)kgtFora(j.disp)}).catch(()=>{})}catch(e){}}).catch(()=>{});return p}}
+if(typeof cloudPush==='function'){const _cp=cloudPush;cloudPush=function(){if(KSES.fora)return;try{if(webAcc()&&!KSES.ok)return}catch(e){}return _cp.apply(this,arguments)}}
+if(typeof mpQuer==='function'){const _q=mpQuer;mpQuer=function(){if(KSES.fora)return false;try{if(webAcc()&&!KSES.ok)return false}catch(e){}return _q.apply(this,arguments)}}
+if(typeof mpRecebe==='function'){const _r=mpRecebe;mpRecebe=function(q){if(q&&q.t==='fora'){kgtFora();return}return _r.apply(this,arguments)}}
+function kgtFora(disp){if(KSES.fora)return;KSES.fora=1;try{save()}catch(e){}try{mpDesliga();MP.off=1}catch(e){}try{closeUI()}catch(e){}try{if(mode==='walk')mode='fora'}catch(e){}
+try{const d=document.createElement('div');d.id='kgtfora';d.style.cssText='position:fixed;inset:0;z-index:2147483645;background:radial-gradient(ellipse at center,#1b2440 0%,#070a14 75%);color:#e8eef8;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;font-family:system-ui,Roboto,sans-serif;text-align:center;padding:24px';
+d.innerHTML=`<div style="font-size:44px">📱</div><div style="font-size:24px;font-weight:900;color:#ffe27a">Sua conta foi aberta em outro aparelho${disp?' ('+String(disp).replace(/[<>&"]/g,'')+')':''}</div>
+   <div style="font-size:15px;color:#b8c6e0;max-width:440px;line-height:1.45">A conta só pode ficar aberta em um lugar por vez. O que você fez aqui ficou salvo neste aparelho.<br>Para continuar jogando aqui, toque abaixo: o outro aparelho será desconectado.</div>
+   <button id="kgtforaBt" style="margin-top:8px;padding:14px 26px;font-size:18px;font-weight:800;border-radius:12px;border:3px solid #fff;background:linear-gradient(#5fd06a,#2f9a3c);color:#fff">▶ Jogar aqui</button>`;
+const bl=e=>{if(e.target&&e.target.id==='kgtforaBt')return;e.stopPropagation()};['pointerdown','touchstart','mousedown','click','wheel'].forEach(k=>d.addEventListener(k,bl,{passive:false}));
+document.body.appendChild(d);document.getElementById('kgtforaBt').onclick=kgtJogarAqui}catch(e){}}
+['keydown','keyup'].forEach(k=>window.addEventListener(k,e=>{if(KSES.fora){e.stopImmediatePropagation();e.preventDefault()}},true));
+async function kgtJogarAqui(){const b=document.getElementById('kgtforaBt');if(b){b.disabled=true;b.textContent='Entrando…'}
+try{if(typeof ACC!=='undefined'&&ACC.act){sessionStorage.setItem('pqIn',ACC.act);if(typeof cloudPullFor==='function')await cloudPullFor(ACC.act)}}catch(e){} 
+try{location.reload()}catch(e){}}
+function mpEstado(){try{
+if(typeof KSES==='object'&&KSES.fora)return['🔴','conta aberta em outro aparelho'];
+if(typeof webAcc!=='function'||!webAcc())return['⚪','desligado: conta sem e-mail (o online precisa de conta com e-mail)'];
+if(!webOn())return['🔴','servidor de contas indisponível'];
+if(!webOnline())return['🔴','sem internet'];
+if(MP.off)return['🔴','desligado nesta tela (conta aberta em outro lugar ou versão antiga): feche e abra o jogo'];
+if(typeof KSES==='object'&&!KSES.ok)return['🟡','abrindo a sessão…'];
+if(MP.st===2){const n=MP.ps?MP.ps.size:0;return['🟢','conectado · '+(n?n+(n>1?' jogadores':' jogador')+' neste mapa':'ninguém mais neste mapa')+' · sala '+(MP.last?MP.last.m:'?')]}
+return['🟡',(MP.err||'conectando…')+(MP.falhas?' · tentativa '+(MP.falhas+1):'')]}catch(e){return['⚪','?']}}
+{const _cfg=cfgR;cfgR=function(){const r=_cfg.apply(this,arguments);try{if(!document.querySelector('#ui .cfr.mprow')){const v=document.querySelector('#ui .cfr.verrow')||[...document.querySelectorAll('#ui .cfr')].pop();
+const[i,t]=mpEstado();if(v)v.insertAdjacentHTML('afterend',`<div class="cfr mprow"><span>Online</span><small id="mpEst">${i} ${t}</small></div>`)}}catch(e){}return r}}
+setInterval(()=>{try{const e=document.getElementById('mpEst');if(e){const[i,t]=mpEstado();e.textContent=i+' '+t}
+if((MP.falhas||0)>=3&&!MP.avisou&&mode==='walk'){MP.avisou=1;toast('🌐 O online não está conectando: '+mpEstado()[1]+'. Veja em Configurações → Online.')}}catch(e){}},2000);
 (function(){try{const st=document.createElement('style');st.textContent=`body.hudmin .ab:not(.hkeep){display:none!important}
 #hudtg{position:fixed;right:calc(env(safe-area-inset-right,0px) + 88px);bottom:calc(env(safe-area-inset-bottom,0px) + 6px);width:40px;height:40px;border-radius:50%;padding:0;margin:0;z-index:6;
  background:radial-gradient(circle at 35% 30%,#fff3c0,#e8c050 60%,#a8801c);border:2px solid #fff;color:#3a2a00;font:900 18px sans-serif;box-shadow:0 2px 6px #0008;display:flex;align-items:center;justify-content:center}
