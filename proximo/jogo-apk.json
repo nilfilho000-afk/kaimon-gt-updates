@@ -1,7 +1,7 @@
 {
  "v": 123,
  "url": "https://raw.githubusercontent.com/nilfilho000-afk/kaimon-gt-updates/main/jogo-apk.html",
- "notas": "Versão 1.5: escolha do mundo na criação do personagem. Todos os jogadores estão no Mundo Cristal e se veem no mapa e no chat.",
- "sha": "8b9e6b099e8efe34caae7685dcc6e202c664261ff7321c736ae587ada5bc51a1",
- "sig": "pDO/emIxrQMZ9vJ7otW0meIkrNH2GTh8kZMoPneESq1Xa2QOQhLt8t0pg6tQhdkTiG/RPHzMvkUo87zXIWf6jg=="
+ "notas": "Versão 1.5: escolha do mundo (Mundo Cristal), cada casa alugada tem um morador só por mundo, ninguém mais aparece dentro da sua casa e o Centro de Cura de cada cidade é separado.",
+ "sha": "fc1ba6b61008f3fd0c9ca8f985aadbaca3ec61b9f80856473b8b573bdc8d15e9",
+ "sig": "YZRb64FpBeN0HAiwOmhQ9K+8pyQm/i1kjyIddK5SdOMuFaJkQMOHH3PHDoXxReJwwUYKzerty4+HOawIdP0ShA=="
 }
