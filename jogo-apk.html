@@ -2058,7 +2058,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v127 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v128 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -9084,7 +9084,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=127;
+var KGT_VER=128;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -13781,6 +13781,22 @@ try{w.addEventListener('open',()=>{abriu=true;MP.wsFalhas=0});w.addEventListener
 setTimeout(()=>{if(MP.ws===w&&w.readyState===0){w._meu=1;try{w.close()}catch(e){}MP.ws=null;MP.st=0;MP.err='o online não respondeu (a rede pode estar segurando a conexão)';MP.falhas=(MP.falhas||0)+1;MP.wsFalhas=(MP.wsFalhas||0)+1;MP.next=Date.now()+1500;mphTalvez()}},8000)}}
 function mphTalvez(){if((MP.wsFalhas||0)>=2&&MPH.ate<Date.now()){MPH.ate=Date.now()+10*60000;MP.wsFalhas=0;MP.next=0}}
 if(typeof mpEstado==='function'){const _e=mpEstado;mpEstado=function(){const r=_e.apply(this,arguments);try{if(MP.ws&&MP.ws._http&&MP.st===2)r[1]=r[1].replace('conectado','conectado (modo compatível)')}catch(e){}return r}}
+{const _wt=webTok;webTok=function(){const p=Promise.resolve().then(()=>_wt.apply(this,arguments));
+return Promise.race([p,new Promise((_,rej)=>setTimeout(()=>rej(new Error('o login da conta não respondeu')),12000))])}}
+function mpEtapa(){try{if(MP.st===2)return'conectado';if(MP.ws&&MP.ws._http)return'modo compatível';if(MP.ws)return'abrindo conexão ('+['conectando','aberta','fechando','fechada'][MP.ws.readyState|0]+')';if(MP.st===1)return'login da conta';
+return'esperando'+(MP.next>Date.now()?' '+Math.ceil((MP.next-Date.now())/1000)+' s':'')}catch(e){return'?'}}
+function mpMotivo(){const f=[];try{if(!webAcc())f.push('sem conta');if(!webOn())f.push('sem servidor de contas');if(!webOnline())f.push('sem internet');if(document.visibilityState==='hidden')f.push('tela escondida');
+if(typeof mode==='undefined'||mode==='title')f.push('tela de título');if(!(G&&G.nick))f.push('sem nick');if(document.getElementById('ttl'))f.push('menu inicial aberto');if(MP.off)f.push('desligado');
+if(typeof KSES==='object'&&!KSES.ok)f.push('sessão não abriu');if(typeof KSES==='object'&&KSES.fora)f.push('outra sessão')}catch(e){f.push('erro')}return f.join(', ')}
+{const _l=mpLiga;mpLiga=function(){if(!MP.st&&!MP.ws)MP.t0=Date.now();return _l.apply(this,arguments)}}
+setInterval(()=>{try{if(MP.st===1&&!(MP.ws&&MP.ws._http)&&MP.t0&&Date.now()-MP.t0>15000){const et=mpEtapa();
+if(MP.ws&&!MP.ws._http){MP.ws._meu=1;try{MP.ws.close()}catch(e){}MP.ws=null}
+MP.st=0;MP.err='travou em: '+et;MP.falhas=(MP.falhas||0)+1;MP.wsFalhas=(MP.wsFalhas||0)+1;MP.next=Date.now()+1500;MP.t0=0;if(typeof mphTalvez==='function')mphTalvez()}}catch(e){}},2000);
+if(typeof mpEstado==='function'){const _e=mpEstado;mpEstado=function(){const r=_e.apply(this,arguments);try{if(MP.st!==2&&r[0]!=='⚪'){const m=mpMotivo();
+r[1]=r[1]+' · etapa: '+mpEtapa()+(MP.t0&&MP.st?' há '+Math.round((Date.now()-MP.t0)/1000)+' s':'')+(m?' · '+m:'')}}catch(e){}return r}}
+function mpNav(){const u=navigator.userAgent||'';return(window.KAPK?'apk':window.KLAUNCHER?'pc':/; wv\)/.test(u)?'webview':/Android/.test(u)?'android-chrome':/iPhone|iPad/.test(u)?'ios':'desktop')+(document.referrer.startsWith('android-app://')?'+twa':'')+' '+((u.match(/Chrome\/(\d+)/)||[])[1]||'')}
+setInterval(()=>{try{if(MP.st===2){if(!MP.diagOk&&(MP.diagN||0)>0){MP.diagOk=1}else return}else MP.diagOk=0;if(!webAcc()||!webOnline())return;MP.diagN=(MP.diagN||0)+1;if(MP.st===2)MP.diagN=0;const a=webAcc(),b=(window.KMP_URL||MP.url).replace(/^wss:/,'https:').replace(/\/mp.*$/,'');
+fetch(b+'/mpdiag',{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({u:String(a.fb.uid||'').slice(-3),v:KGT_VER,st:MP.st,etapa:mpEtapa(),err:MP.err||'',seg:MP.t0?Math.round((Date.now()-MP.t0)/1000):0,ws:MP.ws?MP.ws.readyState:-1,nav:mpNav(),motivo:mpMotivo(),falhas:MP.falhas||0,wsf:MP.wsFalhas||0,http:typeof MPH==='object'?Math.max(0,Math.round((MPH.ate-Date.now())/1000)):0})}).catch(()=>{})}catch(e){}},30000);
 (function(){try{const st=document.createElement('style');st.textContent=`body.hudmin .ab:not(.hkeep){display:none!important}
 #hudtg{position:fixed;right:calc(env(safe-area-inset-right,0px) + 88px);bottom:calc(env(safe-area-inset-bottom,0px) + 6px);width:40px;height:40px;border-radius:50%;padding:0;margin:0;z-index:6;
  background:radial-gradient(circle at 35% 30%,#fff3c0,#e8c050 60%,#a8801c);border:2px solid #fff;color:#3a2a00;font:900 18px sans-serif;box-shadow:0 2px 6px #0008;display:flex;align-items:center;justify-content:center}
