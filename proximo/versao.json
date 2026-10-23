@@ -1,11 +1,11 @@
 {
  "jogo": 121,
  "jogo_arquivo": "jogo-121.kpk",
- "jogo_sha": "0670f2fdbb0a01a9757a2e1832a44b4b30acdc4ce0e09aded881c46395df558a",
- "jogo_assin": "GP7o4C7JcfiwSHqw4I6HSboN3umDjW/JZskonjw51yohYKCLtfvlFU5NvjOqaA9pzUrV72uMIdGdWOfkLzrPCQ==",
+ "jogo_sha": "97a1e395b663b1fa66cabe3d3f9b2b39e44af03c7b257e96ab9de13e79a21041",
+ "jogo_assin": "b4rjWwxoiatbTwQS4sAovxjZHsCplWDqr9bbCxO3HX2uywMtbtCq46fkmMPNmlfCg0or0Y6wVDipotwjfr8vCw==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "763cb5a13b8b758fa0e6e6d9d36f33009e1286dd2d7e55f8fb988e2668ea536a",
- "launcher_assin": "Z6kpMaMww4p+JhWpbjKXEpKGxJPYC2AZKVkzQ9eQ5Ygtp44uupNoRO5PQS6hyL8POfdJb0YzDVQYgbRSsH8/Bg==",
- "notas": "Versão 1.3: nick único, árvores fora das rochas no Campo Vulcânico e login com Google só onde o Google permite (no PC e em alguns celulares, entre com e-mail e senha)."
+ "launcher_sha": "634272b0c1279e06e80b7701b8b257ea5409e430c47919603734967b0b263c04",
+ "launcher_assin": "yc4GvyZFrXMmaFvJSI94FzYxTMmPT3trpjQThUnfF5w3kzbKQvc79L40NEUfz/xILl+J81AOx+Qloh7Lo0fVDA==",
+ "notas": "Versão 1.3: nick único, árvores fora das rochas no Campo Vulcânico, login com Google só onde o Google permite e jogadores voltam a aparecer no mapa ao voltar para o jogo."
 }

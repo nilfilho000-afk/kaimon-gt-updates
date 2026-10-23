@@ -11684,7 +11684,7 @@ if(!L||L.m!==e.m||L.n!==e.n||L.l!==e.l||L.k!==e.k||L.f!==e.f){if(mpManda(Object.
 else if(L.x!==e.x||L.y!==e.y||L.d!==e.d){if(mpManda({t:'m',x:e.x,y:e.y,d:e.d}))MP.last=e}
 else if(Date.now()-MP.lastSend>25000)mpManda({t:'h'})}catch(x){}}
 setInterval(mpTick,100);
-document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')mpDesliga();else{MP.next=0;setTimeout(mpTick,300)}});
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')mpDesliga();else{MP.off=0;MP.next=0;setTimeout(mpTick,300)}}); 
 addEventListener('pagehide',mpDesliga);
 addEventListener('online',()=>{MP.next=0});
 function mpPos(o,agora){const sp=Math.max(0,Math.min(1,(agora-o.t0)/o.dur));o.px=o.fx+(o.x-o.fx)*sp;o.py=o.fy+(o.y-o.fy)*sp;return sp}
