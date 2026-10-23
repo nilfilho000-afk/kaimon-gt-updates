@@ -1,11 +1,11 @@
 {
- "jogo": 120,
- "jogo_arquivo": "jogo-120.kpk",
- "jogo_sha": "98a9055cda084661a370891effe3ad27e206ca9f0e51cba7f95cdf97657b0135",
- "jogo_assin": "2skjFt3vNHol+hiUjZ75X1yMjoZ4OiYaWoVonwbL2EGPEt7t36hYy6D6eiBEbeKmRmKb1QRHsdbLnqV3v0XDAg==",
+ "jogo": 121,
+ "jogo_arquivo": "jogo-121.kpk",
+ "jogo_sha": "43ca55d247005e89d8bdc8ee355a1cdd44bd367acedbb88e827a977bcb334e34",
+ "jogo_assin": "UFbKFCeJyEniHvgvavM2zuJJp/REw7379XhySSNSn/zCUGbHsiYGPttzZ6V0yPdZgPS+z2YTXYCleRl5PF7IBA==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "beaf9dd30d2bb33fda89851e508b1530371e6c1af32e4177dbb3297b551b6d3b",
- "launcher_assin": "4dOzPgmOD+0/AmXTiS4tHIUKoqiRfoFxKQguu+mVm0lJJi00NxsdZ946Yf04xLmYmcx4aXHhMcW42TvtVzE4Ag==",
- "notas": "Versão 1.2: proteção extra contra trapaça nas batalhas, servidor mais resistente a ataques e contador de jogadores online mais preciso."
+ "launcher_sha": "215cc2ec5194e1a67cd10f1bfa814cfaeca40da8950dae2ac4bfe463859add1d",
+ "launcher_assin": "ElKIvS2CgKpHA7SrnigNSR/vtzNzFS6q5QAq6QJ2ogm3boKlHANRSUqPlBMsl+EwgiKifPz0j6Qus5q8IzzsDA==",
+ "notas": "Versão 1.3: o nick do personagem agora é único (não dá para criar um personagem com o nick de outro jogador)."
 }
