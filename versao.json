@@ -1,11 +1,11 @@
 {
- "jogo": 128,
- "jogo_arquivo": "jogo-128.kpk",
- "jogo_sha": "405a2c05b42d443cb74a3b96da881f354ada5936a5cd1df7e5271a21d7eb68b7",
- "jogo_assin": "UwwsV70+2huIsZP7Gy7XvNk2igFfl9Jzj8+AJaOfrv1QijYYqOzH6qobF/RTp/sumA2WaMrdffmqbCN+2ZJqAA==",
+ "jogo": 129,
+ "jogo_arquivo": "jogo-129.kpk",
+ "jogo_sha": "0bf9a9e1d48474325a851961bf4f49aaf904d361ec6d6f530e42324834e9f78f",
+ "jogo_assin": "m2bNWKR8ubjX6JsE0GkjFUfWTwE5US0rVNqelj6WMi6RpNJ4B6xCOKJXL+oxpolP5w47GibXt2GW9oGsaoaXDg==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "5da3b65d8f8f62032815de2f4a67020f3120bb724a0946aeea1bd3eb2cf38222",
- "launcher_assin": "5qDTWwbS9zn8WBB+RTbTOfJxyShkS5MG+oqILRtXo+z5aLTcy2lxKwMom+gdfGcbqCraQeHIzIVVcGzsCmjUDQ==",
- "notas": "Online nunca mais fica preso em 'conectando': cada etapa tem prazo e, se a rede segurar, o jogo passa para o modo compatível."
+ "launcher_sha": "df76fcc756d7761d2dbde2d5018bfac0a4352688dbc5ef4ddbd2fe4df30920ad",
+ "launcher_assin": "iC1TDHFm7Tq5DQdCzw+3lA6xQZA0TE0H+zBU0t8RdmCshCiOIibUt2si5xzQoSb9iZkSTEsqtUkTznECm7H/Cg==",
+ "notas": "Outros jogadores andam liso, sem 'teleporte', mesmo com internet oscilando."
 }
