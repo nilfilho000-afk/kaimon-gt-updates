@@ -11009,8 +11009,9 @@ async function ptlEnvia(visto,keep){const a=webAcc();if(!a||!a.fb||!a.fb.uid)ret
 const tok=keep?(typeof WEBTOK!=='undefined'&&WEBTOK.uid===a.fb.uid&&Date.now()-WEBTOK.t<45*60000?WEBTOK.tok:''):await webTok(a);if(!tok)return;
 await fetch(fsDoc('ranking',a.fb.uid),{method:'PATCH',keepalive:!!keep,headers:{Authorization:'Bearer '+tok,'Content-Type':'application/json'},body:JSON.stringify({fields:ptlDados(visto)})})}
 async function ptlPulso(){if(PTL.busy||document.visibilityState==='hidden'||!ptlOk())return;if(typeof SAV!=='undefined'&&SAV.mx)return;PTL.busy=1;
-try{await ptlEnvia(Date.now());PTL.t=Date.now()}catch(e){}finally{PTL.busy=0}
+try{await ptlEnvia(ptlAgora());PTL.t=Date.now()}catch(e){}finally{PTL.busy=0}
 if(Date.now()-PTL.probeT>5*60000)ptlConfere()}
+function ptlAgora(){try{if(typeof GCL!=='undefined'&&GCL.ok)return Math.round(Date.now()+GCL.skew)}catch(e){}return Date.now()}
 function ptlSai(){if(!PTL.t)return;PTL.t=0;try{ptlEnvia(0,1)}catch(e){}}
 async function ptlConfere(){PTL.probeT=Date.now();try{const a=webAcc();if(!a||!a.fb||!a.fb.uid||!webOn()||!webOnline())return;const k='pqNuv:'+a.fb.uid;
 const tok=await webTok(a),j=await fsGet('saves',a.fb.uid,tok,['t']);

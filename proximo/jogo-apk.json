@@ -1,7 +1,7 @@
 {
  "v": 120,
  "url": "https://raw.githubusercontent.com/nilfilho000-afk/kaimon-gt-updates/main/jogo-apk.html",
- "notas": "Versão 1.2: proteção extra contra trapaça nas batalhas e servidor mais resistente a ataques.",
- "sha": "0b0e8f9c98bae3d295546fb98b890efc8323e051729950ffefae6e7ace70b713",
- "sig": "7ugSLK4SQFIjB3loCvcRUlHbCahiUYaar+JjvLEyiGQJ7cl3Mh5hNE92oMHa+yMXBIg28FetfV8ttRMChGlRTA=="
+ "notas": "Versão 1.2: proteção extra contra trapaça nas batalhas, servidor mais resistente a ataques e contador de jogadores online mais preciso.",
+ "sha": "d0151cfcb2126a1c6a6b3809b86111d8f75a07331ed7d8ca6133f78ad12b2e93",
+ "sig": "WrEAsCLTLjq3kQs2s/XksU3LgXekKEfqA0bX6JZ4BOaSBUmrO1djWrF+JIOXEgxQQ45rkmIlJh5FRQx+GnJI+A=="
 }

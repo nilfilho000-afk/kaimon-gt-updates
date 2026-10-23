@@ -1,11 +1,11 @@
 {
  "jogo": 120,
  "jogo_arquivo": "jogo-120.kpk",
- "jogo_sha": "927f0aba9cff2ddd2baefb9046237c80914e1b19893e9f71bd4c053f3b15230b",
- "jogo_assin": "9fXX3Ri7G5tRPnpkKCmw1SHv8SNc2O1B0OOUWQdH08kGqEA1v5tzUwXvgxGHR78zL4pZBPnG+4RO0C5XkGJEBA==",
+ "jogo_sha": "98a9055cda084661a370891effe3ad27e206ca9f0e51cba7f95cdf97657b0135",
+ "jogo_assin": "2skjFt3vNHol+hiUjZ75X1yMjoZ4OiYaWoVonwbL2EGPEt7t36hYy6D6eiBEbeKmRmKb1QRHsdbLnqV3v0XDAg==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "c0e7950a21fd19c000f349d2951b2b3bbbd8124b13b20edaf6d4968f7151eff9",
- "launcher_assin": "v+KTMTkg8PbAQ5Rb0L6Uyy7yl7SqgDwNexRDycmHNTbQHVpQa7jEtUkgp83D+6x7PrwBCpjbLoYEYbwcH1/mCA==",
- "notas": "Versão 1.2: proteção extra contra trapaça nas batalhas e servidor mais resistente a ataques."
+ "launcher_sha": "beaf9dd30d2bb33fda89851e508b1530371e6c1af32e4177dbb3297b551b6d3b",
+ "launcher_assin": "4dOzPgmOD+0/AmXTiS4tHIUKoqiRfoFxKQguu+mVm0lJJi00NxsdZ946Yf04xLmYmcx4aXHhMcW42TvtVzE4Ag==",
+ "notas": "Versão 1.2: proteção extra contra trapaça nas batalhas, servidor mais resistente a ataques e contador de jogadores online mais preciso."
 }
