@@ -1,7 +1,7 @@
 {
- "v": 126,
+ "v": 127,
  "url": "https://raw.githubusercontent.com/nilfilho000-afk/kaimon-gt-updates/main/jogo-apk.html",
- "notas": "Conta aberta em um aparelho só: ao entrar em outro, o anterior é desconectado e não salva por cima. Indicador do online em Configurações (mostra se está conectado e quantos jogadores há no mapa, ou por que não conectou).",
- "sha": "8bc381594bf771387dcab836cdc78790375de0076b2363039f5d28cf697f8f1f",
- "sig": "pb/whBYJtO6QoxnC0037cd49RwEMN/SfzncV4v+668xa7RYqgin0KLncS3CHj/bga3HXjpVpzfOamks7REFcWw=="
+ "notas": "Online funcionando em qualquer rede: se a rede do celular segurar a conexão do online, o jogo passa sozinho para o modo compatível e os jogadores continuam se vendo.",
+ "sha": "1d0e9186c6b3885337ae6eac1c5d2a6f65334bd2fae65caeec8517caaaea466c",
+ "sig": "V8cFiYS+MQf6tkNlTCfkSU2uvIHuzHWSO22clRUhSbohW9R/n6W+/tBPLfwwzwwmczX9vljdbIT9FJAMlACiPg=="
 }
