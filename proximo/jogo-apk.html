@@ -13611,14 +13611,15 @@ if(!webAcc()||!webOnline())return _csRent.apply(self,args);
 if(CSO.pend[k])return;CSO.pend[k]=1;open('<p><b>Corretor:</b> Conferindo se a casa está livre…</p>');
 csCall({op:'alugar',k,dias:11,nick:G.nick||''}).then(()=>{CSO.pend[k]=0;closeUI();_csRent.apply(self,args);try{save()}catch(e){}})
 .catch(e=>{CSO.pend[k]=0;if(e.j&&e.j.ocupada){CSO.oc[k]={nick:e.j.nick};ok(`<p><b>Corretor:</b> Que pena, essa casa acabou de ser alugada por <b>${esc(e.j.nick)}</b>.</p>`)}
+else if(e.j&&e.j.erro&&(e.j.limite||e.st===400))ok(`<p><b>Corretor:</b> ${esc(e.j.erro)}</p>`)
 else ok('<p><b>Corretor:</b> Não consegui confirmar o aluguel agora (sem conexão). Tente de novo em instantes.</p>')})}}
-function csDevolve(h,nick){const o=G.own[h];if(!o)return;for(const k in(o.f||{}))for(const n in o.f[k])G.loot[n]=(G.loot[n]||0)+o.f[k][n];
+function csDevolve(h,nick,msg){const o=G.own[h];if(!o)return;for(const k in(o.f||{}))for(const n in o.f[k])G.loot[n]=(G.loot[n]||0)+o.f[k][n];
 for(const k in(o.d||{}))G.dinv[o.d[k]]=(G.dinv[o.d[k]]||0)+1;delete G.own[h];G.money+=1500;try{save();hud()}catch(e){}
-ok(`<p><b>🏠 Casa devolvida</b></p><p>A casa que você alugou já era de <b>${esc(nick)}</b> neste mundo (agora cada casa tem um morador só). Sua caução de 💰1500 voltou e as coisas da casa foram para a sua bolsa.</p>`);
+ok(msg?`<p><b>🏠 Casa devolvida</b></p><p>${esc(msg)} Sua caução de 💰1500 voltou e as coisas da casa foram para a sua bolsa.</p>`:`<p><b>🏠 Casa devolvida</b></p><p>A casa que você alugou já era de <b>${esc(nick)}</b> neste mundo (agora cada casa tem um morador só). Sua caução de 💰1500 voltou e as coisas da casa foram para a sua bolsa.</p>`);
 try{if(cur===HRM&&HRK===h&&HRRET){const r=HRRET;HRK=null;G.hrk=null;setMap0(r[0],r[1],r[2])}}catch(e){}}
 async function csSync(){if(!webAcc()||!webOnline()||!G||!G.own)return;for(const h of Object.keys(G.own)){const o=G.own[h];if(!o||typeof o.due!=='number')continue;
 const dias=Math.max(1,Math.min(40,Math.ceil((o.due-(G.gt||0))/1440)+1));
-try{await csCall({op:'alugar',k:csKey(isNaN(+h)?h:+h),dias,nick:G.nick||''})}catch(e){if(e.j&&e.j.ocupada&&mode==='walk')csDevolve(h,e.j.nick)}}}
+try{await csCall({op:'alugar',k:csKey(isNaN(+h)?h:+h),dias,nick:G.nick||'',dec:o.d||{},pw:o.pw||{}})}catch(e){if(mode!=='walk')continue;if(e.j&&e.j.ocupada)csDevolve(h,e.j.nick);else if(e.j&&e.j.perdida)csDevolve(h,'',e.j.erro)}}}
 setTimeout(()=>{csSync();setInterval(csSync,10*60000)},8000);
 function csHash(s){let h=7;for(let i=0;i<s.length;i++)h=(h*31+s.charCodeAt(i))|0;return h>>>0}
 if(typeof mpEu==='function'){const _csEu=mpEu;mpEu=function(){const e=_csEu.apply(this,arguments);try{
@@ -13640,6 +13641,31 @@ try{if(cur===2&&G.rtc&&G.rtc.m!=null){RT=Object.assign({},G.rtc);RTV=RT}}catch(e
 if(RT!==RTV&&RT&&RT.m!=null)G.rtc=Object.assign({},RT); 
 else if(G.rtc&&G.rtc.m!=null)RT=Object.assign({},G.rtc); 
 RTV=RT}}catch(e){}return _sm0.apply(this,arguments)}}
+var CSVIS=null; 
+function csVisitando(){return!!(CSVIS&&(cur===HRM&&String(HRK)===CSVIS.k||cur>=12&&cur<=15&&'v'+(cur-12)===CSVIS.k))}
+function csNega(){try{toast('🔒 Só o morador mexe nas coisas desta casa.')}catch(e){}}
+for(const fn of['hmod','hmenu','hWater','hput','hget','hdec','hdel']){try{const f0=window[fn];if(typeof f0!=='function')continue;
+window[fn]=function(){if(csVisitando())return csNega();return f0.apply(this,arguments)}}catch(e){}}
+if(typeof hdraw0==='function'){const _hd=hdraw0;hdraw0=function(cx,cy){if(csVisitando()){try{hdrawAt({d:CSVIS.dec||{},f:{},pw:CSVIS.pw||{}},cx,cy,g)}catch(e){}return}return _hd.apply(this,arguments)}}
+if(typeof dk==='function'){const _dk=dk;dk=function(x,y){if(csVisitando())return(CSVIS.dec||{})[x+','+y];return _dk.apply(this,arguments)}}
+try{for(let i=0;i<RH0.length;i++){if(String(RH0[i]).includes('O aluguel atrasou e a casa voltou')){const f0=RH0[i];RH0[i]=function(){if(csVisitando())return;return f0.apply(this,arguments)}}}}catch(e){}
+if(typeof mpEu==='function'){const _eu=mpEu;mpEu=function(){const e=_eu.apply(this,arguments);try{if(csVisitando())e.m=60000000+csHash(CSVIS.dono+'|'+CSVIS.k)%30000000}catch(x){}return e}}
+if(typeof askRent==='function'){const _ar=askRent;askRent=function(h){const k=csKey(h);
+if(!CSO.oc[k]||!webAcc())return _ar.apply(this,arguments);
+const dx=P.x,dy=P.y;P.y++;P.py=P.fy=P.y;
+open(`<p><b>🔒 Casa de ${esc(CSO.oc[k].nick)}</b></p><p>Essa casa já tem morador. Você pode entrar para visitar e ver a decoração, mas só o morador mexe nas coisas lá dentro.</p>`+btn('👀 Visitar',`csVisitar('${k}',${dx},${dy})`)+btn('Cancelar','closeUI()'))}}
+async function csVisitar(k,dx,dy){open('<p>Batendo na porta…</p>');let j;
+try{j=await csCall({op:'visitar',k})}catch(e){if(e.j&&e.j.vazia){delete CSO.oc[k];return ok('<p><b>Corretor:</b> Essa casa acabou de ficar vazia. Passe na porta de novo para alugar.</p>')}return ok('<p>Não consegui falar com o servidor agora. Tente de novo.</p>')}
+closeUI();const pd=M[cur]&&M[cur].p&&M[cur].p[dx+','+dy];if(!pd)return;
+CSVIS={k,dono:String(j.dono||''),nick:String(j.nick||'Treinador').slice(0,16),dec:j.dec||{},pw:j.pw||{}};
+P.x=P.px=P.fx=dx;P.y=P.py=P.fy=dy;setMap(pd[0],pd[1],pd[2]);try{toast('👀 Visitando a casa de '+CSVIS.nick+' (só olhar)')}catch(e){}}
+{const _s0=setMap0;setMap0=function(i){const era=cur,k0=era===HRM?String(HRK):era>=12&&era<=15?'v'+(era-12):null,vis=csVisitando();
+const r=_s0.apply(this,arguments);
+try{if(k0&&cur!==era){if(vis)CSVIS=null;else{const o=G.own&&(G.own[era===HRM?HRK:era-12]);if(o&&webAcc()&&webOnline())csCall({op:'deco',k:k0,dec:o.d||{},pw:o.pw||{}}).catch(()=>{})}}}catch(e){}
+return r}}
+CSO.tem=null;setInterval(()=>{try{if(!G||!G.own)return;const ag=new Set(Object.keys(G.own));
+if(CSO.tem&&webAcc()&&webOnline())for(const h of CSO.tem)if(!ag.has(h))csCall({op:'sair',k:csKey(isNaN(+h)?h:+h)}).catch(()=>{});
+CSO.tem=ag}catch(e){}},3000);
 (function(){try{const st=document.createElement('style');st.textContent=`body.hudmin .ab:not(.hkeep){display:none!important}
 #hudtg{position:fixed;right:calc(env(safe-area-inset-right,0px) + 88px);bottom:calc(env(safe-area-inset-bottom,0px) + 6px);width:40px;height:40px;border-radius:50%;padding:0;margin:0;z-index:6;
  background:radial-gradient(circle at 35% 30%,#fff3c0,#e8c050 60%,#a8801c);border:2px solid #fff;color:#3a2a00;font:900 18px sans-serif;box-shadow:0 2px 6px #0008;display:flex;align-items:center;justify-content:center}

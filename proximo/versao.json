@@ -1,11 +1,11 @@
 {
  "jogo": 125,
  "jogo_arquivo": "jogo-125.kpk",
- "jogo_sha": "1f4816a5c0202ac70f4a6dff1c7cdf907cb47203904a3580efb7f6bc40481603",
- "jogo_assin": "fyjSNRVFlez6gsekoZAnh/NfsxkrketK5KgrAjMA+iQ8QWEz6Zn1QOSfsVMmEmILFMeyiYQkLLKe3iWh12KgDA==",
+ "jogo_sha": "ee666084696c7cb1cf2b3f6341a4f8284dbab04d7fdd18c9679faafd097dfa24",
+ "jogo_assin": "+gnMuc1/KnuBMvQZK5AlgCDpNuBPvmG3IZPXNEfaEn/du8VaO27ioKOVL0iz7BwyYX0mz0YBLXsFPZQJZoaUAA==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "24be08e957ab749e49e27fe44715c8945909c10f1fece154e86e5acf1d366690",
- "launcher_assin": "v5NCgsuRfYVZ8f3A1v5Z4QUJl1KmV2RFKARV5qQ+up4ihTlpViEs9yS7kcrwQ8yJ+y3OwbuIJLKQkeSdO9yeBw==",
- "notas": "Online mais firme: jogadores no mesmo mapa não somem mais uns para os outros depois de minimizar o app, trocar de rede ou recarregar dentro do Centro de Cura. Celular com rotação travada ganhou o botão 'Toque aqui para jogar deitado'."
+ "launcher_sha": "9443b73441b6b4b10ad611196a1035aa69062429e7d883730cc7dbda67f6d9b3",
+ "launcher_assin": "H7N4S1dbiTwZBkkplLAwB4p0FyaGe7pJANLZOd2GAoMfkAXSDrJtS/OIiKh/dU2yDgGThPjfMoHGRJ+P0aclCg==",
+ "notas": "Casas: dá para visitar a casa de outro jogador (só olhar; só o morador mexe nas coisas), e a casa de quem para de pagar fica livre na hora. Online mais firme: jogadores no mesmo mapa não somem mais uns para os outros. Celular com rotação travada ganhou o botão 'Toque aqui para jogar deitado'."
 }
