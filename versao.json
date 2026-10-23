@@ -1,11 +1,11 @@
 {
- "jogo": 130,
- "jogo_arquivo": "jogo-130.kpk",
- "jogo_sha": "127571d2b4e8b5a1bc7780c93c75ce1dc1577123e62bd38d440a96147aad3832",
- "jogo_assin": "Nzav0CoZ/EIjdGyV8TZbTU3s9XsZhSnvaKuU6EYvLBZKngsR3oO/YihrjjxADcprUP51j/Nvu/AqA7eKGRolAw==",
+ "jogo": 131,
+ "jogo_arquivo": "jogo-131.kpk",
+ "jogo_sha": "33c570445cee841677de01b7c7a8a7263b82f2afc951214d75b1f427172a8960",
+ "jogo_assin": "F4uTffXCSj9q1R/WMLdHH3No1anDkGTUqioYSzjTKD6/jKND1BEnJrhNJl65IjBJHFqGvQZvazLP+w7wFxXJDg==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "bcc4fab138876d7f1a869ea117e9998d69054a58ef0d0bb2da898d99768c0d92",
- "launcher_assin": "rf6SEzayaIveVqp6C5ApbZEjcaj4dXfeb4fzk3HjS9EQ9Cx8qCN/QKTfiDgyKleAhYA1r6ruEcuOAWsckF8+DQ==",
- "notas": "Online mais rápido: entra em segundos ao abrir o jogo e some para os outros na hora em que você sai."
+ "launcher_sha": "a1348e1ebf562e0ec95de967fd23c7f91010e3604678cd9146030a8ba6ad38e5",
+ "launcher_assin": "lAIOoPQDj4qhbZU/pRdifSm5UwNF6T78LXDnWKehak0X/qqnby+oOF1gF2ODvk1MXSHb4QfcIf3uADePTXdgDg==",
+ "notas": "O online já conecta enquanto o jogo carrega: ao entrar no mapa você aparece para os outros na hora."
 }
