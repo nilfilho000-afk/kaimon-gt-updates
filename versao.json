@@ -1,11 +1,11 @@
 {
- "jogo": 118,
- "jogo_arquivo": "jogo-118.kpk",
- "jogo_sha": "d3c6a4e7f09992ee9bca7fdad44c53fa9ad56666f4d16ec89c8cb0b3dd4b51c1",
- "jogo_assin": "0Kzq8hHjuzVLRWS60XZu0Km3Fgz0aq+4u0skpyfVevZnFw9OSwTtsD4Ti7J8rudrvmo37Of2r3KEc0lOpXSzBw==",
+ "jogo": 121,
+ "jogo_arquivo": "jogo-121.kpk",
+ "jogo_sha": "97a1e395b663b1fa66cabe3d3f9b2b39e44af03c7b257e96ab9de13e79a21041",
+ "jogo_assin": "b4rjWwxoiatbTwQS4sAovxjZHsCplWDqr9bbCxO3HX2uywMtbtCq46fkmMPNmlfCg0or0Y6wVDipotwjfr8vCw==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "0773425167cc84887219f3c19b87c41b474576ebfa94ec08398429837a38b000",
- "launcher_assin": "MfiE8cH1pMypTzztBx3MjaU3v7XGj3z8qVfks8i4mWBPpKL74nCzVT/NUPhJ41pkVUw6caA6A8clYFNhrRcmDQ==",
- "notas": "Monstros voltam a ter limite no nível 100; o treinador continua sem nível máximo"
+ "launcher_sha": "634272b0c1279e06e80b7701b8b257ea5409e430c47919603734967b0b263c04",
+ "launcher_assin": "yc4GvyZFrXMmaFvJSI94FzYxTMmPT3trpjQThUnfF5w3kzbKQvc79L40NEUfz/xILl+J81AOx+Qloh7Lo0fVDA==",
+ "notas": "Versão 1.3: nick único, árvores fora das rochas no Campo Vulcânico, login com Google só onde o Google permite e jogadores voltam a aparecer no mapa ao voltar para o jogo."
 }
