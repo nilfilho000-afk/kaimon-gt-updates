@@ -1,7 +1,7 @@
 {
- "v": 133,
+ "v": 134,
  "url": "https://raw.githubusercontent.com/nilfilho000-afk/kaimon-gt-updates/main/jogo-apk.html",
- "notas": "Velocidade de andar: sobe devagar até o nível 50 e para em uma velocidade boa; montarias também têm limite.",
- "sha": "0ac52e470b79490e7e144c8422bce46fc56a7d6ec91ac23206bb4555b6787e5d",
- "sig": "PZgofldXN2W02PfcPRP7MiFKSienxERvNrDUXxtcBWOUfiEewYiSRid/50L/PEBF/lXEWJ1VK6DaQs8UC59B9g=="
+ "notas": "Árvores não somem mais por um instante quando um monstro ou jogador aparece na tela. Velocidade de andar sobe até o nível 50 e para numa velocidade boa.",
+ "sha": "2ecac7c96aa3fa5a0771c4d5aafec90b10810383bea0744ea337eedb7c9128f7",
+ "sig": "Ld2OZC+Ou4NfXhioelXbaSBZMCJD4zv4uaqaTkB5PKQ0wRwz+c4PMMQIIWn3vJkInq6YRQAuQBkaCIY2Rd2bYA=="
 }
