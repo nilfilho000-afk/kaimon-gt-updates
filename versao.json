@@ -1,11 +1,11 @@
 {
- "jogo": 149,
- "jogo_arquivo": "jogo-149.kpk",
- "jogo_sha": "5264419dbed244590ed9531cac674198d702ab714201346d5d407e87ee393b58",
- "jogo_assin": "P1ovTLFaRRRfItLcyzIw6BhnlqSjDB6DXFG7aUGiGwPBS65WBBeuUG2mLs1mJ5WZw54Q8rLQUbHvIy2aIRoqCA==",
+ "jogo": 150,
+ "jogo_arquivo": "jogo-150.kpk",
+ "jogo_sha": "bb70ab493ce0dda79148c82601fb1e1132d11c5e71c0684b9bccb1d5cce4158b",
+ "jogo_assin": "HKZyu3/BpgRV0EEjIGX0NriIQDkHauZ5gryCqw1mVQWM+kGzhbYfOWXHDk654aWRGfXxtdzGh81iXNpxq/e2Cw==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "f25c133b3f7a4fb3cc48ca8c7764d0d3f11e6af50c0adcbf3d713cbde566fb55",
- "launcher_assin": "chG2LCLZzlfaCb7T/h/g7rO5U/cKzXZBPepWeB7Dxx4ibBOR4O2tc9ucfj+IgJ4OHhe/rIGT0UBPwO/mCaFSBw==",
- "notas": "1.31: móveis abrem o menu certo (não começa mais batalha), carinho no Kaimon do tanque, roupas especiais do lançamento na Loja (100 KMC), conta de outro aparelho carrega o progresso da nuvem."
+ "launcher_sha": "49f72e5dcfa4c842cad518cd685b8b654718ab5c5305869e3a374eac975216b2",
+ "launcher_assin": "oV/HqQmUTxGNnQ0gjZNjf0cI7zCwPPV7AvhsA/cbybUh1/wPs2QZ/Qj+HvCfgqHA2KKzgE62tZhw3G8xF72RAQ==",
+ "notas": "1.32: TV com 3 canais (Aventura com Tainá, Canal do Tempo com Dona Garoa, Pesca com Seu Zé) e computador com KaimonOS: navegador com firewall (só o site do jogo) e jogo da Cobrinha."
 }
