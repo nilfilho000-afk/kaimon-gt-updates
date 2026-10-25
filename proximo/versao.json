@@ -1,0 +1,11 @@
+{
+ "jogo": 136,
+ "jogo_arquivo": "jogo-136.kpk",
+ "jogo_sha": "354d871e1da59a8d445c76dc4f72642cfe9f22e4808821bfd3b3db675f63b2e3",
+ "jogo_assin": "2kAvY9dGzR26Rl38bUM11CPY6id+xLVO1tWUOY7ERuMPStJekhKubP9lmNlIvQvIwNsEHg6ALYRNCJ+RAZlfDA==",
+ "launcher": 4,
+ "launcher_arquivo": "KaimonGT-4.exe",
+ "launcher_sha": "979350356ede92acd65722627947aa6b3f77a515e2bd431effa4d5148d6bbe6b",
+ "launcher_assin": "uoveFTf/NeoHjv6+xUqN5iZD9zgkEQVaa57hudV4MJ5rJc6XMrEO5rKDvs02QTQBcfumqu8xHsW8rAr0ly59DQ==",
+ "notas": "v1.18: quem está surfando, montado ou voando agora aparece assim para os outros jogadores (antes aparecia andando em cima da água)."
+}
