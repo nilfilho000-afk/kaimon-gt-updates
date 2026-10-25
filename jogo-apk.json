@@ -1,7 +1,7 @@
 {
- "v": 150,
+ "v": 151,
  "url": "https://raw.githubusercontent.com/nilfilho000-afk/kaimon-gt-updates/main/jogo-apk.html",
- "notas": "1.32: TV com 3 canais (Aventura com Tainá, Canal do Tempo com Dona Garoa, Pesca com Seu Zé) e computador com KaimonOS: navegador com firewall (só o site do jogo) e jogo da Cobrinha.",
- "sha": "6e3dcbbaf9ab2abb6431bdaa7cb6f7ef63162b0e7fff03ee949af45e58d65c3d",
- "sig": "qR0jEIpkLymlf/UJg7gX8QibR6O6vGl34ixWLoqUHcCjREZKzuvYUzfy1UPfnS3txlvsTKOCS6noIeRttm+mYA=="
+ "notas": "1.33: enfeites de parede e tapetes agora têm menu (girar, mover, guardar, sino), clicar em qualquer parte do móvel abre ele.",
+ "sha": "d9875c21a37c534ed18488241f0b681ff821dda5816a6515808c6c8b535e6e85",
+ "sig": "Yy4CBETqwb5TEFKAr6E+Fe5p5Zzd9lCpGAIdB7yKjw/tNbyxSBkFxL7uttS2iIppzr6ZHic9KHwZ6y9JjG0tsA=="
 }

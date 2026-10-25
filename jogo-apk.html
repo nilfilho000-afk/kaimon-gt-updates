@@ -2097,7 +2097,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v150 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v151 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -9123,7 +9123,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=150;
+var KGT_VER=151;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -14890,6 +14890,22 @@ return _ccMV.apply(this,arguments).then(j=>{try{if(body&&body.op==='visitar'&&j&
 {const _kcC=kcCasa;kcCasa=function(){const c=_kcC.apply(this,arguments);try{if(c&&c.vis&&CSVIS)c.o.mv=CSVIS.mv||[]}catch(e){}return c}}
 {const _actMob=act;act=function(){try{if(mode==='walk'&&!P.sit){const x=P.x+DX[P.d],y=P.y+DY[P.d],e=ents().find(e=>e.x==x&&e.y==y);
 if(e&&typeof e.fn==='function'&&(e.mvI||e.kcT||e.kcP||/^(mv_|kc_)/.test(e.n||''))){return e.fn(e)}}}catch(err){}return _actMob.apply(this,arguments)}}
+function mobParedeEm(c,x){return mobLista(c).find(m=>{const d=mobDef(m.k);return d&&d.t==='parede'&&x>=m.x&&x<m.x+mobPe(d,m.r).w})}
+function mobTapeteEm(c,x,y){return mobLista(c).find(m=>{const d=mobDef(m.k);return d&&d.t==='tapete'&&mobTiles(m).some(t=>t[0]===x&&t[1]===y)})}
+{const _actPar=act;act=function(){try{if(mode==='walk'&&!P.sit){const c=mobCasa();if(c){const x=P.x+DX[P.d],y=P.y+DY[P.d];
+if(P.d===0&&y<=2){const m=mobParedeEm(c,x);if(m)return mobMenu(m.id)}}}}catch(err){}return _actPar.apply(this,arguments)}}
+{const _hmTap=hmenu;hmenu=function(x,y){const r=_hmTap.apply(this,arguments);try{const c=mobCasa();const m=c&&mobTapeteEm(c,x,y);const ui=$('ui');
+if(m&&ui&&ui.style.display!=='none'&&!ui.querySelector('.mvtap')){const d=mobDef(m.k);ui.insertAdjacentHTML('beforeend','<div class="mvtap" style="margin-top:6px">'+btn('🧶 '+esc(d.n)+(c.vis?'':' (girar / mover / guardar)'),`mobMenu('${m.id}')`)+'</div>')}}catch(e){}return r}}
+function mobPickXY(wx,wy){const c=mobCasa();if(!c)return null;let best=null,bz=-1;
+for(const e of NPC){if(!e||!e.mvI||!e.mvM)continue;const m=e.mvM,d=mobDef(m.k);if(!d)continue;const p=mobPe(d,m.r),v=mobView(d,m.r),dh=v[3]/2,x0=m.x*16,x1=(m.x+p.w)*16,yb=(m.y+p.h)*16,y0=Math.min(m.y*16,yb-dh);
+if(wx>=x0&&wx<=x1&&wy>=y0&&wy<=yb&&yb>bz){bz=yb;best=e}}
+for(const e of NPC){if(!e||!e.kcT)continue;const[x,y]=String(e.kcT).split(',').map(Number);if(wx>=x*16&&wx<=(x+3)*16&&wy>=y*16-30&&wy<=(y+1)*16)return e}
+return best}
+{const _rcp=rcPick;rcPick=function(X,Y){const r=_rcp.apply(this,arguments);if(r&&!r.mvI&&!r.kcT)return r;try{const w=rcWorld(X,Y);if(w){const m=mobPickXY(w[0],w[1]);if(m)return m}}catch(e){}return r}}
+(function(){const cv=document.getElementById('cv');if(!cv)return;let td=null;
+cv.addEventListener('pointerdown',ev=>{if(ev.pointerType==='mouse')return;td={x:ev.clientX,y:ev.clientY,t:performance.now(),id:ev.pointerId}},{passive:true});
+cv.addEventListener('pointerup',ev=>{const d=td;td=null;try{if(!d||ev.pointerId!==d.id||mode!=='walk'||!mobCasa())return;if(performance.now()-d.t>450||Math.hypot(ev.clientX-d.x,ev.clientY-d.y)>18)return;
+const w=rcWorld(ev.clientX,ev.clientY);if(!w)return;const e=mobPickXY(w[0],w[1]);if(e)setTimeout(()=>{try{if(!RCT||RCT.e!==e)rcGo(e)}catch(x){}},0)}catch(x){}})})();
 function bagCap(n){let r=0;try{for(const[a,i]of invAll(isLootN(n))){const s=a[i];if(!s)r+=STK;else if(s.t=='i'&&s.n==n)r+=STK-s.c}}catch(e){}return r}
 function depCap(n){let r=0;try{for(const b of DB())for(const s of b){if(!s)r+=DEPMAX;else if(s.t==='i'&&s.n===n)r+=DEPMAX-s.c}}catch(e){}return r}
 function depAddItem(n,c){const B=DB();for(const b of B)for(const s of b){if(c<=0)break;if(s&&s.t==='i'&&s.n===n&&s.c<DEPMAX){const m=Math.min(c,DEPMAX-s.c);s.c+=m;c-=m}}
