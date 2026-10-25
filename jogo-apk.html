@@ -2097,7 +2097,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v146 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v147 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -9123,7 +9123,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=146;
+var KGT_VER=147;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -14874,6 +14874,28 @@ function mobPublica(){try{if(typeof kcPublica==='function')kcPublica()}catch(e){
 if(typeof csCall==='function'){const _ccMV=csCall;csCall=function(body){try{if(body&&(body.op==='alugar'||body.op==='deco')&&!body.mv){const k=String(body.k||''),h=k.replace(/^v(\d)$/,'$1'),o=G.own&&(G.own[h]||G.own[k]);if(o)body.mv=mobPub(o)}}catch(e){}
 return _ccMV.apply(this,arguments).then(j=>{try{if(body&&body.op==='visitar'&&j&&j.ok){const mv=(j.mv||[]).map((m,i)=>Object.assign({id:'v'+i},m));setTimeout(()=>{try{if(CSVIS){CSVIS.mv=mv;for(const m of mv){const d=mobDef(m.k);if(d&&d.t!=='tapete'&&d.t!=='parede')for(const[x,y]of mobTiles(m))CSVIS.dec[x+','+y]='mv'}}}catch(e){}},0)}}catch(e){}return j})}}
 {const _kcC=kcCasa;kcCasa=function(){const c=_kcC.apply(this,arguments);try{if(c&&c.vis&&CSVIS)c.o.mv=CSVIS.mv||[]}catch(e){}return c}}
+var CNF={pend:null,livre:0};
+function cnfInfo(nome,a){try{
+if(nome==='lojaItem'){const it=LOJA.find(x=>x.k===a[0]);return it?{nm:it.n,p:it.p,img:it.ic?it.ic():''}:null}
+if(nome==='lojaAddon'){if(a[0]==='t'){const t=TAD[a[1]];if(!t)return null;let img='';try{img=tadImg(tadLook(G.look,{[t.slot]:a[1]}),0)}catch(e){}return{nm:t.n+' (roupa)',p:ADP.t,img}}
+const A=(ADDON[a[2]]||{})[a[1]];if(!A)return null;return{nm:A.n+' · addon do '+a[2],p:psExcl(a[2])?ADP.r:ADP.m,img:pbi(a[2],{sh:0,ad:a[1]})}}
+if(nome==='lojaTanque')return{nm:'Tanque Kaimon',p:10,img:typeof kcTanqueIcone==='function'?kcTanqueIcone():''};
+if(nome==='lojaMovel'){const d=MOBD[a[0]];return d?{nm:d.n,p:d.p,img:mobIco(a[0])}:null}
+if(nome==='xpbBuy')return{nm:'Boost de EXP +30%',p:XPB.PRECO,img:''};
+if(nome==='aboxBuy')return{nm:'Kaimon Addon Box',p:5,img:''};
+if(nome==='pboxBuy')return{nm:'Addon Box do Passe',p:10,img:''};
+if(nome==='pacoteBuy'){const it=LOJA.find(x=>x.k==='pacote');return{nm:it?it.n:'Pacote do mês',p:it?it.p:45,img:it&&it.ic?it.ic():''}}
+if(nome==='psKmc')return{nm:'Passe Kaimon (30 dias)',p:typeof PSKMC==='number'?PSKMC:40,img:''};
+}catch(e){}return null}
+function cnfEmbrulha(nome){const f=window[nome];if(typeof f!=='function'||f._cnf)return;
+const w=function(...a){if(Date.now()<CNF.livre)return f.apply(this,a);const i=cnfInfo(nome,a);if(!i||!(i.p>0)||kpGet()<i.p)return f.apply(this,a);
+CNF.pend={f,a,self:this,daLoja:!!document.querySelector('#ui .ljh')};const kp=kpGet();
+open(`<div class="psh">${i.img?`<img src="${i.img}" alt="" style="width:72px;height:72px;object-fit:contain;image-rendering:pixelated;background:#0f1626;border-radius:12px;padding:4px">`:'<span style="font-size:40px">🛍️</span>'}<div><b>Confirmar compra?</b><small><b style="color:#fff">${esc(i.nm)}</b><br>Preço: <b style="color:#ffe27a">${kmc(i.p)}</b></small></div></div>
+   <p style="margin:6px 0"><small>Você tem ${kmc(kp)} → vai ficar com <b>${kmc(kp-i.p)}</b>.</small></p>`+btn('✅ Confirmar compra','cnfSim()')+btn('Voltar','cnfNao()'))};
+w._cnf=1;window[nome]=w}
+function cnfSim(){const p=CNF.pend;CNF.pend=null;if(!p)return closeUI();CNF.livre=Date.now()+4000;try{const r=p.f.apply(p.self,p.a);if(r&&typeof r.finally==='function')r.finally(()=>{CNF.livre=0});else setTimeout(()=>{CNF.livre=0},50);return r}catch(e){CNF.livre=0;throw e}}
+function cnfNao(){const p=CNF.pend;CNF.pend=null;if(p&&p.daLoja&&typeof lojaOpen==='function')return lojaOpen();closeUI()}
+for(const n of['lojaItem','lojaAddon','lojaTanque','lojaMovel','xpbBuy','aboxBuy','pboxBuy','pacoteBuy','psKmc'])cnfEmbrulha(n);
 (function(){try{const st=document.createElement('style');st.textContent=`body.hudmin .ab:not(.hkeep){display:none!important}
 #hudtg{position:fixed;right:calc(env(safe-area-inset-right,0px) + 88px);bottom:calc(env(safe-area-inset-bottom,0px) + 6px);width:40px;height:40px;border-radius:50%;padding:0;margin:0;z-index:6;
  background:radial-gradient(circle at 35% 30%,#fff3c0,#e8c050 60%,#a8801c);border:2px solid #fff;color:#3a2a00;font:900 18px sans-serif;box-shadow:0 2px 6px #0008;display:flex;align-items:center;justify-content:center}
