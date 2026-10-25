@@ -1,11 +1,11 @@
 {
- "jogo": 145,
- "jogo_arquivo": "jogo-145.kpk",
- "jogo_sha": "638bf1394ebf952816d2af8f9235ce1b6f5c215cec58100916896a56a1fbe16f",
- "jogo_assin": "Rr4/mg81XvC5v2h6aANpme19/lZPvP+gphxfPiZ1EVdOyGN7//HOSuCujQNA2ioAdRdbpDbefGbGnQwTyOOkAQ==",
+ "jogo": 146,
+ "jogo_arquivo": "jogo-146.kpk",
+ "jogo_sha": "0e4aa22f793ea1b54e4941c61e1a7e781fc6e7a6a0a6284a009f7bbb3bb464fc",
+ "jogo_assin": "TeCynuE1ECzbvrqhqQzbstxqmAZAam3UF1lmlHMRIE7oG38x6kttw1xzOLv97UcUWRyapm8GPRqIQd/1FeczDg==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "c1a737ba990b76bb3de2de520fd1a2d2847d4c9886fb1fc6db946e1e15ed7706",
- "launcher_assin": "+fueyiK5O5LySmK+oTZbQMHjgMLxRkvLYC1uCfC4AmybBM9UfjkP+h8J2d5Xe13zD3v354lqiSLJBAMjk5naDQ==",
- "notas": "Versão 1.27\n• Monstros exclusivos do Passe (como o Saciclone) não podem mais ser vendidos ao Colecionador: eles ficam sempre com você.\n• Quem vendeu o Saciclone sem querer recebe ele de volta."
+ "launcher_sha": "632dbe9b5b7a4d905fe4ffc11067da374367a34642bcf86fc888b36099d2a878",
+ "launcher_assin": "1NHpPAuV5ZJxkVeB4uXvr/IBnumc2uDrFhSAyaMglBVzwPKrzyuJGK3hNDR1ATkPJE51hpBFrbDiWjq1tAtUCQ==",
+ "notas": "Versão 1.28\n• Móveis para a sua casa! 36 no Mercado (Decoração) e 24 na Loja Kaimon (aba Casa, 5 KMC cada).\n• Na sua casa, toque no chão → Colocar móvel: escolha, ajuste com as setas, gire e confirme.\n• Os móveis fazem coisas: sentar, dormir, guardar itens, ligar e desligar (com luz), jukebox com música, piano, PC com navegador, máquina de refri, plantas para regar e aquários para alimentar.\n• Quem visita a sua casa vê todos os seus móveis.\n• Correção: depois de abrir a Loja Kaimon, as outras janelas ficavam com o visual dela."
 }
