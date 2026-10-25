@@ -1,7 +1,7 @@
 {
- "v": 134,
+ "v": 135,
  "url": "https://raw.githubusercontent.com/nilfilho000-afk/kaimon-gt-updates/main/jogo-apk.html",
- "notas": "Árvores não somem mais por um instante quando um monstro ou jogador aparece na tela. Velocidade de andar sobe até o nível 50 e para numa velocidade boa.",
- "sha": "2ecac7c96aa3fa5a0771c4d5aafec90b10810383bea0744ea337eedb7c9128f7",
- "sig": "Ld2OZC+Ou4NfXhioelXbaSBZMCJD4zv4uaqaTkB5PKQ0wRwz+c4PMMQIIWn3vJkInq6YRQAuQBkaCIY2Rd2bYA=="
+ "notas": "v1.17: barraca do pastel nova (senta na cadeira, garçom atende), vendinha só fica aberta com você sentado, Arena nova com ranking, HP do inimigo com números, árvores gigantes novas, Melo e Ana na Feira, jogo deita sozinho no celular em pé, sair do app desconecta, Cristal Supremo só na loja (Addon Box no passe).",
+ "sha": "103b362540343dd26c7b4a14ed8988d5ee30540e232fb0e2348b1b3a1a5add1c",
+ "sig": "TCIbQWk4C1GzB6RnfMIKHvA8i4w7lXmhqoj0LAzpr8veemUT0ykyvIo4UcR58ABKhOPN2mvOisTioE68Y/EPvA=="
 }
