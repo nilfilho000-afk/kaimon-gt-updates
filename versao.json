@@ -1,11 +1,11 @@
 {
- "jogo": 143,
- "jogo_arquivo": "jogo-143.kpk",
- "jogo_sha": "d5efdcaaf6b46e21f766b3d18aaffc54d5ae39d1ecb0940ddbfdc8b0e94494f4",
- "jogo_assin": "IURKxGYGW2DL/Kdv91UfwefOvnhiV6ttFtkPYNi3htopywmVDAj53QdcvQUwjVgDDa/2Us5yDTTo3P+zAiBWCA==",
+ "jogo": 144,
+ "jogo_arquivo": "jogo-144.kpk",
+ "jogo_sha": "6931c6ad2039bb587315c4a3807554a7f87f15aed09e35ec217c77ee7b109097",
+ "jogo_assin": "lukdoeKOxfqfPVtiQ8TvRDUlB5ED6S1r+JD50FZRcaaDXM8781nLQj+9mDGT4raoKqS8dPwxG7ZrEAhR95DaCQ==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "b27e2a244ab3b82044300662b653aa69af79d5f041e872ec9c44455e2552d304",
- "launcher_assin": "buwEbPWX5WQKw/vboKzy7sRRkDWyZmBuLVvT8TKbhrsvwcqA8bwoWpNtiTNyTdEa7zQtgBUeSeSmt4tkoEDbAw==",
- "notas": "Versão 1.25\n• Casas: cada treinador pode ter UMA casa. Toda casa com morador mostra a placa \"House do <nick>\".\n• A casa alugada ficou bem maior por dentro (a decoração que já estava lá não sai do lugar).\n• Tanque Kaimon (10 KMC, loja › aba Casa): coloque na sua casa e ponha um Kaimon de Água pra nadar dentro. Comida 1x por semana; quem visita vê ele nadando.\n• Loja Kaimon nova, separada por abas: Destaques, Itens, Roupas, Kaimons, Casa e Moedas.\n• Feira: sentado na cadeira da mesa do pastel, dá para ver o personagem inteiro."
+ "launcher_sha": "520264f9eef83e500f486f86de07e9a5376bb22d75cb3dbb220fb09b2dfb8dd0",
+ "launcher_assin": "PNHl0Gm4ajCwf6EURrkLnsA6WZ/p9tigG9pG03MQcatRU44rpPBLb8woYyZyPDcrIn/SyRuxgo9EZ18Z4XP7DQ==",
+ "notas": "Versão 1.26\n• Barra de XP do treinador embaixo da tela: nível, porcentagem e quanto falta para o próximo.\n• No PC, o Passe e as outras janelas rolam com a rodinha, arrastando com o mouse ou pelas setas (e avisam quando tem mais embaixo).\n• Staff agora aparece com asas de anjo no nick.\n• Ferramentas novas do GOD."
 }

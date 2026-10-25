@@ -2097,7 +2097,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v143 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v144 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -9123,7 +9123,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=143;
+var KGT_VER=144;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -14631,6 +14631,82 @@ return _ccKC.apply(this,arguments).then(j=>{try{if(body&&body.op==='visitar'&&j&
 function lojaTanque(){if(kpGet()<10)return toast('Faltam '+kmc(10-kpGet())+'.');kpAdd(-10);G.tqinv=(G.tqinv||0)+1;save();hud();try{play('item')}catch(e){}
 ok('<p><b>🐠 Tanque Kaimon comprado!</b></p><p>Na sua casa, toque no chão onde quer colocar (precisa de 3 quadrados livres) e escolha <b>Colocar Tanque Kaimon</b>. Depois coloque um Kaimon de Água dentro.</p>')}
 function kcTanqueIcone(){try{const c=document.createElement('canvas');c.width=96;c.height=94;const x=c.getContext('2d');x.imageSmoothingEnabled=false;if(KC.img.complete)x.drawImage(KC.img,0,0,96,94);return c.toDataURL()}catch(e){return''}}
+var EQ={staff:new Set(),gods:new Set(),t:0};
+async function eqSync(){try{if(!webAcc()||!(FBC&&FBC.fn)||!webOnline())return;const j=await modCall({op:'equipe'});EQ.staff=new Set(j.staff||[]);EQ.gods=new Set(j.gods||[]);EQ.t=Date.now()}catch(e){}}
+setTimeout(eqSync,7000);setInterval(()=>{if(Date.now()-EQ.t>5*60000&&!document.hidden)eqSync()},60000);
+function eqMeuUid(){try{const a=webAcc();return a&&a.fb?a.fb.uid:''}catch(e){return''}}
+function eqTipo(uid,eu){if(eu){if(MOD.r==='god')return'god';if(MOD.r==='staff')return'staff'}if(!uid)return'';if(EQ.gods.has(uid))return'god';if(EQ.staff.has(uid))return'staff';return''}
+function eqAsa(X,ty,w,tipo,t){const ouro=tipo==='god',c1=ouro?'#fff2b0':'#ffffff',c2=ouro?'#c8901a':'#4a8ad8',bat=Math.sin(t/260)*.35;
+for(const s of[-1,1]){g.save();g.translate(X+s*(w/2+.6),ty+.4);g.scale(s*1.15,1.15);g.rotate(-.18-bat*.25);
+g.fillStyle='rgba(0,0,0,.28)';g.beginPath();g.moveTo(0,.6);g.quadraticCurveTo(4.2,-4.6,7.4,-3.2);g.quadraticCurveTo(6.6,-1.4,5.2,-1);g.quadraticCurveTo(5.8,.4,4.4,.9);g.quadraticCurveTo(4.4,2.2,2.6,2.4);g.closePath();g.fill();
+g.fillStyle=c1;g.strokeStyle=c2;g.lineWidth=.6;g.beginPath();g.moveTo(0,0);g.quadraticCurveTo(4,-5.2,7.2,-3.8);g.quadraticCurveTo(6.4,-2,5,-1.6);g.quadraticCurveTo(5.6,-.2,4.2,.3);g.quadraticCurveTo(4.2,1.6,2.4,1.8);g.closePath();g.fill();g.stroke();
+g.strokeStyle=c2;g.lineWidth=.3;g.beginPath();g.moveTo(1.4,-.6);g.lineTo(5.6,-3.2);g.moveTo(1.6,.2);g.lineTo(4.4,-1.1);g.stroke();g.restore()}}
+{const _plEq=plate;plate=function(e,cx,cy){const r=_plEq.apply(this,arguments);if(e!==P)return r;try{if(!CFG.names)return r;const t=performance.now();g.save();g.font='bold 5px sans-serif';
+const eu=eqTipo(eqMeuUid(),1);if(eu){let Y=Math.round((P.py*16-cy)*2)/2-8;try{if(typeof f7NaCadeira==='function'&&f7NaCadeira(P))Y-=F7SOBE}catch(x){}const X=Math.round((P.px*16-cx+8)*2)/2,w=g.measureText(G.nick||LBL.me).width+5;eqAsa(X,Y-5,w,eu,t)}
+if(typeof MP!=='undefined'&&MP.ps&&MP.ps.size)for(const o of MP.ps.values()){const tp=eqTipo(o.id);if(!tp)continue;const X=Math.round((o.px*16-cx+8)*2)/2,ty=Math.round((o.py*16-cy)*2)/2-13,w=g.measureText(o.n||'').width+5;eqAsa(X,ty,w,tp,t)}
+g.restore()}catch(x){}return r}}
+if(typeof chList==='function'){const _chEq=chList;chList=function(){let h=_chEq.apply(this,arguments);try{const L=MOD.L||[];if(!L.length)return h;let i=0;
+h=h.replace(/<div class="m([^"]*)"><small>([^<]*)<\/small> <b/g,(s0,a,b)=>{const m=L[i++];const tp=m&&eqTipo(m.u,m.u===eqMeuUid());return tp?`<div class="m${a}"><small>${b}</small> ${eqAsaImg(tp)}<b`:s0})}catch(e){}return h}}
+function eqAsaImg(tp){const c1=tp==='god'?'#fff2b0':'#ffffff',c2=tp==='god'?'#e8b830':'#7ab8f0';
+const svg=`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 12'><path d='M10 9 Q6 1 1 2 Q2 4 4 4.5 Q3 6 5 6.5 Q5 8.5 8 8.6Z M10 9 Q14 1 19 2 Q18 4 16 4.5 Q17 6 15 6.5 Q15 8.5 12 8.6Z' fill='${c1}' stroke='${c2}' stroke-width='.8'/></svg>`;
+return `<img alt="${tp==='god'?'GOD':'Staff'}" title="${tp==='god'?'GOD':'Staff'}" src="data:image/svg+xml,${encodeURIComponent(svg)}" style="width:15px;height:9px;vertical-align:-1px;margin-right:2px">`}
+const EQCC=[[0, "Vila Alvorada", 24, 57], [1, "Cidade de Jatobá", 20, 29], [26, "Platô da Glória", 12, 31], [29, "Cidade de Pedra Alta", 16, 39], [31, "Rota 3", 50, 23], [34, "Cidade de Anil", 14, 79], [38, "Rota 9", 54, 37], [41, "Cidade de Candeia", 14, 27], [45, "Cidade de Ventania", 26, 57], [48, "Cidade de Florada", 34, 57], [52, "Cidade de Bonança", 14, 27], [58, "Cidade de Manguezal", 54, 39], [63, "Ilha Caldeira", 16, 27], [107, "Vila da Arena", 50, 17]]; 
+if(typeof godPlaces==='function'){godPlaces=function(){return EQCC.filter(c=>M[c[0]]).map(c=>[c[0],'🏥 '+c[1]])}}
+if(typeof godTp==='function'){const _gtEq=godTp;godTp=function(i){const c=EQCC.find(q=>q[0]===i);if(!c||!godOn())return _gtEq.apply(this,arguments);
+closeUI();try{if(G.mt)mnOff(1)}catch(e){}setMap(i,c[2],c[3]+1);let best=null;const cand=[[c[2],c[3]+1],[c[2],c[3]+2],[c[2]-1,c[3]+1],[c[2]+1,c[3]+1],[c[2],c[3]+3]];
+for(const[x,y]of cand)if(godFree(x,y)){best=[x,y];break}
+if(best){P.x=P.px=P.fx=best[0];P.y=P.py=P.fy=best[1];FWo.x=FWo.px=P.x;FWo.y=FWo.py=P.y;FWo.mt=null}P.d=0;P.end=0;hud();toast('👑 '+c[1]+' · Centro de Cura')}}
+if(typeof godPanel==='function'){const _gpEq=godPanel;godPanel=function(){const r=_gpEq.apply(this,arguments);try{const ui=$('ui');if(!ui||!godOn())return r;
+const ts=[...ui.querySelectorAll('.godt')],tt=ts.find(e=>/Teletransporte/.test(e.textContent));if(tt)tt.textContent='Teletransporte · Centros de Cura (você aparece na frente)';
+const box=`<div class="godt">👥 Jogadores ${MOD.r==='god'?'':'<small style="color:#ffb4b4">(o servidor ainda não te reconhece como GOD)</small>'}</div>
+   <div class="godg" style="align-items:center"><input class="tin" id="eqal" maxlength="40" placeholder="Nick ou código Pixa" autocomplete="off" style="flex:1;min-width:150px"></div>
+   <div class="godg" style="align-items:center">💎 <input class="gin" id="eqkq" type="number" min="1" max="5000" value="10" style="width:70px"> KMC ${btn('Dar KMC','eqDo("darKmc")')}</div>
+   <div class="godg">${btn('⛔ Banir 1 dia','eqDo("banir",{dias:1})')}${btn('⛔ Banir 7 dias','eqDo("banir",{dias:7})')}${btn('⛔ Banir para sempre','eqBanSempre()')}${btn('✅ Desbanir','eqDo("desbanir")')}</div>
+   <div class="godg">${btn('🪽 Promover a staff','eqDo("promover")')}${btn('Tirar staff','eqDo("rebaixar")')}${btn('📋 Lista','modLista()')}</div>`;
+const first=ts[0];if(first)first.insertAdjacentHTML('beforebegin',box);else ui.insertAdjacentHTML('beforeend',box)}catch(e){}return r}}
+function eqAlvo(){const v=(($('eqal')||{}).value||'').trim();if(!v){toast('Digite o nick ou o código Pixa do jogador.');return''}EQ.ult=v;return v}
+async function eqDo(op,extra){const alvo=eqAlvo();if(!alvo)return;const q=Math.floor(+(($('eqkq')||{}).value)||0);
+if(op==='darKmc'&&(q<1||q>5000))return toast('KMC: de 1 a 5000.');
+try{const j=await modCall(Object.assign({op,alvo,nick:G.nick||'',q},extra||{}));toast((op==='darKmc'?'💎 ':op==='promover'?'🪽 ':'🛡️ ')+(j.msg||'Feito.'));if(op==='promover'||op==='rebaixar'){EQ.t=0;setTimeout(eqSync,1500)}}
+catch(e){ok('<b>👑 GOD</b><p>'+esc(e.message)+'</p>'+btn('Voltar','godPanel()'))}}
+function eqBanSempre(){const alvo=eqAlvo();if(!alvo)return;open(`<b>⛔ Banir ${esc(alvo)} para sempre?</b><p><small>A conta para de entrar (dá para desbanir depois).</small></p>`+btn('Sim, banir',`eqDoAlvo('banir',${JSON.stringify(alvo).replace(/"/g,'&quot;')},{dias:0})`)+btn('Cancelar','godPanel()'))}
+async function eqDoAlvo(op,alvo,extra){try{const j=await modCall(Object.assign({op,alvo,nick:G.nick||''},extra||{}));toast('🛡️ '+(j.msg||'Feito.'));closeUI()}catch(e){ok('<b>👑 GOD</b><p>'+esc(e.message)+'</p>')}}
+if(typeof modMenu==='function'){const _mmEq=modMenu;modMenu=function(uid,nick){const r=_mmEq.apply(this,arguments);try{if(MOD.r==='god'){const ui=$('ui');const b=[...ui.querySelectorAll('button')].find(x=>/Tirar staff/.test(x.textContent));
+const h=`<br><span style="display:inline-flex;align-items:center;gap:4px">💎 <input class="gin" id="mmkq" type="number" min="1" max="5000" value="10" style="width:64px"> ${btn('Dar KMC',"modDo('darKmc',{q:Math.floor(+($('mmkq').value)||0)})")}</span>`;
+if(b)b.insertAdjacentHTML('afterend',h)}}catch(e){}return r}}
+(function(){try{const st=document.createElement('style');st.textContent=`#xpbar{position:fixed;left:50%;bottom:3px;transform:translateX(-50%);width:min(50vw,460px);height:14px;border-radius:7px;background:rgba(10,14,26,.72);border:1px solid rgba(255,211,77,.55);z-index:6;pointer-events:none;overflow:hidden;box-shadow:0 1px 4px #0008}
+#xpbar i{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(#ffe27a,#e8a020);border-radius:6px;transition:width .5s}
+#xpbar i:after{content:'';position:absolute;inset:0 0 50% 0;background:rgba(255,255,255,.35);border-radius:6px 6px 0 0}
+#xpbar b{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font:800 9.5px system-ui,sans-serif;color:#fff;text-shadow:0 0 2px #000,0 1px 1px #000;letter-spacing:.2px;white-space:nowrap}
+#xpbar.up{animation:xpup 1s}@keyframes xpup{0%,100%{box-shadow:0 1px 4px #0008}40%{box-shadow:0 0 14px #ffe27a}}`;document.head.appendChild(st)}catch(e){}})();
+function xpCalc(){const T=G&&G.t;if(!T)return null;const l=Math.max(1,T.l|0),a=40*(l-1)*(l-1),b=40*l*l,x=Math.max(a,+T.x||0);return{l,p:Math.max(0,Math.min(100,100*(x-a)/(b-a))),falta:Math.max(0,Math.ceil(b-x))}}
+var XPBR={l:0,p:-1};
+setInterval(()=>{try{let el=document.getElementById('xpbar');const vis=typeof mode!=='undefined'&&(mode==='walk'||mode==='ui')&&!document.getElementById('ttl')&&G&&G.t;
+if(!vis){if(el)el.style.display='none';return}
+if(!el){el=document.createElement('div');el.id='xpbar';el.innerHTML='<i></i><b></b>';document.body.appendChild(el)}el.style.display='';
+const c=xpCalc();if(!c)return;const max=typeof TRMAX==='number'&&c.l>=TRMAX;
+if(c.l!==XPBR.l||Math.abs(c.p-XPBR.p)>.05){if(XPBR.l&&c.l>XPBR.l){el.classList.remove('up');void el.offsetWidth;el.classList.add('up')}XPBR.l=c.l;XPBR.p=c.p;
+el.firstChild.style.width=(max?100:c.p)+'%';el.lastChild.textContent=max?'Nv '+c.l+' · nível máximo':'Nv '+c.l+' · '+c.p.toFixed(1).replace('.',',')+'% · faltam '+c.falta.toLocaleString('pt-BR')+' XP'}}catch(e){}},400);
+(function(){try{const st=document.createElement('style');st.textContent=`@media (hover:hover) and (pointer:fine){#ui,#ui .ljb,#ui .kcl{scrollbar-width:auto;scrollbar-color:#e8c050 rgba(20,28,48,.9)}
+#ui::-webkit-scrollbar,#ui .ljb::-webkit-scrollbar,#ui .kcl::-webkit-scrollbar{width:12px}
+#ui::-webkit-scrollbar-track,#ui .ljb::-webkit-scrollbar-track{background:rgba(20,28,48,.9);border-radius:8px}
+#ui::-webkit-scrollbar-thumb,#ui .ljb::-webkit-scrollbar-thumb,#ui .kcl::-webkit-scrollbar-thumb{background:#e8c050;border-radius:8px;border:2px solid rgba(20,28,48,.9)}}
+#uimais{position:fixed;z-index:61;pointer-events:none;font:800 12px system-ui,sans-serif;color:#1b1f2a;background:#ffd34d;border-radius:999px;padding:3px 12px;box-shadow:0 2px 8px #0009;animation:uim 1.4s infinite}
+@keyframes uim{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,3px)}}
+#ui.uiarr{cursor:grab}#ui.uiarr.uipega{cursor:grabbing;user-select:none}`;document.head.appendChild(st)}catch(e){}})();
+function uiRolavel(el){while(el&&el!==document.body){if(el.scrollHeight>el.clientHeight+4&&/(auto|scroll)/.test(getComputedStyle(el).overflowY))return el;if(el.id==='ui')break;el=el.parentElement}const u=document.getElementById('ui');return u&&u.scrollHeight>u.clientHeight+4?u:null}
+(function(){const fino=matchMedia&&matchMedia('(hover:hover) and (pointer:fine)').matches;let D=null;
+document.addEventListener('mousedown',e=>{try{if(e.button!==0)return;const u=document.getElementById('ui');if(!u||!u.contains(e.target)||e.target.closest('button,input,select,textarea,a,label'))return;const r=uiRolavel(e.target);if(!r)return;D={r,y:e.clientY,s:r.scrollTop,mov:0};u.classList.add('uipega')}catch(x){}},true);
+document.addEventListener('mousemove',e=>{if(!D)return;const dy=e.clientY-D.y;if(Math.abs(dy)>4)D.mov=1;D.r.scrollTop=D.s-dy},true);
+document.addEventListener('mouseup',e=>{if(!D)return;const m=D.mov;D=null;try{document.getElementById('ui').classList.remove('uipega')}catch(x){}if(m){const k=ev=>{ev.stopPropagation();ev.preventDefault()};document.addEventListener('click',k,{capture:true,once:true});setTimeout(()=>document.removeEventListener('click',k,true),50)}},true);
+document.addEventListener('wheel',e=>{try{const u=document.getElementById('ui');if(!u||!u.contains(e.target))return;const r=uiRolavel(e.target);if(!r)return;const dy=e.deltaMode===1?e.deltaY*16:e.deltaMode===2?e.deltaY*r.clientHeight:e.deltaY;const a=r.scrollTop;r.scrollTop+=dy;if(r.scrollTop!==a)e.preventDefault()}catch(x){}},{capture:true,passive:false});
+window.addEventListener('keydown',e=>{try{const u=document.getElementById('ui');if(!u||!u.getClientRects().length||typeof mode==='undefined'||mode!=='ui')return;if(/INPUT|TEXTAREA|SELECT/.test((document.activeElement||{}).tagName||''))return;
+const r=uiRolavel(u.querySelector('.ljb')||u)||u;const k=e.key,ph=r.clientHeight*.85;let d=0;if(k==='PageDown')d=ph;else if(k==='PageUp')d=-ph;else if(k==='ArrowDown')d=60;else if(k==='ArrowUp')d=-60;else if(k==='End')d=1e6;else if(k==='Home')d=-1e6;else return;
+if(r.scrollHeight<=r.clientHeight+4)return;r.scrollTop+=d;e.preventDefault();e.stopPropagation()}catch(x){}},true);
+setInterval(()=>{try{const u=document.getElementById('ui');let h=document.getElementById('uimais');const vis=u&&u.getClientRects().length&&typeof mode!=='undefined'&&mode==='ui';const r=vis?(uiRolavel(u.querySelector('.ljb')||u)):null;
+const falta=r&&r.scrollTop+r.clientHeight<r.scrollHeight-24;if(!falta){if(h)h.style.display='none';return}
+if(!h){h=document.createElement('div');h.id='uimais';document.body.appendChild(h)}const b=r.getBoundingClientRect();h.textContent=fino?'▼ role para ver mais (rodinha, arraste ou setas)':'▼ deslize para ver mais';h.style.display='';h.style.left=(b.left+b.width/2)+'px';h.style.top=(b.bottom-30)+'px';
+u.classList.toggle('uiarr',!!fino)}catch(x){}},300)})();
 (function(){try{const st=document.createElement('style');st.textContent=`body.hudmin .ab:not(.hkeep){display:none!important}
 #hudtg{position:fixed;right:calc(env(safe-area-inset-right,0px) + 88px);bottom:calc(env(safe-area-inset-bottom,0px) + 6px);width:40px;height:40px;border-radius:50%;padding:0;margin:0;z-index:6;
  background:radial-gradient(circle at 35% 30%,#fff3c0,#e8c050 60%,#a8801c);border:2px solid #fff;color:#3a2a00;font:900 18px sans-serif;box-shadow:0 2px 6px #0008;display:flex;align-items:center;justify-content:center}

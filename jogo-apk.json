@@ -1,7 +1,7 @@
 {
- "v": 143,
+ "v": 144,
  "url": "https://raw.githubusercontent.com/nilfilho000-afk/kaimon-gt-updates/main/jogo-apk.html",
- "notas": "Versão 1.25\n• Casas: cada treinador pode ter UMA casa. Toda casa com morador mostra a placa \"House do <nick>\".\n• A casa alugada ficou bem maior por dentro (a decoração que já estava lá não sai do lugar).\n• Tanque Kaimon (10 KMC, loja › aba Casa): coloque na sua casa e ponha um Kaimon de Água pra nadar dentro. Comida 1x por semana; quem visita vê ele nadando.\n• Loja Kaimon nova, separada por abas: Destaques, Itens, Roupas, Kaimons, Casa e Moedas.\n• Feira: sentado na cadeira da mesa do pastel, dá para ver o personagem inteiro.",
- "sha": "6f710e64b8dd3a903fb9d9f11f747c62d20d5b5e4c8d8989260a2159ea6fef9b",
- "sig": "f5rS97lO/MTAGHTp6eUqURPS3V1tqjZ3WuO4lNG7Q46Gflz+69WE7vM4I2p0TeYR6gnFd0vtu1mhKjGIjhKhuw=="
+ "notas": "Versão 1.26\n• Barra de XP do treinador embaixo da tela: nível, porcentagem e quanto falta para o próximo.\n• No PC, o Passe e as outras janelas rolam com a rodinha, arrastando com o mouse ou pelas setas (e avisam quando tem mais embaixo).\n• Staff agora aparece com asas de anjo no nick.\n• Ferramentas novas do GOD.",
+ "sha": "d73ce639824daa95af188ee01ed52b6bda9b9da4f85f151e279cd3b484df53ec",
+ "sig": "HY1Paxj3ZcAMIpvVg5LaXiSR+bcweLLcM8rdyWjfQqrbrFqcBexPLMXJdaIvbI+15UsPI7WjVjDfoAVV24gDAw=="
 }
