@@ -1,11 +1,11 @@
 {
- "jogo": 141,
- "jogo_arquivo": "jogo-141.kpk",
- "jogo_sha": "431eac6b3dd1b168c3106f672bfeb3229b2e29f92941849f082d90cf37b78d85",
- "jogo_assin": "xujujfZt8vPWfVX4gU14IcN5e9KjZ+2dHcphASi5SVvZ6SkRY5Zhdp31Gl541lsx5WzLEs8sc8RrnUYK2jxoCw==",
+ "jogo": 142,
+ "jogo_arquivo": "jogo-142.kpk",
+ "jogo_sha": "027336f8ee621c87ecc26777cdb179d931ee34c715aaefe210232b11704cb6c5",
+ "jogo_assin": "CJ75ZibWpoqmj51P5n/72jchFFRNK4G+mJSvIsPqPvPv+siVPi2mdE4lmTCXDUAbLPEvGAcZk/eHPVFCUz0SCA==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "b63af8556d98a5c3696dec363cd29d81f7f5e8e5acbea7074adafa900dc32279",
- "launcher_assin": "8ePhKla0X/28BzJMpVQJoyHbBHhBxTgTyOOcQE7u2mezn5+XFyclLODdtc48pNp3wS+6v8SXdWVgkPkc3RwGCQ==",
- "notas": "Versão 1.23\n• Loja Kaimon nova, separada por abas com ícone: Destaques, Itens, Roupas (com filtro por tipo), Kaimons, Casa (em breve) e Moedas.\n• Cada produto mostra só a figura, o nome e o preço. Toque nele para ver a descrição."
+ "launcher_sha": "736165850634190a3d816aad18c3ea712daf182b604c6b14de379b303ca5306b",
+ "launcher_assin": "XbkNp/XXt5I5Xe5PrsLNxkclBpndiDlhIZBAE4ZxS25sbyGbDrPfKZT1+jXRfMO16/X4/FXV+zoxT5JBLJaSAg==",
+ "notas": "Versão 1.24\n• Loja Kaimon nova, separada por abas com ícone: Destaques, Itens, Roupas (com filtro por tipo), Kaimons, Casa (em breve) e Moedas.\n• Cada produto mostra só a figura, o nome e o preço. Toque nele para ver a descrição.\n• Feira: sentado na cadeira da mesa do pastel, agora dá para ver o personagem inteiro, não só a cabeça."
 }
