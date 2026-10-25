@@ -41,7 +41,7 @@ button:disabled{opacity:.4}
 <div id="ui"></div>
 <div id="bt"><div id="bs"><canvas id="bcv"></canvas><div id="bsu"></div></div><div id="bm"></div></div>
 <div id="rot">🔄<br>Gire o celular<br>para jogar deitado</div>
-<script>
+<script>var KGT_C2=false;
 var KROT=(function(){const R={on:0,vw:0,vh:0,ok:1};
 try{const dIW=Object.getOwnPropertyDescriptor(window,'innerWidth')||Object.getOwnPropertyDescriptor(Window.prototype,'innerWidth'),dIH=Object.getOwnPropertyDescriptor(window,'innerHeight')||Object.getOwnPropertyDescriptor(Window.prototype,'innerHeight');
 const rw=()=>dIW&&dIW.get?dIW.get.call(window):document.documentElement.clientWidth,rh=()=>dIH&&dIH.get?dIH.get.call(window):document.documentElement.clientHeight;R.rw=rw;R.rh=rh;
@@ -992,7 +992,7 @@ gen(m){kframe(2);kblob(20,8,6,3,1,kG);kblob(27,23,7,4,1,kG);kblob(12,22,5,3,1,kG
 kdef('r23',{nm:'Rota 23',gn:'Rota 23',gx:-40,gy:-29,W:40,H:30,
 z:{sp:[['Querinho',6],['Jarinha',5],['Cutiqui',5],['Ouricinho',5],['Tevizinho',4]],cap:8,b:[1,4,38,11],l:[40,46]},
 p:{'19,3':['vitoria',19,26]},sg:{'8,27':'Rota 23 — Portão da Liga de Pindorama logo ao norte.','17,5':'Estrada Vitória — só para os mais fortes!'},
-N:[{n:'guard',x:19,y:12,d:2,nm:'Guarda da Liga',cond:()=>nbd()<8,fn:()=>ok('<b>Guarda da Liga:</b> Alto lá! Só treinadores com as <b>8 insígnias</b> de Pindorama podem seguir para a Estrada Vitória. Você tem '+nbd()+'.')},
+N:[{n:'guard',x:19,y:12,d:2,nm:'Guarda da Liga',cond:()=>KGT_C2&&nbd()<8,fn:()=>ok('<b>Guarda da Liga:</b> Alto lá! Só treinadores com as <b>8 insígnias</b> de Pindorama podem seguir para a Estrada Vitória. Você tem '+nbd()+'.')},
 ktr('ace',12,9,1,'Ás Tiago',[['Querinho',42],['Jarinha',43],['Magmatu',44]],2600,'Chegou até aqui? Então me mostre sua força!','Você merece chegar à Liga.'),ktr('acef',27,6,3,'Ás Nina',[['Faiscamico',43],['Botorrente',44],['Ramaguiça',45]],2700,'A Estrada Vitória não perdoa os fracos!','Que batalha incrível!')],
 gen(m){kframe(2);kr(0,0,39,2,87);kmtn(9,2.5,9,3.5);kmtn(30,2.5,10,3.5);kr(15,0,24,3,87);kblob(10,8,7,2.5,1,kG);kblob(30,9,6,2,1,kG);kblob(30,24,6,3,1,kG);kpath([[6,29],[6,20],[19,20],[19,4]]);
 kr(2,16,37,17,2);kr(19,16,20,17,88);for(let x=2;x<=37;x++)if(kg(x,12)!==3)ks(x,12,24);ks(20,12,24);ks(19,3,85);ks(20,3,87);kdecor(16,10,5);ks(8,27,60);ks(17,5,60);kitem(m,34,7,'Cristal Ultra',3)}});
@@ -2097,7 +2097,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v138 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v139 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -6853,12 +6853,12 @@ const _mnEdge=kedge;kedge=function(){const mt=G.mt;if(!mt||mt.k==='ride')return 
 const bx=P.x==0?3:P.x==W-1?1:-1,by=P.y==0?0:P.y==H-1?2:-1;if(bx<0&&by<0)return false;const d=bx>=0&&by>=0?(P.d===bx||P.d===by?P.d:by):bx>=0?bx:by;
 const gx=m.gx+P.x+DX[d],gy=m.gy+P.y+DY[d];
 for(let j=0;j<M.length;j++){const q=M[j];if(j===cur||!q.ed||q.gx==null)continue;if(gx>=q.gx&&gx<q.gx+(q.Wg||q.W)&&gy>=q.gy&&gy<q.gy+(q.Hg||q.H)){
-const nm=NM[j]||'';if(mt.k==='fly'&&/Platô da Glória/.test(nm)&&nbd()<8){if(performance.now()>(mt.bk||0)){mt.bk=performance.now()+2500;toast('⛈️ Uma tempestade cerca o Platô da Glória. Só quem tem as <b>8 insígnias</b> passa.')}P.x-=DX[d];P.y-=DY[d];P.px=P.fx=P.x;P.py=P.fy=P.y;return true}
+const nm=NM[j]||'';if(mt.k==='fly'&&/Platô da Glória/.test(nm)&&KGT_C2&&nbd()<8){if(performance.now()>(mt.bk||0)){mt.bk=performance.now()+2500;toast('⛈️ Uma tempestade cerca o Platô da Glória. Só quem tem as <b>8 insígnias</b> passa.')}P.x-=DX[d];P.y-=DY[d];P.px=P.fx=P.x;P.py=P.fy=P.y;return true}
 const lx=Math.max(0,Math.min(q.W-1,gx-q.gx+DX[d])),ly=Math.max(0,Math.min(q.H-1,gy-q.gy+DY[d]));_mnSet(j,lx,ly);
 if(mt.k==='surf'&&!mnWater(lx,ly)&&SOLID.has(T[ly][lx])){let bd=null;for(let r=1;r<6&&!bd;r++)for(let dy=-r;dy<=r&&!bd;dy++)for(let dx=-r;dx<=r&&!bd;dx++){const x=lx+dx,y=ly+dy;if(T[y]&&T[y][x]!=null&&(mnWater(x,y)||!SOLID.has(T[y][x])))bd=[x,y]}
 if(bd){P.x=P.px=P.fx=bd[0];P.y=P.py=P.fy=bd[1]}}
 FWo.x=FWo.px=P.x;FWo.y=FWo.py=P.y;FWo.mt=null;P.d=d;return true}}return false};
-BPOST.push(function mnGate(i,m){try{if(!m||!m.p||NM[i]!=='Rota 23')return;const vi=NM.indexOf('Estrada Vitória');for(const k in m.p){const p=m.p[k];if(p&&p[0]===vi&&!p[4])p[4]=()=>nbd()<8?'<b>Guarda da Liga:</b> Ei! Só treinadores com as <b>8 insígnias</b> entram na Estrada Vitória.':null}}catch(e){}});
+BPOST.push(function mnGate(i,m){try{if(!m||!m.p||NM[i]!=='Rota 23')return;const vi=NM.indexOf('Estrada Vitória');for(const k in m.p){const p=m.p[k];if(p&&p[0]===vi&&!p[4])p[4]=()=>KGT_C2&&nbd()<8?'<b>Guarda da Liga:</b> Ei! Só treinadores com as <b>8 insígnias</b> entram na Estrada Vitória.':null}}catch(e){}});
 try{Object.assign(sfx,{
 mnOn:()=>{tone(330,.12,'triangle',.3,SF,0,660);tone(660,.1,'triangle',.24,SF,.1,990)},
 mnOff:()=>{tone(620,.1,'triangle',.22,SF,0,420);noise(.07,900,.25)},
@@ -9123,7 +9123,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=138;
+var KGT_VER=139;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
