@@ -1,7 +1,7 @@
 {
- "v": 135,
+ "v": 136,
  "url": "https://raw.githubusercontent.com/nilfilho000-afk/kaimon-gt-updates/main/jogo-apk.html",
- "notas": "v1.17: barraca do pastel nova (senta na cadeira, garçom atende), vendinha só fica aberta com você sentado, Arena nova com ranking, HP do inimigo com números, árvores gigantes novas, Melo e Ana na Feira, jogo deita sozinho no celular em pé, sair do app desconecta, Cristal Supremo só na loja (Addon Box no passe).",
- "sha": "103b362540343dd26c7b4a14ed8988d5ee30540e232fb0e2348b1b3a1a5add1c",
- "sig": "TCIbQWk4C1GzB6RnfMIKHvA8i4w7lXmhqoj0LAzpr8veemUT0ykyvIo4UcR58ABKhOPN2mvOisTioE68Y/EPvA=="
+ "notas": "v1.18: quem está surfando, montado ou voando agora aparece assim para os outros jogadores (antes aparecia andando em cima da água).",
+ "sha": "07ec09ed1cc73a325ae5a5f586d4221c6c6ed6ad1adea88b17eb27c872df14b8",
+ "sig": "uJAqOav14KUZH0FbhpJ/J6gBzg/GhIqZ5JsI5uYMO6PxRIJ/mX9ZLbGomJfTlTpczeEyQ9yxMR83lWLHuPY3EA=="
 }
