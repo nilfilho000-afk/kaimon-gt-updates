@@ -2097,7 +2097,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v151 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v152 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -9123,7 +9123,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=151;
+var KGT_VER=152;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -14445,7 +14445,7 @@ const u=$('ui');u.classList.add('wide','lj2')};
 var CS2={W:27,H:15,EX:13};
 const CSITENS=['csKitchen','csWardrobe','csBed','csTable','csSofa','csPlant','csLamp','csClock','csShelfR','csShelf','csRug','csFrame'];
 const CSNOME={csKitchen:'🍳 Cozinha',csWardrobe:'🚪 Guarda-roupa',csBed:'🛏️ Cama',csTable:'🍽️ Mesa',csSofa:'🛋️ Sofá',csPlant:'🪴 Planta',csLamp:'💡 Abajur',csClock:'🕰️ Relógio',csShelfR:'📚 Estante',csShelf:'📚 Estante',csRug:'🟠 Tapete redondo',csFrame:'🖼️ Quadro'};
-var CSLISTA={};
+var CSLISTA={},CSINFO={};
 function csRmv(key){try{if(typeof CSVIS!=='undefined'&&CSVIS&&String(CSVIS.k)===String(key))return CSVIS.rmv||[];const o=G.own&&G.own[key];return(o&&o.rmv)||[]}catch(e){return[]}}
 function csRoom(th,W0,H0,EX0){const W=W0||CSW,H=H0||CSH,EX=EX0==null?CSEX:EX0,fl=th.fl31?31:241,T=Array.from({length:H},(_,y)=>Array.from({length:W},(_,x)=>(x==0||x==W-1||y<=1||y==H-1)?240:fl));T[H-1][EX]=29;
 const c=document.createElement('canvas');c.width=W*32;c.height=H*32;const x0=c.getContext('2d');x0.scale(2,2);x0.imageSmoothingEnabled=false;
@@ -14465,15 +14465,16 @@ csExit=function(R){const ex=R.ex!=null?R.ex:CSEX,X=ex*16,Y=(R.H-1)*16,F=R.th.flo
 const m=R.th.mat||['#8a3a2a','#c8a050'];R.r(m[0],X+1.5,Y+3,13,10);R.r(m[1],X+3,Y+5,10,.8);R.r(m[1],X+3,Y+10.2,10,.8);R.r(shd(m[0],.7),X+1.5,Y+12.4,13,.6)};
 csRent=function(key,ret){const h=[...String(key)].reduce((a,c)=>(a*31+c.charCodeAt(0))|0,7)>>>0,th=Object.assign({fl31:1},CSRT[h%CSRT.length]),R=csRoom(th,CS2.W,CS2.H,CS2.EX),mir=(h>>3)&1;
 const lay=(h>>5)%3,XW=(a,w)=>mir?CSW-a-w:a;
-const rm=new Set(csRmv(key)),cnt={},lista=[],orig={};let fundo=0;
-for(const nm of CSITENS){orig[nm]=window[nm];if(typeof orig[nm]!=='function')continue;window[nm]=function(){if(fundo)return orig[nm].apply(this,arguments);const id=nm+'#'+(cnt[nm]=(cnt[nm]||0)+1);lista.push(id);if(rm.has(id))return;fundo++;try{return orig[nm].apply(this,arguments)}finally{fundo--}}}
+const rm=new Set(csRmv(key)),cnt={},lista=[],orig={},info={};let fundo=0;
+for(const nm of CSITENS){orig[nm]=window[nm];if(typeof orig[nm]!=='function')continue;window[nm]=function(){if(fundo)return orig[nm].apply(this,arguments);const id=nm+'#'+(cnt[nm]=(cnt[nm]||0)+1);lista.push(id);const A=[...arguments].slice(1);info[id]={nm,a:A,t:[],rm:rm.has(id)};if(rm.has(id))return;
+const T0=R.T.map(r=>r.slice()),ia0=new Set(Object.keys(R.ia));fundo++;try{return orig[nm].apply(this,arguments)}finally{fundo--;try{for(let y=0;y<R.T.length;y++)for(let x=0;x<R.T[y].length;x++)if(R.T[y][x]!==T0[y][x]||(R.ia[x+','+y]&&!ia0.has(x+','+y)))info[id].t.push([x,y])}catch(e){}}}}
 try{
 if(lay===0){const k=XW(1,4);csKitchen(R,k,k+3);csWin(R,XW(6,2),'#e8a0a0');csFrame(R,XW(9,2),2,'land');csWin(R,XW(12,2),'#e8a0a0');csWardrobe(R,XW(17,1));csBed(R,XW(16,1),4,th.bed);const tb=XW(3,2);csTable(R,tb,tb+1,6,'#9a6a3a','#e85a5a',['fruit','jar']);csSofa(R,8,10,8,th.sofa);csPlant(R,XW(1,1),9,'ficus');csLamp(R,XW(17,1),8)}
 else if(lay===1){csWardrobe(R,XW(1,1));csBed(R,XW(2,1),4,th.bed);csWin(R,XW(4,2),'#8ac0e8');csFrame(R,XW(7,2),2,'sea');const k=XW(13,4);csKitchen(R,k,k+3);csClock(R,XW(10,1));const tb=XW(14,2);csTable(R,tb,tb+1,6,'#8a5a30',null,['jar','fruit']);const sf=XW(4,3);csSofa(R,sf,sf+2,8,th.sofa);csPlant(R,XW(17,1),9,'fern');csLamp(R,XW(1,1),8)}
 else{csWin(R,XW(2,2),'#c8a0e8');csFrame(R,XW(5,2),2,'flowers');const k=XW(8,2);csKitchen(R,k,k+1);const sh=XW(11,2);csShelfR(R,sh,sh+1);csWardrobe(R,XW(15,1));csWardrobe(R,XW(16,1));csBed(R,XW(17,1),4,th.bed);const tb=XW(4,2);csTable(R,tb,tb+1,6,'#7a4a26','#f0d070',['jar']);const sf=XW(10,3);csSofa(R,sf,sf+2,7,th.sofa);csPlant(R,XW(1,1),9,'flower');csPlant(R,XW(17,1),9,'ficus')}
 csRug(R,7,11,5,6,th.rug[0],th.rug[1],'round');
 }finally{for(const nm in orig)if(orig[nm])window[nm]=orig[nm]}
-CSLISTA[String(key)]=lista;
+CSLISTA[String(key)]=lista;CSINFO[String(key)]=info;
 try{csWin(R,20,'#a8d0f0');csWin(R,23,'#a8d0f0')}catch(e){}
 const o=R.done();o.p={};if(ret)o.p[CS2.EX+','+(CS2.H-1)]=ret.slice(0,3);return o};
 {const _smC2=setMap;setMap=function(i,x,y){if(i===HRM&&x===CSEX&&y===CSH-2){x=CS2.EX;y=CS2.H-2}return _smC2.call(this,i,x,y)}}
@@ -15174,6 +15175,64 @@ const bs=[...u.querySelectorAll('button')];
 if(m.k==='tv_curva'){const b=document.createElement('span');b.innerHTML=btn('📺 Assistir TV',`tvAssistir('${id}')`);bs[0]?bs[0].before(b.firstChild):u.appendChild(b.firstChild)}
 if(/^pc/.test(m.k)){for(const b of bs){const tx=b.textContent;if(/Navegador|Assistir jogador/.test(tx))b.remove()}const b=document.createElement('span');b.innerHTML=btn('💻 Usar o computador',`osPC('${id}')`);const b0=u.querySelector('button');b0?b0.before(b.firstChild):u.appendChild(b.firstChild)}}catch(e){}return r}}
 mobNavega=function(){osAbrir();osNavegador()};
+var CSF={luz:{},cafe:0};
+function csMeu(){try{return!!(typeof HRK!=='undefined'&&HRK!=null&&cur===HRM&&G.own&&G.own[HRK]&&!(typeof CSVIS!=='undefined'&&CSVIS&&String(CSVIS.k)===String(HRK)))}catch(e){return false}}
+function csO(){return csMeu()?G.own[HRK]:null}
+function csInfo(){try{return CSINFO[String(HRK)]||{}}catch(e){return{}}}
+function csNomeId(id){const nm=String(id).split('#')[0];return(CSNOME[nm]||nm)}
+function csTilesDe(i){const a=i.a||[];if(i.nm==='csClock')return[[a[0],2]];if(i.nm==='csFrame'){const L=[];for(let k=0;k<(a[1]||1);k++)L.push([a[0]+k,2]);return L}
+if(i.nm==='csRug'){const L=[];for(let y=a[2];y<=a[3];y++)for(let x=a[0];x<=a[1];x++)L.push([x,y]);return L}return i.t||[]}
+function csAchaEm(x,y,tipos){const I=csInfo();for(const id in I){const i=I[id];if(i.rm)continue;if(tipos&&!tipos.includes(i.nm))continue;if(csTilesDe(i).some(t=>t[0]===x&&t[1]===y))return id}return null}
+function csItemMenu(id,txtFn){const I=csInfo()[id];if(!I)return;const nm=I.nm,dono=csMeu(),B=[];
+if(txtFn){try{txtFn()}catch(e){}}else ok('<p><b>'+esc(csNomeId(id))+'</b></p>');
+const u=document.getElementById('ui');if(!u)return;
+if(nm==='csSofa')B.push(btn('🪑 Sentar',`csSentar('${id}')`));
+if(nm==='csBed')B.push(btn('😴 Dormir (cura o time)',`closeUI();try{hSleep()}catch(e){}`));
+if(nm==='csLamp'&&dono)B.push(btn(csLuzOn(id)?'⏻ Desligar':'⏻ Ligar',`csLuz('${id}')`));
+if(nm==='csKitchen')B.push(btn('☕ Fazer um café',`csCafe('${id}')`));
+if(nm==='csPlant'&&dono)B.push(btn('💧 Regar',`closeUI();toast('💧 Planta regada! As folhas até brilharam.')`));
+if(nm==='csClock'){const gt=G.gt||0;u.insertAdjacentHTML('beforeend',`<p style="font-size:20px;text-align:center;margin:6px 0">🕰️ <b>${String((gt%1440)/60|0).padStart(2,'0')}:${String(gt%60|0).padStart(2,'0')}</b></p>`)}
+if(dono&&['csWardrobe','csTable','csShelf','csShelfR'].includes(nm))B.push(btn('📦 Guardar itens',`csGuarda('${id}')`));
+if(dono)B.push('<br>'+btn('🗑️ Jogar fora',`csTiraPergunta('${id}')`));
+const fe=[...u.querySelectorAll('button')].pop();const box=document.createElement('div');box.innerHTML=B.join('');if(fe&&/Fechar|OK|Ok/.test(fe.textContent))fe.before(...box.childNodes);else u.append(...box.childNodes)}
+function csSentar(id){closeUI();const I=csInfo()[id];if(!I)return;const L=csTilesDe(I).slice().sort((a,b)=>Math.abs(a[0]-P.x)+Math.abs(a[1]-P.y)-(Math.abs(b[0]-P.x)+Math.abs(b[1]-P.y)));if(!L[0])return;try{hSit(L[0][0],L[0][1]);P.d=2}catch(e){}}
+function csLuzOn(id){const o=csO()||{};return!!((o.csl||{})[id])}
+function csLuz(id){const o=csO();if(!o)return;o.csl=o.csl||{};o.csl[id]=o.csl[id]?0:1;if(!o.csl[id])delete o.csl[id];closeUI();try{save()}catch(e){}try{play('item')}catch(e){}toast(o.csl&&o.csl[id]?'💡 Abajur ligado.':'🌑 Abajur desligado.')}
+function csCafe(id){closeUI();const now=Date.now();if(now-CSF.cafe<10*60e3)return toast('☕ O café ainda está quentinho. Daqui a pouco dá pra fazer outro.');CSF.cafe=now;
+try{G.t.hp=Math.min(tmax(),G.t.hp+Math.ceil(tmax()*.2));hud()}catch(e){}try{const I=csInfo()[id],t=csTilesDe(I)[0];for(let i=0;i<10;i++)MOB.fx.push({x:t[0]*16+8+(Math.random()-.5)*10,y:t[1]*16,t0:performance.now()+i*120,k:'bolha',c:'#ffffff'})}catch(e){}
+try{play('item')}catch(e){}toast('☕ Café passado na hora! Você recuperou um pouco de vida.')}
+RH2.push(function(cx,cy,t){try{if(cur!==HRM)return;const o=csO()||(typeof CSVIS!=='undefined'&&CSVIS&&String(CSVIS.k)===String(HRK)?{csl:CSVIS.csl||{}}:null);if(!o||!o.csl)return;const I=csInfo();
+for(const id in o.csl){const i=I[id];if(!i||i.rm)continue;const t0=csTilesDe(i)[0];if(!t0)continue;const lx=t0[0]*16+8-cx,ly=t0[1]*16-6-cy,r=30*(.92+.08*Math.sin(t/600));
+g.save();g.globalCompositeOperation='lighter';const gr=g.createRadialGradient(lx,ly,0,lx,ly,r);gr.addColorStop(0,'#ffe7a088');gr.addColorStop(1,'#ffe7a000');g.fillStyle=gr;g.beginPath();g.arc(lx,ly,r,0,6.3);g.fill();g.restore()}}catch(e){}});
+function csGuarda(id){const o=csO();if(!o)return;o.cst=o.cst||{};const st=o.cst[id]=o.cst[id]||[];
+const den=st.filter(s=>s&&s.c>0).map(s=>`<div class="sr"><img src="${ico(s.n)}"><span><b>${esc(s.n)}</b> ×${s.c}</span>${btn('Pegar 1',`csTira1('${id}','${s.n.replace(/'/g,"\\'")}',1)`)}${btn('Tudo',`csTira1('${id}','${s.n.replace(/'/g,"\\'")}',${s.c})`)}</div>`).join('')||'<p><small>Vazio.</small></p>';
+const bag=bagL().filter(([n,k])=>k>0).slice(0,40).map(([n,k])=>`<div class="sr"><img src="${ico(n)}"><span><b>${esc(n)}</b> ×${k}</span>${btn('Guardar 1',`csPoe1('${id}','${n.replace(/'/g,"\\'")}',1)`)}${btn('Tudo',`csPoe1('${id}','${n.replace(/'/g,"\\'")}',${k})`)}</div>`).join('')||'<p><small>Sua mochila está vazia.</small></p>';
+open(`<b>📦 ${esc(csNomeId(id))}</b><p><small>Só você mexe aqui. Até 30 tipos de item.</small></p><div style="max-height:30vh;overflow:auto">${den}</div><p style="margin:8px 0 2px"><b>🎒 Da mochila</b></p><div style="max-height:30vh;overflow:auto">${bag}</div>`+btn('Fechar','closeUI()'))}
+function csPoe1(id,n,q){const o=csO();if(!o)return;o.cst=o.cst||{};const st=o.cst[id]=o.cst[id]||[];let s=st.find(x=>x.n===n);if(!s){if(st.length>=30)return toast('Já tem 30 tipos de item aqui.');s={t:'i',n,c:0};st.push(s)}
+q=Math.min(q,invCount(n),1000-s.c);if(q<=0)return toast('Não cabe mais.');addI(n,-q);s.c+=q;save();csGuarda(id)}
+function csTira1(id,n,q){const o=csO();if(!o||!o.cst||!o.cst[id])return;const st=o.cst[id],s=st.find(x=>x.n===n);if(!s)return;q=Math.min(q,s.c);const got=addI(n,q);s.c-=got;if(!s.c)o.cst[id]=st.filter(x=>x!==s);if(!o.cst[id].length)delete o.cst[id];save();if(got<q)toast('Inventário cheio!');csGuarda(id)}
+function csTiraPergunta(id){const o=csO();if(!o)return;if(o.cst&&o.cst[id]&&o.cst[id].some(s=>s.c>0))return toast('📦 Tire as coisas de dentro antes de jogar fora.');
+open(`<p><b>🗑️ Jogar fora ${esc(csNomeId(id))}?</b></p><p><small>Ele sai da sua casa (quem visita também não vê mais). Se mudar de ideia, dá pra trazer de volta de graça: toque no chão → <b>Itens que vieram com a casa</b>.</small></p>`+btn('🗑️ Jogar fora',`csTira('${id}')`)+btn('Voltar','closeUI()'))}
+function csTira(id){const o=csO();if(!o)return;o.rmv=(o.rmv||[]).filter(x=>x!==id);o.rmv.push(id);if(o.csl)delete o.csl[id];closeUI();csRefaz();try{save()}catch(e){}csPublicaRmv();try{play('item')}catch(e){}toast('🗑️ '+csNomeId(id)+' foi jogado fora.')}
+function csVolta(id){const o=csO();if(!o)return;const I=csInfo()[id];if(!I)return;
+const sabe=CSLISTA[String(HRK)]||[];if(!sabe.includes(id))return;
+o.rmv=(o.rmv||[]).filter(x=>x!==id);csRefaz();const I2=csInfo()[id];const L=I2?csTilesDe(I2):[];
+const bate=L.some(([x,y])=>(o.d&&o.d[x+','+y]&&I2.nm!=='csRug')||(P.x===x&&P.y===y&&I2.nm!=='csRug'));
+if(bate){o.rmv.push(id);csRefaz();return toast('❌ Tem móvel (ou você) no lugar dele. Libere o espaço primeiro.')}
+closeUI();try{save()}catch(e){}csPublicaRmv();try{play('item')}catch(e){}toast('↩️ '+csNomeId(id)+' voltou para a casa.')}
+function csRemovidos(){const o=csO();if(!o)return;const L=(o.rmv||[]);
+open('<p><b>🏠 Itens que vieram com a casa</b></p><p><small>Os que você jogou fora. Trazer de volta é de graça.</small></p>'+(L.length?L.map(id=>`<div class="sr"><span style="flex:1"><b>${esc(csNomeId(id))}</b></span>${btn('↩️ Trazer de volta',`csVolta('${id}')`)}</div>`).join(''):'<p><small>Você ainda não jogou nenhum fora.</small></p>')+btn('Fechar','closeUI()'))}
+function csRefaz(){try{const m=M[HRM];if(!m)return;try{if(m.MC&&FGM)FGM.delete(m.MC)}catch(e){}delete m.T;delete m.MC;if(cur===HRM){const x=P.x,y=P.y,d=P.d;setMap(HRM,x,y);P.d=d;try{mobSync()}catch(e){}}}catch(e){}}
+function csPublicaRmv(){try{if(typeof kcPublica==='function')kcPublica()}catch(e){}}
+if(typeof csCall==='function'){const _ccR=csCall;csCall=function(body){try{if(body&&(body.op==='alugar'||body.op==='deco')&&!body.rmv){const k=String(body.k||''),h=k.replace(/^v(\d)$/,'$1'),o=G.own&&(G.own[h]||G.own[k]);if(o)body.rmv=(o.rmv||[]).slice(0,30)}}catch(e){}
+return _ccR.apply(this,arguments).then(j=>{try{if(body&&body.op==='visitar'&&j&&j.ok&&Array.isArray(j.rmv)&&j.rmv.length){const rv=j.rmv.slice(0,30);setTimeout(()=>{try{if(CSVIS){CSVIS.rmv=rv;csRefaz()}}catch(e){}},0)}}catch(e){}return j})}}
+{const _crF=csRent;csRent=function(key,ret){const o=_crF.apply(this,arguments);try{const I=CSINFO[String(key)]||{};
+for(const id in I){const i=I[id];if(i.rm)continue;for(const[x,y]of i.t||[]){const k=x+','+y,f0=o.ia&&o.ia[k];if(!o.ia)o.ia={};o.ia[k]=()=>csItemMenu(id,f0)}}}catch(e){}return o}}
+{const _actCs=act;act=function(){try{if(mode==='walk'&&!P.sit&&cur===HRM){const x=P.x+DX[P.d],y=P.y+DY[P.d];
+if(P.d===0&&y<=2&&!(typeof mobParedeEm==='function'&&mobCasa()&&mobParedeEm(mobCasa(),x))){const id=csAchaEm(x,2,['csFrame','csClock']);if(id&&(!T[2]||T[2][x]!==243))return csItemMenu(id,null)}}}catch(err){}return _actCs.apply(this,arguments)}}
+{const _hmCs=hmenu;hmenu=function(x,y){const r=_hmCs.apply(this,arguments);try{const ui=$('ui');if(!ui||ui.style.display==='none'||!csMeu())return r;
+const id=csAchaEm(x,y,['csRug']);let h='';if(id)h+=btn('🟠 Tapete redondo (jogar fora)',`csTiraPergunta('${id}')`);
+h+=btn('🏠 Itens que vieram com a casa','csRemovidos()');ui.insertAdjacentHTML('beforeend','<div style="margin-top:6px">'+h+'</div>')}catch(e){}return r}}
 (function(){try{const st=document.createElement('style');st.textContent=`body.hudmin .ab:not(.hkeep){display:none!important}
 #hudtg{position:fixed;right:calc(env(safe-area-inset-right,0px) + 88px);bottom:calc(env(safe-area-inset-bottom,0px) + 6px);width:40px;height:40px;border-radius:50%;padding:0;margin:0;z-index:6;
  background:radial-gradient(circle at 35% 30%,#fff3c0,#e8c050 60%,#a8801c);border:2px solid #fff;color:#3a2a00;font:900 18px sans-serif;box-shadow:0 2px 6px #0008;display:flex;align-items:center;justify-content:center}

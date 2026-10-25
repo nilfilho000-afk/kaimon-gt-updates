@@ -1,11 +1,11 @@
 {
- "jogo": 151,
- "jogo_arquivo": "jogo-151.kpk",
- "jogo_sha": "e547ff120d23ceb5c2e131b6a514b49ed40e28da14ced62d6a68823b7ad28934",
- "jogo_assin": "4aqrmCRMxrYKwbuP1op2/8DjAWrh66/n+bg2zbife7f1kIsqMp+JcH81WOhz+W9MKmJ2xOgkuVg0hkwblZ+iDQ==",
+ "jogo": 152,
+ "jogo_arquivo": "jogo-152.kpk",
+ "jogo_sha": "358b1435d803696d094dc41a7b6db9c79bd9ea0d655db43d7e32f5fa40fbac2e",
+ "jogo_assin": "pEbTAKzN9bpQDVh/JCPZ/p9Jn/CCWHfM/hLRT28WKvx36CtINHZrRtXShEBEAZ0VOBvMMxFAbLfgp7T28K0sBg==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "81c4bc198c02f7e410c83a1f977271af1d9538307ad17f6ea21bacf0b5d747ac",
- "launcher_assin": "VS7Uc55IoykB+M2222Pzk+2AMZOX9enlNc7g4xu6CwwbyjYM4Y7zMwL+K1+b9CVbCFmYhHRR0yClFZsu2IflDA==",
- "notas": "1.33: enfeites de parede e tapetes agora têm menu (girar, mover, guardar, sino), clicar em qualquer parte do móvel abre ele."
+ "launcher_sha": "39d8b4d63487a7ec59b4cb4c312c11a7e7cc2da05c27a4f24f24d1bd8cb99b3e",
+ "launcher_assin": "Jw8zsrp434JmwruvglUFxADuickvnKBDMSJOtM5Bz38rM3Gb9XSG2zHw+PwgUD2HbDz78Q3tMJplOWat0GEoDA==",
+ "notas": "1.34: os móveis que vêm com a casa agora têm uso (sentar, dormir, abajur, café, guardar itens, regar) e dá pra jogar fora e trazer de volta."
 }
