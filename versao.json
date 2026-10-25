@@ -1,11 +1,11 @@
 {
- "jogo": 139,
- "jogo_arquivo": "jogo-139.kpk",
- "jogo_sha": "10faf79bc5ede31fda2b804f5de256954f5a8582271cec5dc30fcb03717369d2",
- "jogo_assin": "M+1GoKdx0G90FZp9mtPTCwJScjVrTk/g39OWQa8YsW8MYUYNa5jh4PX0T2AjprDc3LA5Rx6edROuQW/m2VHABA==",
+ "jogo": 140,
+ "jogo_arquivo": "jogo-140.kpk",
+ "jogo_sha": "6f7eb309c1d722df81b6da5f54b0dbd28829aadbf8f48e98d8ef340cd5c0983b",
+ "jogo_assin": "BKQoJnuykDDwKwAKOUwzMvqQQjaX+KIy5B4BllnlgMNRSFTLCmmlkyqXdC/D+VbOpgCUm8h0q7xco2gg91xMBg==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "ad248ac671f4bbcee21592f3895783fceaaeeacb7fbd57b4e1442e40b399a622",
- "launcher_assin": "hq+U1TPfcr1/wR3FzoU9mWDvXLj/bKe+u6Bu8CVIy9YTuhWr+ex54QAjcPlu900QQpw3ae8iP5bdySUM5A6tDw==",
- "notas": "v1.21: a Estrada Vitória e o Platô da Glória estão abertos para todos (não precisa mais das 8 insígnias por enquanto)."
+ "launcher_sha": "ed11a2b8feb3f1b8fe890e4c66f1d068ba28d8b7265241e5d9087bfdd48fdb61",
+ "launcher_assin": "DF/MqfOyutCKKlTbKhoJEzu+vSap+HrcRLEhv/RJs7Fcy56UZROh5WRMttojZiHpQRaH0v/9WYGJOlvrzDR8Cw==",
+ "notas": "v1.22: os Voadores não aparecem mais com 4 asas (soltos no mapa, seguindo você ou montados)."
 }
