@@ -1,11 +1,11 @@
 {
- "jogo": 147,
- "jogo_arquivo": "jogo-147.kpk",
- "jogo_sha": "ffc5fe1aab6c9a43bb3ad66c7e7cd7519e3f079bec1a86542a073980c8533ea3",
- "jogo_assin": "ateEihoUc4NZUrpA9hV67PvIWwNhSkIRCnGpcyLz1ZvBc87UG17IU4ANaZGw5owRr3Lw8S5ko0wUaj0VuQIwBQ==",
+ "jogo": 148,
+ "jogo_arquivo": "jogo-148.kpk",
+ "jogo_sha": "a5711579a1c64e1ceeff195f5619264ba8a10c68e0f3141b78702c60aa75d31e",
+ "jogo_assin": "9YdS8XWbAwguu5JnGIAcyBOQn7AKXlznQmsqf8S3IlIcbY+itR2VAWD8kJOUJwPweROSEyCR855hOr+2EpsXBg==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "8fe4a853ccbd656637dd7d8ea2b33a191f64b31290bd1a825cc0dbcbcda8ef13",
- "launcher_assin": "u53DeBfCzV39327yPL0AZ65MPNj0rT0H73LbocQlI6DUUBhXtXlngjnVeYMnHM1zuqx7HptLIXIlRh7KMHn8Dg==",
- "notas": "Versão 1.29\n• Toda compra com Kaimon Coins agora pede confirmação: aparece o item, o preço e quanto vai sobrar, com os botões Confirmar e Voltar."
+ "launcher_sha": "f72f291bd770fb42ff89f39f2c5dad736d41b0675e2f0de42385ab4b6af3c950",
+ "launcher_assin": "Q/NqK+OQiVxIA36hVUpQeDX3Gd9IMXCTEs6kgMVQY6nqdKBAYJTcxGHVMfGmI0bn7yvkzNJcM5HrXl1TiW86Bw==",
+ "notas": "Versão 1.30\n• Loja Kaimon: agora dá para rolar a lista no celular.\n• Tudo que você compra vai para a mochila. Mochila cheia? Vai para o depósito (nada some).\n• Móveis e o Tanque Kaimon aparecem na mochila com o desenho deles. Na casa, selecione e toque em Colocar na casa.\n• Botões das redes sociais no canto da tela inicial (não ficam mais por cima do login)."
 }

@@ -2097,7 +2097,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v147 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v148 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -9123,7 +9123,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=147;
+var KGT_VER=148;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -12235,7 +12235,7 @@ try{REDES.links=JSON.parse(localStorage.getItem('kgt_redes')||'{}')||{}}catch(e)
 setTimeout(redesCarrega,3000);setInterval(redesCarrega,30*60000);
 function redesHtml(tam){const L=Object.keys(REDNOM).filter(k=>REDES.links[k]);if(!L.length)return'';return L.map(k=>`<a href="${esc(REDES.links[k])}" target="_blank" rel="noopener" title="${REDNOM[k][0]}" style="display:inline-flex;align-items:center;gap:4px;margin:2px;padding:${tam?'6px 10px':'4px 8px'};border:2px solid #e8c050;border-radius:8px;background:#2b3550;color:#fff;text-decoration:none;font-size:${tam?14:12}px">${REDNOM[k][1]} ${REDNOM[k][0]}</a>`).join('')}
 {const _rdCfg=cfgR;cfgR=function(){const r=_rdCfg.apply(this,arguments);try{if(!document.getElementById('cfr_redes')){const h=redesHtml();if(h){const rows=[...document.querySelectorAll('#ui .cfr')],l=rows[rows.length-1];if(l)l.insertAdjacentHTML('afterend',`<div class="cfr" id="cfr_redes" style="flex-wrap:wrap"><span>Siga o Kaimon GT</span><div>${h}</div></div>`)}}}catch(e){}return r}}
-setInterval(()=>{try{const t=document.getElementById('ttl');if(!t||document.getElementById('ttlredes'))return;const h=redesHtml(1);if(!h)return;t.insertAdjacentHTML('beforeend',`<div id="ttlredes" style="position:absolute;left:0;right:0;bottom:8px;text-align:center;z-index:5">${h}</div>`)}catch(e){}},1500);
+setInterval(()=>{try{const t=document.getElementById('ttl');if(!t||document.getElementById('ttlredes'))return;const h=redesHtml(1);if(!h)return;t.insertAdjacentHTML('beforeend',`<div id="ttlredes" style="position:absolute;left:max(10px,env(safe-area-inset-left));top:max(10px,env(safe-area-inset-top));text-align:left;z-index:5;display:flex;flex-wrap:wrap;gap:2px;max-width:45vw">${h}</div>`)}catch(e){}},1500);
 function rdEditar(){const L=REDES.links||{};open(`<b>📣 Redes sociais do jogo</b><p><small>Cole os links (começando com https://). Aparecem na tela de entrada e nas Configurações de todo mundo, sem precisar de atualização. Deixe em branco para esconder.</small></p>`+
 Object.keys(REDNOM).map(k=>`<div class="cfr"><span>${REDNOM[k][1]} ${REDNOM[k][0]}</span><input id="rd_${k}" value="${esc(L[k]||'')}" placeholder="https://..." style="flex:1"></div>`).join('')+btn('Salvar','rdSalvar()')+btn('Voltar','modPanel()'))}
 async function rdSalvar(){const links={};for(const k of Object.keys(REDNOM))links[k]=((document.getElementById('rd_'+k)||{}).value||'').trim();try{const j=await modCall({op:'redes',links});REDES.links=j.links||links;toast('📣 Redes salvas! Já aparecem para todo mundo.');modPanel()}catch(e){toast(esc(e.message))}}
@@ -14380,7 +14380,8 @@ if(!pipa&&set&&set!=='vento'&&!(q.body&&(q.dd==1||q.dd==3)))return}}catch(x){}re
 {const _ws=mnWingSide;mnWingSide=function(){try{const m=G.mt;if(m&&m.k==='fly'&&!asaTemCorpo(m.n))return}catch(e){}return _ws.apply(this,arguments)}}
 {const _wf=mnWingsFront;mnWingsFront=function(){try{const m=G.mt;if(m&&m.k==='fly'&&!asaTemCorpo(m.n))return}catch(e){}return _wf.apply(this,arguments)}}
 (function(){try{const st=document.createElement('style');st.textContent=`
-#ui.lj2{padding:0!important;overflow:hidden!important;display:flex;flex-direction:column}
+#ui.lj2{padding:0!important;overflow:hidden!important;flex-direction:column}
+#ui.lj2[style*="display: block"],#ui.lj2[style*="display:block"]{display:flex!important}
 .lj2 .ljh{display:flex;align-items:center;gap:10px;padding:10px 12px;background:linear-gradient(#3a2a6a,#2a1f50);border-bottom:2px solid #e8c050}
 .lj2 .ljh b{font-size:17px;flex:1}.lj2 .ljh .ljk{background:#0f1626;border:1px solid #e8c050;border-radius:999px;padding:4px 10px;font-weight:900;color:#ffe27a;white-space:nowrap}
 .lj2 .ljx{background:#0f1626!important;border:1px solid #5a6890!important;border-radius:10px!important;min-width:36px;padding:4px 8px!important}
@@ -14389,7 +14390,8 @@ if(!pipa&&set&&set!=='vento'&&!(q.body&&(q.dd==1||q.dd==3)))return}}catch(x){}re
 .lj2 .ljt button span{font-size:20px;line-height:1.1}.lj2 .ljt button.on{background:#3a3216!important;border-color:#ffd34d!important;color:#ffe9a0!important}
 .lj2 .ljs{display:flex;gap:5px;padding:6px 10px 0;flex-wrap:wrap}.lj2 .ljs button{padding:3px 10px!important;border-radius:999px!important;font-size:11px!important;background:#1d2742!important;border:1px solid #3a4560!important}
 .lj2 .ljs button.on{background:#e8c050!important;color:#1b1f2a!important}
-.lj2 .ljb{flex:1;overflow:auto;padding:8px 10px 12px}
+.lj2 .ljb{flex:1 1 auto;min-height:0;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;touch-action:pan-y;padding:8px 10px 12px}
+.lj2 .ljh,.lj2 .ljt,.lj2 .ljs{flex:none}
 .lj2 .ljg{display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:8px}
 .lj2 .ljc{background:#16203a;border:2px solid #2a3550;border-radius:12px;padding:8px 6px;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;text-align:center;position:relative}
 .lj2 .ljc:hover{border-color:#5a78c8}.lj2 .ljc img{width:52px;height:52px;object-fit:contain;image-rendering:pixelated}
@@ -14434,7 +14436,7 @@ else if(LJ2.tab==='itens')corpo=`<div class="ljg">${lj2Itens(false)}</div>`;
 else if(LJ2.tab==='roupa'){const sl=Object.keys(TSLOT);sub=`<div class="ljs">${[['','Tudo']].concat(sl.map(s=>[s,TSLOT[s]])).map(([s,n])=>`<button class="${LJ2.slot===s?'on':''}" onclick="lj2Slot('${s}')">${n}</button>`).join('')}</div>`;
 const r=lj2Roupas();corpo=r?`<div class="ljg">${r}</div>`:`<div class="ljv"><span>👕</span>Você já tem tudo daqui. 🎉</div>`}
 else if(LJ2.tab==='kaimon'){const r=lj2Kaimons();corpo=r?`<div class="ljg">${r}</div>`:`<div class="ljv"><span>🐾</span>Você já tem todos os addons dos seus monstros.<br>Capture outros para liberar mais!</div>`}
-else if(LJ2.tab==='casa')corpo=`<div class="ljg">${typeof lojaTanque==='function'?lj2Card({img:kcTanqueIcone(),nm:'Tanque Kaimon',preco:kmc(10),acao:'lojaTanque()',dis:kp<10,det:'Um tanque dourado para a sua casa: coloque um Kaimon de Água e ele fica nadando lá dentro. Comida 1× por semana.'+(G.tqinv?' · Você tem '+G.tqinv+' guardado.':'')}):''}${typeof mobCardsKmc==='function'?mobCardsKmc(kp):''}</div>`;
+else if(LJ2.tab==='casa')corpo=`<div class="ljg">${typeof lojaTanque==='function'?lj2Card({img:kcTanqueIcone(),nm:'Tanque Kaimon',preco:kmc(10),acao:'lojaTanque()',dis:kp<10,det:'Um tanque dourado para a sua casa: coloque um Kaimon de Água e ele fica nadando lá dentro. Comida 1× por semana.'}):''}${typeof mobCardsKmc==='function'?mobCardsKmc(kp):''}</div>`;
 else corpo=lj2Moedas();
 open(`<div class="ljh"><span style="font-size:24px">🛍️</span><b>Loja Kaimon</b><span class="ljk">${kmc(kp)}</span><button class="ljx" onclick="closeUI()">✕</button></div>`+
 `<div class="ljt">${T.map(([k,i,n])=>`<button class="${LJ2.tab===k?'on':''}" onclick="lj2Aba('${k}')"><span>${i}</span>${n}</button>`).join('')}</div>${sub}<div class="ljb">${corpo}</div>`);
@@ -14603,16 +14605,16 @@ function kcId(m){if(m.id==null)m.id='k'+Date.now().toString(36)+Math.random().to
 function kcPoe(id,tq){const c=kcCasa();if(!c||c.vis)return;const m=kcMon(id);if(!m||m.casa)return;c.o.pets=c.o.pets||[];
 if(tq&&c.o.pets.some(p=>p.q===tq))return toast('Esse tanque já tem morador.');if(!tq)return;
 m.casa=String(c.k);c.o.pets.push({id:String(id),n:m.n,q:tq||0,f:Date.now(),s:!!m.sh,a:m.ad||''});save();closeUI();toast((tq?'🐟 ':'🐾 ')+m.n+(tq?' entrou no tanque!':' veio morar na sua casa!'));kcPublica()}
-function kcTanquePoe(k0){const c=kcCasa();if(!c||c.vis||!(G.tqinv>0))return;const[x,y]=k0.split(',').map(Number);
+function kcTanquePoe(k0){const c=kcCasa();if(!c||c.vis||!(invCount('Tanque Kaimon')>0))return;const[x,y]=k0.split(',').map(Number);
 for(let i=0;i<3;i++){const xx=x+i;if(!T[y]||T[y][xx]!==31||c.o.d[xx+','+y]||NPC.some(e=>e.x===xx&&e.y===y)||(P.x===xx&&P.y===y&&i))return toast('🐠 O tanque precisa de 3 quadrados livres de chão, da esquerda pra direita.')}
-c.o.d[x+','+y]='tanque';c.o.d[(x+1)+','+y]='tanque_';c.o.d[(x+2)+','+y]='tanque_';G.tqinv--;save();closeUI();toast('🐠 Tanque Kaimon colocado! Toque nele pra colocar um Kaimon de Água.');kcPublica()}
+c.o.d[x+','+y]='tanque';c.o.d[(x+1)+','+y]='tanque_';c.o.d[(x+2)+','+y]='tanque_';invRemove('Tanque Kaimon',1);save();closeUI();toast('🐠 Tanque Kaimon colocado! Toque nele pra colocar um Kaimon de Água.');kcPublica()}
 function kcTanqueTira(k){const c=kcCasa();if(!c||c.vis)return;if((c.o.pets||[]).some(p=>p.q===k))return toast('Tire o Kaimon do tanque primeiro.');const[x,y]=k.split(',').map(Number);
-for(let i=0;i<3;i++)delete c.o.d[(x+i)+','+y];G.tqinv=(G.tqinv||0)+1;delete KC.tq[k];save();closeUI();toast('🐠 Tanque guardado.');kcPublica()}
+if(typeof darItem==='function'&&!darItem('Tanque Kaimon',1))return toast('Mochila e depósito cheios: libere um espaço para guardar o tanque.');for(let i=0;i<3;i++)delete c.o.d[(x+i)+','+y];delete KC.tq[k];save();closeUI();toast('🐠 Tanque guardado.');kcPublica()}
 {const _hmKC=hmenu;hmenu=function(x,y){try{const c=kcCasa();if(c&&!c.vis){const v=c.o.d[x+','+y];
 if(v==='tanque'||v==='tanque_'){let ax=x;while(ax>0&&c.o.d[(ax)+','+y]==='tanque_')ax--;return kcTanqueMenu(ax+','+y)}}}catch(e){}
 const r=_hmKC.apply(this,arguments);
 try{const c=kcCasa();if(c&&!c.vis&&!c.o.d[x+','+y]){const ui=$('ui');const n=(c.o.pets||[]).length;
-if(G.tqinv>0)ui.insertAdjacentHTML('beforeend','<div style="margin-top:6px">'+btn('🐠 Colocar Tanque Kaimon ('+G.tqinv+')',`kcTanquePoe('${x},${y}')`)+'</div>')}}catch(e){}return r}}
+if(invCount('Tanque Kaimon')>0)ui.insertAdjacentHTML('beforeend','<div style="margin-top:6px">'+btn('🐠 Colocar Tanque Kaimon ('+invCount('Tanque Kaimon')+')',`kcTanquePoe('${x},${y}')`)+'</div>')}}catch(e){}return r}}
 function kcLista(){const c=kcCasa();if(!c)return;const L=c.o.pets||[];
 open('<p><b>🐾 Kaimons da casa</b><br><small>Monstros do depósito podem morar aqui. Comida 1× por semana: sem comida eles ficam tristinhos (não morrem).</small></p>'+
 (L.length?'<div class="kcl">'+L.map(p=>`<button class="kcb" onclick="${p.q?`kcTanqueMenu('${p.q}')`:`kcPetMenu('${p.id}')`}"><img src="${pbi(p.n,kcVisual(p))}" alt=""><small>${esc(p.n)}<br>${kcFome(p)?'😢 fome':p.q?'🐠 tanque':'😊'}</small></button>`).join('')+'</div>':'<p><small>Ninguém morando aqui ainda.</small></p>')+
@@ -14628,8 +14630,8 @@ function kcPubPets(o){return(o.pets||[]).slice(0,6).map(p=>({n:p.n,q:p.q||0,f:p.
 function kcPublica(){try{const k=HK();if(k==null||!G.own[k]||!webAcc()||!webOnline())return;const o=G.own[k];csCall({op:'deco',k:csKey(isNaN(+k)?k:+k),dec:o.d||{},pw:o.pw||{},pets:kcPubPets(o)}).catch(()=>{})}catch(e){}}
 if(typeof csCall==='function'){const _ccKC=csCall;csCall=function(body){try{if(body&&(body.op==='alugar'||body.op==='deco')&&!body.pets){const k=String(body.k||'');const h=k.replace(/^v(\d)$/,'$1');const o=G.own&&(G.own[h]||G.own[k]);if(o)body.pets=kcPubPets(o)}}catch(e){}
 return _ccKC.apply(this,arguments).then(j=>{try{if(body&&body.op==='visitar'&&j&&j.ok&&typeof CSVIS!=='undefined'){j.pets=(j.pets||[]).map((p,i)=>Object.assign({id:'v'+i},p));setTimeout(()=>{try{if(CSVIS)CSVIS.pets=j.pets}catch(e){}},0)}}catch(e){}return j})}}
-function lojaTanque(){if(kpGet()<10)return toast('Faltam '+kmc(10-kpGet())+'.');kpAdd(-10);G.tqinv=(G.tqinv||0)+1;save();hud();try{play('item')}catch(e){}
-ok('<p><b>🐠 Tanque Kaimon comprado!</b></p><p>Na sua casa, toque no chão onde quer colocar (precisa de 3 quadrados livres) e escolha <b>Colocar Tanque Kaimon</b>. Depois coloque um Kaimon de Água dentro.</p>')}
+function lojaTanque(){if(kpGet()<10)return toast('Faltam '+kmc(10-kpGet())+'.');const r=darItem('Tanque Kaimon',1);if(!r)return toast('Mochila e depósito cheios! Libere um espaço.');kpAdd(-10);save();hud();try{play('item')}catch(e){}
+ok('<p><b>🐠 Tanque Kaimon comprado!</b> '+(r.dep?'Sua mochila estava cheia: ele foi para o <b>depósito</b>.':'Ele está na sua <b>mochila</b>.')+'</p><p>Na sua casa, toque no chão onde quer colocar (precisa de 3 quadrados livres) e escolha <b>Colocar Tanque Kaimon</b>. Depois coloque um Kaimon de Água dentro.</p>')}
 function kcTanqueIcone(){try{const c=document.createElement('canvas');c.width=96;c.height=94;const x=c.getContext('2d');x.imageSmoothingEnabled=false;if(KC.img.complete)x.drawImage(KC.img,0,0,96,94);return c.toDataURL()}catch(e){return''}}
 var EQ={staff:new Set(),gods:new Set(),t:0};
 async function eqSync(){try{if(!webAcc()||!(FBC&&FBC.fn)||!webOnline())return;const j=await modCall({op:'equipe'});EQ.staff=new Set(j.staff||[]);EQ.gods=new Set(j.gods||[]);EQ.t=Date.now()}catch(e){}}
@@ -14829,8 +14831,9 @@ const dd=c.o.d[xx+','+yy];if(dd&&!(dd==='mv'&&ign&&(mobAt(c,xx,yy)||{}).id===ign
 if(P.x===xx&&P.y===yy)return false;if(NPC.some(e=>!e.mvI&&!e.kcT&&e.x===xx&&e.y===yy))return false}
 return true}
 function mobMarca(c,m,on){const d=mobDef(m.k);if(!d||d.t==='tapete'||d.t==='parede')return;for(const[x,y]of mobTiles(m)){if(on)c.o.d[x+','+y]='mv';else if(c.o.d[x+','+y]==='mv')delete c.o.d[x+','+y]}}
-function mobEscolhe(x,y){const c=mobCasa();if(!c||c.vis)return;const I=G.mvi||{},L=Object.keys(I).filter(k=>I[k]>0&&mobDef(k));
-if(!L.length)return ok('<p>Você ainda não tem móveis. Compre no <b>Mercado → Decoração</b> (💰) ou na <b>Loja Kaimon → 🏠 Casa</b> (◈ KMC).</p>');
+function mobQtd(k){const d=mobDef(k);return d?invCount(d.n):0}
+function mobEscolhe(x,y){const c=mobCasa();if(!c||c.vis)return;const I={};for(const k in MOBD){const q=mobQtd(k);if(q>0)I[k]=q}const L=Object.keys(I);
+if(!L.length)return ok('<p>Você não tem móveis na <b>mochila</b>. Compre no <b>Mercado → Decoração</b> (💰) ou na <b>Loja Kaimon → 🏠 Casa</b> (◈ KMC). Se estiverem no <b>depósito</b>, pegue de volta no Centro de Cura.</p>');
 open('<p><b>🛋️ Qual móvel?</b></p><div class="kcl">'+L.map(k=>`<button class="kcb" onclick="mobPlaca('${k}',${x},${y})"><img src="${mobIco(k)}" alt=""><small>${esc(mobDef(k).n)}${I[k]>1?' ×'+I[k]:''}</small></button>`).join('')+'</div>'+btn('Fechar','closeUI()'))}
 function mobPlaca(k,x,y,mover){const c=mobCasa();if(!c)return;closeUI();const d=mobDef(k);if(d.t==='parede')y=2;
 MOB.pl={k,x,y,r:mover?mover.r:0,mover:mover?mover.id:null};mode='ui';mobPainel()}
@@ -14842,7 +14845,7 @@ function mobPg(){if(!MOB.pl)return;const d=mobDef(MOB.pl.k);if(d.t==='parede')re
 function mobPfim(){MOB.pl=null;const d=document.getElementById('mvpl');if(d)d.remove();mode='walk'}
 function mobPok(){const c=mobCasa(),pl=MOB.pl;if(!c||!pl)return;if(!mobPodeAqui(c,pl.k,pl.x,pl.y,pl.r,pl.mover))return toast('❌ Não cabe aqui (precisa de chão livre).');
 c.o.mv=c.o.mv||[];if(pl.mover){const m=c.o.mv.find(q=>q.id===pl.mover);if(m){mobMarca(c,m,0);m.x=pl.x;m.y=pl.y;m.r=pl.r;mobMarca(c,m,1)}}
-else{if(!((G.mvi||{})[pl.k]>0))return mobPfim();if(c.o.mv.length>=80)return toast('A casa já tem 80 móveis.');G.mvi[pl.k]--;if(!G.mvi[pl.k])delete G.mvi[pl.k];
+else{if(!(mobQtd(pl.k)>0))return mobPfim();if(c.o.mv.length>=80)return toast('A casa já tem 80 móveis.');invRemove(mobDef(pl.k).n,1);
 const m={id:'m'+Date.now().toString(36)+Math.random().toString(36).slice(2,5),k:pl.k,x:pl.x,y:pl.y,r:pl.r,on:0,f:Date.now()};c.o.mv.push(m);mobMarca(c,m,1)}
 mobPfim();mobSalva();try{play('item')}catch(e){}toast('🛋️ Pronto!')}
 function mobMove(id){const c=mobCasa();const m=mobAchar(id);if(!m||c.vis)return;mobPlaca(m.k,m.x,m.y,m)}
@@ -14850,30 +14853,56 @@ function mobGira(id){const c=mobCasa();const m=mobAchar(id);if(!m||c.vis)return;
 for(let k=0;k<4;k++){const rr=(m.r+1+k)&3;if(rr===m.r)break;mobMarca(c,m,0);const ok2=mobPodeAqui(c,m.k,m.x,m.y,rr,m.id);mobMarca(c,m,1);if(ok2){mobMarca(c,m,0);m.r=rr;mobMarca(c,m,1);closeUI();mobSalva();return}}
 toast('🔄 Não tem espaço para girar aqui. Mova o móvel primeiro.')}
 function mobRecolhe(id){const c=mobCasa();const m=mobAchar(id);if(!m||c.vis)return;if((m.st||[]).some(s=>s.c>0))return toast('📦 Tire as coisas de dentro antes de guardar o móvel.');
-mobMarca(c,m,0);c.o.mv=c.o.mv.filter(q=>q!==m);G.mvi=G.mvi||{};G.mvi[m.k]=(G.mvi[m.k]||0)+1;closeUI();mobSalva();toast('📦 '+mobDef(m.k).n+' voltou para os seus móveis.')}
+const r=darItem(mobDef(m.k).n,1);if(!r)return toast('Mochila e depósito cheios: libere um espaço para guardar o móvel.');mobMarca(c,m,0);c.o.mv=c.o.mv.filter(q=>q!==m);closeUI();mobSalva();toast('📦 '+mobDef(m.k).n+(r.dep?' foi para o depósito (mochila cheia).':' voltou para a sua mochila.'))}
 RH2.push(function(cx,cy,t){const pl=MOB.pl;if(!pl)return;const c=mobCasa();if(!c){mobPfim();return}const d=mobDef(pl.k),p=mobPe(d,pl.r),okk=mobPodeAqui(c,pl.k,pl.x,pl.y,pl.r,pl.mover);
 g.save();g.fillStyle=okk?'rgba(80,220,120,.28)':'rgba(240,80,80,.32)';g.strokeStyle=okk?'#5aff8a':'#ff6a6a';g.lineWidth=.8;
 if(d.t==='parede'){g.fillRect(pl.x*16-cx,2*16-cy-30,p.w*16,28);g.strokeRect(pl.x*16-cx+.4,2*16-cy-29.6,p.w*16-.8,27.2)}
 else for(let j=0;j<p.h;j++)for(let i=0;i<p.w;i++){g.fillRect((pl.x+i)*16-cx,(pl.y+j)*16-cy,16,16);g.strokeRect((pl.x+i)*16-cx+.4,(pl.y+j)*16-cy+.4,15.2,15.2)}
 const fake={k:pl.k,x:pl.x,y:pl.y,r:pl.r};mobDesenha(g,fake,pl.x*16-cx,d.t==='parede'?pl.y*16-cy-1:(pl.y+p.h)*16-cy,.72+.18*Math.sin(t/250),t);g.restore()});
 {const _hmMV=hmenu;hmenu=function(x,y){try{const c=mobCasa();if(c&&!c.vis&&c.o.d[x+','+y]==='mv'){const m=mobAt(c,x,y);if(m)return mobMenu(m.id)}}catch(e){}
-const r=_hmMV.apply(this,arguments);try{const c=mobCasa();if(c&&!c.vis&&!c.o.d[x+','+y]){const ui=$('ui');const n=Object.values(G.mvi||{}).reduce((a,b)=>a+b,0);
+const r=_hmMV.apply(this,arguments);try{const c=mobCasa();if(c&&!c.vis&&!c.o.d[x+','+y]){const ui=$('ui');const n=Object.keys(MOBD).reduce((a,k)=>a+mobQtd(k),0);
 ui.insertAdjacentHTML('beforeend','<div style="margin-top:6px">'+btn('🛋️ Colocar móvel'+(n?' ('+n+')':''),`mobEscolhe(${x},${y})`)+'</div>')}}catch(e){}return r}}
 const MOB_CAT=['Sala','Quarto','Cozinha','Escritório','Magia','Plantas e peixes','Decoração','Natal'];
 function mobLoja(cat){const L=Object.keys(MOBD).filter(k=>MOBD[k].m==='$');const cats=MOB_CAT.filter(c=>L.some(k=>MOBD[k].c===c));cat=cat||cats[0];
 open(`<p><b>🛋️ Móveis do Mercado</b> 💰${f$(G.money)}</p><div class="ljt" style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:6px">${cats.map(c=>`<button class="${c===cat?'on':''}" style="${c===cat?'background:#3a3216;border-color:#ffd34d':''}" onclick="mobLoja('${c}')">${c}</button>`).join('')}</div>
-  <div class="kcl" style="grid-template-columns:repeat(auto-fill,minmax(110px,1fr))">${L.filter(k=>MOBD[k].c===cat).map(k=>{const d=MOBD[k];return`<button class="kcb" onclick="mobCompra('${k}')" title="${esc(d.d)}"><img src="${mobIco(k)}" alt=""><small><b>${esc(d.n)}</b><br>${esc(d.d)}<br>💰 ${f$(d.p)}${(G.mvi||{})[k]?' · tem '+G.mvi[k]:''}</small></button>`}).join('')}</div>`+btn('Decoração antiga','mobDecoAntiga()')+btn('Fechar','closeUI()'))}
-function mobCompra(k){const d=MOBD[k];if(!d||d.m!=='$')return;if(G.money<d.p)return toast('Falta dinheiro: '+f$(d.p-G.money)+'.');G.money-=d.p;G.mvi=G.mvi||{};G.mvi[k]=(G.mvi[k]||0)+1;save();hud();try{play('item')}catch(e){}toast('🛋️ '+d.n+' comprado! Coloque na sua casa: toque no chão → Colocar móvel.');mobLoja(d.c)}
+  <div class="kcl" style="grid-template-columns:repeat(auto-fill,minmax(110px,1fr))">${L.filter(k=>MOBD[k].c===cat).map(k=>{const d=MOBD[k];return`<button class="kcb" onclick="mobCompra('${k}')" title="${esc(d.d)}"><img src="${mobIco(k)}" alt=""><small><b>${esc(d.n)}</b><br>${esc(d.d)}<br>💰 ${f$(d.p)}${mobQtd(k)?' · tem '+mobQtd(k):''}</small></button>`}).join('')}</div>`+btn('Decoração antiga','mobDecoAntiga()')+btn('Fechar','closeUI()'))}
+function mobCompra(k){const d=MOBD[k];if(!d||d.m!=='$')return;if(G.money<d.p)return toast('Falta dinheiro: '+f$(d.p-G.money)+'.');const r=darItem(d.n,1);if(!r)return toast('Mochila e depósito cheios! Libere um espaço.');G.money-=d.p;save();hud();try{play('item')}catch(e){}toast('🛋️ '+d.n+' comprado! '+(r.dep?'Foi para o depósito (mochila cheia).':'Está na sua mochila.')+' Na casa: toque no chão → Colocar móvel.');mobLoja(d.c)}
 const _mvDeco=typeof deco==='function'?deco:null;function mobDecoAntiga(){if(_mvDeco)_mvDeco()}
 if(typeof deco==='function'){deco=function(){mobLoja()}}
-function lojaMovel(k){const d=MOBD[k];if(!d||d.m!=='kmc')return;if(kpGet()<d.p)return toast('Faltam '+kmc(d.p-kpGet())+'.');kpAdd(-d.p);G.mvi=G.mvi||{};G.mvi[k]=(G.mvi[k]||0)+1;save();hud();try{play('item')}catch(e){}
-ok(`<div class="psh"><img src="${mobIco(k)}" alt="" style="width:64px;height:64px;image-rendering:pixelated"><div><b>${esc(d.n)} comprado!</b><small>Na sua casa, toque no chão e escolha <b>🛋️ Colocar móvel</b>.</small></div></div>`)}
-function mobCardsKmc(kp){return Object.keys(MOBD).filter(k=>MOBD[k].m==='kmc').map(k=>{const d=MOBD[k];return lj2Card({img:mobIco(k),nm:d.n,preco:kmc(d.p),acao:`lojaMovel('${k}')`,dis:kp<d.p,det:esc(d.d)+((G.mvi||{})[k]?' · você tem '+G.mvi[k]+' guardado':'')})}).join('')}
+function lojaMovel(k){const d=MOBD[k];if(!d||d.m!=='kmc')return;if(kpGet()<d.p)return toast('Faltam '+kmc(d.p-kpGet())+'.');const r=darItem(d.n,1);if(!r)return toast('Mochila e depósito cheios! Libere um espaço.');kpAdd(-d.p);save();hud();try{play('item')}catch(e){}
+ok(`<div class="psh"><img src="${mobIco(k)}" alt="" style="width:64px;height:64px;image-rendering:pixelated"><div><b>${esc(d.n)} comprado!</b><small>${r.dep?'Sua mochila estava cheia: ele foi para o <b>depósito</b>.':'Está na sua <b>mochila</b>.'} Na sua casa, toque no chão e escolha <b>🛋️ Colocar móvel</b>.</small></div></div>`+btn('Voltar à loja','lojaOpen()')+btn('Fechar','closeUI()'))}
+function mobCardsKmc(kp){return Object.keys(MOBD).filter(k=>MOBD[k].m==='kmc').map(k=>{const d=MOBD[k];return lj2Card({img:mobIco(k),nm:d.n,preco:kmc(d.p),acao:`lojaMovel('${k}')`,dis:kp<d.p,det:esc(d.d)+(mobQtd(k)?' · você tem '+mobQtd(k):'')})}).join('')}
 function mobPub(o){return(o.mv||[]).slice(0,80).map(m=>({k:m.k,x:m.x,y:m.y,r:m.r&3,on:m.on?1:0,f:m.f||0}))}
 function mobPublica(){try{if(typeof kcPublica==='function')kcPublica()}catch(e){}}
 if(typeof csCall==='function'){const _ccMV=csCall;csCall=function(body){try{if(body&&(body.op==='alugar'||body.op==='deco')&&!body.mv){const k=String(body.k||''),h=k.replace(/^v(\d)$/,'$1'),o=G.own&&(G.own[h]||G.own[k]);if(o)body.mv=mobPub(o)}}catch(e){}
 return _ccMV.apply(this,arguments).then(j=>{try{if(body&&body.op==='visitar'&&j&&j.ok){const mv=(j.mv||[]).map((m,i)=>Object.assign({id:'v'+i},m));setTimeout(()=>{try{if(CSVIS){CSVIS.mv=mv;for(const m of mv){const d=mobDef(m.k);if(d&&d.t!=='tapete'&&d.t!=='parede')for(const[x,y]of mobTiles(m))CSVIS.dec[x+','+y]='mv'}}}catch(e){}},0)}}catch(e){}return j})}}
 {const _kcC=kcCasa;kcCasa=function(){const c=_kcC.apply(this,arguments);try{if(c&&c.vis&&CSVIS)c.o.mv=CSVIS.mv||[]}catch(e){}return c}}
+function bagCap(n){let r=0;try{for(const[a,i]of invAll(isLootN(n))){const s=a[i];if(!s)r+=STK;else if(s.t=='i'&&s.n==n)r+=STK-s.c}}catch(e){}return r}
+function depCap(n){let r=0;try{for(const b of DB())for(const s of b){if(!s)r+=DEPMAX;else if(s.t==='i'&&s.n===n)r+=DEPMAX-s.c}}catch(e){}return r}
+function depAddItem(n,c){const B=DB();for(const b of B)for(const s of b){if(c<=0)break;if(s&&s.t==='i'&&s.n===n&&s.c<DEPMAX){const m=Math.min(c,DEPMAX-s.c);s.c+=m;c-=m}}
+for(const b of B)for(let i=0;i<b.length&&c>0;i++)if(!b[i]){const m=Math.min(c,DEPMAX);b[i]={t:'i',n,c:m};c-=m}return c}
+function darItem(n,c){c=Math.max(0,c|0);if(!c)return{bag:0,dep:0};const cb=bagCap(n),cd=depCap(n);if(cb+cd<c)return null;
+const nb=Math.min(c,cb);let sobra=0;if(nb)sobra=invAdd(n,nb);const nd=c-nb+sobra;if(nd>0){const r=depAddItem(n,nd);if(r>0){toast('⚠️ '+r+'× '+n+' não coube.')}}
+try{hud()}catch(e){}if(nd>0)setTimeout(()=>toast('🎒 Mochila cheia: '+nd+'× '+n+' foi para o depósito.'),300);return{bag:nb-sobra,dep:nd}}
+const MOBNM={};try{for(const k in MOBD)MOBNM[MOBD[k].n]=k}catch(e){}MOBNM['Tanque Kaimon']='__tanque';
+{const _ilN=isLootN;isLootN=function(n){if(MOBNM[n])return false;return _ilN.apply(this,arguments)}}
+{const _icN=ico;ico=function(n,ns){try{const k=MOBNM[n];if(k==='__tanque'&&typeof kcTanqueIcone==='function'){const u=kcTanqueIcone();if(u)return u}else if(k){const u=mobIco(k);if(u)return u}}catch(e){}return _icN.apply(this,arguments)}}
+lojaItem=function(k){const it=LOJA.find(x=>x.k===k);if(!it||!it.item)return;if(kpGet()<it.p)return toast('Faltam '+kmc(it.p-kpGet())+'.');
+const[n,c]=it.item,r=darItem(n,c);if(!r)return toast('Mochila e depósito cheios! Libere espaço para '+c+'× '+n+'.');
+kpAdd(-it.p);save();hud();try{play('item')}catch(e){}toast('🛍️ '+c+'× '+n+(r.dep?(r.bag?' (parte foi para o depósito)':' foi para o depósito (mochila cheia)'):' na mochila!')+' ('+kmc(it.p)+')');lojaOpen()};
+if(typeof aboxBuy==='function'){aboxBuy=function(){const P=aboxPool();if(!P.length)return toast('Você já tem todos os addons!');if(kpGet()<5)return toast('Faltam '+kmc(5-kpGet())+'.');
+const r=darItem('Kaimon Addon Box',1);if(!r)return toast('Mochila e depósito cheios! Libere um espaço para a caixa.');kpAdd(-5);save();hud();try{play('item')}catch(e){}
+if(r.dep)return ok('<div class="abx"><img class="box" src="'+ico('Kaimon Addon Box')+'" alt=""><div><b>🎁 Kaimon Addon Box</b> comprada!<br><small>Sua mochila estava cheia: ela foi para o <b>depósito</b> do Centro de Cura.</small></div></div>');
+open(`<div class="abx"><img class="box" src="${ico('Kaimon Addon Box')}" alt=""><div><b>🎁 Kaimon Addon Box</b> comprada!<br><small>Ela está na sua mochila. Abrir agora?</small></div></div>`+btn('Abrir agora','aboxOpen()')+btn('Depois','lojaOpen()'))}}
+function invMigra(){try{if(!G||!G.inv)return;let n=0;
+if(G.mvi){for(const k in G.mvi){const d=MOBD[k],q=G.mvi[k]|0;if(!d||q<=0){delete G.mvi[k];continue}const r=darItem(d.n,q);if(r){delete G.mvi[k];n+=q}}if(!Object.keys(G.mvi).length)delete G.mvi}
+if(G.tqinv>0){const r=darItem('Tanque Kaimon',G.tqinv|0);if(r){n+=G.tqinv|0;delete G.tqinv}}
+if(n){save();setTimeout(()=>toast('🛋️ Seus móveis comprados ('+n+') agora estão na mochila/depósito.'),2500)}}catch(e){}}
+setTimeout(invMigra,4000);setInterval(invMigra,60000);
+{const _bagI=bag;bag=function(){const r=_bagI.apply(this,arguments);try{const S=IS&&islot(IS.c,IS.b,IS.i);if(!S||S.t!=='i'||!MOBNM[S.n])return r;
+const c=typeof kcCasa==='function'&&kcCasa(),dono=c&&!c.vis,acts=document.querySelector('#ui .iinf+div');
+const fx=P.x+DX[P.d],fy=P.y+DY[P.d],h=dono?btn('🛋️ Colocar na casa',MOBNM[S.n]==='__tanque'?`closeUI();kcTanquePoe('${fx},${fy}')`:`closeUI();mobPlaca('${MOBNM[S.n]}',${fx},${fy})`):'<small style="opacity:.8">🏠 Móvel: coloque na sua casa (lá dentro, selecione aqui ou toque no chão).</small>';
+if(acts)acts.insertAdjacentHTML('afterbegin',h+' ')}catch(e){}return r}}
 var CNF={pend:null,livre:0};
 function cnfInfo(nome,a){try{
 if(nome==='lojaItem'){const it=LOJA.find(x=>x.k===a[0]);return it?{nm:it.n,p:it.p,img:it.ic?it.ic():''}:null}
