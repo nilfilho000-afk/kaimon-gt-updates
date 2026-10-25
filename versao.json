@@ -1,11 +1,11 @@
 {
- "jogo": 148,
- "jogo_arquivo": "jogo-148.kpk",
- "jogo_sha": "a5711579a1c64e1ceeff195f5619264ba8a10c68e0f3141b78702c60aa75d31e",
- "jogo_assin": "9YdS8XWbAwguu5JnGIAcyBOQn7AKXlznQmsqf8S3IlIcbY+itR2VAWD8kJOUJwPweROSEyCR855hOr+2EpsXBg==",
+ "jogo": 149,
+ "jogo_arquivo": "jogo-149.kpk",
+ "jogo_sha": "5264419dbed244590ed9531cac674198d702ab714201346d5d407e87ee393b58",
+ "jogo_assin": "P1ovTLFaRRRfItLcyzIw6BhnlqSjDB6DXFG7aUGiGwPBS65WBBeuUG2mLs1mJ5WZw54Q8rLQUbHvIy2aIRoqCA==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "f72f291bd770fb42ff89f39f2c5dad736d41b0675e2f0de42385ab4b6af3c950",
- "launcher_assin": "Q/NqK+OQiVxIA36hVUpQeDX3Gd9IMXCTEs6kgMVQY6nqdKBAYJTcxGHVMfGmI0bn7yvkzNJcM5HrXl1TiW86Bw==",
- "notas": "Versão 1.30\n• Loja Kaimon: agora dá para rolar a lista no celular.\n• Tudo que você compra vai para a mochila. Mochila cheia? Vai para o depósito (nada some).\n• Móveis e o Tanque Kaimon aparecem na mochila com o desenho deles. Na casa, selecione e toque em Colocar na casa.\n• Botões das redes sociais no canto da tela inicial (não ficam mais por cima do login)."
+ "launcher_sha": "f25c133b3f7a4fb3cc48ca8c7764d0d3f11e6af50c0adcbf3d713cbde566fb55",
+ "launcher_assin": "chG2LCLZzlfaCb7T/h/g7rO5U/cKzXZBPepWeB7Dxx4ibBOR4O2tc9ucfj+IgJ4OHhe/rIGT0UBPwO/mCaFSBw==",
+ "notas": "1.31: móveis abrem o menu certo (não começa mais batalha), carinho no Kaimon do tanque, roupas especiais do lançamento na Loja (100 KMC), conta de outro aparelho carrega o progresso da nuvem."
 }

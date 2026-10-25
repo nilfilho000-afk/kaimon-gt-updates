@@ -2097,7 +2097,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v148 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v149 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -9123,7 +9123,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=148;
+var KGT_VER=149;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -13127,7 +13127,7 @@ try{LKH={};TRI={};hrReset();lkApply(G.look)}catch(e){}
 const LCK=['zro_dra','zro_boi','zro_iar','zro_ipe'];
 function lcSemLanc(fn){return function(){const hid={};for(const k of LCK)if(TAD[k]&&!tadHas(k)){hid[k]=TAD[k];delete TAD[k]}try{return fn.apply(this,arguments)}finally{Object.assign(TAD,hid)}}}
 aboxPool=lcSemLanc(aboxPool);lojaAddons=lcSemLanc(lojaAddons);
-{const _la=lojaAddon;lojaAddon=function(t,k){if(t==='t'&&TAD[k]&&TAD[k].lanc)return toast('Roupa exclusiva do lançamento: não está à venda.');return _la.apply(this,arguments)}}
+{const _la=lojaAddon;lojaAddon=function(t,k){if(t==='t'&&TAD[k]&&TAD[k].lanc)return (typeof lojaEspecial==='function'?lojaEspecial(k):0);return _la.apply(this,arguments)}}
 {const _zs=zSlotItens;zSlotItens=function(s){return _zs(s).filter(k=>!(TAD[k]&&TAD[k].lanc)||tadHas(k))}}
 var LCS={st:null,mostrou:0,t:0};
 function lcFem(){try{const L=G.look||{};if(L.fm!=null)return!!L.fm;return!!hrSpec(lkD(L)).fem}catch(e){return false}}
@@ -13137,7 +13137,7 @@ if(j.escolhido&&!tadHas(j.escolhido)){tadUnlock(j.escolhido);save();toast(`✨ S
 if(!j.escolhido&&j.janela&&j.elegivel&&!LCS.mostrou&&mode==='walk'&&!document.querySelector('#ui.on,#ui[style*="block"]')){LCS.mostrou=1;setTimeout(()=>lcEscolha(false),1500)}}catch(e){}}
 function lcEscolha(teste){const fem=lcFem(),ops=fem?['zro_iar','zro_ipe']:['zro_dra','zro_boi'],fim=new Date(Date.UTC(2026,10,30,15)).toLocaleDateString('pt-BR');
 const card=k=>{const a=TAD[k],L=tadLook(G.look,{roupa:k});return`<div style="flex:1;min-width:150px;background:#0f1626;border:1px solid #ff6ad0;border-radius:12px;padding:8px;text-align:center"><div style="display:flex;justify-content:center;gap:2px"><img src="${tadImg(L,0)}" alt="" style="height:150px;image-rendering:pixelated"><img src="${tadImg(L,2)}" alt="" style="height:150px;image-rendering:pixelated"></div><b>${esc(a.n)}</b><br><small>${esc(a.d)}</small><br>${btn('Escolher esta',`lcPegar('${k}',${teste?'true':'false'})`)}</div>`};
-open(`<div class="psh"><span style="font-size:30px">🎁</span><div><b>Presente de lançamento</b><small>Obrigado por estar no lançamento do Kaimon GT! Escolha <b>uma</b> roupa exclusiva para o seu treinador. Ela nunca vai estar à venda e só pode ser escolhida até <b>${fim}</b>.${teste?' <b style="color:#ffb84a">(teste do GOD)</b>':''}</small></div></div><div style="display:flex;gap:10px;flex-wrap:wrap;margin:8px 0">${ops.map(card).join('')}</div>`+btn('Escolher depois','closeUI()'));try{$('ui').classList.add('wide')}catch(e){}}
+open(`<div class="psh"><span style="font-size:30px">🎁</span><div><b>Presente de lançamento</b><small>Obrigado por estar no lançamento do Kaimon GT! Escolha <b>uma</b> roupa exclusiva para o seu treinador. De graça só até <b>${fim}</b>.${teste?' <b style="color:#ffb84a">(teste do GOD)</b>':''}</small></div></div><div style="display:flex;gap:10px;flex-wrap:wrap;margin:8px 0">${ops.map(card).join('')}</div>`+btn('Escolher depois','closeUI()'));try{$('ui').classList.add('wide')}catch(e){}}
 async function lcPegar(k,teste){const a=TAD[k];if(!a)return;if(!confirm(`Escolher "${a.n}"? Só dá para escolher uma vez.`))return;
 try{const j=await soCall('/lanc',{op:'pegar',k,teste:!!teste});if(j.erro)throw new Error(j.erro);const got=j.escolhido||k;tadUnlock(got);save();try{tadUse('roupa',got)}catch(e){}try{play('lvl')}catch(e){}
 open(`<div class="abx"><img src="${tadImg(tadLook(G.look,{roupa:got}),0)}" alt="" style="height:140px;image-rendering:pixelated;border-radius:12px;background:#0f1626"><div><b>✨ ${esc(TAD[got].n)}</b> é sua!<br><small>Já está vestida. Troque quando quiser em Configurações → Visual.</small></div></div>`+btn('Fechar','closeUI()'))}
@@ -14443,6 +14443,10 @@ open(`<div class="ljh"><span style="font-size:24px">🛍️</span><b>Loja Kaimon
 const u=$('ui');u.classList.add('wide','lj2')};
 (function(){try{const u=document.getElementById('ui');if(!u||!window.MutationObserver)return;new MutationObserver(()=>{try{if(u.classList.contains('lj2')&&!u.querySelector('.ljh'))u.classList.remove('lj2')}catch(e){}}).observe(u,{childList:true})}catch(e){}})();
 var CS2={W:27,H:15,EX:13};
+const CSITENS=['csKitchen','csWardrobe','csBed','csTable','csSofa','csPlant','csLamp','csClock','csShelfR','csShelf','csRug','csFrame'];
+const CSNOME={csKitchen:'🍳 Cozinha',csWardrobe:'🚪 Guarda-roupa',csBed:'🛏️ Cama',csTable:'🍽️ Mesa',csSofa:'🛋️ Sofá',csPlant:'🪴 Planta',csLamp:'💡 Abajur',csClock:'🕰️ Relógio',csShelfR:'📚 Estante',csShelf:'📚 Estante',csRug:'🟠 Tapete redondo',csFrame:'🖼️ Quadro'};
+var CSLISTA={};
+function csRmv(key){try{if(typeof CSVIS!=='undefined'&&CSVIS&&String(CSVIS.k)===String(key))return CSVIS.rmv||[];const o=G.own&&G.own[key];return(o&&o.rmv)||[]}catch(e){return[]}}
 function csRoom(th,W0,H0,EX0){const W=W0||CSW,H=H0||CSH,EX=EX0==null?CSEX:EX0,fl=th.fl31?31:241,T=Array.from({length:H},(_,y)=>Array.from({length:W},(_,x)=>(x==0||x==W-1||y<=1||y==H-1)?240:fl));T[H-1][EX]=29;
 const c=document.createElement('canvas');c.width=W*32;c.height=H*32;const x0=c.getContext('2d');x0.scale(2,2);x0.imageSmoothingEnabled=false;
 const f=document.createElement('canvas');f.width=W*32;f.height=H*32;const x1=f.getContext('2d');x1.scale(2,2);x1.imageSmoothingEnabled=false;
@@ -14461,10 +14465,15 @@ csExit=function(R){const ex=R.ex!=null?R.ex:CSEX,X=ex*16,Y=(R.H-1)*16,F=R.th.flo
 const m=R.th.mat||['#8a3a2a','#c8a050'];R.r(m[0],X+1.5,Y+3,13,10);R.r(m[1],X+3,Y+5,10,.8);R.r(m[1],X+3,Y+10.2,10,.8);R.r(shd(m[0],.7),X+1.5,Y+12.4,13,.6)};
 csRent=function(key,ret){const h=[...String(key)].reduce((a,c)=>(a*31+c.charCodeAt(0))|0,7)>>>0,th=Object.assign({fl31:1},CSRT[h%CSRT.length]),R=csRoom(th,CS2.W,CS2.H,CS2.EX),mir=(h>>3)&1;
 const lay=(h>>5)%3,XW=(a,w)=>mir?CSW-a-w:a;
+const rm=new Set(csRmv(key)),cnt={},lista=[],orig={};let fundo=0;
+for(const nm of CSITENS){orig[nm]=window[nm];if(typeof orig[nm]!=='function')continue;window[nm]=function(){if(fundo)return orig[nm].apply(this,arguments);const id=nm+'#'+(cnt[nm]=(cnt[nm]||0)+1);lista.push(id);if(rm.has(id))return;fundo++;try{return orig[nm].apply(this,arguments)}finally{fundo--}}}
+try{
 if(lay===0){const k=XW(1,4);csKitchen(R,k,k+3);csWin(R,XW(6,2),'#e8a0a0');csFrame(R,XW(9,2),2,'land');csWin(R,XW(12,2),'#e8a0a0');csWardrobe(R,XW(17,1));csBed(R,XW(16,1),4,th.bed);const tb=XW(3,2);csTable(R,tb,tb+1,6,'#9a6a3a','#e85a5a',['fruit','jar']);csSofa(R,8,10,8,th.sofa);csPlant(R,XW(1,1),9,'ficus');csLamp(R,XW(17,1),8)}
 else if(lay===1){csWardrobe(R,XW(1,1));csBed(R,XW(2,1),4,th.bed);csWin(R,XW(4,2),'#8ac0e8');csFrame(R,XW(7,2),2,'sea');const k=XW(13,4);csKitchen(R,k,k+3);csClock(R,XW(10,1));const tb=XW(14,2);csTable(R,tb,tb+1,6,'#8a5a30',null,['jar','fruit']);const sf=XW(4,3);csSofa(R,sf,sf+2,8,th.sofa);csPlant(R,XW(17,1),9,'fern');csLamp(R,XW(1,1),8)}
 else{csWin(R,XW(2,2),'#c8a0e8');csFrame(R,XW(5,2),2,'flowers');const k=XW(8,2);csKitchen(R,k,k+1);const sh=XW(11,2);csShelfR(R,sh,sh+1);csWardrobe(R,XW(15,1));csWardrobe(R,XW(16,1));csBed(R,XW(17,1),4,th.bed);const tb=XW(4,2);csTable(R,tb,tb+1,6,'#7a4a26','#f0d070',['jar']);const sf=XW(10,3);csSofa(R,sf,sf+2,7,th.sofa);csPlant(R,XW(1,1),9,'flower');csPlant(R,XW(17,1),9,'ficus')}
 csRug(R,7,11,5,6,th.rug[0],th.rug[1],'round');
+}finally{for(const nm in orig)if(orig[nm])window[nm]=orig[nm]}
+CSLISTA[String(key)]=lista;
 try{csWin(R,20,'#a8d0f0');csWin(R,23,'#a8d0f0')}catch(e){}
 const o=R.done();o.p={};if(ret)o.p[CS2.EX+','+(CS2.H-1)]=ret.slice(0,3);return o};
 {const _smC2=setMap;setMap=function(i,x,y){if(i===HRM&&x===CSEX&&y===CSH-2){x=CS2.EX;y=CS2.H-2}return _smC2.call(this,i,x,y)}}
@@ -14591,7 +14600,7 @@ if(p.q){kcTanqueComida(p.q);toast('🍖 A comida caiu no tanque!')}else{const e=
 function kcTirar(id){const c=kcCasa();if(!c||c.vis)return;const L=c.o.pets||[],i=L.findIndex(q=>String(q.id)===String(id));if(i<0)return;const p=L[i];L.splice(i,1);const m=kcMon(id);if(m)delete m.casa;save();closeUI();toast('📦 '+p.n+' voltou pro depósito.');kcPublica()}
 function kcTanqueMenu(k){const c=kcCasa();if(!c)return;const p=kcPets(c).find(q=>q.q===k);
 let h='<p><b>🐠 Tanque Kaimon</b><br><small>Um Kaimon de Água mora aqui dentro. Comida 1× por semana.</small></p>';
-if(p){h+=`<div class="psh"><img src="${pbi(p.n,kcVisual(p))}" alt=""><div><b>${esc(p.n)}</b><small>${kcFome(p)?'😢 Com fome!':'😊 Nadando feliz'}</small></div></div>`;if(!c.vis)h+=btn('🍖 Dar comida',`kcComer('${p.id}')`)+btn('📦 Voltar pro depósito',`kcTirar('${p.id}')`)}
+if(p){h+=`<div class="psh"><img src="${pbi(p.n,kcVisual(p))}" alt=""><div><b>${esc(p.n)}</b><small>${kcFome(p)?'😢 Com fome!':'😊 Nadando feliz'}</small></div></div>`;h+=btn('💗 Fazer carinho',`kcCarinho('${k}')`);if(!c.vis)h+=btn('🍖 Dar comida',`kcComer('${p.id}')`)+btn('📦 Voltar pro depósito',`kcTirar('${p.id}')`)}
 else if(!c.vis){h+='<p><small>O tanque está vazio.</small></p>'+btn('🐟 Colocar um Kaimon de Água',`kcEscolhe('${k}')`)+btn('📦 Guardar o tanque',`kcTanqueTira('${k}')`)}
 open(h+btn('Fechar','closeUI()'))}
 function kcEscolhe(tq){const c=kcCasa();if(!c||c.vis)return;if(!tq)return ok('<p>Por enquanto os Kaimons só podem morar no 🐠 <b>Tanque Kaimon</b> (os de Água). Terrenos para os outros tipos chegam em breve!</p>');const L=[];try{(G.dep||[]).forEach((b,bi)=>(b||[]).forEach(s=>{if(s&&s.t==='p'&&s.m&&!s.m.casa)L.push(s.m)}))}catch(e){}
@@ -14633,6 +14642,8 @@ return _ccKC.apply(this,arguments).then(j=>{try{if(body&&body.op==='visitar'&&j&
 function lojaTanque(){if(kpGet()<10)return toast('Faltam '+kmc(10-kpGet())+'.');const r=darItem('Tanque Kaimon',1);if(!r)return toast('Mochila e depósito cheios! Libere um espaço.');kpAdd(-10);save();hud();try{play('item')}catch(e){}
 ok('<p><b>🐠 Tanque Kaimon comprado!</b> '+(r.dep?'Sua mochila estava cheia: ele foi para o <b>depósito</b>.':'Ele está na sua <b>mochila</b>.')+'</p><p>Na sua casa, toque no chão onde quer colocar (precisa de 3 quadrados livres) e escolha <b>Colocar Tanque Kaimon</b>. Depois coloque um Kaimon de Água dentro.</p>')}
 function kcTanqueIcone(){try{const c=document.createElement('canvas');c.width=96;c.height=94;const x=c.getContext('2d');x.imageSmoothingEnabled=false;if(KC.img.complete)x.drawImage(KC.img,0,0,96,94);return c.toDataURL()}catch(e){return''}}
+function kcCarinho(k){closeUI();const[x,y]=String(k).split(',').map(Number);try{for(let i=0;i<7;i++)MOB.fx.push({x:x*16+24+(Math.random()-.5)*26,y:y*16-10,t0:performance.now()+i*140,k:'coracao'})}catch(e){}
+try{play('item')}catch(e){}const c=kcCasa(),p=c&&kcPets(c).find(q=>q.q===k);toast('💗 '+(p?p.n:'O Kaimon')+' adorou o carinho e deu uma voltinha no tanque!')}
 var EQ={staff:new Set(),gods:new Set(),t:0};
 async function eqSync(){try{if(!webAcc()||!(FBC&&FBC.fn)||!webOnline())return;const j=await modCall({op:'equipe'});EQ.staff=new Set(j.staff||[]);EQ.gods=new Set(j.gods||[]);EQ.t=Date.now()}catch(e){}}
 setTimeout(eqSync,7000);setInterval(()=>{if(Date.now()-EQ.t>5*60000&&!document.hidden)eqSync()},60000);
@@ -14877,6 +14888,8 @@ function mobPublica(){try{if(typeof kcPublica==='function')kcPublica()}catch(e){
 if(typeof csCall==='function'){const _ccMV=csCall;csCall=function(body){try{if(body&&(body.op==='alugar'||body.op==='deco')&&!body.mv){const k=String(body.k||''),h=k.replace(/^v(\d)$/,'$1'),o=G.own&&(G.own[h]||G.own[k]);if(o)body.mv=mobPub(o)}}catch(e){}
 return _ccMV.apply(this,arguments).then(j=>{try{if(body&&body.op==='visitar'&&j&&j.ok){const mv=(j.mv||[]).map((m,i)=>Object.assign({id:'v'+i},m));setTimeout(()=>{try{if(CSVIS){CSVIS.mv=mv;for(const m of mv){const d=mobDef(m.k);if(d&&d.t!=='tapete'&&d.t!=='parede')for(const[x,y]of mobTiles(m))CSVIS.dec[x+','+y]='mv'}}}catch(e){}},0)}}catch(e){}return j})}}
 {const _kcC=kcCasa;kcCasa=function(){const c=_kcC.apply(this,arguments);try{if(c&&c.vis&&CSVIS)c.o.mv=CSVIS.mv||[]}catch(e){}return c}}
+{const _actMob=act;act=function(){try{if(mode==='walk'&&!P.sit){const x=P.x+DX[P.d],y=P.y+DY[P.d],e=ents().find(e=>e.x==x&&e.y==y);
+if(e&&typeof e.fn==='function'&&(e.mvI||e.kcT||e.kcP||/^(mv_|kc_)/.test(e.n||''))){return e.fn(e)}}}catch(err){}return _actMob.apply(this,arguments)}}
 function bagCap(n){let r=0;try{for(const[a,i]of invAll(isLootN(n))){const s=a[i];if(!s)r+=STK;else if(s.t=='i'&&s.n==n)r+=STK-s.c}}catch(e){}return r}
 function depCap(n){let r=0;try{for(const b of DB())for(const s of b){if(!s)r+=DEPMAX;else if(s.t==='i'&&s.n===n)r+=DEPMAX-s.c}}catch(e){}return r}
 function depAddItem(n,c){const B=DB();for(const b of B)for(const s of b){if(c<=0)break;if(s&&s.t==='i'&&s.n===n&&s.c<DEPMAX){const m=Math.min(c,DEPMAX-s.c);s.c+=m;c-=m}}
@@ -14925,6 +14938,36 @@ w._cnf=1;window[nome]=w}
 function cnfSim(){const p=CNF.pend;CNF.pend=null;if(!p)return closeUI();CNF.livre=Date.now()+4000;try{const r=p.f.apply(p.self,p.a);if(r&&typeof r.finally==='function')r.finally(()=>{CNF.livre=0});else setTimeout(()=>{CNF.livre=0},50);return r}catch(e){CNF.livre=0;throw e}}
 function cnfNao(){const p=CNF.pend;CNF.pend=null;if(p&&p.daLoja&&typeof lojaOpen==='function')return lojaOpen();closeUI()}
 for(const n of['lojaItem','lojaAddon','lojaTanque','lojaMovel','xpbBuy','aboxBuy','pboxBuy','pacoteBuy','psKmc'])cnfEmbrulha(n);
+const ESP_P=100;
+function espLista(){return(typeof LCK!=='undefined'?LCK:['zro_dra','zro_boi','zro_iar','zro_ipe']).filter(k=>TAD[k])}
+function espImg(k){try{const a=TAD[k];return tadImg(tadLook(G.look,{[a.slot]:k}),0)}catch(e){return''}}
+function espCards(){const kp=kpGet();return espLista().map(k=>{const a=TAD[k],tem=tadHas(k);
+return lj2Card({img:espImg(k),nm:a.n,preco:kmc(ESP_P),acao:`lojaEspecial('${k}')`,dis:kp<ESP_P,okTxt:tem?'✔ você já tem':'',tag:'<i class="tag" style="background:#ff6ad0">ESPECIAL</i>',
+det:esc(a.d+' · Roupa especial do lançamento: presente de quem jogou no primeiro mês do Kaimon GT.')})}).join('')}
+function lojaEspecial(k){const a=TAD[k];if(!a||!espLista().includes(k))return;if(tadHas(k))return toast('Você já tem essa roupa.');const kp=kpGet();if(kp<ESP_P)return toast('Faltam '+kmc(ESP_P-kp)+'.');
+kpAdd(-ESP_P);tadUnlock(k);save();hud();try{play('lvl')}catch(e){}
+open(`<div class="abx"><img src="${espImg(k)}" alt="" style="height:140px;image-rendering:pixelated;border-radius:12px;background:#0f1626"><div><b>✨ ${esc(a.n)}</b> é sua!<br><small>${esc(a.d)}</small></div></div>`+btn('Vestir agora',`tadUse('${a.slot}','${k}');closeUI()`)+btn('Voltar à loja','lojaOpen()'))}
+{const _ci=cnfInfo;cnfInfo=function(nome,a){if(nome==='lojaEspecial'){const t=TAD[a[0]];return t?{nm:t.n+' (especial do lançamento)',p:ESP_P,img:espImg(a[0])}:null}
+if(nome==='lojaAddon'&&a[0]==='t'&&TAD[a[1]]&&TAD[a[1]].lanc)return null;return _ci.apply(this,arguments)}}
+cnfEmbrulha('lojaEspecial');
+{const _la=lojaAddon;lojaAddon=function(t,k){if(t==='t'&&TAD[k]&&TAD[k].lanc)return lojaEspecial(k);return _la.apply(this,arguments)};lojaAddon._cnf=_la._cnf}
+{const _lr=lj2Roupas;lj2Roupas=function(){const hid={};for(const k of espLista()){hid[k]=TAD[k];delete TAD[k]}let r;try{r=_lr.apply(this,arguments)}finally{Object.assign(TAD,hid)}
+if(!LJ2.slot||LJ2.slot==='roupa')r=espCards()+r;return r}}
+{const _li=lj2Itens;lj2Itens=function(dest){const r=_li.apply(this,arguments);if(!dest)return r;
+return`</div><div style="margin:4px 2px 6px;font:800 13px system-ui;color:#ff9ae0">✨ Especiais do lançamento <small style="color:#cfd6e6;font-weight:600">· presente de quem jogou no 1º mês</small></div><div class="ljg">${espCards()}</div><div style="margin:10px 2px 6px;font:800 13px system-ui;color:#ffe27a">⭐ Destaques</div><div class="ljg">`+r}}
+var NUV={ck:0,av:0};
+{const _fg=fbGo;fbGo=async function(id){try{const a=ACC.a[id];if(a&&a.fb&&a.fb.uid&&ACC.act!==id&&!fbHas(id)&&webOn()&&webOnline()){try{tmsg('☁️ Buscando seu progresso na nuvem...',1)}catch(e){}
+await Promise.race([cloudPullFor(id),new Promise(r=>setTimeout(r,12000))])}}catch(e){}return _fg.apply(this,arguments)}}
+async function nuvSaveDaNuvem(a){const tok=await webTok(a);const j=await fsGet('saves',a.fb.uid,tok);if(!j||!j.fields)return null;const d=fsV(j.fields,'d'),t=fsV(j.fields,'t')||0;if(!d)return null;
+const s=await bkDecode(d);const o=JSON.parse(s);if(!o||!o.G||!o.P||!o.G.nick)return null;return{s,t,o}}
+async function nuvTenta(){const a=webAcc();if(!a||!webOn()||!webOnline())return;try{const r=await nuvSaveDaNuvem(a);if(!r)return;
+localStorage.setItem('pq2',r.s);localStorage.setItem('pq2t',String(r.t||Date.now()));try{sessionStorage.removeItem('pqNew');sessionStorage.setItem('pqIn',ACC.act)}catch(e){}
+try{CLOUD.dirty=0}catch(e){}const d=document.createElement('div');d.style.cssText='position:fixed;inset:0;z-index:2147483646;background:#070a14e8;color:#ffe27a;display:flex;align-items:center;justify-content:center;font:900 20px system-ui;text-align:center;padding:20px';
+d.textContent='☁️ Achamos o treinador '+r.o.G.nick+' na nuvem! Carregando...';document.body.appendChild(d);setTimeout(()=>location.reload(),900)}catch(e){}}
+{const _co=chrOpen;chrOpen=function(isNew){const r=_co.apply(this,arguments);try{if(isNew&&!NUV.ck){NUV.ck=1;nuvTenta()}}catch(e){}return r}}
+{const _cp=cloudPush;cloudPush=async function(force){try{const a=webAcc();if(a&&webOn()&&webOnline()&&!NUV.av&&typeof mode!=='undefined'&&mode!=='title'){const tok=await webTok(a);const j=await fsGet('saves',a.fb.uid,tok,['lv','nick']);
+const clv=j&&j.fields?(fsV(j.fields,'lv')||0):0,lv=(G.t&&G.t.l)||1;
+if(clv>lv){if(!NUV.aw){NUV.aw=1;toast('☁️ A nuvem tem um treinador de nível maior ('+clv+'). Para usar ele aqui: Configurações → Nuvem → Usar o da nuvem.')}return}NUV.av=1}}catch(e){}return _cp.apply(this,arguments)}}
 (function(){try{const st=document.createElement('style');st.textContent=`body.hudmin .ab:not(.hkeep){display:none!important}
 #hudtg{position:fixed;right:calc(env(safe-area-inset-right,0px) + 88px);bottom:calc(env(safe-area-inset-bottom,0px) + 6px);width:40px;height:40px;border-radius:50%;padding:0;margin:0;z-index:6;
  background:radial-gradient(circle at 35% 30%,#fff3c0,#e8c050 60%,#a8801c);border:2px solid #fff;color:#3a2a00;font:900 18px sans-serif;box-shadow:0 2px 6px #0008;display:flex;align-items:center;justify-content:center}
