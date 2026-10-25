@@ -2097,7 +2097,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v136 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v137 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -9123,7 +9123,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=136;
+var KGT_VER=137;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -14029,6 +14029,7 @@ if(pa)for(let y=pa.y;y<pa.y+pa.h;y++)for(let x=pa.x;x<pa.x+pa.w;x++)ia[x+','+y]=
 const mesas=O.filter(o=>o.k==='mesa');let n=0;
 for(const me of mesas){me.mi=n++;for(let i=0;i<me.w;i++){const lx=me.x+i,ly=me.y-1,v=(T2[ly]||[])[lx];if(v!==173&&v!==175&&v!==174)continue;const ch={k:'cadeira',x:lx,y:ly,w:1,h:1,lado:i?-1:1,mesa:me};O.push(ch);S(lx,ly,174);ia[lx+','+ly]=()=>f7Senta(ch)}
 for(let x=me.x;x<me.x+me.w;x++)ia[x+','+me.y]=()=>f7MesaToque(me)}
+m.gtr=(m.gtr||[]).filter(q=>!(q[0]===26&&q[1]===36));for(let y=35;y<=36;y++)for(let x=25;x<=27;x++){const v=(T2[y]||[])[x];if(v===246||v===247)S(x,y,(x+y)%3===0?9:0)}
 m._f7=1}
 BPOST.push(function(i,m,T2){try{f7Post(i,m,T2)}catch(e){console.error('feira135',e)}});
 try{if(typeof KB!=='undefined'&&KB.fe!=null&&M[KB.fe]&&M[KB.fe].T&&M[KB.fe].feObj&&!M[KB.fe]._f7){f7Post(KB.fe,M[KB.fe],M[KB.fe].T);M[KB.fe].MC=null}}catch(e){}
