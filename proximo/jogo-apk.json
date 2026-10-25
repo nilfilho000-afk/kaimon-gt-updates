@@ -1,7 +1,7 @@
 {
- "v": 142,
+ "v": 143,
  "url": "https://raw.githubusercontent.com/nilfilho000-afk/kaimon-gt-updates/main/jogo-apk.html",
- "notas": "Versão 1.24\n• Loja Kaimon nova, separada por abas com ícone: Destaques, Itens, Roupas (com filtro por tipo), Kaimons, Casa (em breve) e Moedas.\n• Cada produto mostra só a figura, o nome e o preço. Toque nele para ver a descrição.\n• Feira: sentado na cadeira da mesa do pastel, agora dá para ver o personagem inteiro, não só a cabeça.",
- "sha": "5cb0ac873bc8597efa41de7ce3ca8b7b9d2331b27a81e8d996ed47318062b981",
- "sig": "TSl3p6y5trKRMYO+snegHFTUzFpyZch1jxysOIfDCUIEdJVWoIN7FCxMdGiFI3x/p1sek3wn6j3dDHJeAuS3nw=="
+ "notas": "Versão 1.25\n• Casas: cada treinador pode ter UMA casa. Toda casa com morador mostra a placa \"House do <nick>\".\n• A casa alugada ficou bem maior por dentro (a decoração que já estava lá não sai do lugar).\n• Tanque Kaimon (10 KMC, loja › aba Casa): coloque na sua casa e ponha um Kaimon de Água pra nadar dentro. Comida 1x por semana; quem visita vê ele nadando.\n• Loja Kaimon nova, separada por abas: Destaques, Itens, Roupas, Kaimons, Casa e Moedas.\n• Feira: sentado na cadeira da mesa do pastel, dá para ver o personagem inteiro.",
+ "sha": "6f710e64b8dd3a903fb9d9f11f747c62d20d5b5e4c8d8989260a2159ea6fef9b",
+ "sig": "f5rS97lO/MTAGHTp6eUqURPS3V1tqjZ3WuO4lNG7Q46Gflz+69WE7vM4I2p0TeYR6gnFd0vtu1mhKjGIjhKhuw=="
 }
