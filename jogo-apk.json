@@ -1,7 +1,7 @@
 {
- "v": 140,
+ "v": 143,
  "url": "https://raw.githubusercontent.com/nilfilho000-afk/kaimon-gt-updates/main/jogo-apk.html",
- "notas": "v1.22: os Voadores não aparecem mais com 4 asas (soltos no mapa, seguindo você ou montados).",
- "sha": "b6ef42bd9c766af85c1886fad08bac1e18035edd87910ab0bcc9babc7131bda4",
- "sig": "tUNWBv1LrzYKSuosYuzY170RGbvjFuEaHc5HvdZeTc6W7ByohGwyQ0szttHjxR+Y+eg1qGA2KJkua5A7/Cfn7A=="
+ "notas": "Versão 1.25\n• Casas: cada treinador pode ter UMA casa. Toda casa com morador mostra a placa \"House do <nick>\".\n• A casa alugada ficou bem maior por dentro (a decoração que já estava lá não sai do lugar).\n• Tanque Kaimon (10 KMC, loja › aba Casa): coloque na sua casa e ponha um Kaimon de Água pra nadar dentro. Comida 1x por semana; quem visita vê ele nadando.\n• Loja Kaimon nova, separada por abas: Destaques, Itens, Roupas, Kaimons, Casa e Moedas.\n• Feira: sentado na cadeira da mesa do pastel, dá para ver o personagem inteiro.",
+ "sha": "6f710e64b8dd3a903fb9d9f11f747c62d20d5b5e4c8d8989260a2159ea6fef9b",
+ "sig": "f5rS97lO/MTAGHTp6eUqURPS3V1tqjZ3WuO4lNG7Q46Gflz+69WE7vM4I2p0TeYR6gnFd0vtu1mhKjGIjhKhuw=="
 }

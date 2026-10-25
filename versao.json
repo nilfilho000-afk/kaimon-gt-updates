@@ -1,11 +1,11 @@
 {
- "jogo": 140,
- "jogo_arquivo": "jogo-140.kpk",
- "jogo_sha": "6f7eb309c1d722df81b6da5f54b0dbd28829aadbf8f48e98d8ef340cd5c0983b",
- "jogo_assin": "BKQoJnuykDDwKwAKOUwzMvqQQjaX+KIy5B4BllnlgMNRSFTLCmmlkyqXdC/D+VbOpgCUm8h0q7xco2gg91xMBg==",
+ "jogo": 143,
+ "jogo_arquivo": "jogo-143.kpk",
+ "jogo_sha": "d5efdcaaf6b46e21f766b3d18aaffc54d5ae39d1ecb0940ddbfdc8b0e94494f4",
+ "jogo_assin": "IURKxGYGW2DL/Kdv91UfwefOvnhiV6ttFtkPYNi3htopywmVDAj53QdcvQUwjVgDDa/2Us5yDTTo3P+zAiBWCA==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "ed11a2b8feb3f1b8fe890e4c66f1d068ba28d8b7265241e5d9087bfdd48fdb61",
- "launcher_assin": "DF/MqfOyutCKKlTbKhoJEzu+vSap+HrcRLEhv/RJs7Fcy56UZROh5WRMttojZiHpQRaH0v/9WYGJOlvrzDR8Cw==",
- "notas": "v1.22: os Voadores não aparecem mais com 4 asas (soltos no mapa, seguindo você ou montados)."
+ "launcher_sha": "b27e2a244ab3b82044300662b653aa69af79d5f041e872ec9c44455e2552d304",
+ "launcher_assin": "buwEbPWX5WQKw/vboKzy7sRRkDWyZmBuLVvT8TKbhrsvwcqA8bwoWpNtiTNyTdEa7zQtgBUeSeSmt4tkoEDbAw==",
+ "notas": "Versão 1.25\n• Casas: cada treinador pode ter UMA casa. Toda casa com morador mostra a placa \"House do <nick>\".\n• A casa alugada ficou bem maior por dentro (a decoração que já estava lá não sai do lugar).\n• Tanque Kaimon (10 KMC, loja › aba Casa): coloque na sua casa e ponha um Kaimon de Água pra nadar dentro. Comida 1x por semana; quem visita vê ele nadando.\n• Loja Kaimon nova, separada por abas: Destaques, Itens, Roupas, Kaimons, Casa e Moedas.\n• Feira: sentado na cadeira da mesa do pastel, dá para ver o personagem inteiro."
 }
