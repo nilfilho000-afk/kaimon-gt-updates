@@ -1,11 +1,11 @@
 {
- "jogo": 144,
- "jogo_arquivo": "jogo-144.kpk",
- "jogo_sha": "6931c6ad2039bb587315c4a3807554a7f87f15aed09e35ec217c77ee7b109097",
- "jogo_assin": "lukdoeKOxfqfPVtiQ8TvRDUlB5ED6S1r+JD50FZRcaaDXM8781nLQj+9mDGT4raoKqS8dPwxG7ZrEAhR95DaCQ==",
+ "jogo": 145,
+ "jogo_arquivo": "jogo-145.kpk",
+ "jogo_sha": "638bf1394ebf952816d2af8f9235ce1b6f5c215cec58100916896a56a1fbe16f",
+ "jogo_assin": "Rr4/mg81XvC5v2h6aANpme19/lZPvP+gphxfPiZ1EVdOyGN7//HOSuCujQNA2ioAdRdbpDbefGbGnQwTyOOkAQ==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "520264f9eef83e500f486f86de07e9a5376bb22d75cb3dbb220fb09b2dfb8dd0",
- "launcher_assin": "PNHl0Gm4ajCwf6EURrkLnsA6WZ/p9tigG9pG03MQcatRU44rpPBLb8woYyZyPDcrIn/SyRuxgo9EZ18Z4XP7DQ==",
- "notas": "Versão 1.26\n• Barra de XP do treinador embaixo da tela: nível, porcentagem e quanto falta para o próximo.\n• No PC, o Passe e as outras janelas rolam com a rodinha, arrastando com o mouse ou pelas setas (e avisam quando tem mais embaixo).\n• Staff agora aparece com asas de anjo no nick.\n• Ferramentas novas do GOD."
+ "launcher_sha": "c1a737ba990b76bb3de2de520fd1a2d2847d4c9886fb1fc6db946e1e15ed7706",
+ "launcher_assin": "+fueyiK5O5LySmK+oTZbQMHjgMLxRkvLYC1uCfC4AmybBM9UfjkP+h8J2d5Xe13zD3v354lqiSLJBAMjk5naDQ==",
+ "notas": "Versão 1.27\n• Monstros exclusivos do Passe (como o Saciclone) não podem mais ser vendidos ao Colecionador: eles ficam sempre com você.\n• Quem vendeu o Saciclone sem querer recebe ele de volta."
 }
