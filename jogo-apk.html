@@ -2097,7 +2097,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v155 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v157 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -9123,7 +9123,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=155;
+var KGT_VER=157;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -15303,6 +15303,74 @@ const r=_mvBK.call(this,o,k);try{if(bk&&BK[bk]&&!o.mt)o.mt={k:'bike',b:bk};else 
 const X=Math.round((o.px*16-cx)*2)/2+8,Y=Math.round((o.py*16-cy)*2)/2+16;g.save();g.globalAlpha=.28;g.fillStyle='#0a0a14';g.beginPath();g.ellipse(X,Y-1,7,2,0,0,7);g.fill();g.restore();
 g.save();g.translate(X,Y);if(dd==1)g.scale(-1,1);if(dd===1||dd===3)bkDesenhaLado(g,o.mt.b,t,mv,im);else bkDesenhaFrente(g,o.mt.b,t,mv,im,dd===0);g.restore()}catch(e){}return true}
 return _mmBK.apply(this,arguments)}}
+function zHatTopo(S,cy){return cy-1.1}
+{const _zr=zRaspa;zRaspa=function(x,S,g,cx,cy,back){if(!zTemHat(S))return _zr.apply(this,arguments);x.save();x.beginPath();x.rect(cx-9,zHatTopo(S,cy),18,14);x.clip();try{return _zr.apply(this,arguments)}finally{x.restore()}}}
+{const _zp=zMCabeloPre;zMCabeloPre=function(x,S,g,cx,cy){if(S.has('zcb_bla')&&zTemHat(S)){const v=g.v;x.save();x.beginPath();x.rect(cx-9,cy-1.4,18,14);x.clip();hrE(x,cx+(v==1?1.2:0),cy+.4,6.2,5.2,S.hr,{dk:.8,lk:1.18});x.restore();
+if(S.has('zcb_dre')&&v==0){const yb=g.bY(g.SY+4);for(let i=-2;i<=2;i++)hrPart(x,q=>hrCap(q,cx+i*1.5,cy-1,cx+i*1.9,yb,.6,.5),hrK(S.hr,.85),{lt:0})}return}
+return _zp.apply(this,arguments)}}
+{const _zc=zMCabelo;zMCabelo=function(x,S,g,cx,cy,back){if(back&&S.has('zcb_bla')&&zTemHat(S)){x.save();x.beginPath();x.rect(cx-9,cy-1.4,18,14);x.clip();try{return _zc.apply(this,arguments)}finally{x.restore()}}return _zc.apply(this,arguments)}}
+{const _lkH=lkD;lkD=function(L){const D=_lkH.apply(this,arguments);try{const t=String(D.x||'').split(/\s+/).filter(Boolean);const ad=(L&&L.ad)||{};
+const temHat=(TAD[ad.chapeu]&&TAD[ad.chapeu].slot==='chapeu')||t.some(k=>['straw','hardhat','kerchief'].includes(k)||/^zch_/.test(k));
+const solto=['zch_cor','zch_flo'].includes(ad.chapeu);
+if(temHat)D.x=t.filter(k=>k!=='bun'&&k!=='buns'&&!(k==='curly'&&!solto)).join(' ')}catch(e){}return D}}
+{const _rc=zRoCabeca;zRoCabeca=function(x,S,g,o,cx,cy,back){if(!(o&&o.mask))return _rc.apply(this,arguments);const v=g.v,c='#23232e',c2='#34344a',ox=v==1?.5:0;
+const casca=q=>{q.ellipse(cx+ox,cy-.7,v==1?5.05:5.15,5.55,0,0,6.2832)};
+const fresta=q=>{if(back)return;if(v==1)q.rect(cx-4.6,cy-1.35,5.3,2.15);else q.rect(cx-3.75,cy-1.35,7.5,2.15)};
+x.save();x.beginPath();casca(x);fresta(x);x.fillStyle=c;x.fill('evenodd');x.beginPath();casca(x);fresta(x);x.clip('evenodd');
+x.fillStyle=c2;x.fillRect(cx-7,cy-6.6,14,1.6);x.fillStyle='rgba(0,0,0,.28)';x.fillRect(cx+(v==1?2.6:2.8),cy-6,3,12);x.restore();
+if(!back){x.fillStyle=c;if(v==1)x.fillRect(cx-1.6,cy+3.8,4.2,1.6);else x.fillRect(cx-2.4,cy+4,4.8,1.4)}
+if(!back){x.strokeStyle='#0e0e16';x.lineWidth=.22;if(v==1)x.strokeRect(cx-4.6,cy-1.35,5.3,2.15);else x.strokeRect(cx-3.75,cy-1.35,7.5,2.15)}
+return _rc.apply(this,arguments)}}
+{const _lkN=lkD;lkD=function(L){const D=_lkN.apply(this,arguments);try{const ad=(L&&L.ad)||{};if(ad.roupa==='zro_nin'){const t=String(D.x||'').split(/\s+/).filter(Boolean);D.x=t.filter(k=>!/^(bun|buns|curly|long|pony|zfr_esp|zfr_lat|zcb_top|zcb_moi|zcb_bla|zcb_sur|zcb_cac|zcb_cha|zcb_xux|zcb_mar)$/.test(k)).join(' ');D.cap=undefined}}catch(e){}return D}}
+try{LKH={};TRI={};if(typeof hrReset==='function')hrReset();lkApply(G.look)}catch(e){}
+const FW={
+adulto:{n:'conteúdo adulto',d:['pornhub','xvideos','xnxx','xhamster','redtube','youporn','brazzers','onlyfans','chaturbate','stripchat','bongacams','cam4','livejasmin','rule34','e-hentai','nhentai','hentai','spankbang','eporner','tnaflix','motherless','fapello','erome','privacy.com.br','camsoda','manyvids','fansly','sexy','porn','xxx','nsfw','nude','nudes','putaria','safad','erotic','erotico','sexo','sexshop','camgirl','webcamsex','escort','acompanhante','adultfriend','18plus','hot-girls','gostosa'],
+q:['porn','porno','pornô','xxx','sexo','sex','nude','nudes','pelada','pelado','putaria','safada','safado','hentai','nsfw','onlyfans','gostosa','transar','erotico','erótico','buceta','camgirl','acompanhante','prostituta']},
+ia:{n:'inteligência artificial',d:['openai','chatgpt','anthropic','gemini.google','bard.google','aistudio.google','notebooklm','copilot.microsoft','copilot.cloud','perplexity','beta.character','poe.com','deepseek','grok','huggingface','chat.mistral','you.com','janitorai','chai-research','replika','talkie','crushon','spicychat','qwen','kimi.moonshot','moonshot.cn','chatglm','writesonic','quillbot','midjourney','dreamstudio','runwayml','elevenlabs','suno.com','udio.com','civitai','novelai','chatbot','gptzero','phind.com','tabnine','codeium','cursor.com','gpt'],
+tld:['ai'],q:['chatgpt','gpt','inteligencia artificial','inteligência artificial','chatbot','gemini ai','claude ai','deepseek','copilot','character ai']},
+aposta:{n:'apostas e cassino',d:['bet365','betano','pixbet','sportingbet','betfair','1xbet','blaze.com','stake.com','stake.bet','estrelabet','novibet','betnacional','f12bet','superbet','galera.bet','kto.com','casino','cassino','poker','roleta','tigrinho','fortune-tiger','aposta','bet.br','.bet','slots','bingo','jogodobicho','jackpot'],
+q:['aposta','apostas','bet','cassino','casino','tigrinho','fortune tiger','roleta','slot','poker','jogo do bicho','blaze','aviator']},
+pirata:{n:'pirataria ou risco de vírus',d:['torrent','thepiratebay','1337x','rarbg','yts.','nyaa','kickass','limetorrents','warez','crack','keygen','serial','apkpure','apkmirror','modapk','apkmod','hackapk','happymod','an1.com','getintopc','filecr','igg-games','skidrow','fitgirl','megafilmes','filmesonline','topflix','redecanais','pobreflix','warezcdn','assistirfilmes','hdfilmes','superflix','hacker','hack','cheat','phishing','free-robux','robuxgratis','freediamonds','geradordediamantes'],
+q:['torrent','crack','keygen','apk mod','mod apk','hack','hackear','cheat','pirata','filme pirata','diamantes gratis','robux gratis','gerador de']},
+burla:{n:'burlar o firewall',d:['proxy','vpn','unblock','hide.me','hidemyass','croxy','kproxy','proxysite','hidester','4everproxy','tor.project','torproject','.onion','bit.ly','tinyurl','goo.gl','t.co','cutt.ly','shorturl','is.gd','rebrand.ly','ow.ly','tiny.cc','encurtador','translate.goog','translate.google','web.archive.org','archive.org','archive.ph','archive.today','cachedview','12ft.io','googleusercontent','duckduckgo.com/l/'],
+q:['proxy','vpn','desbloquear site','burlar firewall','tirar bloqueio']},
+estranho:{n:'chat com estranhos',d:['omegle','chatroulette','ome.tv','emeraldchat','chatrandom','camsurf','bazoocam','chathub','monkey.app','yubo','bate-papo','batepapo','uol.com.br/bate'],q:['chat com estranhos','omegle','chat aleatorio']},
+violencia:{n:'violência explícita',d:['bestgore','gore','liveleak','theync','kaotic','documentingreality','crazyshit','seegore','watchpeopledie'],q:['gore','morte real','video de morte','acidente forte','decapitado','tiroteio real']}};
+function fwNorm(s){return String(s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'')}
+function fwDom(h,full,d){if(d.includes('/'))return full.includes(d);if(d.startsWith('.'))return h.endsWith(d)||h.includes(d+'.');if(d.endsWith('.'))return h.startsWith(d)||h.includes('.'+d);
+if(d.includes('.'))return h===d||h.endsWith('.'+d)||h.startsWith(d+'.')||h.includes('.'+d+'.');return h.includes(d)}
+function fwPalavra(q){q=' '+fwNorm(q).replace(/[^a-z0-9]+/g,' ')+' ';for(const t of q.trim().split(' ')){if(/^(porn|xxx|hentai|nsfw|putari|safad|erotic|pelad|nudez|nudes)/.test(t))return FW.adulto.n;if(/^(chatgpt|gpt\d|openai|deepseek)/.test(t))return FW.ia.n;if(/^(cassino|casino|aposta)/.test(t))return FW.aposta.n}for(const k in FW)for(const w of FW[k].q||[]){const ww=fwNorm(w).replace(/[^a-z0-9]+/g,' ').trim();if(!ww)continue;if(q.includes(' '+ww+' '))return FW[k].n}return''}
+function fwMotivo(u){if(String(u).startsWith('busca:')){const q=' '+fwNorm(u.slice(6))+' ';return fwPalavra(q)}
+let url;try{url=new URL(u)}catch(e){return'endereço inválido'}
+if(url.protocol!=='https:')return'site sem segurança (sem https)';
+const h=url.hostname.toLowerCase().replace(/^www\./,''),full=fwNorm(h+url.pathname+url.search);
+if(/^[\d.]+$/.test(h)||h.includes(':')||h==='localhost'||!h.includes('.'))return'endereço numérico ou interno';
+const tld=h.split('.').pop();
+for(const k in FW){const c=FW[k];if((c.tld||[]).includes(tld))return c.n;for(const d of c.d)if(fwDom(h,full,d))return c.n}
+const qs=' '+fwNorm(decodeURIComponent((url.search||'').replace(/[+&=?_-]/g,' ')))+' ';
+return fwPalavra(qs)}
+osLiberado=function(u){return!fwMotivo(u)};
+osNorm=function(v){v=String(v||'').trim();if(!v)return OS_HOME;if(/^https?:\/\//i.test(v))return v.replace(/^http:\/\//i,'https://');if(/^[a-z]+:/i.test(v))return v;
+if(/^[\w-]+(\.[\w-]+)+(:\d+)?(\/.*)?$/.test(v))return'https://'+v;return'busca:'+v};
+osFirewallCSP=function(){try{const m=document.getElementById('kgfw');if(m)m.remove();const n=document.createElement('meta');n.id='kgfw';n.httpEquiv='Content-Security-Policy';n.content="frame-src 'self' https:";document.head.appendChild(n)}catch(e){}};
+function fwPesquisa(q){return'https://html.duckduckgo.com/html/?kp=1&kl=br-pt&q='+encodeURIComponent(q)}
+osVai=function(v,recarga){let u=osNorm(v);const pg=document.getElementById('ospag'),bar=document.getElementById('osurl');if(!pg)return;
+if(!recarga){OS.hist=OS.hist.slice(0,OS.hi+1);OS.hist.push(u);OS.hi=OS.hist.length-1}
+const mot=fwMotivo(u);if(bar)bar.value=u.startsWith('busca:')?u.slice(6):u;
+if(mot){const alvo=u.startsWith('busca:')?'a pesquisa "'+u.slice(6)+'"':(osHost(u)||u);OS.log.unshift({q:alvo,m:mot,t:Date.now()});OS.log=OS.log.slice(0,40);
+pg.innerHTML=`<div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:20px;text-align:center;background:#fff4f4"><div style="font-size:54px">🛡️</div>
+   <b style="font-size:18px;color:#b0182a">O Firewall Kaimon bloqueou ${esc(alvo)}</b><span style="font-size:13px;color:#444;max-width:440px">Motivo: <b>${esc(mot)}</b>. Este computador é protegido para todas as idades.</span>
+   <button onclick="osVai(OS_HOME)" style="margin-top:6px;padding:8px 16px;border-radius:10px;border:0;background:#2a7a3a;color:#fff;font-weight:800;cursor:pointer">Ir para o site do jogo</button></div>`;return}
+if(u.startsWith('busca:'))u=fwPesquisa(u.slice(6));
+pg.innerHTML=`<iframe src="${esc(u)}" sandbox="allow-scripts allow-same-origin allow-forms" referrerpolicy="no-referrer" style="position:absolute;inset:0;width:100%;height:100%;border:0;background:#fff"></iframe>
+  <div style="position:absolute;left:0;right:0;bottom:0;padding:3px 8px;background:#fffbe6;border-top:1px solid #e8d9a0;font-size:11px;color:#6a5a20">Página em branco? Alguns sites grandes (Google, YouTube, Instagram, bancos) não deixam abrir dentro de outra janela.</div>`};
+{const _onv=osNavegador;osNavegador=function(u){osFirewallCSP();const r=_onv.apply(this,arguments);try{const bar=document.querySelector('#oswin div[style*="eef1f8"]');if(bar&&!bar.querySelector('.fwbk'))bar.insertAdjacentHTML('beforeend','<a href="#" class="fwbk" onclick="osVai(\'https://pt.wikipedia.org/\');return false">Wikipédia</a><a href="#" class="fwbk" onclick="osVai(\'https://html.duckduckgo.com/html/?kp=1&kl=br-pt\');return false">🔎 Pesquisar</a>');
+const inp=document.getElementById('osurl');if(inp)inp.placeholder='Digite um site ou o que quer pesquisar'}catch(e){}return r}}
+osFirewall=function(){OS.app='fw';const L=OS.log.length?OS.log.map(l=>`<li><b>${esc(l.q)}</b> — ${esc(l.m||'bloqueado')} <small style="color:#666">${new Date(l.t).toLocaleTimeString('pt-BR')}</small></li>`).join(''):'<li><small>Nada bloqueado ainda.</small></li>';
+osJanela('🛡️ Firewall Kaimon',`<div style="flex:1;overflow:auto;padding:14px;font-size:13px"><p style="margin:0 0 6px"><b style="color:#2a7a3a">● Ligado</b> — a internet está liberada, com proteção para todas as idades.</p>
+  <p style="margin:8px 0 4px"><b>⛔ Sempre bloqueado</b></p><ul style="margin:0 0 6px 18px;padding:0">${Object.values(FW).map(c=>`<li>${c.n[0].toUpperCase()+c.n.slice(1)}</li>`).join('')}<li>Sites sem https e endereços numéricos</li></ul>
+  <p style="margin:8px 0 4px"><b>🔎 Pesquisa</b>: DuckDuckGo com filtro seguro no máximo.</p>
+  <p style="margin:8px 0 4px"><b>📜 Tentativas bloqueadas</b></p><ul style="margin:0 0 6px 18px;padding:0">${L}</ul></div>`)};
 (function(){try{const st=document.createElement('style');st.textContent=`body.hudmin .ab:not(.hkeep){display:none!important}
 #hudtg{position:fixed;right:calc(env(safe-area-inset-right,0px) + 88px);bottom:calc(env(safe-area-inset-bottom,0px) + 6px);width:40px;height:40px;border-radius:50%;padding:0;margin:0;z-index:6;
  background:radial-gradient(circle at 35% 30%,#fff3c0,#e8c050 60%,#a8801c);border:2px solid #fff;color:#3a2a00;font:900 18px sans-serif;box-shadow:0 2px 6px #0008;display:flex;align-items:center;justify-content:center}
