@@ -1,11 +1,11 @@
 {
- "jogo": 166,
- "jogo_arquivo": "jogo-166.kpk",
- "jogo_sha": "a831ab5d3f333774bb7a5875362324d11fb985514131a4f7d5f858f163cf2b29",
- "jogo_assin": "T9x9GH7sNSWob7BjUX80pUP+FT35Uw5Jpu1iy/0/70CeOOvg4KnZ9BVDzjqu0P7X+Hdj5OXXRUIRVHcxI3zaAg==",
+ "jogo": 167,
+ "jogo_arquivo": "jogo-167.kpk",
+ "jogo_sha": "20b0ea6c8278e23cf490303b0c257682e0d15c9fe0c36b91ba7daa91c75abdae",
+ "jogo_assin": "yravpMyz6zcYKQR85Vh1mRrtQkEjSPhStl/rf54PALRHqSMBdERTZa3EavmBXiFi7Ts1E8lAB0HzOaEb7SXqBg==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "10a289ca588dca791f02aa39aec744115cbdf05d5f7eaac848bc85f17395af11",
- "launcher_assin": "LcyFc+ixBhQvjoN4RUpikFI7XFC/BhPAZlCZmyL3tqZ/2byJkXf8Ils/UxDanv9eMdYnxklUyU/cSvClPfdnBQ==",
- "notas": "v1.48: 19 móveis novos na Loja (5 KMC): viveiro e terrários com Kaimon morando, bar tiki, air hockey, máquina de garra, roda da sorte, forno a lenha, karaokê, DJ, pipoqueira, bola de cristal, chiclete, sinuca e dardo (contra o PC ou alguém), cachoeira, ofurô e piscina para nadar. No app da Play Store os KMC são comprados pela Google Play."
+ "launcher_sha": "09f9c010c2fd34c24b8159f54cb687537213d85021770c6bab2bac496e45b703",
+ "launcher_assin": "hbmcQJJvihYLXYsSAm9vH1QLiS8SvkNuJhAt5+IQKUUEEa74CR5e2oLswf8dFmtQC17Q0l7JaVrECnFZq56wCQ==",
+ "notas": "v1.49: natação nova (cabeça para fora d'água, boiando, braçadas com respingos e ondinhas) e ofurô melhorado (fica com os ombros para fora, água mexendo e vapor)."
 }
