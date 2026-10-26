@@ -1,11 +1,11 @@
 {
- "jogo": 163,
- "jogo_arquivo": "jogo-163.kpk",
- "jogo_sha": "190e53fcec6f15f7b6532fc595cf9764d748d338bd3334efc0a95b847677aa11",
- "jogo_assin": "ko8AlXvGHRpr760Bfq/giJpQdJYt0XAZNO+u9z8igOapPJ6V7Qrap21o14z7G2elWskeFZjOD34Jq9mG5e3VBw==",
+ "jogo": 164,
+ "jogo_arquivo": "jogo-164.kpk",
+ "jogo_sha": "e4cab5a59ea8b923b08d60cfb35316714032b9dd80f260dea5afb2c542305b8e",
+ "jogo_assin": "jcGrc0PzSrlTnER9eizh69WmWuShbhD9RbQhM/4Irpp7tD5fVcYGYuaHbHytHzvwpDyxTw2oP3IjTCqGL5D0Bg==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "17f3cc587a2c5cd2e59702aacec2b7f821cecdf4b5c39e05440ee145467e29cc",
- "launcher_assin": "wRaQCQCdbXe9+kfrnOYPFGdUhs1/W1bvpN1KB9Wb1N5HZoubEiWXpXN8akHR/YlaTa1KPJq77DLur2nJdHTmDw==",
- "notas": "1.45: aviso corrigido: o jogo vai resetar assim que entrar na Play Store."
+ "launcher_sha": "3e1298837869ccda959e6cd8434cf4c72ba50aceb087257218c1a2178332fa0f",
+ "launcher_assin": "rYfAa67rYDhuPMnc2tPdpw5vq50KT51F6fcksVJSiLX+ujaD+rZBIS37U/G4rxzcjewYLtXTNBIb7F1UxGWPBA==",
+ "notas": "1.46: correção: a saída de cima da Chapada dos Ventos levava para fora do mapa (tela preta). Quem ficou preso volta sozinho para um lugar seguro."
 }

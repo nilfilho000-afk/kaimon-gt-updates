@@ -1,7 +1,7 @@
 {
- "v": 163,
+ "v": 164,
  "url": "https://raw.githubusercontent.com/nilfilho000-afk/kaimon-gt-updates/main/jogo-apk.html",
- "notas": "1.45: aviso corrigido: o jogo vai resetar assim que entrar na Play Store.",
- "sha": "89fd598787d0388cac6410c01cd577c26782b65ab729ab62f0dfe4647690da31",
- "sig": "E/mzlm5C5+3sxYj6XB6mcDuycX1HEtQrFQY558NL3NSn0u6g1YI/Lzm4ttvha6/7BAeGGbzERilXEkWYb7YcIw=="
+ "notas": "1.46: correção: a saída de cima da Chapada dos Ventos levava para fora do mapa (tela preta). Quem ficou preso volta sozinho para um lugar seguro.",
+ "sha": "ab890e9fd08481bc59c7afe5db7bc6294d8f55bc5ddd0fbc600a83d599b48898",
+ "sig": "L1Zw2i7+Ld2+TY0t+tYm0GX6+kHinBoL+Ib9vTceFxa/EmM78529xlbY4YEg9cnBF3ogQIi7/WQtaGk7ERy5Tw=="
 }
