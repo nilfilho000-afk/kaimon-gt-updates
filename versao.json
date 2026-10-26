@@ -1,11 +1,11 @@
 {
- "jogo": 165,
- "jogo_arquivo": "jogo-165.kpk",
- "jogo_sha": "d6ee4c2d6373e0da4a9fc953f5873442e9fa3bd5b702b498b8dacdb4bc5b8e44",
- "jogo_assin": "KrKXrgyPEcPq/vFiFCu/rW99ZoLOnPt3u6oG9T4a5FbRxx1mtC5RQV0epvv6aFzl3VHZcWr9OPEM1bTTbI+ZCQ==",
+ "jogo": 166,
+ "jogo_arquivo": "jogo-166.kpk",
+ "jogo_sha": "a831ab5d3f333774bb7a5875362324d11fb985514131a4f7d5f858f163cf2b29",
+ "jogo_assin": "T9x9GH7sNSWob7BjUX80pUP+FT35Uw5Jpu1iy/0/70CeOOvg4KnZ9BVDzjqu0P7X+Hdj5OXXRUIRVHcxI3zaAg==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "3842170560405a1c4661c8b6da9cde2bb067d92dfb64a870937bc2efabcafb5c",
- "launcher_assin": "TWs0D1vOZMgz2fmPqKB1kKB1COtZxoXGz0eHxF4RKqDhLsxRHjktSC9mGhNbzzqY1Y4VKuac0otQbo2Rep2OBQ==",
- "notas": "1.47: correção: o Saciclone (e os monstros do Passe) sumiam do time ao abrir o jogo. Quem perdeu recebe de volta pelo banco."
+ "launcher_sha": "10a289ca588dca791f02aa39aec744115cbdf05d5f7eaac848bc85f17395af11",
+ "launcher_assin": "LcyFc+ixBhQvjoN4RUpikFI7XFC/BhPAZlCZmyL3tqZ/2byJkXf8Ils/UxDanv9eMdYnxklUyU/cSvClPfdnBQ==",
+ "notas": "v1.48: 19 móveis novos na Loja (5 KMC): viveiro e terrários com Kaimon morando, bar tiki, air hockey, máquina de garra, roda da sorte, forno a lenha, karaokê, DJ, pipoqueira, bola de cristal, chiclete, sinuca e dardo (contra o PC ou alguém), cachoeira, ofurô e piscina para nadar. No app da Play Store os KMC são comprados pela Google Play."
 }
