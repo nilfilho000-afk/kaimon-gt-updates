@@ -1,11 +1,11 @@
 {
- "jogo": 162,
- "jogo_arquivo": "jogo-162.kpk",
- "jogo_sha": "40d3dd7c5de5f32119e3e5b019e403983a312f24b43babac8773dc505f9e1fa7",
- "jogo_assin": "4SBE+x0PlDrme0aABJgsAH60x6dPnc37MRBGbTlVp86zd8dcWmH65KtyaSAxyG8OpOJkRM6qO9DmL5e+W0QMAA==",
+ "jogo": 163,
+ "jogo_arquivo": "jogo-163.kpk",
+ "jogo_sha": "190e53fcec6f15f7b6532fc595cf9764d748d338bd3334efc0a95b847677aa11",
+ "jogo_assin": "ko8AlXvGHRpr760Bfq/giJpQdJYt0XAZNO+u9z8igOapPJ6V7Qrap21o14z7G2elWskeFZjOD34Jq9mG5e3VBw==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "bd03e7ad0a386b2c5dbdb3359ca7481c274140462ef0326e1aa5064239e14d17",
- "launcher_assin": "kndoeXfhBshO1qdQNZSQB72KYSh9xFJICbwlFC+lpjan8UcAzCIXvbyGRDZM4mteTpIOKbDfafutgB/yV1TjDQ==",
- "notas": "1.44: aviso do lançamento (o jogo reinicia quando entrar na Play Store), presente da beta (título Pioneiro + 10 KMC + roupa), evento de lançamento (+50% EXP, +10% shiny), convites que dão VIP e troca de monstros entre amigos."
+ "launcher_sha": "17f3cc587a2c5cd2e59702aacec2b7f821cecdf4b5c39e05440ee145467e29cc",
+ "launcher_assin": "wRaQCQCdbXe9+kfrnOYPFGdUhs1/W1bvpN1KB9Wb1N5HZoubEiWXpXN8akHR/YlaTa1KPJq77DLur2nJdHTmDw==",
+ "notas": "1.45: aviso corrigido: o jogo vai resetar assim que entrar na Play Store."
 }

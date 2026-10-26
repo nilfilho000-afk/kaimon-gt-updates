@@ -1,7 +1,7 @@
 {
- "v": 162,
+ "v": 163,
  "url": "https://raw.githubusercontent.com/nilfilho000-afk/kaimon-gt-updates/main/jogo-apk.html",
- "notas": "1.44: aviso do lançamento (o jogo reinicia quando entrar na Play Store), presente da beta (título Pioneiro + 10 KMC + roupa), evento de lançamento (+50% EXP, +10% shiny), convites que dão VIP e troca de monstros entre amigos.",
- "sha": "b27e36940e1f8e221dfc819067ac9998b18f38ca7bdb7b4543b1c585d82f218c",
- "sig": "Yl54JhDzzvWJ+E+WsaAzv6G4KKLI4Jb2jhP83UraEQtvo+3AfDuYbBheBgqg9bAbIbTtz/yiJIwgoLkfWzlEBg=="
+ "notas": "1.45: aviso corrigido: o jogo vai resetar assim que entrar na Play Store.",
+ "sha": "89fd598787d0388cac6410c01cd577c26782b65ab729ab62f0dfe4647690da31",
+ "sig": "E/mzlm5C5+3sxYj6XB6mcDuycX1HEtQrFQY558NL3NSn0u6g1YI/Lzm4ttvha6/7BAeGGbzERilXEkWYb7YcIw=="
 }
