@@ -2097,7 +2097,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v152 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v153 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -9123,7 +9123,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=152;
+var KGT_VER=153;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -15233,6 +15233,46 @@ if(P.d===0&&y<=2&&!(typeof mobParedeEm==='function'&&mobCasa()&&mobParedeEm(mobC
 {const _hmCs=hmenu;hmenu=function(x,y){const r=_hmCs.apply(this,arguments);try{const ui=$('ui');if(!ui||ui.style.display==='none'||!csMeu())return r;
 const id=csAchaEm(x,y,['csRug']);let h='';if(id)h+=btn('🟠 Tapete redondo (jogar fora)',`csTiraPergunta('${id}')`);
 h+=btn('🏠 Itens que vieram com a casa','csRemovidos()');ui.insertAdjacentHTML('beforeend','<div style="margin-top:6px">'+h+'</div>')}catch(e){}return r}}
+const BK={simples:{n:'Bicicleta Simples',p:8000,v:.8,c:'#3a7ad8',c2:'#cfe2ff',d:'Leve e confiável. Anda 25% mais rápido.'},
+esportiva:{n:'Bicicleta Esportiva',p:25000,v:.71,c:'#e8343a',c2:'#ffd0d0',d:'Quadro de corrida e marcha. Anda 40% mais rápido.'},
+dourada:{n:'Bike Kaimon Dourada',p:60000,v:.66,c:'#e8b020',c2:'#fff1b0',d:'Banhada a ouro, com brilho. Anda 50% mais rápido.'}};
+const BK_LOJA={m:34,x:28,y:79};
+function bkTem(k){return!!(G.bikes&&G.bikes.includes(k))}
+function bkMinhas(){return Object.keys(BK).filter(bkTem)}
+function bkMelhor(){const L=bkMinhas();return L.length?L[L.length-1]:null}
+function bkPode(){try{return mode==='walk'&&!G.mt&&!(M[cur]&&M[cur].in)&&cur!==HRM}catch(e){return false}}
+function bkDesenha(x,k,lado,t,mv){const b=BK[k]||BK.simples,pneu='#1c1f26',aro='#9aa3b5';x.save();x.lineCap='round';
+if(lado){const ro=mv?t/90:0;for(const wx of[-5.4,5.4]){x.fillStyle=pneu;x.beginPath();x.arc(wx,-2.8,2.9,0,6.3);x.fill();x.fillStyle='#3a3f4c';x.beginPath();x.arc(wx,-2.8,1.9,0,6.3);x.fill();
+x.strokeStyle=aro;x.lineWidth=.35;for(let i=0;i<3;i++){const a=ro+i*2.09;x.beginPath();x.moveTo(wx-Math.cos(a)*1.8,-2.8-Math.sin(a)*1.8);x.lineTo(wx+Math.cos(a)*1.8,-2.8+Math.sin(a)*1.8);x.stroke()}}
+x.strokeStyle=b.c;x.lineWidth=1.1;x.beginPath();x.moveTo(-5.4,-2.8);x.lineTo(-1,-2.6);x.lineTo(3.6,-7.4);x.lineTo(-1.6,-7.2);x.lineTo(-5.4,-2.8);x.moveTo(-1,-2.6);x.lineTo(-1.8,-8.4);x.moveTo(3.6,-7.4);x.lineTo(5.4,-2.8);x.moveTo(3.6,-7.4);x.lineTo(3.2,-9.6);x.stroke();
+x.strokeStyle='#22262e';x.lineWidth=.9;x.beginPath();x.moveTo(2.2,-9.8);x.lineTo(4.4,-9.6);x.stroke();x.fillStyle='#22262e';x.fillRect(-3.2,-9.2,3.2,1.1);
+if(k==='dourada'&&((t/220)|0)%3===0){x.fillStyle='#fff8d0';x.fillRect(1.4,-6.2,.7,.7)}}
+else{x.fillStyle=pneu;x.beginPath();x.ellipse(0,-3,1.2,3.1,0,0,6.3);x.fill();x.strokeStyle=b.c;x.lineWidth=1.1;x.beginPath();x.moveTo(0,-5);x.lineTo(0,-9.4);x.stroke();
+x.strokeStyle='#22262e';x.lineWidth=.9;x.beginPath();x.moveTo(-4,-9.6);x.lineTo(4,-9.6);x.stroke()}
+x.restore()}
+function bkIcone(k){try{const c=document.createElement('canvas');c.width=c.height=96;const x=c.getContext('2d');x.imageSmoothingEnabled=false;x.translate(48,70);x.scale(4.4,4.4);bkDesenha(x,k,1,0,0);return c.toDataURL()}catch(e){return''}}
+{const _eiBK=entImg;entImg=function(e,t,cx,cy){const q=_eiBK.apply(this,arguments);try{if(e===P&&G.bko&&!G.mt&&q&&q.im&&!q.cust){const im=q.im,dd=q.dd,lado=dd===1||dd===3,k=G.bko,mv=q.mv,ped=mv?Math.sin(t/70)*.6:0;
+q.cust=gg=>{if(dd===0){gg.drawImage(im,-8,-27+ped*.3,16,24);bkDesenha(gg,k,0,t,mv)}else{bkDesenha(gg,k,lado,t,mv);gg.drawImage(im,-8,-27+ped*.3,16,24);if(!lado){gg.strokeStyle='#22262e';gg.lineWidth=.9;gg.beginPath();gg.moveTo(-4,-9.6);gg.lineTo(4,-9.6);gg.stroke()}}}}}catch(x){}return q}}
+{const _kpBK=kgtPasso;kgtPasso=function(){const v=_kpBK.apply(this,arguments);try{if(G.bko&&!G.mt&&BK[G.bko])return v*BK[G.bko].v}catch(e){}return v}}
+function bkMonta(k){k=k||G.bkv||bkMelhor();if(!k)return toast('🚲 Você ainda não tem bicicleta. A Bicicletaria fica na Cidade de Anil.');if(G.bko){G.bko=null;bkBotao();try{save()}catch(e){}return toast('🚶 Você desceu da bicicleta.')}
+if(!bkPode())return toast(G.mt?'🚲 Desça da montaria primeiro.':'🚲 Aqui dentro não dá pra andar de bicicleta.');G.bko=k;G.bkv=k;closeUI();bkBotao();try{save()}catch(e){}try{play('item')}catch(e){}toast('🚲 '+BK[k].n+'! Toque 🚲 de novo (ou tecla G) pra descer.')}
+RH0.push(function(){try{if(G.bko&&(G.mt||(M[cur]&&M[cur].in)||cur===HRM||(G.mt&&G.mt.k==='surf'))){G.bko=null;bkBotao()}}catch(e){}});
+function bkLoja(){const L=Object.keys(BK);G.bikes=G.bikes||[];
+const card=k=>{const b=BK[k],tem=bkTem(k);return`<div style="flex:1;min-width:150px;background:#0f1626;border:1px solid ${tem?'#5ad07a':'#3a4466'};border-radius:12px;padding:8px;text-align:center"><img src="${bkIcone(k)}" alt="" style="width:96px;height:96px;image-rendering:pixelated"><br><b>${esc(b.n)}</b><br><small>${esc(b.d)}</small><br>
+  ${tem?`<div style="color:#8af0a0;font-weight:800;margin:4px 0">✔ Você tem</div>`+btn(G.bko===k?'🚶 Descer':'🚲 Montar agora',`closeUI();bkMonta('${k}')`):`<div style="color:#ffe27a;font-weight:900;margin:4px 0">💰 ${f$(b.p)}</div>`+btn('Comprar',`bkCompraPergunta('${k}')`,G.money<b.p)}</div>`};
+open(`<div class="psh"><span style="font-size:34px">🚲</span><div><b>Bicicletaria do Seu Pedal</b><small>"A loja tava fechada pra reforma, mas agora abriu de vez! Com bicicleta você anda bem mais rápido pelas cidades e rotas." · Seu dinheiro: 💰${f$(G.money)}</small></div></div>
+  <div style="display:flex;gap:10px;flex-wrap:wrap;margin:8px 0">${L.map(card).join('')}</div><p><small>Monte e desça com o botão 🚲 na tela (no PC, tecla <b>G</b>). Em lugares fechados você desce sozinho.</small></p>`+btn('Fechar','closeUI()'));try{$('ui').classList.add('wide')}catch(e){}}
+function bkCompraPergunta(k){const b=BK[k];if(!b||bkTem(k))return;if(G.money<b.p)return toast('Falta dinheiro: '+f$(b.p-G.money)+'.');
+open(`<div class="psh"><img src="${bkIcone(k)}" alt="" style="width:72px;height:72px;image-rendering:pixelated"><div><b>Comprar ${esc(b.n)}?</b><small>Preço: <b style="color:#ffe27a">💰 ${f$(b.p)}</b><br>Você tem 💰${f$(G.money)} → vai ficar com 💰${f$(G.money-b.p)}.</small></div></div>`+btn('✅ Comprar',`bkCompra('${k}')`)+btn('Voltar','bkLoja()'))}
+function bkCompra(k){const b=BK[k];if(!b||bkTem(k))return bkLoja();if(G.money<b.p)return toast('Falta dinheiro: '+f$(b.p-G.money)+'.');G.money-=b.p;G.bikes=G.bikes||[];G.bikes.push(k);G.bikes.sort((a,c)=>Object.keys(BK).indexOf(a)-Object.keys(BK).indexOf(c));G.bkv=k;
+try{save();hud()}catch(e){}try{play('lvl')}catch(e){}bkBotao();open(`<div class="abx"><img src="${bkIcone(k)}" alt="" style="width:110px;height:110px;image-rendering:pixelated;border-radius:12px;background:#0f1626"><div><b>🚲 ${esc(b.n)}</b> é sua!<br><small>Toque no botão 🚲 da tela (ou tecla G) para montar.</small></div></div>`+btn('🚲 Montar agora',`closeUI();bkMonta('${k}')`)+btn('Fechar','closeUI()'))}
+{const _inBK=inter;inter=function(x,y){try{if(cur===BK_LOJA.m&&x===BK_LOJA.x&&y===BK_LOJA.y)return bkLoja()}catch(e){}return _inBK.apply(this,arguments)}}
+function bkBotao(){try{let b=document.getElementById('bkbt');const tem=bkMinhas().length>0;if(!tem){if(b)b.remove();return}
+if(!b){b=document.createElement('button');b.id='bkbt';b.title='Bicicleta (G)';b.style.cssText='position:fixed;left:18px;bottom:150px;z-index:40;width:48px;height:48px;border-radius:50%;border:2px solid #ffe27a;background:#151b2ee0;color:#fff;font-size:24px;line-height:1;cursor:pointer;box-shadow:0 3px 10px #0008;touch-action:manipulation';
+b.textContent='🚲';b.addEventListener('pointerdown',e=>e.stopPropagation());b.addEventListener('click',e=>{e.stopPropagation();bkMonta()});document.body.appendChild(b)}
+b.style.background=G.bko?'#2a7a3a':'#151b2ee0';b.style.display=(mode==='walk'||mode==='ui')&&!G.mt&&!(M[cur]&&M[cur].in&&!G.bko)?'':'none'}catch(e){}}
+setInterval(bkBotao,700);
+addEventListener('keydown',e=>{try{if(e.target&&(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA'))return;if((e.key==='g'||e.key==='G')&&mode==='walk'&&bkMinhas().length)bkMonta()}catch(x){}});
 (function(){try{const st=document.createElement('style');st.textContent=`body.hudmin .ab:not(.hkeep){display:none!important}
 #hudtg{position:fixed;right:calc(env(safe-area-inset-right,0px) + 88px);bottom:calc(env(safe-area-inset-bottom,0px) + 6px);width:40px;height:40px;border-radius:50%;padding:0;margin:0;z-index:6;
  background:radial-gradient(circle at 35% 30%,#fff3c0,#e8c050 60%,#a8801c);border:2px solid #fff;color:#3a2a00;font:900 18px sans-serif;box-shadow:0 2px 6px #0008;display:flex;align-items:center;justify-content:center}
