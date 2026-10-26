@@ -1,7 +1,7 @@
 {
- "v": 160,
+ "v": 161,
  "url": "https://raw.githubusercontent.com/nilfilho000-afk/kaimon-gt-updates/main/jogo-apk.html",
- "notas": "1.42: Ranking de casas! Visite casas e toque em Curtir; a mais curtida da semana ganha 20 KMC e aparece no site.",
- "sha": "d1d65c42d62063eea6eecbddf6aba1551779f02f8617ac0266b37c6e04bbea34",
- "sig": "q8kkpo2GA/zpQfBen+vQ0paSUm6+YxPsaQHUqUk9lwsMlmhNnJf1sMzPle0DS4gPfvmWFawCxppTyv2nV+EVBw=="
+ "notas": "1.43: Ranking de casas agora é mensal: a casa mais curtida do mês ganha 1 mês de VIP.",
+ "sha": "026b34c9fcaa3b4567011213806e78879dd0a36da64ea4dc9e60eb0a1732db00",
+ "sig": "ahtGHsgQwgD4Rj1rRLU1yRY8UGIvRZBraSfes9Vz9jwATXtzlnigGRr87sVclrHWunpUyw9Qs9idz35SQBP7ug=="
 }

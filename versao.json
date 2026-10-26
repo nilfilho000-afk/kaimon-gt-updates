@@ -1,11 +1,11 @@
 {
- "jogo": 160,
- "jogo_arquivo": "jogo-160.kpk",
- "jogo_sha": "fa082c170dae4b84b05ba3eea246cc6d919e8fb86c7c8622aee1f8af0b5f2699",
- "jogo_assin": "of1VjNR1/bvI5VIcxjICWW5cBXhZLMOMDW8mbAtVmZnSjZ4MlQ8muV8oltOktiAJ9z72J8ZNlrriz0FpSMLEBw==",
+ "jogo": 161,
+ "jogo_arquivo": "jogo-161.kpk",
+ "jogo_sha": "8bfcd4488f84acd19191355eb7621ad270da52808549e1bf242433a0a58b278f",
+ "jogo_assin": "3KkPl/HXRHSb2yUAN02daKB/vUGbnLhM1G8qTQ4nNTMHCHQTUDLmOd67hfEUhpiuaClZeocM8bn6d+EawLIUCQ==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "17caced154a11e42e9ee97963673200ffd9e326c5f264d582ad44ca211048c75",
- "launcher_assin": "B7ESCpvsmNTotFyi+kgYfcuaTIlFnvRcl8Qk3v2lv2koURbj/auQvjj1cdEVt+X1dG50OyzUX6D5YRGF93YkCQ==",
- "notas": "1.42: Ranking de casas! Visite casas e toque em Curtir; a mais curtida da semana ganha 20 KMC e aparece no site."
+ "launcher_sha": "ca1f8eb1d36ecee6c79fb96edd5edaefe796d80298bb86ee2367e320a8010d7b",
+ "launcher_assin": "kbQXIUsJKVD3ptsldZWDiVIkXEDAzPJidlB6/M0jgcFv9+Pbrdw2WL4KMkc1YQAKszQPPkfgidIa14qxjtf8Cg==",
+ "notas": "1.43: Ranking de casas agora é mensal: a casa mais curtida do mês ganha 1 mês de VIP."
 }
