@@ -1,11 +1,11 @@
 {
- "jogo": 157,
- "jogo_arquivo": "jogo-157.kpk",
- "jogo_sha": "54e1081fec8cb8b520220b8bd93d6d3a9ab0df49ca629926f13941146ba27d4f",
- "jogo_assin": "caxO6FaZslVetJS1oFuZkcmFVue6VZFeZz9E/p1zNPWma/2QMgG/g3wcjjr3xYxwXo1N2LWqKdBeW5mWVieaCg==",
+ "jogo": 159,
+ "jogo_arquivo": "jogo-159.kpk",
+ "jogo_sha": "f2cd87ba25143cac5e6a5ad747067be2150e866edcaee5877628d2f0b20c17a1",
+ "jogo_assin": "XmQDGM/p+uVTPP7VU4DpkBTLtl42pjwp1CMvxaWSQo/6DVD1DD8kF6aZ1IPZGfsTRzOL8deOR6pZuXR4FZkLAQ==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "ea59c14ddae94abd6e4aa4706c379987afd3c5cca3cf21428b4dbdefbab11591",
- "launcher_assin": "OkK8Z9SS/qzGSVcz5QC5+Pb2vPymLXVkBwjUKNU2OQ0G9Fvz7D5/RceNE34Uha1UVnQS/vibCLTHIr/5Y0sgCg==",
- "notas": "1.39: chapéus consertados (cabelo raspado, coques, black power e cacheado), Roupa Ninja com touca, e o navegador do PC liberado com o Firewall Kaimon bloqueando conteúdo adulto, IA, apostas, pirataria e o que for de risco."
+ "launcher_sha": "3c7556b8565584d3b31be0391c18e0c2521185e34d41a1b72014c9712a737b5a",
+ "launcher_assin": "v03MIrs38laqe29IgtC8SiKHR5JtQs+BRdrDK5072bUIgsvyy3XeqDUUsa28EfwsZu3SOn2jQ6Qo20kouqQfCg==",
+ "notas": "1.41: papel de parede e piso/carpete para a casa, 8 jogos clássicos no computador (controles na lateral e teclado), o PC abre só o site do Kaimon, visitas nas casas revisadas e a espada voltou para o canto direito."
 }
