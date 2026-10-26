@@ -1,0 +1,11 @@
+{
+ "jogo": 154,
+ "jogo_arquivo": "jogo-154.kpk",
+ "jogo_sha": "ae9de2b9fcaea602f2c68a7127c929b19639776e7003cb9b522aa10bab5e30da",
+ "jogo_assin": "PIO0aiMxZupok47cfbm2y07LtgWIvD6mLXzZBDI/UVsUDt719bY9KwkfzadfgSFlMdkiUjmONtHwvu2UzjPeBQ==",
+ "launcher": 4,
+ "launcher_arquivo": "KaimonGT-4.exe",
+ "launcher_sha": "9ac2a88b1769f960cf22b0412fed9a91f5affe592c2627cf499dd00b2e8ce587",
+ "launcher_assin": "DmKTDJQ8CdF2lgiGoxQ0gNZaJRJvLDcVBj+Fjc7Cko7fpK/FQizo2VNcJKat4mE9MORIOoMujmvw4kEIlh3DBQ==",
+ "notas": "1.36: o treinador agora pedala de verdade na bicicleta (pernas girando o pedal, de lado, de frente e de costas)."
+}
