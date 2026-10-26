@@ -2097,7 +2097,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v167 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v168 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -9123,7 +9123,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=167;
+var KGT_VER=168;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -16096,7 +16096,7 @@ let h='';const B=[];
 if(T==='habitat')h+=mvHabMenu(m,d,dono);
 if(T==='bar')B.push(btn('🪑 Sentar no banquinho',`mobSentar('${id}')`),btn('🍹 Pedir um drink · 💰50',`mvDrink()`,G.money<50));
 if(T==='hockey')B.push(btn('🏒 Jogar contra o computador',`mvHockeyMenu()`));
-if(T==='garra')B.push(btn('🧸 Jogar · 💰100',`mvGarra()`,G.money<100));
+if(T==='garra')B.push(G.garD===mvDia()?btn('🧸 Você já pegou o Kaimon de hoje (volte amanhã)','',true):btn('🧸 Jogar · 💰100 (1 Kaimon por dia)',`mvGarra()`,G.money<100));
 if(T==='roda')B.push(btn(G.rodaD===mvDia()?'🎡 Já girou hoje (volte amanhã)':'🎡 Girar a roda (grátis, 1× por dia)',`mvRoda()`,G.rodaD===mvDia()));
 if(T==='forno'){if(dono)B.push(btn(m.on?'⏻ Apagar o fogo':'🔥 Acender o fogo',`mobLiga('${id}')`));B.push(btn('🍕 Assar pizza · 💰80',`mvPizza('${id}')`,!m.on||G.money<80))}
 if(T==='karaoke'){B.push(btn('🎤 Cantar',`mvCantar('${id}')`));if(dono)B.push(btn(m.on?'🌑 Desligar o globo':'🪩 Ligar o globo de luz',`mobLiga('${id}')`))}
@@ -16201,7 +16201,7 @@ mvFimTela(T,ganhei?'🏆':'😅',ganhei?'Você ganhou!':'O computador ganhou!',s
 requestAnimationFrame(loop)};requestAnimationFrame(loop)}
 const MV_PREMIOS=[{t:'$',v:150,p:30},{t:'$',v:300,p:22},{t:'$',v:700,p:6},{t:'i',n:'Fruta Silvestre',c:3,p:22},{t:'i',n:'Cristal Super',c:2,p:20}];
 function mvPremio(){let s=MV_PREMIOS.reduce((a,b)=>a+b.p,0),r=Math.random()*s;for(const p of MV_PREMIOS){r-=p.p;if(r<0)return p}return MV_PREMIOS[0]}
-function mvGarra(){if(!mvPaga(100))return;try{save()}catch(e){}const W=220,H=200,T=mvTela(W,H,'🧸 Máquina de Garra');const x=T.x;
+function mvGarra(){if(G.garD===mvDia())return toast('🧸 Você já pegou o Kaimon de hoje. Volte amanhã!');if(!mvPaga(100))return;try{save()}catch(e){}const W=220,H=200,T=mvTela(W,H,'🧸 Máquina de Garra');const x=T.x;
 const pool=Object.keys(typeof SP!=='undefined'?SP:{}).filter(n=>{try{return SP[n]&&!SP[n].leg&&!/Saci|Boi|Iara|Curupira|Cuca|Mula/.test(n)}catch(e){return false}});
 const Pl=[];for(let i=0;i<8;i++)Pl.push({x:50+i*21+(Math.random()-.5)*6,y:172-(i%2)*9,n:pool.length?pool[Math.random()*pool.length|0]:'',on:1});
 const C={x:110,y:22,st:'mover',dir:0,pega:null,t:0};let fim=0;
@@ -16214,8 +16214,8 @@ else if(C.st==='desce'){C.y+=1.6;const alvo=Pl.filter(p=>p.on).sort((a,b)=>Math.
 const dx=alvo?Math.abs(alvo.x-C.x):99;if(alvo&&dx<12&&Math.random()<.62-dx*.025){C.pega=alvo;alvo.on=0}C.st='sobe'}}
 else if(C.st==='sobe'){C.y-=1.4;if(C.pega&&C.y<90&&!C.solta&&Math.random()<.0035){C.solta=1;const p=C.pega;p.on=1;p.x=C.x;p.y=172;C.pega=null}if(C.y<=22){C.y=22;C.st='volta'}}
 else if(C.st==='volta'){C.x-=1.8;if(C.x<=22){C.x=22;C.st='fim'}}
-else if(C.st==='fim'&&!fim){fim=1;bd.disabled=true;if(C.pega){const p=mvPremio();let txt='';if(p.t==='$'){G.money+=p.v;txt='💰 '+f$(p.v)}else{const g2=addI(p.n,p.c);txt=g2+'× '+p.n}try{save();hud();play('catch')}catch(e){}
-mvFimTela(T,'🧸','Pegou um '+esc(C.pega.n||'bichinho')+' de pelúcia!','Prêmio: '+txt,()=>{mvFechaTela();mvGarra()})}else{try{play('hit')}catch(e){}mvFimTela(T,'😅','Escapou da garra!','Tente de novo (💰100).',()=>{mvFechaTela();mvGarra()})}}};
+else if(C.st==='fim'&&!fim){fim=1;bd.disabled=true;if(C.pega){G.garD=mvDia();const p=mvPremio();let txt='';if(p.t==='$'){G.money+=p.v;txt='💰 '+f$(p.v)}else{const g2=addI(p.n,p.c);txt=g2+'× '+p.n}try{save();hud();play('catch')}catch(e){}
+mvFimTela(T,'🧸','Pegou um '+esc(C.pega.n||'bichinho')+' de pelúcia!','Prêmio: '+txt+'<br><small>Amanhã tem mais um.</small>',null)}else{try{play('hit')}catch(e){}mvFimTela(T,'😅','Escapou da garra!','Tente de novo (💰100).',()=>{mvFechaTela();mvGarra()})}}};
 const des=t=>{T.ini();x.fillStyle='#3a1a4a';x.fillRect(-10,-10,W+20,H+20);x.fillStyle='#bfe8ff';x.fillRect(0,0,W,H);x.fillStyle='#e8d8ff';x.fillRect(0,178,W,22);
 x.fillStyle='#5a2a6a';x.fillRect(0,120,34,80);x.fillStyle='#1a0a20';x.fillRect(4,124,26,14);x.fillStyle='#ffe27a';x.font='bold 8px system-ui';x.textAlign='center';x.fillText('PRÊMIO',17,150);
 for(const p of Pl){if(!p.on)continue;let im=null;try{im=p.n?getV(p.n,0,0,0):null}catch(e){}if(im){x.imageSmoothingEnabled=false;x.drawImage(im,p.x-14,p.y-22,28,28)}else{x.fillStyle='#ff8ad0';x.beginPath();x.arc(p.x,p.y-8,9,0,6.3);x.fill()}}

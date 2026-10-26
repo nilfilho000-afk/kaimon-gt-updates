@@ -1,11 +1,11 @@
 {
- "jogo": 167,
- "jogo_arquivo": "jogo-167.kpk",
- "jogo_sha": "20b0ea6c8278e23cf490303b0c257682e0d15c9fe0c36b91ba7daa91c75abdae",
- "jogo_assin": "yravpMyz6zcYKQR85Vh1mRrtQkEjSPhStl/rf54PALRHqSMBdERTZa3EavmBXiFi7Ts1E8lAB0HzOaEb7SXqBg==",
+ "jogo": 168,
+ "jogo_arquivo": "jogo-168.kpk",
+ "jogo_sha": "61580415386041f1edb59508da87143d418de851f3118ff5047ea82c8d84fb79",
+ "jogo_assin": "jj0e5CN0y6+NWlDDb3+0EXDMdHLRc1w0movoZexIInpOuSvCSrBxhZopqrzyCxuCg0pXECFaBDbG7GeV/g5dBw==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "09f9c010c2fd34c24b8159f54cb687537213d85021770c6bab2bac496e45b703",
- "launcher_assin": "hbmcQJJvihYLXYsSAm9vH1QLiS8SvkNuJhAt5+IQKUUEEa74CR5e2oLswf8dFmtQC17Q0l7JaVrECnFZq56wCQ==",
- "notas": "v1.49: natação nova (cabeça para fora d'água, boiando, braçadas com respingos e ondinhas) e ofurô melhorado (fica com os ombros para fora, água mexendo e vapor)."
+ "launcher_sha": "dad8a1376f4aab8fb2ca5d328302705593d0c109124a48024bc6b2f2da8c830f",
+ "launcher_assin": "8caEBHUhWTPGaVYmXGHeFsr9wkulnpAhotzx1E0pqt94shAS1oGZjVq9dPhT2K06sT+kP+pCkrxuzTyg6mdABA==",
+ "notas": "v1.50: Máquina de Garra agora dá 1 Kaimon de pelúcia por dia."
 }
