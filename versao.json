@@ -1,11 +1,11 @@
 {
- "jogo": 159,
- "jogo_arquivo": "jogo-159.kpk",
- "jogo_sha": "f2cd87ba25143cac5e6a5ad747067be2150e866edcaee5877628d2f0b20c17a1",
- "jogo_assin": "XmQDGM/p+uVTPP7VU4DpkBTLtl42pjwp1CMvxaWSQo/6DVD1DD8kF6aZ1IPZGfsTRzOL8deOR6pZuXR4FZkLAQ==",
+ "jogo": 160,
+ "jogo_arquivo": "jogo-160.kpk",
+ "jogo_sha": "fa082c170dae4b84b05ba3eea246cc6d919e8fb86c7c8622aee1f8af0b5f2699",
+ "jogo_assin": "of1VjNR1/bvI5VIcxjICWW5cBXhZLMOMDW8mbAtVmZnSjZ4MlQ8muV8oltOktiAJ9z72J8ZNlrriz0FpSMLEBw==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "3c7556b8565584d3b31be0391c18e0c2521185e34d41a1b72014c9712a737b5a",
- "launcher_assin": "v03MIrs38laqe29IgtC8SiKHR5JtQs+BRdrDK5072bUIgsvyy3XeqDUUsa28EfwsZu3SOn2jQ6Qo20kouqQfCg==",
- "notas": "1.41: papel de parede e piso/carpete para a casa, 8 jogos clássicos no computador (controles na lateral e teclado), o PC abre só o site do Kaimon, visitas nas casas revisadas e a espada voltou para o canto direito."
+ "launcher_sha": "17caced154a11e42e9ee97963673200ffd9e326c5f264d582ad44ca211048c75",
+ "launcher_assin": "B7ESCpvsmNTotFyi+kgYfcuaTIlFnvRcl8Qk3v2lv2koURbj/auQvjj1cdEVt+X1dG50OyzUX6D5YRGF93YkCQ==",
+ "notas": "1.42: Ranking de casas! Visite casas e toque em Curtir; a mais curtida da semana ganha 20 KMC e aparece no site."
 }
