@@ -1,11 +1,11 @@
 {
- "jogo": 161,
- "jogo_arquivo": "jogo-161.kpk",
- "jogo_sha": "8bfcd4488f84acd19191355eb7621ad270da52808549e1bf242433a0a58b278f",
- "jogo_assin": "3KkPl/HXRHSb2yUAN02daKB/vUGbnLhM1G8qTQ4nNTMHCHQTUDLmOd67hfEUhpiuaClZeocM8bn6d+EawLIUCQ==",
+ "jogo": 162,
+ "jogo_arquivo": "jogo-162.kpk",
+ "jogo_sha": "40d3dd7c5de5f32119e3e5b019e403983a312f24b43babac8773dc505f9e1fa7",
+ "jogo_assin": "4SBE+x0PlDrme0aABJgsAH60x6dPnc37MRBGbTlVp86zd8dcWmH65KtyaSAxyG8OpOJkRM6qO9DmL5e+W0QMAA==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "ca1f8eb1d36ecee6c79fb96edd5edaefe796d80298bb86ee2367e320a8010d7b",
- "launcher_assin": "kbQXIUsJKVD3ptsldZWDiVIkXEDAzPJidlB6/M0jgcFv9+Pbrdw2WL4KMkc1YQAKszQPPkfgidIa14qxjtf8Cg==",
- "notas": "1.43: Ranking de casas agora é mensal: a casa mais curtida do mês ganha 1 mês de VIP."
+ "launcher_sha": "bd03e7ad0a386b2c5dbdb3359ca7481c274140462ef0326e1aa5064239e14d17",
+ "launcher_assin": "kndoeXfhBshO1qdQNZSQB72KYSh9xFJICbwlFC+lpjan8UcAzCIXvbyGRDZM4mteTpIOKbDfafutgB/yV1TjDQ==",
+ "notas": "1.44: aviso do lançamento (o jogo reinicia quando entrar na Play Store), presente da beta (título Pioneiro + 10 KMC + roupa), evento de lançamento (+50% EXP, +10% shiny), convites que dão VIP e troca de monstros entre amigos."
 }
