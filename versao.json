@@ -1,11 +1,11 @@
 {
- "jogo": 154,
- "jogo_arquivo": "jogo-154.kpk",
- "jogo_sha": "ae9de2b9fcaea602f2c68a7127c929b19639776e7003cb9b522aa10bab5e30da",
- "jogo_assin": "PIO0aiMxZupok47cfbm2y07LtgWIvD6mLXzZBDI/UVsUDt719bY9KwkfzadfgSFlMdkiUjmONtHwvu2UzjPeBQ==",
+ "jogo": 155,
+ "jogo_arquivo": "jogo-155.kpk",
+ "jogo_sha": "649d1a7fc246535168cdc6604ac4540531d83caa2aabdc1d54d59b90bf1e51bd",
+ "jogo_assin": "a6PkeIHXLUb73AtTpMvoFgaLW29x01Rz8zGaPshjFZwaA7ClQAKeGg4DWvY+MnSOaTOMdkyHCbSSab3zIehYBg==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "9ac2a88b1769f960cf22b0412fed9a91f5affe592c2627cf499dd00b2e8ce587",
- "launcher_assin": "DmKTDJQ8CdF2lgiGoxQ0gNZaJRJvLDcVBj+Fjc7Cko7fpK/FQizo2VNcJKat4mE9MORIOoMujmvw4kEIlh3DBQ==",
- "notas": "1.36: o treinador agora pedala de verdade na bicicleta (pernas girando o pedal, de lado, de frente e de costas)."
+ "launcher_sha": "7b80e9adb3d65db2be56d29fdb04999929dd7253f7b10af33cd5b28ea8c3d670",
+ "launcher_assin": "eWYKV0kLExW5JqhsU5RmVD7mu9JBqGZpJbVXPe1DUA61NW4p+XJPlEelM7OfFd9bQKjX9uAY4gfuJ/oDQhKcDA==",
+ "notas": "1.37: os outros jogadores agora veem você pedalando na bicicleta."
 }

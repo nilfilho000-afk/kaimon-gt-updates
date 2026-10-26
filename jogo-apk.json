@@ -1,7 +1,7 @@
 {
- "v": 154,
+ "v": 155,
  "url": "https://raw.githubusercontent.com/nilfilho000-afk/kaimon-gt-updates/main/jogo-apk.html",
- "notas": "1.36: o treinador agora pedala de verdade na bicicleta (pernas girando o pedal, de lado, de frente e de costas).",
- "sha": "833b97d09c8479bb0f79676a29e1c5dede7d9e1e5c2c17369333999f55c9c4da",
- "sig": "dYDecYby244e6G6XvvMESjvr8UhqjfAiRyTbSrX8XWYaZTb439HEHIuxw0Amx/cK/NFSGPLwTiHnMm4Fm5cAMg=="
+ "notas": "1.37: os outros jogadores agora veem você pedalando na bicicleta.",
+ "sha": "54f6fad200ca9119effa9a4e80a59bd56e941f8b0747573a7994f6f020bbe7e9",
+ "sig": "2J7wVCdOVtc7vYwy0FKrjSieZc/uWi8OktwYnej2l5A1SfO7k5v1Gyjosw920x/ZL3uNw+2l9UMY62uenXMZ6A=="
 }
