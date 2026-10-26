@@ -1,7 +1,7 @@
 {
- "v": 153,
+ "v": 154,
  "url": "https://raw.githubusercontent.com/nilfilho000-afk/kaimon-gt-updates/main/jogo-apk.html",
- "notas": "1.35: a Bicicletaria de Anil abriu! 3 bicicletas por dinheiro do jogo (botão 🚲 ou tecla G). Site: nova página com todos os itens da loja, com fotos.",
- "sha": "d179b56254b7e99a029b186425ad4dd63733c80bb868211b705c33568bfe7185",
- "sig": "qI/gIxmcgXc/FyfXmewhpM9SdyTwgP0qWVjZq9dCmZya1q6UX+6hYypApA+RESS6i9YL6HpQFvNZgg0MrRthxA=="
+ "notas": "1.36: o treinador agora pedala de verdade na bicicleta (pernas girando o pedal, de lado, de frente e de costas).",
+ "sha": "833b97d09c8479bb0f79676a29e1c5dede7d9e1e5c2c17369333999f55c9c4da",
+ "sig": "dYDecYby244e6G6XvvMESjvr8UhqjfAiRyTbSrX8XWYaZTb439HEHIuxw0Amx/cK/NFSGPLwTiHnMm4Fm5cAMg=="
 }
