@@ -1,7 +1,7 @@
 {
- "v": 195,
+ "v": 196,
  "url": "https://raw.githubusercontent.com/nilfilho000-afk/kaimon-gt-updates/main/jogo-apk.html",
- "notas": "No barco o personagem aparece sentado em todas as direções",
- "sha": "4682e8b5c9cbd2097d1040be95a5b0a3ea9412b3da108a11f3632ea9ac4537ca",
- "sig": "JwOLbFmxiQgQNsNGkwh7u+Yc4GOp8C+649wLtiTFUV5ZE9AEZjwtvGTW8tl+2ynHlApC1fiA/fFQVfR41Cz8UA=="
+ "notas": "Copas das árvores não somem mais quando a estação muda (serras e mapas pequenos); montado de costas o corpo aparece inteiro",
+ "sha": "269cf4ea439867fff07c8df3bdba30ccd96aeeea1c5d58cf11d741ff1b956de9",
+ "sig": "AQW11jvVs1LbH7ethMtTyeMxrniwvvTqVbuhkIJ/zr6LZJFuB3ppkCFiqWjSHTa7lj5qxBQa54PDt+2q66MRCQ=="
 }

@@ -1,11 +1,11 @@
 {
- "jogo": 195,
- "jogo_arquivo": "jogo-195.kpk",
- "jogo_sha": "8fe14f84b4dff5662ee7b15a924baf32574e7cb661a4c123d4298fd6df2f5ec8",
- "jogo_assin": "35scSq/ouCG3QseEK8hAxHXKEEHW67egZnvwBFQ5olIFCJRbss9mhbnm0soAj+6771P3ZpmgimgxmKIjrkZBCg==",
+ "jogo": 196,
+ "jogo_arquivo": "jogo-196.kpk",
+ "jogo_sha": "e2441d43b5f168dc2dfe3ad51854dd1c9620167fb04085d3e5bb822484034354",
+ "jogo_assin": "A6h8Flqk5gykuLOkFIDHpDsJFkNZPSKfKErdFlwD8vvDuZ+wns5zKzllfOV+TUD5HKmVHAIA9/NXBkVQIMynCA==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "27ee3536c669be992b0ba0ed438d9c17fdbb89ec62122e24ff0db27a3ecb53ae",
- "launcher_assin": "MhAXBA72DL2fdiC00bxifgdOssML6sMAtXLg4PGAgpdAtLfI6zd73Ga5uq8RQMzJ9wQMruEY45nDMvLUIcoaDw==",
- "notas": "No barco o personagem aparece sentado em todas as direções"
+ "launcher_sha": "d914f9071af2c4bb8545d7c9d8d882240fb41c36de6c719196090729a17cb4e6",
+ "launcher_assin": "0q1oY69mG3hnilJY49Gx1wREZQfEdVEw8t5eoD9fNHLUT9hr2RIvsTcKC61JYBzjANIUlrFXMv1G/K73V1JeAQ==",
+ "notas": "Copas das árvores não somem mais quando a estação muda (serras e mapas pequenos); montado de costas o corpo aparece inteiro"
 }
