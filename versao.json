@@ -1,11 +1,11 @@
 {
- "jogo": 198,
- "jogo_arquivo": "jogo-198.kpk",
- "jogo_sha": "cdec776c67a2a245e38c1c44db26faef0c883548dc08c6853f6dc99e8f6c8bf7",
- "jogo_assin": "4nOXNuVtBWlXt0CxWsDnbVJMbatceH0oIwK1D5nvytPIKPMIEIMh8Ly9IjVWOLxH5kUSFElRqAjmwwZbFPgHBA==",
+ "jogo": 199,
+ "jogo_arquivo": "jogo-199.kpk",
+ "jogo_sha": "09ba28e2a282642dbeb942e90e35c56d51982713a5615cfa3271b8171ed6178b",
+ "jogo_assin": "FlVd4zEKhg3P8Aw3bcDZWAoWFGHx4R4WRstZW0Nml94EphzSXK8GUAEjOf0H89+J8GpFqS2jfCIXgLMsSWw9CA==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "0163462c1875a0f550f30fd8c7ac27c6630875e30ffafc1cce27c54ccc527476",
- "launcher_assin": "Y/pqhBAgAQL6s8/T1d9htMadR5ZALAzIcy0werKBmk0oFWd9uKZmoTtOVfCiaiUxf6JVokpNifQ+jC3pZ/R3AA==",
- "notas": "Aviso do reset: seus KMC e tudo o que foi comprado com KMC continuam depois do lançamento"
+ "launcher_sha": "91a6393de9b24c08ea5b9dd4e53bd2070fa9c0366a5f9c1b6c00d4933eadbce4",
+ "launcher_assin": "WMHs6mQZxqrkz4ipuUc8dV7L9Nr8C7jCWwuFqXMFYKNwoHDi3tdkIqsF1s+h3m56Ca66dh3rMyyRStW2L498CA==",
+ "notas": "Shiny de Tier 1, 2 e 3 aparece bem mais vezes (T1/T2: 1 em 150, T3: 1 em 90), mas ficou mais difícil de capturar: Normal 0%, Super 1%, Ultra 3,5%, Passe 5%. Tier 4 e 5 não mudaram. O shiny que foge agora fica no mapa por 10 minutos em outro canto, para você ir atrás."
 }
