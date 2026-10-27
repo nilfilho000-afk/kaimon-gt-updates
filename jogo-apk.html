@@ -2097,7 +2097,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v200 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v201 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -9132,7 +9132,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=200;
+var KGT_VER=201;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -17465,6 +17465,19 @@ function auTira(s){return s.ad?{sh:true,ad:s.ad}:true}
 async function auCaptura(c,bt){try{if(!c||!c.sh||bt!=='premier')return;c.au=Math.random()<.5?1:2;await say('🌟 O Cristal Super brilhou! '+c.n+' ganhou a Aura '+AU.nm[c.au]+'!')}catch(e){}}
 function auMeio(w){try{const S=G.shsp=G.shsp||{};S[w.n]=(S[w.n]|0)+1;if(S[w.n]>=2){S[w.n]=0;w.br=(w.br||0)+1}}catch(e){}}
 {const _fw=fw;fw=function(){const r=_fw.apply(this,arguments);try{const p=G.party.find(q=>G.fol&&q.id==G.fol);FWo.au=p&&p.sh&&p.au||0}catch(e){}return r}}
+AU.pb={};
+{const _pb=pbi;pbi=function(n,s){if(!(s&&typeof s==='object'&&s.au))return _pb.apply(this,arguments);const au=s.au,s2=auTira(s),K=n+'|'+(s.ad||'')+'|'+au;if(AU.pb[K])return AU.pb[K];
+const ks=n+'s',ka=s.ad?n+'s|'+s.ad:null,o1=PB2;PB2={};let sa,ha=false;try{if(ka&&typeof PB2A!=='undefined'){ha=Object.prototype.hasOwnProperty.call(PB2A,ka);sa=PB2A[ka];delete PB2A[ka]}}catch(e){}
+const g0=getVH;getVH=function(nn,v,f,q,Z){const b=g0.apply(this,arguments);if(nn!==n)return b;try{let L=AU.c.get(b);if(!L){L={};AU.c.set(b,L)}return L[au+'_1']||(L[au+'_1']=auFaz(b,au,1))}catch(e){return b}};
+let out;try{out=_pb(n,s2)}finally{getVH=g0;PB2=o1;try{if(ka&&typeof PB2A!=='undefined'){if(ha)PB2A[ka]=sa;else delete PB2A[ka]}}catch(e){}}return AU.pb[K]=out}}
+const LEG199=new Set(['Boitatá','Dracaimon','Saciclone','Boitatinga','Mapinguari','Cuca','Capelobo','Corpo-Seco','Chibamba','Besta-Fera','Quibungo','Ipupiara','Alamoa','Mula-sem-cabeça']);
+function legLimpa(m){try{if(!m||m._leg199)return;const f=sp=>Array.isArray(sp)?sp.filter(s=>!LEG199.has(Array.isArray(s)?s[0]:s)):sp;
+if(m.z&&Array.isArray(m.z.sp)){const a=f(m.z.sp);if(a.length)m.z.sp=a}
+if(Array.isArray(m.tiers))for(const t of m.tiers)if(t&&Array.isArray(t.sp)){const a=f(t.sp);if(a.length)t.sp=a}
+if(m.tiers)m._leg199=1}catch(e){}}
+{const _sp=spawn;spawn=function(){try{legLimpa(M[cur])}catch(e){}const n0=wild.length,r=_sp.apply(this,arguments);
+try{for(let i=wild.length-1;i>=n0;i--){const e=wild[i];if(e&&LEG199.has(e.n)&&!e.boss&&!e.sid)wild.splice(i,1)}}catch(e){}return r}}
+RH0.push(function(){try{if(!wild.length)return;const bw=typeof B!=='undefined'&&B?B.w:null;for(let i=wild.length-1;i>=0;i--){const e=wild[i];if(e&&LEG199.has(e.n)&&!e.boss&&e!==bw&&!e.sid)wild.splice(i,1)}}catch(e){}});
 (function(){try{const st=document.createElement('style');st.textContent=`body.hudmin .ab:not(.hkeep){display:none!important}
 #hudtg{position:fixed;right:calc(env(safe-area-inset-right,0px) + 88px);bottom:calc(env(safe-area-inset-bottom,0px) + 6px);width:40px;height:40px;border-radius:50%;padding:0;margin:0;z-index:6;
  background:radial-gradient(circle at 35% 30%,#fff3c0,#e8c050 60%,#a8801c);border:2px solid #fff;color:#3a2a00;font:900 18px sans-serif;box-shadow:0 2px 6px #0008;display:flex;align-items:center;justify-content:center}

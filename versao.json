@@ -1,11 +1,11 @@
 {
- "jogo": 200,
- "jogo_arquivo": "jogo-200.kpk",
- "jogo_sha": "fb819a062afc151ff347e572f50102a80e8987ddba4ea385ef6f9fdf8b765626",
- "jogo_assin": "1TnVhiZuP0yfoB4FtsMYjkwOWb0n6xcFQq+NXc2otgYdngdwXQcnNC3zLgD3AnSC0utzdhmB6ynaiY3+A/qsAQ==",
+ "jogo": 201,
+ "jogo_arquivo": "jogo-201.kpk",
+ "jogo_sha": "14952990ea7ac8dfcce9a255e5b0963656c6d3488b4b135bde124bc1114143a9",
+ "jogo_assin": "Of4hI/3cS5qx1YQUEbjzGaN/kOO0dkj5ovj1A/DMPmgfTbXh7+dtYhq2ooLcCaMR1qfjCEi5i3UsAH5g9+0hBA==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "a4a7100439eefd3d994e8d79af09b70b7cac0a8b2962b0e86d74f4e2918adef8",
- "launcher_assin": "MQ1fmqvD5PPNj5MgsKe+MgpHxE5P++1LMJTUD61bfcPtix9TttUsORQ8nX5z+e76Ojx/YzOXHVqTQvWDDKieDg==",
- "notas": "Shiny capturado com Cristal Super agora ganha uma Aura para sempre: Dourada ou Arco-íris, sorteada na captura. A aura brilha na batalha e quando ele te segue no mapa. Cristal Super quebrado num shiny conta meio Ultra para a captura certa."
+ "launcher_sha": "3ada4efc5e568fba5039da8830afe4ce789a7d17f695f00a07d49eadb844b2f7",
+ "launcher_assin": "Vvw5+aqOOaw9nA5dPP96fYoX6/f8qkkKQG6d96Oe7eBCV2Zdb6wsguvElZ6+zIrZqmZh1otq0Y8FtfpHTh9WDA==",
+ "notas": "Ícones do time agora mostram a aura do shiny capturado com Cristal Super. Os 14 lendários (Boitatá, Saciclone, Cuca, Mula-sem-cabeça e outros) não aparecem mais na natureza: por enquanto, só pelo Passe Kaimon."
 }
