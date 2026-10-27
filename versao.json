@@ -1,11 +1,11 @@
 {
- "jogo": 193,
- "jogo_arquivo": "jogo-193.kpk",
- "jogo_sha": "ac7f32354bb421042f85e1a7af32f8006e61ae5c0c24359e6610c3e8e5bf2ac5",
- "jogo_assin": "gT3eb1ay9qmwTpOC/jb8oLDvQm43/vRxQhwhQWsNeseZWBX3Wqn0p9aKZunGk18tsbHRpfFa7bXhflIYeuEQBA==",
+ "jogo": 194,
+ "jogo_arquivo": "jogo-194.kpk",
+ "jogo_sha": "4e78d321eb186b7eb746b4677de75cd0649b29e88a3aef17e6ce1e62a0c089e0",
+ "jogo_assin": "V8QOEdmFbWBpc457DpxDp8W8Zc0gNV0F06vkbxRZwbQLfp30LkauuNJMT98XOZ3mv/aIqienP3M9nFdDZE35Cw==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "c437dfe7a7b5703aaf2fff4f1be3683d7fada0d7fcbf5fc4fa7ed6a61375c26b",
- "launcher_assin": "kxUEwlV9FErQTBvPUHdQAYkLxAta/u9o8Ys5RKnM7CNotrVEZn6TJWDypSjyQbg17Y+xg1XqoJwY+cDuDdAhDg==",
- "notas": "Os Kaimons dos viveiros e terrários ficam sempre inteiros dentro do vidro e da gaiola"
+ "launcher_sha": "71513fa77277bac5cf74bc133a7bd2459f47fc9a5fb139e742c371284f382d4b",
+ "launcher_assin": "r88X7pZgVAY19jPMxTsHkqx2G+1CWnNJRuX7mS1aA007YhZuK57zsLq87nNwsTZXW2cnhkTrRCNNoNLy6d2oCw==",
+ "notas": "Os Kaimons dos terrários e do viveiro ficam atrás do vidro e da grade, como o peixe do tanque"
 }

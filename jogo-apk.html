@@ -2097,7 +2097,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v193 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v194 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -9132,7 +9132,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=193;
+var KGT_VER=194;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -17282,7 +17282,7 @@ const frente=s.mode==='olha'||s.mode==='dorme'||(viv&&s.mode==='pousa'&&Math.abs
 const fr=s.mode==='dorme'?0:mexe?((t/(viv?95:150))|0)%4:((t/600)|0)%2;let im=null;
 try{im=getV(pt.n,frente?0:1,fr,pt.s)}catch(e){}if(!im)try{im=getV(pt.n,0,0,pt.s)}catch(e){}
 if(im){const B=vvBox(im);
-const ix0=x0+dw*(viv?.2:.12),ix1=x0+dw*(viv?.8:.88),iy0=yt+dh*(viv?.24:.13),chao=yt+dh*(viv?.6:.555),IH=chao-iy0,IW=ix1-ix0;
+const ix0=x0+dw*(viv?.2:.12),ix1=x0+dw*(viv?.8:.88),iy0=yt+dh*(viv?.24:.13),chao=yt+dh*(viv?.6:.53),IH=chao-iy0,IW=ix1-ix0;
 const k=Math.min(IH*(viv?.6:.7)/(B.y1-B.y0),IW*.55/(B.x1-B.x0)),S=64*k,bw=(B.x1-B.x0)*k,bh=(B.y1-B.y0)*k;
 const flip=!frente&&s.dir>0,cxp=ix0+bw/2+(IW-bw)*s.x,px=cxp-(flip?64-(B.x0+B.x1)/2:(B.x0+B.x1)/2)*k;
 let hop=0;const tp=t-s.pulo;if(tp>=0&&tp<520)hop=Math.sin(tp/520*Math.PI)*(viv?2:4.5);if(s.feliz&&t-s.feliz<3000&&((t-s.feliz)%700)<350)hop=Math.max(hop,Math.sin(((t-s.feliz)%700)/350*Math.PI)*3);
@@ -17292,6 +17292,12 @@ topo=Math.max(iy0,Math.min(chao-bh,topo));const py=topo-B.y0*k;
 gg.save();gg.beginPath();gg.rect(ix0,iy0,IW,IH+1);gg.clip();gg.imageSmoothingEnabled=true;try{gg.imageSmoothingQuality='high'}catch(e){}
 if(!viv){gg.fillStyle='rgba(0,0,0,.24)';gg.beginPath();gg.ellipse(cxp,chao-.6,bw*.42*(1-hop/12),bh*.07+.4,0,0,6.3);gg.fill()}
 gg.translate(Math.round((px+(flip?S:0))*2)/2,Math.round(py*2)/2);gg.scale(flip?-1:1,1);gg.drawImage(im,0,0,64,64,0,0,S,S);gg.restore();
+try{const v=mobView(d,m.r);gg.save();gg.beginPath();if(viv)gg.rect(x0,yt,dw,chao-yt+1);else gg.rect(x0,yt,dw,chao-yt+dh*.03);gg.clip();gg.imageSmoothingEnabled=false;
+gg.globalAlpha=viv?.38:(m.k==='terrario_lava'?.24:.32);gg.drawImage(MOBIMG2,v[0],v[1],v[2],v[3],Math.round(x0*2)/2,Math.round(yt*2)/2,dw,dh);
+if(!viv){gg.globalAlpha=1;gg.fillStyle=m.k==='terrario_lava'?'rgba(255,140,60,.08)':'rgba(150,220,255,.10)';gg.fillRect(ix0,iy0,IW,IH);
+gg.fillStyle='rgba(255,255,255,.16)';gg.beginPath();gg.moveTo(ix0+IW*.08,iy0);gg.lineTo(ix0+IW*.2,iy0);gg.lineTo(ix0+IW*.06,chao);gg.lineTo(ix0-IW*.06,chao);gg.closePath();gg.fill();
+gg.fillStyle='rgba(255,255,255,.09)';gg.beginPath();gg.moveTo(ix0+IW*.26,iy0);gg.lineTo(ix0+IW*.31,iy0);gg.lineTo(ix0+IW*.17,chao);gg.lineTo(ix0+IW*.12,chao);gg.closePath();gg.fill()}
+gg.restore()}catch(e){}
 const bx=cxp+bw*.3,by=topo+1;
 gg.save();gg.font='bold 5px sans-serif';gg.textAlign='center';
 if(s.viu&&t-s.viu<1400){gg.fillStyle='#fff';gg.strokeStyle='#2a1d00';gg.lineWidth=1.2;gg.strokeText('!',bx,by-2);gg.fillText('!',bx,by-2)}
