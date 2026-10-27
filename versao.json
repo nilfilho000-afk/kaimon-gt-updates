@@ -1,11 +1,11 @@
 {
- "jogo": 169,
- "jogo_arquivo": "jogo-169.kpk",
- "jogo_sha": "bdf27288a0329cf5a18302d56f945452ddbabc78ce2f81303aabf687f965de03",
- "jogo_assin": "+U+VjsbMmetI4oo6tABArHYy/XUL/TsXtl9IsNMQnNSS0LGEIW1m9TbsRj5OGXg5a7MEducO6Lr4cPUMLM3sCQ==",
+ "jogo": 170,
+ "jogo_arquivo": "jogo-170.kpk",
+ "jogo_sha": "b52f39db43bbc5d337b2f80e57e6b85c3a2468cc85229fe52f15af7a42a713f8",
+ "jogo_assin": "LdeuNP5C3DL84vCVzDN8YNgJEQIB+XI0rPRJzzcmc7oKz3yliSbZphyI8EOPNJvfDiQT5OJvYG47y53wf8BFBg==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "406e2e13045d9bc8c8b3fa4779e56a325391433913d2cd046ee346f22c68b3f0",
- "launcher_assin": "PdBDbWYgysHziOZSdlLNXJmVkK+85bH3N7l7DCUeQPltjlRxqN6eQ4SFvqUbsgB1Nzq/OiTJGyjssvwXp+e7BQ==",
- "notas": "v1.51: piscina com profundidade (sombra da parede e meio mais fundo), escadinha presa na borda com os degraus dentro d'água (dá para passar por ela e tocar para descer ou subir degrau por degrau), tchibum ao pular pela borda, sai pingando, e o personagem nada com braçadas ao andar na água."
+ "launcher_sha": "38afbd934b41a54c83f936d6be01b4c57a7c7b33c4043deeb5dd0b5e5ddb7fb9",
+ "launcher_assin": "IjkJeUAVi9StYchM3ivU34GyxtL2o0K2yYE2Kmvs1JP0tye0Zl/LC5fpI8ZqVdL1QmzDqP8z57+3IyPp/wLMCw==",
+ "notas": "v1.52: nado de verdade (crawl com os braços saindo da água, pernas batendo e esteira), pulo em arco para entrar na piscina, e a piscina é funda: para sair tem que ser pela escadinha. Nadar é um pouco mais lento que andar."
 }
