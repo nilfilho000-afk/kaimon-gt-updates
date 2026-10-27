@@ -1,11 +1,11 @@
 {
- "jogo": 189,
- "jogo_arquivo": "jogo-189.kpk",
- "jogo_sha": "c98fc123c8539d781cbc94eb8a8fbe063e59aae72c4f95e9ae2563b74bbb26f7",
- "jogo_assin": "m0TPtocWdlvlaWwHDvuTiuj/pi/enZ9BpSqh7a5hHP6saetxRQgAnNGGKkivoT7Uxdooffm/nbxUgUG1VZMyDQ==",
+ "jogo": 190,
+ "jogo_arquivo": "jogo-190.kpk",
+ "jogo_sha": "a63946006191e63f854dc8e2137c40b1710a20d18e811281fc25b9d897e89659",
+ "jogo_assin": "PobEVGeVR+yy3LP5oa8EQgpZNL2C8Rnn/BZOloq6P4koVv6oQ7exnqlJlFULXikvJXpHQ3edZtxd3v/c2N7FCw==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "3657c28c3c45184522cf35892c0c1dc5d219b1eb12a946ad90074537d404e13f",
- "launcher_assin": "Fkhgd2by5PUw/qPC9HfI6z67pbpdsoXVI03xUQmHpT3DhR/HLDOYup43Q78q5FUDt8/dvfVQ+jNAheOvmjVICQ==",
- "notas": "Pisos de 1 quadrado (como o de piscina) colocados em lote com o botão Área; morros menores ficaram maiores e menos lotados"
+ "launcher_sha": "30886b544f9d4bde7b191a83dfc7fb38edce90bec30cbb969c2ff0bd6e18ff05",
+ "launcher_assin": "TF88tOm+nYuL2x44ztY/DXdZBXuut622zsn7JNE3cDsDI5wOyO0PO9K94roS1FeAZXKkAar7bWNRUOKwbWVdAw==",
+ "notas": "Quem joga pelo app da Play Store durante o teste fechado ganha, no lançamento, Passe Kaimon de 30 dias (com VIP) e o título épico Testador Play"
 }
