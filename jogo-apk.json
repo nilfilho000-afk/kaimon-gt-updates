@@ -1,7 +1,7 @@
 {
- "v": 185,
+ "v": 186,
  "url": "https://raw.githubusercontent.com/nilfilho000-afk/kaimon-gt-updates/main/jogo-apk.html",
- "notas": "Conquistas e Títulos: 26 conquistas em 6 categorias (bronze, prata e ouro, com pontos e prêmios), 5 secretas, e títulos coloridos por raridade que aparecem acima do seu nome para todo mundo.",
- "sha": "9ae0dd3c34dd414366d2fca736b4996131b9539f5ea0dfc59f7788268c49d0ec",
- "sig": "aC+w1UFcswgrlXChwrSIJ5ktxPM8VR3ZJzqIpvWTNeno0zOBdjNitqrHgzVm10iC0GhWoDnmz9sK3haFm/34Hw=="
+ "notas": "Barra de status na mochila (nível, EXP que falta, bolsa, banco, título e bônus de EXP, tudo clicável). VIP agora dá +20% de EXP. Avisos do topo somem sozinhos. Casa: toque no quadrado para colocar móveis, piscina e barcos; barcos e boias com ícone na mochila.",
+ "sha": "493e54ad7fc0c02767521a13c2980e6c8530d793906e88a3342403263af7aaac",
+ "sig": "DUGLxYEW1SFOiKFh5T2Cj1el5o2sIgF6jBHx+GA4rz0m942wACfNqpVASKEyyvcOQOZXF4lVhvQ5tbjuWspVDg=="
 }
