@@ -1,11 +1,11 @@
 {
- "jogo": 194,
- "jogo_arquivo": "jogo-194.kpk",
- "jogo_sha": "4e78d321eb186b7eb746b4677de75cd0649b29e88a3aef17e6ce1e62a0c089e0",
- "jogo_assin": "V8QOEdmFbWBpc457DpxDp8W8Zc0gNV0F06vkbxRZwbQLfp30LkauuNJMT98XOZ3mv/aIqienP3M9nFdDZE35Cw==",
+ "jogo": 195,
+ "jogo_arquivo": "jogo-195.kpk",
+ "jogo_sha": "8fe14f84b4dff5662ee7b15a924baf32574e7cb661a4c123d4298fd6df2f5ec8",
+ "jogo_assin": "35scSq/ouCG3QseEK8hAxHXKEEHW67egZnvwBFQ5olIFCJRbss9mhbnm0soAj+6771P3ZpmgimgxmKIjrkZBCg==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "71513fa77277bac5cf74bc133a7bd2459f47fc9a5fb139e742c371284f382d4b",
- "launcher_assin": "r88X7pZgVAY19jPMxTsHkqx2G+1CWnNJRuX7mS1aA007YhZuK57zsLq87nNwsTZXW2cnhkTrRCNNoNLy6d2oCw==",
- "notas": "Os Kaimons dos terrários e do viveiro ficam atrás do vidro e da grade, como o peixe do tanque"
+ "launcher_sha": "27ee3536c669be992b0ba0ed438d9c17fdbb89ec62122e24ff0db27a3ecb53ae",
+ "launcher_assin": "MhAXBA72DL2fdiC00bxifgdOssML6sMAtXLg4PGAgpdAtLfI6zd73Ga5uq8RQMzJ9wQMruEY45nDMvLUIcoaDw==",
+ "notas": "No barco o personagem aparece sentado em todas as direções"
 }

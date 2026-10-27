@@ -2097,7 +2097,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v194 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v195 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -9132,7 +9132,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=194;
+var KGT_VER=195;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -16381,12 +16381,12 @@ const MVB_DY=-1;
 function agBoia(m){const d=m&&mobDef(m.k);return d&&(d.t==='boia'||d.t==='barco')?d:null}
 function agAqui(m,x,y){const d=mobDef(m.k),p=mobPe(d,m.r);return x>=m.x&&x<m.x+p.w&&y>=m.y&&y<m.y+p.h}
 function agDes(gg,m,X0,Ybase,alpha,t,parte){const d=mobDef(m.k);if(!AGIMG.complete)return;const Yb0=Ybase,mont=(MVB&&MVB.m===m)||!!m._mont;if(mont&&d.t==='barco'){if(!(m.r&1))X0-=8;else Ybase-=8}const v=mobView(d,m.r),dw=v[2]/2,dh=v[3]/2,p=mobPe(d,m.r);t=t||performance.now();
-let bob=Math.sin(t/520+m.x*1.7+m.y)*.8,x0=X0+(p.w*16-dw)/2,y0=(d.t==='barco'&&!(m.r&1))?Ybase-dh+(mont?5:2)+bob:Ybase-p.h*16+(p.h*16-dh)/2+bob+(d.t==='boia'?-2:0); 
+let bob=Math.sin(t/520+m.x*1.7+m.y)*.8,x0=X0+(p.w*16-dw)/2,y0=(d.t==='barco'&&!(m.r&1))?Ybase-dh+(mont?8:2)+bob:Ybase-p.h*16+(p.h*16-dh)/2+bob+(d.t==='boia'?-2:0); 
 if(mont&&d.t==='barco'&&(m.r&1)){const pe=Yb0-(p.h-1)*16;y0=pe+13-dh+bob}
 gg.save();if(alpha!=null)gg.globalAlpha=alpha;gg.imageSmoothingEnabled=false;
 if(!parte){gg.globalAlpha=(alpha==null?1:alpha)*.22;gg.fillStyle='#002a5a';gg.beginPath();gg.ellipse(x0+dw/2+1,y0+dh/2+2.5,dw*.5,dh*.42,0,0,6.3);gg.fill();gg.globalAlpha=alpha==null?1:alpha}
 let corte=d.t==='boia'?.52:(m.r&1?.6:.36);
-if(mont&&d.t==='barco'){const pe=Yb0-(mobPe(d,m.r).h-1)*16+(m.r&1?10:2)+bob,linha=pe-10;corte=Math.max(0,Math.min(1,(linha-y0)/dh))}let sy=0,sh=v[3];if(parte==='tras')sh=Math.round(v[3]*corte);else if(parte==='frente'){sy=Math.round(v[3]*corte);sh=v[3]-sy}
+if(mont&&d.t==='barco'){const pe=Yb0-(mobPe(d,m.r).h-1)*16+(m.r&1?10:5)+bob,linha=pe-(m.r&1?10:9);corte=Math.max(0,Math.min(1,(linha-y0)/dh))}let sy=0,sh=v[3];if(parte==='tras')sh=Math.round(v[3]*corte);else if(parte==='frente'){sy=Math.round(v[3]*corte);sh=v[3]-sy}
 gg.drawImage(AGIMG,v[0],v[1]+sy,v[2],sh,Math.round(x0*2)/2,Math.round((y0+sy/2)*2)/2,dw,sh/2);
 if(!parte||parte==='frente'){gg.globalAlpha=(alpha==null?1:alpha)*(.45+.2*Math.sin(t/300+m.x));gg.strokeStyle='#e8fbff';gg.lineWidth=.6;gg.beginPath();gg.ellipse(x0+dw/2,y0+dh*.62,dw*.56,dh*.5,0,.15,Math.PI-.15);gg.stroke()}
 gg.restore()}
@@ -16410,7 +16410,7 @@ RH0.push(function(){try{if(!MVB)return;const c=mobCasa();if(!c||!mobLista(c).inc
 if(m.x!==P.x||m.y!==P.y){const dx=P.x-m.x,dy=P.y-m.y;m.x=P.x;m.y=P.y;if(mobDef(m.k).t==='barco'){if(dx>0)m.r=0;else if(dx<0)m.r=2;else if(dy<0)m.r=1;else if(dy>0)m.r=3}}
 MVE.prof=0;MVE.dentro=true}catch(e){}});
 {const _eaA=mvEscadaAnda;mvEscadaAnda=function(m,s){if(MVB&&s==='sobe')agSai(true);return _eaA.apply(this,arguments)}}
-{const _eiB=entImg;entImg=function(e){const q=_eiB.apply(this,arguments);try{if(q&&e===P&&MVB&&q.Y!=null){const t=performance.now(),d=mobDef(MVB.m.k);q.Y+=Math.round((Math.sin(t/520+MVB.m.x*1.7+MVB.m.y)*.8+(d.t==='barco'?(MVB.m.r&1?10:2):1))*2)/2}}catch(x){}return q}}
+{const _eiB=entImg;entImg=function(e){const q=_eiB.apply(this,arguments);try{if(q&&e===P&&MVB&&q.Y!=null){const t=performance.now(),d=mobDef(MVB.m.k);q.Y+=Math.round((Math.sin(t/520+MVB.m.x*1.7+MVB.m.y)*.8+(d.t==='barco'?(MVB.m.r&1?10:5):1))*2)/2}}catch(x){}return q}}
 RH2.push(function(cx,cy,t){if(!MVB)return;try{const m=MVB.m,d=mobDef(m.k),p=mobPe(d,m.r),X0=P.px*16-cx,Yb=(P.py+p.h)*16-cy;
 if(d.t==='boia'){mvNadoDes(P.px,P.py,cx,cy,t,1,'esc',.55);agDes(g,m,X0,Yb,null,t,'frente')}
 else{agDes(g,m,X0,Yb,null,t,'frente');
@@ -16475,6 +16475,7 @@ function agFalso(o){const d=mobDef(o.bt.k);return{k:o.bt.k,x:o.px,y:o.py,r:d.t==
 {const _mdR=mobDesenha;mobDesenha=function(gg,m,X0,Ybase,alpha,t){try{if(m&&m.id&&agBoia(m)&&!(MVB&&MVB.m===m)){const i=agIdx(m);if(i>=0&&agRemotos().some(o=>o.bt.bi===i&&o.bt.k===m.k))return}}catch(e){}return _mdR.apply(this,arguments)}}
 RH0.unshift(function(cx,cy,t){try{for(const o of agRemotos()){const f=agFalso(o),d=mobDef(f.k),p=mobPe(d,f.r);agDes(g,f,o.px*16-cx,(o.py+p.h)*16-cy,null,t,'tras')}}catch(e){}});
 RH2.push(function(cx,cy,t){try{for(const o of agRemotos()){const f=agFalso(o),d=mobDef(f.k),p=mobPe(d,f.r);agDes(g,f,o.px*16-cx,(o.py+p.h)*16-cy,null,t,'frente')}}catch(e){}});
+{const _eiS=entImg;entImg=function(e,t,cx,cy){const q=_eiS.apply(this,arguments);try{if(q&&e===P&&MVB&&mobDef(MVB.m.k).t==='barco'){const dd=P.d;const im=getV('me',dd==0?2:dd==2?0:1,9,adS(P));if(im){q.im=im;q.mv=false;q.H=false}}}catch(x){}return q}}
 var MVED=false;
 function edMeus(){const c=mobCasa();return c&&!c.vis?c:null}
 function edGuardaTudoPergunta(){const c=edMeus();if(!c)return;const n=mobLista(c).length;closeUI();if(!n)return toast('🏠 A casa já está sem móveis.');
