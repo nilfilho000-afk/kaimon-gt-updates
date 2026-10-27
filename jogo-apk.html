@@ -2097,7 +2097,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v172 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v174 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -9123,7 +9123,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=172;
+var KGT_VER=174;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -16127,7 +16127,7 @@ function mvPele(eu){try{if(eu&&G.look&&G.look.sk)return G.look.sk}catch(e){}retu
 function mvEscBorda(m,S){S=S||mvPool();const tem=(dx,dy)=>S.has((m.x+dx)+','+(m.y+dy));if(!tem(0,-1))return 0;if(!tem(-1,0))return 3;if(!tem(1,0))return 1;if(!tem(0,1))return 2;return 0}
 function mvEscEm(x,y){const c=mobCasa();if(!c)return null;return mobLista(c).find(m=>m.k==='escadinha'&&m.x===Math.round(x)&&m.y===Math.round(y))||null}
 function mvNadoDes(px,py,cx,cy,t,eu,id,prof){const X=px*16-cx+8,Yf=(py+1)*16-cy,k=String(id||'eu'),o=MVN[k]||(MVN[k]={x:px,y:py,mv:0,br:0,an:0});
-const mexeu=Math.hypot(px-o.x,py-o.y)>.004;if(mexeu){o.dx=px-o.x;o.dy=py-o.y}o.x=px;o.y=py;o.mv=mexeu?t:o.mv;prof=prof==null?1:prof;const nadando=t-o.mv<180&&prof>.85;
+const mexeu=Math.hypot(px-o.x,py-o.y)>.004;if(mexeu){o.dx=px-o.x;o.dy=py-o.y}o.x=px;o.y=py;o.mv=mexeu?t:o.mv;prof=prof==null?1:prof;const nadando=t-o.mv<180&&prof>.85&&k!=='esc';
 const Yw=Yf-2-10*prof-(nadando?1.5:0)+(eu?0:-1);
 const S=mvPool(),tx=Math.round(px),ty=Math.round(py),viz=[];for(let j=-1;j<=1;j++)for(let i=-1;i<=1;i++)if(S.has((tx+i)+','+(ty+j)))viz.push([tx+i,ty+j]);
 g.save();g.beginPath();for(const[a,b]of viz)g.rect(a*16-cx,b*16-cy,16,16);g.clip();
@@ -16289,7 +16289,7 @@ const borda=!S.has(x+','+(y-1))||!S.has((x-1)+','+y)||!S.has((x+1)+','+y)||!S.ha
 if(mobLista(c).some(o=>o.k==='escadinha'&&o.id!==ign&&o.x===x&&o.y===y))return false;return true}catch(e){return false}}}
 {const _mm2=mobMarca;mobMarca=function(c,m,on){if(m&&m.k==='escadinha'){for(const[x,y]of mobTiles(m))if(c.o.d[x+','+y]==='mv')delete c.o.d[x+','+y];return}return _mm2.apply(this,arguments)}}
 {const _ms=mobSync;mobSync=function(){const r=_ms.apply(this,arguments);try{const c=mobCasa();if(!c)return r;for(const e of NPC){if(!e||!e.mvM||e.mvM.k!=='escadinha')continue;const m=e.mvM;
-if(c.o.d[m.x+','+m.y]==='mv')delete c.o.d[m.x+','+m.y];e.x=e.y=-999;e.py=m.y-.35;e.px=m.x}}catch(e){}return r}}
+if(c.o.d[m.x+','+m.y]==='mv')delete c.o.d[m.x+','+m.y];e.x=e.y=-999;const bb=mvEscBorda(m);e.py=bb===0?m.y-1.1:bb===2?m.y+.6:m.y-.35;e.px=m.x}}catch(e){}return r}}
 {const _md3=mobDesenha;mobDesenha=function(gg,m,X0,Ybase,alpha,t){if(!m||m.k!=='escadinha'||!m.id||!MOBIMG2.complete)return _md3.apply(this,arguments);
 const d=mobDef('escadinha'),b=mvEscBorda(m),vi=[0,3,1,2][b],v=d.v[vi],dw=v[2]/2,dh=v[3]/2;
 let x0=X0+(16-dw)/2,yb=Ybase;if(b===0)yb=Ybase-3;else if(b===3){x0=X0-dw*.12;yb=Ybase-1}else if(b===1){x0=X0+16-dw*.88;yb=Ybase-1}else yb=Ybase+5;
@@ -16308,6 +16308,38 @@ if(!S.size||!S.has(P.x+','+P.y)||S.has(x+','+y))return r0;if(mvEscEm(P.x,P.y))re
 if(!mobLista(c).some(m=>m.k==='escadinha'&&S.has(m.x+','+m.y)))return r0;
 const t=performance.now();if(t-MVSAI>2500){MVSAI=t;toast('🪜 A piscina é funda: para sair, vá até a escadinha.')}return true}catch(e){}return r0}}
 {const _kpN=kgtPasso;kgtPasso=function(){const v=_kpN.apply(this,arguments);try{if(MVE.dentro&&MVE.prof>.6&&mobCasa())return v*1.45}catch(e){}return v}}
+var MVL=null,MVLchk=0;
+function mvEscEase(f){f=Math.max(0,Math.min(1,f/.55));return f*f*(3-2*f)}
+function mvEscPos(k){const s=Math.min(3.999,k*4),i=Math.floor(s);return{p:(i+mvEscEase(s-i))/4,i,f:s-i}}
+function mvLivre(x,y){MVLchk=1;try{return free(x,y)}catch(e){return false}finally{MVLchk=0}}
+function mvEscadaAnda(m,sentido){if(MVL||!m)return false;const b=mvEscBorda(m),D=[[0,-1],[1,0],[0,1],[-1,0]][b],fora=[m.x+D[0],m.y+D[1]];
+if(sentido==='sobe'&&!mvLivre(fora[0],fora[1])){toast('🪜 A saída da escadinha está bloqueada.');return false}
+const t=performance.now();MVL={m,b,D,fora,sentido,t0:t,dur:2400,i:-1};P.x=P.px=P.fx=m.x;P.y=P.py=P.fy=m.y;P.d=b;P.sit=null;mode='ui';
+MVE.prof=0;MVE.pulo=0;try{play('item')}catch(e){}return true}
+function mvEscOff(){if(!MVL)return[0,0,0];const t=performance.now(),k=Math.min(1,(t-MVL.t0)/MVL.dur),q=mvEscPos(k),p=MVL.sentido==='sobe'?q.p:1-q.p,D=MVL.D;
+let ox=D[0]*16*p,oy=D[1]*16*p;if(D[1]===0)oy-=5*Math.sin(Math.PI*p);if(D[1]===1)oy-=4*Math.sin(Math.PI*p);if(q.f<.55&&k<1)ox+=(q.i%2?.5:-.5);return[ox,oy,q]}
+{const _eiL=entImg;entImg=function(e){const q=_eiL.apply(this,arguments);try{if(q&&e===P&&MVL&&q.Y!=null){const[ox,oy]=mvEscOff();q.X+=Math.round(ox*2)/2;q.Y+=Math.round(oy*2)/2}}catch(x){}return q}}
+{const _esL=mvEntraSai;mvEntraSai=function(t,dt){if(MVL)return;return _esL.apply(this,arguments)}}
+RH2.push(function(cx,cy,t){if(!MVL)return;try{if(mode!=='ui')mode='ui';const L=MVL,k=Math.min(1,(t-L.t0)/L.dur),[ox,oy,q]=mvEscOff(),sub=L.sentido==='sobe';
+const px=P.px+ox/16,py=P.py;mvNadoDes(px,py,cx,cy,t,1,'esc',1);
+const sk=mvPele(1),bx=P.px*16+8+ox-cx,sy=(P.py+1)*16+oy-cy-15,al=q.i%2;let H;
+if(L.b===0||L.b===2)H=[[bx-4.5,sy+(al?-2:1)],[bx+4.5,sy+(al?1:-2)]];else H=[[bx+L.D[0]*3.5,sy+(al?-2:1)],[bx+L.D[0]*2.5,sy+(al?1:-2)+1]];
+if(k<1){g.save();for(const[hx,hy]of H){g.fillStyle='#2a1a12';g.beginPath();g.arc(hx,hy,1.25,0,6.3);g.fill();g.fillStyle=sk;g.beginPath();g.arc(hx,hy,.8,0,6.3);g.fill()}g.restore()}
+if(q.i!==L.i&&k<1){L.i=q.i;try{mobTom(620+(sub?q.i:3-q.i)*45,AC.currentTime,.07,.03,'square')}catch(e){}
+MVX.fx.push({x:P.px*16+8+ox,y:(P.py+1)*16-12,t0:t,k:'anel',r:.45});for(let n=0;n<(sub?4:2);n++)MVX.fx.push({x:P.px*16+8+ox+(Math.random()-.5)*8,y:(P.py+1)*16-10,t0:t+n*40,k:'resp',vx:(Math.random()-.5)*2,vy:-1.5-Math.random()})}
+if(sub&&k>.35&&Math.random()<.35)MVX.fx.push({x:P.px*16+8+ox+(Math.random()-.5)*8,y:(P.py+1)*16+oy-6-Math.random()*8,t0:t,k:'gota'});
+if(k>=1){const t2=performance.now();MVL=null;if(sub){P.x=P.px=P.fx=L.fora[0];P.y=P.py=P.fy=L.fora[1];P.d=L.b;MVE.dentro=false;MVE.prof=0;MVE.pinga=t2}
+else{MVE.dentro=true;MVE.prof=1;P.d=[2,3,0,1][L.b];MVX.fx.push({x:P.px*16+8,y:(P.py+1)*16-12,t0:t2,k:'anel'})}MVE.lt=t2;mode='walk'}}catch(e){MVL=null;mode='walk'}});
+{const _ocL=occAt;occAt=function(x,y){if(MVLchk||MVL)return _ocL.apply(this,arguments);try{if(typeof P!=='undefined'&&!P.sit&&mode==='walk'&&Math.abs(x-P.x)+Math.abs(y-P.y)===1&&x-P.x===DX[P.d]&&y-P.y===DY[P.d]){const c=mobCasa();const S=c?mvPool():null;
+if(S&&S.size){const aqui=S.has(P.x+','+P.y),la=S.has(x+','+y),escs=mobLista(c).filter(m=>m.k==='escadinha'&&S.has(m.x+','+m.y));
+if(aqui&&!la){const m=mvEscEm(P.x,P.y);if(m){const b=mvEscBorda(m,S),D=[[0,-1],[1,0],[0,1],[-1,0]][b];if(x===m.x+D[0]&&y===m.y+D[1]){mvEscadaAnda(m,'sobe');return true}}
+if(escs.length){const t=performance.now();if(t-MVSAI>2500){MVSAI=t;toast('🪜 A piscina é funda: para sair, suba pela escadinha.')}return true}}
+if(!aqui&&la){const m=escs.find(m=>{const b=mvEscBorda(m,S),D=[[0,-1],[1,0],[0,1],[-1,0]][b];return m.x===x&&m.y===y&&P.x===m.x+D[0]&&P.y===m.y+D[1]});if(m){mvEscadaAnda(m,'desce');return true}
+if(!escs.length){const t=performance.now();if(t-MVSAI>2500){MVSAI=t;toast('🪜 Coloque uma escadinha na piscina antes de entrar: sem ela não dá para sair.')}return true}}}}}catch(e){}return _ocL.apply(this,arguments)}}
+mvUsaEscada=function(id){const m=mobAchar(id);if(!m)return;closeUI();const S=mvPool();const b=mvEscBorda(m,S),D=[[0,-1],[1,0],[0,1],[-1,0]][b],fora=[m.x+D[0],m.y+D[1]];
+if(MVE.dentro){mvEscadaAnda(m,'sobe')}else{if(!mvLivre(fora[0],fora[1])&&!(P.x===fora[0]&&P.y===fora[1]))return toast('🪜 Não dá para chegar na escadinha: a borda está ocupada.');mvEscadaAnda(m,'desce')}};
+{const _rcE=mobRecolhe;mobRecolhe=function(id){const m=mobAchar(id);if(m&&m.k==='escadinha'&&MVE.dentro){const c=mobCasa();const S=mvPool();if(mobLista(c).filter(q=>q.k==='escadinha'&&S.has(q.x+','+q.y)).length<=1)return toast('🪜 Saia da piscina antes de guardar a única escadinha.')}return _rcE.apply(this,arguments)}}
+{const _eiE=entImg;entImg=function(e){const q=_eiE.apply(this,arguments);try{if(q&&e&&e.mvM&&e.mvM.k==='escadinha'&&q.Y!=null)q.Y+=(e.mvM.y-e.py)*16}catch(x){}return q}}
 var KAPPM=(typeof KPLAY!=='undefined'&&KPLAY)||!!window.KAPK;
 const KAPP_PLAY='https://play.google.com/store/apps/details?id=br.com.kaimongt.app';
 if(KAPPM){
@@ -16387,10 +16419,11 @@ if(!document.getElementById('mzdl')){const t=document.querySelector('#mzap .mzto
 b.setAttribute('aria-label','Baixar o mapa');b.title='Baixar a imagem do mapa';b.onclick=e=>{e.stopPropagation();mzBaixar()};t.appendChild(b)}}}catch(e){}return r}}
 function mzSlug(t){return String(t||'mapa').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'mapa'}
 function mzBaseFull(){
-if(MZ.v===0){const m=M[cur],S=Math.max(4,Math.min(16,Math.floor(2400/Math.max(m.W,m.H))));
+const cel=/Android|iPhone|iPad/i.test(navigator.userAgent)||matchMedia('(pointer:coarse)').matches;
+if(MZ.v===0){const m=M[cur],S=Math.max(4,Math.min(16,Math.floor((cel?2000:2400)/Math.max(m.W,m.H))));
 return {c:mzMk(m.W,m.H,S,(d,Wp,S2)=>mzPaint(d,Wp,S2,m.T,null,m.W,0,0,m.W,m.H,0,0,m.p)),S,MW:m.W,MH:m.H}}
 const b=gwB(),Wd=b[2]-b[0],Hd=b[3]-b[1];GW.forEach(([i])=>{try{bEnsure(i)}catch(e){}});
-const S=Math.max(1,Math.min(6,Math.floor(4200/Math.max(Wd,Hd))));
+const S=Math.max(1,Math.min(6,Math.floor((cel?2600:4200)/Math.max(Wd,Hd))));
 return {c:mzMk(Wd,Hd,S,(d,Wp,S2)=>{for(let k=0;k<d.length;k+=4){d[k]=11;d[k+1]=15;d[k+2]=26;d[k+3]=255}
 for(const a of GW){const i=a[0],m=M[i];if(!m||!m.T)continue;const Wg=m.Wg||m.W,Hg=m.Hg||m.H;try{mzPaint(d,Wp,S2,m.T,null,Wg,0,0,Wg,Hg,a[1]-b[0],a[2]-b[1],m.p)}catch(e){}}}),S,MW:Wd,MH:Hd,b}}
 function mzImagem(){
@@ -16414,18 +16447,23 @@ const dd=new Date(),dt=String(dd.getDate()).padStart(2,'0')+'/'+String(dd.getMon
 f.textAlign='right';f.font=Math.round(14*hs)+'px system-ui,sans-serif';f.fillStyle='#b8c6e0';f.fillText((G.nick?G.nick+' · ':'')+dt,W-14*hs,head/2);
 f.textAlign='center';f.font=Math.round(12*hs)+'px system-ui,sans-serif';f.fillStyle='#8fa0c4';f.fillText('Kaimon GT · kaimongt.com.br · o ponto vermelho é você',W/2,H-foot/2-2);
 return {c:c2,arq:'kaimon-mapa-'+mzSlug(nome)+'.png',nome}}
+var MZDL={u:null};
 function mzBaixar(){try{
-const R=mzImagem();if(!R)return mzHint('Não deu para montar a imagem do mapa. Tente de novo.',2500);
-mzHint('⬇️ Preparando a imagem do mapa...',1500);
-R.c.toBlob(bl=>{try{if(!bl)return mzHint('Não deu para salvar o mapa neste aparelho.',2500);
-if(window.KAPK){
-const f=typeof File==='function'?new File([bl],R.arq,{type:'image/png'}):null;
-if(f&&navigator.canShare&&navigator.canShare({files:[f]}))return navigator.share({files:[f],title:'Mapa de '+R.nome}).catch(()=>mzMostra(R));
-return mzMostra(R)}
-const u=URL.createObjectURL(bl),a=document.createElement('a');a.href=u;a.download=R.arq;a.rel='noopener';document.body.appendChild(a);a.click();a.remove();
-setTimeout(()=>URL.revokeObjectURL(u),8000);mzHint('✅ Mapa salvo: '+R.arq+' (pasta Downloads)',3500);try{play('item')}catch(e){}
-}catch(e){mzMostra(R)}},'image/png')}catch(e){try{mzHint('Não deu para salvar o mapa.',2500)}catch(x){}}}
-function mzMostra(R){try{const d=$('mzdlg');if(!d)return;d.innerHTML=`<b>🗺️ ${esc(R.nome)}</b><img class="mzdlimg" src="${R.c.toDataURL('image/png')}" alt="Mapa"><small>Neste aparelho o download direto não funciona. Tire um print desta tela, ou jogue pelo app da Play Store ou pelo navegador para baixar o arquivo.</small><br><button onclick="mzDlgOff()" style="margin-top:6px;padding:6px 14px;border-radius:8px;border:1.5px solid #e8c050;background:#1d2433">Fechar</button>`;d.hidden=false;MZ.dlg=1}catch(e){}}
+if(MZDL.ocup)return;MZDL.ocup=1;mzHint('🗺️ Montando o mapa completo...',0);
+setTimeout(()=>{let R=null;try{R=mzImagem()}catch(e){}
+if(!R){MZDL.ocup=0;return mzHint('Não deu para montar a imagem do mapa. Tente de novo.',3000)}
+R.c.toBlob(bl=>{MZDL.ocup=0;try{if(!bl)return mzHint('O aparelho não conseguiu gerar a imagem do mapa.',3000);
+if(MZDL.u)try{URL.revokeObjectURL(MZDL.u)}catch(e){}MZDL.u=URL.createObjectURL(bl);MZDL.f=typeof File==='function'?new File([bl],R.arq,{type:'image/png'}):null;
+mzHint('',1);mzMostra(R)}catch(e){mzHint('Não deu para salvar o mapa.',3000)}},'image/png')},40)}catch(e){MZDL.ocup=0}}
+function mzShare(){try{const f=MZDL.f;if(f&&navigator.canShare&&navigator.canShare({files:[f]}))navigator.share({files:[f],title:'Mapa de Kaimon GT'}).catch(()=>{});else toast('Este aparelho não tem a opção de compartilhar imagem. Use o ⬇️ Baixar.')}catch(e){}}
+function mzMostra(R){try{const d=$('mzdlg');if(!d)return;const share=!!(MZDL.f&&navigator.canShare&&navigator.canShare({files:[MZDL.f]})),apk=!!window.KAPK;
+const bs='display:inline-flex;align-items:center;justify-content:center;gap:6px;margin:4px 3px;padding:9px 14px;border-radius:9px;font-weight:800;font-size:14px;text-decoration:none;border:1.5px solid #e8c050;';
+d.innerHTML=`<b>🗺️ ${esc(R.nome)} — mapa completo</b><img class="mzdlimg" src="${MZDL.u}" alt="Mapa completo">
+ <div style="text-align:center">${apk?'':`<a href="${MZDL.u}" download="${R.arq}" style="${bs}background:linear-gradient(#ffd75a,#d99a1e);color:#3a2500" onclick="setTimeout(()=>mzHint('✅ Baixado: ${R.arq} (pasta Downloads)',3500),300)">⬇️ Baixar</a>`}
+ ${share?`<button onclick="mzShare()" style="${bs}background:#1d2433;color:#ffe27a">📤 Compartilhar / salvar na galeria</button>`:''}
+ <button onclick="mzDlgOff()" style="${bs}background:#1d2433;color:#fff">Fechar</button></div>
+ ${apk&&!share?'<small>Neste app antigo o download direto não funciona: tire um print desta tela, ou baixe pelo app da Play Store ou pelo navegador.</small>':''}`;
+d.hidden=false;MZ.dlg=1}catch(e){}}
 (function(){try{const st=document.createElement('style');st.textContent=`body.hudmin .ab:not(.hkeep){display:none!important}
 #hudtg{position:fixed;right:calc(env(safe-area-inset-right,0px) + 88px);bottom:calc(env(safe-area-inset-bottom,0px) + 6px);width:40px;height:40px;border-radius:50%;padding:0;margin:0;z-index:6;
  background:radial-gradient(circle at 35% 30%,#fff3c0,#e8c050 60%,#a8801c);border:2px solid #fff;color:#3a2a00;font:900 18px sans-serif;box-shadow:0 2px 6px #0008;display:flex;align-items:center;justify-content:center}

@@ -1,11 +1,11 @@
 {
- "jogo": 172,
- "jogo_arquivo": "jogo-172.kpk",
- "jogo_sha": "dcbf293d72e48c485008a2cfa5dedb2281216e5dfa0c0794a5929262c1fefbe6",
- "jogo_assin": "+s6NQvGMyYP2+gxJauMbiYFJooo23ufnOkPuf3+FWprF1kr9UfPBbQ+UWbMIqMKVTiy3bKwtzqm8N669xqb9AQ==",
+ "jogo": 174,
+ "jogo_arquivo": "jogo-174.kpk",
+ "jogo_sha": "e2ff077a85792cedfa3ca2f468b2274e40ca061b4fd4a16df33dc80c26aab4dc",
+ "jogo_assin": "qPPDDdgNYg8HFo84mFlteLx5kPRUoRpl9s3XeNGAagw3d0eGMZcvB2jC6YPQtVsXD59Fr6XsLgu+AZgzYgfCAg==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "4d6ffd39db80ba43a626525766e2e11a08da7d34066e536cb00e57e956a89a42",
- "launcher_assin": "2bylkVI7jKBqlA1rJm5QHsDxPV13YgEMGdD3r5Qlpzhffpn6Px7pFRh5hZOYy7U0Xzy8N5oe2dOZRnFKu48xAw==",
- "notas": "v1.54: junta tudo das últimas atualizações (piscina funda com nado crawl e saída pela escadinha + minimizar/baixar o mapa + Cristal Supremo só na Loja Kaimon)."
+ "launcher_sha": "d9b65c45a52ed55ffb8166bf4d4924712ff382be0fb1b391467f5c2e5813a930",
+ "launcher_assin": "cGZuD37KLtaoEBfpsUhHJ9shL4bQN8WwlozajFyBUgyB5+uP00Pi7bO08ywQ4BEU2CszP6LiZpzfcfnti7brCQ==",
+ "notas": "v1.56: escadinha de verdade na piscina: o personagem sobe e desce degrau por degrau, com as mãos no corrimão, a água baixando/subindo pelo corpo e plim em cada degrau. Só dá para sair da piscina pela escadinha (e sem escadinha não dá para pular)."
 }

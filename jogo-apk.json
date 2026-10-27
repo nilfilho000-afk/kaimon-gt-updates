@@ -1,7 +1,7 @@
 {
- "v": 172,
+ "v": 174,
  "url": "https://raw.githubusercontent.com/nilfilho000-afk/kaimon-gt-updates/main/jogo-apk.html",
- "notas": "v1.54: junta tudo das últimas atualizações (piscina funda com nado crawl e saída pela escadinha + minimizar/baixar o mapa + Cristal Supremo só na Loja Kaimon).",
- "sha": "0584cb465045cf68566e85bd5f1054bc24551a82b028b14fcb9a64ee2b5aa1b9",
- "sig": "XQEk/tFadpfJoDDoxtBeDDCRwo0PMMGJsrecnpiG7wRJfR07DEHiWCfJ5Qoa/l+eRw90csYSrDOErrvLDDKOZA=="
+ "notas": "v1.56: escadinha de verdade na piscina: o personagem sobe e desce degrau por degrau, com as mãos no corrimão, a água baixando/subindo pelo corpo e plim em cada degrau. Só dá para sair da piscina pela escadinha (e sem escadinha não dá para pular).",
+ "sha": "81bc780d79e2a7ce19dbaedaebfb0dd5dbf641aa2c69ee0166f4e15a7c4e594e",
+ "sig": "zliHNsxHqcTFGgq/gPlEGna8xt+aC4PBGumYGT6ibokck5eN4VnZ7LBAR7QwPOhk75FYrDuYb92OuH8Eww1X0w=="
 }
