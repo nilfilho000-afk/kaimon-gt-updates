@@ -1,11 +1,11 @@
 {
- "jogo": 202,
- "jogo_arquivo": "jogo-202.kpk",
- "jogo_sha": "803bbec07d05f9ac40bfd38713a54db8b7b7c11f9b2c19c96fd13c36430283d6",
- "jogo_assin": "ZuOmKPAbSiRpU2qRhOi2pJqXuq445iYxxRGAHPYGDvz5XM1H20ZhwCvFYHIurly4C9HIi+fBJOMckv2Y9knTBg==",
+ "jogo": 203,
+ "jogo_arquivo": "jogo-203.kpk",
+ "jogo_sha": "8fc64dd7fb6f3fc455a0d4ad07c48c7b2f4270a1ac3f134886f61a5adaefe6fc",
+ "jogo_assin": "kkAogKdNTQYyj9JoA6jUT+A4CkHap8hiUmZhXw3/1T8DL8qi+0//7DmwofCmk2tZtWVPxJkMYvB/ApGgy4YjCQ==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "f2d1cd065e6594b000a7f2506caf460b74159c0340d86e02071d5756043511fd",
- "launcher_assin": "ecSPHO04qtFFQ35jwaGlQ4MLU57JPplrB6X7DoTQ4gZPnN/RBRX/jNWljaWuy9Xe5XWNuFTgUB8EfDAi8Cv3BA==",
- "notas": "Piso por pedaço ficou fácil: ao usar qualquer piso, escolha \"Só um pedaço\" e toque em 2 cantos da casa (grama aqui, madeira ali, areia lá) ou \"A casa inteira\"."
+ "launcher_sha": "0118a826c9fbd545a6ca4abe5a430a5494f94cf1fad3077ce093970407cd3afa",
+ "launcher_assin": "1idNmd+5IN+V1byZWi/SGItH2+ei7SqvZNhlhgUix6+yEqrNm/7m5EBW20rDLTdsQO9NT88HyZYYG4AFduCuDw==",
+ "notas": "Ajustes internos para testes da aura do Cristal Super."
 }
