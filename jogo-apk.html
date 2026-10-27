@@ -2097,7 +2097,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v179 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v180 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -9123,7 +9123,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=179;
+var KGT_VER=180;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -16143,7 +16143,10 @@ function mvEscEm(x,y){const c=mobCasa();if(!c)return null;return mobLista(c).fin
 function mvNadoDes(px,py,cx,cy,t,eu,id,prof){const X=px*16-cx+8,Yf=(py+1)*16-cy,k=String(id||'eu'),o=MVN[k]||(MVN[k]={x:px,y:py,mv:0,br:0,an:0});
 const mexeu=Math.hypot(px-o.x,py-o.y)>.004;if(mexeu){o.dx=px-o.x;o.dy=py-o.y}o.x=px;o.y=py;o.mv=mexeu?t:o.mv;prof=prof==null?1:prof;const nadando=t-o.mv<180&&prof>.85&&k!=='esc';
 const Yw=Yf-2-10*prof-(nadando?1.5:0)+(eu?0:-1)+mvDyFundo(px,py)*prof;
-const S=mvPool(),tx=Math.round(px),ty=Math.round(py),viz=[];for(let j=-1;j<=1;j++)for(let i=-1;i<=1;i++)if(S.has((tx+i)+','+(ty+j)))viz.push([tx+i,ty+j]);
+const S=mvPool(),tx=Math.round(px),ty=Math.round(py),viz=[];
+let flut=[];try{const c=mobCasa();flut=c?mobLista(c).filter(m=>typeof agBoia==='function'&&agBoia(m)&&!(typeof MVB!=='undefined'&&MVB&&MVB.m===m)):[]}catch(e){}
+const ocup=(x,y)=>flut.some(m=>{const p=mobPe(mobDef(m.k),m.r);return x>=m.x&&x<m.x+p.w&&y>=m.y&&y<m.y+p.h});
+for(let j=-1;j<=1;j++)for(let i=-1;i<=1;i++)if(S.has((tx+i)+','+(ty+j))&&(i===0&&j===0||!ocup(tx+i,ty+j)))viz.push([tx+i,ty+j]);
 g.save();g.beginPath();for(const[a,b]of viz)g.rect(a*16-cx,b*16-cy,16,16);g.clip();
 mvAgua(X,Yw,22,Yf-Yw+(S.has(tx+','+(ty+1))?4:0),t,.9,px*3,()=>{for(const[a,b]of viz)mvPiscDes(g,{k:'piscina',x:a,y:b},a*16-cx,(b+1)*16-cy,.9)});g.restore();
 if(prof<.5)return;
@@ -16183,7 +16186,7 @@ if(MVE.modo==='escada'&&MVE.prof>0&&MVE.prof<1){const d=Math.floor(MVE.prof*4);i
 if(!dentro&&MVE.pinga&&t-MVE.pinga<2500&&Math.random()<.18)MVX.fx.push({x:P.px*16+8+(Math.random()-.5)*8,y:P.py*16+4+Math.random()*8,t0:t,k:'gota'})}
 RH2.push(function(cx,cy,t){const c=mobCasa();if(!c)return;
 try{const S=mvPool();const dt=Math.min(100,t-(MVE.lt||t));MVE.lt=t;mvEntraSai(t,dt);if(S.size){if(!P.sit&&MVE.prof>.02)mvNadoDes(P.px,P.py,cx,cy,t,1,'eu',MVE.prof);
-if(typeof MP!=='undefined'&&MP.ps)for(const o of MP.ps.values())if(o&&o.px!=null&&S.has(Math.round(o.px)+','+Math.round(o.py)))mvNadoDes(o.px,o.py,cx,cy,t,0,o.n||o.id,1)}}catch(e){}
+if(typeof MP!=='undefined'&&MP.ps)for(const o of MP.ps.values())if(o&&o.px!=null&&S.has(Math.round(o.px)+','+Math.round(o.py))){if(o.bt&&mobDef(o.bt.k)&&mobDef(o.bt.k).t==='barco')continue;mvNadoDes(o.px,o.py,cx,cy,t,0,o.bt?'esc':(o.n||o.id),o.bt?.55:1)}}}catch(e){}
 try{const quem=[];if(P.sit)quem.push([P.x,P.y]);for(const[x,y]of quem){const m=mvOfuroDe(x,y);if(!m)continue;const d=mobDef(m.k),v=mobView(d,m.r),p=mobPe(d,m.r),dw=v[2]/2,dh=v[3]/2,x0=m.x*16-cx+(p.w*16-dw)/2,yb=(m.y+p.h)*16-cy,k=.5;
 const PX=P.px*16-cx+8,Yw=(P.py+1)*16-cy-17,Yb=yb-dh*.5+2;if(Yb>Yw){g.save();g.beginPath();g.rect(x0+dw*.14,Yw-4,dw*.62,Yb-Yw+8);g.clip();mvAgua(PX,Yw,18,Yb-Yw,t,.82,1.7);g.restore()}
 g.save();g.imageSmoothingEnabled=false;g.drawImage(MOBIMG2,v[0],v[1]+v[3]*k,v[2],v[3]*(1-k),x0,yb-dh*(1-k),dw,dh*(1-k));g.restore();
@@ -16362,7 +16365,7 @@ var MVB=null;
 const MVB_DY=-1;
 function agBoia(m){const d=m&&mobDef(m.k);return d&&(d.t==='boia'||d.t==='barco')?d:null}
 function agAqui(m,x,y){const d=mobDef(m.k),p=mobPe(d,m.r);return x>=m.x&&x<m.x+p.w&&y>=m.y&&y<m.y+p.h}
-function agDes(gg,m,X0,Ybase,alpha,t,parte){const d=mobDef(m.k);if(!AGIMG.complete)return;const Yb0=Ybase,mont=MVB&&MVB.m===m;if(mont&&d.t==='barco'){if(!(m.r&1))X0-=8;else Ybase-=8}const v=mobView(d,m.r),dw=v[2]/2,dh=v[3]/2,p=mobPe(d,m.r);t=t||performance.now();
+function agDes(gg,m,X0,Ybase,alpha,t,parte){const d=mobDef(m.k);if(!AGIMG.complete)return;const Yb0=Ybase,mont=(MVB&&MVB.m===m)||!!m._mont;if(mont&&d.t==='barco'){if(!(m.r&1))X0-=8;else Ybase-=8}const v=mobView(d,m.r),dw=v[2]/2,dh=v[3]/2,p=mobPe(d,m.r);t=t||performance.now();
 const bob=Math.sin(t/520+m.x*1.7+m.y)*.8,x0=X0+(p.w*16-dw)/2,y0=(d.t==='barco'&&!(m.r&1))?Ybase-dh+(mont?3:2)+bob:Ybase-p.h*16+(p.h*16-dh)/2+bob+(d.t==='boia'?-2:0); 
 gg.save();if(alpha!=null)gg.globalAlpha=alpha;gg.imageSmoothingEnabled=false;
 if(!parte){gg.globalAlpha=(alpha==null?1:alpha)*.22;gg.fillStyle='#002a5a';gg.beginPath();gg.ellipse(x0+dw/2+1,y0+dh/2+2.5,dw*.5,dh*.42,0,0,6.3);gg.fill();gg.globalAlpha=alpha==null?1:alpha}
@@ -16447,6 +16450,14 @@ function lojaCasaG(){if(G.casaG)return toast('🏠 Você já tem a Casa Ampliada
 try{const k=HRK;if(k!=null&&G.own&&G.own[k]){csCall({op:'deco',k:csKey(isNaN(+k)?k:+k),dec:G.own[k].d||{},pw:G.own[k].pw||{}}).catch(()=>{});if(cur===HRM){const m=M[HRM];try{if(m.MC&&FGM)FGM.delete(m.MC)}catch(e){}delete m.T;delete m.MC;setMap(HRM,P.x,P.y)}}}catch(e){}
 ok(`<div class="psh"><img src="${csGIco()}" alt="" style="width:64px;height:64px"><div><b>Casa Ampliada!</b><small>Sua casa agora é bem maior (35×19). Vale para sempre na sua conta: se você trocar de casa, a nova também fica grande.</small></div></div>`+btn('Voltar à loja','lojaOpen()')+btn('Fechar','closeUI()'))}
 if(typeof mobCardsKmc==='function'){const _mck=mobCardsKmc;mobCardsKmc=function(kp){const r=_mck.apply(this,arguments);try{return lj2Card({img:csGIco(),nm:'Casa Ampliada',preco:G.casaG?'✓ Já tem':kmc(5),acao:G.casaG?'':'lojaCasaG()',dis:!!G.casaG||kp<5,det:esc('Permanente: toda casa que você alugar fica maior (35×19 em vez de 27×15)')})+r}catch(e){return r}}}
+function agIdx(m){try{const c=mobCasa();return c?mobLista(c).indexOf(m):-1}catch(e){return-1}}
+{const _mlB=mpLook;mpLook=function(){const s=_mlB.apply(this,arguments);try{if(!MVB)return s;const o=JSON.parse(s||'{}');o._bt=[MVB.m.k,agIdx(MVB.m),MVB.m.r&3].join('|');return JSON.stringify(o)}catch(e){return s}}}
+{const _mvB=mpVisual;mpVisual=function(o,k){try{const L=JSON.parse(k||'{}');if(L&&L._bt){const a=String(L._bt).split('|');o.bt=MOBD[a[0]]&&agBoia({k:a[0]})?{k:a[0],bi:+a[1],r:(+a[2])&3}:null;delete L._bt;k=JSON.stringify(L)}else o.bt=null}catch(e){}return _mvB.call(this,o,k)}}
+function agRemotos(){const L=[];try{if(typeof MP==='undefined'||!MP.ps||!mobCasa())return L;for(const o of MP.ps.values())if(o&&o.bt&&o.px!=null)L.push(o)}catch(e){}return L}
+function agFalso(o){const d=mobDef(o.bt.k);return{k:o.bt.k,x:o.px,y:o.py,r:d.t==='barco'?o.bt.r:0,_mont:1}}
+{const _mdR=mobDesenha;mobDesenha=function(gg,m,X0,Ybase,alpha,t){try{if(m&&m.id&&agBoia(m)&&!(MVB&&MVB.m===m)){const i=agIdx(m);if(i>=0&&agRemotos().some(o=>o.bt.bi===i&&o.bt.k===m.k))return}}catch(e){}return _mdR.apply(this,arguments)}}
+RH0.unshift(function(cx,cy,t){try{for(const o of agRemotos()){const f=agFalso(o),d=mobDef(f.k),p=mobPe(d,f.r);agDes(g,f,o.px*16-cx,(o.py+p.h)*16-cy,null,t,'tras')}}catch(e){}});
+RH2.push(function(cx,cy,t){try{for(const o of agRemotos()){const f=agFalso(o),d=mobDef(f.k),p=mobPe(d,f.r);agDes(g,f,o.px*16-cx,(o.py+p.h)*16-cy,null,t,'frente')}}catch(e){}});
 var MVED=false;
 function edMeus(){const c=mobCasa();return c&&!c.vis?c:null}
 function edGuardaTudoPergunta(){const c=edMeus();if(!c)return;const n=mobLista(c).length;closeUI();if(!n)return toast('🏠 A casa já está sem móveis.');
