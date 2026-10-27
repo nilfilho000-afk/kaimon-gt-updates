@@ -1,7 +1,7 @@
 {
- "v": 177,
+ "v": 178,
  "url": "https://raw.githubusercontent.com/nilfilho000-afk/kaimon-gt-updates/main/jogo-apk.html",
- "notas": "v1.59: boias na piscina (listrada, rosquinha e patinho: entre e boie junto com ela), Casa Ampliada permanente (toda casa que você alugar fica 35x19) e Paredes Divisórias para separar cômodos — tudo por 5 KMC na Loja (aba Casa).",
- "sha": "92e5734fc9c10d45104af3069a05b3cd4696cb0f8d8fa237c0be18fd4cf1b0f1",
- "sig": "FoZI81stB+EDTYxk30tKfuyI5xsFnAI1nzAiqeqWH+qpiavgzmTaph8X8x3oC+HlO+fZqV/sqDR2r2zumIQr2A=="
+ "notas": "v1.60: editar a casa ficou mais fácil: toque no chão → ✏️ Modo edição (grade no chão e tocar num móvel já pega ele para mover) e 🧹 Guardar todos os móveis de uma vez.",
+ "sha": "2ace5ba01cb28c6865a06a14dc39cb2ecc6cdc79e99509b051808f20ed60522c",
+ "sig": "giDEzDhefa9CSTMEIJz2ZQggnI29fxWjGoT1cR1cLqpoDk2/JtorWXyoBbZm/1cDkQF2AuPCgyEN/UH3f2+L7Q=="
 }

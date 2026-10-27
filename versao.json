@@ -1,11 +1,11 @@
 {
- "jogo": 177,
- "jogo_arquivo": "jogo-177.kpk",
- "jogo_sha": "a6b31912d19f6460cd6b6ebdfe8cefe24333a492de88bb89732df796e3b5e1f7",
- "jogo_assin": "W8KOH6+FzGHHkBaUMMyB5/l6rWpx02PrJg7pWJN6l7ZtiAUxAwQMg9XHbvc0QenbCAOLKZWbbGirmHTD924iCQ==",
+ "jogo": 178,
+ "jogo_arquivo": "jogo-178.kpk",
+ "jogo_sha": "8867ff7b61e83aeef7c26f5307172328f4f9e05b2785a595b1081d827ff840eb",
+ "jogo_assin": "h1UpXlxCyjAMk4u8jPjyF66RGT0LVummAbQkvTcvYkWZgkG9HSxEpLcWQDd+0moOLuAFMVh+KUrn8LL5pcXvBA==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "ecacce76ec420dd3ea41071a6384dfc99dbaf64925f4e3fb9e4c4a08cb53622f",
- "launcher_assin": "R5QU74NBVOmD/4UiUY7J8TdCkHh94g/kSFE1a0UlR/I6L4PMSQmFqWDS0kTyv01ZU1Azu1hPdUcdvg86+t9UBQ==",
- "notas": "v1.59: boias na piscina (listrada, rosquinha e patinho: entre e boie junto com ela), Casa Ampliada permanente (toda casa que você alugar fica 35x19) e Paredes Divisórias para separar cômodos — tudo por 5 KMC na Loja (aba Casa)."
+ "launcher_sha": "92f37de7af9a1c8844a01b0d08d9e139cb6c061d0daa985480e3129b084e32d9",
+ "launcher_assin": "ZoX+ucVhy90PkdzJAdVg521dPJ/TNsfzyawQ/JS/xIgXjKoXoxkGvSTmCvuLQCyTQuCw4WiqZ9N9Lh1RLNRbDQ==",
+ "notas": "v1.60: editar a casa ficou mais fácil: toque no chão → ✏️ Modo edição (grade no chão e tocar num móvel já pega ele para mover) e 🧹 Guardar todos os móveis de uma vez."
 }
