@@ -1,7 +1,7 @@
 {
- "v": 174,
+ "v": 175,
  "url": "https://raw.githubusercontent.com/nilfilho000-afk/kaimon-gt-updates/main/jogo-apk.html",
- "notas": "v1.56: escadinha de verdade na piscina: o personagem sobe e desce degrau por degrau, com as mãos no corrimão, a água baixando/subindo pelo corpo e plim em cada degrau. Só dá para sair da piscina pela escadinha (e sem escadinha não dá para pular).",
- "sha": "81bc780d79e2a7ce19dbaedaebfb0dd5dbf641aa2c69ee0166f4e15a7c4e594e",
- "sig": "zliHNsxHqcTFGgq/gPlEGna8xt+aC4PBGumYGT6ibokck5eN4VnZ7LBAR7QwPOhk75FYrDuYb92OuH8Eww1X0w=="
+ "notas": "v1.57: descendo a escadinha da piscina, o personagem agora entra de frente (olhando para a água); subindo, olha para a borda.",
+ "sha": "15f3fee937f473bb25cc99ccd847bb4df358594a5567b7bc4a82648ba971190c",
+ "sig": "IMrhwWc1ufdnm1lU+JRjMGnfhV1T7RP2qj74NHCKBCHadLwcFRJIf6VwvWZcFRcEjWA+fbeJgLiN72TOuqZveQ=="
 }
