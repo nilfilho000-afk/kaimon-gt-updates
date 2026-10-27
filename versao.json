@@ -1,11 +1,11 @@
 {
- "jogo": 178,
- "jogo_arquivo": "jogo-178.kpk",
- "jogo_sha": "8867ff7b61e83aeef7c26f5307172328f4f9e05b2785a595b1081d827ff840eb",
- "jogo_assin": "h1UpXlxCyjAMk4u8jPjyF66RGT0LVummAbQkvTcvYkWZgkG9HSxEpLcWQDd+0moOLuAFMVh+KUrn8LL5pcXvBA==",
+ "jogo": 179,
+ "jogo_arquivo": "jogo-179.kpk",
+ "jogo_sha": "c43a4024cf5101868c508be0fb6758909d99af2de7fbcb2511d10d4c53f1f9c8",
+ "jogo_assin": "3lunI+SNRYqd36l5zOsi8edTE1Pka+QzcAAAf3Z3ypSGkuL5ebe/QSTAQX2iJMFYsxvIYWBMZlhhG48efzIbCg==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "92f37de7af9a1c8844a01b0d08d9e139cb6c061d0daa985480e3129b084e32d9",
- "launcher_assin": "ZoX+ucVhy90PkdzJAdVg521dPJ/TNsfzyawQ/JS/xIgXjKoXoxkGvSTmCvuLQCyTQuCw4WiqZ9N9Lh1RLNRbDQ==",
- "notas": "v1.60: editar a casa ficou mais fácil: toque no chão → ✏️ Modo edição (grade no chão e tocar num móvel já pega ele para mover) e 🧹 Guardar todos os móveis de uma vez."
+ "launcher_sha": "747a0bba1324b6a1ae35fa6bcefda6bdf94f88cd100143924fd86636478b107b",
+ "launcher_assin": "BzPvIKis2wMtyTl9V0z67oG+ZE0tezmZVN8C+J+YjqYgHATS5jg0F+HT6DxxydZ582mV8wZ3spEm5Rpt0nhSDQ==",
+ "notas": "v1.61: barcos na piscina! Barco a Remo no Mercado (Decoração) e Pedalinho de Cisne, Navio Pirata e Lancha na Loja (5 KMC). Entre e navegue sentado; o barco vira para onde você vai. A casa agora aceita até 160 móveis."
 }
