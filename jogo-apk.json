@@ -1,7 +1,7 @@
 {
- "v": 170,
+ "v": 172,
  "url": "https://raw.githubusercontent.com/nilfilho000-afk/kaimon-gt-updates/main/jogo-apk.html",
- "notas": "v1.52: nado de verdade (crawl com os braços saindo da água, pernas batendo e esteira), pulo em arco para entrar na piscina, e a piscina é funda: para sair tem que ser pela escadinha. Nadar é um pouco mais lento que andar.",
- "sha": "86d8e089dfe6ff3b406297ef660baff4c7d0d0f936455b5f423988531511979e",
- "sig": "8NqUOOcrrrnHQ9HBwfnaf0u0LVWSp44fkX7NJyRM8pGuv4xLsWCED5KRU2jlZotkaeFuXGevlhwn/LVhdGDF6w=="
+ "notas": "v1.54: junta tudo das últimas atualizações (piscina funda com nado crawl e saída pela escadinha + minimizar/baixar o mapa + Cristal Supremo só na Loja Kaimon).",
+ "sha": "0584cb465045cf68566e85bd5f1054bc24551a82b028b14fcb9a64ee2b5aa1b9",
+ "sig": "XQEk/tFadpfJoDDoxtBeDDCRwo0PMMGJsrecnpiG7wRJfR07DEHiWCfJ5Qoa/l+eRw90csYSrDOErrvLDDKOZA=="
 }

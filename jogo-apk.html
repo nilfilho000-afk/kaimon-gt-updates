@@ -972,7 +972,7 @@ function ferry(from){const ds=[['vermilion','Porto de Bonança',20,36],['fuchsia
 open(`<p><b>Barqueiro:</b> Ahoy! Para onde vamos? A passagem custa 💰300.</p>`+ds.map(d=>btn(d[1],`ferryGo('${d[0]}',${d[2]},${d[3]})`,G.money<300)).join('')+btn('Fico aqui','closeUI()'))}
 function ferryGo(k,x,y){if(G.money<300)return;G.money-=300;closeUI();{const q=bPt(KI[k],x,y);setMap(KI[k],q[0],q[1])}P.d=0;play('step');ok('🚢 Depois de uma viagem tranquila pelo mar, você chegou: <b>'+NM[KI[k]]+'</b>!')}
 function dept(){const row=(ic,nm2,sub,b)=>`<div class="sr"><img src="${ico(ic)}"><span><b>${nm2}</b><br><small>${sub}</small></span>${b}</div>`,bb=(k,c)=>btn('$'+c,`buy('${k}',${c},1);dept()`,G.money<c)+btn('×10',`buy('${k}',${c},10);dept()`,G.money<c*10),bs=(n,c)=>btn('$'+c,`buyS('${n}',${c})`,G.money<c);
-open(`<p><b>Loja de Departamentos de Florada</b> 💰${G.money}</p>`+row('Cristal Normal','Cristal Normal','Captura ×1 · você tem '+G.ball,bb('ball',200))+row('Cristal Super','Cristal Super','Captura ×2 · você tem '+G.premier,bb('premier',500))+row('Cristal Ultra','Cristal Ultra','Captura ×3 · você tem '+G.ultra,bb('ultra',1000))+row('Cristal Supremo','Cristal Supremo','Captura garantida, até de lendários (menos o Dracaimon) · você tem '+G.supremo,btn('$15000',`buy('supremo',15000,1);dept()`,G.money<15000))+row('Tônico','Tônico','Cura 20 HP · você tem '+G.heal,bb('heal',300))+row('Reanimador','Reanimador','Reanima com 50% de HP · você tem '+G.rev,bb('rev',1500))+Object.values(STONE).map(([n,v])=>row(n,n,'Pedra de evolução (shiny) · você tem '+invCount(n),bs(n,Math.max(v*15,Math.round(STSELL*1.5))))).join('')+row('Mochila','Mochila','+32 espaços',btn('$2000','buyBag();dept()',G.money<2000))+'<p>'+btn('Decoração','deco()')+btn('Sair','closeUI()')+'</p>')}
+open(`<p><b>Loja de Departamentos de Florada</b> 💰${G.money}</p>`+row('Cristal Normal','Cristal Normal','Captura ×1 · você tem '+G.ball,bb('ball',200))+row('Cristal Super','Cristal Super','Captura ×2 · você tem '+G.premier,bb('premier',500))+row('Cristal Ultra','Cristal Ultra','Captura ×3 · você tem '+G.ultra,bb('ultra',1000))+row('Tônico','Tônico','Cura 20 HP · você tem '+G.heal,bb('heal',300))+row('Reanimador','Reanimador','Reanima com 50% de HP · você tem '+G.rev,bb('rev',1500))+Object.values(STONE).map(([n,v])=>row(n,n,'Pedra de evolução (shiny) · você tem '+invCount(n),bs(n,Math.max(v*15,Math.round(STSELL*1.5))))).join('')+row('Mochila','Mochila','+32 espaços',btn('$2000','buyBag();dept()',G.money<2000))+'<p>'+btn('Decoração','deco()')+btn('Sair','closeUI()')+'</p>')}
 function buyS(n,c){if(G.money<c)return;if(!invFits(n,1))return ok('Inventário cheio!');G.money-=c;invAdd(n,1);hud();dept()}
 Object.assign(M[0],{gx:0,gy:42,ed:1});Object.assign(M[1],{gx:0,gy:0,ed:1});for(const i of[3,4,5])if(M[i].W==null)Object.assign(M[i],{W:40,H:30});
 function kside(row,xs,v){for(const x of xs)if(kg(x,row)===3&&kg(x,row+1)!==3)ks(x,row,v)}
@@ -2097,7 +2097,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v170 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v172 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -9123,7 +9123,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=170;
+var KGT_VER=172;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -16346,6 +16346,86 @@ new MutationObserver(ms=>{for(const m of ms)for(const n of m.addedNodes)if(n.nod
 const u=document.getElementById('ui');if(u&&!u._kp2){u._kp2=1;limpa(u);setTimeout(()=>{u._kp2=0},0)}}).observe(document.body,{childList:true,subtree:true})};vigia();
 if(typeof cvTexto==='function'){const _cvt=cvTexto;cvTexto=function(){return String(_cvt.apply(this,arguments)).replace(/https:\/\/kaimongt\.com\.br\/?/g,KAPP_PLAY)}}
 }
+(function(){try{const st=document.createElement('style');st.textContent=`
+.kmtg{position:fixed;z-index:5;padding:0;margin:0;border:1.5px solid #e8c050;background:#111827ee;color:#ffe27a;font:900 15px/1 system-ui,sans-serif;
+ display:none;align-items:center;justify-content:center;box-shadow:0 1px 5px #0009;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:none}
+#mmtg{width:24px;height:24px;border-radius:7px}
+body.mmmin #mm{display:none!important}
+body.mmmin #mmtg{width:42px;height:42px;border-radius:11px;font-size:21px;background:radial-gradient(circle at 35% 30%,#2a3554,#111827)}
+#tutmg{width:22px;height:22px;border-radius:7px;font-size:14px}
+body.tutmin #tutc b,body.tutmin #tutc span{display:none!important}
+body.tutmin #tutc{padding:4px 9px}
+body.tutmin #tutc i{position:static;color:#ffe27a;font-weight:800;font-size:12.5px}
+body.tutmin #tutc i::before{content:'📜 '}
+.mzdlimg{max-width:100%;max-height:58vh;display:block;margin:6px auto;border:1px solid #e8c05088;border-radius:6px;image-rendering:pixelated}`;
+document.head.appendChild(st)}catch(e){}})();
+function kmLS(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){return null}}
+function kmBtn(id,lbl,fn){let b=document.getElementById(id);if(b)return b;document.body.insertAdjacentHTML('beforeend',`<button id="${id}" class="kmtg hkeep" aria-label="${lbl}" title="${lbl}"></button>`);
+b=document.getElementById(id);b.addEventListener('pointerdown',e=>{e.preventDefault();e.stopPropagation();fn()});return b}
+var KMM={r:null};
+function mmMinSet(on,sv){document.body.classList.toggle('mmmin',!!on);if(sv)kmLS('kgt_mmmin',on?'1':'0');kmPos()}
+function mmMinTog(){mmMinSet(!document.body.classList.contains('mmmin'),1)}
+function tutMinSet(on,sv){document.body.classList.toggle('tutmin',!!on);if(sv)kmLS('kgt_tutmin',on?'1':'0');kmPos()}
+function tutMinTog(){tutMinSet(!document.body.classList.contains('tutmin'),1)}
+if(typeof tutCard==='function'){const _k170Tut=tutCard;tutCard=function(){const r=_k170Tut.apply(this,arguments);try{kmPos()}catch(e){}return r}}
+function kmPos(){try{
+const walk=typeof mode!=='undefined'&&mode==='walk'&&!(typeof MZ!=='undefined'&&MZ.on)&&!document.getElementById('ttl');
+const mb=kmBtn('mmtg','Minimizar ou mostrar o minimapa',mmMinTog),mm=document.getElementById('mm'),min=document.body.classList.contains('mmmin');
+if(mm&&!min){const r=mm.getBoundingClientRect();if(r.width>8&&getComputedStyle(mm).display!=='none')KMM.r={l:r.left,t:r.top,w:r.width,h:r.height}}
+if(!KMM.r){const sz=104;KMM.r={l:innerWidth-6-sz,t:54,w:sz,h:sz}}
+if(!walk||!KMM.r){mb.style.display='none'}
+else{mb.style.display='flex';if(min){mb.textContent='🗺️';mb.title=mb.ariaLabel='Mostrar o minimapa';mb.style.left=(KMM.r.l+KMM.r.w-42)+'px';mb.style.top=KMM.r.t+'px'}
+else{mb.textContent='–';mb.title=mb.ariaLabel='Minimizar o minimapa';mb.style.left=(KMM.r.l-9)+'px';mb.style.top=(KMM.r.t+KMM.r.h-15)+'px'}}
+const tb=kmBtn('tutmg','Minimizar ou abrir as missões',tutMinTog),tc=document.getElementById('tutc');
+if(!walk||!tc||tc.style.display==='none'||getComputedStyle(tc).display==='none'){tb.style.display='none'}
+else{const r=tc.getBoundingClientRect(),tmin=document.body.classList.contains('tutmin');tb.style.display='flex';tb.textContent=tmin?'+':'–';
+tb.title=tb.ariaLabel=tmin?'Abrir as missões':'Minimizar as missões';tb.style.left=(r.right+4)+'px';tb.style.top=(r.top+Math.max(0,(r.height-22)/2))+'px'}
+}catch(e){}}
+(function(){try{mmMinSet(kmLS('kgt_mmmin')==='1',0);tutMinSet(kmLS('kgt_tutmin')==='1',0);setInterval(kmPos,300);addEventListener('resize',()=>setTimeout(kmPos,60))}catch(e){}})();
+if(typeof mzInit==='function'){const _k170MzI=mzInit;mzInit=function(){const r=_k170MzI.apply(this,arguments);try{
+if(!document.getElementById('mzdl')){const t=document.querySelector('#mzap .mztools');if(t){const b=document.createElement('button');b.id='mzdl';b.textContent='⬇️';
+b.setAttribute('aria-label','Baixar o mapa');b.title='Baixar a imagem do mapa';b.onclick=e=>{e.stopPropagation();mzBaixar()};t.appendChild(b)}}}catch(e){}return r}}
+function mzSlug(t){return String(t||'mapa').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'mapa'}
+function mzBaseFull(){
+if(MZ.v===0){const m=M[cur],S=Math.max(4,Math.min(16,Math.floor(2400/Math.max(m.W,m.H))));
+return {c:mzMk(m.W,m.H,S,(d,Wp,S2)=>mzPaint(d,Wp,S2,m.T,null,m.W,0,0,m.W,m.H,0,0,m.p)),S,MW:m.W,MH:m.H}}
+const b=gwB(),Wd=b[2]-b[0],Hd=b[3]-b[1];GW.forEach(([i])=>{try{bEnsure(i)}catch(e){}});
+const S=Math.max(1,Math.min(6,Math.floor(4200/Math.max(Wd,Hd))));
+return {c:mzMk(Wd,Hd,S,(d,Wp,S2)=>{for(let k=0;k<d.length;k+=4){d[k]=11;d[k+1]=15;d[k+2]=26;d[k+3]=255}
+for(const a of GW){const i=a[0],m=M[i];if(!m||!m.T)continue;const Wg=m.Wg||m.W,Hg=m.Hg||m.H;try{mzPaint(d,Wp,S2,m.T,null,Wg,0,0,Wg,Hg,a[1]-b[0],a[2]-b[1],m.p)}catch(e){}}}),S,MW:Wd,MH:Hd,b}}
+function mzImagem(){
+if(typeof MZ==='undefined'||!MZ.on)return null;
+const F=mzBaseFull(),B=F.c,S=F.S,MW=F.MW,MH=F.MH,k=S,cw=MW*k,ch=MH*k;
+const m=document.createElement('canvas');m.width=cw;m.height=ch;const g=m.getContext('2d');g.imageSmoothingEnabled=false;g.drawImage(B,0,0);
+if(MZ.v===1)try{const b=F.b;for(const a of GW){const i=a[0],mm=M[i];if(!mm)continue;const Wg=mm.Wg||mm.W,Hg=mm.Hg||mm.H;
+const city=!!(mm.city||/^Cidade|Platô|Ilha Caldeira/.test(NM[i]||''));const nm=(typeof GN!=='undefined'&&GN&&GN[i])||(NM[i]||'').replace(/^Cidade de /,'');
+const x=(a[1]-b[0]+Wg/2)*k,y=(a[2]-b[1]+Hg/2)*k,fs=Math.max(city?14:11,Math.min(city?30:20,k*(city?6:4)));
+g.font=(city?'800 ':'600 ')+fs+'px system-ui,sans-serif';g.textAlign='center';g.textBaseline='middle';g.lineJoin='round';g.lineWidth=Math.max(3,fs/4);g.strokeStyle='rgba(8,10,18,.92)';g.strokeText(nm,x,y);g.fillStyle=city?'#ffe9a8':'#dfe6f5';g.fillText(nm,x,y)}}catch(e){}
+try{const hid=G.mzh||{};for(const o of mzIcons()){if(hid[o.k])continue;const im=mzBadge(o.k,o.e,1);g.drawImage(im,Math.round(o.x*k-im.width/2),Math.round(o.y*k-im.height/2))}}catch(e){}
+try{let px=null,py=null;if(MZ.v===0){px=P.x+.5;py=P.y+.5}else if(typeof mzWP==='function'){const wp=mzWP(),b=F.b;if(wp){px=wp[0]-b[0]+.5;py=wp[1]-b[1]+.5}}
+if(px!=null){const x=px*k,y=py*k,r=Math.max(6,Math.min(12,k*.6));g.beginPath();g.arc(x,y,r+3,0,7);g.fillStyle='#fff';g.fill();g.beginPath();g.arc(x,y,r,0,7);g.fillStyle='#e33';g.fill()}}catch(e){}
+const hs=Math.max(1,Math.min(3,(cw+24)/1400)),head=Math.round(52*hs),foot=Math.round(26*hs),W=Math.max(720,cw+24),H=ch+head+foot+12,ox=Math.round((W-cw)/2),oy=head+6;
+const c2=document.createElement('canvas');c2.width=W;c2.height=H;const f=c2.getContext('2d');f.fillStyle='#0b0f1a';f.fillRect(0,0,W,H);
+f.drawImage(m,ox,oy);f.strokeStyle='rgba(232,192,80,.45)';f.lineWidth=2;f.strokeRect(ox-1,oy-1,cw+2,ch+2);
+const nome=MZ.v===0?(NM[cur]||'Mapa'):'Pindorama';
+f.fillStyle='#1d2433';f.fillRect(0,0,W,head);f.fillStyle='#e8c050';f.fillRect(0,head-2,W,2);
+f.textBaseline='middle';f.textAlign='left';f.font='bold '+Math.round(22*hs)+'px system-ui,sans-serif';f.fillStyle='#ffe27a';f.fillText('🗺️ Kaimon GT · '+nome+' (mapa completo)',14*hs,head/2);
+const dd=new Date(),dt=String(dd.getDate()).padStart(2,'0')+'/'+String(dd.getMonth()+1).padStart(2,'0')+'/'+dd.getFullYear();
+f.textAlign='right';f.font=Math.round(14*hs)+'px system-ui,sans-serif';f.fillStyle='#b8c6e0';f.fillText((G.nick?G.nick+' · ':'')+dt,W-14*hs,head/2);
+f.textAlign='center';f.font=Math.round(12*hs)+'px system-ui,sans-serif';f.fillStyle='#8fa0c4';f.fillText('Kaimon GT · kaimongt.com.br · o ponto vermelho é você',W/2,H-foot/2-2);
+return {c:c2,arq:'kaimon-mapa-'+mzSlug(nome)+'.png',nome}}
+function mzBaixar(){try{
+const R=mzImagem();if(!R)return mzHint('Não deu para montar a imagem do mapa. Tente de novo.',2500);
+mzHint('⬇️ Preparando a imagem do mapa...',1500);
+R.c.toBlob(bl=>{try{if(!bl)return mzHint('Não deu para salvar o mapa neste aparelho.',2500);
+if(window.KAPK){
+const f=typeof File==='function'?new File([bl],R.arq,{type:'image/png'}):null;
+if(f&&navigator.canShare&&navigator.canShare({files:[f]}))return navigator.share({files:[f],title:'Mapa de '+R.nome}).catch(()=>mzMostra(R));
+return mzMostra(R)}
+const u=URL.createObjectURL(bl),a=document.createElement('a');a.href=u;a.download=R.arq;a.rel='noopener';document.body.appendChild(a);a.click();a.remove();
+setTimeout(()=>URL.revokeObjectURL(u),8000);mzHint('✅ Mapa salvo: '+R.arq+' (pasta Downloads)',3500);try{play('item')}catch(e){}
+}catch(e){mzMostra(R)}},'image/png')}catch(e){try{mzHint('Não deu para salvar o mapa.',2500)}catch(x){}}}
+function mzMostra(R){try{const d=$('mzdlg');if(!d)return;d.innerHTML=`<b>🗺️ ${esc(R.nome)}</b><img class="mzdlimg" src="${R.c.toDataURL('image/png')}" alt="Mapa"><small>Neste aparelho o download direto não funciona. Tire um print desta tela, ou jogue pelo app da Play Store ou pelo navegador para baixar o arquivo.</small><br><button onclick="mzDlgOff()" style="margin-top:6px;padding:6px 14px;border-radius:8px;border:1.5px solid #e8c050;background:#1d2433">Fechar</button>`;d.hidden=false;MZ.dlg=1}catch(e){}}
 (function(){try{const st=document.createElement('style');st.textContent=`body.hudmin .ab:not(.hkeep){display:none!important}
 #hudtg{position:fixed;right:calc(env(safe-area-inset-right,0px) + 88px);bottom:calc(env(safe-area-inset-bottom,0px) + 6px);width:40px;height:40px;border-radius:50%;padding:0;margin:0;z-index:6;
  background:radial-gradient(circle at 35% 30%,#fff3c0,#e8c050 60%,#a8801c);border:2px solid #fff;color:#3a2a00;font:900 18px sans-serif;box-shadow:0 2px 6px #0008;display:flex;align-items:center;justify-content:center}
