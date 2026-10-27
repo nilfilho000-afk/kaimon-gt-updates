@@ -2097,7 +2097,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v203 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v204 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -9132,7 +9132,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=203;
+var KGT_VER=204;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -17490,6 +17490,168 @@ open(`<p><b>🟫 ${esc(d.n)}</b></p><p>Onde você quer esse piso?</p>
   <p><small>Cada pedaço usa 1 piso da mochila (até 24 pedaços). Para tirar um pedaço: 🎨 Parede e piso → Tirar.</small></p>${btn('Voltar','closeUI()')}`)}}
 function pz202Tudo(k){PZ202=1;try{ppAplica(k)}finally{PZ202=0}}
 {const _pp=ppPainel;ppPainel=function(){const r=_pp.apply(this,arguments);try{const u=$('ui'),s=u&&u.querySelector('.pzsec');if(s){const b=s.querySelector('b');if(b)b.textContent='🟫 Piso por pedaço (grama aqui, madeira ali…)';const ps=u.querySelectorAll(':scope > p, #ui p'),h=ps[1]||ps[0];if(h&&h.parentNode)h.parentNode.insertBefore(s,h.nextSibling);s.style.cssText='background:#1f2a1c;border:1px solid #e8c050;border-radius:10px;padding:4px 8px;margin:6px 0'}}catch(e){}return r}}
+Object.assign(MPAL,{Uiratã:{c:'#2c2438',d:'#120c1a',l:'#4e3e5e',a:'#5e1626',e:'#ff2e4e',s:{c:'#e8e2f0',d:'#7a6a8e',l:'#ffffff',a:'#3a2a6a',e:'#7a3cff'}}});
+function mvUirata(U,X,O,v,f,P){const{c,d,l,a}=P,gold=P.e,q=f&3,beak='#cfc2a8';
+const pena=(cx,cy,ang,len,i)=>{const ca=Math.cos(ang),sa=Math.sin(ang),tx=cx+ca*len,ty=cy+sa*len,nx=-sa,ny=ca,w=1.55;
+const sh=mvS([[cx+nx*.35,cy+ny*.35],[cx+ca*len*.55+nx*w,cy+sa*len*.55+ny*w],[tx,ty,1],[cx+ca*len*.55-nx*w,cy+sa*len*.55-ny*w],[cx-nx*.35,cy-ny*.35]]);
+mvPart(U,sh,i%2?mvMix(c,d,.35):mvMix(c,a,.35),{hl:.35,sd:.5,fx:x=>{mvLine(x,[[cx,cy],[tx-ca*.6,ty-sa*.6]],mvMix(c,MVK.SH,.45),.45,.6)}});
+const gl=.55+.45*Math.sin((q+i*.7)*1.57);mvPart(U,mvE(cx+ca*len*.78,cy+sa*len*.78,.9,.9),gold,{cs:0,ln:.35,hl:.6,gl:.5*gl,gs:.6})};
+const leque=(cx,cy,R,a0,a1)=>{for(let i=0;i<9;i++){const t=i/8,ang=a0+(a1-a0)*t,len=R*(.82+.18*Math.sin(t*3.1416));pena(cx,cy,ang,len,i)}};
+const G={headCol:c,belly:null,eyes:{dy:.1,dx:2,rx:1,ry:1.15,ir:gold},beak:{dy:1.9,len:2.2,wd:1.25,col:beak,hook:0},beakS:1,
+body:[20.6,5.4,5.6],head:[12.6,5],bodyS:[17.4,20.2,5.6,5.2,-.3],headS:[11.6,12.4,4.6],
+wing:{len:6.4,wd:2.8,col:a,tip:mvMix(a,'#10283a',.45),raise:0},tail:null,
+legs:{top:25.6,bot:28.9,dx:2.1,col:'#1a141e',w:.9},
+headFx:(x,cx,cy,r,vv)=>{if(vv==2)return;x.fillStyle=mvA(l,.9);const fx=vv==1?cx-r*.35:cx;x.beginPath();x.ellipse(fx,cy+r*.45,r*(vv==1?.45:.62),r*.4,0,0,6.2832);x.fill()},
+bodyFx:(x,sh,vv)=>{mvFeathers(x,sh,9,c,4,0);const[bx,by,rx,ry]=sh.b;if(vv!=2)mvSoft(x,bx-(vv==1?rx*.2:0),by+ry*.15,rx*.62,ry*.58,l,.0)},
+crest:(vv,cx,cy)=>bCrest(X,cx,cy+.4,5,5.4,mvMix(c,d,.4),1,.55,13),
+under:(vv,B)=>{if(!MVM){mvSoft(U,16,28.6,5,1,'#000',.4);mvSoft(U,16,17+B,12,10,'#1a0a24',.35);mvSoft(U,16,17+B,10,8,gold,.07+.05*Math.sin(q*1.57));for(let i=0;i<4;i++){const t=((q*.25+i*.27)%1),sx=8+i*5.3+Math.sin(i*3+q)*1.2;U.save();U.globalAlpha=(1-t)*.45;U.fillStyle='#160a20';U.beginPath();U.arc(sx,27-t*9,1+t*1.4,0,6.2832);U.fill();U.restore()}}},
+post:(vv,B)=>{}};
+const B=f==1?-.35:0;
+if(v==0)leque(16,G.body[0]+.5+B,14.5,-3.02,-.12);
+else if(v==2)leque(16,G.body[0]+.5+B,15,-3.05,-.09);
+else leque(G.bodyS[0]+3.6,G.bodyS[1]+1.4+B,10,-2.35,-.15);
+mvBirdG(U,X,O,v,f,P,G);
+if(v==2&&!MVM){for(let i=0;i<9;i++){const t=i/8,ang=-3.05+2.96*t,len=15*(.82+.18*Math.sin(t*3.1416));mvSoft(O,16+Math.cos(ang)*len*.78,G.body[0]+.5+B+Math.sin(ang)*len*.78,.9,.9,gold,.35)}}}
+MVD['Uiratã']=mvUirata;
+(function(){const n='Uiratã';if(SP[n])return;const s={t:['dark','flying'],b:[90,85,85,115,100,125],ab:[['swift','cloud9'],'tinted'],k:'feather',sz:24,
+d:'O Guardião das Penas: um pássaro de penas negras como a noite, olhos de brasa e cauda em leque com nove penas que brilham vermelhas no escuro. Anda envolto numa fumaça fria. Quando ele canta, a mata inteira se cala de medo. Só obedece a quem devolve as nove penas.',
+l:[[1,'Bicada'],[1,'Golpe Baixo'],[8,'Ataque Rápido'],[15,'Mordida'],[22,'Asa de Aço'],[29,'Rasgo Noturno'],[36,'Ataque Aéreo'],[44,'Pulso Sombrio'],[52,'Furacão'],[62,'Mandíbula Feroz']]};
+SP[n]={t:s.t,b:s.b,x:260,c:3,k:'g',s:2,tier:1,leg:0,exclusivo:1,l:s.l.filter(([lv,mv])=>MV[mv])};
+CF[n]={n,p:'mon'};SZ[n]=s.sz;SAB[n]=[s.ab[0].filter(a=>ABD[a]),ABD[s.ab[1]]?s.ab[1]:null];if(!SAB[n][0].length)SAB[n][0]=['intim'];MSTAGE[n]=2;MONS.push(n);DXL.push([DXL.length+1,n]);
+DXT[n]=s.d+' Exclusivo da História "A Lenda de Pindorama".';WH[n]='Prêmio final da História "A Lenda de Pindorama"';RARS[n]=4;PXK[n]=s.k;PXF[n]={a:0,e:0,m:0};if(typeof SHH==='object')SHH[n]=0;
+try{LEG199.add(n)}catch(e){}})();
+const HC=[
+{cid:'Pedra Alta',npc:'cs_silv',nn:'Prof. Sílvio',onde:'Gabinete do Prof. Sílvio, em Pedra Alta',lv:8,dom:['Capivinha',12],
+ini:'Ladrões entraram no meu gabinete e levaram uma pena antiga, dourada, que eu estudava. Dizem que existem nove dessas, uma em cada cidade… as Penas do Guardião! Me ajuda a seguir a pista?',
+fim:'A pista aponta para Anil. Leve este Kaimon: ele vai te ajudar na estrada!',
+E:[{k:'item',it:'Fio de Seda',n:6,t:'Traga 6 Fios de Seda',d:'Dropa da Saúvinha (Rota 2). Preciso para amarrar as anotações que sobraram.'},
+{k:'vence',n:5,mapa:28,t:'Vença 5 selvagens na Rota 2',d:'O ladrão fugiu pela Rota 2. Os bichos de lá estão agitados — acalme-os.'},
+{k:'visita',mapa:32,t:'Procure pegadas no Monte do Luar',d:'Vi pegadas de pássaro subindo o Monte do Luar.'}]},
+{cid:'Anil',npc:'cs_iara',nn:'Iara',onde:'Casa da Iara, em Anil',lv:12,dom:['Jabuzinho',16],
+ini:'A pena de Anil sumiu do altar da praia ontem à noite! Só ficou uma marca de garra queimada na pedra.',
+fim:'A Marina viu um vulto voando para o leste, para Candeia. Tome, um amiguinho para a viagem.',
+E:[{k:'cap',sp:'Geodinho',n:1,t:'Capture um Geodinho',d:'Ele sente cheiro de pedra queimada. Tem no Monte do Luar e no Túnel de Pedra.'},
+{k:'item',it:'Moeda de Tirica',n:5,t:'Traga 5 Moedas de Tirica',d:'O pescador só conta o que viu se pagarem em moedas de Tirica (Rotas 4, 5 e 6).'},
+{k:'leva',npc:'cs_mari',nn:'Marina',onde:'Loja do Cais, em Anil',t:'Leve o recado para a Marina',d:'A Marina, da Loja do Cais, estava acordada naquela noite.'}]},
+{cid:'Candeia',npc:'cs_cele',nn:'Madame Celeste',onde:'Antiquário de Madame Celeste, em Candeia',lv:16,dom:['Pipassombra',22],
+ini:'As cartas não mentem: uma sombra de penas mora agora no alto da Torre Fantasma. E ela levou a pena de Candeia…',
+fim:'A sombra largou isto ao fugir: uma pena de Ventania! Vá para lá. E leve este fantasminha, ele gostou de você.',
+E:[{k:'visita',mapa:43,t:'Suba ao 2º andar da Torre Fantasma',d:'É lá que a sombra se esconde.'},
+{k:'vence',n:10,sp:'Pipassombra',t:'Vença 10 Pipassombras',d:'Os fantasminhas da torre protegem a sombra. Abra caminho!'},
+{k:'item',it:'Pena de Tevizinho',n:6,t:'Traga 6 Penas de Tevizinho',d:'Preciso comparar com a pena que a sombra deixou cair.'}]},
+{cid:'Ventania',npc:'cs_otav',nn:'Eng. Otávio',onde:'Cofre do Eng. Otávio, em Ventania',lv:18,dom:['Faiscamico',24],
+ini:'Arrombaram meu cofre! Levaram a pena de Ventania e ainda queimaram o alarme. Que tipo de bicho faz isso?',
+fim:'O alarme gravou: um pássaro negro de olhos vermelhos, voando para Florada. Leve este Faiscamico, é o melhor guarda que conheço.',
+E:[{k:'item',it:'Bochecha de Faiscamico',n:6,t:'Traga 6 Bochechas de Faiscamico',d:'A energia delas religa o alarme (Rotas 2 e 10).'},
+{k:'leva',npc:'cs_rodr',nn:'Rodrigo',onde:'Ventania Tec, em Ventania',t:'Leve o alarme para o Rodrigo consertar',d:'O Rodrigo, da Ventania Tec, sabe ler a gravação.'},
+{k:'vence',n:8,mapa:40,t:'Vença 8 selvagens na Rota 10',d:'Enquanto o Rodrigo trabalha, limpe a rota por onde o ladrão passou.'}]},
+{cid:'Florada',npc:'cs_isad',nn:'Condessa Isadora',onde:'Galeria da Condessa Isadora, em Florada',lv:20,dom:['Oncinha',26],
+ini:'Minha galeria tinha a pena de Florada num quadro. Agora o quadro está vazio e as flores do jardim murcharam de medo.',
+fim:'O jardim floriu de novo! Isso quer dizer que a sombra foi para o mar, para Bonança. Leve esta Oncinha.',
+E:[{k:'item',it:'Folha de Vasinho',n:8,t:'Traga 8 Folhas de Vasinho',d:'Para replantar o jardim (Rotas 5, 6 e 12).'},
+{k:'item',it:'Muda de Jarinha',n:5,t:'Traga 5 Mudas de Jarinha',d:'As mudas protegem o jardim de sombras.'},
+{k:'cap',sp:'Ararinha',n:1,t:'Capture uma Ararinha',d:'As araras enxergam longe: ela vai mostrar para onde a sombra voou (Rota 7).'}]},
+{cid:'Bonança',npc:'cs_nest',nn:'Capitão Nestor',onde:'Armazém do Porto, em Bonança',lv:24,dom:['Boimarinho',28],
+ini:'A pena de Bonança estava no meu leme! Um pássaro negro arrancou e sumiu no nevoeiro. Só sigo quem tem um Kaimon de água de respeito.',
+fim:'Os pescadores viram o pássaro rumo ao mangue. Siga para Manguezal! Esse Boimarinho nada mais rápido que qualquer barco.',
+E:[{k:'mostra',tipo:'water',lv:25,t:'Mostre um Kaimon tipo Água Nv 25+',d:'Tenha ele no time quando falar comigo.'},
+{k:'leva',npc:'cs_bart',nn:'Seu Bartô',onde:'Camarote do Seu Bartô, em Bonança',t:'Peça o mapa do nevoeiro ao Seu Bartô',d:'O Seu Bartô guarda as cartas náuticas.'},
+{k:'item',it:'Pena de Pirarinho',n:8,t:'Traga 8 Penas de Pirarinho',d:'Para remendar a vela que o pássaro rasgou (Rotas 12 a 15).'}]},
+{cid:'Manguezal',npc:'cs_jana',nn:'Exploradora Jana',onde:'Base da Exploradora Jana, em Manguezal',lv:28,dom:['Jacarinho',32],
+ini:'Achei penas pretas na Zona Safári, e os bichos de lá estão fugindo de alguma coisa. Me ajuda a estudar?',
+fim:'Os rastros vão direto para a Ilha Caldeira. É lá que ele está guardando as penas! Leve este Jacarinho.',
+E:[{k:'capdif',mapa:60,n:3,t:'Capture 3 espécies diferentes na Zona Safári',d:'Quero ver quais bichos ainda estão lá.'},
+{k:'item',it:'Espinho de Ouricinho',n:6,t:'Traga 6 Espinhos de Ouricinho',d:'Para montar as armadilhas de rastro.'},
+{k:'leva',npc:'cs_jura',nn:'Seu Jurandir',onde:'Posto do Safári, em Manguezal',t:'Leve as amostras ao Seu Jurandir',d:'O Seu Jurandir conhece cada pegada do Safári.'}]},
+{cid:'Caldeira',npc:'cs_igne',nn:'Dra. Ígnea',onde:'Laboratório da Dra. Ígnea, na Ilha Caldeira',lv:32,dom:['Guarabrasa',36],
+ini:'Ele está aqui. A Sombra das Penas pousa na cratera toda noite. Antes de enfrentá-la, preciso deixar o laboratório pronto.',
+fim:'Você espantou a sombra! Ela deixou cair oito penas… e voou para o Platô da Glória com a última. Leve este Guarabrasa, você merece.',
+E:[{k:'item',it:'Brasa de Brasatu',n:10,t:'Traga 10 Brasas de Brasatu',d:'Para acender o farol do laboratório (Ilha Caldeira e Serra do Fogo).'},
+{k:'vence',n:10,mapa:63,t:'Vença 10 selvagens na Ilha Caldeira',d:'Os bichos da ilha estão sob o encanto da sombra.'},
+{k:'chefe',lv:40,hp:2,t:'Enfrente a Sombra das Penas',d:'Fale comigo quando estiver pronto. Nenhum cristal funciona nela.'}]},
+{cid:'Platô da Glória',npc:'cs_glor',nn:'Seu Glória',onde:'Sala de Troféus do Seu Glória, no Platô da Glória',lv:40,dom:['Uiratã',45],fim0:1,
+ini:'Então é verdade… a sombra é o próprio Guardião, o Uiratã. Alguém o corrompeu roubando as penas. Só devolvendo todas, numa batalha, ele volta a ser quem era.',
+fim:'O Uiratã voltou a si! Ele escolheu você como novo guardião das nove penas. Pindorama te agradece!',
+E:[{k:'leva',npc:'cs_lia',nn:'Lia',onde:'Loja da Liga, no Platô da Glória',t:'Busque o relicário com a Lia',d:'A Lia guarda o relicário das penas na Loja da Liga.'},
+{k:'vence',n:20,mapa:25,t:'Vença 20 selvagens na Estrada Vitória',d:'O Guardião corrompido enlouqueceu os bichos da estrada.'},
+{k:'chefe',lv:55,hp:2.5,t:'Devolva as penas ao Uiratã',d:'Fale comigo quando estiver pronto: é a batalha final.'}]}];
+const HTIT=HC.map((c,i)=>'h'+i);
+HC.forEach((c,i)=>{TIT[HTIT[i]]={n:i===8?'Guardião de Pindorama':'Amigo de '+c.cid,c:i===8?'#ff3a5a':'#7ad8ff',b:i===8?'rgba(30,8,20,.88)':'rgba(10,30,44,.85)'}});
+const HNPC=new Map();HC.forEach((c,i)=>{HNPC.set(c.npc,1);c.E.forEach(e=>{if(e.npc)HNPC.set(e.npc,1)})});
+function hEst(){G.hist=G.hist||{c:0,e:0,ac:0,p:0,set:[]};return G.hist}
+function hCap(){const H=hEst();return HC[H.c]||null}
+function hPasso(){const H=hEst(),C=hCap();return C&&H.ac?C.E[H.e]:null}
+function hAlvo(){const C=hCap(),s=hPasso();if(!C)return null;return s&&s.k==='leva'?s.npc:C.npc}
+function hPronto(){const H=hEst(),s=hPasso();if(!s)return false;
+if(s.k==='item')return invCount(s.it)>=s.n;if(s.k==='mostra')return G.party.some(m=>m&&SP[m.n]&&SP[m.n].t.includes(s.tipo)&&m.lvl>=s.lv);
+if(s.k==='leva'||s.k==='chefe')return true;if(s.k==='visita')return H.p>=1;return H.p>=s.n}
+function hProg(){const H=hEst(),s=hPasso();if(!s)return'';if(s.k==='item')return Math.min(invCount(s.it),s.n)+'/'+s.n;if(s.k==='visita')return H.p?'✔':'';if(s.k==='vence'||s.k==='cap'||s.k==='capdif')return Math.min(H.p,s.n)+'/'+s.n;return''}
+function hPremioEtapa(ci){const mo=150*(ci+1),xp=80*(ci+1);G.money+=mo;const tm=tgain(xp);return{mo,xp,tm}}
+function hEv(k,n,mapa){try{const H=hEst(),s=hPasso();if(!s)return;let ok2=false;
+if(k==='vence'&&s.k==='vence'&&(!s.mapa||s.mapa===mapa)&&(!s.sp||s.sp===n)){H.p++;ok2=true}
+else if(k==='cap'&&s.k==='cap'&&s.sp===n){H.p++;ok2=true}
+else if(k==='cap'&&s.k==='capdif'&&s.mapa===mapa){H.set=H.set||[];if(!H.set.includes(n)){H.set.push(n);H.p=H.set.length;ok2=true}}
+else if(k==='visita'&&s.k==='visita'&&s.mapa===mapa&&!H.p){H.p=1;ok2=true}
+if(ok2){try{save()}catch(e){}const C=hCap();if(hPronto())setTimeout(()=>toast('📜 '+s.t+' — pronto! Volte e fale com '+(s.k==='leva'?s.nn:C.nn)+'.'),900);else setTimeout(()=>toast('📜 '+s.t+': '+hProg()),900)}}catch(e){}}
+{const _sy=say;say=async function(t){try{if(typeof B!=='undefined'&&B&&B.w&&!B.tr&&!B.w.histBoss){const s=String(t),w=B.w;if(/selvagem desmaiou!$/.test(s))hEv('vence',w.n,cur);else if(/foi capturado!$/.test(s))hEv('cap',w.n,cur)}}catch(e){}return _sy.apply(this,arguments)}}
+{const _sm=setMap;setMap=function(){const r=_sm.apply(this,arguments);try{hEv('visita',null,cur);hNpcs()}catch(e){}return r}}
+function hNpcs(){try{for(const n of NPC){if(!n||!HNPC.has(n.n)||n._h203)continue;n._h203=1;const f0=n.fn;n.fn=function(){if(hFala(n.n,()=>{try{return f0&&f0.apply(n,arguments)}catch(e){}}))return;return f0&&f0.apply(this,arguments)}}}catch(e){}}
+function hMarca(npc){const H=hEst(),C=hCap();if(!C)return'';if(!H.ac)return npc===C.npc&&G.t.l>=C.lv?'!':'';if(hAlvo()!==npc)return'';return hPronto()?'?':'…'}
+var HLOJA=null;
+function hFala(npc,loja){const H=hEst(),C=hCap();if(!C)return false;const m=hMarca(npc);if(!m&&!(npc===C.npc&&!H.ac))return false;HLOJA=loja;
+const ci=H.c,head=`<p style="margin:0 0 4px"><b>📜 A Lenda de Pindorama</b> · Capítulo ${ci+1}/9 · ${esc(C.cid)}</p>`,lj=btn('🛒 Loja','hLoja()');
+if(!H.ac){if(G.t.l<C.lv){open(head+`<p><b>${esc(C.nn)}:</b> “Preciso de ajuda, mas a estrada é perigosa. Volte quando for <b>nível ${C.lv}</b> de treinador.”</p>`+lj+btn('Fechar','closeUI()'));return true}
+open(head+`<p><b>${esc(C.nn)}:</b> “${esc(C.ini)}”</p><p><small>Cada etapa: 💰${150*(ci+1)} + ${80*(ci+1)} EXP de treinador. No fim do capítulo: título «${esc(TIT[HTIT[ci]].n)}» e um Kaimon de presente.</small></p>`+btn('✅ Aceitar','hAceita()')+lj+btn('Agora não','closeUI()'));return true}
+const s=hPasso();if(hAlvo()!==npc)return false;
+if(!hPronto()){open(head+`<p><b>${esc(s.k==='leva'?s.nn:C.nn)}:</b> “${esc(s.d)}”</p><p>🎯 <b>${esc(s.t)}</b> ${hProg()}</p>`+lj+btn('Fechar','closeUI()'));return true}
+if(s.k==='chefe'){open(head+`<p><b>${esc(C.nn)}:</b> “${esc(s.d)}”</p><p>⚔️ <b>${esc(s.t)}</b> (Nv ${s.lv}). Prepare o time!</p>`+btn('⚔️ Lutar agora','hLuta()')+btn('Ainda não','closeUI()'));return true}
+hAvanca(npc);return true}
+function hLoja(){closeUI();try{if(HLOJA)HLOJA()}catch(e){}}
+function hAceita(){const H=hEst();H.ac=1;H.e=0;H.p=0;H.set=[];save();closeUI();const s=hPasso();toast('📜 Capítulo '+(H.c+1)+': '+s.t);try{play('item')}catch(e){}}
+function hAvanca(npc){const H=hEst(),C=hCap(),s=hPasso(),ci=H.c;if(s.k==='item')invRemove(s.it,s.n);const r=hPremioEtapa(ci);H.e++;H.p=0;H.set=[];
+let msg=`<p>✅ <b>${esc(s.t)}</b> — feito!<br><small>+💰${r.mo} · +${r.xp} EXP de treinador${r.tm?'<br>'+esc(r.tm):''}</small></p>`;
+if(H.e>=C.E.length){const tk=HTIT[ci];G.hTits=G.hTits||[];if(!G.hTits.includes(tk))G.hTits.push(tk);
+const[sp,lv]=C.dom,c=mon(sp,lv);c.id=(Math.random()*1e9|0)+1;if(sp==='Uiratã'){c.sh=0}dxm(sp,2);const pm=toParty(c);
+H.c++;H.ac=0;H.e=0;H.p=0;save();hud();try{play('lvl')}catch(e){}
+open(`<p style="margin:0 0 4px"><b>📜 Capítulo ${ci+1} completo!</b></p><p><b>${esc(C.nn)}:</b> “${esc(C.fim)}”</p>${msg}<p>🏷️ Título <b style="color:${TIT[tk].c}">«${esc(TIT[tk].n)}»</b> (troque em 📋 → Conquistas)<br>🎁 <b>${esc(sp)} Nv ${lv}</b> entrou no seu time${pm?'<br><small>'+esc(pm)+'</small>':''}</p>`+(HC[H.c]?`<p><small>Próximo: <b>${esc(HC[H.c].nn)}</b> (${esc(HC[H.c].onde)}), a partir do nível ${HC[H.c].lv}.</small></p>`:'<p><b>🏆 Você completou A Lenda de Pindorama!</b></p>')+btn('Continuar','closeUI()'));return}
+save();hud();try{play('item')}catch(e){}const n2=hPasso();
+open(`<p style="margin:0 0 4px"><b>📜 A Lenda de Pindorama</b> · Capítulo ${ci+1}/9</p>${msg}<p><b>${esc(n2.k==='leva'?C.nn:C.nn)}:</b> “${esc(n2.d)}”</p><p>🎯 Próxima: <b>${esc(n2.t)}</b>${n2.k==='leva'?'<br><small>📍 '+esc(n2.onde)+'</small>':''}</p>`+btn('Continuar','closeUI()'))}
+function hLuta(){closeUI();const H=hEst(),s=hPasso();if(!s||s.k!=='chefe'||(typeof B!=='undefined'&&B))return;if(!G.party.length||!active())return toast('Nenhum Kaimon seu pode lutar agora.');
+const w=mon('Uiratã',s.lv);w.boss=1;w.histBoss=1;w.sh=0;stats(w);w.max=Math.round(w.max*s.hp);w.hp=w.max;for(const k of['A','SA'])w[k]=Math.round(w[k]*1.05);
+w.onEnd=b=>{try{const won=b&&b.w&&b.w.hp<=0&&!b.black;if(won){const H2=hEst();if(hPasso()===s){setTimeout(()=>{try{hAvanca(hAlvo())}catch(e){window.__hx=String(e&&e.stack).slice(0,300)}},400)}}else setTimeout(()=>toast('📜 A sombra escapou. Cure o time e tente de novo.'),600)}catch(e){}};
+startB(w);if(B){B.log=[H.c===8?'O Uiratã corrompido abriu o leque de penas vermelhas!':'A Sombra das Penas mergulhou da cratera!','Nenhum cristal funciona nela: só dá para vencê-la.'];rb()}}
+RH2.push(function(cx,cy,t){try{if(mode!=='walk'||!NPC||!NPC.length)return;for(const n of NPC){if(!n||!HNPC.has(n.n))continue;const m=hMarca(n.n);if(!m)continue;
+const X=(n.px!=null?n.px:n.x)*16-cx+8,Y=(n.py!=null?n.py:n.y)*16-cy-20+Math.sin(t/260)*1.5;g.save();g.font='bold 13px sans-serif';g.textAlign='center';g.lineWidth=3;g.strokeStyle='#1a1206';
+g.fillStyle=m==='!'?'#ffd34d':m==='?'?'#7aff9a':'#c8c8d8';g.strokeText(m,X,Y);g.fillText(m,X,Y);g.restore()}}catch(e){}});
+{const _ct=cqTitulos;cqTitulos=function(){const L=_ct.apply(this,arguments);try{for(const k of(G.hTits||[]))if(TIT[k]&&!L.some(x=>x.t===TIT[k].n))L.push({id:k,t:TIT[k].n,r:k==='h8'?'l':'r'})}catch(e){}return L}}
+const PEDP=[['Fio de Seda','Saúvinha',1],['Pena de Tevizinho','Tevizinho',1],['Rabo de Cutiqui','Cutiqui',1],['Bico de Querinho','Querinho',1],['Ferrão de Lumilarva','Lumilarva',1],
+['Muda de Jarinha','Jarinha',5],['Espinho de Ouricinho','Ouricinho',5],['Moeda de Tirica','Tirica',10],['Folha de Vasinho','Vasinho',10],['Pena de Pirarinho','Pirarinho',10],
+['Bochecha de Faiscamico','Faiscamico',12],['Semente de Musguiça','Musguiça',20],['Brasa de Brasatu','Brasatu',20],['Casco de Botinho','Botinho',20]];
+const PEDQ=['Feirante','Cozinheira','Artesão','Colecionador','Curandeira','Pescador'];
+function pedEst(){const d=msDia();G.ped=G.ped||{};if(G.ped.dia!==d){const lv=G.t.l|0,ok2=PEDP.filter(p=>lv>=p[2]);let sd=0;for(const ch of d+(G.nick||''))sd=(sd*31+ch.charCodeAt(0))>>>0;
+const R=()=>{sd=(sd*1664525+1013904223)>>>0;return sd/4294967296},L=[];const pool=ok2.slice();
+for(let i=0;i<3&&pool.length;i++){const p=pool.splice(R()*pool.length|0,1)[0];L.push({it:p[0],sp:p[1],n:4+(R()*5|0),q:PEDQ[R()*PEDQ.length|0],ok:0})}G.ped={dia:d,L}}return G.ped}
+function pedPremio(p){const v=Math.round((PR[p.it]||40)*p.n*1.5/10)*10+200,xp=40+Math.round((G.t.l|0)*4);return{v,xp,cr:(G.t.l|0)>=20?2:1}}
+function pedEntrega(i){const P=pedEst(),p=P.L[i];if(!p||p.ok)return;if(invCount(p.it)<p.n)return toast('Você ainda não tem '+p.n+'× '+p.it+'.');
+invRemove(p.it,p.n);const r=pedPremio(p);G.money+=r.v;G.premier=(G.premier|0)+r.cr;const tm=tgain(r.xp);p.ok=1;save();hud();try{play('item')}catch(e){}
+toast('📦 Pedido entregue: +💰'+r.v+' · +'+r.cr+' Cristal Super · +'+r.xp+' EXP'+(tm?' · '+tm:''));msPainel('p')}
+function hAba(){const H=hEst(),C=hCap();let h='';
+if(!C)return'<p><b>🏆 Você completou A Lenda de Pindorama!</b></p><p><small>O Uiratã agora guarda as nove penas ao seu lado.</small></p>';
+h+=`<p style="margin:4px 0"><b>Capítulo ${H.c+1}/9 · ${esc(C.cid)}</b></p>`;
+if(!H.ac)h+=`<p>📍 Fale com <b>${esc(C.nn)}</b> — ${esc(C.onde)}.<br><small>${G.t.l>=C.lv?'Tem um <b style="color:#ffd34d">!</b> na cabeça dele.':'Libera no nível '+C.lv+' de treinador (você está no '+G.t.l+').'}</small></p>`;
+else{h+=C.E.map((s,i)=>`<div class="msm${i<H.e?' col':''}"><div class="tx"><b>${i<H.e?'✔ ':i===H.e?'🎯 ':'· '}${esc(s.t)}</b>${i===H.e?`<small>${esc(s.d)} ${hProg()?'<b>'+hProg()+'</b>':''}${hPronto()?' · <b style="color:#8affa0">pronto! fale com '+esc(s.k==='leva'?s.nn:C.nn)+'</b>':''}</small>`:''}</div></div>`).join('');
+const s=hPasso();h+=`<p><small>📍 Entregar: ${esc(s.k==='leva'?s.onde:C.onde)} · cada etapa dá 💰${150*(H.c+1)} + ${80*(H.c+1)} EXP</small></p>`}
+h+=`<p style="margin:6px 0 0"><small>Capítulos feitos: ${H.c}/9 · ao terminar cada um: título da cidade + Kaimon de presente.</small></p>`;return h}
+function pAba(){const P=pedEst();return`<p style="margin:2px 0"><small>3 pedidos por dia (novos às 05:10). Entregue o loot que você já tem, de qualquer lugar.</small></p>`+P.L.map((p,i)=>{const r=pedPremio(p),tem=invCount(p.it);
+return`<div class="msm${p.ok?' col':tem>=p.n?' ok':''}"><div class="tx"><b>${esc(p.q)}: ${p.n}× ${esc(p.it)}</b><small>Dropa do ${esc(p.sp)} · você tem ${Math.min(tem,p.n)}/${p.n} · 💰${r.v} + ${r.cr} Cristal Super + ${r.xp} EXP</small></div><div class="bt">${p.ok?'<small>✔ Entregue</small>':tem>=p.n?btn('📦 Entregar',`pedEntrega(${i})`):''}</div></div>`}).join('')}
+{const _mp=msPainel;msPainel=function(aba){const a=aba||MSA;if(a==='h'||a==='p'){MSA=a;if(!msLiberado())return _mp.apply(this,arguments);
+const tab=(k,t)=>`<button class="${MSA===k?'on':''}" onclick="msPainel('${k}')">${t}</button>`;
+open(`<p style="margin:0"><b>📋 Diário do Treinador</b></p><div class="mstab">${tab('d','Diárias')}${tab('s','Semanais')}${tab('l','Login')}${tab('c','Conquistas')}${tab('h','📜 História')}${tab('p','📦 Pedidos')}</div>`+(a==='h'?hAba():pAba())+btn('Fechar','closeUI()'));return}
+const r=_mp.apply(this,arguments);try{const t=document.querySelector('#ui .mstab');if(t&&!t.querySelector('.h203')){const P=pedEst(),np=P.L.filter(p=>!p.ok&&invCount(p.it)>=p.n).length;
+t.insertAdjacentHTML('beforeend',`<button class="h203" onclick="msPainel('h')">📜 História${hPronto()?'<i>!</i>':''}</button><button class="h203" onclick="msPainel('p')">📦 Pedidos${np?'<i>'+np+'</i>':''}</button>`)}}catch(e){}return r}}
+{const _tk=msTrack;msTrack=function(){const r=_tk.apply(this,arguments);try{const c=document.getElementById('mstrk');if(!c||c.style.display==='none')return r;let d=document.getElementById('hstrk');
+const H=hEst(),C=hCap(),s=hPasso();let tx='';if(C&&s)tx='📜 '+s.t+(hProg()?' '+hProg():'')+(hPronto()?' ✔':'');else if(C&&!H.ac&&G.t.l>=C.lv)tx='📜 Nova história: fale com '+C.nn+' ('+C.cid+')';
+if(!tx){if(d)d.remove();return r}if(!d||d.parentNode!==c){d=document.createElement('div');d.id='hstrk';d.style.cssText='margin-top:4px;padding-top:4px;border-top:1px solid #ffffff22;color:#ffd34d;font-weight:700;font-size:12px';c.appendChild(d)}if(d.textContent!==tx)d.textContent=tx}catch(e){}return r}}
 (function(){try{const st=document.createElement('style');st.textContent=`body.hudmin .ab:not(.hkeep){display:none!important}
 #hudtg{position:fixed;right:calc(env(safe-area-inset-right,0px) + 88px);bottom:calc(env(safe-area-inset-bottom,0px) + 6px);width:40px;height:40px;border-radius:50%;padding:0;margin:0;z-index:6;
  background:radial-gradient(circle at 35% 30%,#fff3c0,#e8c050 60%,#a8801c);border:2px solid #fff;color:#3a2a00;font:900 18px sans-serif;box-shadow:0 2px 6px #0008;display:flex;align-items:center;justify-content:center}
