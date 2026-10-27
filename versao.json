@@ -1,11 +1,11 @@
 {
- "jogo": 181,
- "jogo_arquivo": "jogo-181.kpk",
- "jogo_sha": "304e49c749ccaad942a5f55c4d3bf7c410281977072e54ae8d2d7b86ccf491d3",
- "jogo_assin": "U3JwU3J1wPZ7gT3ojkLqMe0vAIueNW0keZawwY7GDM1LnqfvSSPteZN1aRjz74WXESMiP37H0nnOezIPAyOaDw==",
+ "jogo": 182,
+ "jogo_arquivo": "jogo-182.kpk",
+ "jogo_sha": "9529ba7dc7f7e4f45dd3378f159cf69e297468d429d6e02312ec77557541ee26",
+ "jogo_assin": "Bm5RwrzNkWdbfPnN9sZYmxgQ7SNGuEVGk5aJil/3TL32L7XVnnl1bnZbWY4Jf/Go/BMrYPkoVnQkH0LWN3flCw==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "7d6ca160ea1846467d22faaa5f7fb14495defe4d9e4babdd397280455c33512d",
- "launcher_assin": "U+m4mr1KFHNXgdbraijBeII7W5iaX/BhuLb2BtvtRm/1eUGsDTwh1kXo13V9AaOrwTXc9Nq0PQPB7C/E6MrhDQ==",
- "notas": "Kaimons de 4 patas mais bonitos de frente: onças, guarás, jaguatiricas e capivara sentados com a coxa saindo do corpo; jacarés com as patas abertas para os lados."
+ "launcher_sha": "033311bd5ea24add1d6122cd8d247df3fe9a7b814a1de53e0192087d741fdf80",
+ "launcher_assin": "O5nrbJOhHaX4Oox/euwqX5wx3dkKOdCyE2GUIdSwL1TB/wvjqakLiKRaycee0NBeG5Cuz1q4ThSNrGEM0dh6Ag==",
+ "notas": "Casa: boia e barco funcionando (é só nadar até eles ou tocar neles; botão Sair), Parede Divisória colocando em sequência na mesma linha e em pé emendando certo, novo Piso de Areia e Piso por área para montar cômodos."
 }
