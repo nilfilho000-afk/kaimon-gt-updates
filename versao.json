@@ -1,11 +1,11 @@
 {
- "jogo": 201,
- "jogo_arquivo": "jogo-201.kpk",
- "jogo_sha": "14952990ea7ac8dfcce9a255e5b0963656c6d3488b4b135bde124bc1114143a9",
- "jogo_assin": "Of4hI/3cS5qx1YQUEbjzGaN/kOO0dkj5ovj1A/DMPmgfTbXh7+dtYhq2ooLcCaMR1qfjCEi5i3UsAH5g9+0hBA==",
+ "jogo": 202,
+ "jogo_arquivo": "jogo-202.kpk",
+ "jogo_sha": "803bbec07d05f9ac40bfd38713a54db8b7b7c11f9b2c19c96fd13c36430283d6",
+ "jogo_assin": "ZuOmKPAbSiRpU2qRhOi2pJqXuq445iYxxRGAHPYGDvz5XM1H20ZhwCvFYHIurly4C9HIi+fBJOMckv2Y9knTBg==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "3ada4efc5e568fba5039da8830afe4ce789a7d17f695f00a07d49eadb844b2f7",
- "launcher_assin": "Vvw5+aqOOaw9nA5dPP96fYoX6/f8qkkKQG6d96Oe7eBCV2Zdb6wsguvElZ6+zIrZqmZh1otq0Y8FtfpHTh9WDA==",
- "notas": "Ícones do time agora mostram a aura do shiny capturado com Cristal Super. Os 14 lendários (Boitatá, Saciclone, Cuca, Mula-sem-cabeça e outros) não aparecem mais na natureza: por enquanto, só pelo Passe Kaimon."
+ "launcher_sha": "f2d1cd065e6594b000a7f2506caf460b74159c0340d86e02071d5756043511fd",
+ "launcher_assin": "ecSPHO04qtFFQ35jwaGlQ4MLU57JPplrB6X7DoTQ4gZPnN/RBRX/jNWljaWuy9Xe5XWNuFTgUB8EfDAi8Cv3BA==",
+ "notas": "Piso por pedaço ficou fácil: ao usar qualquer piso, escolha \"Só um pedaço\" e toque em 2 cantos da casa (grama aqui, madeira ali, areia lá) ou \"A casa inteira\"."
 }
