@@ -1,11 +1,11 @@
 {
- "jogo": 183,
- "jogo_arquivo": "jogo-183.kpk",
- "jogo_sha": "ba28eb4be50d2082fb307fb3e17886176ba7e5d2819f29a344389fad5c87c743",
- "jogo_assin": "IN9o1cIaPqwP4hyw6AINCVwcd9yFMxZ0Gg8B4hFefD+oC4n17msgCU3LhaAJdQd1VfipmANx/DhRu8BqPNS3AA==",
+ "jogo": 184,
+ "jogo_arquivo": "jogo-184.kpk",
+ "jogo_sha": "8a5d7b818ab903e75e60454ffa9e6e1a3ea7a02bbe2b802409156b0e744709a0",
+ "jogo_assin": "a5mcmSOUYwaB82hWHLoeAHRcCq9RU6GORizJPedX1GGnhE8e+19KLW/SjqhrUmozlfr4locwqXbNiEptu+agDw==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "4fed15f3c5d8cc83b287217d01628a402ec427b3fd9afa2a0f7be86c6bd66fea",
- "launcher_assin": "QWpBbJXxFnV4kOQKR+L+x4Hd6sJQR+Ucje/A27UuT0f+dEggDwXV2aIm9acGUQDgCucwPN6I9Im73D8o04pSCg==",
- "notas": "Batalha nova em pixel art: 16 cenários diferentes por região (praia, neve, vulcão, cidade, caverna...) com céu que muda com a hora, animação própria para cada tipo de golpe, fonte e botões em pixel, e botões de golpe com ícone do tipo, barra de PP, aviso de super efetivo e estrela no melhor golpe."
+ "launcher_sha": "0a97ee6893258f8acf79eba50d1c83d5ecf37ab697abaa67b10eca1f2cac6cdb",
+ "launcher_assin": "2xSEvdle/rVggXN72+NN4kATRAVqp6FkeBGfdKfx5mw2Gui35FCMND6aTB2efVyVr10kvDcwDBv3N90BVgoXCw==",
+ "notas": "Diário do Treinador: missões diárias (3 por dia, VIP 4), semanais com Baú Semanal e prêmio por login de 7 dias. Botão 📋, acompanhamento no canto da tela e a Escrivã de Missões no Centro de Cura. Libera na 1ª insígnia ou no nível 10."
 }
