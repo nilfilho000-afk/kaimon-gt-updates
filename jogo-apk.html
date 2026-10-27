@@ -2097,7 +2097,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v192 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v193 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -9132,7 +9132,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=192;
+var KGT_VER=193;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -17262,7 +17262,8 @@ if(ps)ps.after(box);else u.prepend(box)}catch(e){}return r}}
 {const _cv=cvAbrir;cvAbrir=async function(){const r=await _cv.apply(this,arguments);try{const u=document.getElementById('ui');if(u&&!u.querySelector('.amgtabs')&&/Convide amigos e ganhe KMC/.test(u.innerHTML)){u.insertAdjacentHTML('afterbegin',cvAbas('c'))}
 if(!G.cvVisto){G.cvVisto=1;try{save()}catch(e){}try{amgBtn()}catch(e){}}}catch(e){}return r}}
 {const _ab=amgBtn;amgBtn=function(){const r=_ab.apply(this,arguments);try{const b=document.getElementById('amgbtn');if(b){let s=b.querySelector('.cvg');if(!G.cvVisto&&webAcc()){if(!s){b.insertAdjacentHTML('beforeend','<span class="cvg">🎁</span>')}}else if(s)s.remove()}}catch(e){}return r}}
-const VV={st:{}};
+const VV={st:{},bx:new WeakMap()};
+function vvBox(im){let b=VV.bx.get(im);if(b)return b;b={x0:8,y0:8,x1:56,y1:60};try{const c=document.createElement('canvas');c.width=c.height=64;const x=c.getContext('2d');x.drawImage(im,0,0,64,64);const d=x.getImageData(0,0,64,64).data;let a=64,bb=64,cc=-1,dd=-1;for(let y=0;y<64;y++)for(let q=0;q<64;q++)if(d[(y*64+q)*4+3]>40){if(q<a)a=q;if(q>cc)cc=q;if(y<bb)bb=y;if(y>dd)dd=y}if(cc>a&&dd>bb)b={x0:a,y0:bb,x1:cc+1,y1:dd+1}}catch(e){}VV.bx.set(im,b);return b}
 function vvEst(m,t){let s=VV.st[m.id];if(!s){const sd=((m.x|0)*7+(m.y|0)*13)%97;s=VV.st[m.id]={x:.5,dir:1,mode:'anda',ate:t+1500+sd*20,alvo:.2+Math.random()*.6,pulo:0,ult:t,viu:0,feliz:0,sd}}return s}
 function vvNoite(){try{const h=Math.floor(((G.gt||0)%1440)/60);return h>=22||h<6}catch(e){return false}}
 function vvPerto(m){try{return Math.abs(P.x-(m.x+.5))<=2.6&&Math.abs(P.y-m.y)<=2.6}catch(e){return false}}
@@ -17280,15 +17281,19 @@ if(pt&&!voando){const viv=m.k==='viveiro',s=vvEst(m,t);vvTick(m,s,t,viv);
 const frente=s.mode==='olha'||s.mode==='dorme'||(viv&&s.mode==='pousa'&&Math.abs(s.alvo-s.x)<.02),mexe=s.mode==='anda'||(viv&&!frente);
 const fr=s.mode==='dorme'?0:mexe?((t/(viv?95:150))|0)%4:((t/600)|0)%2;let im=null;
 try{im=getV(pt.n,frente?0:1,fr,pt.s)}catch(e){}if(!im)try{im=getV(pt.n,0,0,pt.s)}catch(e){}
-if(im){const S=viv?dw*.8:dw*.78; 
-const cx0=x0+dw*(viv?.16:.1),cx1=x0+dw*(viv?.84:.9),cy0=viv?yt-dh*.2:yt+dh*.05,chao=yt+dh*(viv?.6:.57);
-const larg=cx1-cx0,px=cx0+larg*s.x-S/2;
+if(im){const B=vvBox(im);
+const ix0=x0+dw*(viv?.2:.12),ix1=x0+dw*(viv?.8:.88),iy0=yt+dh*(viv?.24:.13),chao=yt+dh*(viv?.6:.555),IH=chao-iy0,IW=ix1-ix0;
+const k=Math.min(IH*(viv?.6:.7)/(B.y1-B.y0),IW*.55/(B.x1-B.x0)),S=64*k,bw=(B.x1-B.x0)*k,bh=(B.y1-B.y0)*k;
+const flip=!frente&&s.dir>0,cxp=ix0+bw/2+(IW-bw)*s.x,px=cxp-(flip?64-(B.x0+B.x1)/2:(B.x0+B.x1)/2)*k;
 let hop=0;const tp=t-s.pulo;if(tp>=0&&tp<520)hop=Math.sin(tp/520*Math.PI)*(viv?2:4.5);if(s.feliz&&t-s.feliz<3000&&((t-s.feliz)%700)<350)hop=Math.max(hop,Math.sin(((t-s.feliz)%700)/350*Math.PI)*3);
-let py;if(viv){const alto=s.mode==='pousa'||s.mode==='dorme'?chao-S*.82:yt+dh*.14+Math.sin(t/700+s.sd)*2.2;py=alto-hop}else py=chao-S*.86-hop+(s.mode==='dorme'?1:0);
-gg.save();gg.beginPath();gg.rect(cx0-2,cy0,larg+4,chao-cy0+1);gg.clip();gg.imageSmoothingEnabled=true;try{gg.imageSmoothingQuality='high'}catch(e){}
-if(!viv){gg.fillStyle='rgba(0,0,0,.24)';gg.beginPath();gg.ellipse(px+S/2,chao-.6,S*.24*(1-hop/12),S*.055,0,0,6.3);gg.fill()}
-const flip=!frente&&s.dir>0;gg.translate(Math.round((px+(flip?S:0))*2)/2,Math.round(py*2)/2);gg.scale(flip?-1:1,1);gg.drawImage(im,0,0,64,64,0,0,S,S);gg.restore();
-const bx=px+S*.62,by=py+S*.12;gg.save();gg.font='bold 5px sans-serif';gg.textAlign='center';
+hop=Math.min(hop,Math.max(0,IH-bh-.5));
+let topo;if(viv){topo=s.mode==='pousa'||s.mode==='dorme'?chao-bh-hop:iy0+(IH-bh)*(.45+.4*Math.sin(t/700+s.sd))-hop}else topo=chao-bh-hop+(s.mode==='dorme'?.5:0);
+topo=Math.max(iy0,Math.min(chao-bh,topo));const py=topo-B.y0*k;
+gg.save();gg.beginPath();gg.rect(ix0,iy0,IW,IH+1);gg.clip();gg.imageSmoothingEnabled=true;try{gg.imageSmoothingQuality='high'}catch(e){}
+if(!viv){gg.fillStyle='rgba(0,0,0,.24)';gg.beginPath();gg.ellipse(cxp,chao-.6,bw*.42*(1-hop/12),bh*.07+.4,0,0,6.3);gg.fill()}
+gg.translate(Math.round((px+(flip?S:0))*2)/2,Math.round(py*2)/2);gg.scale(flip?-1:1,1);gg.drawImage(im,0,0,64,64,0,0,S,S);gg.restore();
+const bx=cxp+bw*.3,by=topo+1;
+gg.save();gg.font='bold 5px sans-serif';gg.textAlign='center';
 if(s.viu&&t-s.viu<1400){gg.fillStyle='#fff';gg.strokeStyle='#2a1d00';gg.lineWidth=1.2;gg.strokeText('!',bx,by-2);gg.fillText('!',bx,by-2)}
 if(s.feliz&&t-s.feliz<3000){gg.fillStyle='#f04a7a';gg.globalAlpha=1-(t-s.feliz)/3000;gg.fillText('♥',bx+Math.sin(t/200)*1.5,by-4-(t-s.feliz)/600)}
 if(s.mode==='dorme'){gg.fillStyle='#e8f0ff';gg.font='bold 4px sans-serif';const k=(t/900)%1;gg.globalAlpha=1-k;gg.fillText('z',bx+k*4,by-k*6);gg.globalAlpha=Math.max(0,1-((t/900+.5)%1));gg.fillText('Z',bx+((t/900+.5)%1)*4+2,by-((t/900+.5)%1)*6-2)}

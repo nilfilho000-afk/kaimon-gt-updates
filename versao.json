@@ -1,11 +1,11 @@
 {
- "jogo": 192,
- "jogo_arquivo": "jogo-192.kpk",
- "jogo_sha": "4726f09a31165721932d9fe3fb52cde64cc6e2d27d25dde82f9c9e0e425845ce",
- "jogo_assin": "XrOLPXY9CWBQIqJQRBu9NPOMhGQVWXqHjQq8n4flzQDji1zrU7ZQVt7tHjdvriOHfw4VfmNq+UfcU5PaXE9tBA==",
+ "jogo": 193,
+ "jogo_arquivo": "jogo-193.kpk",
+ "jogo_sha": "ac7f32354bb421042f85e1a7af32f8006e61ae5c0c24359e6610c3e8e5bf2ac5",
+ "jogo_assin": "gT3eb1ay9qmwTpOC/jb8oLDvQm43/vRxQhwhQWsNeseZWBX3Wqn0p9aKZunGk18tsbHRpfFa7bXhflIYeuEQBA==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "cc07e2997c4ba82a397240864f5254b04f6c54fc8f9ddb49f2e13d78337fef57",
- "launcher_assin": "nkY2GVgrDevfydGZQEO+oB3TcJOSivWUoy4L1yN84M1aCLgKHQ9p5vag96R/Tb1qohwFtDjissIhU8H82tGPCQ==",
- "notas": "Viveiro e terrários maiores, do tamanho do Tanque Kaimon"
+ "launcher_sha": "c437dfe7a7b5703aaf2fff4f1be3683d7fada0d7fcbf5fc4fa7ed6a61375c26b",
+ "launcher_assin": "kxUEwlV9FErQTBvPUHdQAYkLxAta/u9o8Ys5RKnM7CNotrVEZn6TJWDypSjyQbg17Y+xg1XqoJwY+cDuDdAhDg==",
+ "notas": "Os Kaimons dos viveiros e terrários ficam sempre inteiros dentro do vidro e da gaiola"
 }
