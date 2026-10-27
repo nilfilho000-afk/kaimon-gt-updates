@@ -1,0 +1,11 @@
+{
+ "jogo": 180,
+ "jogo_arquivo": "jogo-180.kpk",
+ "jogo_sha": "25623361b78227bb58cf916412c908f426917db0cadf93bf7af49681fb2a16bf",
+ "jogo_assin": "8xXnLPRoLz654sHcj/yU5lF07gxnJfpxhODJwxCesFtrxQupok7/dGIhEhKpP990hD9ID739UefA3GcQaZQgBQ==",
+ "launcher": 4,
+ "launcher_arquivo": "KaimonGT-4.exe",
+ "launcher_sha": "62e5d5c3c36c0d4eaef9279a77efeed24b7b1160587656a38ba7dc6aa41f8da8",
+ "launcher_assin": "iBvndbjjQOCZDiCrj3XCVuUvtxQH9qYrCI2JoQnyC6f2umDMzEsPD/YddikQcKkJvtLto3k29nbeCkR9ppTYBg==",
+ "notas": "v1.62: quem está na casa vê você navegando (no barco ou na boia, sentado e virando junto), o barco parado some do lugar enquanto alguém usa, e corrigido o barco/boia que perdia pedaço quando alguém nadava do lado."
+}
