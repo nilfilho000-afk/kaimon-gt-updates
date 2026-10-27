@@ -2097,7 +2097,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v205 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v206 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -9132,7 +9132,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=205;
+var KGT_VER=206;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -17579,12 +17579,13 @@ E:[{k:'leva',npc:'cs_lia',nn:'Lia',onde:'Loja da Liga, no Platô da Glória',t:'
 const HTIT=HC.map((c,i)=>'h'+i);
 HC.forEach((c,i)=>{TIT[HTIT[i]]={n:i===8?'Guardião de Pindorama':'Amigo de '+c.cid,c:i===8?'#ff3a5a':'#7ad8ff',b:i===8?'rgba(30,8,20,.88)':'rgba(10,30,44,.85)'}});
 const HNPC=new Map();HC.forEach((c,i)=>{HNPC.set(c.npc,1);c.E.forEach(e=>{if(e.npc)HNPC.set(e.npc,1)})});
+function hParte(ci){const C=HC[ci]||{},pt=C.parte||'A Lenda de Pindorama',L=HC.map((c,i)=>i).filter(i=>(HC[i].parte||'A Lenda de Pindorama')===pt);return{pt,n:L.indexOf(ci)+1,tot:L.length}}
 function hEst(){G.hist=G.hist||{c:0,e:0,ac:0,p:0,set:[]};return G.hist}
 function hCap(){const H=hEst();return HC[H.c]||null}
 function hPasso(){const H=hEst(),C=hCap();return C&&H.ac?C.E[H.e]:null}
 function hAlvo(){const C=hCap(),s=hPasso();if(!C)return null;return s&&s.k==='leva'?s.npc:C.npc}
 function hPronto(){const H=hEst(),s=hPasso();if(!s)return false;
-if(s.k==='item')return invCount(s.it)>=s.n;if(s.k==='mostra')return G.party.some(m=>m&&SP[m.n]&&SP[m.n].t.includes(s.tipo)&&m.lvl>=s.lv);
+if(s.k==='item')return invCount(s.it)>=s.n;if(s.k==='mostrasp')return G.party.some(m=>m&&m.n===s.sp&&m.lvl>=(s.lv||1));if(s.k==='mostra')return G.party.some(m=>m&&SP[m.n]&&SP[m.n].t.includes(s.tipo)&&m.lvl>=s.lv);
 if(s.k==='leva'||s.k==='chefe')return true;if(s.k==='visita')return H.p>=1;return H.p>=s.n}
 function hProg(){const H=hEst(),s=hPasso();if(!s)return'';if(s.k==='item')return Math.min(invCount(s.it),s.n)+'/'+s.n;if(s.k==='visita')return H.p?'✔':'';if(s.k==='vence'||s.k==='cap'||s.k==='capdif')return Math.min(H.p,s.n)+'/'+s.n;return''}
 function hPremioEtapa(ci){const mo=150*(ci+1),xp=80*(ci+1);G.money+=mo;const tm=tgain(xp);return{mo,xp,tm}}
@@ -17600,31 +17601,31 @@ function hNpcs(){try{for(const n of NPC){if(!n||!HNPC.has(n.n)||n._h203)continue
 function hMarca(npc){const H=hEst(),C=hCap();if(!C)return'';if(!H.ac)return npc===C.npc&&G.t.l>=C.lv?'!':'';if(hAlvo()!==npc)return'';return hPronto()?'?':'…'}
 var HLOJA=null;
 function hFala(npc,loja){const H=hEst(),C=hCap();if(!C)return false;const m=hMarca(npc);if(!m&&!(npc===C.npc&&!H.ac))return false;HLOJA=loja;
-const ci=H.c,head=`<p style="margin:0 0 4px"><b>📜 A Lenda de Pindorama</b> · Capítulo ${ci+1}/9 · ${esc(C.cid)}</p>`,lj=btn('🛒 Loja','hLoja()');
+const ci=H.c,hp=hParte(ci),head=`<p style="margin:0 0 4px"><b>📜 ${esc(hp.pt)}</b> · Capítulo ${hp.n}/${hp.tot} · ${esc(C.cid)}</p>`,lj=btn('🛒 Loja','hLoja()');
 if(!H.ac){if(G.t.l<C.lv){open(head+`<p><b>${esc(C.nn)}:</b> “Preciso de ajuda, mas a estrada é perigosa. Volte quando for <b>nível ${C.lv}</b> de treinador.”</p>`+lj+btn('Fechar','closeUI()'));return true}
-open(head+`<p><b>${esc(C.nn)}:</b> “${esc(C.ini)}”</p><p><small>Cada etapa: 💰${150*(ci+1)} + ${80*(ci+1)} EXP de treinador. No fim do capítulo: título «${esc(TIT[HTIT[ci]].n)}» e um Kaimon de presente.</small></p>`+btn('✅ Aceitar','hAceita()')+lj+btn('Agora não','closeUI()'));return true}
+open(head+`<p><b>${esc(C.nn)}:</b> “${esc(C.ini)}”</p><p><small>Cada etapa: 💰${150*(ci+1)} + ${80*(ci+1)} EXP de treinador. No fim do capítulo: título «${esc(TIT[HTIT[ci]].n)}» e ${C.itemFim?'<b>'+esc(C.itemFim[0])+'</b>':'um Kaimon de presente'}.</small></p>`+btn('✅ Aceitar','hAceita()')+lj+btn('Agora não','closeUI()'));return true}
 const s=hPasso();if(hAlvo()!==npc)return false;
 if(!hPronto()){open(head+`<p><b>${esc(s.k==='leva'?s.nn:C.nn)}:</b> “${esc(s.d)}”</p><p>🎯 <b>${esc(s.t)}</b> ${hProg()}</p>`+lj+btn('Fechar','closeUI()'));return true}
-if(s.k==='chefe'){open(head+`<p><b>${esc(C.nn)}:</b> “${esc(s.d)}”</p><p>⚔️ <b>${esc(s.t)}</b> (Nv ${s.lv}). Prepare o time!</p>`+btn('⚔️ Lutar agora','hLuta()')+btn('Ainda não','closeUI()'));return true}
+if(s.k==='chefe'){open(head+`<p><b>${esc(C.nn)}:</b> “${esc(s.d)}”</p><p>⚔️ <b>${esc(s.t)}</b> (Nv ${s.lv}). Prepare o time!<br><small>Se perder, é só curar o time e voltar aqui: dá para tentar quantas vezes quiser.</small></p>`+btn('⚔️ Lutar agora','hLuta()')+btn('Ainda não','closeUI()'));return true}
 hAvanca(npc);return true}
 function hLoja(){closeUI();try{if(HLOJA)HLOJA()}catch(e){}}
 function hAceita(){const H=hEst();H.ac=1;H.e=0;H.p=0;H.set=[];save();closeUI();const s=hPasso();toast('📜 Capítulo '+(H.c+1)+': '+s.t);try{play('item')}catch(e){}}
 function hAvanca(npc){const H=hEst(),C=hCap(),s=hPasso(),ci=H.c;if(s.k==='item')invRemove(s.it,s.n);const r=hPremioEtapa(ci);H.e++;H.p=0;H.set=[];
 let msg=`<p>✅ <b>${esc(s.t)}</b> — feito!<br><small>+💰${r.mo} · +${r.xp} EXP de treinador${r.tm?'<br>'+esc(r.tm):''}</small></p>`;
 if(H.e>=C.E.length){const tk=HTIT[ci];G.hTits=G.hTits||[];if(!G.hTits.includes(tk))G.hTits.push(tk);
-const[sp,lv]=C.dom,c=mon(sp,lv);c.id=(Math.random()*1e9|0)+1;if(sp==='Uiratã'){c.sh=0}dxm(sp,2);const pm=toParty(c);
+let sp='',lv=0,pm='',ganhou='';if(C.dom){[sp,lv]=C.dom;const c=mon(sp,lv);c.id=(Math.random()*1e9|0)+1;if(sp==='Uiratã'){c.sh=0}dxm(sp,2);pm=toParty(c);ganhou=`🎁 <b>${esc(sp)} Nv ${lv}</b> entrou no seu time`}if(C.itemFim){addI(C.itemFim[0],C.itemFim[1]||1);ganhou=`🎁 <b>${esc(C.itemFim[0])}</b> foi para a mochila${C.itemMsg?'<br><small>'+esc(C.itemMsg)+'</small>':''}`}
 H.c++;H.ac=0;H.e=0;H.p=0;save();hud();try{play('lvl')}catch(e){}
-open(`<p style="margin:0 0 4px"><b>📜 Capítulo ${ci+1} completo!</b></p><p><b>${esc(C.nn)}:</b> “${esc(C.fim)}”</p>${msg}<p>🏷️ Título <b style="color:${TIT[tk].c}">«${esc(TIT[tk].n)}»</b> (troque em 📋 → Conquistas)<br>🎁 <b>${esc(sp)} Nv ${lv}</b> entrou no seu time${pm?'<br><small>'+esc(pm)+'</small>':''}</p>`+(HC[H.c]?`<p><small>Próximo: <b>${esc(HC[H.c].nn)}</b> (${esc(HC[H.c].onde)}), a partir do nível ${HC[H.c].lv}.</small></p>`:'<p><b>🏆 Você completou A Lenda de Pindorama!</b></p>')+btn('Continuar','closeUI()'));return}
+open(`<p style="margin:0 0 4px"><b>📜 ${esc(hParte(ci).pt)} · Capítulo ${hParte(ci).n} completo!</b></p><p><b>${esc(C.nn)}:</b> “${esc(C.fim)}”</p>${msg}<p>🏷️ Título <b style="color:${TIT[tk].c}">«${esc(TIT[tk].n)}»</b> (troque em 📋 → Conquistas)<br>${ganhou}${pm?'<br><small>'+esc(pm)+'</small>':''}</p>`+(HC[H.c]?`<p><small>Próximo: <b>${esc(HC[H.c].nn)}</b> (${esc(HC[H.c].onde)}), a partir do nível ${HC[H.c].lv}.</small></p>`:'<p><b>🏆 Você completou a história!</b></p>')+btn('Continuar','closeUI()'));return}
 save();hud();try{play('item')}catch(e){}const n2=hPasso();
-open(`<p style="margin:0 0 4px"><b>📜 A Lenda de Pindorama</b> · Capítulo ${ci+1}/9</p>${msg}<p><b>${esc(n2.k==='leva'?C.nn:C.nn)}:</b> “${esc(n2.d)}”</p><p>🎯 Próxima: <b>${esc(n2.t)}</b>${n2.k==='leva'?'<br><small>📍 '+esc(n2.onde)+'</small>':''}</p>`+btn('Continuar','closeUI()'))}
+open(`<p style="margin:0 0 4px"><b>📜 ${esc(hParte(ci).pt)}</b> · Capítulo ${hParte(ci).n}/${hParte(ci).tot}</p>${msg}<p><b>${esc(n2.k==='leva'?C.nn:C.nn)}:</b> “${esc(n2.d)}”</p><p>🎯 Próxima: <b>${esc(n2.t)}</b>${n2.k==='leva'?'<br><small>📍 '+esc(n2.onde)+'</small>':''}</p>`+btn('Continuar','closeUI()'))}
 function hLuta(){closeUI();const H=hEst(),s=hPasso();if(!s||s.k!=='chefe'||(typeof B!=='undefined'&&B))return;if(!G.party.length||!active())return toast('Nenhum Kaimon seu pode lutar agora.');
-const w=mon('Uiratã',s.lv);w.boss=1;w.histBoss=1;w.sh=0;stats(w);w.max=Math.round(w.max*s.hp);w.hp=w.max;for(const k of['A','SA'])w[k]=Math.round(w[k]*1.05);
-w.onEnd=b=>{try{const won=b&&b.w&&b.w.hp<=0&&!b.black;if(won){const H2=hEst();if(hPasso()===s){setTimeout(()=>{try{hAvanca(hAlvo())}catch(e){window.__hx=String(e&&e.stack).slice(0,300)}},400)}}else setTimeout(()=>toast('📜 A sombra escapou. Cure o time e tente de novo.'),600)}catch(e){}};
-startB(w);if(B){B.log=[H.c===8?'O Uiratã corrompido abriu o leque de penas vermelhas!':'A Sombra das Penas mergulhou da cratera!','Nenhum cristal funciona nela: só dá para vencê-la.'];rb()}}
+const w=mon(s.sp||'Uiratã',s.lv);w.boss=1;w.histBoss=1;w.sh=0;stats(w);w.max=Math.round(w.max*s.hp);w.hp=w.max;for(const k of['A','SA'])w[k]=Math.round(w[k]*1.05);
+w.onEnd=b=>{try{const won=b&&b.w&&b.w.hp<=0&&!b.black;if(won){const H2=hEst();if(hPasso()===s){setTimeout(()=>{try{hAvanca(hAlvo())}catch(e){window.__hx=String(e&&e.stack).slice(0,300)}},400)}}else setTimeout(()=>toast('📜 A sombra escapou! Cure o time e fale de novo com quem te deu a missão para lutar outra vez (pode tentar quantas vezes quiser).'),600)}catch(e){}};
+startB(w);if(B){B.log=[s.msg||(H.c===8?'O Uiratã corrompido abriu o leque de penas vermelhas!':'A Sombra das Penas mergulhou da cratera!'),'Nenhum cristal funciona nela: só dá para vencê-la.'];rb()}}
 RH2.push(function(cx,cy,t){try{if(mode!=='walk'||!NPC||!NPC.length)return;for(const n of NPC){if(!n||!HNPC.has(n.n))continue;const m=hMarca(n.n);if(!m)continue;
 const X=(n.px!=null?n.px:n.x)*16-cx+8,Y=(n.py!=null?n.py:n.y)*16-cy-20+Math.sin(t/260)*1.5;g.save();g.font='bold 13px sans-serif';g.textAlign='center';g.lineWidth=3;g.strokeStyle='#1a1206';
 g.fillStyle=m==='!'?'#ffd34d':m==='?'?'#7aff9a':'#c8c8d8';g.strokeText(m,X,Y);g.fillText(m,X,Y);g.restore()}}catch(e){}});
-{const _ct=cqTitulos;cqTitulos=function(){const L=_ct.apply(this,arguments);try{for(const k of(G.hTits||[]))if(TIT[k]&&!L.some(x=>x.t===TIT[k].n))L.push({id:k,t:TIT[k].n,r:k==='h8'?'l':'r'})}catch(e){}return L}}
+{const _ct=cqTitulos;cqTitulos=function(){const L=_ct.apply(this,arguments);try{for(const k of(G.hTits||[]))if(TIT[k]&&!L.some(x=>x.t===TIT[k].n))L.push({id:k,t:TIT[k].n,r:(k==='h8'||(HC[+k.slice(1)]||{}).titR==='l')?'l':'r'})}catch(e){}return L}}
 const PEDP=[['Fio de Seda','Saúvinha',1],['Pena de Tevizinho','Tevizinho',1],['Rabo de Cutiqui','Cutiqui',1],['Bico de Querinho','Querinho',1],['Ferrão de Lumilarva','Lumilarva',1],
 ['Muda de Jarinha','Jarinha',5],['Espinho de Ouricinho','Ouricinho',5],['Moeda de Tirica','Tirica',10],['Folha de Vasinho','Vasinho',10],['Pena de Pirarinho','Pirarinho',10],
 ['Bochecha de Faiscamico','Faiscamico',12],['Semente de Musguiça','Musguiça',20],['Brasa de Brasatu','Brasatu',20],['Casco de Botinho','Botinho',20]];
@@ -17637,12 +17638,12 @@ function pedEntrega(i){const P=pedEst(),p=P.L[i];if(!p||p.ok)return;if(invCount(
 invRemove(p.it,p.n);const r=pedPremio(p);G.money+=r.v;G.premier=(G.premier|0)+r.cr;const tm=tgain(r.xp);p.ok=1;save();hud();try{play('item')}catch(e){}
 toast('📦 Pedido entregue: +💰'+r.v+' · +'+r.cr+' Cristal Super · +'+r.xp+' EXP'+(tm?' · '+tm:''));msPainel('p')}
 function hAba(){const H=hEst(),C=hCap();let h='';
-if(!C)return'<p><b>🏆 Você completou A Lenda de Pindorama!</b></p><p><small>O Uiratã agora guarda as nove penas ao seu lado.</small></p>';
-h+=`<p style="margin:4px 0"><b>Capítulo ${H.c+1}/9 · ${esc(C.cid)}</b></p>`;
+if(!C)return'<p><b>🏆 Você completou todas as histórias!</b></p><p><small>O Uiratã agora guarda as nove penas ao seu lado. Novas histórias chegam nas próximas versões.</small></p>';
+const hp=hParte(H.c);h+=`<p style="margin:4px 0"><b>${esc(hp.pt)} · Capítulo ${hp.n}/${hp.tot} · ${esc(C.cid)}</b></p>`;
 if(!H.ac)h+=`<p>📍 Fale com <b>${esc(C.nn)}</b> — ${esc(C.onde)}.<br><small>${G.t.l>=C.lv?'Tem um <b style="color:#ffd34d">!</b> na cabeça dele.':'Libera no nível '+C.lv+' de treinador (você está no '+G.t.l+').'}</small></p>`;
 else{h+=C.E.map((s,i)=>`<div class="msm${i<H.e?' col':''}"><div class="tx"><b>${i<H.e?'✔ ':i===H.e?'🎯 ':'· '}${esc(s.t)}</b>${i===H.e?`<small>${esc(s.d)} ${hProg()?'<b>'+hProg()+'</b>':''}${hPronto()?' · <b style="color:#8affa0">pronto! fale com '+esc(s.k==='leva'?s.nn:C.nn)+'</b>':''}</small>`:''}</div></div>`).join('');
 const s=hPasso();h+=`<p><small>📍 Entregar: ${esc(s.k==='leva'?s.onde:C.onde)} · cada etapa dá 💰${150*(H.c+1)} + ${80*(H.c+1)} EXP</small></p>`}
-h+=`<p style="margin:6px 0 0"><small>Capítulos feitos: ${H.c}/9 · ao terminar cada um: título da cidade + Kaimon de presente.</small></p>`;return h}
+h+=`<p style="margin:6px 0 0"><small>Capítulos feitos: ${hp.n-1}/${hp.tot} · ao terminar cada um: título + ${C.itemFim?'um item especial':'Kaimon de presente'}.</small></p>`;return h}
 function pAba(){const P=pedEst();return`<p style="margin:2px 0"><small>3 pedidos por dia (novos às 05:10). Entregue o loot que você já tem, de qualquer lugar.</small></p>`+P.L.map((p,i)=>{const r=pedPremio(p),tem=invCount(p.it);
 return`<div class="msm${p.ok?' col':tem>=p.n?' ok':''}"><div class="tx"><b>${esc(p.q)}: ${p.n}× ${esc(p.it)}</b><small>Dropa do ${esc(p.sp)} · você tem ${Math.min(tem,p.n)}/${p.n} · 💰${r.v} + ${r.cr} Cristal Super + ${r.xp} EXP</small></div><div class="bt">${p.ok?'<small>✔ Entregue</small>':tem>=p.n?btn('📦 Entregar',`pedEntrega(${i})`):''}</div></div>`}).join('')}
 {const _mp=msPainel;msPainel=function(aba){const a=aba||MSA;if(a==='h'||a==='p'){MSA=a;if(!msLiberado())return _mp.apply(this,arguments);
@@ -17653,6 +17654,7 @@ t.insertAdjacentHTML('beforeend',`<button class="h203" onclick="msPainel('h')">�
 {const _tk=msTrack;msTrack=function(){const r=_tk.apply(this,arguments);try{const c=document.getElementById('mstrk');if(!c||c.style.display==='none')return r;let d=document.getElementById('hstrk');
 const H=hEst(),C=hCap(),s=hPasso();let tx='';if(C&&s)tx='📜 '+s.t+(hProg()?' '+hProg():'')+(hPronto()?' ✔':'');else if(C&&!H.ac&&G.t.l>=C.lv)tx='📜 Nova história: fale com '+C.nn+' ('+C.cid+')';
 if(!tx){if(d)d.remove();return r}if(!d||d.parentNode!==c){d=document.createElement('div');d.id='hstrk';d.style.cssText='margin-top:4px;padding-top:4px;border-top:1px solid #ffffff22;color:#ffd34d;font-weight:700;font-size:12px';c.appendChild(d)}if(d.textContent!==tx)d.textContent=tx}catch(e){}return r}}
+function hAdd(L){for(const c of L){const i=HC.length;HC.push(c);const k='h'+i;HTIT.push(k);TIT[k]={n:c.tit||('Amigo de '+c.cid),c:c.titC||'#7ad8ff',b:c.titB||'rgba(10,30,44,.85)'};HNPC.set(c.npc,1);c.E.forEach(e=>{if(e.npc)HNPC.set(e.npc,1)})}}
 try{const A="const ty=13.6-(k-1)*2;const tail=mvTube([[16,16+B],[16.4,ty+B],[17.6+wav,ty-3.6+B],[18.6+wav*1.4,ty-6.6+B]],1.3*k,.4,.1,.4);mvPart(X,tail,mvMix(c,d,.3),{cs:.3});\n  stinger(18.6+wav*1.4,ty-6.6+B,.6,-1.8);if(s==1)flags([[16.6,ty-.4+B],[17.2,ty-2+B],[17.9,ty-3.6+B],[18.4,ty-5.2+B]]);",Bq="const ty=13.6-(k-1)*2,tx0=16+3*k;const tail=mvTube([[16.6,17+B],[tx0+1.5,15.2+B],[tx0+5.5*k,15+B+wav*.6],[tx0+8.6*k,16.4+B+wav]],1.25*k,.4,.1,.4);mvPart(X,tail,mvMix(c,d,.3),{cs:.3});\n  stinger(tx0+8.6*k,16.4+B+wav,1.7,.45);if(s==1)flags([[tx0+1,15.5+B],[tx0+3,15.1+B],[tx0+5,15.1+B+wav*.5],[tx0+7,15.6+B+wav*.8]]);",src=mvArraia.toString();if(src.includes(A)){mvArraia=(0,eval)('('+src.replace(A,Bq)+')');try{for(const k in PXM)if(/^Arrai/.test(k))delete PXM[k]}catch(e){}try{for(const k in SV)if(/^Arrai/.test(k))delete SV[k]}catch(e){}}}catch(e){}
 (function(){try{const st=document.createElement('style');st.textContent=`body.hudmin .ab:not(.hkeep){display:none!important}
 #hudtg{position:fixed;right:calc(env(safe-area-inset-right,0px) + 88px);bottom:calc(env(safe-area-inset-bottom,0px) + 6px);width:40px;height:40px;border-radius:50%;padding:0;margin:0;z-index:6;
