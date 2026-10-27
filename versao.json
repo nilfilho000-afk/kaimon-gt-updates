@@ -1,11 +1,11 @@
 {
- "jogo": 175,
- "jogo_arquivo": "jogo-175.kpk",
- "jogo_sha": "b0bf1f066af5581651e01e7d1ee6c65b0f2006601e5334f37f63503cc1dd3ecc",
- "jogo_assin": "UUtmrf6ml5WZZyauSMw5NkikHgglzav4iuGFNJsoiGSrZiPfo1RBxkFiudBGgQ4kmMywxTI1H27rTlLbTeXdAg==",
+ "jogo": 176,
+ "jogo_arquivo": "jogo-176.kpk",
+ "jogo_sha": "128ff977611be0082252127cd4c22b6dd0cc5962148e1295a1d4499a8f6e12a4",
+ "jogo_assin": "aHlSEm+geAMNs2L65TIClUctojrf6P5y7Mue5bOXOljdixBg+i8C0m4eMTdLSLCNZhyFS+G9Nw8BxdYXmJVpAg==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "c6f56122853b1406d4f7bc62b3608a6de1d0e3b8aa1480392a385e82e0c0e29e",
- "launcher_assin": "N0UXs5idiZpxp6pmHoqaUz8/AJqVd1dy7UXiohC1A7CgIliWujcGfcc05pUyhWy3OdhhcT2buh+2XsziNwawBQ==",
- "notas": "v1.57: descendo a escadinha da piscina, o personagem agora entra de frente (olhando para a água); subindo, olha para a borda."
+ "launcher_sha": "8e78c054f804808f11353b3d19e4bec0a0e21e64d02f668394e49a7320206a49",
+ "launcher_assin": "oe0d0rDc6Wpxxz//FZOA/FnHLaQAg6agWW4bBSyPMrlJZObaUI2NkpRJPIQp0NgKbyH5UiNBLaOsdq7FIvuDBg==",
+ "notas": "v1.58: piscina em 3D (rebaixada no chão da casa: parede de azulejo descendo até a água, laterais e sombra da borda) e agora só se entra e sai pela escadinha."
 }
