@@ -2097,7 +2097,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v180 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v181 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -3444,7 +3444,8 @@ const finCrest=(pts)=>{for(const[px,py,ang,ln]of pts)mvPart(X,mvS([[px-1,py+.4],
 if(s<2){
 const by=[21.6,20.2][s],hy=[12.6,10.6][s];
 if(v==0){qTail(X,[[18.6,25.6],[22.4,27],[25.4,25.8],[26.6,22.8]],2.6*k,1.2,c,x=>scutes(x,[[22.4,26,-1.4],[24.6,25.2,-1.1]],sc,.7));
-for(const sg of[-1,1])qLeg(X,16+sg*2.6*k,by+2.4,28.9-(sg<0?LA:LB)*.6,2.2*k,c,'claw');
+for(const sg of[-1,1]){const lf=(sg<0?LA:LB)*.6,fx=16+sg*5.4*k,fy=28.6-lf;mvPart(X,mvTube([[16+sg*2.4*k,by+2],[16+sg*4.8*k,by+3.4],[fx,fy-1.2]],2.3*k,1.9*k,.1,.1),mvMix(c,MVK.SH,.12),{});
+mvPart(X,mvE(fx+sg*.3,fy-.5,1.7*k,1*k),c,{});mvClaws(X,[[fx-.9,fy+.3,.8],[fx+sg*.1,fy+.45,.8],[fx+1,fy+.3,.8]],claw)}
 const body=mvE(16,by,5*k,5.4*k);mvPart(X,body,c,{fx:x=>{hide(x,body,3);mvPart(x,mvE(16,by+.8,3.2*k,4.2*k),l,{ln:.4,cs:0,hl:.3,sd:.3,rim:0,cv:.3,fx:x=>plates(x,mvE(16,by+.8,3.2*k,4.2*k))})}});
 for(const sg of[-1,1]){const ax=16+sg*4.6*k;mvPart(X,mvTube([[ax,by-2],[ax+sg*1.2,by+.4],[ax+sg*.6,by+2]],1.5*k,1.2*k,.1,.1),c,{});mvClaws(X,[[ax+sg*.3,by+2.6,.9],[ax+sg*1,by+2.4,.9]],claw)}
 const hs=mvS([[16,hy-4*k],[16+3.2*k,hy-3.4*k],[16+4.4*k,hy-1*k],[16+4*k,hy+1.8*k],[16+3*k,hy+3.6*k],[16+1.6*k,hy+4.6*k],[16,hy+4.9*k],[16-1.6*k,hy+4.6*k],[16-3*k,hy+3.6*k],[16-4*k,hy+1.8*k],[16-4.4*k,hy-1*k],[16-3.2*k,hy-3.4*k]]);
@@ -3871,9 +3872,15 @@ const head=(sh,vv,cx,cy)=>mvPart(X,sh,G.headCol||G.bodyCol||c,{cs:.45,fx:x=>{if(
 const E=(a)=>a.length==5?mvE(a[0],a[1],a[2],a[3],a[4]):mvE(a[0],a[1],a[2],a[3]);
 if(G.under)G.under(v);
 if(v==0){const F=G.F;if(G.pre)G.pre(v);
-if(F.hind)for(const sg of[-1,1]){const lift=(sg<0?LB:LA)*.6;if(F.hind.feet)mvPart(X,mvE(16+sg*F.hind.dx,28.2-lift*.4,F.hind.w,1.2),far,{});else qLeg(X,16+sg*F.hind.dx,F.hind.top,F.hind.bot-lift,F.hind.w,far,paw)}
+if(F.hind)for(const sg of[-1,1]){const lift=(sg<0?LB:LA)*.6,hx=16+sg*F.hind.dx;if(F.hind.feet)mvPart(X,mvE(hx,28.2-lift*.4,F.hind.w,1.2),far,{});
+else{const hw=F.hind.w,bc=G.bodyCol||c,hy=(F.hind.top+F.hind.bot)/2,fy=28.3-lift*.4;
+mvPart(X,mvE(hx+sg*.4,fy-.7,hw*.85,1.05),far,{cs:.2});
+mvPart(X,mvE(hx,hy+.8,hw*1.35,(fy-hy)*.78),mvMix(bc,MVK.SH,.18),{cs:.3,hl:.25})}}
 const bs=F.bshape||E([16,F.body[0],F.body[1],F.body[2]]);body(bs,0);
-if(F.legs)for(const sg of[-1,1]){const lift=(sg<0?LA:LB)*.7;qLeg(X,16+sg*F.legs.dx,F.legs.top,F.legs.bot-lift,F.legs.w,legC,paw)}
+if(F.legs){const bc=G.bodyCol||c;for(const sg of[-1,1]){const lift=(sg<0?LA:LB)*.7,lw=F.legs.w*1.15,lx=16+sg*F.legs.dx,top=F.legs.top,bot=F.legs.bot-lift;
+qLeg(X,lx,top+.6,bot,lw,legC,paw,0);
+const sh=mvE(lx+sg*.15,top+.9,lw*.62,(bot-top)*.32);mvPart(X,sh,bc,{ln:0,cs:0,rim:0,hl:.2});
+if(legC!==bc)mvPart(X,mvE(lx,top+(bot-top)*.42,lw*.5,.55),mvMix(bc,legC,.5),{ln:0,cs:0,rim:0,hl:0,cv:0})}}
 if(G.mid)G.mid(v);
 if(F.ear)for(const sg of[-1,1])qEar(X,16+sg*F.ear.dx,F.ear.y,F.ear.s,G.earCol||G.bodyCol||c,inner,sg,G.ear,F.ear.r);
 const hs=F.hshape||E([16,F.head[0],F.head[1],F.head[2]]);head(hs,0,16,F.head[0]);
@@ -9123,7 +9130,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=180;
+var KGT_VER=181;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
