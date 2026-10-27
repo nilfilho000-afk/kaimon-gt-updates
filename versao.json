@@ -1,11 +1,11 @@
 {
- "jogo": 168,
- "jogo_arquivo": "jogo-168.kpk",
- "jogo_sha": "61580415386041f1edb59508da87143d418de851f3118ff5047ea82c8d84fb79",
- "jogo_assin": "jj0e5CN0y6+NWlDDb3+0EXDMdHLRc1w0movoZexIInpOuSvCSrBxhZopqrzyCxuCg0pXECFaBDbG7GeV/g5dBw==",
+ "jogo": 169,
+ "jogo_arquivo": "jogo-169.kpk",
+ "jogo_sha": "bdf27288a0329cf5a18302d56f945452ddbabc78ce2f81303aabf687f965de03",
+ "jogo_assin": "+U+VjsbMmetI4oo6tABArHYy/XUL/TsXtl9IsNMQnNSS0LGEIW1m9TbsRj5OGXg5a7MEducO6Lr4cPUMLM3sCQ==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "dad8a1376f4aab8fb2ca5d328302705593d0c109124a48024bc6b2f2da8c830f",
- "launcher_assin": "8caEBHUhWTPGaVYmXGHeFsr9wkulnpAhotzx1E0pqt94shAS1oGZjVq9dPhT2K06sT+kP+pCkrxuzTyg6mdABA==",
- "notas": "v1.50: Máquina de Garra agora dá 1 Kaimon de pelúcia por dia."
+ "launcher_sha": "406e2e13045d9bc8c8b3fa4779e56a325391433913d2cd046ee346f22c68b3f0",
+ "launcher_assin": "PdBDbWYgysHziOZSdlLNXJmVkK+85bH3N7l7DCUeQPltjlRxqN6eQ4SFvqUbsgB1Nzq/OiTJGyjssvwXp+e7BQ==",
+ "notas": "v1.51: piscina com profundidade (sombra da parede e meio mais fundo), escadinha presa na borda com os degraus dentro d'água (dá para passar por ela e tocar para descer ou subir degrau por degrau), tchibum ao pular pela borda, sai pingando, e o personagem nada com braçadas ao andar na água."
 }

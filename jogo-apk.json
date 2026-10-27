@@ -1,7 +1,7 @@
 {
- "v": 168,
+ "v": 169,
  "url": "https://raw.githubusercontent.com/nilfilho000-afk/kaimon-gt-updates/main/jogo-apk.html",
- "notas": "v1.50: Máquina de Garra agora dá 1 Kaimon de pelúcia por dia.",
- "sha": "9e84c2a1c57ec4480e7b467e60efa061792079b029a7cd216b99b8e15f07a301",
- "sig": "lQLRxYBYuEcNN1gHkbgHeFulxi50L3ZVh0Vq4VhIrGL/803iTXsUaZiuHznW439aqn7CrUWo/Bu/+wfM2FiubA=="
+ "notas": "v1.51: piscina com profundidade (sombra da parede e meio mais fundo), escadinha presa na borda com os degraus dentro d'água (dá para passar por ela e tocar para descer ou subir degrau por degrau), tchibum ao pular pela borda, sai pingando, e o personagem nada com braçadas ao andar na água.",
+ "sha": "909395e0d5b3bc3466df2ccdc2a6e6d3d86b9beb9627bee79871410c70430f47",
+ "sig": "VYR6BLBt5owqagiFMc3baAJV7tyD35Bi9apNQdFW3mF0xk99dxztGpdvdeTsFEEZ7yjJhwOkbhJEoD58jJuz2Q=="
 }
