@@ -1561,7 +1561,7 @@ x.setTransform(1,0,0,1,0,0);tweenHP(dt)}
 function tweenHP(dt){for(const[id,m]of[['e',B.w],['m',B.cur]]){if(!m)continue;if(B.dhm[id]!==m){B.dhm[id]=m;B.dh[id]=m.hp}let v=B.dh[id];const d=m.hp-v;v=Math.abs(d)<.4?m.hp:v+d*Math.min(1,dt*6);B.dh[id]=v;const el=$('hb'+id);if(el){const r=Math.max(0,v/m.max);el.style.width=r*100+'%';el.style.background=hpg(r)}if(id=='m'){const tx=$('htm');if(tx)tx.textContent=Math.round(v)+'/'+m.max}}
 const m=B.cur;if(m){const tg=xpb(m);B.dx=B.dx==null||tg<B.dx-50?tg:B.dx+(tg-B.dx)*Math.min(1,dt*4);const el=$('xbm');if(el)el.style.width=B.dx+'%'}}
 function rb(){const w=B.w,a=B.cur,dhv=(id,m)=>B.dhm[id]===m?B.dh[id]:m.hp,dk=c=>cmix(c,'#000000',.38);
-const card=(m,id)=>{const hv=dhv(id,m),r=Math.max(0,hv/m.max),ab=abOf(m),T2=SP[m.n].t;return `<div class="bcard ${id}"><div class="bc1"><b>${m.sh?'<span class="shy">✨</span>':''}${m.n}</b><span class="blv">Nv ${m.lvl}</span></div><div class="bc2">${T2.map(t=>`<span class="tpill" style="--t:${TYC[t]||'#888'}">${TY[t]}</span>`).join('')}<span class="tier">T${SP[m.n].tier||3}</span>${id=='e'&&B.tr?`<span class="tball">${B.tr.team.map(q=>`<i class="${q.hp>0?'on':''}"></i>`).join('')}</span>`:''}</div><div class="bhp"><span>HP</span><div class="bbar"><i id="hb${id}" style="width:${r*100}%;background:${hpg(r)}"></i></div></div>${id=='m'?`<div class="bc3"><span id="htm">${Math.round(hv)}/${m.max}</span><span class="bxp"><span>EXP</span><div class="bbar x"><i id="xbm" style="width:${B.dx==null?xpb(m):B.dx}%"></i></div></span></div>`:''}<div class="bc4">${ab?'Hab.: '+ABD[ab][0]:''}${id=='e'?(ab?' · ':'')+'Fraco: '+wk(m):''}${id=='e'&&m.sh?'<br>✨ Shiny · Ultra quebradas '+(m.br||0)+'/'+PTY[SP[m.n].tier||3]:''}${id=='e'&&B.tr?'<br>'+B.tr.nm:''}</div></div>`};
+const card=(m,id)=>{const hv=dhv(id,m),r=Math.max(0,hv/m.max),ab=abOf(m),T2=SP[m.n].t;return `<div class="bcard ${id}"><div class="bc1"><b>${m.sh?'<span class="shy">'+(m.au?'🌟':'✨')+'</span>':''}${m.n}</b><span class="blv">Nv ${m.lvl}</span></div><div class="bc2">${T2.map(t=>`<span class="tpill" style="--t:${TYC[t]||'#888'}">${TY[t]}</span>`).join('')}<span class="tier">T${SP[m.n].tier||3}</span>${id=='e'&&B.tr?`<span class="tball">${B.tr.team.map(q=>`<i class="${q.hp>0?'on':''}"></i>`).join('')}</span>`:''}</div><div class="bhp"><span>HP</span><div class="bbar"><i id="hb${id}" style="width:${r*100}%;background:${hpg(r)}"></i></div></div>${id=='m'?`<div class="bc3"><span id="htm">${Math.round(hv)}/${m.max}</span><span class="bxp"><span>EXP</span><div class="bbar x"><i id="xbm" style="width:${B.dx==null?xpb(m):B.dx}%"></i></div></span></div>`:''}<div class="bc4">${ab?'Hab.: '+ABD[ab][0]:''}${id=='e'?(ab?' · ':'')+'Fraco: '+wk(m):''}${id=='e'&&m.sh?'<br>✨ Shiny · Ultra quebradas '+(m.br||0)+'/'+PTY[SP[m.n].tier||3]:''}${id=='e'&&B.tr?'<br>'+B.tr.nm:''}</div></div>`};
 $('bsu').innerHTML=card(w,'e')+card(a,'m');
 const wx=M[cur].in?'':`<div class="bwx"><span><img src="${hic(wxk())}" alt="">${Math.round(tempo())}°C</span>${['fire','water','ice','electric','ghost'].map(t2=>{const v=wxm(t2);return v!=1?`<span><img src="${hic(t2)}" alt="">×${v.toFixed(2)}</span>`:''}).join('')}</div>`;
 let m='';if(B.end)m=`<button class="bbt green wide" onclick="endB()">Continuar ▶</button>`;else if(B.busy)m='<div class="bwait">…</div>';else{const nf=G.party.some(p=>p.hp<=0);
@@ -2097,7 +2097,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v199 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v200 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -9132,7 +9132,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=199;
+var KGT_VER=200;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -17203,7 +17203,7 @@ try{if(ehBall&&w&&w.sh){const S=shyEst();if(B&&B.ball&&B.ball.k==='got')S[w.n]=0
 const v=shyEst()[n]|0,mt=shyMeta(n),pct=Math.min(100,v/mt*100),cheio=v>=mt;
 cols[1].insertAdjacentHTML('beforeend',`<div style="margin:4px 0;padding:6px 8px;border-radius:8px;background:#1f1a30;border:1px solid ${cheio?'#ffd34d':'#5a4a8a'};font-size:12px">✨ <b>Shiny · Cristais Ultra quebrados: ${v}/${mt}</b>
   <div style="height:7px;background:#0c1220;border-radius:4px;overflow:hidden;margin:4px 0 3px;border:1px solid #3a3060"><i style="display:block;height:100%;width:${pct}%;background:${cheio?'linear-gradient(#fff4b8,#ffd34d)':'linear-gradient(#e0b0ff,#9a5aff)'}"></i></div>
-  <small style="color:#c8b8ff">${cheio?'🎯 Completo! A próxima captura de um shiny desta espécie é <b>certa</b>.':'Cada Ultra quebrado num shiny desta espécie soma 1 (Cristal do Passe soma 2) e a conta continua no próximo shiny. Chegou no total, a captura é certa.'}</small></div>`)}catch(e){}return r}}
+  <small style="color:#c8b8ff">${cheio?'🎯 Completo! A próxima captura de um shiny desta espécie é <b>certa</b>.':'Cada Ultra quebrado num shiny desta espécie soma 1 (Cristal do Passe soma 2, Super soma ½) e a conta continua no próximo shiny. Chegou no total, a captura é certa.'}</small></div>`)}catch(e){}return r}}
 function ltUm(k){const d=mobDef(k);return d&&d.t!=='parede'&&(d.w|0)<=1&&((d.h||1)|0)<=1}
 function ltRet(){const pl=MOB.pl;if(!pl||!pl.lote)return null;const[a,b]=pl.lote;return[Math.min(a,pl.x),Math.min(b,pl.y),Math.max(a,pl.x),Math.max(b,pl.y)]}
 function ltLivres(c,k){const R=ltRet();if(!R)return[];const L=[];for(let y=R[1];y<=R[3];y++)for(let x=R[0];x<=R[2];x++)if(mobPodeAqui(c,k,x,y,0,null))L.push([x,y]);return L}
@@ -17440,6 +17440,31 @@ d.innerHTML=`<b>🗺️ ${esc(R.nome)} — mapa completo</b><img class="mzdlimg"
  <button onclick="mzDlgOff()" style="${bs}background:#1d2433;color:#fff">Fechar</button></div>
  ${apk&&!share?'<small>Neste app antigo o download direto não funciona: tire um print desta tela, ou baixe pelo app da Play Store ou pelo navegador.</small>':''}`;
 d.hidden=false;MZ.dlg=1}catch(e){}}
+const AU={F:8,MS:150,c:new WeakMap(),nm:{1:'Dourada',2:'Arco-íris'}};
+function auCols(au,ph){if(au===2){const h=ph*360|0;return['hsl('+h+',100%,78%)','hsl('+((h+120)%360)+',100%,64%)','hsl('+((h+240)%360)+',100%,56%)']}return['#fff3b0','#ffd23f','#ff9a1f']}
+function auFaz(base,au,i){const w=base.width,h=base.height,u=Math.max(1,w/64),ph=i/AU.F,P=.5+.5*Math.sin(ph*6.283);
+const mk=document.createElement('canvas');mk.width=w;mk.height=h;const mx=mk.getContext('2d');mx.drawImage(base,0,0);
+const I=mx.getImageData(0,0,w,h),D=I.data;for(let q=3;q<D.length;q+=4)D[q]=D[q]>200?255:0;mx.putImageData(I,0,0);
+const top=new Int16Array(w).fill(-1);for(let x=0;x<w;x++)for(let y=0;y<h;y++)if(D[(y*w+x)*4+3]){top[x]=y;break}
+const cols=auCols(au,ph),c=document.createElement('canvas');c.width=w;c.height=h;const g2=c.getContext('2d');g2.imageSmoothingEnabled=false;
+const tin=col=>{const t=document.createElement('canvas');t.width=w;t.height=h;const x=t.getContext('2d');x.drawImage(mk,0,0);x.globalCompositeOperation='source-in';x.fillStyle=col;x.fillRect(0,0,w,h);return t};
+const anel=(r,col,a)=>{const t=tin(col);g2.globalAlpha=a;for(let rr=1;rr<=r;rr++){const n=Math.max(8,rr*6|0);for(let k=0;k<n;k++){const an=k/n*6.283;g2.drawImage(t,Math.round(Math.cos(an)*rr),Math.round(Math.sin(an)*rr))}}};
+anel(Math.round(3*u),cols[2],.05+.05*P);anel(Math.round(2*u),cols[1],.12+.1*P);anel(Math.round(u),cols[0],.6+.25*P);
+const px=Math.max(1,Math.round(u)),st=3*px;for(let x=0;x<w;x+=st){if(top[x]<0)continue;const hh=3+((Math.sin(ph*12.566+x/u)+1)*2.5|0),off=((ph*8+(x*37%11)/11*8)%3|0);
+for(let k=0;k<hh;k++){g2.fillStyle=cols[k<1?0:k<3?1:2];g2.globalAlpha=(1-k/hh)*.75;g2.fillRect(x,top[x]-px-(k+off)*px,px,px)}}
+g2.globalAlpha=1;g2.drawImage(base,0,0);
+for(let k=0;k<5;k++){const an=k/5*6.283+ph*6.283,rr=w*.41+3*u*Math.sin(ph*12.5+k),sx=Math.round((w/2+Math.cos(an)*rr)/px)*px,sy=Math.round((h*.56+Math.sin(an)*rr*.6)/px)*px,on=(ph*5+k*.37)%1;if(on>.6)continue;
+g2.fillStyle=au===2?'#ffffff':'#fffbe0';g2.globalAlpha=1-on/.6;g2.fillRect(sx-px,sy,3*px,px);g2.fillRect(sx,sy-px,px,3*px);if(on<.25){g2.fillRect(sx-2*px,sy,5*px,px);g2.fillRect(sx,sy-2*px,px,5*px)}}
+g2.globalAlpha=1;return c}
+function auImg(base,au){if(!base||!base.width)return base;let L=AU.c.get(base);if(!L){L={};AU.c.set(base,L)}const i=Math.floor(performance.now()/AU.MS)%AU.F,k=au+'_'+i;
+return L[k]||(L[k]=auFaz(base,au,i))}
+function auTira(s){return s.ad?{sh:true,ad:s.ad}:true}
+{const _v=getV;getV=function(n,v,f,s){if(s&&typeof s==='object'&&s.au){const b=_v.call(this,n,v,f,auTira(s));try{return auImg(b,s.au)}catch(e){return b}}return _v.apply(this,arguments)}}
+{const _v=getVH;getVH=function(n,v,f,s,Z){if(s&&typeof s==='object'&&s.au){const b=_v.call(this,n,v,f,auTira(s),Z);try{return auImg(b,s.au)}catch(e){return b}}return _v.apply(this,arguments)}}
+{const _a=adS;adS=function(m){const r=_a.apply(this,arguments);try{if(m&&m.sh&&(m.au===1||m.au===2))return r&&typeof r==='object'?Object.assign({},r,{au:m.au}):{sh:true,au:m.au}}catch(e){}return r}}
+async function auCaptura(c,bt){try{if(!c||!c.sh||bt!=='premier')return;c.au=Math.random()<.5?1:2;await say('🌟 O Cristal Super brilhou! '+c.n+' ganhou a Aura '+AU.nm[c.au]+'!')}catch(e){}}
+function auMeio(w){try{const S=G.shsp=G.shsp||{};S[w.n]=(S[w.n]|0)+1;if(S[w.n]>=2){S[w.n]=0;w.br=(w.br||0)+1}}catch(e){}}
+{const _fw=fw;fw=function(){const r=_fw.apply(this,arguments);try{const p=G.party.find(q=>G.fol&&q.id==G.fol);FWo.au=p&&p.sh&&p.au||0}catch(e){}return r}}
 (function(){try{const st=document.createElement('style');st.textContent=`body.hudmin .ab:not(.hkeep){display:none!important}
 #hudtg{position:fixed;right:calc(env(safe-area-inset-right,0px) + 88px);bottom:calc(env(safe-area-inset-bottom,0px) + 6px);width:40px;height:40px;border-radius:50%;padding:0;margin:0;z-index:6;
  background:radial-gradient(circle at 35% 30%,#fff3c0,#e8c050 60%,#a8801c);border:2px solid #fff;color:#3a2a00;font:900 18px sans-serif;box-shadow:0 2px 6px #0008;display:flex;align-items:center;justify-content:center}
@@ -17681,9 +17706,9 @@ B.capTop=capTop(w);B.ball={k:'up',t0:now(),d:720,n:bn};await wait(730);B.ball={k
 const rt=(SP[w.n].c||45)*CT[SP[w.n].tier||3]*BM[bt],x=Math.max(1,Math.floor((3*w.max-2*w.hp)*rt/(3*w.max)));let sh=0;
 if(bt=='supremo')sh=4;else if(w.sh)sh=((w.br||0)>=PTY[SP[w.n].tier||3]||Math.random()<shyCh(w,bt))?4:(Math.random()*3|0);else if(x>=255)sh=4;else{const b=Math.floor(1048560/Math.sqrt(Math.sqrt(16711680/x)));while(sh<4&&Math.random()*65536<b)sh++}
 for(let i=0;i<Math.min(sh,3);i++){B.ball={k:'ashake',t0:now(),d:500,n:bn};play('shake');await wait(720)}
-if(sh==4){B.ball={k:'got',t0:now(),d:1100,n:bn};capFx('got');play('catch');await say(`Isso! ${w.n} foi capturado!`);await capXP(w);const tm=tgain(w.lvl*10);if(tm)await say(tm);const c={...w};['x','y','px','py','t','br','ag','fx','fy','mt','mdur','hx','hy','r','d','cf'].forEach(k=>delete c[k]);c.id=c.id||(Math.random()*1e9|0)+1;dxm(c.n,2);rm(w);const pm=toParty(c);if(pm)await say(pm);B.end=1;B.busy=0;return rb()}
+if(sh==4){B.ball={k:'got',t0:now(),d:1100,n:bn};capFx('got');play('catch');await say(`Isso! ${w.n} foi capturado!`);await capXP(w);const tm=tgain(w.lvl*10);if(tm)await say(tm);const c={...w};['x','y','px','py','t','br','ag','fx','fy','mt','mdur','hx','hy','r','d','cf'].forEach(k=>delete c[k]);c.id=c.id||(Math.random()*1e9|0)+1;await auCaptura(c,bt);dxm(c.n,2);rm(w);const pm=toParty(c);if(pm)await say(pm);B.end=1;B.busy=0;return rb()}
 B.ball={k:'burst',t0:now(),d:460,n:bn};capFx('burst');play('cburst');B.an.e={k:'drop',t0:now(),d:640};await wait(660);B.ball=null;
-if(w.sh&&bt=='ultra')w.br=(w.br||0)+1;if(w.sh&&bt=='passe')w.br=(w.br||0)+2;w.cf=(w.cf||0)+1;await say(['Oh não! O monstro escapou!','Ah! Parecia capturado!','Quase! Estava tão perto!'][Math.min(sh,2)]);if(w.cf>=2){await capFlee(w);B.busy=0;return rb()}await say(`Cuidado: se o cristal falhar de novo, ${w.n} foge!`);await wild()}
+if(w.sh&&bt=='premier')auMeio(w);if(w.sh&&bt=='ultra')w.br=(w.br||0)+1;if(w.sh&&bt=='passe')w.br=(w.br||0)+2;w.cf=(w.cf||0)+1;await say(['Oh não! O monstro escapou!','Ah! Parecia capturado!','Quase! Estava tão perto!'][Math.min(sh,2)]);if(w.cf>=2){await capFlee(w);B.busy=0;return rb()}await say(`Cuidado: se o cristal falhar de novo, ${w.n} foge!`);await wild()}
 else if(a.k=='healmax'){G.healmax--;me.hp=me.max;bpart('m','heal');await say(`${me.n} recuperou toda a vida!`);await wild()}
 else if(a.k=='heal'){G.heal--;me.hp=Math.min(me.max,me.hp+20);bpart('m','heal');await say(`${me.n} recuperou 20 HP!`);await wild()}
 else if(a.k=='rev'){const f=G.party.find(p=>p.hp<=0);G.rev--;f.hp=Math.ceil(f.max/2);await say(`${f.n} foi revivido!`);await wild()}

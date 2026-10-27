@@ -1,7 +1,7 @@
 {
- "v": 199,
+ "v": 200,
  "url": "https://raw.githubusercontent.com/nilfilho000-afk/kaimon-gt-updates/main/jogo-apk.html",
- "notas": "Shiny de Tier 1, 2 e 3 aparece bem mais vezes (T1/T2: 1 em 150, T3: 1 em 90), mas ficou mais difícil de capturar: Normal 0%, Super 1%, Ultra 3,5%, Passe 5%. Tier 4 e 5 não mudaram. O shiny que foge agora fica no mapa por 10 minutos em outro canto, para você ir atrás.",
- "sha": "5e3ef7dc4f6a81f0b94bd508c0f398b5102316cadfb52aabb041eb22f380d8f2",
- "sig": "NNSPeqcPCBPB2KQJaBkszENMEBk1uOOQaP4rq/PlwNOtFFL5jTwjmuNW2l41TINHbRddYaDkk46TOOWqzKhgwQ=="
+ "notas": "Shiny capturado com Cristal Super agora ganha uma Aura para sempre: Dourada ou Arco-íris, sorteada na captura. A aura brilha na batalha e quando ele te segue no mapa. Cristal Super quebrado num shiny conta meio Ultra para a captura certa.",
+ "sha": "38f9ffcafefdc0de03047fa4df357f67f290af01b0fc1d69a6168278fc133eb4",
+ "sig": "94EK5z6B510P6A+Ji0lRToD7wrKwRVaX9JvJ2+R4Yvx/oVhdu/DfSjtWrqcV0ASC8kd0UJne6EKjAIHAx323lQ=="
 }
