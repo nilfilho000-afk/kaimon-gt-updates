@@ -1,11 +1,11 @@
 {
- "jogo": 184,
- "jogo_arquivo": "jogo-184.kpk",
- "jogo_sha": "8a5d7b818ab903e75e60454ffa9e6e1a3ea7a02bbe2b802409156b0e744709a0",
- "jogo_assin": "a5mcmSOUYwaB82hWHLoeAHRcCq9RU6GORizJPedX1GGnhE8e+19KLW/SjqhrUmozlfr4locwqXbNiEptu+agDw==",
+ "jogo": 185,
+ "jogo_arquivo": "jogo-185.kpk",
+ "jogo_sha": "a84143103304a455755d3ae7ec71d564ade311761d4ba2c213c9e7a958a2fc74",
+ "jogo_assin": "KMj1yUXmAAFylElUnSAkP1c6q1D9KenM7gJcsbpqW++Zu696SnECII82v9dyU8CgaN9DRS2LadDSge99OKzeBA==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "0a97ee6893258f8acf79eba50d1c83d5ecf37ab697abaa67b10eca1f2cac6cdb",
- "launcher_assin": "2xSEvdle/rVggXN72+NN4kATRAVqp6FkeBGfdKfx5mw2Gui35FCMND6aTB2efVyVr10kvDcwDBv3N90BVgoXCw==",
- "notas": "Diário do Treinador: missões diárias (3 por dia, VIP 4), semanais com Baú Semanal e prêmio por login de 7 dias. Botão 📋, acompanhamento no canto da tela e a Escrivã de Missões no Centro de Cura. Libera na 1ª insígnia ou no nível 10."
+ "launcher_sha": "c61d182b90c86765415312664abfc2a214df0a01c7f5b43148eb64ce55a34156",
+ "launcher_assin": "bATBjI9QFsLMb4YJ0mYqAtzj65Y+jETA4Ay2cMtjhlEKT3b+Jh/sbXLySTZ1fKETtToaHd0IUyDGreYmgz1xDQ==",
+ "notas": "Conquistas e Títulos: 26 conquistas em 6 categorias (bronze, prata e ouro, com pontos e prêmios), 5 secretas, e títulos coloridos por raridade que aparecem acima do seu nome para todo mundo."
 }

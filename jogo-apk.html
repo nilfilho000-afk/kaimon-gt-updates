@@ -2097,7 +2097,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v184 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v185 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -9130,7 +9130,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=184;
+var KGT_VER=185;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -16998,7 +16998,7 @@ var MSTM=(()=>{try{return localStorage.getItem('kgt_mstrk')==='1'}catch(e){retur
 function msTrkSet(min){MSTM=min;try{localStorage.setItem('kgt_mstrk',min?'1':'0')}catch(e){}msTrack()}
 function msTrack(){try{let c=document.getElementById('mstrk'),ch=document.getElementById('mstrkc');const tut=document.getElementById('tutc'),tutVis=tut&&tut.style.display!=='none';
 const vis=G&&G.t&&G.party&&msLiberado()&&mode==='walk'&&!tutVis&&!document.getElementById('ttl');
-const top=(()=>{const a=document.getElementById('lojatop')||document.getElementById('hud');const r=a?a.getBoundingClientRect():null;return(r&&r.height>4?r.bottom:44)+6})();
+const top=(()=>{let b=44;for(const id of['lojatop','hud']){const el=document.getElementById(id),r=el?el.getBoundingClientRect():null;if(r&&r.height>4)b=Math.max(b,r.bottom)}return Math.max(b+6,108)})(); 
 if(!vis||MSTM){if(c)c.style.display='none';if(vis&&MSTM){if(!ch){document.body.insertAdjacentHTML('beforeend','<div id="mstrkc" onpointerdown="event.stopPropagation();msTrkSet(false)">📋 Missões</div>');ch=document.getElementById('mstrkc')}ch.style.top=top+'px';ch.style.display=''}else if(ch)ch.style.display='none';return}
 if(ch)ch.style.display='none';
 if(!c){document.body.insertAdjacentHTML('beforeend','<div id="mstrk"></div>');c=document.getElementById('mstrk');
@@ -17011,6 +17011,110 @@ var MSLGV='',MSLIB=null;
 setInterval(()=>{try{if(!G||!G.t||!G.party)return;msBotao();const lib=msLiberado();if(MSLIB===false&&lib){msVira();setTimeout(()=>ok('<p><b>📋 Diário do Treinador liberado!</b></p><p>Agora você tem <b>missões diárias</b>, <b>semanais</b> e <b>prêmio por login</b>. Abra pelo botão 📋 ou fale com a Escrivã de Missões no Centro de Cura.</p>'+btn('Abrir o Diário','msPainel()')),300)}MSLIB=lib;
 if(lib)msVira();msHud();msTrack();
 if(lib&&mode==='walk'&&msLoginPode()&&MSLGV!==msDia()&&!document.getElementById('ttl')&&(!$('ui')||$('ui').style.display==='none')){MSLGV=msDia();msLoginTela()}}catch(e){}},1500);
+const CQR={c:['Comum','#c8ccd8'],r:['Raro','#6ab4ff'],e:['Épico','#c47aff'],l:['Lendário','#ffd34d']};
+const CQD=[
+['dex','col','Colecionador de Pindorama','espécies na Kaimondex',[25,60,113],'Mestre da Kaimondex','l',1],
+['cap','col','Mão Certeira','capturas',[100,500,1000],'Caçador Incansável','r'],
+['shy','col','Brilho Raro','shinies capturados',[1,10,50],'Caçador de Brilhos','r'],
+['fam','col','Árvore Completa','espécies no 3º estágio',[10,20,30],'Evolucionista','r'],
+['len','col','Guardião das Lendas','lendas do folclore capturadas',[1,6,12],'Guardião do Folclore','l',1],
+['ven','bat','Vencedor','batalhas vencidas',[500,5000,20000],'Veterano','r'],
+['ins','bat','Insígnias de Pindorama','insígnias',[2,5,8],null,'c'],
+['liga','bat','Campeão','vitórias na Liga',[1,3,10],'Campeão de Pindorama','e',1],
+['gla','bat','Gladiador','duelos vencidos na Arena',[10,100,500],'Gladiador','e'],
+['inv','bat','Invicto','duelos seguidos sem perder',[5,15,30],'Invicto da Arena','e',1],
+['bst','bat','Mestre Boost','maior Boost num monstro',[5,15,25],'Lapidador','e',1],
+['pas','exp','Andarilho','passos',[10000,100000,1000000],'Andarilho','c'],
+['map','exp','Desbravador','mapas visitados',[20,60,0],'Desbravador de Pindorama','e'],
+['ser','exp','Escalador','topos de serra alcançados',[1,3,5],'Senhor das Serras','r'],
+['mor','exp','Contador de Histórias','moradores diferentes com quem conversou',[10,30,80],'Amigo de Todos','r'],
+['ami','soc','Bom de Papo','amigos',[3,15,50],'Popular','r'],
+['tro','soc','Negociante','trocas feitas',[5,30,100],'Negociante','r'],
+['log','soc','Assíduo','dias com login',[7,28,100],'Assíduo','c'],
+['dec','casa','Decorador','móveis na casa',[10,40,100],'Decorador','r'],
+['din','casa','Milionário','dinheiro ganho no total',[100000,1000000,10000000],'Barão de Pindorama','l',1],
+['cas','casa','Casa Própria','dias com casa alugada',[1,30,100],'Morador de Pindorama','c'],
+['s_ult','sec','Último Cristal','capturou um monstro com o último Cristal da mochila',[1],'Sortudo','r'],
+['s_hp','sec','Por um Fio','venceu com o último monstro do time quase sem vida',[1],'Por um Fio','e'],
+['s_sac','sec','Teimoso','perdeu para o Saciclone 3 vezes seguidas',[1],'Teimoso','r'],
+['s_noi','sec','Coruja','venceu 50 batalhas de madrugada (00h–04h no relógio do jogo)',[1],'Coruja','r'],
+['s_ban','sec','Mergulhador','nadou 500 casinhas na piscina',[1],'Mergulhador','c']];
+const CQCAT={col:'📖 Coleção',bat:'⚔️ Batalha',exp:'🗺️ Exploração',soc:'🤝 Social',casa:'🏠 Casa e Dinheiro',sec:'⭐ Secretas'};
+const CQPT=[10,30,100];
+const CQPR=[[0,'super',3],[3000,'ultra',3],[5000,'reani',3]];
+function cqEst(){G.cq=G.cq||{};const C=G.cq;C.c=C.c||{};C.n=C.n||{};C.mp=C.mp||{};C.mo=C.mo||{};C.se=C.se||{};C.tit=C.tit==null?'':C.tit;return C}
+function cqInc(k,q){const C=cqEst();C.c[k]=(C.c[k]||0)+(q==null?1:q)}
+function cqVal(id){const C=cqEst(),c=C.c;try{switch(id){
+case'dex':return Object.keys(G.dx||{}).filter(n=>G.dx[n]>=2).length;
+case'fam':return Object.keys(G.dx||{}).filter(n=>G.dx[n]>=2&&SP[n]&&SP[n].s===2).length;
+case'len':return Object.keys(G.dx||{}).filter(n=>G.dx[n]>=2&&SP[n]&&(SP[n].exclusivo||SP[n].leg)).length;
+case'ins':return typeof nbd==='function'?nbd():Object.keys(G.bd||{}).length;
+case'bst':{let b=0;const vê=m=>{if(m&&typeof m.bo==='number'&&m.bo>b)b=m.bo};(G.party||[]).forEach(vê);(function an(v,d){if(!v||d>4)return;if(Array.isArray(v))return v.forEach(x=>an(x,d+1));if(typeof v==='object'){if(v.n&&v.lvl)return vê(v);for(const k in v)an(v[k],d+1)}})(G.dep,0);return b}
+case'map':return Object.keys(C.mp).length;
+case'ser':return Object.keys(C.se).length;
+case'mor':return Object.keys(C.mo).length;
+case'ami':try{return (AMG&&(AMG.L||AMG.lista||[])).length||c.ami||0}catch(e){return c.ami||0}
+case'log':return (G.ms&&G.ms.lg&&G.ms.lg.n)||0;
+case'dec':try{let n=0;for(const k in(G.own||{})){const o=G.own[k];if(o&&o.mv)n=Math.max(n,o.mv.length)}return n}catch(e){return 0}
+case'inv':return c.invMax||0;
+default:return c[id]||0}}catch(e){return 0}}
+function cqAlvos(d){const a=d[4].slice();if(d[0]==='map'&&!a[2])a[2]=cqTotMapas();if(d[0]==='dex')a[2]=Math.min(a[2],Object.keys(SP).length);if(d[0]==='len'){const t=Object.keys(SP).filter(n=>SP[n].exclusivo||SP[n].leg).length;a[2]=Math.min(a[2],t);a[1]=Math.min(a[1],a[2])}return a}
+function cqTotMapas(){try{let n=0;for(let i=0;i<M.length;i++)if(M[i]&&!M[i].in&&NM[i]&&!/^Banco|^Casa/.test(NM[i]))n++;return n}catch(e){return 60}}
+function cqNivel(d){const v=cqVal(d[0]),a=cqAlvos(d);let n=0;for(const x of a)if(v>=x)n++;return n}
+function cqPeg(id){return cqEst().n[id]||0}
+function cqProntos(){if(!G||!G.t)return 0;let n=0;for(const d of CQD)if(cqNivel(d)>cqPeg(d[0]))n++;return n}
+function cqPontos(){let p=0;for(const d of CQD){const k=cqPeg(d[0]);for(let i=0;i<k;i++)p+=(d[1]==='sec'?30:CQPT[i])*(d[7]?2:1)}return p}
+function cqTitulos(){const L=[];for(const d of CQD){const a=cqAlvos(d);if(d[5]&&cqPeg(d[0])>=a.length)L.push({id:d[0],t:d[5],r:d[6]})}if(cqEst().c.loginT)L.push({id:'log4',t:'Assíduo',r:'c'});
+const vist=new Set();return L.filter(x=>vist.has(x.t)?false:(vist.add(x.t),true))}
+function cqColeta(id){const d=CQD.find(x=>x[0]===id);if(!d)return;const C=cqEst(),at=cqPeg(id),nv=cqNivel(d);if(nv<=at)return;const a=cqAlvos(d);let txt=[];
+for(let i=at;i<nv;i++){const ultimo=i===a.length-1;C.n[id]=i+1;if(d[1]==='sec')txt.push(msDa([2000,'ultra',2]));else txt.push(msDa(CQPR[i]));if(ultimo&&d[5])txt.push('🏷️ título «'+d[5]+'»')}
+try{save()}catch(e){}try{play('lvl')}catch(e){}toast('🏆 '+d[2]+': '+txt.join(' · '));msPainel('c');try{msHud()}catch(e){}}
+var CQF='col';
+function cqAba(){const C=cqEst(),tit=cqTitulos(),at=C.tit;
+let h=`<p style="margin:2px 0"><small>🏆 <b>${fmtN(cqPontos())}</b> pontos de conquista · Título: ${at?cqTag(at):'<i>nenhum</i>'} ${btn('🏷️ Escolher título','cqEscolhe()')}</small></p>
+  <div class="mstab" style="margin:4px 0">${Object.keys(CQCAT).map(k=>{const n=CQD.filter(d=>d[1]===k&&cqNivel(d)>cqPeg(d[0])).length;return`<button class="${CQF===k?'on':''}" onclick="CQF='${k}';msPainel('c')" style="font-size:11.5px;min-width:60px">${CQCAT[k]}${n?'<i>'+n+'</i>':''}</button>`}).join('')}</div>`;
+for(const d of CQD.filter(x=>x[1]===CQF)){const a=cqAlvos(d),v=cqVal(d[0]),pg=cqPeg(d[0]),nv=cqNivel(d),sec=d[1]==='sec',escondida=sec&&nv===0;
+const prox=a[Math.min(pg,a.length-1)],full=pg>=a.length,med=['🥉','🥈','🥇'];
+const meds=sec?(pg?'🏅':'❔'):a.map((x,i)=>`<span style="opacity:${i<pg?1:.28}">${med[i]}</span>`).join('');
+const sub=escondida?'???':full?'Completa!':(sec?d[3]:fmtN(Math.min(v,prox))+'/'+fmtN(prox)+' '+d[3]);
+const bt=nv>pg?btn('🎁 Pegar','cqColeta(\''+d[0]+'\')'):(full?'<small>✔</small>':'');
+h+=`<div class="msm${nv>pg?' ok':''}${full?' col':''}"><div class="tx"><b>${meds} ${escondida?'???':esc(d[2])}</b>${!full&&!sec?`<div class="msbar"><i style="width:${Math.min(1,v/prox)*100}%"></i></div>`:''}<small>${esc(sub)}${d[5]&&!escondida?' · 🏷️ '+esc(d[5]):''}</small></div><div class="bt">${bt}</div></div>`}
+return h}
+function cqTag(t){const x=cqTitulos().find(q=>q.t===t);const r=CQR[(x&&x.r)||'c'];return`<b style="color:${r[1]}">«${esc(t)}»</b>`}
+function cqEscolhe(){const C=cqEst(),L=cqTitulos();
+open(`<p><b>🏷️ Título</b></p><p><small>O título aparece acima do seu nome para todo mundo no mapa. A cor mostra a raridade: ${Object.values(CQR).map(r=>`<b style="color:${r[1]}">${r[0]}</b>`).join(' · ')}.</small></p>`+
+(L.length?L.map(x=>`<button class="b" style="margin:3px;border-color:${CQR[x.r][1]}" onclick="cqUsa('${x.t.replace(/'/g,"\\'")}')">${C.tit===x.t?'✔ ':''}<b style="color:${CQR[x.r][1]}">«${esc(x.t)}»</b></button>`).join(''):'<p><small>Você ainda não tem títulos. Complete o 🥇 ouro de uma conquista para ganhar o primeiro.</small></p>')+
+'<br>'+btn(C.tit?'Ficar sem título':'Sem título','cqUsa(\'\')')+btn('Voltar','msPainel(\'c\')'))}
+function cqUsa(t){const C=cqEst();if(t&&!cqTitulos().some(x=>x.t===t))return;C.tit=t;try{save()}catch(e){}toast(t?'🏷️ Título «'+t+'» ativado!':'Título removido.');msPainel('c')}
+function cqTitAtivo(){try{const C=cqEst(),x=C.tit&&cqTitulos().find(q=>q.t===C.tit);return x?x.t+'|'+x.r:''}catch(e){return''}}
+function cqDesTit(txt,r,X,y){if(!txt)return;const t=performance.now(),c=CQR[r]||CQR.c;g.save();g.textAlign='center';g.textBaseline='middle';g.font='bold 4px sans-serif';const s='«'+txt+'»',w=g.measureText(s).width+4;
+g.fillStyle='rgba(12,16,28,.7)';rr(X-w/2,y-2.4,w,4.8,1.6);g.fill();let col=c[1];if(r==='l'){const k=(Math.sin(t/260)+1)/2;col=k>.6?'#fff4b8':'#ffd34d'}g.fillStyle=col;g.fillText(s,X,y+.2);
+if(r==='l'&&((t/180|0)%6===0)){g.fillStyle='#ffffff';g.fillRect(X+w/2-2.5,y-2.2,.8,.8)}g.restore()}
+{const _plT=plate;plate=function(e,cx,cy){const r=_plT.apply(this,arguments);try{if(e===P&&!MVB){const a=cqTitAtivo();if(a){const[t,rr2]=a.split('|'),X=Math.round((e.px*16-cx+8)*2)/2,Y=Math.round((e.py*16-cy)*2)/2-8,ty=Y-5;cqDesTit(t,rr2,X,ty-12)}}}catch(x){}return r}}
+{const _mpT=mpPlacas;mpPlacas=function(cx,cy){const r=_mpT.apply(this,arguments);try{for(const o of MP.ps.values()){if(!o.ti)continue;const[t,rr2]=String(o.ti).split('|');const X=Math.round((o.px*16-cx+8)*2)/2,ty=Math.round((o.py*16-cy)*2)/2-13;cqDesTit(t,CQR[rr2]?rr2:'c',X,ty-12)}}catch(e){}return r}}
+{const _mlT=mpLook;mpLook=function(){const s=_mlT.apply(this,arguments);try{const a=cqTitAtivo();if(!a)return s;const o=JSON.parse(s);o._ti=a.slice(0,40);return JSON.stringify(o).slice(0,640)}catch(e){return s}}}
+{const _mvT=mpVisual;mpVisual=function(o,k){const r=_mvT.apply(this,arguments);try{const j=JSON.parse(k||'{}');const t=typeof j._ti==='string'?j._ti.slice(0,40):'';const ok2=t&&/^[^<>|]{1,30}\|[crel]$/.test(t)&&CQD.some(d=>d[5]&&t.startsWith(d[5]+'|'))||t==='Assíduo|c';o.ti=ok2?t:''}catch(e){o.ti=''}return r}}
+{const _evC=msEv;msEv=function(ev,q,ex){try{const C=cqEst();
+if(ev==='cap'){cqInc('cap',q);if(B&&B.w&&B.w.sh)cqInc('shy',1);
+try{const b=B&&B.lastBall;if(b&&typeof G[b]==='number'&&G[b]<=0)cqInc('s_ult',1)}catch(e){}}
+else if(ev==='vence'){cqInc('ven',q);const h=Math.floor(((G.gt||0)%1440)/60);if(h<4){cqInc('noi',1);if((C.c.noi||0)>=50)C.c.s_noi=1}}
+else if(ev==='passo'){cqInc('pas',q)}
+else if(ev==='conv'&&ex&&ex.id)C.mo[ex.id]=1;
+else if(ev==='troca')cqInc('tro',q)}catch(e){}return _evC.apply(this,arguments)}}
+{const _stC=mnStepFx;mnStepFx=function(){try{if(G.mt||G.bko)cqInc('pas',1);if(typeof MVE!=='undefined'&&MVE&&MVE.dentro&&M[cur]&&M[cur].in){cqInc('nado',1);if((cqEst().c.nado||0)>=500)cqEst().c.s_ban=1}
+if(typeof rfE==='function'&&M[cur]&&M[cur].serra&&(rfE(P.x,P.y)|0)>=2)cqEst().se[cur]=1}catch(e){}return _stC.apply(this,arguments)}}
+{const _smC=setMap0;setMap0=function(){const r=_smC.apply(this,arguments);try{if(M[cur]&&!M[cur].in&&!/^Banco|^Casa/.test(NM[cur]||''))cqEst().mp[cur]=1}catch(e){}return r}}
+{const _tuC=turn;turn=async function(a){try{if(a&&a.k==='ball'&&B)B.lastBall={ball:'ball',premier:'premier',ultra:'ultra',passe:'passe',supremo:'supremo'}[a.b]||null}catch(e){}return _tuC.apply(this,arguments)}}
+{const _enC=endB;endB=function(){try{if(B){const C=cqEst();
+if(B.tr&&B.won&&!B.duel&&/^Campe/.test(B.tr.nm||''))cqInc('liga',1);
+const vivos=(G.party||[]).filter(m=>m.hp>0);if(!B.duel&&(B.won||(B.w&&B.w.hp<=0))&&vivos.length===1&&B.cur&&B.cur.hp>0&&B.cur.hp<=Math.max(1,B.cur.max*.05))C.c.s_hp=1;
+if(B.black&&B.w&&B.w.n==='Saciclone'){C.c.sacS=(C.c.sacS||0)+1;if(C.c.sacS>=3)C.c.s_sac=1}else if(B.w&&B.w.n==='Saciclone'&&!B.black)C.c.sacS=0}}catch(e){}return _enC.apply(this,arguments)}}
+{const _dfC=duelFim;duelFim=async function(d){try{if(d&&!(d.placar&&(d.placar.treino||d.placar.repetido))){const C=cqEst();if(d.venc===DUEL.eu){cqInc('gla',1);C.c.invS=(C.c.invS||0)+1;C.c.invMax=Math.max(C.c.invMax||0,C.c.invS)}else C.c.invS=0}}catch(e){}return _dfC.apply(this,arguments)}}
+var CQDIN=null;
+setInterval(()=>{try{if(!G||!G.t)return;const C=cqEst();if(CQDIN!=null&&G.money>CQDIN)C.c.din=(C.c.din||0)+(G.money-CQDIN);CQDIN=G.money;
+const tem=Object.keys(G.own||{}).length>0,d=msDia();if(tem&&C.c.casD!==d){C.c.casD=d;C.c.cas=(C.c.cas||0)+1}
+if(G.ms&&G.ms.lg&&(G.ms.lg.ciclos||0)>=4)C.c.loginT=1}catch(e){}},2000);
+{const _mpC=msProntos;msProntos=function(){let n=_mpC.apply(this,arguments);try{if(G&&G.t&&msLiberado())n+=cqProntos()}catch(e){}return n}}
 var KAPPM=(typeof KPLAY!=='undefined'&&KPLAY)||!!window.KAPK;
 const KAPP_PLAY='https://play.google.com/store/apps/details?id=br.com.kaimongt.app';
 if(KAPPM){
