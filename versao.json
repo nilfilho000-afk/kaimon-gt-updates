@@ -1,11 +1,11 @@
 {
- "jogo": 188,
- "jogo_arquivo": "jogo-188.kpk",
- "jogo_sha": "6955124dbeeef3e78d3fcbd0e78c1e1623a2f87926b296c4f4e5a18c14be3862",
- "jogo_assin": "jBmPkwyb4pqiAiSeYrQwORyl5wPWGvbVYF8xmTmnk6sMusLIbl3rYMLJ5PZyd0wCj/kdhkBPej6RM0hgAA04AA==",
+ "jogo": 189,
+ "jogo_arquivo": "jogo-189.kpk",
+ "jogo_sha": "c98fc123c8539d781cbc94eb8a8fbe063e59aae72c4f95e9ae2563b74bbb26f7",
+ "jogo_assin": "m0TPtocWdlvlaWwHDvuTiuj/pi/enZ9BpSqh7a5hHP6saetxRQgAnNGGKkivoT7Uxdooffm/nbxUgUG1VZMyDQ==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "f2b9642f7063a02b965d242858b4e023d1d5f9f744fcd15fa2da91b32037f4c3",
- "launcher_assin": "F0cLoJnJ7DaF6Cy0i1KPuqJKl+DWQoculPbLLAdqPT381ATl7vibGIpm6uV/KSzeMG+NkeaST8OASrSz7R+PDg==",
- "notas": "Jogar a mesma conta em dois aparelhos não apaga mais compras e KMC gastos: se a nuvem mudou em outro aparelho, o jogo pergunta qual progresso continua"
+ "launcher_sha": "3657c28c3c45184522cf35892c0c1dc5d219b1eb12a946ad90074537d404e13f",
+ "launcher_assin": "Fkhgd2by5PUw/qPC9HfI6z67pbpdsoXVI03xUQmHpT3DhR/HLDOYup43Q78q5FUDt8/dvfVQ+jNAheOvmjVICQ==",
+ "notas": "Pisos de 1 quadrado (como o de piscina) colocados em lote com o botão Área; morros menores ficaram maiores e menos lotados"
 }

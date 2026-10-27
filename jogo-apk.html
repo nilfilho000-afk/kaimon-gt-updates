@@ -2097,7 +2097,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v188 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v189 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -7231,7 +7231,7 @@ const inA=new Uint8Array(N);for(const c of A)inA[c]=1;const dA=rfDist(A,inA,W2,N
 let B=[],C=[];
 for(const[ma,sa,mb,sb]of[[5,8,5,7],[4,7,4,6],[3,6,3,6],[3,5,2,5],[2,5,2,4],[2,4,2,4]]){B=lv>=2?rfSmooth(A.filter(c=>dA[c]>=ma&&sA[c]>=sa),W2,H2,2):[];
 const inB=new Uint8Array(N);for(const c of B)inB[c]=1;const dB=rfDist(B,inB,W2,N),sB=rfSouth(inB,W2,H2);
-C=lv>=3?rfSmooth(B.filter(c=>dB[c]>=mb&&sB[c]>=sb),W2,H2,2):[];if((lv<2||B.length>=34)&&(lv<3||C.length>=14))break}
+C=lv>=3?rfSmooth(B.filter(c=>dB[c]>=mb&&sB[c]>=sb),W2,H2,2):[];if((lv<2||B.length>=34)&&(lv<3||C.length>=40))break}
 if(lv>=2&&B.length<34)continue;if(lv>=3&&C.length<14)continue;
 const sv=[];for(let y=y0-1;y<=y0+RH+1;y++)sv.push(T2[y].slice(x0-1,x0+RW+1));const svE=I.el.slice(),svK=I.k.slice(),undo=()=>{sv.forEach((r,k)=>{for(let a=0;a<r.length;a++)T2[y0-1+k][x0-1+a]=r[a]});I.el.set(svE);I.k.set(svK)};
 rfMesa(T2,W2,H2,I,A,1);if(lv>=2)rfMesa(T2,W2,H2,I,B,2);if(lv>=3)rfMesa(T2,W2,H2,I,C,3);
@@ -7257,7 +7257,7 @@ const Z=m.z,fl=rf3Plan(Z);
 const base={sp:Z.sp,l:null,cap:Z.cap0!=null?Z.cap0:Z.cap,L:0,cells:[]},tiers=[base];
 for(let k=0;k<lv;k++){const f=fl[k],e=!f.sp.length;tiers.push(Object.assign({},f,{L:k+1,cells:[],fl:k+1,x3:1,sp:e?Z.sp:f.sp,cap:e?0:f.cap}))}
 for(let k=0;k<N;k++){const v=T2[k/W2|0][k%W2];if(I.k[k]||!OK.has(v))continue;const t=tiers.find(q=>q.L===I.el[k]);if(t)t.cells.push(k)}
-for(const t of tiers.slice(1))if(t.cap)t.cap=Math.max(2,Math.min(t.cap,Math.round(t.cells.length/6)));
+for(const t of tiers.slice(1))if(t.cap)t.cap=Math.max(2,Math.min(Math.round(t.cap*.8),Math.round(t.cells.length/14)));
 m.tiers=tiers;m.rf3=lv;
 m.lbls=m.lbls||[];m.lbls.push(['Morro ↑',s1[0]+1,s1[1]-1.4]);if(lv>=2)m.lbls.push(['2º andar ↑',s2[0]+1,s2[1]-1.4]);if(lv>=3)m.lbls.push(['3º andar ↑',s3[0]+1,s3[1]-1.4]);
 return}
@@ -9132,7 +9132,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=188;
+var KGT_VER=189;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -17201,6 +17201,28 @@ const v=shyEst()[n]|0,mt=shyMeta(n),pct=Math.min(100,v/mt*100),cheio=v>=mt;
 cols[1].insertAdjacentHTML('beforeend',`<div style="margin:4px 0;padding:6px 8px;border-radius:8px;background:#1f1a30;border:1px solid ${cheio?'#ffd34d':'#5a4a8a'};font-size:12px">✨ <b>Shiny · Cristais Ultra quebrados: ${v}/${mt}</b>
   <div style="height:7px;background:#0c1220;border-radius:4px;overflow:hidden;margin:4px 0 3px;border:1px solid #3a3060"><i style="display:block;height:100%;width:${pct}%;background:${cheio?'linear-gradient(#fff4b8,#ffd34d)':'linear-gradient(#e0b0ff,#9a5aff)'}"></i></div>
   <small style="color:#c8b8ff">${cheio?'🎯 Completo! A próxima captura de um shiny desta espécie é <b>certa</b>.':'Cada Ultra quebrado num shiny desta espécie soma 1 (Cristal do Passe soma 2) e a conta continua no próximo shiny. Chegou no total, a captura é certa.'}</small></div>`)}catch(e){}return r}}
+function ltUm(k){const d=mobDef(k);return d&&d.t!=='parede'&&(d.w|0)<=1&&((d.h||1)|0)<=1}
+function ltRet(){const pl=MOB.pl;if(!pl||!pl.lote)return null;const[a,b]=pl.lote;return[Math.min(a,pl.x),Math.min(b,pl.y),Math.max(a,pl.x),Math.max(b,pl.y)]}
+function ltLivres(c,k){const R=ltRet();if(!R)return[];const L=[];for(let y=R[1];y<=R[3];y++)for(let x=R[0];x<=R[2];x++)if(mobPodeAqui(c,k,x,y,0,null))L.push([x,y]);return L}
+function ltArea(){const pl=MOB.pl;if(!pl||pl.mover||!ltUm(pl.k))return;if(pl.lote){pl.lote=null;mobPainel();return toast('▦ Área desligada: coloca um por vez.')}
+pl.lote=[pl.x,pl.y];mobPainel();toast('▦ Canto marcado! Agora toque no outro canto da área (ou use as setas) e confirme ✅.')}
+{const _mp=mobPainel;mobPainel=function(){const r=_mp.apply(this,arguments);try{const pl=MOB.pl,d=document.getElementById('mvpl');if(pl&&d&&!pl.mover&&ltUm(pl.k)){
+const b=document.createElement('button');b.className='b';b.style.cssText='min-width:44px;font-size:14px;'+(pl.lote?'background:#e8c050;color:#2a1d00':'');b.textContent=pl.lote?'▦ Área ✓':'▦ Área';b.onclick=ltArea;
+const ok2=d.querySelector('button[onclick="mobPok()"]');d.insertBefore(b,ok2||null);
+if(pl.lote){let s=d.querySelector('#ltn');if(!s){s=document.createElement('span');s.id='ltn';s.style.cssText='font-size:12px;color:#fff;margin-left:2px';d.appendChild(s)}}}}catch(e){}return r}}
+{const _ok=mobPok;mobPok=function(){const c=mobCasa(),pl=MOB.pl;if(!c||!pl||!pl.lote)return _ok.apply(this,arguments);
+const L=ltLivres(c,pl.k),q=mobQtd(pl.k);if(!L.length)return toast('❌ Nenhum quadrado livre nessa área.');
+c.o.mv=c.o.mv||[];let n=0;const max=Math.min(q,L.length,Math.max(0,160-c.o.mv.length));
+for(const[x,y]of L){if(n>=max)break;if(!mobPodeAqui(c,pl.k,x,y,0,null))continue;invRemove(mobDef(pl.k).n,1);
+const m={id:'m'+Date.now().toString(36)+Math.random().toString(36).slice(2,6)+n,k:pl.k,x,y,r:0,on:0,f:Date.now()};c.o.mv.push(m);mobMarca(c,m,1);n++}
+const falta=L.length-n;mobPfim();mobSalva();try{play('item')}catch(e){}
+toast('▦ '+n+'× '+mobDef(pl.k).n+' colocado'+(n>1?'s':'')+'!'+(falta>0?(c.o.mv.length>=160?' A casa chegou em 160 móveis.':' Faltaram '+falta+': acabou o que você tinha.'):''))}}
+RH2.push(function(cx,cy,t){const pl=MOB.pl;if(!pl||!pl.lote)return;const c=mobCasa();if(!c)return;const R=ltRet();let livres=0;const q=mobQtd(pl.k);
+g.save();g.lineWidth=.8;for(let y=R[1];y<=R[3];y++)for(let x=R[0];x<=R[2];x++){const ok2=mobPodeAqui(c,pl.k,x,y,0,null)&&livres<q;if(ok2)livres++;
+g.fillStyle=ok2?'rgba(80,220,120,.30)':'rgba(240,80,80,.28)';g.fillRect(x*16-cx,y*16-cy,16,16);if(ok2){try{mobDesenha(g,{k:pl.k,x,y,r:0},x*16-cx,(y+1)*16-cy,.55,t)}catch(e){}}}
+g.strokeStyle='#ffe27a';g.lineWidth=1.2;g.setLineDash([3,2]);g.strokeRect(R[0]*16-cx+.5,R[1]*16-cy+.5,(R[2]-R[0]+1)*16-1,(R[3]-R[1]+1)*16-1);g.setLineDash([]);
+const a=pl.lote;g.fillStyle='#ffe27a';g.fillRect(a[0]*16-cx+5,a[1]*16-cy+5,6,6);g.restore();
+const s=document.getElementById('ltn');if(s)s.textContent=livres+'/'+q})
 var KAPPM=(typeof KPLAY!=='undefined'&&KPLAY)||!!window.KAPK;
 const KAPP_PLAY='https://play.google.com/store/apps/details?id=br.com.kaimongt.app';
 if(KAPPM){

@@ -1,7 +1,7 @@
 {
- "v": 188,
+ "v": 189,
  "url": "https://raw.githubusercontent.com/nilfilho000-afk/kaimon-gt-updates/main/jogo-apk.html",
- "notas": "Jogar a mesma conta em dois aparelhos não apaga mais compras e KMC gastos: se a nuvem mudou em outro aparelho, o jogo pergunta qual progresso continua",
- "sha": "199a977e4aee905ef268a609049b58a45136564c40468178ce725821902b6a54",
- "sig": "hbDOnkG6AwkL3eu0z5fQEnw6VBcjJ73vuaIkroAHZ3Oc2K3HX9p+15wqeWhABQg96nEjBtcQx+55PVUnjZkCOw=="
+ "notas": "Pisos de 1 quadrado (como o de piscina) colocados em lote com o botão Área; morros menores ficaram maiores e menos lotados",
+ "sha": "8c14f59388bd7507c66a212074ceae360a95804a23bfa94e301f2d0d900ce3d4",
+ "sig": "UWyaXzRFbDaht3r0XpGouihrDyI5TVd7wgRnh2aAW8BASHx80oX6tEFF3NihWR/m2VNZIs4XsqFYpM/XRJifyw=="
 }
