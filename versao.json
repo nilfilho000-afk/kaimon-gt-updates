@@ -1,11 +1,11 @@
 {
- "jogo": 182,
- "jogo_arquivo": "jogo-182.kpk",
- "jogo_sha": "9529ba7dc7f7e4f45dd3378f159cf69e297468d429d6e02312ec77557541ee26",
- "jogo_assin": "Bm5RwrzNkWdbfPnN9sZYmxgQ7SNGuEVGk5aJil/3TL32L7XVnnl1bnZbWY4Jf/Go/BMrYPkoVnQkH0LWN3flCw==",
+ "jogo": 183,
+ "jogo_arquivo": "jogo-183.kpk",
+ "jogo_sha": "ba28eb4be50d2082fb307fb3e17886176ba7e5d2819f29a344389fad5c87c743",
+ "jogo_assin": "IN9o1cIaPqwP4hyw6AINCVwcd9yFMxZ0Gg8B4hFefD+oC4n17msgCU3LhaAJdQd1VfipmANx/DhRu8BqPNS3AA==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "033311bd5ea24add1d6122cd8d247df3fe9a7b814a1de53e0192087d741fdf80",
- "launcher_assin": "O5nrbJOhHaX4Oox/euwqX5wx3dkKOdCyE2GUIdSwL1TB/wvjqakLiKRaycee0NBeG5Cuz1q4ThSNrGEM0dh6Ag==",
- "notas": "Casa: boia e barco funcionando (é só nadar até eles ou tocar neles; botão Sair), Parede Divisória colocando em sequência na mesma linha e em pé emendando certo, novo Piso de Areia e Piso por área para montar cômodos."
+ "launcher_sha": "4fed15f3c5d8cc83b287217d01628a402ec427b3fd9afa2a0f7be86c6bd66fea",
+ "launcher_assin": "QWpBbJXxFnV4kOQKR+L+x4Hd6sJQR+Ucje/A27UuT0f+dEggDwXV2aIm9acGUQDgCucwPN6I9Im73D8o04pSCg==",
+ "notas": "Batalha nova em pixel art: 16 cenários diferentes por região (praia, neve, vulcão, cidade, caverna...) com céu que muda com a hora, animação própria para cada tipo de golpe, fonte e botões em pixel, e botões de golpe com ícone do tipo, barra de PP, aviso de super efetivo e estrela no melhor golpe."
 }
