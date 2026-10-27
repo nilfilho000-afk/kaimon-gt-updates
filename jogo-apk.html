@@ -2097,7 +2097,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v176 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v177 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -9123,7 +9123,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=176;
+var KGT_VER=177;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -16355,6 +16355,98 @@ mvUsaEscada=function(id){const m=mobAchar(id);if(!m)return;closeUI();const S=mvP
 if(MVE.dentro){mvEscadaAnda(m,'sobe')}else{if(!mvLivre(fora[0],fora[1])&&!(P.x===fora[0]&&P.y===fora[1]))return toast('🪜 Não dá para chegar na escadinha: a borda está ocupada.');mvEscadaAnda(m,'desce')}};
 {const _rcE=mobRecolhe;mobRecolhe=function(id){const m=mobAchar(id);if(m&&m.k==='escadinha'&&MVE.dentro){const c=mobCasa();const S=mvPool();if(mobLista(c).filter(q=>q.k==='escadinha'&&S.has(q.x+','+q.y)).length<=1)return toast('🪜 Saia da piscina antes de guardar a única escadinha.')}return _rcE.apply(this,arguments)}}
 {const _eiE=entImg;entImg=function(e){const q=_eiE.apply(this,arguments);try{if(q&&e&&e.mvM&&e.mvM.k==='escadinha'&&q.Y!=null)q.Y+=(e.mvM.y-e.py)*16}catch(x){}return q}}
+const AGIMG=new Image();AGIMG.src='data:image/webp;base64,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';
+const AGPOS={"barco_v": [0, 0, 26, 68], "barco_v2": [27, 0, 26, 68], "barco_h": [54, 0, 66, 29], "barco_h2": [121, 0, 66, 29], "boia_pato": [188, 0, 39, 25], "boia_listrada": [0, 69, 34, 23], "boia_rosquinha": [35, 69, 32, 22], "remo": [68, 69, 32, 8]};
+Object.assign(MOBD,{"boia_listrada":{"n":"Boia Listrada","w":1,"h":1,"t":"boia","p":5,"m":"kmc","c":"Piscina","d":"Boia de piscina: entre nela e fique boiando (vai junto quando você nada)","at":3,"v":[[0,69,34,23],[0,69,34,23],[0,69,34,23],[0,69,34,23]]},"boia_rosquinha":{"n":"Boia Rosquinha","w":1,"h":1,"t":"boia","p":5,"m":"kmc","c":"Piscina","d":"Boia de rosquinha com granulado: entre e fique boiando","at":3,"v":[[35,69,32,22],[35,69,32,22],[35,69,32,22],[35,69,32,22]]},"boia_pato":{"n":"Boia de Patinho","w":1,"h":1,"t":"boia","p":5,"m":"kmc","c":"Piscina","d":"Boia de patinho: entre e fique boiando","at":3,"v":[[188,0,39,25],[188,0,39,25],[188,0,39,25],[188,0,39,25]]}});
+var MVB=null; 
+const MVB_DY=-1;
+function agBoia(m){const d=m&&mobDef(m.k);return d&&(d.t==='boia'||d.t==='barco')?d:null}
+function agAqui(m,x,y){const d=mobDef(m.k),p=mobPe(d,m.r);return x>=m.x&&x<m.x+p.w&&y>=m.y&&y<m.y+p.h}
+function agDes(gg,m,X0,Ybase,alpha,t,parte){const d=mobDef(m.k);if(!AGIMG.complete)return;if(MVB&&MVB.m===m&&d.t==='barco'){if(!(m.r&1))X0-=8;else Ybase-=8}const v=mobView(d,m.r),dw=v[2]/2,dh=v[3]/2,p=mobPe(d,m.r);t=t||performance.now();
+const bob=Math.sin(t/520+m.x*1.7+m.y)*.8,x0=X0+(p.w*16-dw)/2,y0=Ybase-p.h*16+(p.h*16-dh)/2+bob+(d.t==='boia'?-2:0);
+gg.save();if(alpha!=null)gg.globalAlpha=alpha;gg.imageSmoothingEnabled=false;
+if(!parte){gg.globalAlpha=(alpha==null?1:alpha)*.22;gg.fillStyle='#002a5a';gg.beginPath();gg.ellipse(x0+dw/2+1,y0+dh/2+2.5,dw*.5,dh*.42,0,0,6.3);gg.fill();gg.globalAlpha=alpha==null?1:alpha}
+const corte=d.t==='boia'?.52:(m.r&1?.6:.36);let sy=0,sh=v[3];if(parte==='tras')sh=Math.round(v[3]*corte);else if(parte==='frente'){sy=Math.round(v[3]*corte);sh=v[3]-sy}
+gg.drawImage(AGIMG,v[0],v[1]+sy,v[2],sh,Math.round(x0*2)/2,Math.round((y0+sy/2)*2)/2,dw,sh/2);
+if(!parte||parte==='frente'){gg.globalAlpha=(alpha==null?1:alpha)*(.45+.2*Math.sin(t/300+m.x));gg.strokeStyle='#e8fbff';gg.lineWidth=.6;gg.beginPath();gg.ellipse(x0+dw/2,y0+dh*.62,dw*.56,dh*.5,0,.15,Math.PI-.15);gg.stroke()}
+gg.restore()}
+{const _mdA=mobDesenha;mobDesenha=function(gg,m,X0,Ybase,alpha,t){const d=m&&mobDef(m.k);if(!d||d.at!==3)return _mdA.apply(this,arguments);
+if(MVB&&m.id&&MVB.id===m.id&&alpha==null)return agDes(gg,m,X0,Ybase,alpha,t,'tras');return agDes(gg,m,X0,Ybase,alpha,t)}}
+{const _miA=mobIco;mobIco=function(k){const d=mobDef(k);if(!d||d.at!==3)return _miA.apply(this,arguments);if(MOB.ic[k])return MOB.ic[k];if(!AGIMG.complete)return'';
+try{const v=d.v[0],c=document.createElement('canvas'),S=Math.min(2,58/Math.max(v[2],v[3]));c.width=c.height=64;const x=c.getContext('2d');x.imageSmoothingEnabled=false;x.drawImage(AGIMG,v[0],v[1],v[2],v[3],(64-v[2]*S)/2,(64-v[3]*S)/2,v[2]*S,v[3]*S);return MOB.ic[k]=c.toDataURL()}catch(e){return''}}}
+{const _mmA=mobMarca;mobMarca=function(c,m,on){if(m&&agBoia(m)){for(const[x,y]of mobTiles(m))if(c.o.d[x+','+y]==='mv')delete c.o.d[x+','+y];return}return _mmA.apply(this,arguments)}}
+{const _msA=mobSync;mobSync=function(){const r=_msA.apply(this,arguments);try{for(const e of NPC){if(!e||!e.mvM||!agBoia(e.mvM))continue;const m=e.mvM;e.x=e.y=-999;e.py=m.y-.45;e.px=m.x}}catch(e){}return r}}
+{const _eiA=entImg;entImg=function(e){const q=_eiA.apply(this,arguments);try{if(q&&e&&e.mvM&&agBoia(e.mvM)&&q.Y!=null)q.Y+=(e.mvM.y-e.py)*16}catch(x){}return q}}
+{const _paA=mobPodeAqui;mobPodeAqui=function(c,k,x,y,r,ign){const d=mobDef(k);if(!d||(d.t!=='boia'&&d.t!=='barco'))return _paA.apply(this,arguments);
+try{const S=mvPoolSet(c),p=mobPe(d,r);for(let j=0;j<p.h;j++)for(let i=0;i<p.w;i++){const xx=x+i,yy=y+j;if(!S.has(xx+','+yy))return false;
+if(mobLista(c).some(o=>o.id!==ign&&(agBoia(o)||o.k==='escadinha')&&agAqui(o,xx,yy)))return false}return true}catch(e){return false}}}
+function agEntra(id){const m=mobAchar(id);if(!m)return;closeUI();if(!MVE.dentro||MVL)return toast('🪜 Entre na piscina pela escadinha e nade até '+(mobDef(m.k).t==='barco'?'o barco':'a boia')+'.');
+if(MVB)agSai(true);MVB={id:m.id,m,t0:performance.now()};P.x=P.px=P.fx=m.x;P.y=P.py=P.fy=m.y;P.d=2;
+if(mobDef(m.k).t==='barco'){m.r=m.r&3}try{play('item')}catch(e){}for(let i=0;i<8;i++)MVX.fx.push({x:m.x*16+8+(Math.random()-.5)*12,y:m.y*16+8,t0:performance.now()+i*30,k:'resp',vx:(Math.random()-.5)*4,vy:-2-Math.random()*2});
+toast(mobDef(m.k).t==='barco'?'🚣 Você entrou no barco. Ande para remar!':'🛟 Você está boiando! Ande para ir junto com a boia.')}
+function agSai(quieto){if(!MVB)return;const m=MVB.m;MVB=null;try{m.x=Math.round(P.x);m.y=Math.round(P.y);mobSync();mobSalva()}catch(e){}if(!quieto)toast('🌊 Você saiu e voltou a nadar.');MVE.prof=.8}
+RH0.push(function(){try{if(!MVB)return;const c=mobCasa();if(!c||!mobLista(c).includes(MVB.m)||!mvNaAgua(P.x,P.y)){MVB=null;return}const m=MVB.m;
+if(m.x!==P.x||m.y!==P.y){const dx=P.x-m.x,dy=P.y-m.y;m.x=P.x;m.y=P.y;if(mobDef(m.k).t==='barco'){if(dx>0)m.r=0;else if(dx<0)m.r=2;else if(dy<0)m.r=1;else if(dy>0)m.r=3}}
+MVE.prof=0;MVE.dentro=true}catch(e){}});
+{const _eaA=mvEscadaAnda;mvEscadaAnda=function(m,s){if(MVB&&s==='sobe')agSai(true);return _eaA.apply(this,arguments)}}
+{const _eiB=entImg;entImg=function(e){const q=_eiB.apply(this,arguments);try{if(q&&e===P&&MVB&&q.Y!=null){const t=performance.now(),d=mobDef(MVB.m.k);q.Y+=Math.round((Math.sin(t/520+MVB.m.x*1.7+MVB.m.y)*.8+(d.t==='barco'?(MVB.m.r&1?-6:0):1))*2)/2}}catch(x){}return q}}
+RH2.push(function(cx,cy,t){if(!MVB)return;try{const m=MVB.m,d=mobDef(m.k),p=mobPe(d,m.r),X0=m.x*16-cx,Yb=(m.y+p.h)*16-cy;
+if(d.t==='boia'){mvNadoDes(P.px,P.py,cx,cy,t,1,'esc',.55);agDes(g,m,X0,Yb,null,t,'frente')}
+else{agDes(g,m,X0,Yb,null,t,'frente');
+const o=MVN.eu||{},mexe=t-(o.mv||0)<220,a=mexe?Math.sin(t/170)*.75:.25,v=mobView(d,m.r),dw=v[2]/2,dh=v[3]/2,cxB=X0+p.w*8,cyB=Yb-p.h*16+p.h*8,hor=!(m.r&1);
+g.save();g.lineCap='round';for(const s of[-1,1]){let ox,oy,ex,ey;if(hor){ox=cxB+(m.r===2?2:-2);oy=cyB+s*dh*.42;ex=ox-Math.sin(a)*7*(m.r===2?-1:1);ey=oy+s*Math.cos(a)*6.5}else{ox=cxB+s*dw*.42;oy=cyB+(m.r===1?2:-2);ex=ox+s*Math.cos(a)*6.5;ey=oy-Math.sin(a)*7*(m.r===1?1:-1)}
+g.strokeStyle='#3a2414';g.lineWidth=1.6;g.beginPath();g.moveTo(ox,oy);g.lineTo(ex,ey);g.stroke();g.strokeStyle='#c8945a';g.lineWidth=.8;g.beginPath();g.moveTo(ox,oy);g.lineTo(ex,ey);g.stroke();
+g.fillStyle='#c8945a';g.strokeStyle='#3a2414';g.lineWidth=.5;g.beginPath();g.ellipse(ex,ey,1.8,1.1,Math.atan2(ey-oy,ex-ox),0,6.3);g.fill();g.stroke();
+if(mexe&&Math.random()<.18)MVX.fx.push({x:ex+cx,y:ey+cy,t0:t,k:'resp',vx:(Math.random()-.5)*2,vy:-1.5})}g.restore()}}catch(e){}});
+{const _ndA=mvNadoDes;mvNadoDes=function(px,py,cx,cy,t,eu,id,prof){if(MVB&&eu&&id==='eu')return;return _ndA.apply(this,arguments)}}
+{const _mmB=mobMenu;mobMenu=function(id){const r=_mmB.apply(this,arguments);try{const m=mobAchar(id),d=m&&agBoia(m);if(d){const u=$('ui');if(u&&!u.querySelector('.agb')){const b=d.t==='barco';
+const h=MVB&&MVB.id===id?btn(b?'🚣 Sair do barco':'🛟 Sair da boia','closeUI();agSai()'):btn(b?'🚣 Entrar no barco':'🛟 Entrar na boia',`agEntra('${id}')`);
+u.querySelector('.psh')?.insertAdjacentHTML('afterend','<div class="agb">'+h+'</div>')}}}catch(e){}return r}}
+MOBD.divisoria={n:'Parede Divisória',w:1,h:1,t:'divisoria',p:5,m:'kmc',c:'Decoração',d:'Pacote com 6 peças de parede para separar cômodos (as peças se emendam)',at:4,pack:6,v:[[0,0,32,60],[0,0,32,60],[0,0,32,60],[0,0,32,60]]};
+try{MOBNM[MOBD.divisoria.n]='divisoria'}catch(e){}
+function agTema(){try{const s=typeof ppDaCasa==='function'&&ppDaCasa(),d=s&&typeof PPD!=='undefined'&&PPD[s.pp];if(d&&d.c1)return{k:d.k,c1:d.c1,c2:d.c2||d.c1,tr:'#6a4424'}}catch(e){}
+try{const key=(typeof CSVIS!=='undefined'&&CSVIS&&CSVIS.k!=null)?CSVIS.k:HRK;const h=[...String(key)].reduce((a,c)=>(a*31+c.charCodeAt(0))|0,7)>>>0;return CSRT[h%CSRT.length].wall}catch(e){}return{c1:'#f0e4d0',c2:'#e4d4b8',tr:'#8a5a30'}}
+const AG_WH=14;
+function agParede(gg,X0,Ybase,alpha,viz,tema){const y0=Ybase-16,H=AG_WH,T=tema||agTema(),k=T.k||'stripe',tr=T.tr||'#8a5a30';
+gg.save();if(alpha!=null)gg.globalAlpha=alpha;
+const mad=mix2(tr,.95),madC=mix2(tr,1.3),madE=mix2(tr,.7);gg.fillStyle=mad;gg.fillRect(X0,y0-H,16,viz.s?16.8:16);
+gg.fillStyle=madE;for(let q=0;q<4;q++){const yy=y0-H+2+q*4+((X0/16|0)%2);gg.fillRect(X0+((q*5)%9),yy,5,.6)}
+gg.fillStyle=madC;if(!viz.n)gg.fillRect(X0,y0-H,16,1.2);if(!viz.w)gg.fillRect(X0,y0-H,1.2,16);gg.fillStyle=madE;if(!viz.e)gg.fillRect(X0+14.8,y0-H,1.2,16);
+const fy=y0+16-H;gg.fillStyle=T.c1;gg.fillRect(X0,fy,16,H);gg.fillStyle=T.c2||T.c1;
+if(k==='stripe'){for(let i=1;i<16;i+=4)gg.fillRect(X0+i,fy,1.6,H)}
+else if(k==='dots'){for(let yy=fy+2;yy<fy+H-3;yy+=4)for(let xx=X0+1+((yy-fy)/4%2)*2;xx<X0+16;xx+=4)gg.fillRect(xx,yy,1.2,1.2)}
+else if(k==='leaf'){for(let yy=fy+2;yy<fy+H-3;yy+=5)for(let xx=X0+1+(((yy-fy)/5|0)%2)*3;xx<X0+15;xx+=6){gg.beginPath();gg.ellipse(xx+1,yy+1,1.4,.8,-.6,0,6.3);gg.fill()}}
+else if(k==='panel'){gg.fillRect(X0,fy+H*.45,16,H*.55);gg.fillStyle=mix2(T.c2,.8);gg.fillRect(X0+2,fy+H*.55,5,H*.35);gg.fillRect(X0+9,fy+H*.55,5,H*.35);gg.fillStyle=mix2(T.c2,1.2);gg.fillRect(X0,fy+H*.45,16,.7)}
+else if(k==='brick'){gg.fillStyle=mix2(T.c1,.85);for(let r=0;r*3<H-3;r++){gg.fillRect(X0,fy+r*3+2.4,16,.5);for(let xx=X0+(r%2?2:5);xx<X0+16;xx+=6)gg.fillRect(xx,fy+r*3,.5,2.6)}}
+gg.fillStyle=mix2(tr,1.1);gg.fillRect(X0,fy,16,1.2);gg.fillStyle='rgba(0,0,0,.22)';gg.fillRect(X0,fy+1.2,16,.8);
+gg.fillStyle=tr;gg.fillRect(X0,y0+13,16,3);gg.fillStyle=mix2(tr,1.3);gg.fillRect(X0,y0+13,16,.6);gg.fillStyle=mix2(tr,.7);gg.fillRect(X0,y0+15.4,16,.6);
+if(!viz.w){gg.fillStyle='rgba(255,255,255,.2)';gg.fillRect(X0,fy,1,H)}if(!viz.e){gg.fillStyle='rgba(0,0,0,.25)';gg.fillRect(X0+15,fy,1,H)}
+if(!viz.s){gg.fillStyle='rgba(0,0,0,.16)';gg.fillRect(X0,y0+16,16,2)}
+gg.strokeStyle='#1a120e';gg.lineWidth=.6;gg.beginPath();if(!viz.w){gg.moveTo(X0+.3,y0-H);gg.lineTo(X0+.3,y0+16)}if(!viz.e){gg.moveTo(X0+15.7,y0-H);gg.lineTo(X0+15.7,y0+16)}if(!viz.n){gg.moveTo(X0,y0-H+.3);gg.lineTo(X0+16,y0-H+.3)}gg.stroke();
+gg.restore()}
+function mix2(hex,k){const n=parseInt(String(hex).slice(1),16);let r=n>>16&255,g2=n>>8&255,b=n&255;if(k<1){r*=k;g2*=k;b*=k}else{const t=k-1;r+=(255-r)*t;g2+=(255-g2)*t;b+=(255-b)*t}return'rgb('+(r|0)+','+(g2|0)+','+(b|0)+')'}
+function agVizParede(m){const c=mobCasa(),L=c?mobLista(c).filter(o=>o.k==='divisoria'):[],tem=(x,y)=>L.some(o=>o.x===x&&o.y===y);return{n:tem(m.x,m.y-1),s:tem(m.x,m.y+1),w:tem(m.x-1,m.y),e:tem(m.x+1,m.y)}}
+{const _mdP=mobDesenha;mobDesenha=function(gg,m,X0,Ybase,alpha,t){if(!m||m.k!=='divisoria')return _mdP.apply(this,arguments);agParede(gg,X0,Ybase,alpha,m.id?agVizParede(m):{})}}
+{const _miP=mobIco;mobIco=function(k){if(k!=='divisoria')return _miP.apply(this,arguments);if(MOB.ic[k])return MOB.ic[k];try{const c=document.createElement('canvas');c.width=c.height=64;const x=c.getContext('2d');x.scale(1.7,1.7);x.translate(3,10);
+const T={k:'stripe',c1:'#f0e4d0',c2:'#e4d4b8',tr:'#8a5a30'};agParede(x,0,30,null,{e:1},T);agParede(x,16,30,null,{w:1},T);return MOB.ic[k]=c.toDataURL()}catch(e){return''}}}
+{const _lmP=lojaMovel;lojaMovel=function(k){if(k!=='divisoria')return _lmP.apply(this,arguments);const d=MOBD[k];if(kpGet()<d.p)return toast('Faltam '+kmc(d.p-kpGet())+'.');const r=darItem(d.n,d.pack);if(!r)return toast('Mochila e depósito cheios! Libere um espaço.');kpAdd(-d.p);save();hud();try{play('item')}catch(e){}
+ok(`<div class="psh"><img src="${mobIco(k)}" alt="" style="width:64px;height:64px;image-rendering:pixelated"><div><b>${d.pack}× ${esc(d.n)}!</b><small>Na sua casa, toque no chão → <b>🛋️ Colocar móvel</b> e monte as paredes peça por peça: elas se emendam sozinhas e ficam da cor do papel de parede.</small></div></div>`+btn('Voltar à loja','lojaOpen()')+btn('Fechar','closeUI()'))}}
+const CS_NORMAL={W:27,H:15,EX:13},CS_GRANDE={W:35,H:19,EX:17},CS_GV={};
+function csGrandeDe(key){try{if(typeof csVisitando==='function'&&csVisitando()&&CSVIS&&String(CSVIS.k)===String(key))return!!CS_GV[String(key)];if(G.own&&G.own[key])return!!G.casaG}catch(e){}return false}
+function csTamPara(key){return csGrandeDe(key)?CS_GRANDE:CS_NORMAL}
+{const _csR=csRent;csRent=function(key,ret){Object.assign(CS2,csTamPara(key));return _csR.apply(this,arguments)}}
+{const _smG=setMap;setMap=function(i,x,y){try{if(i===HRM){const key=(typeof csVisitando==='function'&&csVisitando()&&CSVIS)?CSVIS.k:HRK;const T=csTamPara(key),ant={W:CS2.W,H:CS2.H,EX:CS2.EX};
+if(x===ant.EX&&y===ant.H-2&&(T.W!==ant.W||T.H!==ant.H)){x=T.EX;y=T.H-2}Object.assign(CS2,T)}}catch(e){}return _smG.call(this,i,x,y)}}
+if(typeof csCall==='function'){const _ccG=csCall;csCall=function(body){try{if(body&&(body.op==='alugar'||body.op==='deco')){const k=String(body.k||''),h=k.replace(/^v(\d)$/,'$1');if(G.own&&(G.own[h]||G.own[k]))body.g=G.casaG?1:0}}catch(e){}
+return _ccG.apply(this,arguments).then(j=>{try{if(body&&body.op==='visitar'&&j&&j.ok)CS_GV[String(body.k)]=!!j.g}catch(e){}return j})}}
+function csGIco(){if(MOB.ic.__casaG)return MOB.ic.__casaG;try{const c=document.createElement('canvas');c.width=c.height=64;const x=c.getContext('2d');
+x.fillStyle='#c85a4a';x.beginPath();x.moveTo(8,30);x.lineTo(32,10);x.lineTo(56,30);x.closePath();x.fill();x.fillStyle='#f0e4d0';x.fillRect(13,30,38,24);x.fillStyle='#8a5a30';x.fillRect(28,40,8,14);x.fillStyle='#8ac0e8';x.fillRect(17,35,7,7);x.fillRect(40,35,7,7);
+x.strokeStyle='#ffd34d';x.lineWidth=3;x.lineCap='round';for(const[a,b,c2,d]of[[4,58,14,48],[60,58,50,48],[4,6,12,14],[60,6,52,14]]){x.beginPath();x.moveTo(a,b);x.lineTo(c2,d);x.stroke()}
+return MOB.ic.__casaG=c.toDataURL()}catch(e){return''}}
+function lojaCasaG(){if(G.casaG)return toast('🏠 Você já tem a Casa Ampliada.');if(kpGet()<5)return toast('Faltam '+kmc(5-kpGet())+'.');kpAdd(-5);G.casaG=1;save();hud();try{play('lvl')}catch(e){}
+try{const k=HRK;if(k!=null&&G.own&&G.own[k]){csCall({op:'deco',k:csKey(isNaN(+k)?k:+k),dec:G.own[k].d||{},pw:G.own[k].pw||{}}).catch(()=>{});if(cur===HRM){const m=M[HRM];try{if(m.MC&&FGM)FGM.delete(m.MC)}catch(e){}delete m.T;delete m.MC;setMap(HRM,P.x,P.y)}}}catch(e){}
+ok(`<div class="psh"><img src="${csGIco()}" alt="" style="width:64px;height:64px"><div><b>Casa Ampliada!</b><small>Sua casa agora é bem maior (35×19). Vale para sempre na sua conta: se você trocar de casa, a nova também fica grande.</small></div></div>`+btn('Voltar à loja','lojaOpen()')+btn('Fechar','closeUI()'))}
+if(typeof mobCardsKmc==='function'){const _mck=mobCardsKmc;mobCardsKmc=function(kp){const r=_mck.apply(this,arguments);try{return lj2Card({img:csGIco(),nm:'Casa Ampliada',preco:G.casaG?'✓ Já tem':kmc(5),acao:G.casaG?'':'lojaCasaG()',dis:!!G.casaG||kp<5,det:esc('Permanente: toda casa que você alugar fica maior (35×19 em vez de 27×15)')})+r}catch(e){return r}}}
 var KAPPM=(typeof KPLAY!=='undefined'&&KPLAY)||!!window.KAPK;
 const KAPP_PLAY='https://play.google.com/store/apps/details?id=br.com.kaimongt.app';
 if(KAPPM){
