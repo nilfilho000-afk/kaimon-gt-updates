@@ -2097,7 +2097,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v187 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v188 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -8586,12 +8586,14 @@ async function webTok(a){a=a||webAcc();if(!a)throw new Error('sem conta');if(WEB
 async function fsGet(col,id,tok,mask){const u=fsDoc(col,id)+(mask?'?'+mask.map(f=>'mask.fieldPaths='+f).join('&'):'');const r=await fetch(u,{headers:{Authorization:'Bearer '+tok}});if(r.status===404)return null;if(!r.ok)throw new Error('nuvem '+r.status);return r.json()}
 function fsV(f,k){const v=f&&f[k];if(!v)return null;if(v.stringValue!=null)return v.stringValue;if(v.integerValue!=null)return+v.integerValue;if(v.doubleValue!=null)return+v.doubleValue;if(v.booleanValue!=null)return v.booleanValue;if(v.timestampValue)return Date.parse(v.timestampValue);if(v.arrayValue)return(v.arrayValue.values||[]).map(x=>fsV({x},'x'));if(v.mapValue){const o={};for(const kk in(v.mapValue.fields||{}))o[kk]=fsV(v.mapValue.fields,kk);return o}return null}
 (function(){try{const sI=Storage.prototype.setItem;Storage.prototype.setItem=function(k,v){const r=sI.apply(this,arguments);if(this===localStorage&&k==='pq2'){try{sI.call(localStorage,'pq2t',String(Date.now()))}catch(e){}CLOUD.dirty=1}return r}}catch(e){}})();
+function nbBase(uid,t){try{if(uid)localStorage.setItem('pq2c:'+uid,String(+t||0))}catch(e){}}
+function nbBaseGet(uid){try{return+(localStorage.getItem('pq2c:'+uid)||0)}catch(e){return 0}}
 function localT(id){try{return+(localStorage.getItem(id&&id!==ACC.act?'pq2t:'+id:'pq2t')||0)}catch(e){return 0}}
 const _wbSwitch=accSwitch;accSwitch=function(id,fresh){try{const cu=ACC.act,t=localStorage.getItem('pq2t');if(cu&&cu!==id&&t)localStorage.setItem('pq2t:'+cu,t);const t2=localStorage.getItem('pq2t:'+id);if(cu!==id){if(t2&&!fresh)localStorage.setItem('pq2t',t2);else localStorage.removeItem('pq2t');localStorage.removeItem('pq2t:'+id)}}catch(e){}return _wbSwitch.apply(this,arguments)};
 async function cloudPullFor(id,tok){const a=ACC.a[id];if(!webOn()||!a||!a.fb||!a.fb.uid)return;tok=tok||await webTok(a);
 const j=await fsGet('saves',a.fb.uid,tok);if(!j||!j.fields)return;const d=fsV(j.fields,'d'),t=fsV(j.fields,'t')||0;if(!d)return;
-const lt=localT(id);if(t<=lt+1500)return;const s=await bkDecode(d);const o=JSON.parse(s);if(!o||!o.G||!o.P)return;
-if(ACC.act===id){localStorage.setItem('pq2',s);localStorage.setItem('pq2t',String(t));CLOUD.dirty=0;CLOUD.lastPushT=t;try{sessionStorage.setItem('pqIn',id)}catch(e){}toast('☁️ Progresso da nuvem carregado.');setTimeout(()=>location.reload(),300);await new Promise(()=>{})}
+const lt=localT(id);if(t<=lt+1500){if(!nbBaseGet(a.fb.uid))nbBase(a.fb.uid,t);return}const s=await bkDecode(d);const o=JSON.parse(s);if(!o||!o.G||!o.P)return;
+nbBase(a.fb.uid,t);if(ACC.act===id){localStorage.setItem('pq2',s);localStorage.setItem('pq2t',String(t));CLOUD.dirty=0;CLOUD.lastPushT=t;try{sessionStorage.setItem('pqIn',id)}catch(e){}toast('☁️ Progresso da nuvem carregado.');setTimeout(()=>location.reload(),300);await new Promise(()=>{})}
 else{localStorage.setItem('pq2:'+id,s);localStorage.setItem('pq2t:'+id,String(t))}}
 async function cloudPush(force){const a=webAcc();if(!a||!webOn()||CLOUD.busy||!webOnline())return;if(!CLOUD.dirty&&!force)return;if(typeof mode!=='undefined'&&mode==='title')return;
 CLOUD.busy=1;try{const tok=await webTok(a);const lt=localT();
@@ -8602,7 +8604,7 @@ const nick=(G.nick||''),body={fields:{d:{stringValue:code},t:{integerValue:Strin
 const r=await fetch(fsDoc('saves',a.fb.uid),{method:'PATCH',headers:{Authorization:'Bearer '+tok,'Content-Type':'application/json'},body:JSON.stringify(body)});
 if(r.ok){CLOUD.dirty=0;CLOUD.lastPushT=lt||Date.now();CLOUD.lastT=Date.now();CLOUD.warn=0}}catch(e){}finally{CLOUD.busy=0}}
 async function cloudUse(){const a=webAcc();if(!a)return toast('Entre com uma conta com e-mail.');try{closeUI();toast('Buscando na nuvem...');const tok=await webTok(a);const j=await fsGet('saves',a.fb.uid,tok);if(!j||!j.fields)return toast('Não há progresso na nuvem para esta conta.');
-const s=await bkDecode(fsV(j.fields,'d')),o=JSON.parse(s);if(!o||!o.G)throw 0;localStorage.setItem('pq2',s);localStorage.setItem('pq2t',String(fsV(j.fields,'t')||Date.now()));CLOUD.dirty=0;try{sessionStorage.setItem('pqIn',ACC.act)}catch(e){}location.reload()}catch(e){toast('Não consegui ler o progresso da nuvem.')}}
+const s=await bkDecode(fsV(j.fields,'d')),o=JSON.parse(s);if(!o||!o.G)throw 0;localStorage.setItem('pq2',s);localStorage.setItem('pq2t',String(fsV(j.fields,'t')||Date.now()));nbBase(a.fb.uid,fsV(j.fields,'t')||0);CLOUD.dirty=0;try{sessionStorage.setItem('pqIn',ACC.act)}catch(e){}location.reload()}catch(e){toast('Não consegui ler o progresso da nuvem.')}}
 async function cloudSend(){closeUI();CLOUD.dirty=1;CLOUD.warn=0;await cloudPush(1);toast(CLOUD.dirty?'Não deu para enviar agora.':'☁️ Progresso enviado para a nuvem.')}
 setInterval(()=>{cloudPush()},180000);
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')cloudPush()});
@@ -9130,7 +9132,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=187;
+var KGT_VER=188;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -10990,16 +10992,22 @@ if(!(FBC&&FBC.fn))return _savPush.apply(this,arguments);
 const a=webAcc();if(!a||!webOn()||CLOUD.busy||!webOnline())return;if(!CLOUD.dirty&&!force)return;if(typeof mode!=='undefined'&&mode==='title')return;
 if(SAV.rec&&!force&&Date.now()-SAV.recT<5*60000)return;
 CLOUD.busy=1;try{const tok=await webTok(a),lt=localT(),code=await bkCode();if(code.length>900000){if(!CLOUD.big){CLOUD.big=1;toast('Save grande demais para a nuvem.')}return}
-const r=await fetch(FBC.fn.replace(/\/$/,'')+'/salvar',{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+tok},body:JSON.stringify({d:code,t:lt||Date.now(),nick:G.nick||'',base:CLOUD.lastPushT||0,plat:window.KAPK?'apk':(/^(127\.0\.0\.1|localhost)$/.test(location.hostname)?'pc':'web')})});
+const r=await fetch(FBC.fn.replace(/\/$/,'')+'/salvar',{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+tok},body:JSON.stringify({d:code,t:lt||Date.now(),nick:G.nick||'',base:(CLOUD.forceCT||nbBaseGet(a.fb.uid)||CLOUD.lastPushT||0),plat:window.KAPK?'apk':(/^(127\.0\.0\.1|localhost)$/.test(location.hostname)?'pc':'web')})});
 let j={};try{j=await r.json()}catch(e){}
-if(r.ok){CLOUD.dirty=0;CLOUD.lastPushT=lt||Date.now();CLOUD.lastT=Date.now();CLOUD.warn=0;SAV.rec=0;return}
-if(r.status===409&&j.conflito){if(!CLOUD.warn){CLOUD.warn=1;toast('☁️ Tem um progresso mais novo na nuvem (de outro aparelho). Configurações → Nuvem → Usar o da nuvem.')}return}
+if(r.ok){CLOUD.forceCT=0;nbBase(a.fb.uid,lt||Date.now());CLOUD.dirty=0;CLOUD.lastPushT=lt||Date.now();CLOUD.lastT=Date.now();CLOUD.warn=0;SAV.rec=0;return}
+if(r.status===409&&j.conflito){CLOUD.forceCT=0;if(!CLOUD.warn){CLOUD.warn=1;nbConflito(+j.ct||0,j.clv,j.cdia)}return}
 if(r.status===409&&j.recusado){SAV.recT=Date.now();if(!SAV.rec){SAV.rec=1;toast('☁️ '+(j.erro||'A nuvem não aceitou este progresso.')+' Ele continua só neste aparelho.')}return}
 }catch(e){}finally{CLOUD.busy=0}}}
 addEventListener('pagehide',()=>{try{cloudPush()}catch(e){}});
 if(typeof bkDep==='function'){const _savDep=bkDep;bkDep=function(){const ar=arguments,me=this;if(!(typeof bkOnline==='function'&&bkOnline()&&FBC.fn))return _savDep.apply(me,ar);
 if(SAV.mx)return bkFala('Este save foi alterado fora do jogo: o banco online não aceita depósitos dele.',1),bkOpen();
 CLOUD.dirty=1;Promise.resolve(cloudPush(1)).catch(()=>{}).then(()=>_savDep.apply(me,ar))}}
+function nbConflito(ct,clv,cdia){try{if(typeof mode!=='undefined'&&mode==='battle')return setTimeout(()=>{CLOUD.warn=0},20000);
+const q=ct?new Date(ct).toLocaleString('pt-BR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}):'';
+open(`<b>☁️ Progresso de outro aparelho</b><p>Esta conta foi jogada em <b>outro aparelho</b>${q?' (salvo em '+q+')':''} depois que este aparelho abriu o jogo. Para não perder nada, escolha qual progresso continua:</p>
+  <p><small>• <b>Usar o da nuvem</b> (recomendado): carrega o progresso do outro aparelho; o que foi feito aqui depois disso some.<br>• <b>Manter este aparelho</b>: este progresso substitui o do outro aparelho; o que foi feito lá (compras, KMC gastos, capturas) some.</small></p>`
++btn('Usar o da nuvem','cloudUse()')+btn('Manter este aparelho',`nbForca(${ct|0})`))}catch(e){}}
+function nbForca(ct){CLOUD.forceCT=ct||0;CLOUD.warn=0;cloudSend()}
 var ASS={key:'lavender',alm:[],vis:null,fat:[],mur:['...mmmmh...','hhhuuu...','...a vela... a vela...','sss... ah... ah...','...frio... tão frio...','...onde... ficou...','mnnnh... hm...','...uuuuu...','...não... não era...','...shhh...','...três badaladas...','hmmm... mmm...']};
 function assPode(x,y){const v=(T[y]||[])[x];return v!=null&&!SOLID.has(v)&&v!==2&&v!==59}
 function assSorteia(){for(let i=0;i<60;i++){const x=2+Math.floor(Math.random()*(W-4)),y=2+Math.floor(Math.random()*(H-4));if(assPode(x,y)&&Math.abs(x-P.x)+Math.abs(y-P.y)>5)return[x,y]}return null}
@@ -14985,7 +14993,7 @@ await Promise.race([cloudPullFor(id),new Promise(r=>setTimeout(r,12000))])}}catc
 async function nuvSaveDaNuvem(a){const tok=await webTok(a);const j=await fsGet('saves',a.fb.uid,tok);if(!j||!j.fields)return null;const d=fsV(j.fields,'d'),t=fsV(j.fields,'t')||0;if(!d)return null;
 const s=await bkDecode(d);const o=JSON.parse(s);if(!o||!o.G||!o.P||!o.G.nick)return null;return{s,t,o}}
 async function nuvTenta(){const a=webAcc();if(!a||!webOn()||!webOnline())return;try{const r=await nuvSaveDaNuvem(a);if(!r)return;
-localStorage.setItem('pq2',r.s);localStorage.setItem('pq2t',String(r.t||Date.now()));try{sessionStorage.removeItem('pqNew');sessionStorage.setItem('pqIn',ACC.act)}catch(e){}
+localStorage.setItem('pq2',r.s);localStorage.setItem('pq2t',String(r.t||Date.now()));try{nbBase(a.fb.uid,r.t)}catch(e){}try{sessionStorage.removeItem('pqNew');sessionStorage.setItem('pqIn',ACC.act)}catch(e){}
 try{CLOUD.dirty=0}catch(e){}const d=document.createElement('div');d.style.cssText='position:fixed;inset:0;z-index:2147483646;background:#070a14e8;color:#ffe27a;display:flex;align-items:center;justify-content:center;font:900 20px system-ui;text-align:center;padding:20px';
 d.textContent='☁️ Achamos o treinador '+r.o.G.nick+' na nuvem! Carregando...';document.body.appendChild(d);setTimeout(()=>location.reload(),900)}catch(e){}}
 {const _co=chrOpen;chrOpen=function(isNew){const r=_co.apply(this,arguments);try{if(isNew&&!NUV.ck){NUV.ck=1;nuvTenta()}}catch(e){}return r}}

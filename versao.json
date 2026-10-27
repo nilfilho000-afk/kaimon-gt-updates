@@ -1,11 +1,11 @@
 {
- "jogo": 187,
- "jogo_arquivo": "jogo-187.kpk",
- "jogo_sha": "8fae567247e685c383cb32bc23cab2a66b1f0b9c98d859da12dfea1237819c82",
- "jogo_assin": "60a7WnmacmAew3u8sh2r83EjhteIaynnrkbEIVvsdLJLjjrrXB++JndyRaBrk4OqKXJlHgp4lKtuwpSke+naAw==",
+ "jogo": 188,
+ "jogo_arquivo": "jogo-188.kpk",
+ "jogo_sha": "6955124dbeeef3e78d3fcbd0e78c1e1623a2f87926b296c4f4e5a18c14be3862",
+ "jogo_assin": "jBmPkwyb4pqiAiSeYrQwORyl5wPWGvbVYF8xmTmnk6sMusLIbl3rYMLJ5PZyd0wCj/kdhkBPej6RM0hgAA04AA==",
  "launcher": 4,
  "launcher_arquivo": "KaimonGT-4.exe",
- "launcher_sha": "975d298ba930f71abed76128dfdbc56e8d7df7c92c9b92bda6f87bad1734dd1c",
- "launcher_assin": "rIfk/+/R3ZtocL301nrCIJJozbBuhbrMU1Et2OylkyWlGM7og3X1cSIIu1e/eQc32U4MVhBLh14O47vTNAgsCg==",
- "notas": "Cristais Ultra quebrados agora contam por espécie e não zeram quando o shiny foge; ao bater a meta a captura é certa; contador aparece na Kaimondex"
+ "launcher_sha": "f2b9642f7063a02b965d242858b4e023d1d5f9f744fcd15fa2da91b32037f4c3",
+ "launcher_assin": "F0cLoJnJ7DaF6Cy0i1KPuqJKl+DWQoculPbLLAdqPT381ATl7vibGIpm6uV/KSzeMG+NkeaST8OASrSz7R+PDg==",
+ "notas": "Jogar a mesma conta em dois aparelhos não apaga mais compras e KMC gastos: se a nuvem mudou em outro aparelho, o jogo pergunta qual progresso continua"
 }
