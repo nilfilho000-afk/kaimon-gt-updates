@@ -1,7 +1,7 @@
 {
- "v": 220,
+ "v": 221,
  "url": "https://raw.githubusercontent.com/nilfilho000-afk/kaimon-gt-updates/main/jogo-apk.html",
- "notas": "Corrige o scroll dos menus que travava/não funcionava em alguns celulares (a proteção anti-autoclicker não interfere mais no scroll).",
- "sha": "600a32d301a681a387fcd8cf12fb4167e04c3bc21960784bdef9148b616b03d4",
- "sig": "Y5vUYUnRKwWQGfXseB51yXebGSmz9BUOSDFNSRFmaCzVJC+yjOUXqOhjNuVxjag3wnyY3HDVjdn1WPr6X8UUWA=="
+ "notas": "Chegou o Zé do Recomeço: um NPC amaldiçoado pelo Saci que recomeça todo dia no nível 1, anda pelos mapas, fala no chat e conversa com quem chega perto. Pedalada da bicicleta mais bonita. Termos atualizados.",
+ "sha": "e8193567abbe43b055531d0abde41133004c9da71b079ad2ce3e0a55b7f1a6fa",
+ "sig": "tG+KolN/n14ZYlbhevSmGSNlKyc3wKPYfNMTMpul9v4Tvp8Cv/8I6EXAeKBlKLfVQy2QIlRQ01hFwnwUCQ2gFA=="
 }
