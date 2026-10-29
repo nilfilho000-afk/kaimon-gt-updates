@@ -1,7 +1,7 @@
 {
- "v": 222,
+ "v": 223,
  "url": "https://raw.githubusercontent.com/nilfilho000-afk/kaimon-gt-updates/main/jogo-apk.html",
- "notas": "O Zé do Recomeço agora aparece no mapa (🗺️ e minimapa), com aviso de onde ele está hoje. Neve de Natal mais leve.",
- "sha": "2cf025b8a966da7f1ec43aa08a3acbe2a0f8e97f37272636dc1764c85d408b6b",
- "sig": "uAZ2EjXAXLNInieWbK8OogVwrgISrfsM/7n3QBSpPA3FCLA+x59rGUE1cjmFfFSHgWvlg9C+EHroEUMav2b/Mg=="
+ "notas": "Botão 🧢 Achar o Zé embaixo do minimapa: a seta 🧭 leva até o Zé do Recomeço (e dá pra ir andando sozinho).",
+ "sha": "ecf1b6deaf626a586f0f9ab06970491a4052e64e51e771f68b4c8fb883ada745",
+ "sig": "XjwGY11K9nR6p4HnAgCzkEr0CYPkKf3ovyTYWHdry2ZicKKWnN6jP8rtelbIH9B5ftmXTRUnV1fkm95+cIN0oQ=="
 }
