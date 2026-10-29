@@ -1,7 +1,7 @@
 {
- "v": 225,
+ "v": 226,
  "url": "https://raw.githubusercontent.com/nilfilho000-afk/kaimon-gt-updates/main/jogo-apk.html",
- "notas": "O Kaimon que segue você agora mostra o addon (ex.: Carapuça Dourada do Saciclone), e os outros jogadores veem o addon e a aura RGB do seu Kaimon.",
- "sha": "cfc80446f205fdfda6c78a65c68d2ce286bb182272b759716bd8c18cdc74b6f9",
- "sig": "5dom91HpjgCL7WcyB32FyW4U9M9V707tp+ptI1CK32yZUcgL4mPs5fe1mBqvprJGEQkRWqWyWB7H0PmCliMBow=="
+ "notas": "Agora dá pra visitar a casa dos outros mesmo tendo casa. Novo botão 🚪 Abandonar casa (para de cobrar o aluguel e devolve a caução).",
+ "sha": "912a749b1d667b64ea3782ebf21473934c12926653fa1e6883581ae959cff3f9",
+ "sig": "1UNbiRjgsyZpsNnyiv1NYwfUcEIDjl+6EDJEwQt66qPDrWYDWMgmEk+NDwnDRHEuypLsXB01owHvMpI1RQc/mw=="
 }
