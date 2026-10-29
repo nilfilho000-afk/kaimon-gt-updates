@@ -18437,6 +18437,15 @@ x.strokeStyle='#22262e';x.lineWidth=.9;x.beginPath();x.moveTo(-4.2,-9.6);x.lineT
 var NV221={S:.6,N:.42};
 {const _u=clUpd;clUpd=function(){const r=_u.apply(this,arguments);try{if(nvNatal()&&CLD.S>NV221.S){CLD.S=NV221.S;if(CLW.S>NV221.S)CLW.S=NV221.S}}catch(e){}return r}}
 {const _w=wxSnow;wxSnow=function(x,t,cw,ch,n,sc){return _w.call(this,x,t,cw,ch,Math.max(8,Math.round(n*NV221.N)),sc)}}
+function zeMapaIdx(){try{return ZE&&ZE.on&&ZE.z?NM.indexOf(ZE.z):-1}catch(e){return-1}}
+function zeTam(mi){try{const m=M[mi];if(m&&m.W&&m.H)return[m.W,m.H];const t=m&&(m.t||m.T||m.map);if(Array.isArray(t)&&t.length)return[(t[0]&&t[0].length)||40,t.length];if(m&&m.w&&m.h)return[m.w,m.h]}catch(e){}return[40,40]}
+try{const _zI=mzIcons;mzIcons=function(){const L=_zI.apply(this,arguments);try{const mi=zeMapaIdx();if(mi<0)return L;
+if(MZ.v===0){const p=(mi===cur)?(ZE.ult||zePos()):null;if(p)L.push({k:'npc',x:p.x+.5,y:p.y+.5,e:'🧢',t:'Zé do Recomeço (Nv '+ZE.l+'): chegue perto pra conversar',ax:p.x,ay:p.y})}
+else{const g3=GW.find(q=>q[0]===mi),b=MZ.gb;if(g3&&b){const[w,h]=zeTam(mi),p=(mi===cur)?ZE.ult:null;L.push({k:'npc',x:g3[1]-b[0]+(p?p.x+.5:w/2),y:g3[2]-b[1]+(p?p.y+.5:h/2),e:'🧢',t:'Zé do Recomeço está aqui hoje ('+ZE.z+')',mi})}}}catch(x){}return L}}catch(e){}
+try{const _zM=mzMini;mzMini=function(cv,sc){_zM.apply(this,arguments);try{const p=ZE.ult;if(!p||zeMapaIdx()!==cur)return;const g2=cv.getContext('2d'),[ox,oy]=bMM(cv,sc),x=Math.round(ox+p.x*sc+sc/2),y=Math.round(oy+p.y*sc+sc/2);
+g2.fillStyle='#fff';g2.beginPath();g2.arc(x,y,4.2,0,6.28);g2.fill();g2.fillStyle='#c41e1e';g2.beginPath();g2.arc(x,y,3.1,0,6.28);g2.fill();g2.fillStyle='#ffd0b0';g2.fillRect(x-1,y-1,2,2)}catch(x){}}}catch(e){}
+setInterval(()=>{try{if(!ZE.on||!ZE.z||typeof mode==='undefined'||mode!=='walk')return;const k=ZE.dia+'|'+ZE.z;if(ZE.avL===k)return;ZE.avL=k;
+toast('🧢 O <b>Zé do Recomeço</b> está hoje em <b>'+zeEsc(ZE.z)+'</b> (Nv '+ZE.l+'). Ele aparece no 🗺️ mapa. Chegue perto pra conversar!')}catch(e){}},3000);
 (function(){try{const st=document.createElement('style');st.textContent=`body.hudmin .ab:not(.hkeep){display:none!important}
 #hudtg{position:fixed;right:calc(env(safe-area-inset-right,0px) + 88px);bottom:calc(env(safe-area-inset-bottom,0px) + 6px);width:40px;height:40px;border-radius:50%;padding:0;margin:0;z-index:6;
  background:radial-gradient(circle at 35% 30%,#fff3c0,#e8c050 60%,#a8801c);border:2px solid #fff;color:#3a2a00;font:900 18px sans-serif;box-shadow:0 2px 6px #0008;display:flex;align-items:center;justify-content:center}
