@@ -1,7 +1,7 @@
 {
- "v": 227,
+ "v": 228,
  "url": "https://raw.githubusercontent.com/nilfilho000-afk/kaimon-gt-updates/main/jogo-apk.html",
- "notas": "Jogo mais leve: o mapa explorado agora é salvo compactado (save até 16x menor), o salvamento não falha mais com a memória cheia e o aviso falso de 'save alterado' não trava mais o banco.",
- "sha": "e8c24367b8e562cc7836294b70e9091324121bb49197a20a959309034011f568",
- "sig": "RGtZ/r6zFbj69O1LcYY1XuGA7u/M/+EDqckTJp8HzXwODSEZLdInjBInY5QnajZ+cti+O8lOAJwa2ZS8QDvsLQ=="
+ "notas": "PC e celular: um aparelho com progresso velho não apaga mais o progresso mais novo da nuvem (KMC não some nem volta).",
+ "sha": "8f5c659f583dc3b149a150f56cca04314a4a86cd5ffb1984e28f044fdc4581d0",
+ "sig": "vbXtT6cEZSRjgZ1eigOK35z8Gx1hm7tgyQSF3nXgNO9fUTJVAri50/9LdBpSGENU0gMLOXAS2oV3IXT/meudnA=="
 }
