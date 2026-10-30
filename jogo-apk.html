@@ -2097,7 +2097,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v229 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v230 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -9135,7 +9135,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=229;
+var KGT_VER=230;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -18678,6 +18678,49 @@ addEventListener('keydown',ev=>{if(KBT9.ed){ev.stopPropagation();if(ev.key==='Es
 {const _c=cfgR;cfgR=function(){const r=_c.apply(this,arguments);try{if(!document.getElementById('cfr_kbt')){const a=document.getElementById('cfr_horg')||document.getElementById('cfr_btnop')||[...document.querySelectorAll('#ui .cfr')].pop();
 const n=Object.values(KBT9.pos).filter(p=>p&&p.off).length;
 if(a)a.insertAdjacentHTML('afterend',`<div class="cfr" id="cfr_kbt"><span>Botões na tela${n?' <small>('+n+' escondido'+(n>1?'s':'')+')</small>':''}</span>`+btn('✋ Mover / esconder','kbtEditar()')+btn('↺ Padrão',"KBT9.pos={};kbtSalva();kbtAplica();toast('↺ Botões de volta ao lugar original.');cfgR()")+'</div>')}}catch(e){}return r}}
+const SH30=1.4/1.3;
+{const _st=stats;stats=function(m){const r=_st.apply(this,arguments);try{if(m&&m.sh)for(const k of['max','A','D','SA','SD','S'])if(m[k]>0)m[k]=Math.floor(m[k]*SH30)}catch(e){}return r}}
+function sh30Recalc(m){try{if(!m||!m.sh||!SP[m.n])return;const r=m.max>0?m.hp/m.max:1;stats(m);m.hp=Math.max(m.hp>0?1:0,Math.min(m.max,Math.round(r*m.max)))}catch(e){}}
+var SH30F={ok:0};
+setInterval(()=>{try{if(SH30F.ok||typeof mode==='undefined'||mode!=='walk'||!G||!G.party)return;SH30F.ok=1;
+G.party.forEach(sh30Recalc);(G.dep||[]).forEach(b=>(b||[]).forEach(s=>{if(s&&s.m)sh30Recalc(s.m)}))}catch(e){}},1500);
+{const _g=gain;gain=async function(m,x){try{if(G.party&&G.party.some(p=>p&&p.sh)&&x>0)x=Math.round(x*1.25)}catch(e){}return _g.call(this,m,x)}}
+{const _d=drops;drops=function(w){const o=_d.apply(this,arguments);try{const c=typeof B!=='undefined'&&B&&B.cur;if(c&&c.sh&&Math.random()<.25){const o2=_d.apply(this,arguments);if(o2&&o2.length)return o.concat(o2.map(n=>'✨ '+n))}}catch(e){}return o}}
+function sh30Txt(el){try{if(!el)return;const w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT);let n;while(n=w.nextNode()){const t=n.nodeValue;if(t.indexOf('+30%')<0)continue;
+if(/atributos/.test(t))n.nodeValue=t.replace('+30% em todos os atributos','+40% em todos os atributos · +25% EXP no time · drop extra').replace('+30% nos atributos','+40% nos atributos, +25% EXP e drop extra')}}catch(e){}}
+{const _dx=dex;dex=function(){const r=_dx.apply(this,arguments);try{sh30Txt(document.getElementById('ui'))}catch(e){}return r}}
+var CV30={nv:10,link:0,cred:null};
+function cvConv(a){return!!(a&&a.guest&&!a.fb)}
+function cvAtual(){try{return ACC&&ACC.act!=null?ACC.a[ACC.act]:null}catch(e){return null}}
+function cvNivel(){try{return(G&&G.t&&G.t.l)|0}catch(e){return 0}}
+function cvAchaConv(){try{return Object.keys(ACC.a).find(id=>cvConv(ACC.a[id]))||null}catch(e){return null}}
+function cvJogar(){try{const gid=cvAchaConv();if(gid){if(ACC.act===gid){try{sessionStorage.setItem('pqIn',gid)}catch(e){}ttlClose();return afterLogin()}return accSwitch(gid,false)}
+const id='g'+Date.now().toString(36)+(Math.random()*1e4|0).toString(36);ACC.a[id]={login:'Convidado',guest:1,created:Date.now(),last:Date.now(),lv:1};ACC.rem=id;accSave();try{play('item')}catch(e){}accSwitch(id,true)}catch(e){toast('Não deu para começar agora. Tente de novo.')}}
+{const _t=ttlOpen;ttlOpen=function(){const r=_t.apply(this,arguments);try{if(!fbOn())return r;const c=document.querySelector('#ttl .tcard');if(c&&!document.getElementById('cvbt')){const gid=cvAchaConv(),g=gid&&ACC.a[gid];
+c.insertAdjacentHTML('beforeend',`<div id="cvbt" style="margin-top:10px;padding-top:10px;border-top:1px solid #ffffff22;text-align:center"><button class="tgo" style="width:100%;background:linear-gradient(#7ae07a,#3a9a4a);border-color:#1a4a20;color:#082a10" onclick="cvJogar()">${g?'▶ Continuar como convidado'+(g.lv>1?' (Nv '+(g.lv|0)+')':''):'▶ Jogar agora, sem conta'}</button><div class="tnote" style="margin-top:4px">Sem conta você joga até o <b>nível ${CV30.nv}</b>, só neste aparelho. Lá é só criar a conta (Google ou e-mail) e o progresso vai junto.</div></div>`)}}catch(e){}return r}}
+{const _ta=termosAbrir;termosAbrir=function(soLer){try{if(!soLer){const a=cvAtual();if(!a||!a.fb)return}}catch(e){}return _ta.apply(this,arguments)}}
+setInterval(()=>{try{const a=cvAtual();if(a&&a.fb&&typeof mode!=='undefined'&&mode==='walk'&&!termosAceito()&&!document.getElementById('termos')&&!document.getElementById('ttl'))termosAbrir(false)}catch(e){}},2000);
+{const _s=semMailConta;semMailConta=function(){try{const a=cvAtual();if(cvConv(a))return cvNivel()>=CV30.nv}catch(e){}return _s.apply(this,arguments)}}
+{const _fl=fbLinkForm;fbLinkForm=function(){const r=_fl.apply(this,arguments);try{const a=cvAtual();if(!cvConv(a))return r;const u=document.getElementById('ui');if(!u||u.querySelector('.cvtopo'))return r;
+u.insertAdjacentHTML('afterbegin',`<div class="cvtopo" style="background:#1a3a1a;border:2px solid #7ae07a;border-radius:10px;padding:8px 10px;margin-bottom:8px;color:#e8ffe8;font-size:13px;line-height:1.4"><b style="font-size:15px">🔒 Nível ${CV30.nv}! Crie sua conta para salvar</b><br>Até aqui você jogou como convidado, só neste aparelho. Crie a conta para continuar: seu progresso vai junto e fica salvo na nuvem.</div>`+(typeof gsiOn==='function'&&gsiOn()?'<div style="display:flex;justify-content:center;margin:4px 0 8px"><div id="gsiBtn"></div></div><p style="text-align:center;margin:0 0 6px;color:#c8d2ee;font-size:12px">ou com e-mail e senha:</p>':''));
+[...u.querySelectorAll('b')].forEach(t=>{if(/^Vincular e-mail/.test(t.textContent))t.textContent='Criar conta com e-mail e senha'});[...u.querySelectorAll('button')].forEach(t=>{if(/^Vincular e enviar/.test(t.textContent))t.textContent='Criar conta e enviar confirmação'});const sm=u.querySelector('.smail');if(sm)sm.remove();
+if(typeof gsiOn==='function'&&gsiOn()){CV30.link=1;gsiLoad(gsiRender)}}catch(e){}return r}}
+{const _fi=fbIdp;fbIdp=async function(idTok){const a=cvAtual();if(!CV30.link||!cvConv(a))return _fi.apply(this,arguments);if(FBB)return;FBB=1;tmsg('Criando a conta com o Google...',1);
+try{const j=await fbPost(fbIdt('accounts:signInWithIdp'),{postBody:'id_token='+encodeURIComponent(idTok)+'&providerId=google.com',requestUri:/^https?:/.test(location.origin)?location.origin:'http://localhost',returnSecureToken:true,returnIdpCredential:true});
+const em=String(j.email||'').toLowerCase();let ct=0,clv=0;
+try{const s=await fsGet('saves',j.localId,j.idToken,['t','lv']);if(s&&s.fields){ct=+fsV(s.fields,'t')||0;clv=+fsV(s.fields,'lv')||0}}catch(e){}
+FBB=0;CV30.cred={j,em,ct};
+if(ct){open(`<b>☁️ Essa conta Google já tem progresso</b><p>A conta <b>${esc(em)}</b> já tem um treinador salvo na nuvem${clv?' (<b>Nv '+clv+'</b>)':''}.</p><p><small>• <b>Usar o da conta</b>: entra com o progresso que já estava salvo nela. O convidado continua guardado neste aparelho.<br>• <b>Usar o do convidado</b>: o progresso de agora vai para a conta e <b>substitui</b> o que estava salvo nela.</small></p>`+btn('Usar o da conta','cvUsaConta()')+btn('Usar o do convidado','cvLiga(1)')+btn('Voltar','fbLinkForm()'));return}
+cvLiga(0)}catch(e){FBB=0;tmsg(e.message||'Não deu para entrar com o Google.')}}}
+function cvLiga(forca){try{const c=CV30.cred,a=cvAtual();if(!c||!a)return;const{j,em,ct}=c;
+Object.assign(a,{login:em||'google',email:em,last:Date.now(),google:1,fb:{uid:j.localId,rt:j.refreshToken,ver:true,sent:0}});delete a.guest;accSave();CV30.link=0;CV30.cred=null;
+try{if(typeof nbBase==='function'&&!forca)nbBase(j.localId,0)}catch(e){}
+try{closeUI()}catch(e){}try{play('lvl')}catch(e){}toast('🎉 Conta criada! Seu progresso agora fica salvo na nuvem.');
+try{save();CLOUD.dirty=1;if(forca&&ct&&typeof nbForca==='function'){try{SY8.manual=1;nbForca(ct)}finally{SY8.manual=0}}else cloudPush(1)}catch(e){}}catch(e){toast('Não deu para ligar a conta. Tente de novo.')}}
+async function cvUsaConta(){try{const c=CV30.cred;if(!c)return;const{j,em}=c;let id=accFind(j.localId);if(!id){id='f'+String(j.localId).slice(0,24);ACC.a[id]={created:Date.now(),lv:1}}
+const a=ACC.a[id];Object.assign(a,{login:em||a.login||'google',email:em||a.email||'',last:Date.now(),google:1,fb:{uid:j.localId,rt:j.refreshToken,ver:true,sent:(a.fb&&a.fb.sent)||0}});
+ACC.rem=id;accSave();CV30.link=0;CV30.cred=null;try{save()}catch(e){}toast('☁️ Buscando o progresso da conta...');try{await cloudPullFor(id,j.idToken)}catch(e){}fbGo(id)}catch(e){toast('Não deu para entrar na conta. Tente de novo.')}}
+setInterval(()=>{try{const a=cvAtual();if(cvConv(a)&&G&&G.t){const l=G.t.l|0;if(a.lv!==l){a.lv=l;accSave()}}}catch(e){}},5000);
 (function(){try{const st=document.createElement('style');st.textContent=`body.hudmin .ab:not(.hkeep){display:none!important}
 #hudtg{position:fixed;right:calc(env(safe-area-inset-right,0px) + 88px);bottom:calc(env(safe-area-inset-bottom,0px) + 6px);width:40px;height:40px;border-radius:50%;padding:0;margin:0;z-index:6;
  background:radial-gradient(circle at 35% 30%,#fff3c0,#e8c050 60%,#a8801c);border:2px solid #fff;color:#3a2a00;font:900 18px sans-serif;box-shadow:0 2px 6px #0008;display:flex;align-items:center;justify-content:center}

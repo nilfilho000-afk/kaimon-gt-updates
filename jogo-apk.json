@@ -1,7 +1,7 @@
 {
- "v": 229,
+ "v": 230,
  "url": "https://raw.githubusercontent.com/nilfilho000-afk/kaimon-gt-updates/main/jogo-apk.html",
- "notas": "v229: árvores e casas sem transparência; monstros menos agressivos, sem lotação; nuvem ao sair e ao entrar; 🧭 Ir na História; evolução na Monstrodex; monstro só luta até 10 níveis acima do treinador; mapa pronto e mapa explorado protegido; botões da tela arrastáveis (Configurações)",
- "sha": "6a437844fe7d6394b63ba2641cee71214c9fe3ba47b1db5b38c1806b1081e7db",
- "sig": "eRJA5qibRwQB+Wh3Suznu5SAjsoVSLeKa/fWHcR1nKa8j2F3xMBUGJwStbyfGMUMXRq6yLFwHXmcwqTj3hLhIA=="
+ "notas": "v230: shiny +40% nos atributos, +25% EXP no time e drop extra; jogar sem conta até o nível 10 (depois cria a conta Google/e-mail e aceita os Termos)",
+ "sha": "b3752ecae5fea7370c6a1a4ce8fc6604a29950eec7d44fa78c5c14e510f0d237",
+ "sig": "xiUHwU7vJH3Xh8/aQYXkh/qSLxhVJsXHCTSvNGZS/sQlsSKX/Be3fd98w82B7RUDCFJkjhmu5DAeK3OXHHSfrw=="
 }
