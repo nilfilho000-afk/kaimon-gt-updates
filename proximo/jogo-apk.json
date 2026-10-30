@@ -1,7 +1,7 @@
 {
  "v": 229,
  "url": "https://raw.githubusercontent.com/nilfilho000-afk/kaimon-gt-updates/main/jogo-apk.html",
- "notas": "v229: árvores e casas sem transparência; monstros menos agressivos e hunts/morros sem lotação (zona segura em portas e escadas); salva na nuvem ao sair e puxa da nuvem ao entrar; 🧭 Ir na linha da História; evolução na Monstrodex",
- "sha": "25cae7252d8139d4177cffad4957b99805e6d2b513d1da221bfc710cd096bcb7",
- "sig": "jiZi26FGbW9w8RPWO1N77bV1kATYc+2s8toU3z3rsdRE8yH6YBGeKFggHSGor9OfG4PVBEAL0XWy6N6aTEWs2w=="
+ "notas": "v229: árvores e casas sem transparência; monstros menos agressivos e hunts/morros sem lotação; nuvem ao sair e ao entrar; 🧭 Ir na História; evolução na Monstrodex; monstro só luta até 10 níveis acima do treinador",
+ "sha": "61ef793b0e0f8248562f7ed6f82dc40936bf1df20bf1e8c0ce4c72c3a996fc68",
+ "sig": "5fPAaogMB94BSPx/9sX70aBU88TVOsLCMBuJ74XZdiFlhRKHwChIndFjn1zl2os93jrT9LcnzhU/Q1CA12Q4hw=="
 }
