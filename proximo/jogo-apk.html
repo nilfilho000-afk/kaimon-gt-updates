@@ -6341,7 +6341,10 @@ gen(m){rfSerraGen(m,S)},deco(){rfDeco()}});S.i=i;
 const mk0=M[i].mk;M[i].mk=()=>{try{if(BIG.D[S.from]&&!BIG.D[S.from].built)bBuild(S.from)}catch(e){console.error(e)}return mk0()}}})();
 function spawn(){const m=M[cur];if(!m||!m.tiers){const n0=wild.length;spawn0();const e=wild[wild.length-1];if(wild.length>n0&&e&&rfE(e.x,e.y)>0)wild.pop();return}
 const cnt=m.tiers.map(()=>0);for(const e of wild)if(e.tier!=null)cnt[e.tier]++;
-const opts=m.tiers.filter((t,k)=>t.cells.length&&cnt[k]<t.cap);if(!opts.length)return;const t=opts[Math.random()*opts.length|0];
+const opts=m.tiers.filter((t,k)=>t.cells.length&&cnt[k]<t.cap);if(!opts.length)return;
+const pw=t=>t.cells.length*(t.bonus?3:1);let rr=Math.random()*opts.reduce((a,t)=>a+pw(t),0),t=opts[opts.length-1];for(const o of opts){if((rr-=pw(o))<0){t=o;break}}
+try{if(typeof SLV!=='undefined'&&SLV.cs!=null){const fl=m.tiers.filter(q=>q.fl&&q.cap&&q.cells.length);if(fl.length){let s=SLV.cs;t=m.tiers[0];
+for(const q of fl){const n=Math.min(q.cap,Math.max(2,Math.round(q.cells.length/20)));if(s<n){t=q;break}s-=n}if(!t.cells.length)return}}}catch(e){}
 let r=Math.random()*t.sp.reduce((a,s)=>a+s[1],0),n=t.sp[0][0];for(const[k,w]of t.sp){if((r-=w)<0){n=k;break}}
 let l=t.l;if(!l){const L0=m.z&&m.z.l;l=Array.isArray(L0)?L0:(L0&&L0[n])||[5,10];if(t.bonus)l=[l[0]+t.bonus,l[1]+t.bonus]}
 for(let i=0;i<40;i++){const c=t.cells[Math.random()*t.cells.length|0],x=c%W,y=c/W|0;if(!OK.has(T[y][x])||!free(x,y)||Math.abs(x-P.x)+Math.abs(y-P.y)<=5)continue;
@@ -13409,7 +13412,7 @@ const cap=svCap(),occ=new Set(wild.filter(e=>e.sid).map(e=>e.sl));let nf=0;
 for(let s=0;s<cap;s++){if(occ.has(s))continue;const w=svWin(s,cap),key=cur+':'+s+':'+w;if(SLV.tk.has(key)||SLV.fail.has(key))continue;
 const real=wild,z=M[cur].z,must=z.must,mr=Math.random,oc=occAt,px=P.x,py=P.y;let e=null;
 wild=[];if(must)z.must=0;Math.random=svRng(svHash(key));occAt=()=>false;P.x=P.y=-9999;
-try{_sp.apply(this,arguments);e=wild[wild.length-1]||null}catch(x){}finally{wild=real;if(must)z.must=must;Math.random=mr;occAt=oc;P.x=px;P.y=py}
+try{SLV.cs=s;_sp.apply(this,arguments);e=wild[wild.length-1]||null}catch(x){}finally{SLV.cs=null;wild=real;if(must)z.must=must;Math.random=mr;occAt=oc;P.x=px;P.y=py}
 if(e){real.push(e);Object.assign(e,{sid:key,sl:s,_w0:svW0(s,cap,w),_k:0,t:1e15,hx:e.x,hy:e.y,_fi:performance.now()});if(!(e.r>0))e.r=3;svAnda(e,svNow(),1);if(++nf>=4)return;continue}
 SLV.fail.add(key)}}}
 function svCaca(e,now){try{if(typeof mnSafe==='function'&&mnSafe())return false;if(!(e.lvl>=40)||typeof AGR==='undefined')return false;const d=Math.abs(e.x-P.x)+Math.abs(e.y-P.y);if(d>(AGR[e.n]?11:7)||d<=1)return false;
@@ -18605,6 +18608,15 @@ if(!b||b.parentNode!==c){if(b)b.remove();b=document.createElement('button');b.id
 b.addEventListener('pointerdown',hirToque);b.addEventListener('pointerup',e=>e.stopPropagation());b.addEventListener('click',e=>e.stopPropagation())}
 if(d.nextSibling!==b)d.parentNode.insertBefore(b,d.nextSibling);
 const on=hirAtivo(),tx=on?'✕':'🧭 Ir';if(b.textContent!==tx)b.textContent=tx;b.className=on?'on':''}catch(e){}return r}}
+function dexEvoCadeia(n){try{let a=n,g=0;for(;g<4;g++){let p=null;for(const k in SP){const e=SP[k]&&SP[k].ev;if(e&&e[0]===a){p=k;break}}if(!p)break;a=p}
+const L=[a];for(g=0;g<4;g++){const e=SP[L[L.length-1]]&&SP[L[L.length-1]].ev;if(!e||!SP[e[0]])break;L.push(e[1],e[0])}return L}catch(e){return[n]}}
+function dexEvoHtml(n){const L=dexEvoCadeia(n),visto=k=>{try{return k===n||!!(G.dx&&G.dx[k])}catch(e){return true}};
+if(L.length<2)return '<p style="margin:4px 0;padding:5px 8px;border-radius:8px;background:#0f1626;border:1px solid #2a3550;font-size:12px">🧬 Evolução: <b>não evolui</b></p>';
+const parts=L.map((x,i)=>i%2?`<span style="color:#ffd34d;white-space:nowrap">→ Nv ${x} →</span>`:`<b style="${x===n?'color:#7ae0ff;text-decoration:underline':''}">${visto(x)?esc(x):'???'}</b>`).join(' ');
+return `<p class="dxev" style="margin:4px 0;padding:5px 8px;border-radius:8px;background:#0f1626;border:1px solid #2a3550;font-size:12px;line-height:1.5">🧬 Evolução: ${parts}<br><small style="color:#c8d2e8">Evolui sozinho ao chegar no nível (o selvagem já nasce evoluído se o nível passar disso).</small></p>`}
+{const _dx=dex;dex=function(){const r=_dx.apply(this,arguments);try{if(!DXO)return r;const n=DXS,ui=$('ui'),cols=ui.querySelectorAll('.dpn > div');if(cols.length<2||!SP[n]||cols[1].querySelector('.dxev'))return r;
+const ps=[...cols[1].querySelectorAll('p')],alvo=ps.find(p=>/Montaria/.test(p.textContent))||null;
+if(alvo)alvo.insertAdjacentHTML('beforebegin',dexEvoHtml(n));else cols[1].insertAdjacentHTML('beforeend',dexEvoHtml(n))}catch(e){}return r}}
 (function(){try{const st=document.createElement('style');st.textContent=`body.hudmin .ab:not(.hkeep){display:none!important}
 #hudtg{position:fixed;right:calc(env(safe-area-inset-right,0px) + 88px);bottom:calc(env(safe-area-inset-bottom,0px) + 6px);width:40px;height:40px;border-radius:50%;padding:0;margin:0;z-index:6;
  background:radial-gradient(circle at 35% 30%,#fff3c0,#e8c050 60%,#a8801c);border:2px solid #fff;color:#3a2a00;font:900 18px sans-serif;box-shadow:0 2px 6px #0008;display:flex;align-items:center;justify-content:center}
