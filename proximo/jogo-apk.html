@@ -18593,6 +18593,18 @@ if(typeof afterLogin==='function'){const _af=afterLogin;afterLogin=function(){co
 if(NV29.entrou||!nv29Conta()||!nv29Pode()||typeof cloudPullFor!=='function'){NV29.entrou=1;return _af.apply(t,a)}
 NV29.entrou=1;nv29Tela('☁️ Buscando seu progresso na nuvem...');
 Promise.race([cloudPullFor(ACC.act).catch(()=>{}),new Promise(r=>setTimeout(r,10000))]).then(()=>{nv29Tela(null);_af.apply(t,a)});}}
+(function(){try{const st=document.createElement('style');st.textContent=`
+#mstrk #hstrk{display:inline-block!important;max-width:calc(100% - 44px);vertical-align:middle}
+#hstrkir{display:inline-block;vertical-align:middle;margin:3px 0 0 4px;border:1.5px solid #e8c050;background:#2a3450;color:#ffe27a;border-radius:8px;padding:1px 6px;font:800 10px system-ui,sans-serif;cursor:pointer;line-height:1.4}
+#hstrkir.on{background:#e8c050;color:#1a1210}`;document.head.appendChild(st)}catch(e){}})();
+function hirAtivo(){try{return!!(NAV.o&&NAV.o.de==='hist'&&NAV.d)}catch(e){return false}}
+function hirToque(e){try{e.stopPropagation();e.preventDefault()}catch(x){}try{if(hirAtivo())navPara();else navVai({de:'hist'})}catch(x){}try{msTrack()}catch(x){}}
+{const _tk=msTrack;msTrack=function(){const r=_tk.apply(this,arguments);try{const c=document.getElementById('mstrk'),d=document.getElementById('hstrk');let b=document.getElementById('hstrkir');
+if(!c||!d||c.style.display==='none'||typeof navDaHist!=='function'||!navDaHist()){if(b)b.remove();return r}
+if(!b||b.parentNode!==c){if(b)b.remove();b=document.createElement('button');b.id='hstrkir';
+b.addEventListener('pointerdown',hirToque);b.addEventListener('pointerup',e=>e.stopPropagation());b.addEventListener('click',e=>e.stopPropagation())}
+if(d.nextSibling!==b)d.parentNode.insertBefore(b,d.nextSibling);
+const on=hirAtivo(),tx=on?'✕':'🧭 Ir';if(b.textContent!==tx)b.textContent=tx;b.className=on?'on':''}catch(e){}return r}}
 (function(){try{const st=document.createElement('style');st.textContent=`body.hudmin .ab:not(.hkeep){display:none!important}
 #hudtg{position:fixed;right:calc(env(safe-area-inset-right,0px) + 88px);bottom:calc(env(safe-area-inset-bottom,0px) + 6px);width:40px;height:40px;border-radius:50%;padding:0;margin:0;z-index:6;
  background:radial-gradient(circle at 35% 30%,#fff3c0,#e8c050 60%,#a8801c);border:2px solid #fff;color:#3a2a00;font:900 18px sans-serif;box-shadow:0 2px 6px #0008;display:flex;align-items:center;justify-content:center}
