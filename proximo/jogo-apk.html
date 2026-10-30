@@ -18633,6 +18633,51 @@ localStorage.setItem(k,JSON.stringify(o))}catch(e){}}
 setInterval(()=>{try{if(!MP29.ok&&typeof mode!=='undefined'&&mode==='walk'&&G&&G.t&&!document.getElementById('ttl')&&!document.getElementById('nv29'))mp29Junta()}catch(e){}},1500);
 setInterval(mp29Grava,20000);addEventListener('pagehide',mp29Grava);
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')mp29Grava()});
+var KBT9={ed:0,pos:{},drag:null,css:null};
+try{KBT9.pos=JSON.parse(localStorage.getItem('kgt_btpos')||'{}')||{}}catch(e){KBT9.pos={}}
+const KBT9F={joy:'🕹️ Joystick',mm:'🗺️ Minimapa',lojatop:'🏮 Loja',mstrk:'📋 Missões',xpbar:'⭐ Barra de EXP',hudtg:'▾ Mostrar/esconder ícones',zeachar:'🧢 Achar o Zé',amgbtn:'👥 Amigos'};
+function kbtSalva(){try{localStorage.setItem('kgt_btpos',JSON.stringify(KBT9.pos))}catch(e){}}
+function kbtLista(){const o={};
+for(const id in KBT9F){const e=document.getElementById(id);if(e&&e.parentElement===document.body)o[id]=e}
+document.querySelectorAll('body > .ab').forEach(e=>{let k=e.id;if(!k||!/^kb_/.test(k)&&!KBT9F[k]){const f=(e.getAttribute('onpointerdown')||e.getAttribute('onclick')||'').trim();let n=(typeof horgKey==='function'&&horgKey(e))||(/^([a-zA-Z]+)\(/.exec(f)||[])[1]||(e.id||'');
+if(/act\(\)/.test(f))n='act';if(!n)return;if(!e.id)e.id='kb_'+n;k=e.id}o[k]=e});
+return o}
+function kbtNome(k){if(KBT9F[k])return KBT9F[k];const n=k.replace(/^kb_/,'');if(n==='act')return'⚔️ Espada';try{const h=HORGNOM[n];if(h)return h[0]+' '+h[1]}catch(e){}return n}
+function kbtProtegido(k){return /cfgUI/.test(k)}
+function kbtAplica(){try{if(!KBT9.css){KBT9.css=document.createElement('style');KBT9.css.id='kbtcss';document.head.appendChild(KBT9.css)}
+const L=kbtLista(),iw=innerWidth,ih=innerHeight;let s='';
+for(const k in KBT9.pos){const p=KBT9.pos[k],e=L[k];if(!p)continue;
+if(p.off&&!kbtProtegido(k)){s+=KBT9.ed?`#${k}{opacity:.3!important;outline:2px dashed #ff6a5a!important}`:`#${k}{display:none!important}`}
+if(p.x!=null&&e){const r=e.getBoundingClientRect(),w=r.width||40,h=r.height||40;const x=Math.max(0,Math.min(iw-w,p.x*iw)),y=Math.max(0,Math.min(ih-h,p.y*ih));
+s+=`#${k}{left:${x.toFixed(1)}px!important;top:${y.toFixed(1)}px!important;right:auto!important;bottom:auto!important;margin:0!important}`;if(k==='joy')s+=`#joy{transform-origin:left top!important}`}}
+if(KBT9.ed)s+='body > .kbtmov{outline:2px solid #7ae0ff!important;outline-offset:2px;cursor:grab!important}';
+if(KBT9.css.textContent!==s)KBT9.css.textContent=s}catch(e){}}
+setInterval(()=>{kbtAplica();if(KBT9.ed)kbtMarcas()},400);addEventListener('resize',()=>setTimeout(kbtAplica,50));
+function kbtEditar(){try{closeUI()}catch(e){}if(typeof mode!=='undefined'&&mode!=='walk'){try{mode='walk'}catch(e){}}KBT9.ed=1;
+try{if(document.body.classList.contains('hudmin')&&typeof hudMinSet==='function')hudMinSet(false,1)}catch(e){}
+let b=document.getElementById('kbtbar');if(!b){b=document.createElement('div');b.id='kbtbar';document.body.appendChild(b)}
+b.style.cssText='position:fixed;left:50%;top:calc(env(safe-area-inset-top,0px) + 6px);transform:translateX(-50%);z-index:2147483000;background:#0e1424f2;border:2px solid #7ae0ff;border-radius:12px;padding:6px 10px;color:#fff;font:700 13px system-ui,sans-serif;text-align:center;box-shadow:0 3px 12px #000a;max-width:94vw';
+b.innerHTML='✋ Arraste os botões para onde quiser · ✕ esconde · 👁 traz de volta<br><button id="kbtok" style="margin-top:5px;border:1.5px solid #e8c050;background:#e8c050;color:#1a1210;border-radius:9px;padding:4px 14px;font:800 13px system-ui">✅ Pronto</button> <button id="kbtpd" style="margin-top:5px;border:1.5px solid #e8c050;background:#2a3450;color:#ffe27a;border-radius:9px;padding:4px 10px;font:800 13px system-ui">↺ Padrão</button>';
+b.querySelector('#kbtok').onclick=kbtSai;b.querySelector('#kbtpd').onclick=()=>{KBT9.pos={};kbtSalva();kbtAplica();kbtMarcas();toast('↺ Botões de volta ao lugar original.')};
+const L=kbtLista();for(const k in L)L[k].classList.add('kbtmov');kbtAplica();kbtMarcas()}
+function kbtSai(){KBT9.ed=0;KBT9.drag=null;const b=document.getElementById('kbtbar');if(b)b.remove();document.querySelectorAll('.kbtx').forEach(e=>e.remove());document.querySelectorAll('.kbtmov').forEach(e=>e.classList.remove('kbtmov'));kbtAplica();toast('✅ Botões salvos neste aparelho.')}
+function kbtMarcas(){const L=kbtLista(),vistos=new Set();
+for(const k in L){const e=L[k];e.classList.add('kbtmov');const r=e.getBoundingClientRect();if(r.width<4||getComputedStyle(e).display==='none')continue;vistos.add(k);
+let x=document.querySelector('.kbtx[data-k="'+k+'"]');if(!x){x=document.createElement('button');x.className='kbtx';x.dataset.k=k;document.body.appendChild(x);
+x.onclick=ev=>{ev.stopPropagation();const kk=x.dataset.k;if(kbtProtegido(kk))return toast('As Configurações precisam ficar na tela (é por elas que você volta aqui).');const p=KBT9.pos[kk]=KBT9.pos[kk]||{};p.off=p.off?0:1;kbtSalva();kbtAplica();kbtMarcas();toast(p.off?'Escondido: '+kbtNome(kk)+'. Toque no 👁 para trazer de volta.':'De volta: '+kbtNome(kk))}}
+const off=KBT9.pos[k]&&KBT9.pos[k].off;x.textContent=off?'👁':'✕';x.style.cssText=`position:fixed;z-index:2147483001;left:${Math.round(r.right-12)}px;top:${Math.round(r.top-10)}px;width:22px;height:22px;border-radius:50%;border:1.5px solid #fff;background:${off?'#2a8a4a':'#c43a2a'};color:#fff;font:800 12px system-ui;padding:0;line-height:18px;display:${kbtProtegido(k)?'none':'block'}`}
+document.querySelectorAll('.kbtx').forEach(x=>{if(!vistos.has(x.dataset.k))x.remove()})}
+function kbtAlvo(t){if(!t||!t.closest)return null;if(t.closest('#kbtbar,.kbtx'))return'skip';const L=kbtLista();for(const k in L)if(L[k]===t||L[k].contains(t))return k;return null}
+addEventListener('pointerdown',ev=>{if(!KBT9.ed)return;const k=kbtAlvo(ev.target);if(k==='skip')return;ev.stopPropagation();ev.preventDefault();if(!k)return;
+const e=kbtLista()[k],r=e.getBoundingClientRect();KBT9.drag={k,dx:ev.clientX-r.left,dy:ev.clientY-r.top,w:r.width,h:r.height};try{ev.target.setPointerCapture&&ev.target.setPointerCapture(ev.pointerId)}catch(x){}},true);
+addEventListener('pointermove',ev=>{if(!KBT9.ed||!KBT9.drag)return;ev.stopPropagation();ev.preventDefault();const d=KBT9.drag,iw=innerWidth,ih=innerHeight;
+const x=Math.max(0,Math.min(iw-d.w,ev.clientX-d.dx)),y=Math.max(0,Math.min(ih-d.h,ev.clientY-d.dy));const p=KBT9.pos[d.k]=KBT9.pos[d.k]||{};p.x=x/iw;p.y=y/ih;kbtAplica();kbtMarcas()},true);
+addEventListener('pointerup',ev=>{if(!KBT9.ed)return;if(kbtAlvo(ev.target)==='skip')return;ev.stopPropagation();if(KBT9.drag){KBT9.drag=null;kbtSalva()}},true);
+for(const t of['click','touchstart','touchmove','touchend','mousedown','mouseup'])addEventListener(t,ev=>{if(!KBT9.ed)return;if(kbtAlvo(ev.target)==='skip')return;ev.stopPropagation();if(t!=='touchstart'&&t!=='touchmove'||ev.cancelable)try{ev.preventDefault()}catch(x){}},{capture:true,passive:false});
+addEventListener('keydown',ev=>{if(KBT9.ed){ev.stopPropagation();if(ev.key==='Escape')kbtSai()}},true);
+{const _c=cfgR;cfgR=function(){const r=_c.apply(this,arguments);try{if(!document.getElementById('cfr_kbt')){const a=document.getElementById('cfr_horg')||document.getElementById('cfr_btnop')||[...document.querySelectorAll('#ui .cfr')].pop();
+const n=Object.values(KBT9.pos).filter(p=>p&&p.off).length;
+if(a)a.insertAdjacentHTML('afterend',`<div class="cfr" id="cfr_kbt"><span>Botões na tela${n?' <small>('+n+' escondido'+(n>1?'s':'')+')</small>':''}</span>`+btn('✋ Mover / esconder','kbtEditar()')+btn('↺ Padrão',"KBT9.pos={};kbtSalva();kbtAplica();toast('↺ Botões de volta ao lugar original.');cfgR()")+'</div>')}}catch(e){}return r}}
 (function(){try{const st=document.createElement('style');st.textContent=`body.hudmin .ab:not(.hkeep){display:none!important}
 #hudtg{position:fixed;right:calc(env(safe-area-inset-right,0px) + 88px);bottom:calc(env(safe-area-inset-bottom,0px) + 6px);width:40px;height:40px;border-radius:50%;padding:0;margin:0;z-index:6;
  background:radial-gradient(circle at 35% 30%,#fff3c0,#e8c050 60%,#a8801c);border:2px solid #fff;color:#3a2a00;font:900 18px sans-serif;box-shadow:0 2px 6px #0008;display:flex;align-items:center;justify-content:center}
