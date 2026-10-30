@@ -18560,7 +18560,8 @@ for(let y=Math.max(0,b[1]);y<=Math.min(H-1,b[3]);y++){const r=T[y];if(!r)continu
 const c=Math.max(1,Math.min(Math.round(c0*.5),Math.max(2,Math.floor(area/90))));z.c29=Math.min(c,c0||c);if(M[cur].T===T){z.c29T=T;z.c29k=ck}return z.c29}catch(e){return 1}}
 if(typeof svCap==='function'){const _c=svCap;svCap=function(){const c=mbCap();return c>0?c:_c()}}
 {const _sp=spawn;spawn=function(){try{const c=mbCap();if(c&&wild.length>=c)return}catch(e){}const n0=wild.length;const r=_sp.apply(this,arguments);
-try{for(let i=wild.length-1;i>=n0;i--){const e=wild[i];if(e&&mbSeguro(e.x,e.y)){if(e.sid&&typeof SLV!=='undefined')SLV.fail.add(e.sid);wild.splice(i,1)}}}catch(e){}return r}}
+try{for(let i=wild.length-1;i>=n0;i--){const e=wild[i];if(e&&(mbSeguro(e.x,e.y)||mbApertado(e,i))){if(e.sid&&typeof SLV!=='undefined')SLV.fail.add(e.sid);wild.splice(i,1)}}}catch(e){}return r}}
+function mbApertado(e,iq){let n=0;for(let k=0;k<wild.length;k++){if(k===iq)continue;const o=wild[k];if(Math.abs(o.x-e.x)<=3&&Math.abs(o.y-e.y)<=3&&++n>=2)return true}return false}
 if(typeof svTick==='function'){const _t=svTick;svTick=function(e){const ox=e.x,oy=e.y,r=_t(e);if(r&&mbSeguro(e.x,e.y)&&!mbSeguro(ox,oy)){e.x=ox;e.y=oy;e._rn=0;e._ps=1;return 0}return r}}
 if(typeof svCaca==='function')svCaca=function(e,now){try{if(typeof mnSafe==='function'&&mnSafe())return false;if(!(e.lvl>=40)||typeof AGR==='undefined')return false;
 const pt=performance.now();if(pt<MB29.gr||mbSeguro(P.x,P.y))return false;
