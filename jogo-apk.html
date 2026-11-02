@@ -2106,7 +2106,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v247 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v249 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -9148,7 +9148,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=248;
+var KGT_VER=249;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -25822,4 +25822,42 @@ VG=VG||(()=>{const x=g.createRadialGradient(152,72,50,152,72,190);x.addColorStop
 if(!M[cur].in){g.fillStyle='#0000001a';for(let c=0;c<4;c++){g.beginPath();g.ellipse(((t*.004+c*210)%760)-130-cx,60+c*85-cy,70,26,0,0,6.3);g.fill()}g.globalCompositeOperation='soft-light';g.fillStyle='rgba(255,140,60,'+gold()+')';g.fillRect(0,0,cw,ch)}
 g.globalCompositeOperation='soft-light';const lg=sunGrad(cw,ch);lg.addColorStop(0,'#ffd27acc');lg.addColorStop(.55,'#ffffff00');lg.addColorStop(1,'#3a4fb088');g.fillStyle=lg;g.fillRect(0,0,cw,ch);const px0=P.px*16-cx+8,py0=P.py*16-cy+8,pl=g.createRadialGradient(px0,py0,4,px0,py0,80);pl.addColorStop(0,'#ffc86aaa');pl.addColorStop(1,'#0000');g.fillStyle=pl;g.fillRect(0,0,cw,ch);g.globalCompositeOperation='source-over';if(M[cur].lit)ilit(cx,cy,t);if(M[cur].dg){const DL=(typeof DGLUZ!=='undefined'&&DGLUZ)||[12,80,.55,.94],dgr=g.createRadialGradient(px0,py0,DL[0],px0,py0,DL[1]);dgr.addColorStop(0,'rgba(6,6,22,0)');dgr.addColorStop(.5,'rgba(6,6,22,'+DL[2]+')');dgr.addColorStop(1,'rgba(6,6,22,'+DL[3]+')');g.fillStyle=dgr;g.fillRect(0,0,cw,ch);g.globalCompositeOperation='lighter';TL.forEach(([x,y])=>{const tg=g.createRadialGradient(x,y,2,x,y,40);tg.addColorStop(0,'rgba(255,160,50,.5)');tg.addColorStop(1,'rgba(255,160,50,0)');g.fillStyle=tg;g.fillRect(x-40,y-40,80,80)});KCL.forEach(([x,y,c])=>{const tg=g.createRadialGradient(x,y,2,x,y,34);tg.addColorStop(0,c);tg.addColorStop(1,'rgba(0,0,0,0)');g.fillStyle=tg;g.fillRect(x-34,y-34,68,68)});g.globalCompositeOperation='source-over';TL.length=0}KCL.length=0;if(!M[cur].in){const h=hrs(),nt=nightF();if(nt>0){g.fillStyle='rgba(8,14,60,'+nt*.5+')';g.fillRect(0,0,cw,ch);glow(nt)}LG.length=WG.length=0;tempTint(g,cw,ch);wxDraw(t,cw,ch)}g.globalAlpha=clVg();g.fillStyle=VG;g.fillRect(0,0,cw,ch);g.globalAlpha=1;[...ents(),...fw(),P].filter(VIS).forEach(e=>plate(e,cx,cy));kPre(cx,cy,cw,ch,t);if(t<hurtT){g.fillStyle='#ff000044';g.fillRect(0,0,cw,ch)}if(t<banT){g.font='bold 10px sans-serif';g.textAlign='center';g.fillStyle='#000a';g.fillRect(cw/2-60,4,120,14);g.fillStyle='#ffe27a';g.fillText(ban,cw/2,15)}}
 requestAnimationFrame(loop);invInit();
+
+
+try{if(typeof NATAL==='object'&&NATAL)NATAL.lastBan=new Proxy({},{get:()=>1,has:()=>true,set:()=>true})}catch(e){}
+const FAV={
+carnaval:{ic:'🎭',lem:'Confete',cx:'Baú de Carnaval',npc:'Rei Momo'},
+junina:{ic:'🌽',lem:'Ficha da Quermesse',cx:'Caixa Junina',npc:'Seu Zé do Forró'},
+inverno:{ic:'❄️',lem:'Chocolate Quente',cx:'Caixa de Inverno',npc:'Dona Quentinha'},
+folclore:{ic:'🪶',lem:'Causo do Folclore',cx:'Baú das Lendas',npc:'Vô Benedito'},
+criancas:{ic:'🪁',lem:'Pipa de Papel',cx:'Caixa das Crianças',npc:'Palhaço Pipoca'},
+saci:{ic:'🌪️',lem:'Gorrinho Perdido',cx:'Garrafa do Saci',npc:'Tonico, caçador de Saci'},
+aniver:{ic:'🎂',lem:'Fatia de Bolo',cx:'Presente de Aniversário',npc:'Lulu, a animadora'},
+pascoa:{ic:'🐰',npc:'Dona Lebre'},natal:{ic:'🎄',npc:'Papai Noel'},anonovo:{ic:'🎆',npc:'Dona Clara'}};
+function favPassos(f){const E=FAV[f];if(!E)return[];
+if(f==='pascoa')return['🥚 Todo dia tem <b>30 ovinhos escondidos</b> em cada continente (atrás de árvore, pedra e mato). Pise em cima para pegar.',
+'✨ 3 deles são <b>dourados</b> e trazem a <b>Cesta de Páscoa</b>. Achou os 30 do dia? Ganha mais uma cesta.',
+'🐰 Junte <b>10 Ovinhos Coloridos</b> e troque por uma cesta com a <b>Dona Lebre</b>, na praça.',
+'💎 De noite (18h às 6h) aparece <b>1 Ovo de Cristal</b> para o servidor todo: quem chegar primeiro leva!'];
+if(f==='natal')return['🎁 Passe na <b>árvore de Natal da praça</b>: tem <b>1 presente por dia</b> com o seu nome.',
+'🎅 O <b>Papai Noel</b> está na praça das cidades principais.','🎶 Música e decoração especiais nas cidades.'];
+if(f==='anonovo')return['🎆 Fogos e festa na praça das cidades principais.','👗 Fale com a <b>Dona Clara</b> na praça.','🎶 Música especial de Réveillon nas cidades.'];
+return[E.ic+' <b>1 em cada 10 monstros selvagens</b> está em festa: chapéu da festa e uma plaquinha '+E.ic+' em cima.',
+'⚔️ Vença um deles: <b>20%</b> de chance de soltar <b>'+E.lem+'</b> e <b>1%</b> de soltar <b>'+E.cx+'</b>.',
+'🔁 Leve <b>10 '+E.lem+'</b> para <b>'+E.npc+'</b>, na praça da cidade principal, e troque por <b>1 '+E.cx+'</b>.',
+'🎩 A caixa sorteia um <b>chapéu da festa</b>. Ele vai para a bolsa e você escolhe em qual Kaimon colocar (fica liberado para sempre para a família dele).'];}
+function favAbre(f){f=f||(typeof festa==='function'?festa():'');const E=FAV[f];if(!E)return false;
+const nome=(typeof FES_NOME==='object'&&FES_NOME[f])||f,L=favPassos(f);
+open(`<div style="text-align:center;font-size:34px;line-height:1">${E.ic}</div><p style="text-align:center;margin:4px 0 8px"><b style="font-size:17px;color:#ffd34d">${esc(nome)}</b><br><small style="color:#c8d2ee">Evento acontecendo agora · como funciona</small></p>`
++'<div style="background:#0f1626;border:1px solid #2a3550;border-radius:10px;padding:6px 10px;margin-bottom:8px">'+L.map(t=>`<p style="margin:5px 0;font-size:13px;line-height:1.4">${t}</p>`).join('')+'</div>'
++`<p style="margin:0 0 6px;font-size:12px;color:#c8d2ee;text-align:center">A decoração e a música especial ficam nas cidades enquanto o evento durar.</p>`+btn('Entendi!','closeUI()'));return true}
+function favChave(){let a='x';try{const c=ACC&&ACC.a[ACC.act];a=(c&&c.fb&&c.fb.uid)||ACC.act||'x'}catch(e){}return'kgtEvAviso:'+a}
+var FAVP=0;
+function favLivre(){try{if(typeof mode==='undefined'||mode!=='walk'||!G||!G.t||!G.nick)return false;if(document.getElementById('ttl')||document.getElementById('termos')||document.getElementById('nv29'))return false;
+const u=document.getElementById('ui');return!(u&&u.style.display!=='none'&&u.innerHTML.trim())}catch(e){return false}}
+function favHoje(f){const d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate()+':'+f}
+setInterval(()=>{try{if(FAVP||!favLivre())return;const f=typeof festa==='function'?festa():'';if(!FAV[f])return;
+let v=null;try{v=localStorage.getItem(favChave())}catch(e){}if(v===favHoje(f))return;
+FAVP=1;setTimeout(()=>{FAVP=0;try{if(!favLivre())return;try{localStorage.setItem(favChave(),favHoje(f))}catch(e){}favAbre(f)}catch(e){}},1500)}catch(e){}},2500);
+
 </script></body></html>
