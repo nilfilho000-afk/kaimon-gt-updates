@@ -2106,7 +2106,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v249 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v250 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -9148,7 +9148,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=249;
+var KGT_VER=250;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -25859,5 +25859,29 @@ function favHoje(f){const d=new Date();return d.getFullYear()+'-'+(d.getMonth()+
 setInterval(()=>{try{if(FAVP||!favLivre())return;const f=typeof festa==='function'?festa():'';if(!FAV[f])return;
 let v=null;try{v=localStorage.getItem(favChave())}catch(e){}if(v===favHoje(f))return;
 FAVP=1;setTimeout(()=>{FAVP=0;try{if(!favLivre())return;try{localStorage.setItem(favChave(),favHoje(f))}catch(e){}favAbre(f)}catch(e){}},1500)}catch(e){}},2500);
+
+
+
+function semFonte(T2){let n=0;try{for(let y=60;y<Math.min(T2.length,84);y++){const r=T2[y];if(!r)continue;for(let x=6;x<Math.min(r.length,34);x++)if(r[x]===61){r[x]=0;n++}}}catch(e){}return n}
+if(typeof BPOST!=='undefined'&&BPOST)BPOST.push(function(i,m,T2){if(i===0&&T2)semFonte(T2)});
+try{const m0=M[0];if(m0&&m0.T&&semFonte(m0.T)){if(m0.MC&&m0.MC.free)m0.MC.free();m0.MC=null;if(cur===0&&typeof kpaint==='function'){MC=m0.MC=kpaint(m0)}}}catch(e){}
+if(typeof zeMapaIdx==='function'){const _zi=zeMapaIdx;zeMapaIdx=function(){let i=_zi.apply(this,arguments);try{if(i<0&&ZE&&ZE.on&&ZE.z&&typeof NM244==='object'&&NM244){const n=NM244[ZE.z];if(n)i=NM.indexOf(n)}}catch(e){}return i}}
+function mnMonstro(){try{const t=G.mt;if(!t)return null;return(G.party||[]).find(p=>p&&t.id!=null&&p.id===t.id)||(G.party||[]).find(p=>p&&p.n===t.n)||null}catch(e){return null}}
+if(typeof mnRender==='function'){const _mr=mnRender;mnRender=function(n,v,f,sh,Z){const m=mnMonstro(),ad=m&&m.n===n&&typeof adKey==='function'?adKey(m):null;
+if(!ad)return _mr.apply(this,arguments);
+if(typeof SPRG==='object'&&SPRG.n&&SPRG.n.has(n)){const key='A|'+n+'|'+v+'|'+f+'|'+(sh?1:0)+'|'+Z+'|'+ad;let o=MNC.get(key);if(o)return o;
+const S0=Math.round(64*Z);let a=null;try{a=mvPix(n,v,(f|0)&3,{sh:!!sh,ad},S0)}catch(e){}if(!a)return _mr.apply(this,arguments);
+const S=Math.round(64*Z),c=document.createElement('canvas');c.width=c.height=S;const x=c.getContext('2d');x.imageSmoothingEnabled=false;x.drawImage(a,0,0,S,S);
+const d=x.getImageData(0,0,S,S).data;let t0=S,b0=-1,l0=S,r0=-1;const top=new Int16Array(S).fill(-1);
+for(let y=0;y<S;y++)for(let x2=0;x2<S;x2++)if(d[(y*S+x2)*4+3]){if(y<t0)t0=y;if(y>b0)b0=y;if(x2<l0)l0=x2;if(x2>r0)r0=x2;if(top[x2]<0)top[x2]=y}
+if(b0<0){t0=0;b0=S-1;l0=0;r0=S-1}o={c,S,Z,t:t0,b:b0,l:l0,r:r0,top};MNC.set(key,o);return o}
+const t=G.mt,had=Object.prototype.hasOwnProperty.call(t,'m'),old=t.m;try{Object.defineProperty(t,'m',{value:m,configurable:true,enumerable:false,writable:true});return _mr.apply(this,arguments)}
+finally{try{if(had)t.m=old;else delete t.m}catch(e){}}}}
+const GODYB=[['yb_porto','🚢 Porto de Ybyporã'],['yb_vilasol','☀️ Vila do Sol'],['yb_palafitas','🛶 Aldeia das Palafitas'],['yb_vilalua','🌙 Vila Lua Cheia'],
+['yb_sertao','🌵 Sertão do Sol'],['yb_pantanal','🐊 Pantanal das Águas'],['yb_mata','🌳 Mata dos Encantos'],['yb_serra','🌕 Serra da Lua'],['yb_cumes','⛰️ Cumes do Sertão'],['yb_minuano','💨 Campos do Minuano'],['yb_santuario','✧ Santuário de Anhangá']];
+if(typeof godPlaces==='function'){const _gp=godPlaces;godPlaces=function(){const r=_gp.apply(this,arguments);try{for(const[k,n]of GODYB){const i=KI[k];if(i!=null&&M[i]&&!r.some(q=>q[0]===i))r.push([i,n])}}catch(e){}return r}}
+if(typeof godTp==='function'){const _gt=godTp;godTp=function(i){try{if(godOn()&&typeof KI==='object'&&i===KI.yb_porto&&typeof YB==='object'&&YB.ferry&&typeof bPt==='function'){
+closeUI();try{if(G.mt)mnOff(1)}catch(e){}const q=bPt(i,YB.ferry[1],YB.ferry[2]);setMap(i,q[0],q[1]);P.d=0;P.end=0;try{hud()}catch(e){}toast('👑 Porto de Ybyporã');return}}catch(e){}
+return _gt.apply(this,arguments)}}
 
 </script></body></html>
