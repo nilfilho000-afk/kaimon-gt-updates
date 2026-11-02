@@ -9148,7 +9148,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=247;
+var KGT_VER=248;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -11735,7 +11735,8 @@ MP.next=Date.now()+MP.bo;MP.bo=Math.min(60000,MP.bo*2)};
 w.onerror=()=>{try{w.close()}catch(e){}}}
 function mpDesliga(){const w=MP.ws;MP.ws=null;MP.st=0;MP.ps.clear();MP.last=null;if(w){w._meu=1;try{w.close(1000)}catch(e){}}}
 function mpLimpaLook(s){let o={};try{o=JSON.parse(s||'{}')}catch(e){}const r={};if(o&&typeof o==='object')for(const k in o){if(!/^[a-z0-9_]{1,12}$/i.test(k))continue;const v=o[k];
-if(typeof v==='number'&&Number.isFinite(v)&&Math.abs(v)<1000)r[k]=v;else if(typeof v==='boolean')r[k]=v;else if(typeof v==='string'&&/^[#\w-]{0,24}$/.test(v))r[k]=v}return r}
+if(typeof v==='number'&&Number.isFinite(v)&&Math.abs(v)<1000)r[k]=v;else if(typeof v==='boolean')r[k]=v;else if(typeof v==='string'&&/^[#\w-]{0,24}$/.test(v))r[k]=v;
+else if(k==='ad'&&v&&typeof v==='object'&&typeof TAD!=='undefined'){const a={};for(const sl in v){const q=v[sl];if(typeof q==='string'&&TAD[q]&&TAD[q].slot===sl)a[sl]=q}if(Object.keys(a).length)r.ad=a}}return r} // v248: addons do treinador (roupa, óculos...) agora aparecem para os outros jogadores
 function mpChave(k){let h=0;for(let i=0;i<k.length;i++)h=(h*31+k.charCodeAt(i))|0;return'op'+(h>>>0).toString(36)}
 function mpVisual(o,k){if(o.k===k&&o.key)return;o.k=k;const L=mpLimpaLook(k),key=mpChave(JSON.stringify(L));o.key=key;
 if(!HUM34[key]){try{HUM34[key]=H35(lkD(L))}catch(e){HUM34[key]=HUM34.me}}}
@@ -14687,7 +14688,7 @@ function kcTanqueIcone(){try{const c=document.createElement('canvas');c.width=96
 function kcCarinho(k){closeUI();const[x,y]=String(k).split(',').map(Number);try{for(let i=0;i<7;i++)MOB.fx.push({x:x*16+24+(Math.random()-.5)*26,y:y*16-10,t0:performance.now()+i*140,k:'coracao'})}catch(e){}
 try{play('item')}catch(e){}const c=kcCasa(),p=c&&kcPets(c).find(q=>q.q===k);toast('💗 '+(p?p.n:'O Kaimon')+' adorou o carinho e deu uma voltinha no tanque!')}
 var EQ={staff:new Set(),gods:new Set(),t:0};
-async function eqSync(){try{if(!webAcc()||!(FBC&&FBC.fn)||!webOnline())return;const j=await modCall({op:'equipe'});EQ.staff=new Set(j.staff||[]);EQ.gods=new Set(j.gods||[]);EQ.t=Date.now()}catch(e){}}
+async function eqSync(){try{if(!webAcc()||!(FBC&&FBC.fn)||!webOnline())return;const j=await modCall({op:'equipe'});EQ.staff=new Set(j.staff||[]);EQ.gods=new Set(j.gods||[]);EQ.t=Date.now();try{if(typeof CRSET!=='undefined')CRSET=new Set(j.cria||[])}catch(e){}}catch(e){}}
 setTimeout(eqSync,7000);setInterval(()=>{if(Date.now()-EQ.t>5*60000&&!document.hidden)eqSync()},60000);
 function eqMeuUid(){try{const a=webAcc();return a&&a.fb?a.fb.uid:''}catch(e){return''}}
 function eqTipo(uid,eu){if(eu){if(MOD.r==='god')return'god';if(MOD.r==='staff')return'staff'}if(!uid)return'';if(EQ.gods.has(uid))return'god';if(EQ.staff.has(uid))return'staff';return''}
@@ -14717,8 +14718,12 @@ const box=`<div class="godt">👥 Jogadores ${MOD.r==='god'?'':'<small style="co
    <div class="godg" style="align-items:center"><input class="tin" id="eqal" maxlength="40" placeholder="Nick ou código Pixa" autocomplete="off" style="flex:1;min-width:150px"></div>
    <div class="godg" style="align-items:center">💎 <input class="gin" id="eqkq" type="number" min="1" max="5000" value="10" style="width:70px"> KMC ${btn('Dar KMC','eqDo("darKmc")')}</div>
    <div class="godg">${btn('⛔ Banir 1 dia','eqDo("banir",{dias:1})')}${btn('⛔ Banir 7 dias','eqDo("banir",{dias:7})')}${btn('⛔ Banir para sempre','eqBanSempre()')}${btn('✅ Desbanir','eqDo("desbanir")')}</div>
-   <div class="godg">${btn('🪽 Promover a staff','eqDo("promover")')}${btn('Tirar staff','eqDo("rebaixar")')}${btn('📋 Lista','modLista()')}</div>`;
-const first=ts[0];if(first)first.insertAdjacentHTML('beforebegin',box);else ui.insertAdjacentHTML('beforeend',box)}catch(e){}return r}}
+   <div class="godg">${btn('🪽 Promover a staff','eqDo("promover")')}${btn('Tirar staff','eqDo("rebaixar")')}${btn('📋 Lista','modLista()')}</div>
+   <div class="godg" style="align-items:center">🎥 <input class="tin" id="eqcr" maxlength="16" placeholder="CÓDIGO" autocomplete="off" style="width:96px;text-transform:uppercase"> <select class="tin" id="eqcrr" style="width:auto"><option value="">Só a Jaqueta do Criador</option><option value="zro_nable">+ Conjunto DJ Nable</option></select> ${btn('Tornar criador (10% + 1.000 KMC vinc.)','eqCriador()')}${btn('Pausar criador','eqDo("criadorDesliga",{liga:false})')}${btn('Reativar','eqDo("criadorDesliga",{liga:true})')}</div>`;
+  const first=ts[0];if(first)first.insertAdjacentHTML('beforebegin',box);else ui.insertAdjacentHTML('beforeend',box)}catch(e){}return r}}
+function eqCriador(){const cod=String(($('eqcr')||{}).value||'').trim().toUpperCase().replace(/[^A-Z0-9]/g,'');if(cod.length<3)return toast('Código do criador: 3 a 16 letras/números.');
+ const al=(($('eqal')||{}).value||'').trim();if(!al)return toast('Digite o nick ou o código Pixa do jogador.');if(!confirm('Tornar '+al+' Criador de Conteúdo com o código '+cod+'? Ganha título, roupa, 10% das recargas dos seguidores e 1.000 KMC vinculados (só na 1ª vez).'))return;
+ eqDo('criador',{cod,pct:10,kmc:1000,roupa:String(($('eqcrr')||{}).value||'')}).then(()=>{EQ.t=0;setTimeout(eqSync,1500)})}
 function eqAlvo(){const v=(($('eqal')||{}).value||'').trim();if(!v){toast('Digite o nick ou o código Pixa do jogador.');return''}EQ.ult=v;return v}
 async function eqDo(op,extra){const alvo=eqAlvo();if(!alvo)return;const q=Math.floor(+(($('eqkq')||{}).value)||0);
 if(op==='darKmc'&&(q<1||q>5000))return toast('KMC: de 1 a 5000.');
@@ -23728,7 +23733,8 @@ setInterval(()=>{try{if(!kfuNovo()||document.visibilityState!=='visible')return;
  const s=(+localStorage.getItem('kfu_seg')||0)+3;localStorage.setItem('kfu_seg',String(s));if(s>=600)kfuEnvia('min10')}catch(e){}},3000);
 // o contador de visitas (/hit) usava imagem, que a regra de segurança do site bloqueia no navegador: agora vai por fetch
 try{(function(){if(sessionStorage.getItem('kgt_hit2'))return;sessionStorage.setItem('kgt_hit2','1');const fn=(typeof FBC!=='undefined'&&FBC.fn)?FBC.fn.replace(/\/$/,''):'';if(!fn)return;
- fetch(fn+'/hit?s=jogo&p='+KFU.plat()+'&r='+encodeURIComponent(document.referrer||'')+'&_='+Date.now(),{keepalive:true,mode:'no-cors'}).catch(()=>{})})()}catch(e){}
+ let cc='';try{cc=new URLSearchParams(location.search).get('c')||''}catch(e){}
+fetch(fn+'/hit?s=jogo&p='+KFU.plat()+'&r='+encodeURIComponent(document.referrer||'')+(cc?'&c='+encodeURIComponent(cc):'')+'&_='+Date.now(),{keepalive:true,mode:'no-cors'}).catch(()=>{})})()}catch(e){}
 async function godFunil(){try{open('<b>📉 Funil de jogadores novos</b><p>Carregando...</p>');const j=await modCall({op:'funil'});
  const E=j.etapas||[],T=j.tot||{},base=Math.max(1,T.abriu||0),NM={abriu:'Abriu o jogo',carregou:'Esperou carregar',entrou:'Entrou no jogo',inicial:'Pegou o inicial',batalha:'1ª batalha',captura:'1ª captura',min10:'Jogou 10 min',nivel5:'Chegou ao nível 5',voltou:'Voltou outro dia',voltou7:'Voltou depois de 7 dias'};
  let ant=null;const lin=E.map(e=>{const v=T[e]||0,pc=Math.round(100*v/base),perda=ant!=null&&ant>0?Math.round(100*(ant-v)/ant):0;ant=v;
@@ -24704,6 +24710,210 @@ if(typeof bkEntregas==='function'){const _bk=bkEntregas;bkEntregas=function(iten
  // captura os ids que os módulos confirmam ao servidor durante a entrega
  const _call=bkCall,conf=[];bkCall=function(b){try{if(b&&b.op==='recebi'&&Array.isArray(b.ids))for(const id of b.ids)conf.push(String(id))}catch(e){}return _call.apply(this,arguments)};
  try{return _bk.call(this,novos)}finally{bkCall=_call;try{if(conf.length){for(const id of conf)if(!vistos.has(id))G.bkIds.push(id);G.bkIds=G.bkIds.slice(-200);save()}}catch(e){}}}}
+
+// ===== Kaimon GT v248: programa de CRIADORES DE CONTEÚDO =====
+// • Roupa exclusiva «Jaqueta do Criador» (não vende, não sai em Addon Box, não troca): só quem o GOD cadastra como criador ganha.
+// • Título «Criador de Conteúdo» com raridade própria (k), de cor animada que nenhum outro título usa.
+// • Símbolo 🎥 AO VIVO ao lado do nick (mapa e chat). • Código de criador: link ?c=CODIGO ou campo na Loja.
+// • Modo live: esconde saldo, códigos e e-mail na tela.
+Object.assign(ZRO,{zro_cria:{n:'Jaqueta do Criador',d:'Jaqueta grafite com neon rosa e ciano, luz de AO VIVO no peito, botão de play nas costas e headset com microfone. Exclusiva de Criador de Conteúdo.',r:'criador',o:'#2e2850',c2:'#ff3a8a',sl:'longa',lo:'top',pat:'cria',col:'redonda',pa:'#1a1828',lanc:'cria',cria:1}});
+TAD.zro_cria={slot:'roupa',n:ZRO.zro_cria.n,d:ZRO.zro_cria.d,r:'criador',x:'zro_cria long-sleeve',c:{sh:'#2e2850',pa:'#1a1828'},lanc:1,cria:1};
+ZRAR['criador']='#ff3a8a';
+// neon que anda: rosa -> ciano (t em ms)
+function crNeon(t,o){const k=(Math.sin((t||0)/420+(o||0))+1)/2;const a=[255,58,138],b=[58,220,255];return`rgb(${a.map((v,i)=>Math.round(v+(b[i]-v)*k)).join(',')})`}
+{const _zp=zPat;zPat=function(x,o,X0,Y0,X1,Y1,v){if(o.pat!=='cria')return _zp.apply(this,arguments);
+ const gr=x.createLinearGradient(X0,Y0,X1,Y1);gr.addColorStop(0,'rgba(120,90,200,.18)');gr.addColorStop(.5,'rgba(0,0,0,0)');gr.addColorStop(1,'rgba(0,0,0,.22)');x.fillStyle=gr;x.fillRect(X0,Y0,X1-X0,Y1-Y0);
+ // listras finas nas laterais (rosa e ciano)
+ x.fillStyle='rgba(255,58,138,.55)';x.fillRect(X0+.5,Y0,.35,Y1-Y0);x.fillStyle='rgba(58,220,255,.55)';x.fillRect(X1-.85,Y0,.35,Y1-Y0)}}
+function crPlay(x,cx,cy,r,cor){hrPart(x,q=>{const w=r*1.5,h=r*1.1,R=r*.35;q.moveTo(cx-w+R,cy-h);q.lineTo(cx+w-R,cy-h);q.quadraticCurveTo(cx+w,cy-h,cx+w,cy-h+R);q.lineTo(cx+w,cy+h-R);q.quadraticCurveTo(cx+w,cy+h,cx+w-R,cy+h);q.lineTo(cx-w+R,cy+h);q.quadraticCurveTo(cx-w,cy+h,cx-w,cy+h-R);q.lineTo(cx-w,cy-h+R);q.quadraticCurveTo(cx-w,cy-h,cx-w+R,cy-h)},cor,{dk:.6,lk:1.5,sd:.4});
+ x.fillStyle='#ffffff';x.beginPath();x.moveTo(cx-r*.5,cy-r*.72);x.lineTo(cx+r*.75,cy);x.lineTo(cx-r*.5,cy+r*.72);x.closePath();x.fill()}
+function crTronco(x,S,g,o){const{v,SY,CY,WY}=g,t=performance.now(),ne=crNeon(t),pisca=((t/600)|0)%2===0;
+ if(v==0){// zíper aberto com debrum neon e camiseta preta por baixo
+  hrPart(x,q=>hrPoly(q,[[16-1.15,SY+.4],[16+1.15,SY+.4],[16+.9,WY+1.6],[16-.9,WY+1.6]],0),'#121018',{sd:.2,lt:0});
+  x.fillStyle='#3adcff';x.fillRect(15.6,SY+1.6,.8,.25);x.fillRect(15.8,SY+2.1,.4,.25);// mini logo na camiseta
+  hrL(x,ne,.55,[[16-1.15,SY+.4],[16-.9,WY+1.6]]);hrL(x,crNeon(t,2),.55,[[16+1.15,SY+.4],[16+.9,WY+1.6]]);
+  // barra elástica neon na cintura
+  x.fillStyle=crNeon(t,1);x.fillRect(16-g.WHW-.2,WY+1.5,g.WHW*2+.4,.55)}
+ else if(v==1){hrL(x,ne,.4,[[13.4,SY+.6],[13.1,WY+1.6]]);hrE(x,13.9,CY+.3,.42,.42,pisca?'#ff2a3a':'#8a1420',{lt:pisca?.6:0,sd:0});x.fillStyle=crNeon(t,1);x.fillRect(13,WY+1.5,6.5,.55)}
+ else{// costas: botão de play grande em neon
+  crPlay(x,16,(SY+WY)/2+.4,2.6,ne);x.fillStyle=crNeon(t,1);x.fillRect(16-g.WHW-.2,WY+1.5,g.WHW*2+.4,.55)}
+ // ombros com faixa neon
+ if(v!=1)for(const sg of[-1,1])hrL(x,sg<0?ne:crNeon(t,2),.35,[[16+sg*(g.SWd-2.6),SY-.2],[16+sg*(g.SWd-.4),SY+1.6]]);
+ // brilhinhos
+ if(typeof lcBrilho==='function')lcBrilho(x,g,'#bff6ff',6,4.4)}
+// emblemas do peito: desenhados depois das mangas (de frente as mangas cobrem as laterais do peito)
+function crPeito(x,g){const{SY,CY}=g,t=performance.now(),pisca=((t/600)|0)%2===0;
+ hrE(x,16+3.1,CY-.2,1.05,1.05,'#1a0a10',{lt:0,sd:.2});hrE(x,16+3.1,CY-.2,.72,.72,pisca?'#ff2a3a':'#b01828',{lt:pisca?.8:.3,sd:0,lk:1.8});
+ crPlay(x,16-3.1,CY-.1,.8,'#ff3a8a')}
+{const _zc=zColar;zColar=function(x,S,g){try{if(g.v==0&&zRoK(S)==='zro_cria')crPeito(x,g)}catch(e){}return _zc.apply(this,arguments)}}
+{const _zt=zRoTronco;zRoTronco=function(x,S,g,o){_zt.apply(this,arguments);try{if(o&&o.lanc==='cria')crTronco(x,S,g,o)}catch(e){}}}
+// headset com microfone (tira boné e óculos)
+{const _zac=zAcCabeca;zAcCabeca=function(x,S,g,cx,cy,back){_zac.apply(this,arguments);try{const rk=zRoK(S);if(rk!=='zro_cria')return;const v=g.v,t=performance.now();
+ // arco por cima da cabeça
+ if(v==1){hrL(x,'#2a2638',.9,[[cx-2.6,cy-1],[cx-1.6,cy-4.6],[cx+1.2,cy-5.4],[cx+3.2,cy-3.6],[cx+3.4,cy-1]]);hrE(x,cx+.6,cy-.2,1.5,1.9,'#2a2638',{dk:.6,lk:1.5});hrE(x,cx+.6,cy-.2,.8,1.1,crNeon(t),{lt:.5,sd:0});
+  // microfone para a frente (personagem olha para a esquerda)
+  hrL(x,'#2a2638',.35,[[cx-.2,cy+1],[cx-2.6,cy+2.6],[cx-3.6,cy+2.4]]);hrE(x,cx-3.8,cy+2.4,.55,.5,'#3adcff',{lk:1.6,sd:.2})}
+ else{hrL(x,'#2a2638',.9,[[cx-4.4,cy-.6],[cx-3.6,cy-4.2],[cx,cy-5.6],[cx+3.6,cy-4.2],[cx+4.4,cy-.6]]);
+  for(const sg of[-1,1]){hrE(x,cx+sg*4.5,cy,1.1,1.75,'#2a2638',{dk:.6,lk:1.5});hrE(x,cx+sg*(back?4.5:4.9),cy,.45,.95,crNeon(t,sg>0?2:0),{lt:.5,sd:0})}
+  if(!back){hrL(x,'#2a2638',.35,[[cx-4.4,cy+1.2],[cx-3.4,cy+3.2],[cx-1.6,cy+3.6]]);hrE(x,cx-1.3,cy+3.6,.55,.5,'#3adcff',{lk:1.6,sd:.2})}}
+ }catch(e){}}}
+// ---------- roupa exclusiva do criador Nable (DJ): jaqueta preta, ombros verde-neon, faixa rosa, painel verde nas costas,
+// headphone azul e solado ciano brilhando ----------
+ZRO.zro_nable={n:'Conjunto DJ Nable',d:'Jaqueta preta de DJ com ombreiras verde-neon, faixa rosa, painel de equalizador verde nas costas, headphone azul e tênis com solado ciano. Exclusiva do criador Nable.',r:'criador',o:'#1b1b24',c2:'#3aff8a',sl:'longa',lo:'top',pat:'nable',col:'redonda',pa:'#16161e',lanc:'nable',cria:1};
+TAD.zro_nable={slot:'roupa',n:ZRO.zro_nable.n,d:ZRO.zro_nable.d,r:'criador',x:'zro_nable long-sleeve',c:{sh:'#1b1b24',pa:'#16161e',sw:'#1c1c26'},lanc:1,cria:1};
+{const _zp=zPat;zPat=function(x,o,X0,Y0,X1,Y1,v){if(o.pat!=='nable')return _zp.apply(this,arguments);const gr=x.createLinearGradient(X0,Y0,X1,Y1);gr.addColorStop(0,'rgba(90,90,120,.16)');gr.addColorStop(1,'rgba(0,0,0,.25)');x.fillStyle=gr;x.fillRect(X0,Y0,X1-X0,Y1-Y0)}}
+function nbTronco(x,S,g){const{v,SY,CY,WY}=g,t=performance.now(),VD='#3aff8a',RS='#ff3ab0';
+ if(v==0){// zíper cinza e gola
+  hrL(x,'#8a8a98',.4,[[16,SY+.2],[16,WY+1.4]]);x.fillStyle='#c8c8d4';x.fillRect(15.75,SY+1.2,.5,.6);}
+ else if(v==2){// painel de equalizador verde nas costas (quadriculado)
+  const x0=16-2.2,y0=(SY+WY)/2-1.6,w=4.4,h=3.2;x.fillStyle='#0d2a18';x.fillRect(x0-.3,y0-.3,w+.6,h+.6);
+  for(let i=0;i<6;i++)for(let j=0;j<4;j++){const on=((i+j+((t/400)|0))%2)===0;x.fillStyle=on?VD:'#1f8a4a';x.fillRect(x0+i*w/6+.05,y0+j*h/4+.05,w/6-.1,h/4-.1)}}
+ // faixa rosa na cintura
+ const yb=WY+1.2;x.fillStyle=RS;if(v==1)x.fillRect(13,yb,6.5,.6);else x.fillRect(16-g.WHW-.3,yb,g.WHW*2+.6,.6)}
+{const _zt=zRoTronco;zRoTronco=function(x,S,g,o){_zt.apply(this,arguments);try{if(o&&o.lanc==='nable')nbTronco(x,S,g)}catch(e){}}}
+// faixa rosa também nas mangas (depois das mangas) e solado ciano
+{const _zc=zColar;zColar=function(x,S,g){try{if(zRoK(S)==='zro_nable'){const{v,WY,SY}=g,RS='#ff3ab0',VD='#3aff8a';
+  if(v!=1)for(const sg of[-1,1]){const px=16+sg*(g.SWd-.6);hrPart(x,q=>hrPoly(q,[[px-sg*2.2,SY-.5],[px+sg*1.3,SY-.2],[px+sg*.4,SY+2.4]],0),VD,{lt:.4,sd:.2,lk:1.5})}
+  else hrPart(x,q=>hrPoly(q,[[14,SY-.5],[17.2,SY-.1],[15.4,SY+2.5]],0),VD,{lt:.4,sd:.2,lk:1.5});
+
+  const fy=g.T.AY+(g.sit?-99:0);if(!g.sit){x.fillStyle='rgba(58,220,255,.9)';if(v==1)x.fillRect(12.5,fy+.9,7,.45);else{x.fillRect(16-4.4,fy+.9,3.6,.45);x.fillRect(16+.8,fy+.9,3.6,.45)}}}}catch(e){}return _zc.apply(this,arguments)}}
+// headphone azul
+{const _zac=zAcCabeca;zAcCabeca=function(x,S,g,cx,cy,back){_zac.apply(this,arguments);try{if(zRoK(S)!=='zro_nable')return;const v=g.v,AZ='#3a5aff',AC='#6a8cff';
+ if(v==1){hrL(x,'#2a3270',1,[[cx-2.6,cy-1],[cx-1.6,cy-4.8],[cx+1.2,cy-5.6],[cx+3.2,cy-3.8],[cx+3.4,cy-1]]);hrL(x,AC,.3,[[cx-1.6,cy-5],[cx+1.2,cy-5.8],[cx+3,cy-4]]);hrE(x,cx+.6,cy-.2,1.4,1.8,AZ,{dk:.6,lk:1.5});hrE(x,cx+.6,cy-.2,.75,1.1,'#1a2260',{lt:0,sd:0})}
+ else{hrL(x,'#2a3270',1,[[cx-4.5,cy-.6],[cx-3.7,cy-4.4],[cx,cy-5.8],[cx+3.7,cy-4.4],[cx+4.5,cy-.6]]);hrL(x,AC,.3,[[cx-3.4,cy-4.6],[cx,cy-6],[cx+3.4,cy-4.6]]);
+  for(const sg of[-1,1]){hrE(x,cx+sg*4.5,cy,1.1,1.7,AZ,{dk:.6,lk:1.5});hrE(x,cx+sg*(back?4.6:5),cy,.5,1,AC,{lt:.6,sd:0})}}}catch(e){}}}
+// roupas exclusivas de criador: a geral (Jaqueta do Criador) e as feitas para um criador só (ex.: Nable)
+const CRR=new Set(['zro_cria','zro_nable']);
+{const _clk=lkD;lkD=function(L){const D=_clk.apply(this,arguments);try{if(CRR.has(((L&&L.ad)||{}).roupa)){D.cap=undefined;D.x=String(D.x||'').split(/\s+/).filter(k=>k&&k!=='goggles').join(' ')}}catch(e){}return D}}
+// fora da Loja, da Addon Box e do ganho aleatório: só aparece para quem tem
+function crSemRoupas(fn){return function(){const h={};for(const k of CRR)if(TAD[k]){h[k]=TAD[k];delete TAD[k]}try{return fn.apply(this,arguments)}finally{Object.assign(TAD,h)}}}
+{if(typeof aboxPool==='function')aboxPool=crSemRoupas(aboxPool);
+ if(typeof lojaAddons==='function')lojaAddons=crSemRoupas(lojaAddons);
+ if(typeof zSlotItens==='function'){const _zs=zSlotItens;zSlotItens=function(s){return _zs(s).filter(k=>!CRR.has(k)||tadHas(k))}}}
+try{LKH={};TRI={};hrReset();lkApply(G.look)}catch(e){}
+
+// ---------- título «Criador de Conteúdo» (raridade própria 'k', neon animado) ----------
+TIT.cria={n:'Criador de Conteúdo',c:'#ff3a8a',b:'rgba(40,10,40,.85)'};TITR.cria='k';CQR.k=['Criador','#ff3a8a'];
+{const _cdt=cqDesTit;cqDesTit=function(txt,r,X,y){if(r!=='k')return _cdt.apply(this,arguments);if(!txt)return;const t=performance.now();
+ g.save();g.textAlign='center';g.textBaseline='middle';g.font='bold 4px sans-serif';const s='«'+txt+'»',w=g.measureText(s).width+8;
+ g.fillStyle='rgba(30,8,34,.82)';rr(X-w/2,y-2.6,w,5.2,1.8);g.fill();g.strokeStyle=crNeon(t,1);g.lineWidth=.35;rr(X-w/2,y-2.6,w,5.2,1.8);g.stroke();
+ const gr=g.createLinearGradient(X-w/2,0,X+w/2,0);gr.addColorStop(0,crNeon(t));gr.addColorStop(1,crNeon(t,3));g.fillStyle=gr;g.fillText(s,X+1.6,y+.2);
+ g.fillStyle=((t/600)|0)%2?'#ff2a3a':'#7a1018';g.beginPath();g.arc(X-w/2+2.4,y,1,0,6.2832);g.fill();g.restore()}}
+// ---------- quem é criador (lista pública vem junto com a equipe) ----------
+var CRSET=new Set(),CRME={eu:null,apoio:null,t:0};
+function crEh(uid){return!!uid&&CRSET.has(uid)}
+function crMeuUid(){try{const a=webAcc();return a&&a.fb&&a.fb.uid}catch(e){return null}}
+// a Jaqueta do Criador só aparece em quem é criador de verdade (a lista vem do servidor)
+{const _mv=mpVisual;mpVisual=function(o,k){let kk=k;try{const j=JSON.parse(k||'{}');o.tiK=j._ti==='Criador de Conteúdo|k'?j._ti:'';o.kOrig=k;o.crPend=0;
+  if(j.ad&&CRR.has(j.ad.roupa)&&!crEh(o.id)){delete j.ad.roupa;kk=JSON.stringify(j);o.crPend=1}}catch(e){o.tiK=''}return _mv.call(this,o,kk)}}
+// símbolo 🎥 ao lado do nick (desenhado no canvas do mapa)
+function crSelo(X,Y,t){g.save();const x0=X-4,y0=Y-3.3;g.fillStyle='#ff3a8a';rr(x0,y0,8,6.6,2);g.fill();g.strokeStyle='rgba(255,255,255,.55)';g.lineWidth=.3;rr(x0,y0,8,6.6,2);g.stroke();
+ g.fillStyle='#ffffff';g.fillRect(x0+1.3,y0+2,3.6,2.8);g.beginPath();g.moveTo(x0+4.9,y0+3.4);g.lineTo(x0+6.9,y0+2.1);g.lineTo(x0+6.9,y0+4.7);g.closePath();g.fill();
+ g.fillStyle=((t/600)|0)%2?'#ff2a3a':'#ffd0d6';g.beginPath();g.arc(x0+2.3,y0+3.4,.6,0,6.2832);g.fill();g.restore()}
+{const _mp=mpPlacas;mpPlacas=function(cx,cy){try{for(const o of MP.ps.values()){if(o.tiK&&crEh(o.id))o.ti=o.tiK;if(o.crPend&&crEh(o.id)){o.crPend=0;o.k='';mpVisual(o,o.kOrig)}}}catch(e){}const r=_mp.apply(this,arguments);
+ try{const t=performance.now();g.save();g.font='bold 5px sans-serif';for(const o of MP.ps.values()){if(!crEh(o.id))continue;const X=Math.round((o.px*16-cx+8)*2)/2,ty=Math.round((o.py*16-cy)*2)/2-13,w=g.measureText(o.n||'').width+5;crSelo(X-w/2-4.6,ty,t)}g.restore()}catch(e){}return r}}
+{const _pl=plate;plate=function(e,cx,cy){const r=_pl.apply(this,arguments);try{if(e===P&&!MVB&&(CRME.eu||crEh(crMeuUid()))){let Y=Math.round((P.py*16-cy)*2)/2-8;try{if(typeof f7NaCadeira==='function'&&f7NaCadeira(P))Y-=F7SOBE}catch(x){}
+ g.save();g.font='bold 5px sans-serif';const X=Math.round((P.px*16-cx+8)*2)/2,w=g.measureText(G.nick||LBL.me).width+5;g.restore();crSelo(X-w/2-4.6,Y,performance.now())}}catch(x){}return r}}
+// chat: câmera antes do nome
+function crSeloImg(){const svg=`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 12'><rect x='.5' y='.5' width='15' height='11' rx='3' fill='#ff3a8a'/><rect x='3' y='3.5' width='6.5' height='5' rx='1' fill='#fff'/><path d='M9.5 6 L13 3.8 L13 8.2Z' fill='#fff'/><circle cx='4.6' cy='6' r='1' fill='#ff2a3a'/></svg>`;
+ return`<img alt="Criador" title="Criador de Conteúdo" src="data:image/svg+xml,${encodeURIComponent(svg)}" style="width:15px;height:11px;vertical-align:-1px;margin-right:2px">`}
+if(typeof chList==='function'){const _chC=chList;chList=function(){let h=_chC.apply(this,arguments);try{const L=MOD.L||[];if(!L.length||!CRSET.size)return h;let i=0;
+ h=h.replace(/<div class="m([^"]*)"><small>([^<]*)<\/small> /g,(s0)=>{const m=L[i++];return m&&crEh(m.u)?s0+crSeloImg():s0})}catch(e){}return h}}
+// roupa exclusiva chega junto com o título
+{const _ta=titAplica;titAplica=function(L){const r=_ta.apply(this,arguments);try{if(Array.isArray(L)&&L.includes('cria')&&!tadHas('zro_cria')){tadUnlock('zro_cria');save();
+ setTimeout(()=>toast('🎥 Bem-vindo, <b>Criador de Conteúdo</b>! Seu título exclusivo e a <b>Jaqueta do Criador</b> estão liberados (Visual do treinador).'),1200)}}catch(e){}return r}}
+
+// ---------- KMC vinculados (presente do criador): não viram item vendável ----------
+// G.kpv = quanto dos KMC da conta é vinculado. Gastar KMC usa o vinculado primeiro; o que for comprado com ele fica marcado
+// em G.vinc[item] e não pode ir para a Feira nem para a troca direta (addons e roupas já são da conta mesmo).
+var CRV={buf:[],bind:0,tk:0};
+function crVincOf(n){try{return Math.max(0,Math.min((G.vinc&&G.vinc[n])|0,invCount(n)+crDepCnt(n)))}catch(e){return 0}}
+function crDepCnt(n){let c=0;try{const vis=a=>{if(!Array.isArray(a))return;for(const s of a){if(!s)continue;if(Array.isArray(s))vis(s);else if(s.t=='i'&&s.n==n)c+=s.c|0}};vis(G.dep)}catch(e){}return c}
+function crTick(){if(CRV.tk)return;CRV.tk=1;setTimeout(()=>{CRV.buf=[];CRV.bind=0;CRV.tk=0},0)}
+function crMarca(n,c){if(!n||!(c>0)||n==='kmc')return;G.vinc=G.vinc||{};G.vinc[n]=(G.vinc[n]|0)+c}
+{const _di=darItem;darItem=function(n,c){const r=_di.apply(this,arguments);try{if(r){crTick();const q=(r.bag|0)+(r.dep|0);if(CRV.bind)crMarca(n,q);else CRV.buf.push([n,q])}}catch(e){}return r}}
+{const _ai=addI;addI=function(n,c){const r=_ai.apply(this,arguments);try{if(c>0&&r>0){crTick();if(CRV.bind)crMarca(n,r);else CRV.buf.push([n,r])}}catch(e){}return r}}
+{const _ka=kpAdd;kpAdd=function(n){try{if(n<0&&(G.kpv|0)>0){const usa=Math.min(G.kpv|0,-n);G.kpv=(G.kpv|0)-usa;if(usa>0){crTick();CRV.bind=1;for(const[a,b]of CRV.buf)crMarca(a,b);CRV.buf=[]}}}catch(e){}return _ka.apply(this,arguments)}}
+// na Feira e na troca direta, o item vinculado não aparece como disponível
+function crSemVinc(fn){return function(){const _ic=invCount;invCount=function(n){const c=_ic.apply(this,arguments);try{const v=Math.max(0,Math.min((G.vinc&&G.vinc[n])|0,c));return c-v}catch(e){return c}};try{return fn.apply(this,arguments)}finally{invCount=_ic}}}
+try{if(typeof vdNovo==='function')vdNovo=crSemVinc(vdNovo);if(typeof vdAnunciar==='function')vdAnunciar=crSemVinc(vdAnunciar);if(typeof f6Grade==='function')f6Grade=crSemVinc(f6Grade);if(typeof tdNova==='function')tdNova=crSemVinc(tdNova);if(typeof tdEnviar==='function')tdEnviar=crSemVinc(tdEnviar)}catch(e){}
+// entrega do banco: item kmc com vinc soma em G.kpv quando o jogo confirma a entrega
+if(typeof bkEntregas==='function'){const _bk=bkEntregas;bkEntregas=function(itens){const vs=(Array.isArray(itens)?itens:[]).filter(it=>it&&it.vinc&&it.n==='kmc'&&!(G.kpvIds||[]).includes(String(it.id)));const r=_bk.apply(this,arguments);
+ try{for(const it of vs){const id=String(it.id);if((G.bkIds||[]).map(String).includes(id)){G.kpvIds=(G.kpvIds||[]).concat([id]).slice(-20);G.kpv=(G.kpv|0)+(it.c|0)}}if(vs.length)save()}catch(e){}return r}}
+
+// ---------- código de criador (seguidor) e painel do criador ----------
+// Link: https://kaimon-gt.web.app/?c=CODIGO (guarda o código e vincula quando a conta estiver online) ou o campo na Loja → Moedas.
+try{const q=new URLSearchParams(location.search).get('c')||new URLSearchParams(location.search).get('criador');if(q&&/^[A-Za-z0-9]{3,16}$/.test(q))localStorage.setItem('kgCria',q.toUpperCase())}catch(e){}
+async function crSync(forca){try{if(typeof webAcc!=='function'||!webAcc()||!(FBC&&FBC.fn))return;if(!forca&&Date.now()-CRME.t<10*60000)return;CRME.t=Date.now();
+ let pend='';try{pend=localStorage.getItem('kgCria')||''}catch(e){}
+ const j=await soCall('/criador',{op:'meu'});CRME.eu=j.eu||null;CRME.apoio=j.apoio||null;
+ try{const rp=CRME.eu&&CRME.eu.roupa;if(rp&&TAD[rp]&&!tadHas(rp)){tadUnlock(rp);save();toast(`🎧 Sua roupa exclusiva <b>${esc(TAD[rp].n)}</b> chegou! Vista em Visual do treinador.`)}}catch(e){}
+ if(pend&&!CRME.apoio&&!(CRME.eu&&CRME.eu.cod===pend)){const r=await soCall('/criador',{op:'vincular',cod:pend}).catch(e=>({erro:e.message}));try{localStorage.removeItem('kgCria')}catch(e){}
+  if(r&&r.ok){CRME.apoio={cod:r.cod,nick:r.nick,bonus:true};toast(`🎥 Você está apoiando <b>${esc(r.nick)}</b>! Sua 1ª recarga de KMC vem com <b>+10%</b>.`)}}
+ else if(pend)try{localStorage.removeItem('kgCria')}catch(e){}}catch(e){}}
+setTimeout(()=>crSync(true),9000);setInterval(()=>crSync(false),5*60000);
+async function crVincular(){const el=document.getElementById('crcod'),cod=String(el&&el.value||'').trim().toUpperCase().replace(/[^A-Z0-9]/g,'');if(cod.length<3)return toast('Digite o código do criador.');
+ if(!confirm(`Apoiar o criador ${cod}? O vínculo é para sempre e não dá para trocar depois.`))return;
+ try{const r=await soCall('/criador',{op:'vincular',cod});if(r.erro)throw new Error(r.erro);CRME.apoio={cod:r.cod,nick:r.nick,bonus:true};try{play('lvl')}catch(e){}toast(`🎥 Agora você apoia <b>${esc(r.nick)}</b>! Sua 1ª recarga de KMC vem com <b>+10%</b>.`);lojaOpen()}
+ catch(e){toast(esc(e.message||'Não deu agora.'))}}
+function crLink(){return'https://kaimon-gt.web.app/?c='+encodeURIComponent((CRME.eu&&CRME.eu.cod)||'')}
+function crBloco(){const a=CRME.apoio,e=CRME.eu;let h='';
+ if(e)h+=`<div class="crbx crme"><b>🎥 Você é Criador de Conteúdo</b><small>Código <b>${esc(e.cod)}</b> · ${e.seg} seguidores · ${e.nRec} recargas · ${kmc(e.kmc)} recebidos</small>${btn('Abrir painel do criador','crPainel()')}</div>`;
+ if(a)h+=`<div class="crbx"><b>💖 Você apoia ${esc(a.nick)}</b><small>${a.bonus?'Sua próxima recarga de KMC vem com <b>+10% de bônus</b>.':'Obrigado por apoiar! Uma parte de cada recarga sua vai para o criador, sem custo extra para você.'}</small></div>`;
+ else if(!e)h+=`<div class="crbx"><b>🎥 Tem um código de criador?</b><small>Apoie quem te trouxe para o jogo: ele recebe uma parte das suas recargas (sem custo extra) e você ganha <b>+10% de KMC</b> na 1ª recarga.</small><div style="display:flex;gap:6px;margin-top:6px"><input id="crcod" maxlength="16" placeholder="CÓDIGO" autocomplete="off" style="flex:1;text-transform:uppercase">${btn('Apoiar','crVincular()')}</div></div>`;
+ return h}
+{const _lo=lojaOpen;lojaOpen=function(){const r=_lo.apply(this,arguments);try{if(typeof LJ2!=='undefined'&&LJ2.tab==='kmc'){const b=document.querySelector('#ui .ljb');if(b&&webAcc()&&!b.querySelector('.crbx'))b.insertAdjacentHTML('afterbegin',crBloco())}
+ const k=document.querySelector('#ui .ljk');if(k&&(G.kpv|0)>0)k.insertAdjacentHTML('beforeend',`<small style="opacity:.75;font-size:10px;margin-left:4px" title="KMC de criador: o que você comprar com eles não vai para a Feira">(${kmc(Math.min(G.kpv|0,kpGet()))} vinculados)</small>`)}catch(e){}return r}}
+function crPainel(){const e=CRME.eu;if(!e)return toast('Painel só para Criadores de Conteúdo.');
+ open(`<div class="psh"><span style="font-size:32px">🎥</span><div><b>Painel do Criador</b><small>${e.ativo?'Ativo':'<b style="color:#ffb84a">Pausado pelo GOD</b>'} · ${e.pct}% de cada recarga dos seus seguidores vira KMC para você, para sempre.</small></div></div>
+ <div class="crst"><div><b>${e.seg}</b><small>seguidores</small></div><div><b>${e.nRec}</b><small>recargas</small></div><div><b>${kmc(e.kmc)}</b><small>recebidos</small></div><div><b>R$ ${Number(e.rec||0).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2})}</b><small>em recargas</small></div></div>
+ <p>Seu código: <b class="crsec" style="font-size:18px;letter-spacing:1px">${esc(e.cod)}</b><br><small>No jogo: Loja → Moedas → "Tem um código de criador?". No navegador: <span class="crsec">${esc(crLink())}</span></small></p>`+
+ btn('📋 Copiar link','crCopia()')+btn(CRLIVE.on?'🔴 Desligar modo live':'🔴 Ligar modo live','crLive();crPainel()')+btn('Fechar','closeUI()')+
+ `<p><small>Modo live esconde na tela: saldo de dinheiro e KMC, seu código de amigo, o código do banco e o e-mail da conta. O jogo não tem chat privado (o chat é Perto/Todos).</small></p>`)}
+function crCopia(){const l=crLink();try{navigator.clipboard.writeText(l);toast('📋 Link copiado!')}catch(e){prompt('Copie o link:',l)}}
+
+// ---------- modo live: esconde saldo, códigos e e-mail ----------
+var CRLIVE={on:0,obs:null};try{CRLIVE.on=localStorage.getItem('kgLive')==='1'?1:0}catch(e){}
+function crSegredos(){const S=[];try{if(typeof BKO!=='undefined'&&BKO.cod)S.push(String(BKO.cod))}catch(e){}try{if(typeof AMG!=='undefined'&&AMG.cod)S.push(String(AMG.cod))}catch(e){}
+ try{const a=webAcc();if(a){if(a.email)S.push(String(a.email));if(a.fb&&a.fb.email)S.push(String(a.fb.email));if(a.fb&&a.fb.uid)S.push(String(a.fb.uid))}}catch(e){}return [...new Set(S.filter(s=>s&&s.length>=4))]}
+function crCensura(root){if(!CRLIVE.on||!root)return;const S=crSegredos();if(!S.length)return;const rx=new RegExp(S.map(s=>s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('|'),'gi');
+ const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);let n;while((n=w.nextNode()))if(rx.test(n.nodeValue)){rx.lastIndex=0;n.nodeValue=n.nodeValue.replace(rx,'••••••')}
+ root.querySelectorAll&&root.querySelectorAll('input').forEach(i=>{if(rx.test(i.value)){rx.lastIndex=0;i.value=i.value.replace(rx,'••••••')}})}
+function crLiveAplica(){try{document.body.classList.toggle('klive',!!CRLIVE.on);let ch=document.getElementById('crlivechip');
+ if(CRLIVE.on&&!ch){document.body.insertAdjacentHTML('beforeend','<button id="crlivechip" onclick="crLive()" title="Modo live ligado (toque para desligar)">● LIVE</button>');}
+ else if(!CRLIVE.on&&ch)ch.remove();
+ const u=document.getElementById('ui');if(u&&!CRLIVE.obs&&window.MutationObserver){CRLIVE.obs=new MutationObserver(()=>{try{crCensura(u)}catch(e){}});CRLIVE.obs.observe(u,{childList:true,subtree:true})}
+ if(CRLIVE.on)crCensura(u)}catch(e){}}
+function crLive(on){CRLIVE.on=on==null?(CRLIVE.on?0:1):(on?1:0);try{localStorage.setItem('kgLive',CRLIVE.on?'1':'0')}catch(e){}crLiveAplica();toast(CRLIVE.on?'🔴 Modo live <b>ligado</b>: saldo, códigos e e-mail escondidos.':'Modo live desligado.')}
+try{document.head.insertAdjacentHTML('beforeend',`<style>
+body.klive #hud .hrow:not(#clk2)>b,body.klive #hud .kphud,body.klive .ljk,body.klive .crsec,body.klive .bkbox b,body.klive .kpbal{filter:blur(6px);user-select:none}
+#crlivechip{position:fixed;top:6px;left:50%;transform:translateX(-50%);z-index:60;background:#d01830;color:#fff;border:0;border-radius:10px;padding:2px 10px;font:bold 11px sans-serif;letter-spacing:1px;opacity:.9}
+.crbx{background:linear-gradient(135deg,#2a1036,#10223a);border:1px solid #ff3a8a;border-radius:12px;padding:8px 10px;margin:0 0 8px;grid-column:1/-1;display:flex;flex-direction:column;gap:2px}
+.crbx small{opacity:.85}.crbx.crme{border-color:#3adcff}
+.crst{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:8px 0}.crst>div{background:#151a2c;border:1px solid #2c3550;border-radius:10px;padding:6px;text-align:center}.crst b{display:block;font-size:16px;color:#ff8ac0}.crst small{opacity:.75}
+</style>`)}catch(e){}
+setTimeout(crLiveAplica,1500);
+
+// ---------- GOD: criadores, visitas pelo link e contas vinculadas ----------
+async function godCriadores(sel){try{if(!sel)open('<b>🎥 Criadores</b><p>Carregando...</p>');const j=GCR.j&&sel!==undefined?GCR.j:await modCall({op:'criadores'});GCR.j=j;if(sel!==undefined)GCR.sel=sel;
+ const L=j.criadores||[],ds=j.dias||[],f=GCR.sel||'';const V=L.filter(c=>!f||c.cod===f);
+ const soma=(c,k,n)=>c.dias.slice(0,n).reduce((s,x)=>s+(x[k]||0),0);
+ const tot={vis:0,vinc:0};const porDia=ds.map((d,i)=>{let vis=0,vinc=0;for(const c of V){vis+=c.dias[i].vis;vinc+=c.dias[i].vinc}tot.vis+=vis;tot.vinc+=vinc;return{d,vis,vinc}});const mx=Math.max(1,...porDia.map(x=>x.vis));
+ const opt=`<select class="tin" onchange="godCriadores(this.value)" style="max-width:100%"><option value="">Todos os criadores</option>${L.map(c=>`<option value="${esc(c.cod)}"${c.cod===f?' selected':''}>${esc(c.cod)} · ${esc(c.nick)}</option>`).join('')}</select>`;
+ const card=(a,b)=>`<div style="flex:1;background:#2a1036;border:1px solid #ff3a8a88;border-radius:10px;padding:6px;text-align:center"><div style="font-size:20px;font-weight:900;color:#ff8ac0">${b}</div><small>${a}</small></div>`;
+ const recs=V.reduce((s,c)=>s+c.nRec,0),rs=V.reduce((s,c)=>s+c.rec,0),km=V.reduce((s,c)=>s+c.kmc,0),seg=V.reduce((s,c)=>s+c.seg,0);
+ const dias=porDia.map(x=>`<div style="display:flex;align-items:center;gap:6px;margin:2px 0;font-size:12px"><span style="flex:0 0 44px">${x.d.slice(8,10)}/${x.d.slice(5,7)}</span><span style="flex:1;background:#ffffff14;border-radius:4px;height:12px"><i style="display:block;height:12px;border-radius:4px;background:#ff3a8a;width:${Math.round(100*x.vis/mx)}%"></i></span><b style="flex:0 0 34px;text-align:right">${x.vis}</b><small style="flex:0 0 52px;text-align:right;color:#7ae0ff">+${x.vinc} contas</small></div>`).join('');
+ const linhas=L.length?L.map(c=>`<tr${c.cod===f?' style="background:#ff3a8a22"':''} onclick="godCriadores('${esc(c.cod)}')" style="cursor:pointer"><td><b>${esc(c.cod)}</b><br><small>${esc(c.nick)}${c.ativo?'':' · pausado'}</small></td><td>${soma(c,'vis',7)}</td><td>${soma(c,'vis',14)}</td><td>${c.seg}</td><td>${c.nRec}</td><td>R$ ${Number(c.rec).toFixed(2).replace('.',',')}</td><td>${c.kmc}</td></tr>`).join(''):'<tr><td colspan="7"><small>Nenhum criador cadastrado ainda.</small></td></tr>';
+ const out=Object.entries(j.outros||{}).sort((a,b)=>b[1]-a[1]).slice(0,5);
+ open(`<b>🎥 Criadores · tráfego pelo link</b><div style="margin:6px 0">${opt}</div>
+ <div style="display:flex;gap:6px;margin:6px 0">${card('visitas (14 dias)',tot.vis)}${card('contas vinculadas',seg)}${card('recargas',recs)}${card('R$ recarregado',rs.toFixed(2).replace('.',','))}</div>
+ <p style="margin:6px 0 2px"><b>Visitas pelo link por dia</b> <small>(${f?esc(f):'todos'} · <span style="color:#7ae0ff">contas que usaram o código</span>)</small></p>${dias}
+ <p style="margin:10px 0 4px"><b>Por criador</b> <small>(toque para filtrar)</small></p><div style="overflow-x:auto"><table style="width:100%;font-size:12px;border-collapse:collapse;text-align:center"><tr style="color:#ffd24a"><th style="text-align:left">Código</th><th>Visitas 7d</th><th>14d</th><th>Contas</th><th>Recargas</th><th>R$</th><th>KMC pagos</th></tr>${linhas}</table></div>
+ ${out.length?`<p><small>Links com código que não é de nenhum criador: ${out.map(([k,v])=>esc(k)+' ('+v+')').join(', ')}</small></p>`:''}
+ <p><small>Visita = alguém abriu o jogo ou o portal pelo link com ?c=CÓDIGO (1 por pessoa por sessão). Quem baixa o APK/PC entra como conta vinculada quando digita o código na Loja. KMC pagos = comissão já creditada ao criador.</small></p>`+btn('🔄 Atualizar','GCR.j=null;godCriadores()')+btn('Voltar','godPanel()'));try{$('ui').classList.add('wide')}catch(e){}}
+ catch(e){ok('<b>🎥 Criadores</b><p>Não deu para carregar: '+esc((e&&e.message)||String(e))+'</p>'+btn('Voltar','godPanel()'))}}
+var GCR={j:null,sel:''};
+if(typeof godPanel==='function'){const _gpC=godPanel;godPanel=function(){const r=_gpC.apply(this,arguments);try{const b=document.getElementById('eqtr');if(godOn()&&b&&!document.getElementById('eqcrb'))b.insertAdjacentHTML('beforeend',`<span id="eqcrb">${btn('🎥 Criadores','GCR.j=null;GCR.sel=\'\';godCriadores()')}</span>`)}catch(e){}return r}}
 if(typeof mpFol==='function'){const _f=mpFol;mpFol=function(){try{if(G.mt)return''}catch(e){}return _f.apply(this,arguments)}}
 if(typeof mpFolSet==='function'){const _s=mpFolSet;mpFolSet=function(o,f){try{if(o&&o.mt){o.fs='__mt';o.fol=null;return}}catch(e){}return _s.apply(this,arguments)}}
 const BLD={n:0,t0:0,ate:0,travas:[],ov:null};
