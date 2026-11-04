@@ -2106,7 +2106,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v256 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v257 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -9148,7 +9148,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=256;
+var KGT_VER=257;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -26429,5 +26429,80 @@ if(typeof plate==='function'){const _pl=plate;plate=function(e){return ond256Sob
 if(typeof mnDraw==='function'){const _mn=mnDraw;mnDraw=function(){return ond256Sobe(P,_mn,this,arguments)}}
 if(typeof entShadows==='function'){const _es=entShadows;entShadows=function(EL){const L=[];try{for(const e of EL||[]){const l=ond256Alt(e);if(l){e.py-=l/16;L.push([e,l/16])}}}catch(x){}try{return _es.apply(this,arguments)}finally{for(const[e,d]of L)e.py+=d}}}
 var OND256OK=1;
+
+
+
+var GR256={k:'r13',yb:1,olho:'#9dff7a',nm:'Gruta da Ilha',pos:[107,59],e:[-99,-99],sp:[['Jabucacho',6]],l1:[44,52],l2:[52,75],c1:14,c2:20,agua:0,
+sp2:[['Jabucacho',5],['Jabuteira',2]],lv2:{Jabucacho:[52,60],Jabuteira:[70,75]},ilha:1};
+const GR256_BURACO=561;if(typeof MCOL==='object')MCOL[GR256_BURACO]='#1a1418';
+TWX[GR256_BURACO]=function(X,Y){try{mb1Chao(X,Y)}catch(e){}};
+var GR256C=null;
+function gr256Buraco(){if(GR256C)return GR256C;const c=document.createElement('canvas');c.width=64;c.height=48;const x=c.getContext('2d'),P=(a,b,col)=>{x.fillStyle=col;x.fillRect(a,b,1,1)},R=(a,b,w,h,col)=>{x.fillStyle=col;x.fillRect(a,b,w,h)};
+const cx=32,cy=28,rx=22,ry=13,borda=t=>1+.07*Math.sin(3*t+1)+.05*Math.sin(5*t+2)+.03*Math.sin(9*t);
+for(let y=0;y<48;y++)for(let xx=0;xx<64;xx++){const dx=(xx+.5-cx)/rx,dy=(y+.5-cy)/ry,d=Math.hypot(dx,dy),e=borda(Math.atan2(dy,dx)),h=((xx*7+y*13)%5);
+if(d<e*.74){
+if(dy<-.15&&d>e*.38){const k=(d-e*.38)/(e*.36);R(xx,y,1,1,(y%3===0)?'#3a2616':(h<2?'#4a3220':'#422c1a'));if(k<.35)R(xx,y,1,1,'#2a1a10')}
+else{const k=Math.max(0,Math.min(1,(d/(e*.74))));R(xx,y,1,1,k>.8?'#1c140e':k>.5?'#110c0a':'#07060a')}}
+else if(d<e*.88)R(xx,y,1,1,dy<0?(h<2?'#7a5a36':'#6e5030'):(h<2?'#9a7446':'#8a6840'))
+else if(d<e){R(xx,y,1,1,dy<0?'#5a4026':'#a8845a')}
+else if(d<e*1.14&&dy>-.2)R(xx,y,1,1,'rgba(20,40,10,.28)')}
+for(const[a,b,n,s]of[[19,19,6,1],[27,17,8,-1],[38,17,5,1],[45,20,4,-1]]){let px=a;for(let k=0;k<n;k++){P(px,b+k,'#6a4424');if(k%2)px+=s*(k%4===1?1:0);if(k===n-1)P(px,b+k+1,'#4a2e18')}}
+for(const[a,b,w,h]of[[9,26,4,3],[12,33,3,2],[50,24,4,3],[53,31,3,2],[22,40,4,2],[40,41,3,2],[30,12,3,2]]){R(a,b,w,h,'#7c7a74');R(a,b,w,1,'#a8a49c');R(a,b+h-1,w,1,'#55524c')}
+for(const[a,b]of[[6,22],[56,21],[15,38],[47,38],[33,43],[5,30]]){P(a,b,'#3f7a32');P(a+1,b-1,'#5a9a42');P(a+2,b,'#3f7a32')}
+const pe=(a,b,col)=>{R(a,b,2,1,col)};for(let y=4;y<=34;y++){const sx=Math.round((34-y)*.12),fundo=y>22,c1=fundo?'#5a3a1c':'#a0703a',c2=fundo?'#3a2410':'#6a4420';pe(27+sx,y,c1);P(28+sx,y,c2);pe(36+sx,y,c1);P(37+sx,y,c2)}
+for(let y=7;y<=33;y+=4){const sx=Math.round((34-y)*.12),fundo=y>22;R(29+sx,y,7,1,fundo?'#4a3018':'#b8844a');R(29+sx,y+1,7,1,fundo?'#2a1a0c':'#6a4420')}
+R(27,3,2,1,'#c89a5a');R(36+0,3,2,1,'#c89a5a');
+return GR256C=c}
+RH0.push(function(cx,cy){try{const m=M[cur];if(!m||m.key!==GR256.k)return;const[ex,ey]=GR256.pos,X=ex*16+8-32-cx,Y=(ey-1)*16+16-28-cy;if(X<-80||Y<-80||X>VW*16+20||Y>VH*16+20)return;
+g.save();g.imageSmoothingEnabled=false;g.drawImage(gr256Buraco(),X,Y);g.restore()}catch(e){}});
+function gr256Big(i){const m=M[i];if(!m||m.big)return;BIG.S.add(i);const T0=bGen(i);if(!T0)return;BIG.D[i]=bInfo(m,T0);m.T0=T0;const D=BIG.D[i];
+if(m.key){const pre=m.key+':';for(const k of Object.keys(KIT)){if(!k.startsWith(pre)||k.indexOf(':',pre.length)>=0)continue;const c=k.indexOf(',',pre.length),q=bPt(i,+k.slice(pre.length,c),+k.slice(c+1)),nk=pre+q[0]+','+q[1];if(nk!==k){KIT[nk]=KIT[k];delete KIT[k]}}}
+if(m.p){const np={};for(const k in m.p){const[x,y]=k.split(',').map(Number);for(const nk of bKeys(i,x,y))np[nk]=m.p[k]}m.p=np}
+if(m.z&&m.z.b){const b=m.z.b;m.z.b=[b[0]*2,b[1]*2,b[2]*2+1,b[3]*2+1];m.z.cap=Math.round(m.z.cap*3)}
+(m.N||[]).forEach(e=>{const q=bPt(i,e.x,e.y);e.x=e.px=e.fx=q[0];e.y=e.py=e.fy=q[1];if(e.home){const h=bPt(i,e.home[0],e.home[1]);e.home=[h[0],h[1]]}if(e.hx!=null){e.hx=e.x;e.hy=e.y}});
+m.W=D.W0*2;m.H=D.H0*2;m.T=null;m.MC=null;m.big=1;m.mk=()=>{bBuild(i);return{T:m.T,MC:kpaint(m)}}}
+function gr256Ja(i,f){const m=M[i];if(!m||!m.T||m.mk)return;try{f(i,m,m.T);try{if(m.MC&&typeof FGM!=='undefined'&&FGM)FGM.delete(m.MC)}catch(e){}m.MC=kpaint(m);if(cur===i){MC=m.MC;T=m.T}}catch(e){console.error(e)}}
+(function(){try{const B=GR256,ir=KI[B.k];if(ir==null||KI[B.k+'_b1']!=null||typeof mb1Caves!=='function')return;
+const pt=[ir,B.pos[0],B.pos[1]];pt.bg=1;mb1Caves(B,pt);
+const i1=KI[B.k+'_b1'],i2=KI[B.k+'_b2'];
+for(const i of[i1,i2]){const m=M[i];for(const k in m.p||{}){const v=m.p[k];if(typeof v[0]==='string')v[0]=KI[v[0]]}if(m.par&&typeof m.par[0]==='string')m.par[0]=KI[m.par[0]]}
+M[i2].z.sp=B.sp2.filter(([n])=>SP[n]);M[i2].z.l=B.lv2;
+const N=M[i1].N&&M[i1].N[0];if(N){N.nm='Exploradora Jaci';N.say=['Bem-vindo à Gruta da Ilha! Aqui embaixo moram os jabutis da ilha: o Jabucacho, a segunda evolução do Jabuzinho.','Tá vendo a escada lá no fundo, à direita? Ela desce pro Andar -2. Lá, se der sorte, aparece o Jabuteira, a última evolução!','Eles são lentos, mas aguentam muito. Venha com o time curado!']}
+gr256Big(i1);gr256Big(i2);
+for(const i of[i1,i2])for(const k in M[i].p){const v=M[i].p[k];if(v[0]===i1||v[0]===i2)bTrip(v)}if(M[i2].par)bTrip(M[i2].par);
+MORRO_B1.push(B);
+const post=function(i,m,T2){try{if(m.key!==B.k)return;const ci=KI[B.k+'_b1'],ex=B.pos[0],ey=B.pos[1],at=(x,y)=>(T2[y]||[])[x];if(ci==null||at(ex,ey)==null)return;
+const og={};MB1G.set(T2,og);m.p=m.p||{};const chao=v=>v==null||SOLID.has(v)||v===2?0:v;
+for(let y=ey-3;y<=ey+3;y++)for(let x=ex-3;x<=ex+3;x++)if(at(x,y)!=null)og[x+','+y]=chao(at(x,y));
+for(let y=ey-2;y<=ey+2;y++)for(let x=ex-2;x<=ex+3;x++)if(at(x,y)!=null&&SOLID.has(at(x,y)))T2[y][x]=og[x+','+y]||0;
+for(let y=ey-1;y<=ey;y++)for(let dx=-1;dx<=1;dx++){T2[y][ex+dx]=GR256_BURACO;m.p[(ex+dx)+','+y]=[ci,40,54]}
+T2[ey][ex+2]=MB1_PLACA;
+m.lbls=(m.lbls||[]).filter(q=>q[0]!=='⬇ Andar -1').concat([['⬇ Andar -1',ex+.5,ey-2.4]])}catch(e){console.error('gruta da ilha',e)}};
+BPOST.push(post);gr256Ja(ir,post);
+}catch(e){console.error('gruta da ilha',e)}})();
+{const _pl=TWI[MB1_PLACA];TWI[MB1_PLACA]=function(){const B=typeof mb1Aqui==='function'&&mb1Aqui();if(B!==GR256)return _pl.apply(this,arguments);
+const ic=n=>`<div style="display:inline-block;width:76px;margin:3px;text-align:center;vertical-align:top"><img src="${pbi(n,0)}" width="60" height="60"><br><small><b>${esc(n)}</b></small></div>`;
+open(`<p><b>⬇ ${esc(B.nm)}</b></p><p><small>Gravado na pedra: <i>"Os jabutis da ilha dormem aqui embaixo."</i></small></p><div>${ic('Jabucacho')}${ic('Jabuteira')}</div>
+ <p><small><b>Andar -1:</b> Jabucacho, Nv ${B.l1[0]} a ${B.l1[1]}, em bando.<br><b>Andar -2:</b> desce pela escada no fundo do -1. Jabucacho Nv ${B.lv2.Jabucacho[0]}–${B.lv2.Jabucacho[1]} e, mais raro, o Jabuteira Nv ${B.lv2.Jabuteira[0]}–${B.lv2.Jabuteira[1]}.<br>Venha com o time curado!</small></p>`+btn('⬇ Descer agora','closeUI();mb1Descer()')+btn('Fechar','closeUI()'))}}
+var GR256OK=1;
+
+
+(function(){try{if(!SP['Caiporã'])return;for(const k of['yb_serra_b1','yb_serra_b2']){const i=KI[k],z=i!=null&&M[i]&&M[i].z;if(!z||!Array.isArray(z.sp)||z.sp.some(q=>q[0]==='Caiporã'))continue;z.sp=z.sp.concat([['Caiporã',3]])}
+const B=MORRO_B1.find(b=>b.k==='yb_serra');if(B&&!B.sp.some(q=>q[0]==='Caiporã'))B.sp.push(['Caiporã',3])}catch(e){console.error('serra da lua',e)}})();
+var MC256={k:'morrocristal',nm:'Morro dos Cristais',esc:[222,8],sp:[['Ametitã',4],['Cupinzeirão',3],['Minhocuçu',3],['Luarutau',3],['Jararrei',3]],l1:[72,84],l2:[78,90],c1:14,c2:22,agua:0};
+(function(){try{const B=MC256,ir=KI[B.k];if(ir==null||KI[B.k+'_b1']!=null||typeof mb1Caves!=='function'||typeof gr256Big!=='function')return;
+const[ex,ey]=B.esc,pt=[ir,ex,ey];pt.bg=1;mb1Caves(B,pt);const i1=KI[B.k+'_b1'],i2=KI[B.k+'_b2'];
+for(const i of[i1,i2]){const m=M[i];for(const k in m.p||{}){const v=m.p[k];if(typeof v[0]==='string')v[0]=KI[v[0]]}if(m.par&&typeof m.par[0]==='string')m.par[0]=KI[m.par[0]]}
+const N=M[i1].N&&M[i1].N[0];if(N)N.say=['Bem-vindo ao Andar -1 do Morro dos Cristais! Aqui embaixo vivem os mais fortes do morro: a última evolução de cada um.','Tá vendo a escada lá no fundo, à direita? Ela desce pro Andar -2. Lá tem ainda mais deles!','Eles brilham no escuro igual aos cristais. Venha com o time curado!'];
+gr256Big(i1);gr256Big(i2);
+for(const i of[i1,i2])for(const k in M[i].p){const v=M[i].p[k];if(v[0]===i1||v[0]===i2)bTrip(v)}if(M[i2].par)bTrip(M[i2].par);
+const post=function(i,m,T2){try{if(m.key!==B.k)return;const ci=KI[B.k+'_b1'];if(ci==null||!T2[ey])return;
+for(let dx=-1;dx<=1;dx++){if(T2[ey-1])T2[ey-1][ex+dx]=82;if(dx)T2[ey][ex+dx]=82;if(T2[ey+1]&&SOLID.has(T2[ey+1][ex+dx]))T2[ey+1][ex+dx]=81}
+T2[ey][ex]=86;m.p=m.p||{};m.p[ex+','+ey]=[ci,40,54];
+m.lbls=(m.lbls||[]).filter(q=>q[0]!=='⬇ Andar -1').concat([['⬇ Andar -1',ex+.5,ey-1.6]])}catch(e){console.error('escada do morro dos cristais',e)}};
+BPOST.push(post);gr256Ja(ir,post);
+}catch(e){console.error('morro dos cristais',e)}})();
+{const _sm=setMap;setMap=function(i){const r=_sm.apply(this,arguments);try{const k=M[i]&&M[i].key,q=/^morrocristal_b([12])$/.exec(k||'');if(q)setTimeout(()=>{try{const L=q[1]==='1'?MC256.l1:MC256.l2;ban='⬇ Andar -'+q[1]+' · Nv '+L[0]+'–'+L[1];banT=performance.now()+3200}catch(e){}},700)}catch(e){}return r}}
+var MC256OK=1;
 
 </script></body></html>
