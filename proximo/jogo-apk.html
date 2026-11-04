@@ -25971,6 +25971,21 @@ ab=[...document.querySelectorAll('body > .ab')].map(e=>e.id).filter(Boolean),ids
 if(k===FX252H.k)return;FX252H.k=k;FX252H.z=z;
 FX252H.css.textContent=z>1.01&&!(typeof KBT9==='object'&&KBT9.ed)?ids.map(id=>'#'+id).join(',')+'{zoom:'+z.toFixed(2)+'}':''}catch(e){}}
 setInterval(fx252Hud,1000);addEventListener('resize',()=>setTimeout(fx252Hud,100));setTimeout(fx252Hud,300);
+var FX252P={k:'',t:0};
+function fx252Livre(m,x,y){const v=(m.T[y]||[])[x];return v!=null&&!SOLID.has(v)}
+function fx252Regiao(m,x0,y0,cap){const W2=m.T[0].length,H2=m.T.length,seen=new Set([x0+','+y0]),q=[[x0,y0]];let n=0,saida=false;
+while(q.length&&n<cap){const[a,b]=q.shift();n++;for(const[dx,dy]of[[1,0],[-1,0],[0,1],[0,-1]]){const X=a+dx,Y=b+dy,k=X+','+Y;if(X<0||Y<0||X>=W2||Y>=H2||seen.has(k))continue;seen.add(k);
+if(m.p&&m.p[k]){saida=true;continue}const v=(m.T[Y]||[])[X];if(v===2||v===102||(typeof mnWater==='function'&&X<W&&Y<H&&cur===M.indexOf(m)&&mnWater(X,Y))){saida=true;continue}
+if(fx252Livre(m,X,Y))q.push([X,Y])}}return{n,saida,seen}}
+function fx252Solta(){try{if(typeof mode==='undefined'||mode!=='walk'||G.mt||!M[cur]||!M[cur].T||P.end>performance.now())return;const m=M[cur];
+if(m.p&&m.p[P.x+','+P.y])return;const k=cur+','+P.x+','+P.y;if(k===FX252P.k)return;FX252P.k=k;
+const r=fx252Regiao(m,P.x,P.y,12);if(r.n>=12||r.saida)return;
+const W2=m.T[0].length,H2=m.T.length,ruim=new Set(r.seen);let alvo=null;
+for(let d=1;d<=60&&!alvo;d++)for(let dy=-d;dy<=d&&!alvo;dy++)for(const dx of(Math.abs(dy)===d?Array.from({length:2*d+1},(_,i)=>i-d):[-d,d])){const X=P.x+dx,Y=P.y+dy,kk=X+','+Y;
+if(X<1||Y<1||X>=W2-1||Y>=H2-1||ruim.has(kk)||!fx252Livre(m,X,Y)||(m.p&&m.p[kk]))continue;const q=fx252Regiao(m,X,Y,150);if(q.n>=150||q.saida){alvo=[X,Y];break}q.seen.forEach(z=>ruim.add(z))}
+if(alvo){setMap(cur,alvo[0],alvo[1])}else if(G.cp){setMap(G.cp.m,G.cp.x,G.cp.y)}else return;
+P.d=0;FX252P.k='';try{save()}catch(e){}try{toast('🧭 Você estava preso entre paredes: o jogo levou você para um lugar livre.')}catch(e){}}catch(e){}}
+setInterval(fx252Solta,2000);
 var FX252OK=1;
 
 </script></body></html>
