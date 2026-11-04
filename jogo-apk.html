@@ -2106,7 +2106,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v255 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v256 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -9148,7 +9148,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=255;
+var KGT_VER=256;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -26354,5 +26354,80 @@ if(typeof nkOff==='function'){const _of=nkOff;nkOff=function(){if(NK255.d>0)retu
 if(typeof plate==='function'&&typeof nkOn==='function'){const _pl=plate;plate=function(e){if(!NK106.x)return _pl.apply(this,arguments);let on=false;try{on=nkOn()}catch(x){}
 if(!on)return _pl.apply(this,arguments);NK255.d++;try{return _pl.apply(this,arguments)}finally{NK255.d--;if(NK255.d===0)try{nkOff()}catch(x){}}}}
 var NK255OK=1;
+
+
+
+var OND256={R0:58,on:1,fx:null,fy:null,ix:null,iy:null,feito:0};
+(function(){const W=80,H=124,R0=OND256.R0;
+const fx=new Int16Array(W),ix=new Int16Array(W).fill(-1);
+for(let x=0;x<W;x++){let n;if(x<2)n=x;else if(x<4)n=2;else if(x<=37)n=x-2;else if(x<=41)n=x;else if(x<=75)n=x+2;else if(x<=77)n=77;else n=x;fx[x]=n}
+for(let x=0;x<W;x++){if(x===2||x===3||x===76||x===77)continue;ix[fx[x]]=x}
+const fy=new Int16Array(H),iy=new Int16Array(H).fill(-1);
+for(let y=0;y<H;y++){let n;if(y<62)n=y;else if(y<64)n=61;else if(y<=79)n=y-2;else if(y<=101)n=y;else if(y<=111)n=y+2;else if(y<=113)n=113;else n=y;fy[y]=n}
+for(let y=0;y<H;y++){if(y===62||y===63||y===112||y===113)continue;iy[fy[y]]=y}
+OND256.fx=fx;OND256.fy=fy;OND256.ix=ix;OND256.iy=iy})();
+function ond256P(x,y){x=Math.round(x);y=Math.round(y);if(y<OND256.R0||y>=OND256.fy.length||x<0||x>=OND256.fx.length)return[x,y];return[OND256.fx[x],OND256.fy[y]]}
+function ond256Old(x,y){if(y<OND256.R0)return[x,y];const ox=OND256.ix[x],oy=OND256.iy[y];return[ox<0?x:ox,oy<0?y:oy]}
+BPOST.unshift(function ond256Pre(i,m,T2){try{if(!OND256.on||!m||m.key!=='ondina'||m.in||!m.big||m._o256||!T2||T2.length!==124||T2[0].length!==80)return;m._o256=1;
+const R0=OND256.R0,W2=80,H2=124,P0=m.p||{},port=(x,y)=>!!P0[x+','+y];
+const fill=(v,isP)=>{if(isP||v===3||v===8||v===29)return 3;if(v===7)return 7;if(v===2||v===59)return 2;if(v===101||v===21||v===22)return 101;return 0};
+const rows=[];for(let y=0;y<H2;y++){const r=T2[y];if(y<R0){rows.push(r.slice());continue}
+const L=r.slice(0,2).concat(r.slice(4,38)),ins1=[fill(r[37],port(37,y)),fill(r[37],port(37,y))],mid=r.slice(38,42),ins2=[fill(r[42],port(42,y)),fill(r[42],port(42,y))],R=r.slice(42,76).concat(r.slice(78,80));
+rows.push(L.concat(ins1,mid,ins2,R))}
+const out=[];for(let y=0;y<H2;y++){if(y===62||y===63||y===112||y===113)continue;
+if(y===80||y===102){const s=rows[y-1];for(let k=0;k<2;k++)out.push(s.map((v,x)=>{const ox=OND256.ix[x];return fill(v,ox>=0&&port(ox,y-1))}))}
+out.push(rows[y])}
+if(out.length!==H2){console.error('ond256 linhas',out.length);return}
+for(let y=0;y<H2;y++)T2[y]=out[y];
+const np={};for(const k in P0){const[x,y]=k.split(',').map(Number),q=ond256P(x,y);np[q[0]+','+q[1]]=P0[k]}m.p=np;
+for(const e of m.N||[]){const q=ond256P(e.x,e.y);e.x=e.px=e.fx=q[0];e.y=e.py=e.fy=q[1];if(e.hx!=null){e.hx=e.x;e.hy=e.y}
+if(e.home){const h=ond256P(e.home[0],e.home[1]);e.home=[h[0],h[1]]}if(e.alt){const a=ond256P(e.alt[0],e.alt[1]);e.alt=[a[0],a[1],e.alt[2]]}}
+(m.lbls||[]).forEach(a=>{if(a[2]>=R0){const q=ond256P(a[1],a[2]);a[1]+=q[0]-Math.round(a[1]);a[2]+=q[1]-Math.round(a[2])}});
+(m.embs||[]).forEach(a=>{const q=ond256P(a[0],a[1]);a[0]=q[0];a[1]=q[1]});
+if(m.ia){const n={};for(const k in m.ia){const[x,y]=k.split(',').map(Number),q=ond256P(x,y);n[q[0]+','+q[1]]=m.ia[k]}m.ia=n}
+if(typeof SIGN==='object'){for(const k of Object.keys(SIGN)){const a=k.split(',').map(Number);if(a[0]!==i||a[2]<R0)continue;const q=ond256P(a[1],a[2]),nk=i+','+q[0]+','+q[1];if(nk!==k){SIGN[nk]=SIGN[k];delete SIGN[k]}}}
+if(typeof KIT==='object'){const pre='ondina:';for(const k of Object.keys(KIT)){if(!k.startsWith(pre))continue;const[x,y]=k.slice(pre.length).split(',').map(Number);const q=ond256P(x,y),nk=pre+q[0]+','+q[1];if(nk!==k){KIT[nk]=KIT[k];delete KIT[k]}}}
+M.forEach(q=>{if(!q||q===m)return;const fix=v=>{if(Array.isArray(v)&&(v[0]===i||v[0]==='ondina')&&typeof v[1]==='number'&&typeof v[2]==='number'&&v[2]>=R0){const a=ond256P(v[1],v[2]);v[1]=a[0];v[2]=a[1]}};
+for(const k in(q.p||{}))fix(q.p[k]);if(q.par)fix(q.par)});
+if(cur===i&&P&&P.y>=R0){const q=ond256P(P.x,P.y);P.x=P.fx=q[0];P.y=P.fy=q[1];P.px=P.x;P.py=P.y}
+OND256.feito=1}catch(e){console.error('ond256',e)}});
+BPOST.push(function ond256Pos(i,m,T2){try{if(!m||m.key!=='ondina'||!m._o256||m._o256b||!m.anil)return;m._o256b=1;
+const R0=OND256.R0,W2=m.W,H2=m.H,at=(x,y)=>(T2[y]||[])[x],AGUA=2,PONTE=88,PATH=3,walk=v=>v!=null&&!SOLID.has(v)&&v!==AGUA&&v!==PONTE;
+const rk=k=>{const mm=/^h:ondina:(\d+),(\d+)$/.exec(k||'');if(!mm)return k;const o=ond256Old(+mm[1],+mm[2]);return 'h:ondina:'+o[0]+','+o[1]};
+for(const k in m.p||{}){const d=m.p[k];if(Array.isArray(d)&&typeof d[3]==='string')d[3]=rk(d[3])}
+(m.rent||[]).forEach(r=>{if(typeof r[2]==='string')r[2]=rk(r[2])});
+for(let y=R0;y<H2;y++)for(let x=0;x<W2;x++)if(T2[y][x]===PONTE)T2[y][x]=AGUA;
+const V=ANIL.can.find(c=>c.k==='v'),HS=ANIL.can.filter(c=>c.k==='h'&&!c.largo&&c.y0>=R0).sort((a,b)=>a.y0-b.y0);
+const ponteV=y=>{for(let x=V.x0;x<=V.x1;x++){T2[y][x]=PONTE;T2[y+1][x]=PONTE}};
+const ponteH=(C,x)=>{for(let y=C.y0;y<=C.y1;y++){T2[y][x]=PONTE;T2[y][x+1]=PONTE}};
+const okV=y=>y>V.y0+1&&y+1<V.y1&&!HS.some(h=>y+1>=h.y0-3&&y<=h.y1+3)&&walk(at(V.x0-2,y))&&walk(at(V.x0-2,y+1))&&walk(at(V.x1+2,y))&&walk(at(V.x1+2,y+1))&&at(V.x0,y)===AGUA&&at(V.x0,y+1)===AGUA;
+const perto=(a,ok,lim)=>{for(let d=0;d<=lim;d++){if(ok(a+d))return a+d;if(ok(a-d))return a-d}return null};
+if(V){const cortes=[V.y0].concat(HS.map(h=>[h.y0,h.y1])).flat().concat([V.y1]);const alvos=[];
+const pts=[V.y0].concat(...HS.map(h=>[h.y0,h.y1]),[V.y1]);for(let k=0;k+1<pts.length;k+=2){const a=pts[k],b=pts[k+1];if(b-a>=8)alvos.push(Math.round((a+b)/2)-1)}
+for(const a of alvos){const y=perto(a,okV,5);if(y!=null)ponteV(y)}}
+for(const C of HS){const vx0=V?V.x0-1:W2,vx1=V?V.x1+1:-1;
+const okH=x=>x>C.x0+1&&x+1<C.x1-1&&!(x+1>=vx0-2&&x<=vx1+2)&&at(x,C.y0)===AGUA&&at(x+1,C.y0)===AGUA&&walk(at(x,C.y0-2))&&walk(at(x+1,C.y0-2))&&walk(at(x,C.y1+2))&&walk(at(x+1,C.y1+2));
+const temCam=x=>at(x,C.y0-3)===PATH||at(x,C.y1+3)===PATH||at(x+1,C.y0-3)===PATH||at(x+1,C.y1+3)===PATH;
+for(const[a,b]of[[C.x0,vx0-1],[vx1+1,C.x1]]){if(b-a<10)continue;const ja=[];
+for(const f of[1/4,3/4]){const alvo=Math.round(a+(b-a)*f),ok2=v=>okH(v)&&ja.every(u=>Math.abs(u-v)>=12);let x=perto(alvo,v=>ok2(v)&&temCam(v),3);if(x==null)x=perto(alvo,ok2,6);if(x!=null){ponteH(C,x);ja.push(x)}}}}
+ANIL.brg=[];const vis=new Uint8Array(W2*H2),dentro=(x,y)=>x>=0&&y>=0&&x<W2&&y<H2;
+for(let y=0;y<H2;y++)for(let x=0;x<W2;x++){if(T2[y][x]!==PONTE||vis[y*W2+x])continue;let x0=x,y0=y,x1=x,y1=y;const st=[[x,y]];vis[y*W2+x]=1;
+while(st.length){const[a,b]=st.pop();x0=Math.min(x0,a);x1=Math.max(x1,a);y0=Math.min(y0,b);y1=Math.max(y1,b);for(let d=0;d<4;d++){const u=a+DX[d],w=b+DY[d];if(dentro(u,w)&&!vis[w*W2+u]&&T2[w][u]===PONTE){vis[w*W2+u]=1;st.push([u,w])}}}
+const agN=at(Math.floor((x0+x1)/2),y0-1)===AGUA,agS=at(Math.floor((x0+x1)/2),y1+1)===AGUA;ANIL.brg.push({x0,y0,x1,y1,ns:!(agN||agS)})}
+ANIL.pal=ANIL.pal.filter(p=>at(p[0],p[1])===AGUA);
+for(const e of m.N||[]){const v=at(e.x,e.y);if(v===AGUA||v===PONTE||SOLID.has(v)){let bd=null;for(let r=1;r<8&&!bd;r++)for(let dy=-r;dy<=r&&!bd;dy++)for(let dx=-r;dx<=r&&!bd;dx++){const t=at(e.x+dx,e.y+dy);if(walk(t)&&!(m.p&&m.p[(e.x+dx)+','+(e.y+dy)]))bd=[e.x+dx,e.y+dy]}if(bd){e.x=e.px=e.fx=bd[0];e.y=e.py=e.fy=bd[1];if(e.hx!=null){e.hx=e.x;e.hy=e.y}}}}
+}catch(e){console.error('ond256 pontes',e)}});
+function ond256Alt(e){try{if(!e||typeof anilOn!=='function'||!anilOn()||!ANIL.brg.length)return 0;if(e===P&&G.mt&&G.mt.k==='surf')return 0;if(e.swim||e.surf)return 0;
+const x=e.px,y=e.py;for(const b of ANIL.brg){let u,lat;
+if(b.ns){if(x<b.x0-.6||x>b.x1+.6)continue;const a=b.y0-1.5,z=b.y1+1.5;if(y<a||y>z)continue;u=(y-a)/(z-a)}
+else{if(y<b.y0-.6||y>b.y1+.6)continue;const a=b.x0-1.5,z=b.x1+1.5;if(x<a||x>z)continue;u=(x-a)/(z-a)}
+const L=b.ns?(b.y1-b.y0+4):(b.x1-b.x0+4),esc=1.4/L;
+const s=u<esc?u/esc:u>1-esc?(1-u)/esc:1;return 6.5*Math.max(0,Math.min(1,s))+1.8*Math.sin(Math.PI*u)}}catch(x){}return 0}
+if(typeof entImg==='function'){const _ei=entImg;entImg=function(e,t,cx,cy){const q=_ei.apply(this,arguments);try{const l=ond256Alt(e);if(l&&q)q.Y-=l}catch(x){}return q}}
+function ond256Sobe(e,f,self,args){const l=ond256Alt(e);if(!l)return f.apply(self,args);const d=l/16;e.py-=d;try{return f.apply(self,args)}finally{e.py+=d}}
+if(typeof plate==='function'){const _pl=plate;plate=function(e){return ond256Sobe(e,_pl,this,arguments)}}
+if(typeof mnDraw==='function'){const _mn=mnDraw;mnDraw=function(){return ond256Sobe(P,_mn,this,arguments)}}
+if(typeof entShadows==='function'){const _es=entShadows;entShadows=function(EL){const L=[];try{for(const e of EL||[]){const l=ond256Alt(e);if(l){e.py-=l/16;L.push([e,l/16])}}}catch(x){}try{return _es.apply(this,arguments)}finally{for(const[e,d]of L)e.py+=d}}}
+var OND256OK=1;
 
 </script></body></html>

@@ -1,7 +1,7 @@
 {
- "v": 255,
+ "v": 256,
  "url": "https://raw.githubusercontent.com/nilfilho000-afk/kaimon-gt-updates/main/jogo-apk.html",
- "notas": "v255: casas decoradas (Banco, Lojas, Bento, Hortênsia, Sílvio, Iara, laboratório) e nick nítido",
- "sha": "021b7f824d2ed7413a238050e43739d942596f42451d30854374b5bd85820614",
- "sig": "883DXBvXzd+1YQ2JJteQdCwh3CHKihydA0jwG8SfdRhIJ8i9Dq1muiSFEYUvMNxJ9PMos2gBrnpfR2ddSMQzLA=="
+ "notas": "Ondina mais espaçosa: casas mais longe dos canais, pontes espaçadas e ponte que sobe e desce.",
+ "sha": "198a5c62f35ef5387a2693aaf8237333500ae62f6b701dbe82bd61f931dbdb81",
+ "sig": "IVqDu3JZGfq35G3lIwTGkwEQLv9jey9KQjC4Fl1dMUdZQYCZytbUJI01t4B9oQQQlSKXJ3e423wkgoRuukVcXA=="
 }
