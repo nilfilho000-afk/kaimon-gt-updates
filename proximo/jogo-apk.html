@@ -26003,6 +26003,10 @@ while(k!=null&&k>=0&&lab[k]!==id){const a=k%W2,b=(k/W2)|0;if(!ok(a,b)){T2[b][a]=
 }catch(e){}return n}
 {const _smA=setMap;setMap=function(i){const r=_smA.apply(this,arguments);try{const m=M[cur];if(m&&!m._fx252ab){m._fx252ab=1;let n=fx252Abre(m,T);if(m.T&&m.T!==T)n+=fx252Abre(m,m.T);
 if(n>0){const tinha=!!m.MC;try{if(m.MC&&m.MC.free)m.MC.free()}catch(e){}if(tinha)m.MC=null;try{if(MC&&MC.free)MC.free()}catch(e){}if(typeof kpaint==='function'){MC=kpaint(m);if(tinha)m.MC=MC}}}}catch(e){}return r}}
+if(typeof godPanel==='function'){const _gp252=godPanel;godPanel=function(){const r=_gp252.apply(this,arguments);try{if(!godOn())return r;const u=document.getElementById('ui');if(!u)return r;
+let d=document.getElementById('eqtr');if(!d){const ref=document.getElementById('godsrv')||u.querySelector('.viph');if(!ref)return r;ref.insertAdjacentHTML('afterend','<div class="godg" id="eqtr" style="margin:6px 0;display:flex;gap:6px;flex-wrap:wrap"></div>');d=document.getElementById('eqtr')}
+if(typeof godTrafego==='function'&&!d.querySelector('[data-fx="tr"]')&&!/Tráfego do site/.test(d.textContent))d.insertAdjacentHTML('afterbegin','<span data-fx="tr">'+btn('📊 Tráfego do site','godTrafego()')+'</span>');
+if(typeof godCriadores==='function'&&!document.getElementById('eqcrb'))d.insertAdjacentHTML('beforeend','<span id="eqcrb">'+btn('🎥 Criadores',"GCR.j=null;GCR.sel='';godCriadores()")+'</span>')}catch(e){}return r}}
 var FX252OK=1;
 
 </script></body></html>
