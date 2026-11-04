@@ -1,7 +1,7 @@
 {
- "v": 260,
+ "v": 261,
  "url": "https://raw.githubusercontent.com/nilfilho000-afk/kaimon-gt-updates/main/jogo-apk.html",
- "notas": "Jogo mais leve no celular e opção de Desempenho nas Configurações.",
- "sha": "41dec0011afd73d3004c4d6490c76b5fce70b7b1dd41b46d48354a01125fe329",
- "sig": "UIUKkoMAcQMSScUKvnqN5GwbmlsHfgwTGa7zUYfBOmxib3yt1tkckK0N04GNxEINOXs2ZgvJmNGnt8uVFLc8eQ=="
+ "notas": "Botão Presentes nas Configurações (presente do teste e roupa de lançamento).",
+ "sha": "36605bbe343835d2184d65b001c5de3199d8931a5aac01355c543c6546cf0f7b",
+ "sig": "gKJRAOAhTVWH+wNgv4nrnv5xKDGEq188UTuP11GA0mExK9Nw4z/m16tsk3qShiv3rwxindbrSd4vV/UaPJUCkA=="
 }
