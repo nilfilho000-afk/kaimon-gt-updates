@@ -25986,6 +25986,23 @@ if(X<1||Y<1||X>=W2-1||Y>=H2-1||ruim.has(kk)||!fx252Livre(m,X,Y)||(m.p&&m.p[kk]))
 if(alvo){setMap(cur,alvo[0],alvo[1])}else if(G.cp){setMap(G.cp.m,G.cp.x,G.cp.y)}else return;
 P.d=0;FX252P.k='';try{save()}catch(e){}try{toast('🧭 Você estava preso entre paredes: o jogo levou você para um lugar livre.')}catch(e){}}catch(e){}}
 setInterval(fx252Solta,2000);
+function fx252Abre(m,T2){let n=0;try{if(!m||m.ybIn||!T2||!T2[0])return 0;const W2=T2[0].length,H2=T2.length;if(m.in&&W2*H2<1200)return 0;const ok=(x,y)=>{const v=(T2[y]||[])[x];return v!=null&&!SOLID.has(v)},
+ag=v=>v===2||v===102||v===187||v===188,por=(x,y)=>m.p&&m.p[x+','+y]&&m.p[x+','+y][0]!==M.indexOf(m);
+const lab=new Int32Array(W2*H2).fill(-1),C=[];
+for(let y=0;y<H2;y++)for(let x=0;x<W2;x++){if(!ok(x,y)||lab[y*W2+x]>=0)continue;const id=C.length,c={n:0,cel:[],p:0,a:0};C.push(c);const q=[y*W2+x];lab[y*W2+x]=id;
+while(q.length){const k=q.pop(),a=k%W2,b=(k/W2)|0;c.n++;c.cel.push(k);if(por(a,b))c.p=1;
+for(const[dx,dy]of[[1,0],[-1,0],[0,1],[0,-1]]){const X=a+dx,Y=b+dy;if(X<0||Y<0||X>=W2||Y>=H2)continue;if(por(X,Y))c.p=1;if(ag((T2[Y]||[])[X]))c.a=1;const kk=Y*W2+X;if(lab[kk]>=0||!ok(X,Y))continue;lab[kk]=id;q.push(kk)}}}
+if(C.length<2)return 0;let main=0;C.forEach((c,i)=>{if(c.n>C[main].n)main=i});
+C.forEach((c,id)=>{if(id===main||!c.p||c.a||c.n>=C[main].n/3)return;
+const ant=new Map(),q=[];for(const k of c.cel){ant.set(k,-1);q.push([k,0])}let fim=-1;
+for(let h=0;h<q.length&&fim<0;h++){const[k,d]=q[h];if(d>14)break;const a=k%W2,b=(k/W2)|0;
+for(const[dx,dy]of[[1,0],[-1,0],[0,1],[0,-1]]){const X=a+dx,Y=b+dy;if(X<1||Y<1||X>=W2-1||Y>=H2-1)continue;const kk=Y*W2+X;if(ant.has(kk))continue;const v=T2[Y][X];
+if(ag(v)||(m.p&&m.p[X+','+Y]))continue;ant.set(kk,k);if(lab[kk]===main){fim=kk;break}q.push([kk,d+1])}}
+if(fim<0)return;const piso=T2[(c.cel[0]/W2)|0][c.cel[0]%W2];let k=ant.get(fim);
+while(k!=null&&k>=0&&lab[k]!==id){const a=k%W2,b=(k/W2)|0;if(!ok(a,b)){T2[b][a]=piso;n++}k=ant.get(k)}});
+}catch(e){}return n}
+{const _smA=setMap;setMap=function(i){const r=_smA.apply(this,arguments);try{const m=M[cur];if(m&&!m._fx252ab){m._fx252ab=1;let n=fx252Abre(m,T);if(m.T&&m.T!==T)n+=fx252Abre(m,m.T);
+if(n>0){const tinha=!!m.MC;try{if(m.MC&&m.MC.free)m.MC.free()}catch(e){}if(tinha)m.MC=null;try{if(MC&&MC.free)MC.free()}catch(e){}if(typeof kpaint==='function'){MC=kpaint(m);if(tinha)m.MC=MC}}}}catch(e){}return r}}
 var FX252OK=1;
 
 </script></body></html>
