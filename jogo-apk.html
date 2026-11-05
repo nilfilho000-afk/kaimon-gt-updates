@@ -2106,7 +2106,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v266 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v267 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -9148,7 +9148,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=266;
+var KGT_VER=267;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -27043,5 +27043,39 @@ for(const e of L){if(!e)continue;const x=e.px!=null?e.px:e.x,y=e.py!=null?e.py:e
 RH0.push(function(cx,cy){try{if(ENT262.R[cur])ent262Des(cx,cy,0)}catch(e){}});
 RH2.unshift(function(cx,cy){try{if(ENT262.R[cur]&&ent262Atras())ent262Des(cx,cy,1)}catch(e){}});
 var ENT262OK=1;
+
+
+
+var TR267={nv:20,taxa:1000,dica:{}};
+function tr267Perto(raio){const L=[];try{if(typeof MP!=='object'||!MP.ps)return L;for(const o of MP.ps.values()){if(!o||!o.id)continue;const d=Math.abs((o.x|0)-P.x)+Math.abs((o.y|0)-P.y);if(d<=raio)L.push({o,d})}}catch(e){}return L.sort((a,b)=>a.d-b.d)}
+function tr267Frente(){try{const x=P.x+DX[P.d],y=P.y+DY[P.d];for(const o of MP.ps.values())if(o&&(o.x|0)===x&&(o.y|0)===y)return o}catch(e){}return null}
+function tr267Pode(){if(typeof webAcc!=='function'||!webAcc())return'Para trocar Kaimons, entre numa conta com e-mail ou Google.';
+if(((G.t&&G.t.l)|0)<TR267.nv)return'Para trocar Kaimons o seu treinador precisa estar no <b>Nv '+TR267.nv+'</b> ou mais (agora: Nv '+((G.t&&G.t.l)|0)+').';
+if((G.money|0)<TR267.taxa)return'A troca custa <b>💰'+TR267.taxa.toLocaleString('pt-BR')+'</b> (cobrados só quando a troca termina). Você tem 💰'+(G.money|0).toLocaleString('pt-BR')+'.';return''}
+function tr267Menu(uid,nick,lvl){const nm=esc(String(nick||'Treinador'));
+open(`<div class="psh"><span style="font-size:34px">👤</span><div><b>${nm}</b><small>Treinador Nv ${lvl|0||'?'}</small></div></div><p><small>Troca de Kaimons: vocês dois escolhem um monstro e confirmam. Custa 💰${TR267.taxa.toLocaleString('pt-BR')} para cada um (só quando a troca termina) e precisa de treinador Nv ${TR267.nv}+.</small></p>`+
+btn('🔄 Trocar Kaimon',`tr267Vai('${String(uid).replace(/[^A-Za-z0-9]/g,'')}')`)+btn('Fechar','closeUI()'));TR267.alvo={uid:String(uid),nick:String(nick||'Treinador')}}
+function tr267Vai(uid){const a=TR267.alvo;if(!a||a.uid!==uid)return;const r=tr267Pode();if(r)return ok('<b>🔄 Troca</b><p>'+r+'</p>');try{trNovo(a.uid,a.nick)}catch(e){toast('Não deu para abrir a troca agora.')}}
+if(typeof act==='function'){const _a=act;act=function(){try{if(mode==='walk'&&!P.sit){const o=tr267Frente();if(o)return tr267Menu(o.id,o.n,o.l)}}catch(e){}return _a.apply(this,arguments)}}
+setInterval(()=>{try{if(mode!=='walk')return;const L=tr267Perto(1);if(!L.length)return;const o=L[0].o;if(TR267.dica[o.id])return;TR267.dica[o.id]=1;toast('👤 '+esc(o.n||'Treinador')+' está do seu lado: olhe para ele e aperte ⚔️ para trocar Kaimons.')}catch(e){}},1500);
+if(typeof trCall==='function'){const _tc=trCall;trCall=async function(body){const j=await _tc.apply(this,arguments);
+try{if(body&&body.op==='receber'&&j&&j.m){const x=(TRC.L||[]).find(t=>t.id===body.id);G.trFee=G.trFee||{};
+if(x&&x.st==='feita'&&!G.trFee[body.id]){G.trFee[body.id]=1;G.money=Math.max(0,(G.money|0)-TR267.taxa);try{hud()}catch(e){}try{save()}catch(e){}try{toast('🔄 Taxa da troca: −💰'+TR267.taxa.toLocaleString('pt-BR'))}catch(e){}}}}catch(e){}return j}}
+if(typeof trNovo==='function'){const _n=trNovo;trNovo=function(){const r=tr267Pode();if(r)return ok('<b>🔄 Troca</b><p>'+r+'</p>');return _n.apply(this,arguments)}}
+if(typeof trOferecer==='function'){const _o=trOferecer;trOferecer=function(){const r=tr267Pode();if(r)return ok('<b>🔄 Troca</b><p>'+r+'</p>');return _o.apply(this,arguments)}}
+if(typeof trPainel==='function'){const _p=trPainel;trPainel=async function(){const r=await _p.apply(this,arguments);try{const u=document.getElementById('ui');if(!u)return r;
+u.querySelectorAll('small').forEach(s=>{if(/Para começar uma troca/.test(s.textContent))s.innerHTML='Para começar: chegue do lado de outro jogador, olhe para ele e aperte ⚔️ (ou use a lista abaixo). Taxa 💰'+TR267.taxa.toLocaleString('pt-BR')+' por troca · treinador Nv '+TR267.nv+'+.'});
+const L=tr267Perto(8);if(L.length&&!u.querySelector('.tr267')){TR267.lista=L.map(z=>z.o);
+u.insertAdjacentHTML('beforeend','<div class="tr267" style="margin-top:8px"><b>👤 Jogadores perto de você</b>'+L.map((z,i)=>`<div class="amg"><span><b>${esc(z.o.n||'Treinador')}</b> <small>Nv ${z.o.l|0}</small></span>${btn('🔄 Trocar',`tr267Lista(${i})`)}</div>`).join('')+'</div>')}}catch(e){}return r}}
+function tr267Lista(i){const o=(TR267.lista||[])[i];if(o)tr267Menu(o.id,o.n,o.l)}
+try{if(typeof trChegou==='function'){const _c=trChegou;trChegou=function(x){const r=_c.apply(this,arguments);try{const u=document.getElementById('ui');if(u)u.insertAdjacentHTML('beforeend','<p><small>Taxa 💰'+TR267.taxa.toLocaleString('pt-BR')+' quando a troca terminar.</small></p>')}catch(e){}return r}}}catch(e){}
+var TR267OK=1;
+
+
+
+setInterval(()=>{try{const e=document.getElementById('pg265');if(!e)return;const bt=typeof mode!=='undefined'&&mode==='bt';
+if(bt&&e.dataset.pos!=='t'){e.dataset.pos='t';e.style.bottom='auto';e.style.top='calc(env(safe-area-inset-top,0px) + 6px)'}
+else if(!bt&&e.dataset.pos!=='b'){e.dataset.pos='b';e.style.top='auto';e.style.bottom='calc(env(safe-area-inset-bottom,0px) + 40px)'}}catch(x){}},400);
+var PG267OK=1;
 
 </script></body></html>
