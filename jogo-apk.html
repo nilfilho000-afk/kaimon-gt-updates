@@ -2106,7 +2106,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v264 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v265 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -9148,7 +9148,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=264;
+var KGT_VER=265;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -26954,5 +26954,47 @@ function tr264K(e){try{return kkey(e)}catch(x){return null}}
 if(typeof trSpot==='function'){const _ts=trSpot;trSpot=function(e){try{const k=tr264K(e);if(k){G.tsv=G.tsv||{};if(!G.tsv[k]){G.tsv[k]=Date.now();try{save()}catch(x){}}}}catch(x){}return _ts.apply(this,arguments)}}
 if(typeof ksight==='function'){const _ks=ksight;ksight=function(t){const L=[];try{if(G&&G.tsv&&typeof NPC!=='undefined'&&NPC)for(const e of NPC){if(!e||!e.tr||e.see===0)continue;const k=tr264K(e);if(k&&G.tsv[k]){L.push([e,e.see]);e.see=0}}}catch(x){}
 try{return _ks.apply(this,arguments)}finally{for(const[e,s]of L){if(s===undefined)delete e.see;else e.see=s}}}}
+
+
+
+var PG265={on:0,ping:null,fps:null,tm:null,el:null,fr:[],raf:0,last:0};
+function pg265Url(){try{if(typeof FBC!=='undefined'&&FBC.fn)return FBC.fn+'/hora'}catch(e){}return 'https://kaimon-gt-api.nilfilho000.workers.dev/hora'}
+async function pg265Um(){const t0=performance.now();try{const r=await fetch(pg265Url()+'?p='+Math.random().toString(36).slice(2),{cache:'no-store'});await r.text();if(!r.ok)return null}catch(e){return null}return Math.round(performance.now()-t0)}
+function pg265Cor(ms){return ms==null?'#e05050':ms<120?'#3ec46d':ms<250?'#e8c13c':'#e05050'}
+function pg265FpsCor(f){return f==null?'#aaa':f>=50?'#3ec46d':f>=30?'#e8c13c':'#e05050'}
+function pg265Loop(t){if(!PG265.on&&!PG265.medindo){PG265.raf=0;return}if(PG265.last)PG265.fr.push(t-PG265.last);PG265.last=t;if(PG265.fr.length>120)PG265.fr.shift();PG265.raf=requestAnimationFrame(pg265Loop)}
+function pg265Inicia(){if(!PG265.raf){PG265.last=0;PG265.fr=[];PG265.raf=requestAnimationFrame(pg265Loop)}}
+function pg265Fps(){const f=PG265.fr.slice(-60);if(f.length<10)return null;const m=f.reduce((a,b)=>a+b,0)/f.length;return Math.min(999,Math.round(1000/m))}
+function pg265Pior(){const f=PG265.fr.slice(-120);return f.length?Math.round(Math.max(...f)):null}
+function pg265Selo(){let e=PG265.el;if(!e){e=document.createElement('div');e.id='pg265';e.setAttribute('role','button');e.title='Ping e FPS: toque para o teste completo';
+e.style.cssText='position:fixed;left:50%;transform:translateX(-50%);bottom:calc(env(safe-area-inset-bottom,0px) + 40px);z-index:9000;font:700 11px/1 system-ui,sans-serif;color:#fff;background:rgba(10,14,24,.72);border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:4px 8px;display:flex;gap:8px;align-items:center;cursor:pointer;pointer-events:auto;user-select:none';
+e.onclick=ev=>{ev.stopPropagation();pg265Teste()};document.body.appendChild(e);PG265.el=e}
+const p=PG265.ping,f=pg265Fps();e.innerHTML='<span>📶 <b style="color:'+pg265Cor(p)+'">'+(p==null?'sem rede':p+' ms')+'</b></span><span>🎮 <b style="color:'+pg265FpsCor(f)+'">'+(f==null?'…':f+' FPS')+'</b></span>'}
+async function pg265Tick(){if(!PG265.on)return;PG265.ping=await pg265Um();pg265Selo()}
+function pg265Liga(v){PG265.on=v?1:0;try{localStorage.setItem('kgt_ping',v?'1':'0')}catch(e){}
+clearInterval(PG265.tm);clearInterval(PG265.tf);
+if(v){pg265Inicia();pg265Selo();pg265Tick();PG265.tm=setInterval(pg265Tick,10000);PG265.tf=setInterval(pg265Selo,1000)}
+else if(PG265.el){PG265.el.remove();PG265.el=null}}
+async function pg265Teste(){try{ok('<b>📶 Testando a conexão e o jogo…</b><p>Leva uns 4 segundos. Fique parado na tela do jogo.</p>')}catch(e){}
+PG265.medindo=1;pg265Inicia();const L=[];let falhas=0;
+for(let i=0;i<5;i++){const m=await pg265Um();if(m==null)falhas++;else L.push(m);await new Promise(r=>setTimeout(r,250))}
+await new Promise(r=>setTimeout(r,1200));const f=pg265Fps(),pior=pg265Pior();PG265.medindo=0;
+L.sort((a,b)=>a-b);const med=L.length?L[Math.floor(L.length/2)]:null,osc=L.length>1?L[L.length-1]-L[0]:0;
+PG265.ping=med;if(PG265.on)pg265Selo();
+const netRuim=med==null||med>=250||falhas>=2||osc>=250,netMeio=!netRuim&&(med>=120||osc>=120||falhas),jogoRuim=f!=null&&(f<30||pior>=250),jogoMeio=!jogoRuim&&f!=null&&(f<50||pior>=120);
+let v;if(netRuim&&jogoRuim)v='😕 Os dois estão ruins agora: a internet está lenta e o aparelho também está pesado.';
+else if(netRuim)v='🌐 O problema é a <b>internet</b>. O jogo está rodando bem no aparelho, mas a conexão até o servidor está lenta ou caindo. Tente outro Wi-Fi ou os dados móveis.';
+else if(jogoRuim)v='📱 O problema é o <b>aparelho</b>, não a internet. Em ⚙️ → Desempenho, escolha <b>Leve</b>, e feche outros apps abertos.';
+else if(netMeio||jogoMeio)v='🙂 Está razoável. '+(netMeio?'A internet oscila um pouco. ':'')+(jogoMeio?'O aparelho dá umas engasgadas; o modo Leve em ⚙️ → Desempenho ajuda. ':'');
+else v='✅ Está tudo bem: internet rápida e o jogo liso.';
+const lin=(a,b,c)=>'<div style="display:flex;justify-content:space-between;gap:10px;padding:3px 0;border-bottom:1px solid rgba(255,255,255,.08)"><span>'+a+'</span><b style="color:'+c+'">'+b+'</b></div>';
+try{ok('<b>📶 Ping e FPS</b>'+lin('Ping até o servidor',med==null?'sem resposta':med+' ms',pg265Cor(med))+lin('Oscilação',L.length>1?osc+' ms':'—',osc>=250?'#e05050':osc>=120?'#e8c13c':'#3ec46d')+lin('Pings perdidos',falhas+' de 5',falhas>=2?'#e05050':falhas?'#e8c13c':'#3ec46d')+lin('FPS do jogo',f==null?'—':f+' FPS',pg265FpsCor(f))+lin('Pior travadinha',pior==null?'—':pior+' ms',pior>=250?'#e05050':pior>=120?'#e8c13c':'#3ec46d')+
+'<p style="margin-top:10px">'+v+'</p><p><small>Ping bom: até 120 ms. FPS bom: 50 ou mais.</small></p><div style="margin-top:8px">'+btn(PG265.on?'Esconder o selo':'Mostrar o selo no topo','closeUI();pg265Liga('+(PG265.on?0:1)+')')+' '+btn('Testar de novo','pg265Teste()')+'</div>')}catch(e){}}
+if(typeof cfgR==='function'){const _cf=cfgR;cfgR=function(){const r=_cf.apply(this,arguments);try{const u=document.getElementById('ui');if(!u||u.querySelector('.pg265'))return r;
+const rows=[...u.querySelectorAll('.cfr')],pe=rows.find(e=>{const s=e.querySelector('span');return s&&/^Personagens/.test(s.textContent.trim())}),ref=rows.find(e=>{const s=e.querySelector('span');return s&&/^Desempenho/.test(s.textContent.trim())})||rows[rows.length-1];
+const h='<div class="cfr pg265"><span>Ping e FPS</span>'+btn('📶 Testar agora','closeUI();pg265Teste()')+btn(PG265.on?'Selo: Ligado':'Selo: Desligado','pg265Liga('+(PG265.on?0:1)+');cfgR()')+'</div>';
+if(pe)pe.insertAdjacentHTML('beforebegin',h);else if(ref)ref.insertAdjacentHTML('afterend',h);else u.insertAdjacentHTML('beforeend',h)}catch(e){}return r}}
+try{if(localStorage.getItem('kgt_ping')==='1')setTimeout(()=>pg265Liga(1),3000)}catch(e){}
+var PG265OK=1;
 
 </script></body></html>

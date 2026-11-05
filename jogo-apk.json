@@ -1,7 +1,7 @@
 {
- "v": 264,
+ "v": 265,
  "url": "https://raw.githubusercontent.com/nilfilho000-afk/kaimon-gt-updates/main/jogo-apk.html",
- "notas": "Treinador NPC só desafia uma vez.",
- "sha": "1874a2e91cac472a453534845d03ce3380df635f30c2bd4915dace86ab7d247f",
- "sig": "wkjfHyDg6DhHjLxcLC/tdNaoKGPXvhBg4acg4NHrszsliupWg3Jni+w5LODGT73RUDOXd7d8mVn2umCuqPQrgQ=="
+ "notas": "Botão de Ping e FPS em Configurações.",
+ "sha": "db70e8ddefbdf5ed934e7b2316a60c898d07023c8a15860f52326f1b62dbde65",
+ "sig": "ieUXWNI3qRbu1HvzzlrTnX4uhKSUawpZoRmhMD2mHjgSi8mXlPfr5+b7zoBjszboAh4khoCqny4ADdHg77TXzg=="
 }
