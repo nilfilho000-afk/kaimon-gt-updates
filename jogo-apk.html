@@ -2106,7 +2106,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v268 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v269 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -9148,7 +9148,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=268;
+var KGT_VER=269;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -27237,5 +27237,40 @@ if(typeof m.gen==='function'){const g0=m.gen;m.gen=function(){const r=g0.apply(t
 if(m.T){m.MC=kpaint(m);if(cur===2)MC=m.MC}}catch(e){console.error('c269',e)}})();
 if(typeof act==='function'){const _a=act;act=function(){try{if(mode==='walk'&&cur===2){const x=P.x+DX[P.d],y=P.y+DY[P.d];if(T[y]&&T[y][x]===C269CV){const t=c269Frase(x,y);if(t)return ok(t)}}}catch(e){}return _a.apply(this,arguments)}}
 var C269COK=1;
+
+
+
+var LG270={H:24*3600e3,tm:0};
+function lg270Ult(){let t=0;try{const L=msEstado().lg;t=Math.max(t,Number(L.t)||0)}catch(e){}try{t=Math.max(t,Number(localStorage.getItem('kgt_lgT'))||0)}catch(e){}return t}
+function lg270Marca(t){t=Number(t)||Date.now();try{const L=msEstado().lg;L.t=Math.max(Number(L.t)||0,t)}catch(e){}try{if(t>(Number(localStorage.getItem('kgt_lgT'))||0))localStorage.setItem('kgt_lgT',String(t))}catch(e){}}
+function lg270Falta(){const u=lg270Ult();return u?Math.max(0,u+LG270.H-Date.now()):0}
+function lg270Txt(ms){const h=Math.floor(ms/3600e3),m=Math.floor(ms%3600e3/60000),s=Math.floor(ms%60000/1000);return h?h+'h '+String(m).padStart(2,'0')+'min':m+'min '+String(s).padStart(2,'0')+'s'}
+if(typeof msLoginPode==='function'){const _p=msLoginPode;msLoginPode=function(){const u=lg270Ult();if(u){try{if(!msLiberado())return false}catch(e){}return Date.now()-u>=LG270.H}return _p.apply(this,arguments)}}
+if(typeof msLoginPega==='function'){const _lp=msLoginPega;msLoginPega=async function(){if(!msLoginPode()){try{msLoginTela()}catch(e){}return}
+const _mc=typeof msCall==='function'?msCall:null;let srv=null;
+if(_mc)msCall=async function(b){const j=await _mc.apply(this,arguments);try{if(b&&b.op==='login'&&j){srv=j;if(j.t)lg270Marca(j.t)}}catch(e){}return j};
+try{const r=await _lp.apply(this,arguments);if(!srv||srv.ok){const L=msEstado().lg;if(L.ult===msDia())lg270Marca(srv&&srv.t||Date.now())}try{save()}catch(e){}return r}
+finally{if(_mc)msCall=_mc}}}
+if(typeof msLoginTela==='function'){const _t=msLoginTela;msLoginTela=function(){const r=_t.apply(this,arguments);try{const u=document.getElementById('ui');if(!u)return r;const f=lg270Falta();
+if(f>0&&!u.querySelector('#lg270')){const p=u.querySelector('.mslgs');const h='<p id="lg270" style="text-align:center;font-weight:800;color:#ffe27a;margin:8px 0 2px">⏳ Próximo prêmio em <span>'+lg270Txt(f)+'</span></p>';if(p)p.insertAdjacentHTML('afterend',h);else u.insertAdjacentHTML('beforeend',h)}
+u.querySelectorAll('small').forEach(s=>{if(/Entre 1 vez por dia/.test(s.textContent))s.textContent='Pegue o prêmio e volte 24 horas depois para o próximo. Perder um dia não zera a sequência, só pausa. Depois do Dia 7 o ciclo recomeça.'});
+clearInterval(LG270.tm);LG270.tm=setInterval(()=>{const e=document.querySelector('#lg270 span');if(!e){clearInterval(LG270.tm);return}const f2=lg270Falta();if(f2<=0){clearInterval(LG270.tm);try{msLoginTela()}catch(x){}return}e.textContent=lg270Txt(f2)},1000)}catch(e){}return r}}
+if(typeof msTrack==='function'){const _k=msTrack;msTrack=function(){const r=_k.apply(this,arguments);try{const c=document.getElementById('mstrk');if(!c||c.style.display==='none')return r;let d=document.getElementById('lg270c');const f=lg270Falta();
+if(!(f>0)){if(d)d.remove();return r}if(!d||d.parentNode!==c){d=document.createElement('div');d.id='lg270c';d.style.cssText='margin-top:3px;font-size:11px;color:#cfd8ee;font-weight:700';c.appendChild(d)}
+const tx='📅 Próximo prêmio de login em '+lg270Txt(f);if(d.textContent!==tx)d.textContent=tx}catch(e){}return r}}
+try{const L=msEstado().lg;if(!lg270Ult()&&L&&L.ult===msDia()){const b=msBase();b.setUTCHours(0,0,0,0);lg270Marca(b.getTime()+3*3600e3+(5*60+10)*60e3)}}catch(e){}
+var LG270OK=1;
+
+
+
+var VOA270={semCorte:new Set(['Matinteira','Rasgamortalha']),drag:new Set(['Dracaatinga','Dracaimon']),cor:{Dracaatinga:['#ff8a2a','#ffd04a','#c84a1a'],Dracaimon:['#8a5ad8','#c8a0ff','#3a2a5a']},ult:0};
+try{if(typeof MNFLY_X!=='undefined')MNFLY_X.add('Dracaatinga')}catch(e){}
+if(typeof mnWingStyle==='function'){const _ws=mnWingStyle;mnWingStyle=function(n){if(VOA270.drag.has(n)||VOA270.semCorte.has(n))return'none';return _ws.apply(this,arguments)}}
+if(typeof mnSeat==='function'){const _se=mnSeat;mnSeat=function(o,v){const r=_se.apply(this,arguments);try{const m=G.mt;if(m&&m.k==='fly'&&VOA270.drag.has(m.n)&&v!==1){const h=o.b-o.t;return{x:r.x,y:o.t+h*(v===0?.2:.26)}}}catch(e){}return r}}
+RH2.push(function(cx,cy,t){try{const m=G.mt;if(!m||m.k!=='fly'||!VOA270.drag.has(m.n)||typeof PT==='undefined')return;const now=performance.now(),mv=now<P.end;
+if(now-VOA270.ult<(mv?45:140))return;VOA270.ult=now;const C=VOA270.cor[m.n],wx=P.px*16+8,wy=P.py*16+8-(m.alt||0),d=P.d,bx=wx-DX[d]*10,by=wy-DY[d]*6+6;
+for(let i=0;i<(mv?2:1);i++)PT.push({x:bx+(Math.random()-.5)*10,y:by+(Math.random()-.5)*6,vx:(Math.random()-.5)*.4-DX[d]*.4,vy:-.15-Math.random()*.35,l:.6+Math.random()*.5,c:C[(Math.random()*C.length)|0]});
+if(m.st==='up'&&now-(m.t0||0)<700&&typeof mnPuff==='function'&&Math.random()<.5)mnPuff(P.px*16+8,P.py*16+14,'#e8e0d0',4,1.2)}catch(e){}});
+var VOA270OK=1;
 
 </script></body></html>
