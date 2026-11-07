@@ -1,7 +1,7 @@
 {
- "v": 285,
+ "v": 286,
  "url": "https://raw.githubusercontent.com/nilfilho000-afk/kaimon-gt-updates/main/jogo-apk.html",
- "notas": "v285: correções visuais nas grutas da Serra da Lua, Chapada e Cumes do Sertão e nas salas pequenas",
- "sha": "581a06d27ea9bb2a6d5cd377d6e3e706340ddd48c9dacf8dfe7beb42102c6b71",
- "sig": "lTYxXXwpe5xsQafUuB9aEIlvvecehkPJqg5mN1FNbC9QDx+Xl7xypCa507RMS2PUjXmppGcGmEXXB0sjApU1mg=="
+ "notas": "v286: o aviso do alto da tela não cobre mais a batalha",
+ "sha": "9e75e844ecbc1bc266dfb90f94b5dc497bb3bec031c1d57f7017367c82c90c28",
+ "sig": "/7MMvZveCGLohds7nHkGBm8Nj4RW3/6Bq9ksAwEUK+sTcMTDa9u1hZ3ZVZGucnLgSumu7BBJaoG2SlaN5I+MuA=="
 }
