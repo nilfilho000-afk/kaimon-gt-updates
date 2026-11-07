@@ -2106,7 +2106,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v281 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v282 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -9148,7 +9148,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=281;
+var KGT_VER=282;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -27713,5 +27713,39 @@ ybpR(x+W/2-6,fl,12,16,'#8a5a32');for(let yy=fl+2;yy<fl+16;yy+=4)ybpR(x+W/2-6,yy,
 if(typeof ybpF==='function'&&ybpF('boiuna:toque')){const sw=Math.sin(t/240)*1.6;ybpE(x+W/2-w*.27+sw,fl-h*.66,2.2,2.6,'#ffe27a')}}catch(e){}};
 }catch(e){}})();
 var IGR281OK=1;
+
+
+
+var CURA282={ok:0,pat:null};
+(function(){try{const m=M[2];if(!m||!m.T||m._c282)return;const T2=m.T;const W2=T2[0].length;
+const L=x=>x<=19?x-2:x+2;
+const nova=[];for(let y=0;y<T2.length;y++){const o=T2[y];const r=o.slice();if(y>=8&&y<=20){for(let x=0;x<W2;x++)r[x]=14;
+for(let x=11;x<=28;x++){let v=o[x];if((x===19||x===20)&&(v===70||v===13))v=(y===20?74:15);r[L(x)]=v}
+const a=o[19],b=o[20];let f=[a,a,b,b];if(a===70&&b===70)f=[15,70,70,15];if(y===20)f=[74,13,13,74];if(y>=8&&y<=10)f=[63,63,63,63];
+for(let k=0;k<4;k++)r[18+k]=f[k]}
+nova.push(r)}
+const piso=nova[19].slice();for(let x=0;x<W2;x++){if(x<9||x>30)piso[x]=14;else if(x===9||x===30)piso[x]=74;else piso[x]=(x===19||x===20)?70:15}
+const fundo=nova[20];nova.splice(20,0,piso.slice(),piso.slice());nova.length=T2.length;
+for(let y=0;y<T2.length;y++)T2[y]=nova[y];
+try{for(const p of C269CO){if(p[1]){const b=p[1];const w=b[2]-b[0];const nx=L(b[0]);b[0]=nx;b[2]=nx+w}else{p[2]=p[2]<304?p[2]-32:p[2]+32}}
+if(typeof c269Tiles==='function')c269Tiles(T2)}catch(e){}
+try{for(const d of DP)d[0]=L(d[0])}catch(e){}
+try{for(const e of(m.N||[])){if(e.x!==19){e.x=e.px=e.fx=L(e.x)}}}catch(e){}
+try{const ia=m.ia||{};const n={};for(const k in ia){const[x,y]=k.split(',').map(Number);n[(x===19?19:L(x))+','+y]=ia[k]}m.ia=n}catch(e){}
+try{if(typeof KBCP!=='undefined'){for(const q of KBCP)q[0]=L(q[0])}
+for(let i=0;i<RH0.length;i++){const f=RH0[i];if(String(f).includes('KB.img.portal')){RH0[i]=function(cx,cy,t){return f(cx+32,cy,t)};break}}}catch(e){}
+try{if(m.lit)for(const q of m.lit){if(q[0]<304)q[0]-=32;else if(q[0]>320)q[0]+=32}}catch(e){}
+try{if(typeof NAVD==='object'&&NAVD['#2']){NAVD['#2'].c=[[19,22],[20,22]];for(const q of(NAVD['#2'].p||[]))if(q[2]!==19)q[2]=L(q[2])}}catch(e){}
+m._c282=1;m.MC=kpaint(m);if(cur===2)MC=m.MC;
+const _sm=setMap;setMap=function(i,x,y){if(i===2&&x===19&&y===19)y=21;return _sm.call(this,i,x,y)};
+CURA282.ok=1}catch(e){console.error('cura282',e)}})();
+RH0.unshift(function(cx,cy){try{if(cur!==2||!CURA282.ok)return;
+if(!CURA282.pat){const c=document.createElement('canvas');c.width=c.height=32;const x=c.getContext('2d');x.fillStyle='#17141c';x.fillRect(0,0,32,32);
+const R=(a,b,w,h,col)=>{x.fillStyle=col;x.fillRect(a,b,w,h)};for(let j=0;j<4;j++)for(let i=0;i<2;i++){const ox=(j%2?8:0)+i*16;R(ox+1,j*8+1,14,6,'#221d28');R(ox+1,j*8+1,14,1,'#2b2531');R(ox+1,j*8+6,14,1,'#110e14')}
+CURA282.pat=g.createPattern(c,'repeat')}
+const vw=VW*16,vh=VH*16,X0=9*16,Y0=8*16,X1=31*16,Y1=23*16;g.save();g.translate(-cx,-cy);g.fillStyle=CURA282.pat;
+const t=(a,b,w,h)=>{if(w>0&&h>0)g.fillRect(a,b,w,h)};const ax=cx-32,ay=cy-32,bx=cx+vw+32,by=cy+vh+32;
+t(ax,ay,bx-ax,Y0-ay);t(ax,Y1,bx-ax,by-Y1);t(ax,Y0,X0-ax,Y1-Y0);t(X1,Y0,bx-X1,Y1-Y0);g.restore()}catch(e){}});
+var CURA282OK=1;
 
 </script></body></html>
