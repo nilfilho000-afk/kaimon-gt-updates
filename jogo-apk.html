@@ -2106,7 +2106,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v279 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v280 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -9148,7 +9148,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=279;
+var KGT_VER=280;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -27655,5 +27655,47 @@ if(typeof BPOST!=='undefined'&&BPOST)BPOST.push(function(i,m,T2){arruma(m,T2)});
 try{for(const m of M)if(m&&m.T&&/^yb_/.test(m.key||''))arruma(m,m.T)}catch(e){}
 }catch(e){}})();
 var FIX279OK=1;
+
+
+
+(function(){try{
+function fix(m,T2){try{if(!m||m.key!=='yb_palafitas'||!T2||m._fx280)return;m._fx280=1;const W2=T2[0].length,H2=T2.length;
+const fe=(m.ybpObj||[]).find(o=>o.k==='flutuante');
+if(fe){m.ybpObj=m.ybpObj.filter(o=>o!==fe&&!(o.k==='canoaFeira'&&Math.abs(o.x-fe.x)<=9&&Math.abs(o.y-fe.y)<=6));delete m._yb252B}
+const tab=(x,y)=>{const v=(T2[y]||[])[x];return v===88||v===53||v===54};
+const estreita=(x,y)=>tab(x,y)&&tab(x,y-1)&&tab(x,y+1)&&(!tab(x-2,y)||!tab(x+2,y));
+const larga=(x,y)=>tab(x,y)&&tab(x-2,y)&&tab(x-1,y)&&tab(x+1,y)&&tab(x+2,y)&&!(m.p&&m.p[x+','+y]);
+for(const e of(m.N||[])){if(!e||e.x==null||!/^(ybp_nene|fisher)$/.test(e.n||''))continue;if(!estreita(e.x,e.y))continue;let best=null,bd=1e9;
+for(let dy=-14;dy<=14;dy++)for(let dx=-6;dx<=6;dx++){const x=e.x+dx,y=e.y+dy;if(x<1||y<1||x>=W2-1||y>=H2-1||!larga(x,y))continue;if((m.N||[]).some(q=>q!==e&&q.x===x&&q.y===y))continue;
+const d=Math.abs(dx)*2+Math.abs(dy);if(d<bd){bd=d;best=[x,y]}}
+if(best){e.x=e.px=e.fx=best[0];e.y=e.py=e.fy=best[1];if(e.bx!=null){e.bx=best[0];e.by=best[1]}e.d=2}}
+if(typeof HRM!=='undefined'&&typeof CSEX!=='undefined'&&typeof CSH!=='undefined'){m.p=m.p||{};m.rent=m.rent||[];
+const baixo=(m.ybpObj||[]).filter(o=>o.k==='palafita'&&o.y+o.h>=H2-3||o.k==='palafita'&&!Object.keys(m.p).some(k=>{const[x,y]=k.split(',').map(Number);return x>=o.x&&x<o.x+o.w&&y===o.y+o.h-1}));
+for(const o of baixo){const dx=o.x+1,dy=o.y+o.h-1;if(dy+1>=H2)continue;const k='h:'+m.key+':'+dx+','+dy;
+const vp=(()=>{for(const kk in m.p){const[x,y]=kk.split(',').map(Number);const v=(T2[y]||[])[x];if(v!=null&&!SOLID.has(v)&&v!==2)return v}return 88})();if(T2[dy])T2[dy][dx]=vp;
+const cx=o.x+o.w;for(let y=o.y;y<=dy+1;y++)if(cx<W2&&T2[y]&&(T2[y][cx]===2||T2[y][cx]==null))T2[y][cx]=88;
+for(let x=dx;x<=cx;x++)if(T2[dy+1]&&(T2[dy+1][x]===2||T2[dy+1][x]==null))T2[dy+1][x]=88;
+for(let y=o.y-1;y>=0;y--){if(tab(cx,y))break;if(T2[y][cx]===2)T2[y][cx]=88;else break}
+m.p[dx+','+dy]=[HRM,CSEX,CSH-2,k];if(!m.rent.some(r=>r[2]===k))m.rent.push([dx,dy,k]);
+m.ybInPortas=(m.ybInPortas||[]).filter(([a,b])=>!(a===dx&&b===dy))}}
+}catch(e){console.error('fix280',e)}}
+if(typeof BPOST!=='undefined'&&BPOST)BPOST.push(function(i,m,T2){fix(m,T2)});
+try{const m=M[KI&&KI.yb_palafitas];if(m&&m.T){fix(m,m.T);if(cur===M.indexOf(m)){m.MC=kpaint(m);MC=m.MC}}}catch(e){}
+if(typeof ybinMorador==='function'){const _ym=ybinMorador;ybinMorador=function(i,dx,dy){const r=_ym.apply(this,arguments);try{const m=M[i],L=YBIM[m.ybIn];const ci=KI[m.par&&m.par[0]]!=null?KI[m.par[0]]:(typeof m.par[0]==='number'?m.par[0]:null);const c=M[ci];if(!c||!c.p)return r;
+const portas=Object.keys(c.p).filter(k=>c.p[k][0]===i).map(k=>k.split(',').map(Number)).sort((a,b)=>a[1]-b[1]||a[0]-b[0]);
+const idx=portas.findIndex(([x,y])=>x===dx&&y===dy);if(idx<0)return r;const s=L[idx%L.length],e=m.N[0];e.n=s[0];e.nm=s[1];e.ybFala=s[2]}catch(e){}return r}}
+}catch(e){}})();
+(function(){try{
+function portas(m){try{if(!m||!/^yb_/.test(m.key||'')||!m.ybpObj||!m.p)return null;if(m._pal280&&m._pal280.n===m.ybpObj.length)return m._pal280.s;const s=new Set();
+for(const o of m.ybpObj){if(o.k!=='palafita')continue;for(let x=o.x;x<o.x+o.w;x++){const k=x+','+(o.y+o.h-1);if(m.p[k])s.add(k)}}m._pal280={n:m.ybpObj.length,s};return s}catch(e){return null}}
+function subindo(){try{if(typeof mode==='undefined'||mode!=='walk'||(typeof mnFly==='function'&&mnFly()))return false;const s=portas(M[cur]);return!!(s&&s.has(P.x+','+P.y)&&P.fx===P.x&&P.fy===P.y+1)}catch(e){return false}}
+window.pal280Sobe=subindo;
+if(typeof tdur==='function'){const _td=tdur;tdur=function(){const v=_td.apply(this,arguments);try{if(subindo())return v*3.2}catch(e){}return v}}
+if(typeof entImg==='function'){const _ei=entImg;entImg=function(e,t,cx,cy){const q=_ei.apply(this,arguments);try{if(e===P){if(subindo())q.Y-=Math.round(14*Math.min(1,q.sp));else if(P._desce&&t-P._desce<520)q.Y-=Math.round(14*(1-(t-P._desce)/520))}}catch(e2){}return q}}
+const _sm=setMap;setMap=function(i,x,y){const r=_sm.apply(this,arguments);try{const s=portas(M[cur]);if(s&&s.has(P.x+','+(P.y-1)))P._desce=performance.now()}catch(e){}return r};
+if(typeof YBPD==='object'&&YBPD&&typeof YBPD.palafita==='function'){const _p=YBPD.palafita;YBPD.palafita=function(x,y,o,t){_p.apply(this,arguments);try{const W=o.w*16,b=y+o.h*16,fl=b-14,cx=x+W/2;
+ybpR(cx-5,fl-1,2,21,'#8a5a32');ybpR(cx+3,fl-1,2,21,'#8a5a32');for(let yy=fl+2;yy<b+6;yy+=4)ybpR(cx-4,yy,8,1.5,'#b8824a');ybpR(cx-5,b+5,10,1,'#5a3a20')}catch(e){}}}
+}catch(e){}})();
+var FIX280OK=1;
 
 </script></body></html>
