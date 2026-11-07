@@ -2106,7 +2106,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v277 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v278 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -9148,7 +9148,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=277;
+var KGT_VER=278;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -27607,5 +27607,39 @@ toast('📍 Checkpoint marcado: <b>'+esc(cp277Nome(G.cp))+'</b>. Capivinha~! ♥
 (function(){try{const m=M[2];if(!m)return;const ia=m.ia=m.ia||{};ia['21,13']=cp277Menu;ia['22,13']=cp277Menu;
 for(const e of(m.N||[]))if(e.n==='chansey')e.fn=cp277Menu}catch(e){}})();
 var CP277OK=1;
+
+
+
+(function(){try{
+function arruma(m){try{if(!m||!m.rent||!m.embs||!m.p)return;const ruim=new Set();for(const[ex,ey]of m.embs)ruim.add(ex+','+ey);
+const N=(m.N||[]).filter(e=>e.n==='clerk'||e.n==='joy');for(const e of N)ruim.add(e.x+','+(e.y-1));
+const fica=[];for(const r of m.rent){const k=r[0]+','+r[1];if(!ruim.has(k)){fica.push(r);continue}
+const g=M.findIndex(q=>q&&q.ybIn&&q.ybIn!=='merc'&&q.par&&q.par[0]===M.indexOf(m));const d=m.p[k];
+if(d&&typeof HRM!=='undefined'&&d[0]===HRM){const outro=Object.keys(m.p).map(q=>m.p[q]).find(v=>M[v[0]]&&M[v[0]].ybIn&&M[v[0]].ybIn!=='merc'&&v[0]!==HRM);m.p[k]=outro?outro.slice(0,3):[g>=0?g:d[0],10,7]}
+m.ybInPortas=m.ybInPortas||[];if(!m.ybInPortas.some(([a,b])=>a===r[0]&&b===r[1]))m.ybInPortas.push([r[0],r[1]])}
+m.rent=fica;
+for(const e of N){const k=e.x+','+(e.y-1);if(!m.p[k]||e._fx278)continue;const T2=m.T;const livre=(x,y)=>T2&&T2[y]&&T2[y][x]!=null&&!SOLID.has(T2[y][x])&&!m.p[x+','+y];
+const nx=livre(e.x+1,e.y)?e.x+1:livre(e.x-1,e.y)?e.x-1:null;if(nx==null)continue;e.x=e.px=e.fx=nx;e._fx278=1}}catch(e){}}
+if(typeof BPOST!=='undefined'&&BPOST)BPOST.push(function(i,m){if(m&&/^yb_/.test(m.key||''))arruma(m)});
+try{for(const m of M)if(m&&m.T&&/^yb_/.test(m.key||''))arruma(m)}catch(e){}
+if(typeof YBPD==='object'&&YBPD&&typeof YBPD.carrinho==='function'){const _c=YBPD.carrinho;YBPD.carrinho=function(x,y,o,t){const ft=YC.fillText;try{YC.fillText=function(){}}catch(e){}try{_c.apply(this,arguments)}finally{YC.fillText=ft}
+try{YC.save();YC.font='bold 5px monospace';YC.fillStyle='#ffffff';YC.textAlign='center';YC.textBaseline='alphabetic';YC.fillText('SORVETE',x+16,y+6,21);YC.restore()}catch(e){}}}
+}catch(e){}})();
+var FIX278OK=1;
+(function(){try{if(typeof C259PES==='undefined'||typeof C259PAL==='undefined'||typeof YBIN==='undefined')return;
+const LISTAS={ybin_porto:C259PES,ybin_palafita:C259PAL};
+function aplica(m){try{const LISTA=LISTAS[m.key];if(!LISTA)return;const I=YBIN.ids;
+for(let y=2;y<YBIN.H-1;y++)for(let x=1;x<YBIN.W-1;x++)if(T[y]&&T[y][x]===I.chaoS)T[y][x]=I.chao;
+const L=[];m.ia={};
+for(const it of LISTA){const[k,sp]=it;
+if(k==='t'){const[,,a,b,c,d]=it;L.push({k:'c259',sp,x:a,y:b,w:c-a+1,h:d-b+1,dw:(c-a+1)*16-4,dh:(d-b+1)*16+2,base:(d-b+1)*16-1,s:0})}
+else if(k==='p'){const[,,X,yb,w]=it;L.push({k:'c259',sp,x:X/16,y:0,w:w/16,h:2,dw:w,base:yb,s:0})}
+else{const[,,a,b,c,d,w,txt]=it;L.push({k:'c259',sp,x:a,y:b,w:c-a+1,h:d-b+1,dw:w,som:1,s:0});for(let y=b;y<=d;y++)for(let x=a;x<=c;x++){if(T[y])T[y][x]=I.chaoS;m.ia[x+','+y]=()=>ok(txt)}}}
+m.ybpObj=L;try{if(typeof KLZ==='function'&&KLZ.tudo)KLZ.tudo()}catch(e){}tapetes(m);m.MC=kpaint(m);MC=m.MC}catch(e){console.error('fix278',e)}}
+function tapetes(m){try{if(!m||!LISTAS[m.key]||m._fx278T)return;const T=(m.ybpObj||[]).filter(o=>o.k==='c259'&&o.dh!=null&&!o.som&&o.y>0);if(!T.length)return;
+m.ybpObj=m.ybpObj.filter(o=>T.indexOf(o)<0);m._fx278T=T;const d0=m.deco;
+m.deco=function(){if(d0)d0.apply(this,arguments);try{for(const o of m._fx278T){const im=C255I[o.sp];if(!im||!im.naturalWidth)continue;const W=o.dw,H=o.dh;mg.save();mg.imageSmoothingEnabled=false;mg.drawImage(im,Math.round(o.x*16+(o.w*16-W)/2),Math.round(o.y*16+o.base-H),Math.round(W),Math.round(H));mg.restore()}}catch(e){}}}catch(e){}}
+const _sm=setMap;setMap=function(i,x,y){const r=_sm.apply(this,arguments);try{const m=M[cur];if(m&&LISTAS[m.key]&&m.T){if(!(m.ybpObj||[]).some(o=>o.k==='c259'))aplica(m);else if(!m._fx278T){tapetes(m);if(m._fx278T){m.MC=kpaint(m);MC=m.MC}}}}catch(e){}return r}
+}catch(e){}})();
 
 </script></body></html>
