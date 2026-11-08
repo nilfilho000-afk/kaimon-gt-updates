@@ -2106,7 +2106,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v287 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v288 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -9148,7 +9148,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=287;
+var KGT_VER=288;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -15001,7 +15001,7 @@ w._cnf=1;window[nome]=w}
 function cnfSim(){const p=CNF.pend;CNF.pend=null;if(!p)return closeUI();CNF.livre=Date.now()+4000;try{const r=p.f.apply(p.self,p.a);if(r&&typeof r.finally==='function')r.finally(()=>{CNF.livre=0});else setTimeout(()=>{CNF.livre=0},50);return r}catch(e){CNF.livre=0;throw e}}
 function cnfNao(){const p=CNF.pend;CNF.pend=null;if(p&&p.daLoja&&typeof lojaOpen==='function')return lojaOpen();closeUI()}
 for(const n of['lojaItem','lojaAddon','lojaTanque','lojaMovel','xpbBuy','aboxBuy','pboxBuy','pacoteBuy','psKmc'])cnfEmbrulha(n);
-const ESP_P=100;
+const ESP_P=300;
 function espLista(){return(typeof LCK!=='undefined'?LCK:['zro_dra','zro_boi','zro_iar','zro_ipe']).filter(k=>TAD[k])}
 function espImg(k){try{const a=TAD[k];return tadImg(tadLook(G.look,{[a.slot]:k}),0)}catch(e){return''}}
 function espCards(){const kp=kpGet();return espLista().map(k=>{const a=TAD[k],tem=tadHas(k);
@@ -16942,17 +16942,17 @@ S.d.L[i]=msNova(C[Math.random()*C.length|0]);S.d.tr=(S.d.tr||0)+1;try{save()}cat
 function msBau(){const S=msEstado();if(S.s.bau||!(S.s.L||[]).length||!S.s.L.every(m=>m.col))return;
 open(`<p><b>🧰 Baú Semanal</b></p><p><small>Você fechou as 5 semanais! Escolha o tipo da <b>Pedra Boost</b>:</small></p><div class="kcl">${MS_PEDRAS().map(([t,n])=>`<button class="kcb" onclick="msBauAbre('${t}')"><img src="${typeof tyIco==='function'?tyIco(t):''}" alt="" style="width:40px;height:40px;image-rendering:pixelated"><small>${esc(n)}</small></button>`).join('')}</div>`+btn('Depois','closeUI()'))}
 async function msBauAbre(t){const S=msEstado();if(S.s.bau)return;const ped=(MS_PEDRAS().find(p=>p[0]===t)||[])[1];if(!ped)return;S.s.bau=1;let r=null;try{r=darItem(ped,1)}catch(e){}const txt=msDa([10000,'ultra',5]);
-let vip='';if(!S.u1.vip1){try{const j=await msCall({op:'vip1'});if(j&&j.ok){S.u1.vip1=1;msDaVip(7);vip='<br>👑 <b>VIP de 7 dias</b> (presente do 1º Baú Semanal da conta)!'}else if(j&&j.ja)S.u1.vip1=1}catch(e){}}
+let vip='';if(false){try{const j=await msCall({op:'vip1'});if(j&&j.ok){S.u1.vip1=1;msDaVip(7);vip='<br>👑 <b>VIP de 7 dias</b> (presente do 1º Baú Semanal da conta)!'}else if(j&&j.ja)S.u1.vip1=1}catch(e){}}
 try{save()}catch(e){}try{play('lvl')}catch(e){}ok(`<p><b>🧰 Baú Semanal aberto!</b></p><p>💎 1 ${esc(ped)}${r&&r.dep?' (no depósito)':''}<br>${txt}${vip}</p>`);msHud()}
 function msLoginPode(){const S=msEstado();return msLiberado()&&S.lg.ult!==msDia()}
 async function msLoginPega(){const S=msEstado(),L=S.lg;if(!msLoginPode())return;const pos=L.pos||0;let txt='';L.ult=msDia();
-if(pos===6&&!(L.ciclos>0)&&!S.u1.box1){let deu=false;try{const j=await msCall({op:'box1'});if(j&&j.ok){S.u1.box1=1;deu=true}else if(j&&j.ja)S.u1.box1=1}catch(e){}
+if(false){let deu=false;try{const j=await msCall({op:'box1'});if(j&&j.ok){S.u1.box1=1;deu=true}else if(j&&j.ja)S.u1.box1=1}catch(e){}
 if(deu){let r=null;try{r=darItem(MS_IT.box,1)}catch(e){}try{msNaoNegocia(MS_IT.box)}catch(e){}txt='🎁 1 '+MS_IT.box+' (não negociável)'}else txt=msDa(MS_LOGIN[6])}
 else txt=msDa(MS_LOGIN[pos]);
 L.ult=msDia();L.n=(L.n||0)+1;L.pos=pos+1;if(L.pos>=7){L.pos=0;L.ciclos=(L.ciclos||0)+1}try{save()}catch(e){}try{play('item')}catch(e){}msHud();msLoginTela(txt)}
 function msLoginTela(pegou){const S=msEstado(),L=S.lg,pode=msLoginPode(),pos=L.pos||0;
 const feito=i=>pode?i<pos:(pos===0?true:i<pos),atual=i=>pode&&i===pos;
-const nome=i=>{if(i===6&&!(L.ciclos>0)&&!S.u1.box1)return'Kaimon Addon Box';const[d,it,q]=MS_LOGIN[i];return[d?'💰'+fmtN(d):'',it?q+' '+MS_IT[it]:''].filter(Boolean).join(' + ')};
+const nome=i=>{const[d,it,q]=MS_LOGIN[i];return[d?'💰'+fmtN(d):'',it?q+' '+MS_IT[it]:''].filter(Boolean).join(' + ')};
 const card=i=>`<div class="mslg${atual(i)?' hoje':''}${feito(i)?' feito':''}${i===6?' d7':''}"><b>Dia ${i+1}</b><small>${esc(nome(i))}</small>${feito(i)?'<i>✔</i>':''}</div>`;
 open(`<p><b>📅 Prêmio por login</b> · ciclo ${(L.ciclos||0)+(pos||pode?1:0)||1}</p>${pegou?`<p class="msok">🎁 Você pegou: <b>${pegou}</b></p>`:''}<div class="mslgs">${[0,1,2,3,4,5,6].map(card).join('')}</div>
   <p><small>Entre 1 vez por dia e pegue o prêmio. Perder um dia não zera a sequência, só pausa. Depois do Dia 7 o ciclo recomeça.</small></p>`+(pode?btn('🎁 Pegar o prêmio de hoje','msLoginPega()'):btn('📋 Abrir o Diário','msPainel()'))+btn('Fechar','closeUI()'))}
@@ -16989,7 +16989,7 @@ let h=`<p style="margin:0"><b>📋 Diário do Treinador</b></p><div class="mstab
 if(MSA==='d'){const L=S.d.L||[],maxT=msVip()?2:1;h+=`<p style="margin:2px 0"><small>Novas em <b>${msFalta()}</b> (05:10) · trocas hoje: ${Math.max(0,maxT-(S.d.tr||0))}/${maxT}${msVip()?' · 👑 VIP: 4ª missão':''}</small></p>`+L.map((m,i)=>msLinha(m,i,'d')).join('')+
 `<p style="margin:6px 0 0"><small>⭐ Bônus por completar todas: <b>💰${fmtN(MS_BONUS[0])}</b> + 1 ponto na semanal. ${S.d.bon?'<b style="color:#8affa0">Já ganho hoje!</b>':''}</small></p>`}
 else if(MSA==='s'){const L=S.s.L||[],tudo=L.length&&L.every(m=>m.col);h+=`<p style="margin:2px 0"><small>Novas na segunda às 05:10 (faltam <b>${msFalta(1)}</b>)</small></p>`+L.map((m,i)=>msLinha(m,i,'s')).join('')+
-`<div class="msm${tudo&&!S.s.bau?' ok':''}${S.s.bau?' col':''}"><div class="tx"><b>🧰 Baú Semanal</b><small>Feche as 5 semanais: 1 Pedra Boost do tipo à escolha, 5 Cristais Ultra e 💰10.000${S.u1.vip1?'':' · o 1º Baú da conta dá também 👑 VIP de 7 dias'}.</small></div><div class="bt">${S.s.bau?'<small>✔ Aberto</small>':tudo?btn('🧰 Abrir','msBau()'):'<small>'+L.filter(m=>m.col).length+'/5</small>'}</div></div>`}
+`<div class="msm${tudo&&!S.s.bau?' ok':''}${S.s.bau?' col':''}"><div class="tx"><b>🧰 Baú Semanal</b><small>Feche as 5 semanais: 1 Pedra Boost do tipo à escolha, 5 Cristais Ultra e 💰10.000.</small></div><div class="bt">${S.s.bau?'<small>✔ Aberto</small>':tudo?btn('🧰 Abrir','msBau()'):'<small>'+L.filter(m=>m.col).length+'/5</small>'}</div></div>`}
 else if(MSA==='l'){return msLoginTela()}
 else if(MSA==='c'){h+=typeof cqAba==='function'?cqAba():'<p><small>As conquistas e os títulos chegam na próxima versão.</small></p>'}
 open(h+btn('Fechar','closeUI()'))}
@@ -25198,7 +25198,7 @@ if(Date.now()-(ZE.envT||0)<4000)return toast('Calma! O Zé tá cansado: uma mens
 if(!mpManda({t:'zc',x,zx:p.x,zy:p.y}))return toast('Sem conexão com o servidor agora. Tente de novo em instantes.');ZE.envT=Date.now();el.value='';
 zeJunta({n:'Você',x});try{CHF.set('eu',{x,ate:performance.now()+6000})}catch(e){}zeJunta({v:1,x:'o Zé tá pensando... (ou cochilando)'})}
 {const _zr=mpRecebe;mpRecebe=function(q){
-if(q&&q.t==='ze'){ZE.on=1;const muda=ZE.z!==q.z||ZE.dia!==q.dia;ZE.z=String(q.z||'');ZE.l=q.l|0||1;ZE.dia=String(q.dia||'');if(q.n)ZE.n=String(q.n).slice(0,16);if(q.id)ZE.id=String(q.id);if(muda){ZE.ck='';ZE.aviso=0;try{MP.ps.delete(ZE.id)}catch(e){}}return}
+if(q&&q.t==='ze'){ZE.on=1;const muda=ZE.z!==q.z||ZE.dia!==q.dia;ZE.z=String((typeof NM244==='object'&&NM244[q.z])||q.z||'');ZE.l=q.l|0||1;ZE.dia=String(q.dia||'');if(q.n)ZE.n=String(q.n).slice(0,16);if(q.id)ZE.id=String(q.id);if(muda){ZE.ck='';ZE.aviso=0;try{MP.ps.delete(ZE.id)}catch(e){}}return}
 if(q&&q.t==='zc'){zeJunta({n:String(q.n||'Treinador').slice(0,16),x:String(q.x||'').slice(0,140)});try{CHF.set(q.id,{x:String(q.x||''),ate:performance.now()+6000})}catch(e){}return}
 if(q&&q.t==='zr'){const x=String(q.x||'').slice(0,420);ZE.roda=ZE.roda.filter(r=>!r.v);zeJunta({z:1,x});try{CHF.set(ZE.id,{x,ate:performance.now()+9000})}catch(e){}
 if(!ZE.aberto&&ZE.ult&&Math.abs(P.x-ZE.ult.x)+Math.abs(P.y-ZE.ult.y)<=ZE_RAIO)try{toast('💬 <b>Zé</b>: '+zeEsc(x).slice(0,90))}catch(e){}return}
@@ -27851,5 +27851,60 @@ if(typeof trGo==='function'){const _tg=trGo;trGo=function(){try{const e=TRQ,v=e&
 const _sm=setMap;setMap=function(){const r=_sm.apply(this,arguments);try{premio287(M[cur])}catch(e){}return r};try{premio287(M[cur])}catch(e){}
 }catch(e){}})();
 var PREMIO287OK=1;
+
+
+
+var RC288={ok:0,limpando:0,novo:0};
+(function(){try{
+try{if(!(G.party&&G.party.length)&&!G.nasc)G.nasc=Date.now()}catch(e){}
+const velho=()=>{try{return LAN.t>0&&lanAgora()>=LAN.t&&G&&G.party&&G.party.length>0&&!(+G.nasc>=LAN.t)}catch(e){return false}};
+function limpa(){if(RC288.limpando)return;RC288.limpando=1;
+try{CLOUD.busy=1}catch(e){}
+const sI=Storage.prototype.setItem;
+try{Storage.prototype.setItem=function(k,v){if(this===localStorage&&/^pq2/.test(String(k)))return;return sI.apply(this,arguments)}}catch(e){}
+try{localStorage.removeItem('pq2');sI.call(localStorage,'pq2t',String(Date.now()));if(typeof ACC==='object'&&ACC.act)localStorage.removeItem('pq2:'+ACC.act)}catch(e){}
+try{if(typeof webAcc==='function'&&webAcc()&&webAcc().fb)sI.call(localStorage,'pq2c:'+webAcc().fb.uid,'0')}catch(e){}
+try{sessionStorage.setItem('pqIn',ACC.act)}catch(e){}
+const vai=()=>{try{location.reload()}catch(e){}};
+try{open(`<div class="psh"><span style="font-size:34px">🌱</span><div><b>O Kaimon GT recomeçou!</b><small>Todo mundo começa do zero agora.</small></div></div>
+   <p>🙏 <b>Obrigado por jogar o teste!</b> O seu progresso antigo foi apagado para o recomeço.</p>
+   <p>Se você já tinha conta, assim que entrar de novo vai receber o presente de agradecimento.</p>`+btn('🌱 Começar de novo','location.reload()'))}catch(e){}
+setTimeout(vai,12000)}
+function checa(){try{if(velho())limpa()}catch(e){}}
+RC288.checa=checa;
+{const _lc=lanCarrega;lanCarrega=async function(){const r=await _lc.apply(this,arguments);checa();return r}}
+setTimeout(checa,800);setInterval(checa,30000);
+lanEstado=function(){const a=lanAgora();
+if(evAtivo())return{k:'ev',txt:'🎉 Evento do recomeço · +50% EXP · +10% shiny · '+lanDur(LAN.ev.fim-a)};
+if(LAN.t&&a<LAN.t)return{k:'cd',txt:'⏳ O jogo recomeça em '+lanDur(LAN.t-a)};
+return null};
+const OBG=`<p>🙏 <b>Obrigado a todo mundo que jogou o teste do Kaimon GT!</b> Ainda não deu para colocar o jogo na Play Store. Vamos trabalhar em melhorias para conseguir colocar ainda este ano.</p>`;
+const PRES=`<p>🎁 <b>Presente de quem já tinha conta</b> (1 vez, até o fim do mês do recomeço):<br>🎟️ <b>Passe Kaimon de 30 dias</b> (com VIP)<br>👕 <b>1 roupa de lançamento</b> (você escolhe entre duas)<br>◈ Os <b>Kaimon Coins que você comprou</b> voltam inteiros pelo Banco Kaimon</p>`;
+lanAviso=function(){const a=lanAgora(),st=lanEstado();
+if(st&&st.k==='ev')return open(`<div class="psh"><span style="font-size:34px">🎉</span><div><b>Evento do recomeço!</b><small>Termina em ${lanData(LAN.ev.fim)} (faltam ${lanDur(LAN.ev.fim-a)}).</small></div></div>
+   <p>⚡ <b>+50% de EXP</b> para os monstros e para o treinador.<br>✨ <b>+10% de chance</b> de encontrar monstros shiny.</p>`+btn('🎁 Convidar amigos','cvAbrir()')+btn('Bora jogar!','closeUI()'));
+if(st&&st.k==='cd')return open(`<div class="psh"><span style="font-size:34px">🌱</span><div><b>O jogo recomeça em ${lanDur(LAN.t-a)}</b><small>${lanData(LAN.t)}</small></div></div>`+OBG+
+`<p>No recomeço, o progresso de todo mundo volta para o zero: treinador, monstros, itens, dinheiro, banco e casas.</p>`+PRES+btn('Entendi','closeUI()'));
+return ok('<b>Kaimon GT</b>'+OBG)};
+betaTela=function(){open(`<div class="psh"><span style="font-size:34px">🎁</span><div><b>Obrigado por jogar o teste!</b><small>Um presente para quem já tinha conta.</small></div></div>`+OBG+
+`<p>🎟️ <b>Passe Kaimon de 30 dias</b> (com VIP)<br>👕 <b>1 roupa de lançamento</b>: você escolhe na tela seguinte<br>◈ Se você comprou <b>Kaimon Coins</b>, eles voltaram inteiros pelo Banco Kaimon</p>`+btn('🎁 Pegar presente','betaPega()')+btn('Depois','closeUI()'))};
+betaPega=async function(){try{const j=await soCall('/lanc',{op:'beta'});if(j&&j.erro)throw new Error(j.erro);try{play('lvl')}catch(e){}
+try{if(typeof vipSync==='function')vipSync()}catch(e){}
+try{const b=await bkCall({op:'saldo',nick:G.nick||''});if(b&&b.itens)bkEntregas(b.itens)}catch(e){}
+const ate=j&&j.passeAte?new Date(j.passeAte).toLocaleDateString('pt-BR'):'';
+ok(`<div class="psh"><span style="font-size:34px">🎟️</span><div><b>Passe Kaimon ativo!</b><small>${ate?'Vale até <b>'+ate+'</b>, com VIP.':'Com VIP por 30 dias.'} Agora escolha a sua roupa.</small></div></div>`);
+setTimeout(()=>{try{LCS.mostrou=0;lcSync(true)}catch(e){}},2500)}catch(e){toast(esc(e.message||'Não deu para pegar agora.'))}};
+async function novoPega(){try{const j=await soCall('/lanc',{op:'novo'});if(!j||!j.ok)return;try{if(typeof vipSync==='function')vipSync()}catch(e){}try{play('lvl')}catch(e){}
+ok(`<div class="psh"><span style="font-size:34px">👑</span><div><b>Bem-vindo ao Kaimon GT!</b><small>Presente de boas-vindas: <b>7 dias de VIP</b>${j.ate?' (até '+new Date(j.ate).toLocaleDateString('pt-BR')+')':''}.</small></div></div><p>Com o VIP você pode montar, surfar e voar com os seus monstros e tem uma missão diária a mais.</p>`)}catch(e){}}
+betaSync=async function(){try{if(typeof webAcc!=='function'||!webAcc()||lanBeta()||RC288.limpando)return;if(Date.now()-BETA.t<10*60000)return;
+if(mode!=='walk'||!G.party||!G.party.length||document.querySelector('#ui.on,#ui[style*="block"]'))return;BETA.t=Date.now();
+const j=await soCall('/lanc',{op:'status'});titAplica(j.titulos);
+if(j.beta&&j.beta.elegivel&&j.beta.aberto&&!j.beta.pego&&!BETA.mostrou){BETA.mostrou=1;betaTela();return}
+if(j.novo&&j.novo.elegivel&&!j.novo.pego&&!RC288.novo){RC288.novo=1;novoPega()}}catch(e){}};
+const posRc=()=>{try{return LAN.t>0&&lanAgora()>=LAN.t&&+G.nasc>=LAN.t}catch(e){return false}};
+if(typeof bkEntregas==='function'){const _be=bkEntregas;bkEntregas=function(itens){try{if(Array.isArray(itens)&&!posRc())itens=itens.filter(it=>!(it&&/^rc288/.test(String(it.id||''))))}catch(e){}return _be.call(this,itens)}}
+if(typeof bkCall==='function'){const _bc=bkCall;bkCall=function(o){try{if(o&&o.op==='recebi')o.ns=+G.nasc||0}catch(e){}return _bc.apply(this,arguments)}}
+RC288.ok=1}catch(e){console.error('rc288',e)}})();
+var RC288OK=1;
 
 </script></body></html>
