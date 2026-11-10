@@ -2106,7 +2106,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v293 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v294 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -8073,7 +8073,7 @@ const px=i*CWc+hsh(i,j,4130)*(CWc-40)-ox-cx,py=j*CHc+hsh(i,j,4131)*(CHc-30)-oy-c
 g.globalAlpha=al*fa;g.drawImage(sp[v],px,py,w,hh)}
 g.restore()});
 var RCT=null,RCM={x:-1,y:-1,on:0,t:0};
-function rcCam(){const cw=VW*16,ch=VH*16;let cx=Math.round((P.px*16+8-cw/2)*2)/2,cy=Math.round((P.py*16+8-ch/2-(typeof mnCamOff==='function'?mnCamOff():0))*2)/2;cx=Math.max(0,Math.min(W*16-cw,cx));cy=Math.max(0,Math.min(H*16-ch,cy));return[cx,cy,cw,ch]}
+function rcCam(){const cw=VW*16,ch=VH*16;let cx=Math.round((P.px*16+8-cw/2)*2)/2,cy=Math.round((P.py*16+8-ch/2-(typeof mnCamOff==='function'?mnCamOff():0))*2)/2;if(typeof telaCam==='function')[cx,cy]=telaCam(cx,cy,cw,ch);else{cx=Math.max(0,Math.min(W*16-cw,cx));cy=Math.max(0,Math.min(H*16-ch,cy))}return[cx,cy,cw,ch]}
 function rcWorld(clientX,clientY){const cv=$('cv'),r=cv&&cv.getBoundingClientRect();if(!r||!r.width||!r.height)return null;const[cx,cy,cw,ch]=rcCam();
 const fx=(clientX-r.left)/r.width,fy=(clientY-r.top)/r.height;if(fx<0||fy<0||fx>1||fy>1)return null;return[cx+fx*cw,cy+fy*ch]}
 function rcPick(clientX,clientY){const w=rcWorld(clientX,clientY);if(!w)return null;const[wx,wy]=w;let best=null,bd=1e9;
@@ -9148,7 +9148,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=293;
+var KGT_VER=294;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -25814,7 +25814,7 @@ let adj=0;wild.forEach(e=>{if(e.n!='Cortaúva'&&!mnSafe()&&Math.abs(e.x-P.x)+Mat
 if(t>rg){rg=t+3500;if(!adj&&G.t.hp<tmax()){G.t.hp++;hud()}}
 wild.forEach(e=>{if(t>e.t){e.t=t+700+Math.random()*1500;if(e.n=='Cortaúva')return;const ch=!mnSafe()&&e.lvl>=40&&Math.abs(e.x-P.x)+Math.abs(e.y-P.y)<=(AGR[e.n]?11:7);if(ch)e.t=t+(AGR[e.n]?300:450);const d=ch?(Math.abs(P.x-e.x)>Math.abs(P.y-e.y)?(P.x>e.x?1:3):(P.y>e.y?2:0)):Math.random()*4|0,nx=e.x+DX[d],ny=e.y+DY[d];e.d=d;if(nx>=0&&ny>=0&&nx<W&&ny<H&&OK.has(T[ny][nx])&&(ch||Math.abs(nx-e.hx)<=e.r&&Math.abs(ny-e.hy)<=e.r)&&free(nx,ny)){e.d=d;e.fx=e.px;e.fy=e.py;e.mt=t;e.mdur=ch?(AGR[e.n]?280:380):560;e.x=nx;e.y=ny}}})}
 const pr=t<P.end?1-(P.end-t)/tdur():1;P.px=P.fx+(P.x-P.fx)*pr;P.py=P.fy+(P.y-P.fy)*pr;[FWo,...ents()].forEach(e=>{if(e.mt!=null){const p0=Math.min(1,(t-e.mt)/(e.mdur||560)),p2=e!==FWo&&(e.mdur||560)>=500?p0*p0*(3-2*p0):p0;e.px=e.fx+(e.x-e.fx)*p2;e.py=e.fy+(e.y-e.fy)*p2}else{e.px+=(e.x-e.px)*k;e.py+=(e.y-e.py)*k}});
-const cw=VW*16,ch=VH*16;g.setTransform(2,0,0,2,0,0);g.imageSmoothingEnabled=false;let cx=Math.round((P.px*16+8-cw/2)*2)/2,cy=Math.round((P.py*16+8-ch/2-(typeof mnCamOff==='function'?mnCamOff():0))*2)/2;cx=Math.max(0,Math.min(W*16-cw,cx));cy=Math.max(0,Math.min(H*16-ch,cy));
+const cw=VW*16,ch=VH*16;g.setTransform(2,0,0,2,0,0);g.imageSmoothingEnabled=false;let cx=Math.round((P.px*16+8-cw/2)*2)/2,cy=Math.round((P.py*16+8-ch/2-(typeof mnCamOff==='function'?mnCamOff():0))*2)/2;if(typeof telaCam==='function')[cx,cy]=telaCam(cx,cy,cw,ch);else{cx=Math.max(0,Math.min(W*16-cw,cx));cy=Math.max(0,Math.min(H*16-ch,cy))}
 kBlit(cx,cy,cw,ch,0);
 LG.length=WG.length=0;for(let ty=cy>>4;ty<=(cy+ch>>4);ty++)for(let tx=cx>>4;tx<=(cx+cw>>4);tx++)if(T[ty]&&T[ty][tx]==2){g.fillStyle='#ffffff66';g.fillRect(tx*16-cx+((t/90+ty*5+tx*3)%11|0),ty*16-cy+3+(tx*5+ty*3)%9,3,1)}else if(T[ty]&&T[ty][tx]==1){grassFx(tx,ty,cx,cy,t)}else if(T[ty]&&T[ty][tx]==41){const fl=Math.sin(t/90+tx)*1.2;g.fillStyle='#ffb02e';g.fillRect(tx*16-cx+6,ty*16-cy+2+fl,4,5);g.fillStyle='#fff2a0';g.fillRect(tx*16-cx+7,ty*16-cy+4+fl,2,3);TL.push([tx*16-cx+8,ty*16-cy+5])}else if(T[ty]&&T[ty][tx]==50){if(!((tx+ty)&1))LG.push([tx*16-cx+8,ty*16-cy+8]);g.fillStyle='#ffd34d88';g.fillRect(tx*16-cx+((t/70+tx*3)%11|0),ty*16-cy+((t/110+ty*5)%12|0),3,1)}else if(T[ty]&&T[ty][tx])try{scen(T[ty][tx],tx,ty,cx,cy,t)}catch(x){}
 hdraw(cx,cy);sunShadows(cx,cy);for(const f of RH0)f(cx,cy,t,dt);const VIS=e=>e===P||(e.px*16>cx-48&&e.px*16<cx+cw+32&&e.py*16>cy-32&&e.py*16<cy+ch+48),EL=[P,...ents(),...fw()].filter(VIS).sort((a,b)=>a.py-b.py);entShadows(EL,cx,cy,t);EL.forEach((e,i)=>{try{if(e===P&&G.mt&&mnDraw(cx,cy,t))return;const q=entImg(e,t,cx,cy);g.save();g.translate(q.X,q.Y+(q.mv?(q.H?Math.sin(q.sp*Math.PI)*.5:-Math.abs(Math.sin(q.sp*Math.PI*2))*.55):0));g.scale(q.dd==1?-1:1,q.mv?1:1+Math.sin(t/480+i)*.03);if(q.cust)q.cust(g);else if(q.im.pxm)g.drawImage(q.im,-16,-31,32,32);else if(q.im.height>40)g.drawImage(q.im,-8,-24,16,24);else blit(q.im,-8,-16,0);g.restore();grassOver(e,q,t)}catch(x){}});kBlit(cx,cy,cw,ch,1);for(const f of RH2)f(cx,cy,t,dt);
@@ -26271,7 +26271,7 @@ R.solid(15,2,17,2,null,t('O cofre do banco. A porta é tão grossa que precisa d
 R.solid(15,3,15,3,null,t('Barras de ouro empilhadas. Não pode tocar!'));R.add(3.5,()=>c255D(R,'ouro',15*16,4*16-1,16));
 R.solid(17,3,17,3,null,t('Sacos de dinheiro prontos para o cofre.'));R.add(3.5,()=>c255D(R,'sacos',17*16-3,4*16-1,20));
 R.add(3.4,()=>c255D(R,'moedas',16*16+3,3*16+4,10));
-R.solid(4,4,14,4,null,fn);R.add(4.5,()=>{c255Sombra(R,4*16,5*16,176);c255D(R,'balcaoB',4*16,5*16,176,36)});
+R.solid(4,4,14,4,null,fn);R.add(4.5,()=>{c255Sombra(R,4*16,5*16,176);c255D(R,'balcaoB',4*16,5*16,176,36)},4*16+3);
 R.solid(5,6,5,6,null,t('Cordão da fila: por favor, aguarde a sua vez.'));R.solid(13,6,13,6,null,t('Cordão da fila: por favor, aguarde a sua vez.'));
 R.add(6.5,()=>{c255D(R,'corda',5*16-3,7*16-1,22);c255D(R,'corda',13*16-3,7*16-1,22)});
 R.solid(2,7,3,7,null,t('Banco de espera. Dá para descansar enquanto a fila anda.'));R.solid(15,7,16,7,null,t('Banco de espera. Dá para descansar enquanto a fila anda.'));
@@ -26285,11 +26285,11 @@ fila(6,7,'estL',32,'Livros, mapas e uma poçãozinha esquecida na prateleira.');
 fila(8,13,'estG',96,'Frascos coloridos: tônicos, xaropes e essências.');
 R.solid(14,2,14,2,null,t('O relógio de pêndulo marca '+'a hora certinha.'));R.add(.4,()=>c255D(R,'relogioP',14*16,47,16,44));
 R.add(.2,()=>{c255D(R,'quadroS1',15.2*16,22,24);c255D(R,'quadroS2',16.9*16,22,18)});
-const a=nx-2,b=nx+2;R.solid(a,4,b,4,null,fn);R.add(4.5,()=>{c255Sombra(R,a*16,5*16,80);c255D(R,'balcaoS',a*16,5*16,80,26)});
+const a=nx-2,b=nx+2;R.solid(a,4,b,4,null,fn);R.add(4.5,()=>{c255Sombra(R,a*16,5*16,80);c255D(R,'balcaoS',a*16,5*16,80,26)},4*16+3);
 R.add(1.5,()=>c255D(R,'tapeteS',7*16+2,9*16-2,80-4,46));
 const ox=P2.mir?3:12;
 R.solid(ox,8,ox+1,8,null,t('Barris de frutas fresquinhas. Cheiro de feira!'));R.add(8.5,()=>{c255D(R,'barrilF',ox*16,9*16-1,16);c255D(R,'barrilA',(ox+1)*16,9*16-1,16)});
-const mx=P2.mir?4:14;R.solid(mx-1,6,mx+1,6,null,t('Uma mesinha com chá e biscoito para os clientes.'));
+const mx=P2.mir?4:14;R.solid(mx,6,mx,6,null,t('Uma mesinha com chá e biscoito para os clientes.'));for(const bx of[mx-1,mx+1])R.solid(bx,6,bx,6,null,()=>{try{senta277(bx,6)}catch(e){}});
 R.add(6.5,()=>{c255D(R,'banq1',(mx-1)*16+1.5,7*16-1,13);c255D(R,'mesa',mx*16,7*16-1,16);c255D(R,'banq2',(mx+1)*16+1.5,7*16-1,13)});
 return R.done()}
 function c255Bento(ck){const th=CST[ck].col,R=csRoom(th),t=a=>()=>ok(a),fn=()=>csBuyOpen(ck);
@@ -29491,5 +29491,24 @@ window.ofAjuda=function(){ok(`<b>🛠️ Como funcionam as Profissões</b>
 <p><b>4. Mercador:</b> ganha EXP vendendo e pode avaliar anúncios na Feira.</p>
 <p><b>5. Subir de nível</b> dá ferramentas melhores e bônus. O nível não tem fim (♾️): os benefícios param no Nv 50, depois é ranking (com títulos do mês).</p>
 <p><small>Peças raras caem com 1%, 0,3% e 0,1%. O Fornecedor da Feira de Pindorama vende todo material, mais caro. Tudo fica na mochila, aba 🛠️ Profissão.</small></p>`)};
+
+
+
+var TELA294={vx:1,vy:1,t:0};
+function telaVis(){const n=performance.now();if(n-TELA294.t<400)return TELA294;TELA294.t=n;
+try{const cv=document.getElementById('cv'),r=cv&&cv.getBoundingClientRect();if(r&&r.width>0&&r.height>0){TELA294.vx=Math.min(1,innerWidth/r.width);TELA294.vy=Math.min(1,innerHeight/r.height)}}catch(e){}return TELA294}
+function telaCam(cx,cy,cw,ch){const v=telaVis(),vw=cw*v.vx,vh=ch*v.vy,ox=(cw-vw)/2,oy=(ch-vh)/2,MW=W*16,MH=H*16;
+cx=MW<=vw+1?Math.max(0,Math.min(MW-cw,cx)):Math.max(-ox,Math.min(MW-vw-ox,cx));
+cy=MH<=vh+1?Math.max(0,Math.min(MH-ch,cy)):Math.max(-oy,Math.min(MH-vh-oy,cy));
+return[Math.round(cx*2)/2,Math.round(cy*2)/2]}
+
+
+
+(function(){try{const u=document.getElementById('ui');if(!u||!window.MutationObserver)return;
+new MutationObserver(()=>{try{const b=u.querySelector('[data-senta]');if(!b||b.dataset.auto)return;if(!SENTA277.t||Date.now()-SENTA277.t>1500)return;
+b.dataset.auto='1';u.style.visibility='hidden';setTimeout(()=>{try{b.click()}catch(e){}u.style.visibility=''},0)}catch(e){}}).observe(u,{childList:true,subtree:true})}catch(e){}})();
+RH2.unshift(function(cx,cy,t){try{if(!P.sit||P.sit.m!==cur||G.mt)return;const q=entImg(P,t,cx,cy);if(!q||!q.im)return;g.save();g.translate(q.X,q.Y);g.scale(q.dd==1?-1:1,1);
+if(q.cust)q.cust(g);else if(q.im.pxm)g.drawImage(q.im,-16,-31,32,32);else if(q.im.height>40)g.drawImage(q.im,-8,-24,16,24);else blit(q.im,-8,-16,0);g.restore()}catch(e){}});
+var SENTA294OK=1;
 
 </script></body></html>
