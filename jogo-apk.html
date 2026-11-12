@@ -2106,7 +2106,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v304 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v305 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -9148,7 +9148,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=304;
+var KGT_VER=305;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -29972,6 +29972,24 @@ const al=Math.min(1,a*8,(1-a)*4)*.16,C=['#ff3a3a','#ff9a2a','#ffe23a','#4ad25a',
 g.save();g.globalAlpha=al;g.lineWidth=2.4;for(let i=0;i<C.length;i++){g.strokeStyle=C[i];g.beginPath();g.arc(X,Y,R-i*2.4,Math.PI*1.08,Math.PI*1.92);g.stroke()}g.restore()}
 if(typeof wxDraw==='function'){const _wd=wxDraw;wxDraw=function(t,cw,ch){const r=_wd.apply(this,arguments);try{if(fora()){vagaLumes(cw,ch,t);estrela(cw,ch,t);arcoIris(cw,ch,t)}}catch(e){}return r}}
 window.AMB304={GOTAS,FOL,PEG,VAG,BAF};
+})();
+
+
+
+(function(){
+if(typeof ofMaeMenu!=='function')return;
+window.ofMaeExplica=function(){const o=ofSt();o.maeExp=1;try{save()}catch(e){}
+open(`<div class="psh"><span style="font-size:34px">👩</span><div><b>Mamãe</b><small>"Senta aqui que eu te explico como funciona uma profissão."</small></div></div>
+<p>💼 <b>Você escolhe uma profissão</b> comigo. É uma por vez. Se cansar, volta aqui e troca, mas a antiga cai para o Nv 10.</p>
+<p>🎣 <b>Coleta</b>: Pescador, Lenhador, Mineiro e Herborista. Pega a ferramenta, fica de frente para a água, a árvore, a pedra ou a moita e aperta a <b>espada</b>. Quem chega primeiro leva, e depois de um tempo nasce de novo.</p>
+<p>🔨 <b>Produção</b>: Ferreiro, Marceneiro, Cozinheiro e Joalheiro. Você trabalha numa oficina da cidade usando o que os coletores juntam. Uma profissão faz a ferramenta da outra, então vale negociar com os outros treinadores no Balcão de Encomendas da Feira.</p>
+<p>⚖️ <b>Mercador</b>: ganha experiência vendendo e avaliando anúncios na Feira.</p>
+<p>📈 <b>Cada trabalho dá EXP na profissão.</b> Subindo de nível vêm ferramentas melhores e bônus até o Nv 50. Depois disso o nível continua sem fim, valendo para o ranking do mês.</p>
+<p>🎁 Quando escolher, eu te passo uma <b>missão</b>: arrumar a primeira ferramenta, fazer uns trabalhos e voltar aqui. Tem presente!</p>
+<p><small>Tudo o que você junta e faz fica na mochila, na aba 🛠️ Profissão.</small></p>`+btn('👍 Entendi, quero escolher','ofMaeMenu()')+btn('Fechar','closeUI()'))};
+const _m=ofMaeMenu;ofMaeMenu=function(){const l=(G.t&&G.t.l)|0,o=ofSt();if(l>=10&&!o.maeExp&&!o.prof)return ofMaeExplica();
+const r=_m.apply(this,arguments);try{const u=document.getElementById('ui');if(u&&l>=10&&!u.querySelector('.maeexp')){const b=[...u.querySelectorAll('button')].find(x=>/Curar o time/.test(x.textContent));
+const h=`<button class="maeexp" onclick="ofMaeExplica()">❓ Como funciona</button>`;if(b)b.insertAdjacentHTML('beforebegin',h);else u.insertAdjacentHTML('beforeend',h)}}catch(e){}return r};
 })();
 
 </script></body></html>
