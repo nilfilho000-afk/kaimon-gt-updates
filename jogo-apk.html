@@ -2106,7 +2106,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v307 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v308 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -9148,7 +9148,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=307;
+var KGT_VER=308;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -9311,7 +9311,7 @@ for(let i=0;i*7<W;i++){const c=['#9a948c','#8a847c','#aaa49c','#7e786f'][(i+B.se
 for(let i=0;i<B.w*2;i++){const gx=hsh(i,B.seed,7502)*(W-4)|0;P('#4a8a3a',gx,27,1,3);P('#5aa04a',gx+1,26,1,4);P('#3a7a2e',gx+2,28,1,2)}
 const awn=B.kind==='loja'?['#c8463c','#efe2c4','#4a6aa8']:B.kind==='col'?['#3a8a4a','#efe2c4','#c8a03a']:null;
 for(let i=B.x0;i<=B.x1;i++){const id=T[B.y1][i],ox=(i-B.x0)*32;const Q=(c,a,b,w,h)=>P(c,ox+a,b,w,h);
-if(id===6&&i>B.x0&&i<B.x1){if(banco){Q('#c8a03a',2,3,28,1);Q('#e8c86a',8,8,16,12);Q('#b08a2a',9,9,14,10);Q('#e8c86a',12,11,8,6);Q('#fff0b0',13,12,2,2)}else{Q('#5a3820',14,0,4,26);Q('#8a5a36',14,0,1,26);for(let k=0;k<9;k++)Q('#5a3820',3+k*1.2,22-k*2.2,3,2)}}
+if(id===6&&i>B.x0&&i<B.x1){if(banco){Q('#c8a03a',2,3,28,1);Q('#e8c86a',8,8,16,12);Q('#b08a2a',9,9,14,10);Q('#e8c86a',12,11,8,6);Q('#fff0b0',13,12,2,2)}else{Q('#5a3820',14,0,4,26);Q('#8a5a36',14,0,1,26);/*v308: sem a escora diagonal solta na fachada*/}}
 if(id===11){Q('#3a2412',5,4,22,17);Q('#6a4428',6,5,20,15);Q('#2e4a68',8,7,16,11);Q('#22385a',8,13,16,5);Q('#8ab4d4',9,8,3,1);Q('#8ab4d4',9,9,1,3);Q('#6a4428',15,7,2,11);Q('#6a4428',8,12,16,1);
 if(banco){for(let k=9;k<24;k+=3)Q('#2a2a30',k,7,1,11);Q('#2a2a30',8,9,16,1);Q('#2a2a30',8,15,16,1)}
 else if(awn&&((i-B.x0)&1)){for(let k=0;k<8;k++){const c=awn[k%3];Q(c,2+k*3.5,0,4,7);Q(mvMix(c,'#000000',.25),2+k*3.5,6,4,1)}}
@@ -30064,6 +30064,28 @@ RH2.push(function(cx,cy,t){if(cur!==IDXM)return;const X=2*16+5-cx,Y=2*16+16-cy;
 for(let k=0;k<4;k++){const a=((t/1400+k/4)%1),x=X+Math.sin(t/500+k*2)*1.6*a,y=Y-a*14;g.fillStyle='rgba(255,255,255,'+(.45*(1-a))+')';g.beginPath();g.arc(x,y,1+a*2.4,0,6.3);g.fill()}});
 if(typeof entImg==='function'){const _ei=entImg;entImg=function(e,t,cx,cy){const q=_ei.apply(this,arguments);try{if(q&&e&&e.cozinha&&cur===IDXM&&e.d===0){q.X+=Math.round(Math.sin(t/260))*.5}}catch(x){}return q}}
 window.CASAMAE307=IDXM;
+})();
+
+
+
+(function(){
+if(typeof sunShadows!=='function'||typeof cb71Map!=='function'||typeof cb71Canvas!=='function')return;
+const MK=new WeakMap();
+function masc(c){let m=MK.get(c);if(m)return m;m=document.createElement('canvas');m.width=c.width;m.height=c.height;const x=m.getContext('2d');x.drawImage(c,0,0);x.globalCompositeOperation='source-in';x.fillStyle='#000';x.fillRect(0,0,m.width,m.height);MK.set(c,m);return m}
+let BUF=null;
+const _ss=sunShadows;
+sunShadows=function(cx,cy){const s=typeof sunP==='function'?sunP():null;if(!s||s.a<.01)return _ss.apply(this,arguments);
+let vis=[];try{if(!M[cur].in)vis=cb71Map().list.filter(B=>(B.x1+1)*16-cx>-140&&B.x0*16-cx<VW*16+140&&(B.y1+1)*16-cy>-20&&B.y0*16-cy<VH*16+60)}catch(e){vis=[]}
+const sv=[];for(const B of vis)for(let y=B.y0;y<=B.y1;y++){const r=T[y];if(!r)continue;for(let x=B.x0;x<=B.x1;x++){sv.push(r,x,r[x]);r[x]=0}}
+try{_ss.apply(this,arguments)}finally{for(let i=0;i<sv.length;i+=3)sv[i][sv[i+1]]=sv[i+2]}
+if(vis.length)try{desenha(vis,cx,cy,s)}catch(e){}};
+function desenha(L,cx,cy,s){const cv=g.canvas;if(!BUF||BUF.width!==cv.width||BUF.height!==cv.height){BUF=document.createElement('canvas');BUF.width=cv.width;BUF.height=cv.height}
+const b=BUF.getContext('2d');b.setTransform(1,0,0,1,0,0);b.clearRect(0,0,BUF.width,BUF.height);b.setTransform(g.getTransform());b.imageSmoothingEnabled=false;
+const st=Math.min(1.7,.7+Math.abs(s.sx)*.7)*(.85+.15*s.L),ax=Math.max(-.85,Math.min(.85,s.sx*st*.8)),ay=Math.min(.75,Math.max(.26,s.sy*.48*st+.14));
+for(const B of L){const c=cb71Canvas(B);if(!c)continue;const X=B.x0*16-cx,w=c.width/2,h=c.height/2,yb=(B.y1+1)*16-cy-1,yt=yb+1-h;
+b.save();b.translate(X,yb);b.transform(1,0,-ax,-ay,0,0);b.translate(-X,-yb);b.drawImage(masc(c),X,yt,w,h);b.restore()}
+b.setTransform(1,0,0,1,0,0);b.globalCompositeOperation='source-in';b.fillStyle='rgb(18,26,48)';b.fillRect(0,0,BUF.width,BUF.height);b.globalCompositeOperation='source-over';
+g.save();g.setTransform(1,0,0,1,0,0);g.globalAlpha=Math.min(.5,s.a);g.drawImage(BUF,0,0);g.restore()}
 })();
 
 </script></body></html>
