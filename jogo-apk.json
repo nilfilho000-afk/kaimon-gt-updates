@@ -1,7 +1,7 @@
 {
- "v": 295,
+ "v": 296,
  "url": "https://raw.githubusercontent.com/nilfilho000-afk/kaimon-gt-updates/main/jogo-apk.html",
- "notas": "Produzir com a mochila cheia não gasta material; tarefas de pesca e coleta do clã só contam com EXP",
- "sha": "b7caf8b842859156c57ec258a88875f3136803200aa9f7e673e95760aa8d93a3",
- "sig": "NsgBfDH+VF7kso/SfqhKVIE7ynM/a+gJhHBBgwGY4JkLVo8IRhE8ekL1alr8aN4Sd/Qj67yD1N9gCf4qkfZ5Jg=="
+ "notas": "Kaimon com chapéu não troca mais de aparência ao andar; chapéu de costas no tamanho certo; montaria com o mesmo desenho do mapa",
+ "sha": "d968aab009793ec907355a51ac5f69f6465ed8518e17d5049b8e186a47bf0346",
+ "sig": "37RKUnEqDXhV1xLiU4oENNtoLTcN+Vs/o4CD4SUT6lO+5IaKWduSHCMLJdanAmahivEg7m+R5+4UMjR6vZZeAA=="
 }

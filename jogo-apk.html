@@ -2106,7 +2106,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v295 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v296 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -9148,7 +9148,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=295;
+var KGT_VER=296;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -29518,5 +29518,50 @@ b.dataset.auto='1';u.style.visibility='hidden';setTimeout(()=>{try{b.click()}cat
 RH2.unshift(function(cx,cy,t){try{if(!P.sit||P.sit.m!==cur||G.mt)return;const q=entImg(P,t,cx,cy);if(!q||!q.im)return;g.save();g.translate(q.X,q.Y);g.scale(q.dd==1?-1:1,1);
 if(q.cust)q.cust(g);else if(q.im.pxm)g.drawImage(q.im,-16,-31,32,32);else if(q.im.height>40)g.drawImage(q.im,-8,-24,16,24);else blit(q.im,-8,-16,0);g.restore()}catch(e){}});
 var SENTA294OK=1;
+
+
+
+(function(){
+if(typeof ARTE!=='object'||!ARTE.has)return;
+if(typeof fesCabeca==='function'){const _fc=fesCabeca,CO={};fesCabeca=function(n,v,f){
+if((v|0)===2){const k=n+'|'+(f&3);if(CO[k])return CO[k];const F=fesCabeca(n,0,f);
+return CO[k]=Object.assign({},F,{cx:32-F.cx,at:y=>{const q=F.at(y);return[32-q[1],32-q[0]]},er:t=>(F.er?F.er(t):[]).map(r=>[32-r[0]-r[2],r[1],r[2],r[3]])})}
+if(!ARTE.has[n])return _fc.apply(this,arguments);
+const b0=ARTE.base,r0=ARTE.ride;ARTE.base=1;ARTE.ride=0;try{return _fc.apply(this,arguments)}finally{ARTE.base=b0;ARTE.ride=r0}};
+try{if(typeof FESH==='object')for(const k in FESH)if(ARTE.has[k.split('|')[0]])delete FESH[k]}catch(e){}}
+if(typeof mvTR==='function'){const _tr=mvTR;mvTR=function(n){if(!ARTE.has[n]||typeof MVAD==='undefined')return _tr.apply(this,arguments);
+const a=MVAD;MVAD=null;try{return _tr.apply(this,arguments)}finally{MVAD=a}};
+try{for(const n in ARTE.has)delete TR[n]}catch(e){}}
+try{const lim=(o,tudo)=>{try{for(const k in o){if(tudo){delete o[k];continue}for(const n in ARTE.has)if(k.indexOf(n)===0){delete o[k];break}}}catch(e){}};
+for(const nm of['PXS','PXM','SVH','SV'])try{lim((0,eval)(nm))}catch(e){}
+for(const nm of['PXSA','PXMA','SVHA'])try{lim((0,eval)(nm),1)}catch(e){}
+try{MNC.clear()}catch(e){}try{for(const n in ARTE.has)delete MNZ[n]}catch(e){}try{if(typeof MADB==='object')for(const k in MADB)if(ARTE.has[k.split('|')[0]])delete MADB[k]}catch(e){}}catch(e){}
+})();
+
+
+
+(function(){
+if(typeof mnRender!=='function'||typeof mvPix!=='function')return;
+const _mr=mnRender,C=new Map(),own=(o,k)=>Object.prototype.hasOwnProperty.call(o,k);
+function pode(n){try{return !!(CF[n]&&CF[n].p==='mon'&&MVD[n]&&!(typeof SPRG==='object'&&SPRG.n&&SPRG.n.has(n)))}catch(e){return false}}
+function addonDe(n){try{const t=G.mt;if(!t||typeof adKey!=='function')return null;let m=t.m||null;
+if(!m&&!(typeof MPMK!=='undefined'&&MPMK)&&typeof mnMonstro==='function')m=mnMonstro();return m&&m.n===n?adKey(m):null}catch(e){return null}}
+function arte(n,v,f,sh,ad,R){const s=ad?{sh:!!sh,ad}:!!sh;
+if(!(typeof ARTE==='object'&&ARTE.has&&ARTE.has[n]))return mvPix(n,v,f,s,R);
+const pk=n+v+'_'+f+(sh?'s':'')+'@'+R,ak=pk+'|'+ad,temA=!!ad&&typeof PXSA==='object';
+const hS=own(PXS,pk),sS=PXS[pk];delete PXS[pk];let hA=false,sA;if(temA){hA=own(PXSA,ak);sA=PXSA[ak];delete PXSA[ak]}
+const r0=ARTE.ride;ARTE.ride=1;
+try{return mvPix(n,v,f,s,R)}
+finally{ARTE.ride=r0;if(hS)PXS[pk]=sS;else delete PXS[pk];if(temA){if(hA)PXSA[ak]=sA;else delete PXSA[ak]}}}
+mnRender=function(n,v,f,sh,Z){
+if(!pode(n))return _mr.apply(this,arguments);
+const ad=addonDe(n),key=n+'|'+v+'|'+(f|0)+'|'+(sh?1:0)+'|'+Z+'|'+(ad||'');let o=C.get(key);if(o)return o;
+const b=_mr.apply(this,arguments);if(!b||!b.c)return b;
+let a=null;try{a=arte(n,v|0,(f|0)&3,sh,ad,b.S)}catch(e){}
+if(!a)return b;
+try{const S=b.S,c=document.createElement('canvas');c.width=c.height=S;const x=c.getContext('2d');x.imageSmoothingEnabled=false;x.drawImage(a,0,0,a.width,a.height,0,0,S,S);
+if(C.size>240)C.clear();o=Object.assign({},b,{c,_px:1});C.set(key,o);return o}catch(e){return b}};
+window.mnPixLimpa=function(){C.clear()};
+})();
 
 </script></body></html>
