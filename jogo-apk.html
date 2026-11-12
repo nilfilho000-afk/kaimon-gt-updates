@@ -2106,7 +2106,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v296 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v297 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -9148,7 +9148,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=296;
+var KGT_VER=297;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -29562,6 +29562,75 @@ if(!a)return b;
 try{const S=b.S,c=document.createElement('canvas');c.width=c.height=S;const x=c.getContext('2d');x.imageSmoothingEnabled=false;x.drawImage(a,0,0,a.width,a.height,0,0,S,S);
 if(C.size>240)C.clear();o=Object.assign({},b,{c,_px:1});C.set(key,o);return o}catch(e){return b}};
 window.mnPixLimpa=function(){C.clear()};
+})();
+
+
+
+(function(){
+if(typeof ofDesNo0!=='function')return;
+const W=26,H=26,BASE=23,C={};
+function hx(c){return[1,3,5].map(i=>parseInt(c.slice(i,i+2),16))}
+function mix(a,b,t){const p=hx(a),q=hx(b);return'#'+p.map((v,i)=>Math.round(v+(q[i]-v)*t).toString(16).padStart(2,'0')).join('')}
+function rnd(s){let x=s|0;return()=>{x=(x*1103515245+12345)&0x7fffffff;return x/0x7fffffff}}
+function papel(){const P=new Array(W*H).fill(null);
+const ps=(x,y,c)=>{x=Math.round(x);y=Math.round(y);if(x>=0&&y>=0&&x<W&&y<H)P[y*W+x]=c};
+const get=(x,y)=>x>=0&&y>=0&&x<W&&y<H?P[y*W+x]:null;
+const linha=(x0,y0,x1,y1,c)=>{const n=Math.max(Math.abs(x1-x0),Math.abs(y1-y0),1);for(let i=0;i<=n;i++)ps(x0+(x1-x0)*i/n,y0+(y1-y0)*i/n,c)};
+const bola=(cx,cy,rx,ry,tons,seed)=>{const r=rnd(seed);for(let y=Math.floor(cy-ry);y<=cy+ry;y++)for(let x=Math.floor(cx-rx);x<=cx+rx;x++){const dx=(x-cx)/rx,dy=(y-cy)/ry,d=dx*dx+dy*dy;if(d>1)continue;
+const l=-dx*.55-dy*.8,q=r();let c=l>.55?tons[3]:l>.05?tons[2]:l>-.5?tons[1]:tons[0];if(q<.12)c=tons[Math.max(0,tons.indexOf(c)-1)];else if(q>.92&&l>-.2)c=tons[Math.min(3,tons.indexOf(c)+1)];ps(x,y,c)}};
+const contorno=(cor)=>{const o=[];for(let y=0;y<H;y++)for(let x=0;x<W;x++){if(P[y*W+x])continue;let viz=null;for(const[a,b]of[[1,0],[-1,0],[0,1],[0,-1]]){const v=get(x+a,y+b);if(v){viz=v;break}}if(viz)o.push([x,y,mix(viz,cor,.72)])}for(const[x,y,c]of o)P[y*W+x]=c};
+return{P,ps,get,linha,bola,contorno}}
+function tela(P){const c=document.createElement('canvas');c.width=W;c.height=H;const x=c.getContext('2d');const im=x.createImageData(W,H);
+for(let i=0;i<P.length;i++){const v=P[i];if(!v)continue;const[r,g,b]=hx(v);im.data[i*4]=r;im.data[i*4+1]=g;im.data[i*4+2]=b;im.data[i*4+3]=255}x.putImageData(im,0,0);return c}
+const VERDE=['#24461c','#3b6e2a','#5c9a38','#8cc650'],ESCURO='#0e1a0a';
+function capim(q){const K=papel(),T=['#3e7424','#5e9e32','#8cc846','#cfeb86'];
+const fol=[[-.8,12,0],[.78,12,0],[-.58,15,0],[.6,15,0],[-.36,18,1],[.4,17,1],[-.12,20,1],[.16,19,1],[-.24,16,2],[.28,15,2],[-.48,13,2],[.5,13,2],[.02,14,2]];
+const desenha=([a,L,cam],i)=>{const x0=13+a*3,y0=BASE-2;let ux=-9,uy=-9;
+for(let k=0;k<=40;k++){const t=k/40,cai=Math.abs(a)*Math.abs(a)*L*.75*t*t*t,x=x0+Math.sin(a)*L*t*(1+.15*t),y=y0-Math.cos(a)*L*t+cai,X=Math.round(x),Y=Math.round(y);if(X===ux&&Y===uy)continue;ux=X;uy=Y;
+const c=cam===0?(t>.75?T[1]:T[0]):cam===2?(t>.8?T[3]:t>.35?T[2]:T[1]):(t>.85?T[3]:t>.45?T[2]:T[1]);K.ps(X,Y,c)}};
+fol.forEach((f,i)=>{if(f[2]===0)desenha(f,i)});fol.forEach((f,i)=>{if(f[2]===1)desenha(f,i)});fol.forEach((f,i)=>{if(f[2]===2&&i<13-q*2)desenha(f,i)});
+for(let x=11;x<=15;x++){K.ps(x,BASE-1,x%2?'#b0b462':'#c8cc7c');K.ps(x,BASE-2,x%2?'#cdd08a':'#e4e6aa')}K.ps(12,BASE-3,'#d8dc96');K.ps(14,BASE-3,'#c4cc7a');K.ps(13,BASE-3,'#eef0c0');
+K.contorno(ESCURO);return K.P}
+function urucum(q){const K=papel();
+K.linha(13,BASE,13,BASE-5,'#5a3a22');K.ps(12,BASE,'#4a2e1a');
+K.bola(13,13,9,7.5,VERDE,11);K.bola(7.5,15.5,4.5,4,VERDE,12);K.bola(18.5,15.5,4.5,4,VERDE,13);
+const vagens=[[9,8],[17,9],[13,5],[6,13],[20,14]].slice(0,5-q*2);
+for(const[x,y]of vagens){const V=['#7a1410','#b8221a','#e8402a','#ff8a64'];
+K.ps(x,y-1,V[2]);K.ps(x+1,y-1,V[2]);K.ps(x-1,y,V[1]);K.ps(x,y,V[2]);K.ps(x+1,y,V[2]);K.ps(x+2,y,V[1]);K.ps(x-1,y+1,V[1]);K.ps(x,y+1,V[1]);K.ps(x+1,y+1,V[1]);K.ps(x+2,y+1,V[0]);K.ps(x,y+2,V[0]);K.ps(x+1,y+2,V[0]);
+K.ps(x,y-1,V[3]);K.ps(x-2,y,'#ff9a7a');K.ps(x+3,y+1,'#d8604a');K.ps(x+1,y-2,'#ff9a7a');K.ps(x+1,y+3,'#c84a3a')}
+K.contorno(ESCURO);return K.P}
+function guarana(q){const K=papel(),T=['#1e4020','#2f6230','#4a8a3e','#74b456'];
+K.linha(12,BASE,10,BASE-8,'#4a3020');K.linha(14,BASE,17,BASE-9,'#4a3020');K.linha(13,BASE,13,BASE-4,'#5a3a26');
+K.bola(12.5,12,9.5,7,T,21);K.bola(6,16,4,3.5,T,22);K.bola(19.5,16.5,4,3.5,T,23);
+const fruta=(x,y,aberta)=>{const V=['#6a0e0a','#a81c14','#d83020','#ff6a50'];
+for(const[a,b,c]of[[0,-1,2],[1,-1,2],[-1,0,1],[2,0,1],[-1,1,1],[2,1,0],[0,2,0],[1,2,0],[0,0,2],[1,0,2],[0,1,1],[1,1,1]])K.ps(x+a,y+b,V[c]);K.ps(x,y-1,V[3]);
+if(aberta){K.ps(x,y,'#f4f0e4');K.ps(x+1,y,'#f4f0e4');K.ps(x,y+1,'#d8d4c4');K.ps(x+1,y+1,'#141210');}};
+const cachos=[[7,7],[15,6],[11,11],[18,11]].slice(0,4-q);
+for(const[x,y]of cachos){K.linha(x+1,y-3,x+2,y-1,'#3a2a18');fruta(x,y,1);fruta(x+3,y+1,0);fruta(x+1,y+3,1)}
+K.contorno(ESCURO);return K.P}
+function jambu(q){const K=papel(),T=['#2a5a24','#3e7e32','#5aa246','#8ad06a'];
+const folha=(cx,cy,s,seed)=>{K.bola(cx-s*.45,cy,s*.62,s*.5,T,seed);K.bola(cx+s*.45,cy,s*.62,s*.5,T,seed+1);K.bola(cx,cy+s*.45,s*.5,s*.45,T,seed+2);K.ps(cx,cy-s*.1,T[0]);K.linha(cx,cy-s*.3,cx,cy+s*.6,T[1])};
+folha(7,BASE-4,5,31);folha(19,BASE-4,5,34);folha(13,BASE-6,5.5,37);folha(10,BASE-10,4,40);folha(16,BASE-11,4,43);
+const bot=[[9,10],[16,9],[12,7],[5,14],[20,13]].slice(0,5-q*2);
+for(const[x,y]of bot){K.linha(x,y+3,x+(x<13?1:-1),y+5,'#4a8a3a');const Y=['#a87808','#e8b818','#ffe04a','#fff4a0'];
+K.ps(x-1,y+1,Y[1]);K.ps(x,y+1,Y[2]);K.ps(x+1,y+1,Y[1]);K.ps(x-1,y+2,Y[0]);K.ps(x,y+2,Y[1]);K.ps(x+1,y+2,Y[0]);K.ps(x,y+3,Y[0]);K.ps(x-1,y,Y[2]);K.ps(x,y,Y[3]);K.ps(x+1,y,Y[2]);
+K.ps(x,y-1,'#b8401a');K.ps(x-1,y-1,'#8a2a10');K.ps(x+1,y-1,'#8a2a10')}
+K.contorno(ESCURO);return K.P}
+function toco(mat){const K=papel(),c={'Capim-limão':'#9ad24e','Urucum':'#5c9a38','Guaraná':'#4a8a3e','Jambu':'#5aa246'}[mat]||'#5c9a38',d=mix(c,'#000000',.35);
+for(const[x,h]of[[9,3],[11,4],[13,3],[15,4],[17,2]]){K.linha(x,BASE,x,BASE-h,d);K.ps(x,BASE-h,c);K.ps(x,BASE-h-1,mix(c,'#d8c890',.5))}
+K.ps(10,BASE,'#5a3a22');K.ps(16,BASE,'#5a3a22');K.contorno(ESCURO);return K.P}
+const DES={'Capim-limão':capim,'Urucum':urucum,'Guaraná':guarana,'Jambu':jambu};
+function spr(mat,q,vivo){const k=mat+'|'+q+'|'+(vivo?1:0);if(C[k])return C[k];const f=vivo?(DES[mat]||urucum):null;return C[k]=tela(f?f(q):toco(mat))}
+window.ofErvaSpr=spr;
+const _d0=ofDesNo0;
+ofDesNo0=function(n,t){if(!n||n.k!=='erva')return _d0.apply(this,arguments);
+const vivo=ofVivo(n.id),c=OFC&&OFC.no&&OFC.no.id===n.id?OFC:null,dano=c?c.golpe/n.hp:0,q=dano>.66?2:dano>.33?1:0;
+g.save();g.scale(1/1.45,1/1.45);try{
+g.fillStyle='rgba(0,0,0,.24)';g.beginPath();g.ellipse(0,-3,vivo?9:6,2.4,0,0,6.3);g.fill();
+const s=spr(n.mat,q,vivo),x0=-W/2,y0=-3-BASE;
+if(!vivo){g.drawImage(s,x0,y0);return}
+const bal=Math.sin(t/650+n.x*1.7+n.y)*1.3+(c&&t-c.t<140?Math.sin((t-c.t)/12)*1.5:0);
+for(let y=0;y<H;y+=2){const o=Math.round(bal*Math.max(0,(BASE-y)/BASE));g.drawImage(s,0,y,W,2,x0+o,y0+y,W,2)}}finally{g.restore()}};
 })();
 
 </script></body></html>
