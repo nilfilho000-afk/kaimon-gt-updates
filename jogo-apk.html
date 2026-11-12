@@ -2106,7 +2106,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v302 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v303 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -9148,7 +9148,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=302;
+var KGT_VER=303;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -29809,6 +29809,53 @@ else r={dx:0,dy:Math.round(Math.min(8,h*.25))}}
 if(CACHE.size>200)CACHE.clear();CACHE.set(k,r);return r}
 const _ei=entImg;entImg=function(e,t,cx,cy){const q=_ei.apply(this,arguments);try{if(q&&q.sit&&e===P&&P.sit&&!P.sit.sled){const r=encaixe(P.sit);if(r.dy||r.dx){q.Y-=r.dy;q.X+=r.dx}}}catch(x){}return q};
 window.sentaEncaixe=s=>encaixe(s);
+})();
+
+
+
+(function(){
+const N='Reanimador Máximo',PRECO=30000;
+try{CONS.add(N)}catch(e){}
+try{LEG.revmax=N;Object.defineProperty(G,'revmax',{get:()=>invCount(N),set:v=>{if(typeof INVR!=='undefined'&&!INVR)return void PEND.push(['revmax',v]);setCount(N,v)},enumerable:false,configurable:true})}catch(e){}
+try{PR[N]=9000}catch(e){}
+let ICO=null;function icone(){if(ICO)return ICO;const c=document.createElement('canvas');c.width=c.height=64;const x=c.getContext('2d');
+const st=(r1,r2)=>{x.beginPath();const P=[[32,32-r1],[32+r2,32-r2],[32+r1,32],[32+r2,32+r2],[32,32+r1],[32-r2,32+r2],[32-r1,32],[32-r2,32-r2]];P.forEach((p,i)=>i?x.lineTo(p[0],p[1]):x.moveTo(p[0],p[1]));x.closePath()};
+x.fillStyle='rgba(0,0,0,.22)';x.beginPath();x.ellipse(32,59,14,3.4,0,0,6.3);x.fill();
+const rg=x.createRadialGradient(32,32,2,32,32,30);rg.addColorStop(0,'rgba(255,170,220,.6)');rg.addColorStop(1,'rgba(255,120,200,0)');x.fillStyle=rg;x.fillRect(0,0,64,64);
+st(28,9);let lg=x.createLinearGradient(10,8,54,56);lg.addColorStop(0,'#ffd0ec');lg.addColorStop(.45,'#ff5aa8');lg.addColorStop(1,'#a8125a');x.fillStyle=lg;x.fill();x.lineWidth=3;x.strokeStyle='#5a0a30';x.stroke();
+st(15,5.5);lg=x.createLinearGradient(18,18,46,46);lg.addColorStop(0,'#fff6b0');lg.addColorStop(1,'#f6c22c');x.fillStyle=lg;x.fill();x.lineWidth=1.6;x.strokeStyle='#8a5a0a';x.stroke();
+x.fillStyle='#e8263a';x.fillRect(29.5,24,5,16);x.fillRect(24,29.5,16,5);x.fillStyle='rgba(255,255,255,.6)';x.fillRect(29.5,24,2,6);
+x.fillStyle='#ffffff';for(const[a,b,r]of[[12,12,2.4],[52,16,2],[50,50,1.8]]){x.fillRect(a-r*2,b-.6,r*4,1.2);x.fillRect(a-.6,b-r*2,1.2,r*4)}
+x.font='bold 11px sans-serif';x.textAlign='center';x.lineWidth=3;x.strokeStyle='#5a0a30';x.strokeText('MÁX',32,62);x.fillStyle='#fff';x.fillText('MÁX',32,62);
+return ICO=c.toDataURL()}
+try{const _ic=ico;ico=function(n){if(n===N)return icone();return _ic.apply(this,arguments)}}catch(e){}
+function enche(p){p.hp=p.max;try{(p.mv||[]).forEach(v=>{if(MV[v.n])v.pp=MV[v.n][4]})}catch(e){}p.st=null}
+const _ui=useI;useI=function(i,k){if(k!=='revmax')return _ui.apply(this,arguments);const p=G.party[i];
+if(p&&G.revmax>0&&p.hp<=0){G.revmax--;enche(p);try{play('heal')}catch(e){}try{toast('⭐ '+p.n+' voltou com toda a vida e todos os PP!')}catch(e){}try{save()}catch(e){}}bag();hud()};
+function botoesMochila(){try{if(!(G.revmax>0))return;const u=document.getElementById('ui');if(!u)return;
+for(const b of u.querySelectorAll('button')){const on=b.getAttribute('onclick')||'';const m=on.match(/^useI\((\d+),'rev'\)$/);if(!m||b.nextElementSibling&&b.nextElementSibling.classList.contains('rvm'))continue;
+const i=+m[1],p=G.party[i],dis=!p||p.hp>0;b.insertAdjacentHTML('afterend',`<button class="rvm" onclick="useI(${i},'revmax')"${dis?' disabled':''}>Reanimador Máximo (${G.revmax})</button>`)}}catch(e){}}
+if(typeof bag==='function'){const _b=bag;bag=function(){const r=_b.apply(this,arguments);botoesMochila();return r}}
+let RVM=null;
+window.rvmUsar=function(){try{if(!B||B.busy)return;const f=G.party.find(p=>p.hp<=0);if(!f||!(G.revmax>0))return;
+const r0=G.rev|0;G.rev=r0+1;if((G.rev|0)!==r0+1)return ok('🎒 Mochila cheia! Libere um espaço para usar o Reanimador Máximo.');
+G.revmax--;RVM={f};turn({k:'rev'})}catch(e){RVM=null}};
+if(typeof say==='function'){const _s=say;say=function(t){try{if(RVM&&typeof t==='string'&&/foi revivido/.test(t)){const f=RVM.f;RVM=null;enche(f);t=`${f.n} voltou com toda a vida e todos os PP!`;try{bpart('m','heal')}catch(e){}}}catch(e){}return _s.apply(this,[t,...[].slice.call(arguments,1)])}}
+function itemBatalha(){try{if(typeof B!=='object'||!B||B.menu!==2||!(G.revmax>0))return;const u=document.querySelector('.blist');if(!u||u.querySelector('.rvmb'))return;
+const nf=G.party.some(p=>p.hp<=0),rv=[...u.querySelectorAll('button.bit')].find(b=>/turn\(\{k:'rev'\}\)/.test(b.getAttribute('onclick')||''));
+const h=`<button class="bit rvmb" onclick="rvmUsar()"${nf?'':' disabled'}><img src="${icone()}"><span><b>${N}</b><small>Reanima com 100% de vida e PP</small></span><i>×${G.revmax}</i></button>`;
+if(rv)rv.insertAdjacentHTML('afterend',h);else u.insertAdjacentHTML('beforeend',h)}catch(e){}}
+new MutationObserver(itemBatalha).observe(document.body,{childList:true,subtree:true});
+function linhaLoja(volta){try{const u=document.getElementById('ui');if(!u||u.querySelector('.rvmloja'))return;
+const r=[...u.querySelectorAll('.sr')].find(d=>{const b=d.querySelector('b');return b&&b.textContent.trim()==='Reanimador'});if(!r)return;
+const tem=G.revmax|0,cb=q=>`rvmCompra(${q},'${volta}')`;
+r.insertAdjacentHTML('afterend',`<div class="sr rvmloja"><img src="${icone()}"><span><b>${N}</b><br><small>Reanima com 100% de vida e PP · você tem ${tem}</small></span>${btn('$'+PRECO.toLocaleString('pt-BR'),cb(1),G.money<PRECO)}${btn('×5',cb(5),G.money<PRECO*5)}</div>`)}catch(e){}}
+window.rvmCompra=function(q,volta){q=q||1;if(G.money<PRECO*q)return ok('Dinheiro insuficiente!');
+if(typeof invFits==='function'&&!invFits(N,q))return ok('Inventário cheio! Libere espaço ou compre outra mochila.');
+G.money-=PRECO*q;invAdd(N,q);try{play('item')}catch(e){}try{hud()}catch(e){}try{save()}catch(e){}
+if(volta==='dept'&&typeof dept==='function')dept();else shop()};
+if(typeof shop==='function'){const _sh=shop;shop=function(){const r=_sh.apply(this,arguments);linhaLoja('shop');return r}}
+if(typeof dept==='function'){const _dp=dept;dept=function(){const r=_dp.apply(this,arguments);linhaLoja('dept');return r}}
 })();
 
 </script></body></html>
