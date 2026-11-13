@@ -2106,7 +2106,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v308 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v309 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -9148,7 +9148,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=308;
+var KGT_VER=309;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -30086,6 +30086,39 @@ for(const B of L){const c=cb71Canvas(B);if(!c)continue;const X=B.x0*16-cx,w=c.wi
 b.save();b.translate(X,yb);b.transform(1,0,-ax,-ay,0,0);b.translate(-X,-yb);b.drawImage(masc(c),X,yt,w,h);b.restore()}
 b.setTransform(1,0,0,1,0,0);b.globalCompositeOperation='source-in';b.fillStyle='rgb(18,26,48)';b.fillRect(0,0,BUF.width,BUF.height);b.globalCompositeOperation='source-over';
 g.save();g.setTransform(1,0,0,1,0,0);g.globalAlpha=Math.min(.5,s.a);g.drawImage(BUF,0,0);g.restore()}
+})();
+
+
+
+(function(){
+const cv=document.getElementById('cv');if(!cv||typeof g!=='object')return;
+let pref=null;try{pref=localStorage.getItem('kgt_qual')}catch(e){}
+const pc=!(('ontouchstart' in window)||navigator.maxTouchPoints>0)||(matchMedia('(pointer:fine)').matches&&innerWidth>=1000);
+let K=1;window.KRES=1;
+const _st=CanvasRenderingContext2D.prototype.setTransform;let livre=0;
+g.setTransform=function(a,b,c,d,e,f){if(K>1&&!livre&&arguments.length===6&&a===2&&d===2&&b===0&&c===0)return _st.call(this,2*K,0,0,2*K,e*K,f*K);return _st.apply(this,arguments)};
+if(typeof ybMontado==='function'){const _yb=ybMontado;ybMontado=function(){livre++;try{return _yb.apply(this,arguments)}finally{livre--}}}
+function snap(v,dim){const css=parseFloat(v);if(!(css>0))return v;const dpr=window.devicePixelRatio||1,s=css/dim,tex=2*K,u=s*dpr*tex;
+let n=Math.round(u);if(n>u*1.075)n=Math.floor(u);if(n<1)return v;return(n/(dpr*tex)*dim)+'px'}
+const st=cv.style;
+try{Object.defineProperty(st,'width',{configurable:true,get(){return st.getPropertyValue('width')},set(v){st.setProperty('width',snap(v,cv.width))}});
+Object.defineProperty(st,'height',{configurable:true,get(){return st.getPropertyValue('height')},set(v){st.setProperty('height',snap(v,cv.height))}})}catch(e){}
+function reaplica(){try{size()}catch(e){}try{if(typeof fx253Tela==='function'){delete cv.dataset.fx253;fx253Tela()}}catch(e){}}
+window.kgtQualidade=function(n){K=n>1?2:1;window.KRES=K;cv.width=VW*32*K;cv.height=VH*32*K;g.imageSmoothingEnabled=false;reaplica()};
+let lemb=null;try{lemb=JSON.parse(localStorage.getItem('kgt_qual_auto')||'null')}catch(e){}
+const auto=!pref||pref==='auto',fraco=lemb&&Date.now()-lemb.t<3*864e5;
+kgtQualidade(pref==='alta'?2:pref==='normal'?1:(fraco?1:2));
+try{if(auto&&typeof perf260Leve==='function'&&typeof PERF260==='object'){const _pl=perf260Leve;perf260Leve=function(){if(PERF260.modo==='auto'||!PERF260.modo)return PERF260.auto>0;return _pl.apply(this,arguments)};PERF260.leve=perf260Leve()}}catch(e){}
+if(auto){let F=[],last=0;const _r=requestAnimationFrame.bind(window);
+function f(t){try{if(K>1&&last&&typeof mode!=='undefined'&&mode==='walk'&&!document.hidden){const d=t-last;if(d>0&&d<1000){F.push(d);if(F.length>150)F.shift();
+if(F.length>=150){const m=F.reduce((a,b)=>a+b,0)/F.length;if(m>22){kgtQualidade(1);F.length=0;try{localStorage.setItem('kgt_qual_auto',JSON.stringify({t:Date.now(),m:Math.round(m)}))}catch(e){}try{console.info('Kaimon GT: qualidade normal (média '+m.toFixed(1)+' ms)')}catch(e){}}}}}}catch(e){}last=t;_r(f)}
+setTimeout(()=>_r(f),5000)}
+if(typeof cfgR==='function'){const _c=cfgR;cfgR=function(){const r=_c.apply(this,arguments);try{const u=document.getElementById('ui');if(u&&!u.querySelector('.kqual')){
+let pr=null;try{pr=localStorage.getItem('kgt_qual')}catch(e){}const at=!pr||pr==='auto'?0:pr==='alta'?2:1;
+const b=(n,l)=>`<button class="kqb" onclick="kgtQualEsc(${n})" style="${at===n?'background:#e8c050;color:#1a1408;font-weight:700':''}">${l}</button>`;
+const h=`<div class="cfr kqual"><span>🖼️ Qualidade da imagem<br><small style="opacity:.7">agora: ${K>1?'Ultra':'Normal'}${typeof PERF260==='object'&&PERF260.leve?' + leve':''}</small></span><span style="display:flex;gap:6px">${b(0,'Automático')}${b(2,'Ultra')}${b(1,'Normal')}</span></div>`;
+const ref=u.querySelector('.cfr');if(ref)ref.insertAdjacentHTML('beforebegin',h);else u.insertAdjacentHTML('afterbegin',h)}}catch(e){}return r}}
+window.kgtQualEsc=function(n){try{localStorage.setItem('kgt_qual',n===0?'auto':n>1?'alta':'normal');localStorage.removeItem('kgt_qual_auto')}catch(e){}kgtQualidade(n===0?2:n);try{cfgR()}catch(e){}};
 })();
 
 </script></body></html>
