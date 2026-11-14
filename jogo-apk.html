@@ -2106,7 +2106,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v322 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v323 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -9148,7 +9148,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=322;
+var KGT_VER=323;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -30936,6 +30936,95 @@ if(typeof navDest==='function'){const _nd=navDest;navDest=function(){try{const o
 if(typeof msPainel==='function'&&typeof navBtn==='function'){const _mp=msPainel;msPainel=function(){const r=_mp.apply(this,arguments);try{const ui=document.getElementById('ui');if(ui&&!ui.querySelector('.mae322')){const d=document.createElement('div');d.className='mae322';d.style.cssText='margin:4px 0 6px;padding:5px 8px;border:1px solid #ffffff22;border-radius:8px;font-size:12px;line-height:1.3;display:flex;align-items:center;gap:8px;justify-content:space-between';
 d.innerHTML='<span>🏠 <b>Casa da Mamãe</b><br><small style="opacity:.8">Em Alvorada, no começo da rua: à esquerda do Mercadinho do Seu Tonico.</small></span>'+navBtn("navVai({de:'mae322'})");
 const alvo=ui.querySelector('.msm, .hpasso, p');if(alvo&&alvo.parentNode)alvo.parentNode.insertBefore(d,alvo);else ui.appendChild(d)}}catch(e){}return r}}
+})();
+
+
+
+(function(){
+if(typeof csRoom!=='function')return;
+const TH={wall:{k:'stripe',c1:'#f8ecdc',c2:'#f0dcc4',tr:'#a86a3a'},floor:{k:'plank',c1:'#b88a58'},sp:'mom'};
+const sh=(c,k)=>{try{return shd(c,k)}catch(e){return c}};
+function lajota(R,a,b,y0,y1){R.add(1,()=>{for(let y=y0*16;y<(y1+1)*16;y+=8)for(let x=a*16;x<(b+1)*16;x+=8){const v=hsh(x,y,31);R.r(v<.3?'#b8503a':v<.7?'#c45a40':'#cc6448',x,y,8,8);R.r('#8a3a2a',x,y+7.4,8,.6);R.r('#8a3a2a',x+7.4,y,.6,8);R.r('#ffffff1a',x+1,y+1,3,.6)}})}
+function divisoria(R,x,y0,y1,top){const tr=TH.wall.tr,c1=TH.wall.c1,c2=TH.wall.c2;R.solid(x,y0,x,y1,['Parede da casa.']);
+R.add(y1+.6,()=>{const X=x*16+2,Yb=(y1+1)*16,Yt=top?14:y0*16-6;R.r('#00000022',X+12,Yt+4,3,Yb-Yt-2);R.r(sh(tr,.85),X,Yt,12,Yb-Yt-14);R.r(tr,X+1,Yt,10,Yb-Yt-14);R.r(sh(tr,1.2),X+1,Yt,10,1.2);
+R.r(c1,X,Yb-14,12,14);for(let k=1;k<12;k+=4)R.r(c2,X+k,Yb-13,2,11);R.r(sh(tr,.8),X,Yb-2.4,12,2.4);R.r('#00000030',X,Yb,12,1.4)},(y1+1)*16)}
+function parede(R,x){divisoria(R,x,2,4,1);divisoria(R,x,8,9,0);R.add(4.7,()=>{const X=x*16+2;R.r('#7a4a26',X-1,5*16-14,1.6,3*16+12);R.r('#7a4a26',X+11.4,5*16-14,1.6,3*16+12)})}
+function fogao(R,x){R.solid(x,2,x,2,['Panela de feijão no fogo... o cheiro está ótimo!','O forno está quente: tem bolo assando.']);
+R.add(2.55,()=>{const X=x*16+1,Y=20;R.r('#00000028',X+1,Y+27,14,2);R.r('#d8dce0',X,Y,14,27);R.r('#f4f6f8',X+1,Y+1,12,8);
+for(const[a,b]of[[3.5,3],[10.5,3],[3.5,7],[10.5,7]]){R.e('#3a3e48',X+a,Y+b,2.4,1.4);R.e('#5a606c',X+a,Y+b,1.3,.7)}
+R.r('#9aa0a8',X,Y+9,14,1);for(let k=0;k<4;k++)R.e('#2a2e38',X+2.5+k*3,Y+11,1,1);
+R.r('#8a9098',X+1.5,Y+13,11,11);R.r('#3a2a20',X+3,Y+15,8,6);R.r('#f0a040',X+4,Y+18,6,2);R.r('#c8ccd2',X+3,Y+13.6,8,.8);
+R.r('#6a6e78',X+1,Y-4,6,6);R.r('#8a8e98',X+1,Y-4,6,1.2);R.r('#4a2a1a',X+1.5,Y-3.4,5,1);R.r('#3a3e48',X-1,Y-2.6,2,.8);R.r('#3a3e48',X+7,Y-2.6,2,.8);
+R.e('#c8a040',X+10.5,Y-1,3,2.6);R.r('#a88030',X+12.5,Y-3,2.4,.8);R.e('#e0c060',X+10.5,Y-3.3,1,.6)})}
+function filtro(R,x){R.solid(x,2,x,2,['O filtro de barro: a água mais gelada da casa.']);
+R.add(2.5,()=>{const X=x*16+8,Y=44;R.r('#00000028',X-5,Y-.6,10,2);R.r('#7a4a26',X-5,Y-12,10,12);R.r('#9a6a3a',X-5,Y-12,10,1.4);
+R.e('#b86a3a',X,Y-17,5.2,5);R.e('#c87a48',X,Y-17,4,3.6);R.e('#b86a3a',X,Y-25,4.4,4.6);R.e('#d08a58',X-1.4,Y-26,1.4,2);R.r('#9a5a2a',X-3,Y-29.6,6,1.4);R.r('#c8c8d0',X+3.6,Y-15,2.6,1.2)})}
+function pia(R,a,b){R.solid(a,2,b,2,['A pia está limpinha.','O escorredor está cheio de louça secando.']);
+R.add(2.5,()=>{const X0=a*16+1,X1=(b+1)*16-1,w=X1-X0;R.r('#00000028',X0+1,46,w,2);R.r('#c8a070',X0,30,w,16);R.r('#a88050',X0,44,w,2);R.r('#e8e4dc',X0,27,w,4);
+R.r('#b8bcc4',X0+3,27.5,11,3);R.r('#8a9098',X0+4,28,9,2);R.r('#a0a4ac',X0+8,22,1.2,6);R.r('#a0a4ac',X0+8,22,3,1.2);
+for(let k=0;k<4;k++)R.r(['#f4f0e6','#e8d8b0','#f4f0e6','#c8d8e8'][k],X0+17+k*2.6,21,1.8,7);R.r('#9aa0a8',X0+16,26,12,2);
+R.r('#f4f0e6',X0+5,32,7,9);for(let y=33;y<41;y+=3)R.r('#d84a3a',X0+5,y,7,1);
+for(let x=X0+2;x<X1-8;x+=14){R.r('#a87a48',x+12,32,.8,10)};R.e('#d8b860',X1-6,38,.8,.8);
+R.r('#8a5a30',X0+2,12,w-4,1.4);for(let k=0;k<4;k++){const px=X0+4+k*((w-10)/3);R.r('#f0ece4',px,5,4.6,7);R.r(['#c84a3a','#3a7ac8','#e8b830','#5aa040'][k],px,5,4.6,2)}})}
+function tv(R,a,b){R.solid(a,2,b,2,['A TV de tubo da Mamãe. Ainda funciona que é uma beleza!','Em cima, o paninho de crochê que ela mesma fez.']);
+R.add(2.5,()=>{const X0=a*16+1,X1=(b+1)*16-1,w=X1-X0,cx=(X0+X1)/2;R.r('#00000028',X0+1,46,w,2);R.r('#7a4a26',X0,30,w,16);R.r('#5a3418',X0+1,36,w-2,1);
+R.r('#9a6a3a',X0+2,38,9,6);R.r('#9a6a3a',X1-11,38,9,6);R.r('#d8b860',X0+6,40.5,1,1);R.r('#d8b860',X1-7,40.5,1,1);
+R.r('#3a3a44',cx-10,13,20,17);R.r('#2a2a32',cx-10,28,20,2);R.r('#5a8aa8',cx-8,15,13,11);R.r('#8ab8d0',cx-7,16,6,3);R.r('#2a2a32',cx+6,16,3,9);R.e('#c8a040',cx+7.5,18,.9,.9);R.e('#c8a040',cx+7.5,21,.9,.9);
+R.r('#f4f0e6',cx-8,10.6,16,2.6);for(let x=cx-8;x<cx+8;x+=2)R.e('#f4f0e6',x+1,13.4,1,1);R.r('#e86a9a',cx-2,7,4,4);R.r('#5aa040',cx-.4,5,1,3)})}
+function costura(R,x){R.solid(x,2,x,2,['A máquina de costura da Mamãe. Tem um vestido pela metade.']);
+R.add(2.5,()=>{const X=x*16+1;R.r('#00000028',X+1,46,14,2);R.r('#7a4a26',X,30,14,4);R.r('#3a3a44',X+2,34,1.2,12);R.r('#3a3a44',X+11,34,1.2,12);R.r('#3a3a44',X+2,42,10,1.4);
+R.r('#2a2a32',X+2,22,11,3);R.r('#2a2a32',X+10,16,3,9);R.r('#2a2a32',X+3,16,9,3);R.r('#c8a040',X+4,17,5,.8);R.r('#9aa0a8',X+4,19,1,4);R.e('#e86a9a',X+11.5,14.5,1.4,1.2);
+R.r('#6aa0d8',X+1,26,6,4);R.r('#e8c070',X+8,27,3,3)})}
+function colcha(R,x,y){R.add(y+1.5,()=>{const X=x*16+1,Y=y*16+10;for(let j=0;j<4;j++)for(let i=0;i<3;i++){const c=['#e86a9a','#f0c84a','#6aa0d8','#8ac860'][(i+j)%4];R.r('#f4f0e6',X+.6+i*4.4,Y+j*4.6,4.2,4.4);R.r(c,X+1.4+i*4.4,Y+.8+j*4.6,2.6,2.8)}})}
+function sofaCostas(R,a,b,y,c){R.solid(a,y,b,y,['O sofá da sala, de frente para a TV.']);
+R.add(y+.5,()=>{const X0=a*16+1,X1=(b+1)*16-1,w=X1-X0,Y=y*16;R.r('#00000026',X0+1,Y+15,w,2.4);R.r(c,X0,Y-2,w,9);R.r(sh(c,1.12),X0,Y-2,w,1.2);for(let x=X0+w/3;x<X1-2;x+=w/3)R.r(sh(c,.85),x,Y-1,.8,7);
+R.r(sh(c,.8),X0,Y+5,w,10);R.r(sh(c,.9),X0+1,Y+6,w-2,7);R.r(sh(c,.7),X0,Y+13,w,2);R.r(sh(c,.75),X0,Y-3,3,17);R.r(sh(c,.75),X1-3,Y-3,3,17)},y*16+2)}
+function sofa323(R,a,b,y,c){R.solid(a,y,b,y,['O sofá da sala, de frente para a TV. Macio que só.']);
+R.add(y+.5,()=>{const X0=a*16-1,X1=(b+1)*16+1,w=X1-X0,Y=y*16;
+R.r('#00000038',X0+2,Y+15,w,3); 
+R.r(sh(c,1.18),X0+4,Y-15,w-8,11); 
+for(let k=1;k<3;k++)R.r(sh(c,.92),X0+4+(w-8)*k/3-.4,Y-15,.9,11); 
+R.r(sh(c,1.3),X0+4,Y-15,w-8,1.2);
+for(const[x,cc]of[[X0+7,'#f0c84a'],[X1-14,'#e86a9a']]){R.r(sh(cc,.75),x,Y-13,7.4,7.4);R.r(cc,x+.6,Y-12.6,6.2,6);R.r(sh(cc,1.25),x+.6,Y-12.6,6.2,1.2);R.r(sh(cc,.8),x+3,Y-10.4,1.4,1.4)}
+for(const X of[X0,X1-5]){R.r(sh(c,.6),X,Y-17,5,31);R.r(sh(c,.86),X+.8,Y-16.2,3.4,29.4);R.r(sh(c,1.2),X+.8,Y-16.2,3.4,2);R.r(sh(c,.7),X+.8,Y+9,3.4,4.2)} 
+R.r(sh(c,.55),X0+4,Y-6,w-8,20); 
+R.r(sh(c,1.22),X0+4.8,Y-5.4,w-9.6,3); 
+R.r(sh(c,.8),X0+4.8,Y-2.4,w-9.6,13); 
+for(let k=1;k<3;k++){const x=X0+4.8+(w-9.6)*k/3;R.r(sh(c,.62),x-.4,Y-2.4,.9,13);R.e(sh(c,.6),x,Y+3.4,.9,.9)}
+R.r(sh(c,.66),X0+4.8,Y+8,w-9.6,2.6);R.r(sh(c,.5),X0+4.8,Y+10.6,w-9.6,1.4); 
+for(const X of[X0+2,X1-5])R.r('#4a2e18',X,Y+14,3,2.4)})} 
+function mesa323(R,a,b,y){R.solid(a,y,b,y,['A mesa da cozinha, com toalha xadrez.','Tem bolo de fubá e café coado na garrafa térmica.']);
+R.add(y+.6,()=>{const X0=a*16+1,X1=(b+1)*16-1,w=X1-X0,Y=y*16;
+R.r('#0000003a',X0+1,Y+15,w,3);
+for(const X of[X0+1.5,X1-4.5]){R.r('#5a3418',X,Y+4,3,12);R.r('#8a5a30',X+.6,Y+4,1.6,12)} 
+R.r('#7a4a26',X0,Y-9,w,13);R.r('#f6f0e4',X0+.6,Y-10,w-1.2,11); 
+for(let x=X0+.6;x<X1-1;x+=4)for(let yy=Y-10;yy<Y+1;yy+=4)if(((x-X0)/4+(yy-Y+10)/4|0)%2===0)R.r('#d84a3a',x,yy,Math.min(4,X1-.6-x),Math.min(4,Y+1-yy));
+R.r('#ffffff66',X0+.6,Y-10,w-1.2,1);
+R.r('#c8beae',X0+.6,Y+1,w-1.2,5.4);for(let x=X0+.6;x<X1-1;x+=4)if(((x-X0)/4|0)%2===0)R.r('#b03a2e',x,Y+1,Math.min(4,X1-.6-x),5.4); 
+for(let x=X0+2;x<X1-2;x+=4)R.r('#f6f0e4',x,Y+6.2,2,1.4);R.r('#00000030',X0+.6,Y+1,w-1.2,.8);
+const cx=(X0+X1)/2;R.e('#00000030',X0+8,Y-3,5.4,2);R.e('#c8a070',X0+8,Y-4.4,5,2.6);R.e('#f0a030',X0+6.4,Y-6.4,2,2);R.e('#e84a3a',X0+9.6,Y-6.6,2,2);R.e('#f0d040',X0+8,Y-7.6,1.8,1.6);
+R.e('#00000030',cx,Y-2.6,5,1.8);R.e('#f4f0e6',cx,Y-3.6,5,2.2);R.r('#e8b040',cx-3.4,Y-8,6.8,4.4);R.r('#f8d060',cx-3.4,Y-8,6.8,1.4);R.r('#c88a2a',cx-.6,Y-8,1.2,4.4);
+R.e('#00000030',X1-8,Y-2.6,2.6,1.4);R.r('#c83a3a',X1-10,Y-11,4,8);R.r('#e86a5a',X1-10,Y-11,1.2,8);R.r('#3a3a44',X1-10.4,Y-12.6,4.8,2);R.r('#3a3a44',X1-6.2,Y-9,1.6,3.6)})}
+function cadeira323(R,x,y){R.solid(x,y,x,y,['Uma cadeira de madeira da cozinha.']);
+R.add(y+.6,()=>{const X=x*16+3,Y=y*16,m='#9a6a3a';
+R.r('#00000036',X,Y+14,11,2.4);R.r(sh(m,1.2),X,Y-8,10,6);R.r(sh(m,1.35),X,Y-8,10,1); 
+for(const a of[X,X+8.4]){R.r(sh(m,.55),a-.4,Y-6,2.4,21);R.r(sh(m,.9),a,Y-6,1.6,20.4)} 
+R.r(sh(m,.55),X-.4,Y-7,10.8,3.6);R.r(sh(m,1.1),X,Y-6.6,10,2.6);R.r(sh(m,1.3),X,Y-6.6,10,.8); 
+for(let k=0;k<3;k++)R.r(sh(m,.8),X+2.4+k*2.3,Y-4,1.2,7); 
+R.r(sh(m,.55),X-.4,Y+2.6,10.8,2.8);R.r(sh(m,.95),X,Y+3,10,2); 
+R.r(sh(m,.6),X+1.6,Y+9,6.8,1.2)})}
+function monta(R){
+csWin(R,1,'#f0e0a0');csFrame(R,7,2,'photo');csClock(R,11);csFrame(R,12,1,'flowers');csWin(R,15,'#e8a0a0');
+lajota(R,1,5,2,9);filtro(R,1);fogao(R,2);pia(R,3,4);csPlant(R,5,2,'flower');
+mesa323(R,2,4,6);cadeira323(R,2,7);cadeira323(R,4,7);
+parede(R,6);
+tv(R,8,10);csRug(R,8,11,4,5,'#c85a4a','#f0d8a0','round');sofa323(R,9,11,7,'#6a8ec4');csLamp(R,12,3);csPlant(R,12,9,'ficus');
+parede(R,13);
+costura(R,14);csWardrobe(R,16);csBed(R,17,3,'#e86a9a');colcha(R,17,3);
+csStatue(R,14,7,'trophy',['O primeiro troféu de quando você era pequeno(a). A Mamãe guarda com carinho.']);csPlant(R,17,8,'flower')}
+let IDX=-1;try{IDX=typeof CASAMAE307==='number'?CASAMAE307:-1}catch(e){}
+if(IDX<0)for(let i=0;i<M.length;i++){const m=M[i];if(m&&m.key==='of_Mae'){IDX=i;break}}
+if(IDX>=0){M[IDX].mk=function(){const R=csRoom(TH);try{monta(R)}catch(e){console.error('casa mae 323',e)}const o=R.done();o.p={};return o};window.CASAMAE323=IDX}
 })();
 
 </script></body></html>
