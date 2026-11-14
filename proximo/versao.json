@@ -1,0 +1,11 @@
+{
+ "jogo": 318,
+ "jogo_arquivo": "jogo-318.kpk",
+ "jogo_sha": "61207ddfaf83e8caf684ff121b6b1a6077c3e837d0f4470624a8b5dfa6214e4d",
+ "jogo_assin": "C3WUARTOPUfF7YASiYuaiGdfLF7opyNp9rYk50DscTWj4R+fo2qYnXf2y7gxWLHftvtBO6ESc64afU29X7R2Cg==",
+ "launcher": 4,
+ "launcher_arquivo": "KaimonGT-4.exe",
+ "launcher_sha": "03d784b17af9f19e71e1c93c31e69ff6213bbb8fbb15deedcb50dc3781a61375",
+ "launcher_assin": "onJM8kfvEd+9XkmHL46YXFoaasUOghHaG5NGUnXRvMfG3qULA5oIAzKYfBNicXrUISazCeNVzT6Bs2i3FB1AAg==",
+ "notas": "Corrige o scroll dos menus que travava/não funcionava em alguns celulares (a proteção anti-autoclicker não interfere mais no scroll)."
+}
