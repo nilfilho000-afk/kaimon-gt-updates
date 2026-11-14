@@ -2106,7 +2106,7 @@ function ttlOpen(){ttlCSS();mode='title';hd=-1;let el=$('ttl');if(!el){el=docume
 const ids=Object.keys(ACC.a).sort((a,b)=>(ACC.a[b].last||0)-(ACC.a[a].last||0));if(TTL.sel==null||!ACC.a[TTL.sel])TTL.sel=ACC.rem&&ACC.a[ACC.rem]?ACC.rem:ids[0]||null;
 TTL.look=TTL.sel&&ACC.a[TTL.sel]?ACC.a[TTL.sel].look||null:undefined;
 el.innerHTML=`<canvas class="bg" id="ttlbg"></canvas><div class="tl-left"><div class="tlogo"><img src="${typeof KLOGO=='string'?KLOGO:''}" alt="Kaimon GT"></div><div class="tsub">Uma nova jornada por Pindorama</div></div>
- <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v320 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
+ <div class="tcard"><div class="ttabs"><button class="${TTL.tab==0?'on':''}" onclick="TTL.tab=0;TTL.v=0;ttlOpen()">Entrar</button><button class="${TTL.tab==1?'on':''}" onclick="TTL.tab=1;TTL.v=0;ttlOpen()">Criar conta</button></div><div id="tbody">${TTL.tab==0?ttlLogin(ids):ttlNew()}</div></div><div class="tver">v321 · ${fbOn()?'contas com e-mail':'contas salvas neste aparelho'}</div>`;
 if(TTL.stop)TTL.stop();TTL.stop=ttlBg($('ttlbg'));const p=$('tpw');if(p)setTimeout(()=>{try{p.focus()}catch(e){}},50)}
 function ttlLogin(ids){if(fbOn())return fbLoginView(ids);if(!ids.length)return`<p style="margin:4px 2px 10px;color:#c8d2ee;font-size:14px">Nenhuma conta neste aparelho ainda.</p><button class="tgo" onclick="TTL.tab=1;ttlOpen()">Criar minha conta ▶</button>`;
 const a=TTL.sel&&ACC.a[TTL.sel];
@@ -9148,7 +9148,7 @@ function godFesta(v){try{localStorage.setItem('kgt_festa',v)}catch(e){}toast(v==
 const _v7God=godPanel;godPanel=function(){const r=_v7God.apply(this,arguments);try{if(!godOn())return r;const ui=$('ui');if(!ui||ui.querySelector('.godfesta'))return r;let cur='auto';try{cur=localStorage.getItem('kgt_festa')||'auto'}catch(e){}
 const b=[...ui.querySelectorAll('button')].find(x=>x.textContent.trim()==='Fechar');const html=`<div class="godt godfesta">🎄 Festas (decoração das cidades)</div><div class="godg">${btn((cur==='natal'?'✔ ':'')+'Natal','godFesta(\'natal\')',cur==='natal')}${btn((cur==='anonovo'?'✔ ':'')+'Ano Novo','godFesta(\'anonovo\')',cur==='anonovo')}${btn((cur==='auto'?'✔ ':'')+'Pela data (automático)','godFesta(\'auto\')',cur==='auto')}${btn((cur===''?'✔ ':'')+'Desligar','godFesta(\'\')',cur==='')}</div><p class="vipn" style="color:#b8c4e4">Vale neste aparelho; o jogo reinicia para montar a praça.</p>`;
 const t0=ui.querySelector('.godt');if(t0)t0.insertAdjacentHTML('beforebegin',html);else if(b)b.insertAdjacentHTML('beforebegin',html);else ui.insertAdjacentHTML('beforeend',html)}catch(e){}return r};
-var KGT_VER=320;
+var KGT_VER=321;
 function shHSL(h){const[r,g,b]=hexRGB(h).map(v=>v/255),mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2;let H=0,S=0;if(mx!==mn){const d=mx-mn;S=l>.5?d/(2-mx-mn):d/(mx+mn);H=mx===r?((g-b)/d+(g<b?6:0)):mx===g?((b-r)/d+2):((r-g)/d+4);H*=60}return[H,S,l]}
 function shHex(H,S,L){H=((H%360)+360)%360;S=Math.max(0,Math.min(1,S));L=Math.max(0,Math.min(1,L));const c=(1-Math.abs(2*L-1))*S,x=c*(1-Math.abs((H/60)%2-1)),m=L-c/2;let r,g,b;
 if(H<60)[r,g,b]=[c,x,0];else if(H<120)[r,g,b]=[x,c,0];else if(H<180)[r,g,b]=[0,c,x];else if(H<240)[r,g,b]=[0,x,c];else if(H<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
@@ -30811,6 +30811,111 @@ for(let b=0;b<N;b++)for(let a=0;a<N;a++)if(G[b][a]){x.fillStyle=G[b][a];x.fillRe
 let MAO=0;const _s=OFI_SPR;OFI_SPR=function(n){if(MAO){const m=mao(n);if(m)return m}return _s.apply(this,arguments)};
 const _p=ofPescaDraw;ofPescaDraw=function(){MAO=1;try{return _p.apply(this,arguments)}finally{MAO=0}};
 window.VARA_MAO317=mao;
+})();
+
+
+
+(function(){
+if(typeof OFI_SPR!=='function'||typeof VARA_MAO317!=='function')return;
+const C={},_s=OFI_SPR;
+function icone(n){if(C[n]!==undefined)return C[n];const m=VARA_MAO317(n);if(!m)return C[n]=null;const c=document.createElement('canvas');c.width=c.height=32;const x=c.getContext('2d');x.imageSmoothingEnabled=false;
+const P=(a,b,w,h,col)=>{x.fillStyle=col;x.fillRect(a,b,w,h)};
+for(const[a,b]of[[29,4],[29,5],[28,6],[28,7],[28,8],[27,9],[27,10],[27,11],[27,12],[26,13],[26,14],[26,15],[26,16],[26,17]])P(a,b,1,1,'#e8eef8');
+P(24,17,5,7,'#1a1420');P(23,18,7,5,'#1a1420');P(24,18,5,2,'#e8382a');P(25,18,2,1,'#ff8a7a');P(24,20,5,1,'#f4f4f8');P(24,21,5,2,'#f4f4f8');P(27,21,2,2,'#c8ccd8');P(26,24,1,2,'#1a1420');
+x.drawImage(m,0,0);return C[n]=c}
+OFI_SPR=function(n){const r=_s.apply(this,arguments);try{const m=VARA_MAO317(n);if(m&&r!==m){const i=icone(n);if(i)return i}}catch(e){}return r};
+try{if(typeof OFC_IC==='object'&&OFC_IC)for(const k in OFC_IC)delete OFC_IC[k]}catch(e){}
+})();
+
+
+
+(function(){
+if(typeof RH2==='undefined'||typeof MP==='undefined'||typeof ofMapaNos!=='function'||typeof ofStrikeT!=='function')return;
+const VEIO={'Pedra':'#b4b4be','Carvão':'#1e1e24','Minério de Ferro':'#c86a3a','Minério de Cobre':'#e09a4a','Cristal':'#9ae8ff','Prata':'#f2f6fc'};
+const FOL={'Capim-limão':['#8fd050','#b8e070'],'Urucum':['#3f8a30','#e03a22'],'Guaraná':['#3a7a30','#e03a22'],'Jambu':['#4a9a3a','#f4d82a']};
+const DXY=[[0,-1],[1,0],[0,1],[-1,0]],PT=[];let nos=null,nosT=null,nosQ=0;
+function mapa(){const now=performance.now();if(nos&&nosT===T&&now-nosQ<4000)return nos;nosT=T;nosQ=now;nos=new Map();try{for(const n of ofMapaNos(cur))nos.set(n.x+','+n.y,n)}catch(e){}return nos}
+function solta(n,d){const r=Math.random,s=d===1?-1:d===3?1:0,x0=n.x*16+8+s*5,y0=n.y*16+(n.k==='rocha'?5:8),P=(o)=>{if(PT.length<260)PT.push(o)};
+if(n.k==='rocha'){const v=VEIO[n.mat]||'#b4b4be';for(let i=0;i<7;i++)P({x:x0,y:y0,vx:s*(.5+r()*1.5)+(r()-.5)*1.2,vy:-1-r()*1.6,v:1.1,c:i%3===0?v:i%3===1?'#8a8a94':'#5e5e68',s:i%2?2:1.5});
+for(let i=0;i<4;i++)P({x:x0,y:y0,vx:(r()-.5)*3.4,vy:-r()*2.6,v:.55,c:i%2?'#fff6c0':'#ffffff',s:1});P({x:x0,y:y0,v:1,k:'f'})}
+else if(n.k==='erva'){const F=FOL[n.mat]||FOL['Jambu'];for(let i=0;i<8;i++)P({x:n.x*16+8+(r()-.5)*18,y:n.y*16+2+r()*10,vx:(r()-.5)*1.6,vy:-.7-r()*1.1,v:1.4,c:i%4===3?F[1]:F[0],s:i%2?2:1.5,lv:1})}
+else if(n.k==='ipe'||n.k==='arvore'){for(let i=0;i<5;i++)P({x:x0,y:n.y*16+6,vx:s*(.4+r())+(r()-.5),vy:-.8-r()*1.2,v:1,c:i%2?'#c89058':'#8a5a32',s:i%2?2:1.5});
+if(n.k==='ipe')for(let i=0;i<5;i++)P({x:n.x*16+8+(r()-.5)*26,y:n.y*16-22+r()*14,vx:(r()-.5)*.8,vy:.2+r()*.5,v:1.6,c:i%2?'#f0a0d8':'#ffd0ee',s:1.5,lv:1})}
+else if(n.k==='bambu'){for(let i=0;i<6;i++)P({x:n.x*16+8+(r()-.5)*14,y:n.y*16-6+r()*12,vx:(r()-.5)*1.4,vy:-.5-r(),v:1.3,c:i%2?'#8fc050':'#c8e08a',s:i%2?2:1.5,lv:1})}}
+RH2.push(function(cx,cy,t){try{const now=performance.now();
+if(MP.ps&&MP.ps.size)for(const o of MP.ps.values()){const A=o.ofa;if(!A||A.a!==1||!A.per){if(o)o._g321=null;continue}
+const k=Math.floor((now-A.lt-ofStrikeT({per:A.per}))/A.per);if(o._g321==null||o._g321>k){o._g321=k;continue}if(k<=o._g321)continue;o._g321=k;
+const d=A.d|0,q=DXY[d]||DXY[0],n=mapa().get((o.x+q[0])+','+(o.y+q[1]));if(!n)continue;if(Math.abs(o.x-P.x)>16||Math.abs(o.y-P.y)>12)continue;try{if(typeof ofVivo==='function'&&!ofVivo(n.id))continue}catch(e){}solta(n,d)}
+if(!PT.length)return;g.save();
+for(let i=PT.length-1;i>=0;i--){const f=PT[i];if(f.k==='f'){f.v-=.14;if(f.v<=0){PT.splice(i,1);continue}const X=Math.round(f.x-cx),Y=Math.round(f.y-cy),L=2+Math.round((1-f.v)*4);g.fillStyle=`rgba(255,250,210,${f.v})`;g.fillRect(X-L,Y,L*2+1,1);g.fillRect(X,Y-L,1,L*2+1);continue}
+f.x+=f.vx;f.y+=f.vy;f.vy+=f.lv?.05:.14;if(f.lv)f.vx+=Math.sin(t/120+i)*.05;f.v-=.025;if(f.v<=0){PT.splice(i,1);continue}g.globalAlpha=Math.min(1,f.v*1.6);g.fillStyle=f.c;g.fillRect(Math.round((f.x-cx)*2)/2,Math.round((f.y-cy)*2)/2,f.s,f.s)}
+g.globalAlpha=1;g.restore()}catch(e){try{g.restore()}catch(_){}}});
+})();
+
+
+
+(function(){
+if(typeof ofMissTxt!=='function'||typeof navDest!=='function'||typeof navCalc!=='function'||typeof msTrack!=='function')return;
+const CID={Ferreiro:['pedralta','Oficina de Pedra Alta'],Marceneiro:['#1','Oficina de Jatobá'],Cozinheiro:['ondina','Oficina de Ondina'],Joalheiro:['candeia','Oficina de Candeia']};
+const ONDE={Lenhador:'Ipês e bambus ficam nas trilhas e rotas, fora das cidades (bambu, na beira d\'água).',Mineiro:'Rochas ficam dentro das cavernas e nos Andares -1 e -2 das montanhas.',Herborista:'Ervas ficam no mato das trilhas e rotas, perto da grama.',Pescador:'Dá para pescar em qualquer água: fique de frente para ela e use a vara.'};
+function miss(){try{const o=ofSt(),m=o.miss;return m&&!m.ok&&m.p===o.prof?m:null}catch(e){return null}}
+function destino(){const m=miss();if(!m)return null;const p=m.p,prod=OFD.PROF[p].t==='prod';
+if(m.et===2){const i=M.findIndex(q=>q&&q.key==='of_Mae');if(i<0)return null;if(cur===i)return{tipo:'npc',n:'mom',nome:'Mamãe'};const k=navK(i);
+return typeof NAVD!=='undefined'&&NAVD[k]?{tipo:'mapa',k,nome:'Casa da Mamãe'}:{tipo:'porta321',i,nome:'Casa da Mamãe'}}
+if(prod)return{tipo:'mapa',k:CID[p][0],nome:CID[p][1]};
+if(m.et===0||p==='Mercador')return{tipo:'mapa',k:'feira94',nome:'Fornecedor da Feira'};
+return{tipo:'no321',p,nome:p==='Pescador'?'a beira d\'água':'o ponto de coleta'}}
+{const _nd=navDest;navDest=function(){try{const o=NAV.o;if(o&&o.de==='of321')return destino()}catch(e){}return _nd.apply(this,arguments)}}
+{const _nc=navCalc;navCalc=function(dest){
+if(dest&&dest.tipo==='porta321'){try{const pp=M[cur].p||{};for(const k in pp){if(pp[k]&&pp[k][0]===dest.i){const[x,y]=k.split(',').map(Number);return{pts:[[x,y]],alvo:[x,y],label:'a Casa da Mamãe',final:1}}}}catch(e){}
+let casa='#0';try{for(let j=0;j<M.length;j++){const pp=M[j]&&M[j].p;if(pp&&Object.values(pp).some(v=>v&&v[0]===dest.i)){casa=navK(j);break}}}catch(e){}return _nc.call(this,{tipo:'mapa',k:casa,nome:'Casa da Mamãe'})}
+if(!dest||dest.tipo!=='no321')return _nc.apply(this,arguments);try{
+if(dest.p==='Pescador'){const g=navPerto((x,y)=>[[1,0],[-1,0],[0,1],[0,-1]].some(([a,b])=>(T[y+b]||[])[x+a]===2));if(g)return{pts:[g],alvo:g,label:'a beira d\'água',final:1}}
+else{let b=null,bd=1e9;for(const n of ofMapaNos(cur)){if(n.p!==dest.p)continue;try{if(!ofVivo(n.id))continue}catch(e){}const d=Math.abs(n.x-P.x)+Math.abs(n.y-P.y);if(d<bd){bd=d;b=n}}
+if(b)return{pts:navEmVolta(b.x,b.y),alvo:[b.x,b.y],label:b.k==='rocha'?'a rocha':b.k==='erva'?'a erva':b.k==='bambu'?'o bambuzal':'o ipê',final:1}}
+if(!navCalc.av||performance.now()-navCalc.av>8000){navCalc.av=performance.now();try{toast('🧭 Neste mapa não tem. '+(ONDE[dest.p]||''))}catch(e){}}
+}catch(e){}return{pts:[[P.x,P.y]],alvo:[P.x,P.y],label:'aqui',final:1,chegou:1}}}
+let TX='';
+{const _tk=msTrack;msTrack=function(){const r=_tk.apply(this,arguments);try{const c=document.getElementById('mstrk');if(!c||c.style.display==='none')return r;const t=ofMissTxt();let d=document.getElementById('of321');
+if(!t||!miss()){if(d)d.remove();return r}
+if(!d||d.parentNode!==c){d=document.createElement('div');d.id='of321';d.style.cssText='margin-top:4px;padding-top:4px;border-top:1px solid #ffffff22;color:#ffd34d;font-weight:700;font-size:12px;line-height:1.25';c.appendChild(d);TX=''}
+if(TX!==t){TX=t;d.innerHTML='👩📜 Missão da Mamãe: '+esc(t)+(typeof navBtn==='function'?' '+navBtn("navVai({de:'of321'})"):'')}}catch(e){}return r}}
+})();
+
+
+
+var CART321={fila:[],img:null,nome:''};
+(function(){
+if(typeof msEv!=='function'||typeof getVH!=='function'||typeof ok!=='function')return;
+const COR={shiny:['#ffd34d','#7a4a08','✨ SHINY CAPTURADO!'],lenda:['#c47aff','#3a1466','🌟 LENDA DO FOLCLORE CAPTURADA!'],liga:['#ffe27a','#6a3c04','👑 CAMPEÃO DA LIGA DE PINDORAMA!']};
+function desenha(tipo,m){const c=document.createElement('canvas');c.width=c.height=1080;const x=c.getContext('2d'),K=COR[tipo]||COR.shiny;
+const gr=x.createLinearGradient(0,0,0,1080);gr.addColorStop(0,'#1b2440');gr.addColorStop(1,'#0b0f1c');x.fillStyle=gr;x.fillRect(0,0,1080,1080);
+const rd=x.createRadialGradient(540,520,40,540,520,520);rd.addColorStop(0,K[0]+'66');rd.addColorStop(1,K[0]+'00');x.fillStyle=rd;x.fillRect(0,0,1080,1080);
+for(let i=0;i<70;i++){const a=(i*7919)%1080,b=(i*104729)%1080,s=i%5===0?8:4;x.fillStyle=i%3?'#ffffff22':K[0]+'55';x.fillRect(a,b,s,s)}
+x.strokeStyle=K[0];x.lineWidth=10;x.strokeRect(25,25,1030,1030);x.strokeStyle='#00000066';x.lineWidth=4;x.strokeRect(38,38,1004,1004);
+x.textAlign='center';x.textBaseline='middle';
+x.font='900 64px system-ui,sans-serif';x.fillStyle='#000000aa';x.fillText('KAIMON GT',544,114);x.fillStyle='#ffd34d';x.fillText('KAIMON GT',540,110);
+x.fillStyle=K[1];x.fillRect(90,170,900,84);x.fillStyle=K[0];x.fillRect(90,170,900,6);x.fillRect(90,248,900,6);x.font='800 44px system-ui,sans-serif';x.fillStyle='#fff';x.fillText(K[2],540,214);
+try{const s=getVH(m.n,0,8,m.sh?1:0,5);if(s&&s.width){const z=Math.floor(Math.min(780/s.width,640/s.height))||1,w=s.width*z,h=s.height*z;x.imageSmoothingEnabled=false;
+x.fillStyle='#00000055';x.beginPath();x.ellipse(540,800,w*.36,26,0,0,6.3);x.fill();x.drawImage(s,540-w/2,800-h+h*.06,w,h)}}catch(e){}
+x.font='900 76px system-ui,sans-serif';x.fillStyle='#000000aa';x.fillText((m.sh?'✨ ':'')+m.n,544,884);x.fillStyle='#fff';x.fillText((m.sh?'✨ ':'')+m.n,540,880);
+let nick='';try{nick=String(G.nick||'').slice(0,18)}catch(e){}const d=new Date(),dt=String(d.getDate()).padStart(2,'0')+'/'+String(d.getMonth()+1).padStart(2,'0')+'/'+d.getFullYear();
+x.font='700 38px system-ui,sans-serif';x.fillStyle='#d8e4ff';x.fillText((m.lvl?'Nv '+m.lvl+' · ':'')+(nick?'Treinador(a) '+nick+' · ':'')+dt,540,948);
+x.fillStyle='#ffd34d';x.fillRect(90,988,900,3);x.font='800 36px system-ui,sans-serif';x.fillStyle='#ffe9a0';x.fillText('Jogue grátis: kaimongt.com.br',540,1020);return c}
+function mostra(tipo,m){try{const c=desenha(tipo,m);CART321.img=c;CART321.nome='kaimon-gt-'+String(m.n).toLowerCase().normalize('NFD').replace(/[^a-z0-9]+/g,'-')+'.png';
+ok('<b>📤 Mostre para os amigos!</b><p style="margin:6px 0"><img src="'+c.toDataURL('image/jpeg',.82)+'" style="width:min(100%,300px);border-radius:10px;display:block;margin:0 auto"></p>'+btn('📤 Compartilhar','cart321Envia()')+' '+btn('💾 Salvar imagem','cart321Salva()'))}catch(e){}}
+window.cart321Mostra=mostra;
+function blob(){return new Promise(r=>{try{CART321.img.toBlob(b=>r(b),'image/png')}catch(e){r(null)}})}
+window.cart321Salva=async function(){const b=await blob();if(!b)return toast('Não deu para gerar a imagem.');const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=CART321.nome;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},4000);toast('💾 Imagem salva nos downloads.')};
+window.cart321Envia=async function(){const b=await blob();if(!b)return toast('Não deu para gerar a imagem.');try{const f=new File([b],CART321.nome,{type:'image/png'});
+if(navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f],title:'Kaimon GT',text:'Olha o que eu consegui no Kaimon GT! Jogue grátis: https://kaimongt.com.br'});return}}catch(e){if(e&&e.name==='AbortError')return}
+toast('Este aparelho não abre o compartilhar com imagem: salvei a imagem para você mandar.');cart321Salva()};
+function lenda(n){try{return!!(SP[n]&&(SP[n].exclusivo||SP[n].leg))}catch(e){return false}}
+{const _ev=msEv;msEv=function(ev,q,ex){try{if(ev==='cap'&&typeof B!=='undefined'&&B&&B.w&&B.w.n){const w=B.w;if(w.sh||lenda(w.n))CART321.fila.push([w.sh?'shiny':'lenda',{n:w.n,lvl:w.lvl|0,sh:w.sh?1:0}])}}catch(e){}return _ev.apply(this,arguments)}}
+let champ=null;
+setInterval(()=>{try{if(typeof G==='undefined'||!G||!G.party)return;if(champ===null){champ=!!G.champ;return}
+if(!champ&&G.champ){champ=true;const m=(G.party||[])[0];if(m)CART321.fila.push(['liga',{n:m.n,lvl:m.lvl|0,sh:m.sh?1:0}])}
+if(CART321.fila.length&&mode==='walk'&&!(typeof B!=='undefined'&&B)&&(!$('ui')||$('ui').style.display==='none')){const[t,m]=CART321.fila.shift();CART321.fila.length=0;mostra(t,m)}}catch(e){}},1200);
 })();
 
 </script></body></html>
